@@ -1,0 +1,39 @@
+/*
+Styles for the elevation options. 
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : olmozavala
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* Defines the position of the draggable window that
+selects the zaxis value*/
+/* line 14, ../scss/Elevation.scss */
+#elevationSelector {
+  top: 45px;
+  left: 40%;
+  display: none;
+}
+
+/* line 20, ../scss/Elevation.scss */
+.linkElevPageDef {
+  font-size: 16px;
+  color: #F9FFCB;
+}
+
+/* line 24, ../scss/Elevation.scss */
+.linkElevPageSelected {
+  font-size: 16px;
+  color: #BBA364;
+}
+
+/* line 30, ../scss/Elevation.scss */
+#plusButtonElevation {
+  display: none;
+}

@@ -1,0 +1,17 @@
+/*
+This file defines specific styling for 
+the top menu options. 
+*/
+/* 
+    Created on : Sep 24, 2013, 3:57:39 PM
+    Author     : Olmo Zavala Romero
+*/
+
+@import "base";
+
+a.maplink{
+    text-decoration:none;
+    @include link-colors($fontColor,$fontColor,$fontColor,$fontColor,$fontColor);
+    @include unstyled-link;
+    &:hover{ text-decoration:none;}
+}

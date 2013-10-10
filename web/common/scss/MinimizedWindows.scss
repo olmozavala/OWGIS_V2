@@ -1,0 +1,27 @@
+/* 
+    Document   : Palettes
+    Created on : Sept 25, 2013, 4:11:25 PM
+    Author     : Olmo Zavala Romero
+    Description:
+        Styles for the Minimized tabs of windows. 
+*/
+
+@import "base";
+
+
+#minimizedWindowsContainer{
+    width: 100%;
+    bottom:3px;
+    position: absolute;
+}
+
+// Used when minimizing one of the options (small tab that appears below)
+.minimizedWindow {
+    padding: 5px 10px 20px 10px;
+    background-color: $invColor;
+    opacity: $defOpacity - .2;
+    display:none;
+    position: relative;
+    margin: 5px;
+    cursor: default;
+}

@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 20, 2013, 9:23:40 PM
+    Author     : olmozavala
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* Help Instructions display container */
+/* line 20, ../scss/MapInstructions.scss */
+#helpInstrContainer {
+  width: 70%;
+  left: 20%;
+  top: 80px;
+  max-height: 70%;
+  overflow-x: hidden;
+  z-index: 1010;
+  overflow-y: auto;
+  opacity: 0.8;
+  display: none;
+}
+
+/* line 34, ../scss/MapInstructions.scss */
+.commonHover {
+  position: absolute;
+  border: 1px solid;
+  padding: 5px;
+  font-size: 13px;
+  color: black;
+  background-color: darkkhaki;
+  z-index: 1009;
+  top: 1px;
+  left: 1px;
+  opacity: 0.85;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
+  border-radius: 5px / 5px;
+  text-align: left;
+  min-width: 150px;
+  display: none;
+}
+
+/* CQL filter parent of all the instructions*/
+/* line 54, ../scss/MapInstructions.scss */
+#ocqlFilterText {
+  text-align: left;
+  top: 120px;
+  left: 50px;
+  padding: 10px;
+  width: 270px;
+}
+
+/* line 63, ../scss/MapInstructions.scss */
+#helpHoverSpan {
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  display: inline;
+  z-index: 1019;
+}
+
+/* line 72, ../scss/MapInstructions.scss */
+#helpIconHover {
+  right: 10px;
+  width: 150px;
+}

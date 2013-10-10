@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 20, 2013, 9:23:40 PM
+    Author     : olmozavala
+*/
+@import "base";
+
+// ============ This section is for the general help instructions ==========
+
+// Table that contains the help instructions
+.helpInstructionsParentTable
+{
+}
+
+/* Help Instructions display container */
+#helpInstrContainer{
+    width:70%;
+    left:20%;
+    top:80px;
+	max-height:70%;
+    overflow-x:hidden;
+    z-index:1010;//Above everything
+    overflow-y:auto;
+    opacity: $defOpacity - .1;
+    display:none;
+}
+
+// ========= This section is for the hover help texts =============
+// Style for the hover window
+.commonHover{
+    position:absolute;
+	border:1px solid;
+    padding:5px;
+    font-size: $defFontSize;
+	color:$invColor;
+    background-color: $backHelpHoverColor;
+    z-index:1009;
+	top: $helpDefTop;
+	left: $helpDefLeft;
+	opacity: $defOpacity - .05;
+
+	@include border-radius(5px,5px);
+	text-align: left;
+
+	min-width:150px;
+    display:none;
+}
+
+/* CQL filter parent of all the instructions*/
+#ocqlFilterText{
+	text-align: left;
+	top: 120px;
+	left: 50px;
+	padding: 10px;
+	width: 270px;
+}
+
+//Small question mark on the map, used to display hover texts
+#helpHoverSpan{
+	position: absolute;
+	top:4px;
+	right:0px;
+	display: inline;
+    z-index:1019;
+}
+
+// Hover text for the help glyphicon glyphicon-
+#helpIconHover{
+	right:10px;
+	width: 150px;
+}

@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 23, 2013, 5:57:54 PM
+    Author     : olmozavala
+*/
+
+/* CQL custom filter parent  */
+#ocqlFilterInputTextParent{
+	display: none;
+	left: 200px;
+	top: 30px;
+}
+
+/* Input text for CQL filter */
+#idOcqlFilterInputText{ }
+
+/* Button to show and hide CQL filter text box*/
+#ocqlMenuButtonParent{
+	position: relative;
+	left: 10%;
+}
+
+/* 'Apply' button for CQL filter */
+#idOcqlFilterButton{
+	display:inline;
+}
+
+/* Span to input some error text */
+#ocqlErrorParent{
+	display:none;
+	top: 200px;
+}
+
+/* Table containing hover help */
+table.cqlFilterExampleTable{
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+}
+table.cqlFilterExampleTable th{
+	border-width: 1px;
+	border-style: solid;
+	text-align: center;
+	background-color: #CBC361;
+	padding: 2px 4px;
+}
+table.cqlFilterExampleTable td{
+	padding: 6px;
+	border-width: 1px;
+	border-style: solid;
+	text-align: center;
+}

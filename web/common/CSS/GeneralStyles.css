@@ -1,0 +1,203 @@
+/*
+This file defines all the general styling for the site like the floating windows,
+buttons, etc.
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : olmozavala
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* line 12, ../scss/GeneralStyles.scss */
+.delTestBorder {
+  border-style: solid;
+  border-color: yellow;
+}
+
+/* line 16, ../scss/GeneralStyles.scss */
+.delTestBorder2 {
+  border-style: solid;
+  border-color: red;
+}
+
+/* line 22, ../scss/GeneralStyles.scss */
+.defRowSpace {
+  margin: 5px 0px;
+}
+
+/* This is the CSS for a default floating window. It should be used
+for the help text, the optional layers, the depth etc.*/
+/* line 28, ../scss/GeneralStyles.scss */
+.draggableWindow {
+  z-index: 1008;
+  position: absolute;
+  border: solid 1px white;
+  padding: 6px 8px;
+  cursor: move;
+  opacity: 0.9;
+  font-size: 13px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  color: #ecf2f8;
+  background-color: black;
+}
+
+/* This is the CSS for a default transparent floating window. It should be used
+for the main layers, the color palettes, the calendars etc.*/
+/* line 36, ../scss/GeneralStyles.scss */
+.transDraggableWindow {
+  z-index: 1008;
+  position: absolute;
+  border: solid 1px white;
+  padding: 6px 8px;
+  cursor: move;
+  opacity: 0.9;
+  font-size: 13px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+/* line 42, ../scss/GeneralStyles.scss */
+.title {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 0px;
+}
+
+/* line 50, ../scss/GeneralStyles.scss */
+.defShadow {
+  color: #ecf2f8;
+  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
+  text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
+}
+
+/* line 52, ../scss/GeneralStyles.scss */
+.invShadow {
+  color: black;
+  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
+  text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
+}
+
+/* line 54, ../scss/GeneralStyles.scss */
+.noShadow {
+  color: #ecf2f8;
+}
+
+/* line 56, ../scss/GeneralStyles.scss */
+.noShadow {
+  color: #ecf2f8;
+}
+
+/* line 59, ../scss/GeneralStyles.scss */
+.closeButton {
+  float: right;
+}
+
+/* Main div for user menu options. topmenu */
+/* line 62, ../scss/GeneralStyles.scss */
+.layersMenu {
+  background-image: url("../images/transBack.png");
+  top: 0px;
+  left: 0px;
+  padding: 10px 0px;
+  position: absolute;
+  border-bottom: white 1px solid;
+  text-align: center;
+  width: 100%;
+}
+
+/* This is the default font type for the letters in the page */
+/* line 74, ../scss/GeneralStyles.scss */
+p {
+  color: #ecf2f8;
+}
+
+/* Main title */
+/* line 77, ../scss/GeneralStyles.scss */
+.mapTitle {
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  z-index: 1000;
+  display: inline;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Default style for the page */
+/* line 91, ../scss/GeneralStyles.scss */
+html, body {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #296E8D;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Used to avoid selecting text (Chrome)*/
+/* line 102, ../scss/GeneralStyles.scss */
+::selection {
+  background: transparent;
+}
+
+/* Used to avoid selecting text (Firefox)*/
+/* line 106, ../scss/GeneralStyles.scss */
+::-moz-selection {
+  background: transparent;
+}
+
+/* Left fotter */
+/* line 111, ../scss/GeneralStyles.scss */
+div.leftFoot {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  z-index: 1000;
+  display: inline;
+  color: black;
+  opacity: 0.7;
+}
+
+/* line 121, ../scss/GeneralStyles.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 123, ../scss/GeneralStyles.scss */
+.footNote {
+  font-size: 12px;
+  display: inline;
+  padding-bottom: 5px;
+}
+
+/*It is used for normal text or paragraph (with shadows)
+but the size of the font is larger */
+/* line 131, ../scss/GeneralStyles.scss */
+.bigFontSize {
+  font-size: 30px;
+}
+
+/*Style for the 'contact' text. At the bottom of the page*/
+/* line 134, ../scss/GeneralStyles.scss */
+#emailText {
+  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
+  text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
+  font-size: 11px;
+  color: blue;
+}

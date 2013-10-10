@@ -1,0 +1,45 @@
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala Romero
+*/
+
+@import "base";
+
+$containerSize:380px;
+
+/* Stop animation button */
+#s-animation{ 
+	display:none;
+	cursor: pointer;
+	font-size:12px;
+    z-index:1009;
+	white-space: nowrap;
+	text-align: center;
+}
+
+/* This is the Loading text */
+#l-animation{ 
+	visibility: hidden; 
+	position:absolute;	
+	margin:auto;
+    top:30%;
+    left:40%;
+    z-index:1009;
+	pointer-events: none;
+	font-size: 18px;
+}
+
+/* Calendars container */
+#CalendarsAndStopContainer{
+    top: 209px;
+    left: 50px;
+    //This is necessary because the calendar doesn't fit
+    // on a normal span of 2
+    padding-right: 12px;
+    width:$containerSize;
+}
+
+// Dropdown to select the time frame (day, week, month)
+#timeSelect{
+    width: $containerSize/2 - 20;
+}

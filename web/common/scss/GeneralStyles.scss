@@ -1,0 +1,140 @@
+/*
+This file defines all the general styling for the site like the floating windows,
+buttons, etc.
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : olmozavala
+*/
+
+@import "base";
+
+.delTestBorder{
+    border-style:solid;
+    border-color:yellow;
+}
+.delTestBorder2{
+    border-style:solid;
+    border-color:red;
+}
+
+// Space used by default between bootstrap rows
+.defRowSpace{
+    margin: 5px 0px;
+}
+
+/* This is the CSS for a default floating window. It should be used
+for the help text, the optional layers, the depth etc.*/ 
+.draggableWindow{
+	@include floatingWindow;
+	color: $fontColor;
+	background-color: $backColor; 
+}
+
+/* This is the CSS for a default transparent floating window. It should be used
+for the main layers, the color palettes, the calendars etc.*/ 
+.transDraggableWindow{
+	@include floatingWindow;
+	background-color: transparent;
+}
+
+// Default style for a title
+.title{ 
+	font-size: $defFontSize + 4;
+    font-weight: bold;
+	text-align: center;
+    padding: 5px 0px;//Put some space above and below title
+}
+
+//Default shadow for the text
+.defShadow{ color: $fontColor; @include textHalo($invColor); }
+//Inverse shadow for the text
+.invShadow{ color: $invColor; @include textHalo($fontColor); }
+//No shadow on the text, using default font color
+.noShadow{ color: $fontColor; }
+//No shadow on the text, using default inverse color
+.noShadow{ color: $fontColor; }
+
+//Close button
+.closeButton{ float:right; }
+
+/* Main div for user menu options. topmenu */
+.layersMenu{
+    background-image:url('../images/transBack.png');
+    top:0px;
+    left:0px;
+    padding: 10px 0px;
+    position:absolute;
+    border-bottom:white 1px solid;
+    text-align: center;
+    width:100%;
+}
+
+/* This is the default font type for the letters in the page */
+p{ color: $fontColor; }
+
+/* Main title */
+.mapTitle{
+    font-size:$defFontSize+7;
+    position:absolute;
+    width: 100%;
+    top:50px;
+    z-index:1000;
+    display:inline;
+    text-align:center;
+    pointer-events: none;
+}
+
+
+//---------------  From map style --------------
+/* Default style for the page */
+html,body {
+    font-family:Tahoma, Verdana, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #296E8D;
+    overflow:hidden;
+	width: 100%;
+	height: 100%;
+}
+
+/* Used to avoid selecting text (Chrome)*/
+::selection{
+	background: transparent;
+}
+/* Used to avoid selecting text (Firefox)*/
+::-moz-selection{
+	background: transparent;
+}
+
+/* Left fotter */
+div.leftFoot{
+    position:absolute;
+    bottom:1%;
+    right:1%;
+    z-index:1000;
+    display:inline;
+    color:black;
+    opacity:0.7;
+}
+
+a{ text-decoration: none; }
+
+.footNote{
+    font-size:12px;
+    display:inline;
+    padding-bottom: 5px;
+}
+
+/*It is used for normal text or paragraph (with shadows)
+but the size of the font is larger */
+.bigFontSize{ font-size: 30px; }
+
+/*Style for the 'contact' text. At the bottom of the page*/
+#emailText{
+    @include textHalo($fontColor);
+    font-size: $defFontSize - 2;
+    color:blue;
+}
+
+

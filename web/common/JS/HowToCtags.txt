@@ -1,0 +1,6 @@
+---------- Update the ctags using ----------
+ctags --file-scope=no -R        // On the root of the JS folder
+
+
+------- Add the ctags to current file ---------
+:set tags=(tagsfile)

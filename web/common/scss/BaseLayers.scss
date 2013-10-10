@@ -1,0 +1,42 @@
+/*
+This file defines the styles for the Base layers 
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : olmozavala
+*/
+
+@import "base";
+
+$containerSize: 180px;
+$border-select: 6px;
+
+/* Extra styling for the mainlayer dropdowns */
+.mainMenu {
+    font-size: $defFontSize + 2;
+    width: $containerSize - 15;
+    color: $invColor;
+	background-color: $butBackColor + 60;
+	@include border-radius($border-select, $border-select);
+	&:hover{
+		background-color: $butBackColorHover+ 60;
+	}
+    //padding: 2px 11px;
+    margin: 1px 0px;
+}
+
+/* The 'MainMenu'(base layers dropdowns) container */
+#mainMenuParent{
+    top: 60px;
+    left: 50px;
+    width: $containerSize;
+}
+
+/* Table that contains the menu for the base layers*/
+#t_mainMenu{
+    margin:.5em 0 .5em 0;
+	background-color: transparent;
+}
+
+// Position of the hover menu instructions
+#mainMenuParentHover{left:$containerSize + 20;}

@@ -1,0 +1,48 @@
+/*
+This file defines all the styles for the buttons on the site. 
+Currently the buttons for the menu and the +,- buttons
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : olmozavala
+*/
+@import "base";
+
+$btn-default-color:red;
+
+/* Buttons style, default style for buttons (used in transparency and xasis),
+and also the mainMenu dropdown options*/
+.buttonStyle{
+    background-color:$butBackColor;
+    border-color: $backColor;
+    border-style: solid;
+    border-width: 1px;
+	color: $fontColor;
+	@include border-radius($default-border-radius, $default-border-radius);
+	@include box-shadow($butShadowColor 2px 2px 10px);
+	@include box-sizing(content-box);
+	padding: 5px 10px; 
+	margin:  5px 5px; 
+	height: $defFontSize + 10;
+    display: inline; 
+	vertical-align: middle;
+	&:hover{
+		background-color:$butBackColorHover;
+        @include box-shadow($butSecondShadowColor 2px 2px 20px);
+	}
+    &:active{
+        @include box-shadow($butSecondShadowColor + 20 2px 2px 20px);
+		background-color:$butBackColorHover + 20;
+    }
+    cursor: pointer;
+}
+
+/* This are also plus and minus buttons, but are
+smaller and doesn't have background. Currently are used
+for transparency in the optional layers. */
+.minusButtonSmall, .plusButtonSmall
+{
+	@include onlyTextButton;
+    font-size: $defFontSize+2;
+    font-weight: bolder;
+}

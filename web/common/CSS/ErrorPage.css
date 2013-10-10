@@ -1,0 +1,41 @@
+/* 
+    Document   : ErrorPage
+    Created on : Apr 2, 2013, 5:09:43 PM
+    Author     : olmozavala
+    Description:
+		CSS For styling the error page.
+*/
+
+body{ 
+    display: block;
+	background-attachment: fixed;
+    background-image:url('../images/ErrorPage/Back1.jpg');
+	background-repeat: no-repeat;
+	background-color: black;
+	background-position: center bottom;
+}
+
+
+#divErrMsg{
+	left: 30%;
+	position: absolute;
+}
+
+.errorMsg{
+	font-size: x-large;
+	margin: 10px;
+}
+
+#txtHeader{
+	color: #B66D1B;
+}
+#txtContact{
+	color: #9D9D9D;
+}
+#txtException{
+	color: #8D1717;
+}
+#txtTrace{
+	color: #2D9948;
+	font-size: medium;
+}

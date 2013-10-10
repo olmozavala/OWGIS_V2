@@ -1,0 +1,47 @@
+/*
+This file defines specific styling for 
+the top menu options. 
+*/
+/* 
+    Created on : Sep 24, 2013, 3:57:39 PM
+    Author     : Olmo Zavala Romero
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* line 12, ../scss/MenuOptions.scss */
+a.maplink {
+  text-decoration: none;
+  color: #ecf2f8;
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+}
+/* line 18, ../../../../../../../../../var/lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.maplink:visited {
+  color: #ecf2f8;
+}
+/* line 21, ../../../../../../../../../var/lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.maplink:focus {
+  color: #ecf2f8;
+}
+/* line 24, ../../../../../../../../../var/lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.maplink:hover {
+  color: #ecf2f8;
+}
+/* line 27, ../../../../../../../../../var/lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+a.maplink:active {
+  color: #ecf2f8;
+}
+/* line 6, ../../../../../../../../../var/lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_unstyled-link.scss */
+a.maplink:active, a.maplink:focus {
+  outline: none;
+}
+/* line 16, ../scss/MenuOptions.scss */
+a.maplink:hover {
+  text-decoration: none;
+}

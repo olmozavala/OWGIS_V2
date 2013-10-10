@@ -1,0 +1,51 @@
+/* 
+    Document   : Palettes
+    Created on : Sept 25, 2013, 4:11:25 PM
+    Author     : Olmo Zavala Romero
+    Description:
+        Should have all the styling related with the palettes and
+        range of colors.
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* Id of the div that contains both Palettes windows */
+/* line 16, ../scss/Palettes.scss */
+#palettesParent {
+  position: absolute;
+}
+
+/* line 21, ../scss/Palettes.scss */
+#palettesTable {
+  cursor: pointer;
+}
+
+/* Div of the optional palettes div */
+/* line 24, ../scss/Palettes.scss */
+#palettes-div {
+  width: 240px;
+  top: 245px;
+  left: 40%;
+  position: absolute;
+  display: none;
+}
+
+/* table that contains current palette and the color range*/
+/* line 35, ../scss/Palettes.scss */
+#paletteWindowColorRange {
+  width: 200px;
+  top: 245px;
+  left: 60%;
+  position: absolute;
+  display: none;
+}
+
+/* line 44, ../scss/Palettes.scss */
+.inputSizePalettes {
+  width: 55px;
+  height: 13px;
+}
