@@ -106,13 +106,10 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                     <p class="bigFontSize"> <fmt:message key="ncwms.loading" /> <span id="loadperc">0</span> % <img src="${basepath}/common/images/load.gif" height="12" border="0" alt="loading" />	</p>
                 </div>
             </c:if>
-
-
-
-            <!-- Foot page --> 
-            <div id="pieDePaginaIzq" class="leftFoot">
-                &nbsp;
-                <a  href="http://www.deep-c.org/">
+				
+				<!-- Foot page --> 
+				<div id="pieDePaginaIzq" class="leftFoot">
+					&nbsp;
                     <a  href="http://www.fsu.edu/">
                         <img border="0" src="${basepath}/common/images/Logos/FSU.png" alt="FSU" width="30" height="30" /></a>
                     &nbsp;
@@ -124,19 +121,19 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                     &nbsp 
                     <a  href="http://www.noaa.gov/">
                         <img border="0" src="${basepath}/common/images/Logos/NOAA.png" alt="NOAA" width="30" height="30" /></a>
-
+							
                     <a  href="http://deep-c.org/copyright">
-                    <p class="footNote" align="left">
-                        &nbsp 
-                        &copy; <script language="javascript">document.write(getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
-                    </p></a>
+						<p class="footNote" align="left">
+							&nbsp 
+							&copy; <script language="javascript">document.write(getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
+						</p></a>
                     <a id="emailText" href="mailto:osz09@fsu.edu, aahmed@coaps.fsu.edu"> <fmt:message key="main.contact" /></a>
-            </div>
+				</div>
         </form>
-
+			
         <!-- minimizable windows file -->
         <%@include file="Options/MinimizeWindows.jsp" %>
-
+			
         <!-- Help texts file -->
         <%@include file="Help/HelpTexts.jsp" %>
     </body>
