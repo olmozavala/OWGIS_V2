@@ -12,7 +12,7 @@ There is 3 options. Either '-' or '+' or click the button to choose the disired 
     onclick="changeElevation('-', layer1);">
     <span class="glyphicon glyphicon-minus"></span> </a>
 
-<span style="cursor: pointer;" id="elevationText"  onclick ="displayElevationSelector() " 
+<span class="buttonStyle" id="elevationText"  onclick ="displayElevationSelector() " 
 	  onmouseover="hoverInstructions('elevationParentHover', '1')" onmouseout="hoverInstructions('elevationParentHover', '2')" >
 	<fmt:message key="ncwms.depth" /></span>
 

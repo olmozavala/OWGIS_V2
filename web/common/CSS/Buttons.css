@@ -13,50 +13,65 @@ Currently the buttons for the menu and the +,- buttons
     Created on : Sep 20, 2013, 8:27:12 PM
     Author     : olmozavala
 */
-/* Buttons style, default style for buttons (used in transparency and xasis),
-and also the mainMenu dropdown options*/
+/* This class has some general properties that make a span
+look like a button */
 /* line 15, ../scss/Buttons.scss */
-.buttonStyle {
-  background-color: #555555;
-  border-color: black;
+.buttonLook, .buttonStyle, .buttonContainer {
   border-style: solid;
   border-width: 1px;
+  background-color: #555555;
+  border-color: black;
+  padding: 5px 10px;
   color: #ecf2f8;
   -webkit-border-radius: 10px 10px;
   -moz-border-radius: 10px / 10px;
   border-radius: 10px / 10px;
-  -webkit-box-shadow: #80ccdc 2px 2px 10px;
-  -moz-box-shadow: #80ccdc 2px 2px 10px;
-  box-shadow: #80ccdc 2px 2px 10px;
+  -webkit-box-shadow: #80ccdc 2px 2px 6px;
+  -moz-box-shadow: #80ccdc 2px 2px 6px;
+  box-shadow: #80ccdc 2px 2px 6px;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  padding: 5px 10px;
   margin: 5px 5px;
   height: 23px;
   display: inline;
   vertical-align: middle;
+}
+
+/* Buttons style, default style for buttons (used in transparency and xasis),
+and also the mainMenu dropdown options*/
+/* line 33, ../scss/Buttons.scss */
+.buttonStyle {
   cursor: pointer;
 }
-/* line 29, ../scss/Buttons.scss */
+/* line 35, ../scss/Buttons.scss */
 .buttonStyle:hover {
   background-color: #373737;
-  -webkit-box-shadow: #dcc380 2px 2px 20px;
-  -moz-box-shadow: #dcc380 2px 2px 20px;
-  box-shadow: #dcc380 2px 2px 20px;
+  -webkit-box-shadow: #dcc380 2px 2px 12px;
+  -moz-box-shadow: #dcc380 2px 2px 12px;
+  box-shadow: #dcc380 2px 2px 12px;
 }
-/* line 33, ../scss/Buttons.scss */
+/* line 39, ../scss/Buttons.scss */
 .buttonStyle:active {
-  -webkit-box-shadow: #f0d794 2px 2px 20px;
-  -moz-box-shadow: #f0d794 2px 2px 20px;
-  box-shadow: #f0d794 2px 2px 20px;
+  -webkit-box-shadow: #f0d794 2px 2px 12px;
+  -moz-box-shadow: #f0d794 2px 2px 12px;
+  box-shadow: #f0d794 2px 2px 12px;
   background-color: #4b4b4b;
+}
+
+/* This is just a container of buttons in the top menu, specifically
+for transparency and depth*/
+/* line 50, ../scss/Buttons.scss */
+.buttonContainer {
+  background-color: transparent;
+  background-image: url("../images/transBack.png");
+  padding: 7px 10px;
 }
 
 /* This are also plus and minus buttons, but are
 smaller and doesn't have background. Currently are used
 for transparency in the optional layers. */
-/* line 44, ../scss/Buttons.scss */
+/* line 61, ../scss/Buttons.scss */
 .minusButtonSmall, .plusButtonSmall {
   vertical-align: top;
   margin: 0px;

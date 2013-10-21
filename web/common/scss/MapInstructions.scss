@@ -25,7 +25,7 @@ and open the template in the editor.
     overflow-x:hidden;
     z-index:1010;//Above everything
     overflow-y:auto;
-    opacity: $defOpacity - .1;
+    @include opacity($defOpacity - .05);
     display:none;
 }
 
@@ -34,15 +34,14 @@ and open the template in the editor.
 .commonHover{
     position:absolute;
 	border:1px solid;
-    padding:5px;
-    font-size: $defFontSize;
+    padding: $defPadding;
+    font-size: $defFontSize - 1;
 	color:$invColor;
     background-color: $backHelpHoverColor;
     z-index:1009;
 	top: $helpDefTop;
 	left: $helpDefLeft;
-	opacity: $defOpacity - .05;
-
+	@include opacity($defOpacity - .02);
 	@include border-radius(5px,5px);
 	text-align: left;
 
@@ -52,11 +51,9 @@ and open the template in the editor.
 
 /* CQL filter parent of all the instructions*/
 #ocqlFilterText{
-	text-align: left;
 	top: 120px;
-	left: 50px;
-	padding: 10px;
-	width: 270px;
+	left: 40px;
+    display: none;
 }
 
 //Small question mark on the map, used to display hover texts

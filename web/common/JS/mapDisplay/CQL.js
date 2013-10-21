@@ -9,17 +9,8 @@ var defaultCQLfilter = "";
  * This functions hides and shows the text box to input a custom CQL filter
  */
 function toggleCustomFilterTextBox(){
-		$('#ocqlFilterInputTextParent').css("display","block");
+		$('#ocqlFilterInputTextParent').toggle();
 }
-
-function closeCustomFilterTextBox(){
-    
-    $('#ocqlFilterInputTextParent').css("display","none");
-
-}
-
-
-
 
 /**
  * When the user hits enter on the cqlfilter text box, the filter
@@ -41,12 +32,15 @@ function applyCqlFilter(){
 
 	//Obtain OL main layer
 	currMainLayer = getMainLayer();
+    layerParams= getMainLayer().getSource().getParams();
 
 	// It initializes the defaultCQLfilter variable (only the firt time
 	// the user applies a filter)
 	if(firstCallToFilter){
 		firstCallToFilter = false;
-		defaultCQLfilter = currMainLayer.params.CQL_FILTER;
+        //If there is not a default CQL filter, we force it to be true. 
+        //It is not working if we leave it as an empty string.
+		defaultCQLfilter = layerParams.CQL_FILTER === undefined? "1>0" : layerParams.CQL_FILTER;//Read current parameter
 	}
 
 	currFilter = $('#idOcqlFilterInputText').val();
@@ -56,18 +50,16 @@ function applyCqlFilter(){
 	//In case of empty text box or not defined (layers with CQL_FILTER
 	// but without custom filter option.
 	if(currFilter == "" ||currFilter == undefined ){
-		currMainLayer.params.CQL_FILTER = defaultCQLfilter; 
+        updateMainLayerParam("CQL_FILTER",defaultCQLfilter); 
 	}else{
 
 		if(defaultCQLfilter == "" || defaultCQLfilter == undefined){
-			currMainLayer.params.CQL_FILTER = currFilter;
+            updateMainLayerParam("CQL_FILTER",currFilter); 
 		} else{
-			currMainLayer.params.CQL_FILTER = defaultCQLfilter +" AND "+ currFilter;
+            updateMainLayerParam("CQL_FILTER",defaultCQLfilter +" AND "+ currFilter);
 		}
 	}
 
-	currMainLayer.redraw();
-
 	//Returns the actual filter been used
-	return currMainLayer.params.CQL_FILTER;
+	return layerParams.CQL_FILTER;//Read current parameter
 }

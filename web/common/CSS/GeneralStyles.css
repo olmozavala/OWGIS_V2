@@ -37,10 +37,11 @@ for the help text, the optional layers, the depth etc.*/
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 6px 8px;
+  padding: 5px 10px;
   cursor: move;
-  opacity: 0.9;
   font-size: 13px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -57,10 +58,11 @@ for the main layers, the color palettes, the calendars etc.*/
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 6px 8px;
+  padding: 5px 10px;
   cursor: move;
-  opacity: 0.9;
   font-size: 13px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -71,7 +73,7 @@ for the main layers, the color palettes, the calendars etc.*/
 
 /* line 42, ../scss/GeneralStyles.scss */
 .title {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   padding: 5px 0px;
@@ -171,7 +173,8 @@ div.leftFoot {
   z-index: 1000;
   display: inline;
   color: black;
-  opacity: 0.7;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
 }
 
 /* line 121, ../scss/GeneralStyles.scss */

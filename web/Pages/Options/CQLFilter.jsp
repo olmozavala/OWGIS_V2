@@ -13,7 +13,7 @@
             <span class="title invShadow"> Custom filter </span>
         </div>
         <div class="col-xs-2 ">
-            <a class="btn btn-default btn-xs" href="#" onclick="closeCustomFilterTextBox();">
+            <a class="btn btn-default btn-xs" href="#" onclick="toggleCustomFilterTextBox();">
                 <span class="glyphicon glyphicon-remove"> </span> </a>
         </div>
     </div>
@@ -35,29 +35,35 @@
     </div>
 
 
-	<span id="ocqlFilterText" class="commonHover">
-		This is a
-		<a href="http://en.wikipedia.org/wiki/Contextual_Query_Language"> CQL </a>
-		filter text box. Possible options: <br> <br>
-		<table class="cqlFilterExampleTable">
-			<tr>
-				<th>Boolean</th> <th>Comparison</th> <th>Chars</th> <th>Reg. Exp.</th>
-			</tr>
-			<tr>
-				<td>or<br>and</td>
-				<td>=,<>, <,<br><=,>=</td>
-				<td>LIKE<br> IN</td>
-				<td>% (any) </td>
-			</tr>
-		</table>
-		<br> <b>Examples (review available filters)</b>:
-		<br> &nbsp;&nbsp;&nbsp;&nbsp; time <b>></b> '2013-01-01'
-		<br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>></b> 2008 <b>AND </b>year <b><</b> 2011
-		<br> &nbsp;&nbsp;&nbsp;&nbsp; temperature <b>></b> 10 <b>OR</b> salinity <b>>=</b> 1
-		<br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>IN</b> (2012,2013) <b>AND</b> date < '8/10/2013'
-		<br> &nbsp;&nbsp;&nbsp;&nbsp; name <b>LIKE</b> 'John<b>%</b>' <b>AND</b> year <b><</b> 2013
-	</span>
-	<span id="ocqlErrorParent" class="commonHover">
-		<p class="errorText"></p>
-	</span>
+    <span id="ocqlFilterText" class="row commonHover">
+            <div clas="col-xs-12">
+                This is a
+                <a href="http://en.wikipedia.org/wiki/Contextual_Query_Language"> CQL </a>
+                filter text box. Possible options: 
+            </div>
+            <div clas="col-xs-12">
+                <table class="cqlFilterExampleTable">
+                    <tr>
+                        <th>Boolean</th> <th>Comparison</th> <th>Chars</th> <th>Reg. Exp.</th>
+                    </tr>
+                    <tr>
+                        <td>or<br>and</td>
+                        <td>=,<>, <,<br><=,>=</td>
+                        <td>LIKE<br> IN</td>
+                        <td>% (any) </td>
+                    </tr>
+                </table>
+            </div>
+            <div clas="col-xs-12">
+                <br> <b>Examples (review available filters)</b>:
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; time <b>></b> '2013-01-01'
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>></b> 2008 <b>AND </b>year <b><</b> 2011
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; temperature <b>></b> 10 <b>OR</b> salinity <b>>=</b> 1
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>IN</b> (2012,2013) <b>AND</b> date < '8/10/2013'
+                <br> &nbsp;&nbsp;&nbsp;&nbsp; name <b>LIKE</b> 'John<b>%</b>' <b>AND</b> year <b><</b> 2013
+            </div>
+    </span>
+    <span id="ocqlErrorParent" class="commonHover">
+        <p class="errorText"></p>
+    </span>
 </span>

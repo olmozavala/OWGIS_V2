@@ -5,16 +5,25 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+/* line 9, ../scss/Ol3.scss */
 div.fullWindow {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
-div.halfWidthWindow{
-	width: 50%;
-	height: 100%;
+
+/* line 13, ../scss/Ol3.scss */
+div.halfWidthWindow {
+  width: 50%;
+  height: 100%;
 }
-div.halfHeightWindow{
-	width: 100%;
-	height: 50%;
+
+/* line 17, ../scss/Ol3.scss */
+div.halfHeightWindow {
+  width: 100%;
+  height: 50%;
+}
+
+/* line 22, ../scss/Ol3.scss */
+.ol-zoom {
+  top: 55px;
 }

@@ -533,7 +533,7 @@ public class LayerMenuManagerSingleton {
 		String format = "image/jpeg";
 		String name = "";
 		String proj = "EPSG:4326";//By default proj is EPSG:4326
-		String server = "NO SERVER SET";
+		String server = null;
 		// This sizes are important, this are the default resolutions when
 		// generating animations and also requesting data (WCS)
 		int width = 512;

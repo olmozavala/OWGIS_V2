@@ -7,25 +7,32 @@ and open the template in the editor.
     Created on : Sep 20, 2013, 6:01:26 PM
     Author     : olmozavala
 */
-/* line 12, ../scss/Popup.scss */
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* line 13, ../scss/Popup.scss */
 .ol-popup {
-  /*display: none;*/
   position: absolute;
-  background-color: white;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
-  padding: 15px;
+  background-color: #ecf2f8;
+  font-size: 11px;
+  -webkit-box-shadow: black 2px 2px 3px;
+  -moz-box-shadow: black 2px 2px 3px;
+  box-shadow: black 2px 2px 3px;
+  padding: 14px;
   border-radius: 10px;
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  z-index: 1009;
+  z-index: 1001;
   text-align: left;
-  min-width: 200px;
+  width: 200px;
 }
 
-/* line 29, ../scss/Popup.scss */
+/* line 28, ../scss/Popup.scss */
 .ol-popup:after, .ol-popup:before {
   top: 100%;
   border: solid transparent;
@@ -36,7 +43,7 @@ and open the template in the editor.
   pointer-events: none;
 }
 
-/* line 39, ../scss/Popup.scss */
+/* line 38, ../scss/Popup.scss */
 .ol-popup:after {
   border-top-color: white;
   border-width: 10px;
@@ -44,7 +51,7 @@ and open the template in the editor.
   margin-left: -10px;
 }
 
-/* line 46, ../scss/Popup.scss */
+/* line 45, ../scss/Popup.scss */
 .ol-popup:before {
   border-top-color: #cccccc;
   border-width: 11px;
@@ -52,7 +59,7 @@ and open the template in the editor.
   margin-left: -11px;
 }
 
-/* line 54, ../scss/Popup.scss */
+/* line 53, ../scss/Popup.scss */
 .ol-popup-closer {
   text-decoration: none;
   position: absolute;
@@ -60,7 +67,7 @@ and open the template in the editor.
   right: 8px;
 }
 
-/* line 60, ../scss/Popup.scss */
+/* line 59, ../scss/Popup.scss */
 .ol-popup-closer:after {
   content: "x";
 }

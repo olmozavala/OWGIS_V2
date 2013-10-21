@@ -1,116 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!--
-    Document   : TreeExample.xml
-    Created on : October 17, 2011, 11:02 AM
-    Author     : Olmo Zavala Romerozavala
-    Description:
-        Purpose of the document follows.
+	Document   : TestLayers.xml
+	Created on : October 17, 2013, 11:02 AM
+	Author     : Olmo Zavala Romero
+	Description:
+		This is an example of the XML configuration file
+		used by OWGIS to generate WebGIS sites.
 -->
 
-<!-- By default the layers have the following configuration:
-width = 512
-height = 512
-
-proj = EPSG:4326
-
-ncWMS = false
-
-tiled = true
-tileOrigLong = -180
-tileOrigLat = -90
-
-featureInfo = name (from the same layer)
--->
-
-<!-- The width and height of the image affects the resolution of the animated gif it is important, 
-     by default is 512 512 -->
-<!-- FeatureInfo by default is the same layer name, if it doesn't have data then use 'none' --> 
-
-<!-- Just for testing -->
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-    <MenuEntries>
-        <MenuEntry ID="test" EN="TEST" ES="TEST ESP"/>
-        <MenuEntry ID="vectest" EN="Vector layer" 		ES="Vec ESP"/>
-        <MenuEntry ID="veccqltest" EN="Vector CQL test" 		ES="Vec CQL ESP"/>
-        <MenuEntry ID="geotifftest" EN="Geotiff test" 		ES="Geotiff ESP"/>
-        <MenuEntry ID="ncwmsall" EN="ncWMS with all" 		ES="ncwmsall ESP"/>
-        <MenuEntry ID="ncwmsonedate" EN="ncWMS with one date" 		ES="ncwmsone date ESP"/>
-        <MenuEntry ID="ncwmsonedepth" EN="ncWMS with one zaxis" 		ES="ncwmsone depth ESP"/>
-        <MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" 		ES="ncwmsone velocidad ESP"/>
-        <MenuEntry ID="teststates" EN="US states" 		ES="Estados"/>
-        <MenuEntry ID="backtest" EN="Background" 		ES="Fondo"/>
-    </MenuEntries>
+	<!-- This are the menus that are available to display entries -->
+	<MenuEntries>
+		<MenuEntry ID="lev1" EN="Level 1" ES="Nivel 1"/>
+		<MenuEntry ID="lev2" EN="Level 2" ES="Nivel 2"/>
+		<MenuEntry ID="vectest" EN="Vector layer" 		ES="Vec ESP"/>
+		<MenuEntry ID="veccqltest" EN="Vector CQL test" 		ES="Vec CQL ESP"/>
+		<MenuEntry ID="geotifftest" EN="Geotiff test" 		ES="Geotiff ESP"/>
+		<MenuEntry ID="ncwmsall" EN="ncWMS with all" 		ES="ncwmsall ESP"/>
+		<MenuEntry ID="ncwmsonedate" EN="ncWMS with one date" 		ES="ncwmsone date ESP"/>
+		<MenuEntry ID="ncwmsonedepth" EN="ncWMS with one zaxis" 		ES="ncwmsone depth ESP"/>
+		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" 		ES="ncwmsone velocidad ESP"/>
+		<MenuEntry ID="teststates" EN="US states" 		ES="Estados"/>
+		<MenuEntry ID="backtest" EN="Background" 		ES="Fondo"/>
+	</MenuEntries>
 
-    <BackgroundLayers BBOX="-180,90,-90,180" 
-        format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms">
-     <layer name="comm:pyrResult512" featureInfo="comm:gebco" title="GEBCO"/> 
-    </BackgroundLayers>
+	<BackgroundLayers BBOX="-180,90,-90,180" 
+					  format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+
+	<!-- Vector layer -->
+	<!--<MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" -->
+	<MainLayers 
+		format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+		tiled="true" trans_effect="none" vectorLayer="true">
+
+		<layer Menu='lev1,vectest' EN='VectTest' ES='Titulo ESP' name='postgis:all_cruises' />
+	</MainLayers>
+
+	<!-- Vector CQL layer -->
+	<MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+					format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+					cqlcols="year, event_type, date, site"
+					tiled="true" trans_effect="none" vectorLayer="true">
+		<layer Menu="lev1,veccqltest" EN="Test Vector CQL" ES="Test ESP"
+				   name="postgis:sites_events" CQL="event_type='CTD'" />
+	</MainLayers>
+
+	<!-- GeotiffLayer -->
+	<MainLayers BBOX="-125.5,-5.499999999999998,-74.50000000000003,45.49999999999997"
+					server="http://146.201.212.175:8080/geoserver/wms" >  
+		<layer Menu="lev1,geotifftest" EN="Geotiff" ES="Geotiff ESP" name="comm:TempMaxMexico"/>
+	</MainLayers>
+
+	<!-- ncWMS with one date-->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+					format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
+					tiled="true" ncWMS="true">  
+		<layer Menu="lev1,ncwmsonedate" EN="ncWMS with one  date" ES="Una fecha" name="test3/ua"  />
+	</MainLayers>
 
 
-    <!-- Vector layer -->
-    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
-        tiled="true" trans_effect="none" vectorLayer="true">
+	<!-- ncWMS with one depth-->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+					format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
+					tiled="true" ncWMS="true" mincolor="-.64" maxcolor="0.95" max_time_range="month">  
+		<layer Menu="lev1,ncwmsonedepth" EN="ncWMS one depth" ES="ncWMS esp one depth" name="hycom2013/ssh"  />
+	</MainLayers>
 
-        <layer Menu='test,vectest' EN='VectTest' ES='Titulo ESP' name='postgis:all_cruises' />
-    </MainLayers>
+	<!-- ncWMS all -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+					format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
+					tiled="true" ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+		<layer Menu="lev1,ncwmsall" EN="ncWMS all"
+				   ES="ncWMS all ESP" name="hycom2013/temperature"  />
+	</MainLayers>
 
-    <!-- Vector CQL layer -->
-    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
-        cqlcols="year, event_type, date, site"
-        tiled="true" trans_effect="none" vectorLayer="true">
-        <layer Menu="test,veccqltest" EN="Test Vector CQL" ES="Test ESP"
-            name="postgis:sites_events" CQL="event_type='CTD'" />
-    </MainLayers>
+	<!-- ncWMS velocity -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+					format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
+					tiled="false" ncWMS="true" mincolor="-0.113" maxcolor="2.4" style="vector" trans_effect="none"
+					max_time_range="month">  
+		<layer Menu="lev1,ncwmvelocity" EN="ncWMS velocity"
+				   ES="ncWMS velocidad" name="hycom2013/sea_water_velocity"  />
+	</MainLayers>
 
-    <!-- GeotiffLayer -->
-    <MainLayers BBOX="-125.02083333333,24.062499999999996,-66.47916666198,49.937500002069996" 
-        format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms"
-        width="764" height="330" tiled="true" ncWMS="false">  
-
-        <layer Menu="test,geotifftest" EN="Geotiff" ES="Geotiff ESP" name="se_clim:TotPrec2010Jan"/>
-    </MainLayers>
-
-    <!-- ncWMS with one date-->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-        format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
-        tiled="true" ncWMS="true">  
-        <layer Menu="test,ncwmsonedate" EN="ncWMS with one  date" ES="Una fecha" name="test3/ua"  />
-    </MainLayers>
-
-
-    <!-- ncWMS with one depth-->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-        format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
-        tiled="true" ncWMS="true" mincolor="-.64" maxcolor="0.95" max_time_range="month">  
-        <layer Menu="test,ncwmsonedepth" EN="ncWMS one depth" ES="ncWMS esp one depth" name="hycom2013/ssh"  />
-    </MainLayers>
-
-    <!-- ncWMS all -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-        format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
-        tiled="true" ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
-        <layer Menu="test,ncwmsall" EN="ncWMS all"
-            ES="ncWMS all ESP" name="hycom2013/temperature"  />
-    </MainLayers>
-
-    <!-- ncWMS velocity -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-        format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
-        tiled="false" ncWMS="true" mincolor="-0.113" maxcolor="2.4" style="vector" trans_effect="none"
-        width="512" height="512" max_time_range="month">  
-        <layer Menu="test,ncwmvelocity" EN="ncWMS velocity"
-            ES="ncWMS velocidad" name="hycom2013/sea_water_velocity"  />
-    </MainLayers>
-
-    <VectorLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
-        tiled="true" trans_effect="none" vectorLayer="true"> 
-        <layer Menu="teststates" name="comm:states" />
-        <layer Menu='test,vectest' name='postgis:all_cruises' />
-        <layer Menu="test,teststates" name="comm:states" />
-        <layer Menu="test,test,geotifftest" EN="Geotiff" ES="Geotiff ESP" name="se_clim:TotPrec2010Jan"/>
-    </VectorLayers>
+	<VectorLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+					  format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+					  tiled="true" trans_effect="none" vectorLayer="true"> 
+		<layer Menu="teststates" name="comm:states" />
+		<layer Menu='lev1,vectest' name='postgis:all_cruises' />
+		<layer Menu="lev1,teststates" name="comm:states" />
+		<layer Menu="lev1,lev2,geotifftest" name="se_clim:TotPrec2010Jan"/>
+	</VectorLayers>
 </MenuConf>
 

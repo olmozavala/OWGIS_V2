@@ -555,8 +555,6 @@ function changeTransp(val, layer, version) {
 	}
 
 	layer.setOpacity(opacity);
-
-
 }
 
 /** This function is called when the Browser gets resized,

@@ -17,7 +17,7 @@
         <%@include file="Options/KmlLink.jsp" %>
     </div>
     <!-- Transparency -->
-    <div class="buttonStyle" id="transParent" 
+    <div class="buttonLook" id="transParent" 
         onmouseover="hoverInstructions('transParentHover', '1',this,'below')" 
         onmouseout="hoverInstructions('transParentHover', '2',this,'below')" >
         <%@include file="Options/Transparency.jsp" %>
@@ -25,7 +25,8 @@
     <c:choose>
         <c:when test='${netcdf}'>
         <!-- Depth or elevation-->
-        <div class="buttonStyle" id="elevationParent"
+        <div class="buttonContainer" id="elevationParent"
+            style="position:relative"
             onmouseover="hoverInstructions('elevationParentHover', '1',this,'below')" 
             onmouseout="hoverInstructions('elevationParentHover', '2',this,'below')"  >
             <%@include file="Options/Elevation.jsp" %>

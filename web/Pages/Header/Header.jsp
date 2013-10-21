@@ -7,10 +7,10 @@
 <%-- 
     This page contains all the links to the CSS, and the javascript 
 --%>
-		<link rel="glyphicon glyphicon-" href="${basepath}/common/images/glyphicon glyphicon-/Gulf.ico" type="image/x-glyphicon glyphicon-" />
+		<link rel="glyphicon glyphicon-" href="${basepath}/common/images/PageIcon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <meta name="Description" content="Deep-C atlas" />
-        <meta name="Keywords" content="DeepC, GIS, COAPS, map viewer, Deep-C, Oceanography" />
+        <meta name="Description" content="OWGIS Template" />
+        <meta name="Keywords" content="OWGIS " />
 
         <!-- Jquery -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -44,7 +44,7 @@
 		<!--Specific for OpenLayers3 -->
 		<link rel="stylesheet" href="http://ol3js.org/en/master/build/ol.css"/>
 		<script src="http://ol3js.org/en/master/build/ol.js"></script>
-		<link href="/DeepCProject/common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
+		<link href="${basepath}/common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 		<!--Specific for OpenLayers3 -->
 
         <script type="text/javascript" src="${basepath}/common/JS/utilities.js"> </script>

@@ -321,7 +321,7 @@ public class OpenLayersManager {
 
 		//In this case the layer has some CQL that we need to add in its configuration
 		if (!actualLayer.getCql().equals("")) {
-			layersScript += "\tlayer" + layerCount + ".CQL_FILTER= \"" + actualLayer.getCql() + "\";\n";
+			layersScript += "\tlayer" + layerCount + ".getSource().getParams().CQL_FILTER = \"" + actualLayer.getCql() + "\";\n";
 		}
 
 		if (!visible) {

@@ -8,22 +8,21 @@ and open the template in the editor.
     Created on : Sep 20, 2013, 6:01:26 PM
     Author     : olmozavala
 */
+@import "base";
 
 .ol-popup {
-	/*display: none;*/
 	position: absolute;
-	background-color: white;
-	-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-	filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-	padding: 15px;
-	border-radius: 10px;
+	background-color: $fontColor;
+    font-size: $defFontSize - 2;
+	@include box-shadow(black 2px 2px 3px);
+	padding: 14px;
+	border-radius: $default-border-radius;
 	border: 1px solid #cccccc;
 	bottom: 12px;
 	left: -50px;
-	z-index: 1009;
+	z-index: 1001;
 	text-align: left;
-	min-width: 200px;
+	width: 200px;
 }
 //Used for the small triangle below the popup
 .ol-popup:after, .ol-popup:before {

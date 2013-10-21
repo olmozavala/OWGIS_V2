@@ -40,7 +40,7 @@ for the main layers, the color palettes, the calendars etc.*/
 
 // Default style for a title
 .title{ 
-	font-size: $defFontSize + 4;
+	font-size: $defFontSize + 2;
     font-weight: bold;
 	text-align: center;
     padding: 5px 0px;//Put some space above and below title
@@ -115,7 +115,7 @@ div.leftFoot{
     z-index:1000;
     display:inline;
     color:black;
-    opacity:0.7;
+    @include opacity($defOpacity - .1);
 }
 
 a{ text-decoration: none; }

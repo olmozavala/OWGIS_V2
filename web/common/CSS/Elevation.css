@@ -37,3 +37,8 @@ selects the zaxis value*/
 #plusButtonElevation {
   display: none;
 }
+
+/* line 32, ../scss/Elevation.scss */
+#elevationText {
+  padding: 3px 10px;
+}

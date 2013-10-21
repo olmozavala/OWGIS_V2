@@ -232,8 +232,7 @@ function changeElevation(sign)
 {
     //get the highest possible value
     var array_len = layerDetails.zaxis.values.length;   
-       
-    $(eval('zaxisCheckbox'+elev_glob_counter)).attr('checked',false);
+
     //if we need to add more height
     if(sign === '+') { 
         if(elev_glob_counter  !== 0)
@@ -251,7 +250,7 @@ function changeElevation(sign)
 
     changeElev(elev_glob_counter);
     
-    $(eval('zaxisCheckbox'+elev_glob_counter)).attr('checked',true);
+    document.getElementById('zaxisCheckbox'+elev_glob_counter).checked=true;
 }
 
 /**Mobileversion Changes the elevation of the layer if it is netCDF

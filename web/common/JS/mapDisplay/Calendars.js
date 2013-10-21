@@ -279,13 +279,6 @@ function getSuggestedDate(actualDate,ahead){
  */ 
 function updateMainLayerDate(newDate){
 
-    /*
-    tempMainLayer = eval('layer'+idx_main_layer);// Obtain main layer
-    // Add or modify TIME to current layer
-    layerParams= tempMainLayer.getSource().getParams();
-    layerParams.TIME=newDate;//Modify the time parameter
-    tempMainLayer.getSource().updateParams(layerParams);//Updates the layer
-    */
     updateMainLayerParam('TIME',newDate);
 	updateTitleAndKmlLink();
 }

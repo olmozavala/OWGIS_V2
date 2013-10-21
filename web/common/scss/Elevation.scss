@@ -28,3 +28,7 @@ selects the zaxis value*/
 
 // Start by not showing the 'plus' button
 #plusButtonElevation{ display: none; }
+
+#elevationText{
+	padding: $defPadding - 2 2*$defPadding;
+}

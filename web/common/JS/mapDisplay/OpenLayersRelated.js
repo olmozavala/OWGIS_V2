@@ -114,7 +114,8 @@ function toggleControlMobile()
  */
 function updateMainLayerParam(param,value){
     layerParams= getMainLayer().getSource().getParams();
-    eval('layerParams.'+param+'=\''+value+'\'');//Modify the time parameter
+    //eval('layerParams.'+param+'=\''+value+'\'');//Modify the time parameter
+    eval("layerParams."+param+"=\""+value+"\"");//Modify the time parameter
     getMainLayer().getSource().updateParams(layerParams);//Updates the layer
 }
 

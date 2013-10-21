@@ -24,18 +24,20 @@ $butBackColor:#555555;
 $butBackColorHover: $butBackColor - 30;
 $butShadowColor: #80CCDC;
 $butSecondShadowColor: #DCC380;
-$butBoxShadowSize: 5px;//How big the box shadow is on the buttons
+$butBoxShadowSize: 6px;//How big the box shadow is on the buttons
 
+//Default padding for windows
+$defPadding: 5px;
 
 // Common style for floating windows
 @mixin floatingWindow{
 	z-index:1008;
 	position:absolute;
 	border:solid 1px white;
-	padding: 6px 8px;
+	padding: $defPadding 2*$defPadding;
 	cursor: move;
-	opacity: $defOpacity;
     font-size: $defFontSize;
+	@include opacity($defOpacity);
 	@include border-radius();
 }
 
