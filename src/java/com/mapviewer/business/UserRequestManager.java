@@ -140,7 +140,6 @@ public class UserRequestManager {
 	public static UserConfig getClientOpConfig(HttpSession session, OpenLayerMapConfig defaultOpConfig) {
 		UserConfig clientOPConfig;
 		if (!session.isNew()) {//if the session is not new we obtain from object. 
-
 			clientOPConfig = (UserConfig) session.getAttribute("clientOpConfig");
 			if (clientOPConfig == null) {//is object is null we just return the default options. 
 				clientOPConfig = new UserConfig(defaultOpConfig.getCenter(), defaultOpConfig.getZoom(), "default");

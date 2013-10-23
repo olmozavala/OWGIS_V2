@@ -4,7 +4,13 @@
     Author     : olmozavala
 --%>
 <!-- Map title -->
-<div class="mapTitle" id="layerTitle"> <p id="pTitleText"> ${layerTitle} </p> </div>
+<div class="mapTitle" id="layerTitle"> 
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 ">
+            <p id="pTitleText"> ${layerTitle} </p> 
+        </div>
+    </div>
+</div>
 
 <!-- This div contains all the map --> 
 <div id="map"> </div>      
