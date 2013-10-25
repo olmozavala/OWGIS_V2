@@ -19,7 +19,7 @@ look like a button */
     border-color: $backColor;
 	padding: $defPadding 2*$defPadding;
 	color: $fontColor;
-	@include border-radius($default-border-radius, $default-border-radius);
+	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
 	@include box-sizing(content-box);
 	margin:  5px 5px; 

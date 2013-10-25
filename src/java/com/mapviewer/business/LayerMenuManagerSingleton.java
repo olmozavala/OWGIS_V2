@@ -545,7 +545,7 @@ public class LayerMenuManagerSingleton {
 		String[] tilesOrigin = {"-180", "-90"};
 		MenuEntry[] menuLayer = null;
 		String layout = "";
-		String palette = "";
+		String palette = "default";
 		boolean displayTitle = true;
 		boolean isVectorLayer = false;
 		Map<String, String> displayNames = null;

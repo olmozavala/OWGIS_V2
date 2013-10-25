@@ -29,11 +29,6 @@ function initMenus() {
 
 	disableEnterButton(); //disable enter button
 
-	if (mobile === false)
-	{
-		$("#helpInstrContainer").draggable();//Make helpInstructions draggable
-	}
-
 	//Only make windows draggable for 'topMenu' design
 	if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
 		$("#mainMenuParent").draggable({
@@ -67,8 +62,7 @@ function initMenus() {
 			createElevationSelectorMobile(); //initialize depth selector
 		}
 
-		if (mobile == false)
-		{
+		if (mobile == false) {
 			$('#paletteWindowColorRange').draggable({
 				containment: "body"
 			});
@@ -79,8 +73,7 @@ function initMenus() {
 
 		//if user changes the window size
 		$(window).resize(function() {
-			if (mobile == false)
-			{
+			if (mobile == false) {
 				respositionDraggables();
 			}
 		});
@@ -88,19 +81,15 @@ function initMenus() {
 	else {
 		setAnimationDivsVisibility("noanimation");
 	}
-	//Deactivate the keyboard navigation, this allows changing
-	// the font size
-//	keyboardnav.deactivate();
+
 	updateTitleAndKmlLink();
 
 	if (mobile == false)
 	{
 		moveVerticalMenu();
-		DraggableUserPosition();//moves the draggable windows to where the user last left them. 
+		draggableUserPosition();//moves the draggable windows to where the user last left them. 
+        toggleVisualizedWindows();
 	}
-
-//smallMonitors();
-
 }
 
 /**
@@ -122,10 +111,8 @@ function minimizeWindow(appearId, disapearId)
  */
 function disableEnterButton()
 {
-	$('html').on('keypress', function(e)
-	{
-		if (e.keyCode == 13)
-		{
+	$('html').on('keypress', function(e) {
+		if (e.keyCode == 13) {
 			return false;
 		}
 	});
@@ -436,35 +423,8 @@ function refreshWindow() {
  * contains the map. It is used to 'resize' the map
  */
 function resizeMap() {
-	widthNum = 0;  //Numeric variable of the width of the window
-	heightNum = 0; //Numeric variable of the height of the window
-	if (parseInt(navigator.appVersion)) {//Verificamos el tipo de navegador del cliente
-		if (navigator.appName == 'Netscape') {//Si el navegador es Netscape
-			//Se obtiene el numero de columnas y renglones de la siguiente forma
-			widthNum = window.innerWidth;
-			heightNum = window.innerHeight;
-		}
-		if (navigator.appName.indexOf('Microsoft') != -1) {//Si el navegador es Explorer
-			//Se obtiene el numero de columnas y renglones de la siguiente forma
-			widthNum = document.body.offsetWidth;
-			heightNum = findPageHeight();
-			console.log('entro aki');
-		}
-	}
-	// Modifies the size of the map. The multiplied value represent the proportion of the screen 1 being complete screen 
-	// The -1 is used to avoid a bug when using zoom with mouse selection
-	widthNum = Math.round(widthNum * 1.0 - 1);
-	heightNum = Math.round(heightNum * 1.0 - 1);
-
-	//Convertimos los numeros a cadenas
-	width = widthNum.toString();
-	height = heightNum.toString();
-	//alert(width + ":" + height);
-	//Modificamos el ancho y alto del mapa de OPenLayers que contiene las capas del servidor de mapas
-	document.getElementById('map').style.width = width + 'px';
-
-	if (height !== null)
-		document.getElementById('map').style.height = height + 'px';
+    $("#map").width = $(window).width();
+    $("#map").height = $(window).height();
 }
 
 /**
@@ -496,107 +456,7 @@ function findPageHeight() {
  */
 function MapViewersubmitForm() {
 	if (map != null) {
-		var inputZoom = document.createElement('INPUT');
-		inputZoom.type = 'hidden';
-		inputZoom.name = 'zoom';
-		inputZoom.value = ol3view.getResolution();
-		$('#baseForm').append(inputZoom);
-
-		var inputCenter = document.createElement('INPUT');
-		inputCenter.type = 'hidden';
-		inputCenter.name = 'center';
-		inputCenter.value = ol3view.getCenter().toString();
-		$('#baseForm').append(inputCenter);
-
-		//this are all hidden fields on the form to record the position the user wants the dragabble windows.
-		//make sure to record first the left value and then the top value separated by a comma. 
-		var mainMenuParentPos = document.createElement('INPUT');
-		mainMenuParentPos.type = 'hidden';
-		mainMenuParentPos.name = 'mainMenuParentPos';
-		mainMenuParentPos.value = $("#mainMenuParent").position().left + "," + $("#mainMenuParent").position().top;
-		$('#baseForm').append(mainMenuParentPos);
-
-		var optionalMenuParent = document.createElement('INPUT');
-		optionalMenuParent.type = 'hidden';
-		optionalMenuParent.name = 'optionalMenuParent';
-		optionalMenuParent.value = $("#optionalMenuParent").position().left + "," + $("#optionalMenuParent").position().top;
-		$('#baseForm').append(optionalMenuParent);
-
-
-		var optionalsMinimize = document.createElement('INPUT');
-		optionalsMinimize.type = 'hidden';
-		optionalsMinimize.name = 'optionalsMinimize';
-		optionalsMinimize.value = $("#optionalsMinimize").css("display");
-		$('#baseForm').append(optionalsMinimize);
-
-
-		if (mobile == false) {
-			var helpInstructions = document.createElement('INPUT');
-			helpInstructions.type = 'hidden';
-			helpInstructions.name = 'helpInstructions';
-			helpInstructions.value = $("#helpInstructions").position().left + "," + $("#helpInstructions").position().top;
-			$('#baseForm').append(helpInstructions);
-		}
-
-		var mainMenuMinimize = document.createElement('INPUT');
-		mainMenuMinimize.type = 'hidden';
-		mainMenuMinimize.name = 'mainMenuMinimize';
-		mainMenuMinimize.value = $("#mainMenuMinimize").css("display");
-		$('#baseForm').append(mainMenuMinimize);
-
-		var mobileForm = document.createElement('INPUT');
-		mobileForm.type = 'hidden';
-		mobileForm.name = 'mobile';
-		mobileForm.value = mobile; //global javascript variable
-		$('#baseForm').append(mobileForm);
-
-
-
-
-		if (netcdf) {
-			var palettes_divPos = document.createElement('INPUT');
-			palettes_divPos.type = 'hidden';
-			palettes_divPos.name = 'palettes_divPos';
-
-			if ($("#palettes-div").css("display") != 'none')
-				palettes_divPos.value = $("#palettes-div").position().left + "," + $("#palettes-div").position().top;
-			$('#baseForm').append(palettes_divPos);
-
-			var palettePos = document.createElement('INPUT');
-			palettePos.type = 'hidden';
-			palettePos.name = 'palettePos';
-
-			if ($("#palette").css("display") != 'none')
-				palettePos.value = $("#paletteWindowColorRange").position().left + "," + $("#paletteWindowColorRange").position().top;
-
-			$('#baseForm').append(palettePos);
-
-
-			var CalendarsAndStopContainer = document.createElement('INPUT');
-			CalendarsAndStopContainer.type = 'hidden';
-			CalendarsAndStopContainer.name = 'CalendarsAndStopContainer';
-
-			if ($("#CalendarsAndStopContainer").css("display") != 'none')
-			{
-				CalendarsAndStopContainer.value = $("#CalendarsAndStopContainer").position().left + "," + $("#CalendarsAndStopContainer").position().top;
-			}
-			else//this is used when the user is going from a layer with one date to many dates
-			{
-				CalendarsAndStopContainer.value = calendarPosLeft + "," + calendarPosTop;
-			}
-
-			$('#baseForm').append(CalendarsAndStopContainer);
-
-			var calendarsMinimize = document.createElement('INPUT');
-			calendarsMinimize.type = 'hidden';
-			calendarsMinimize.name = 'calendarsMinimize';
-			calendarsMinimize.value = $("#calendarsMinimize").css("display");
-			$('#baseForm').append(calendarsMinimize);
-
-
-
-		}
-
+        saveAllWindowPositionsAndVisualizationStatus();
 		submitForm();
 	}
 }

@@ -1,7 +1,6 @@
 package com.mapviewer.business;
 
 import com.mapviewer.conf.OpenLayerMapConfig;
-import com.mapviewer.conf.UserConfig;
 import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.menu.MenuEntry;
@@ -97,12 +96,10 @@ public class OpenLayersManager {
 	 * que se muestran/array with ids of the main layers
 	 * @param {int[]} extraLayers Arreglo de las capas extras o vectoriales/array of
 	 * vector layers
-	 * @param {UserConfig} opConfig Objeto de configuracion de OpenLayers/configuration
-	 * object of openlayers
 	 * @return String Regresa toda la configuracion de OpenLayers como una cadena/returns
 	 * the configuration in a string form.
 	 */
-	public String createOpenLayConfig(int[] idsBaseLayers, int[] extraLayers, UserConfig opConfig, String language) {
+	public String createOpenLayConfig(int[] idsBaseLayers, int[] extraLayers, String language) {
 		this.language = language;//Sets the language of the configuration
 		if (extraLayers == null)//Evitamos que extraLayers sea nulo
 		{
@@ -113,7 +110,7 @@ public class OpenLayersManager {
 			idsBaseLayers = new int[0];
 		}
 		String result = "";//Esta variable contiene toda la configuracion de OpenLayers
-		result += this.createInitFunction(idsBaseLayers, extraLayers, opConfig) + "\n";//Esta funcion crea la configuracion central de OpenLayers
+		result += this.createInitFunction(idsBaseLayers, extraLayers) + "\n";//Esta funcion crea la configuracion central de OpenLayers
 		return result;//Regresamos la configuracion
 	}
 
@@ -124,24 +121,19 @@ public class OpenLayersManager {
 	 * @param idsBaseLayers int[] Arreglo con los identificadores de las capas raster
 	 * seleccionadas
 	 * @param extraLayers int[] Arreglo de capas extras o vectoriales
-	 * @param opConfig OpenLayerConfig Configuracion de OpenLayers
 	 * @return String Cadena que contiene al configuracion de OpenLayers en la funcion
 	 * init()
 	 */
-	private String createInitFunction(int[] idsBaseLayers, int[] extraLayers, UserConfig opConfig) {
+	private String createInitFunction(int[] idsBaseLayers, int[] extraLayers) {
 		String initFunction = "\n";
 
 		//Configura las capas que va a ver el usuario en el formato necesario para OpenLayers
-		initFunction += this.createSeparateLayerScript(idsBaseLayers, extraLayers, opConfig);
+		initFunction += this.createSeparateLayerScript(idsBaseLayers, extraLayers);
 		initFunction += this.createMapAddLayers(idsBaseLayers, extraLayers);//Agrega las capas anteriores a un mapa compuesto
 		//Dependiendo de los controles que se definan en el objeto de OpenLayerConfig
 		//se agregan controles a OpenLayers. Estos controles pueden ser, barra de zoom, mini map, etc.
 
 		initFunction += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
-//		initFunction += "map.zoomToMaxExtent();\n";
-//		if ((opConfig.getCenter() != null) && (opConfig.getZoom() != null)) {
-//			initFunction += this.setCenterToMap(opConfig.getCenter(), opConfig.getZoom());
-//		}
 
 		return initFunction;
 	}
@@ -286,7 +278,7 @@ public class OpenLayersManager {
 	 * @param visible Boolean indicates if the layer should be visible
 	 * @return
 	 */
-	private String layerHelper(Layer actualLayer, int layerCount, boolean visible, UserConfig opConfig) {
+	private String layerHelper(Layer actualLayer, int layerCount, boolean visible) {
 		String layersScript = "";
 		layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n"
 				+ "\t\t source: new ol.source.TileWMS({\n"
@@ -297,19 +289,6 @@ public class OpenLayersManager {
 			if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 				layersScript += ", colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 			}
-			//Palettes selected by the user
-			if (opConfig.getPalette() != null) {
-				layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" + opConfig.getPalette() + "'";
-
-			} else {
-				//No palettes selected
-				if (actualLayer.getPalette().equals("")) {
-					layersScript += ", STYLES: '',";
-				} else {
-					layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" + actualLayer.getPalette() + "'";
-				}
-			}
-
 		} else {
 			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 		}
@@ -373,10 +352,9 @@ public class OpenLayersManager {
      *
      * @param idsBaseLayers
      * @param idsExtraLayers
-     * @param opConfig
      * @return
      */
-    private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers, UserConfig opConfig) {
+    private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers) {
         String layersScript = "";
         Layer actualLayer = null;
         int layerCount = 0;
@@ -389,7 +367,7 @@ public class OpenLayersManager {
                 for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
                     actualLayer = layersManager.getBackgroundLayers().get(i);
                     if (actualLayer.getName() != null) {
-                        layersScript += layerHelper(actualLayer, layerCount, true, opConfig);
+                        layersScript += layerHelper(actualLayer, layerCount, true);
                         layerCount++;
                     }//If layer not null            
                 }
@@ -422,7 +400,7 @@ public class OpenLayersManager {
         for (int i = 0; i < idsBaseLayers.length; i++) {
             actualLayer = layersManager.getMainLayers().get(idsBaseLayers[i]);
             if (actualLayer.getName() != null) {
-                layersScript += layerHelper(actualLayer, layerCount, true, opConfig);
+                layersScript += layerHelper(actualLayer, layerCount, true);
                 layerCount++;
             }//If layer not null
         }
@@ -435,9 +413,9 @@ public class OpenLayersManager {
             actualLayer = layersManager.getVectorLayers().get(i);
             if (StringAndNumbers.intArrayContains(idsExtraLayers, i)) {//Si esta en los seleccionados lo mostramos
                 //Si no no
-                layersScript += layerHelper(actualLayer, layerCount, true, opConfig);
+                layersScript += layerHelper(actualLayer, layerCount, true);
             } else {
-                layersScript += layerHelper(actualLayer, layerCount, false, opConfig);
+                layersScript += layerHelper(actualLayer, layerCount, false);
             }
             layerCount++;
         }

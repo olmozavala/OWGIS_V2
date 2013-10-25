@@ -108,24 +108,11 @@ function initCalendars(){
 
 		calInitialized = true;
 		updateCalendarOpts("startCal");
+        _mainlayer_multipleDates= true;
 	}
 	else{//If we only have one day then we hide all the calendar options
-       
-		//record the position of the calendar previous to the user chosing a one day layer. 
-		if(userConfig.CalendarsAndStopContainer != 'default')
-		{
-			if(userConfig.calendarsMinimize != 'default' && userConfig.calendarsMinimize != 'block') 
-			{
-                
-				var CalendarsAndStopContainer = userConfig.CalendarsAndStopContainer.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
-				calendarPosLeft = CalendarsAndStopContainer[0];//move it from the left
-				calendarPosTop = CalendarsAndStopContainer[1];//move it from the top
-			}
-       
-		}
-       
 		setAnimationDivsVisibility("noanimation");
-
+        _mainlayer_multipleDates= false;
 	}
 
 }

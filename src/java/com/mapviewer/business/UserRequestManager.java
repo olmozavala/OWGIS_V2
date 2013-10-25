@@ -1,7 +1,6 @@
 package com.mapviewer.business;
 
 import com.mapviewer.conf.OpenLayerMapConfig;
-import com.mapviewer.conf.UserConfig;
 import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.menu.TreeNode;
@@ -131,81 +130,6 @@ public class UserRequestManager {
 	}
 
 	/**
-	 * In charge of managing the OpenLayers object that each client uses. *
-	 *
-	 * @param {HttpSession} session HttpSession Objeto de sesion
-	 * @param {OpenLayerMapConfig} defaultOpConfig OpenLayerMapConfig
-	 * @return OpenLayerMapConfig
-	 */
-	public static UserConfig getClientOpConfig(HttpSession session, OpenLayerMapConfig defaultOpConfig) {
-		UserConfig clientOPConfig;
-		if (!session.isNew()) {//if the session is not new we obtain from object. 
-			clientOPConfig = (UserConfig) session.getAttribute("clientOpConfig");
-			if (clientOPConfig == null) {//is object is null we just return the default options. 
-				clientOPConfig = new UserConfig(defaultOpConfig.getCenter(), defaultOpConfig.getZoom(), "default");
-			}
-		} else {
-			clientOPConfig = new UserConfig(defaultOpConfig.getCenter(), defaultOpConfig.getZoom(), "default");
-		}
-		return clientOPConfig;
-	}
-
-	/**
-	 * Updates the position and the zoom of the map
-	 *
-	 *
-	 * @param {HttpServeletRequest}request
-	 * @param {UserConfig} opConfig
-	 * @return UserConfig
-	 */
-	public static UserConfig updateCenterAndZoom(HttpServletRequest request, UserConfig opConfig) {
-		String zoomstr = request.getParameter("zoom");
-		String centerstr = request.getParameter("center");
-
-		if ((zoomstr == null) || (centerstr == null)) {
-			OpenLayerMapConfig defConfig = OpenLayerMapConfig.getInstance();
-			if (zoomstr == null) {
-				zoomstr = defConfig.getZoom();
-			}
-			if (centerstr == null) {
-				centerstr = defConfig.getCenter();
-			}
-		}
-
-		opConfig.setCenter(centerstr);
-		opConfig.setZoom(zoomstr);
-
-		return opConfig;
-	}
-
-	/**
-	 * Get the form parameters of the different draggable windows.
-	 *
-	 * @param {HttpServeletRequest} request
-	 * @param {UserConfig} opConfig
-	 * @return opConfig
-	 */
-	public static UserConfig windowPosition(HttpServletRequest request, UserConfig opConfig) {
-		String mainMenuParentPos = request.getParameter("mainMenuParentPos");
-		String palettes_divPos = request.getParameter("palettes_divPos");
-		String palettePos = request.getParameter("palettePos");
-		String optionalMenuParent = request.getParameter("optionalMenuParent");
-		String CalendarsAndStopContainer = request.getParameter("CalendarsAndStopContainer");
-		String helpInstructions = request.getParameter("helpInstructions");
-		String mainMenuMinimize = request.getParameter("mainMenuMinimize");
-		String calendarsMinimize = request.getParameter("calendarsMinimize");
-		String optionalsMinimize = request.getParameter("optionalsMinimize");
-
-
-		if (mainMenuParentPos != null && palettes_divPos != null && palettePos != null && optionalMenuParent != null && CalendarsAndStopContainer != null && helpInstructions != null
-				&& mainMenuMinimize != null && calendarsMinimize != null && optionalsMinimize != null) {
-			opConfig.setPositions(mainMenuParentPos, palettes_divPos, palettePos, optionalMenuParent, CalendarsAndStopContainer, helpInstructions, mainMenuMinimize, calendarsMinimize, optionalsMinimize);
-		}
-
-		return opConfig;
-	}
-
-	/**
 	 * This function obtains the layer that the user is viewing, taking into account also
 	 * the vector layers
 	 *
@@ -243,9 +167,9 @@ public class UserRequestManager {
 	 * @param {UserConfig} usrConf
 	 * @return
 	 */
-	public static String getKmlLink(OpenLayersManager opManager, int[] selectedBaseLayers, UserConfig usrConf) {
+	public static String getKmlLink(OpenLayersManager opManager, int[] selectedBaseLayers, String selectedPalette) {
 		Layer tempLayer = opManager.getRasterLayers().get(selectedBaseLayers[0]);
-		return UserRequestManager.buildKmlLink(tempLayer, usrConf.getPalette());
+		return UserRequestManager.buildKmlLink(tempLayer, selectedPalette);
 	}
 
 	/**

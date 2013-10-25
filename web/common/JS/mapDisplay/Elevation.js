@@ -30,8 +30,7 @@ function createElevationSelector(){
 		
     var inner_text = "<table><tr>";
     inner_text += "<td><p class='title'>" +getZaxisText();
-    inner_text += " <a class='btn btn-default btn-xs' href='#' onclick='displayElevationSelector()'>\
-                        <span class='glyphicon glyphicon-remove'> </span> </a></p></td></tr>";
+    inner_text += " <a class='btn btn-default btn-xs' href='#' onclick='displayElevationSelector()'> <span class='glyphicon glyphicon-remove'> </span> </a></p></td></tr>";
     inner_text += "<tr><td align='left'>";
 		
     var totPages = Math.ceil(elev_counter/totByPage);//Total number of pages
@@ -42,9 +41,9 @@ function createElevationSelector(){
         iCurrPage = 0;
         if( ((page-1)*totByPage <= elev_glob_counter) &&
             ( elev_glob_counter <= page*totByPage )){
-            inner_text += "<table id='elevId"+page+"' style='display: inline' id='elevId"+page+"' >"
+            inner_text += "<table id='elevId"+page+"' style='display: inline' id='elevId"+page+"' >";
         } else{
-            inner_text += "<table id='elevId"+page+"' style='display: none' id='elevId"+page+"' >"
+            inner_text += "<table id='elevId"+page+"' style='display: none' id='elevId"+page+"' >";
         }
 
         inner_text += "<tr><td>";

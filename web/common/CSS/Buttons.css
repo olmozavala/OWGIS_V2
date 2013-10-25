@@ -23,9 +23,11 @@ look like a button */
   border-color: black;
   padding: 5px 10px;
   color: #ecf2f8;
-  -webkit-border-radius: 10px 10px;
-  -moz-border-radius: 10px / 10px;
-  border-radius: 10px / 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
   -webkit-box-shadow: #80ccdc 2px 2px 6px;
   -moz-box-shadow: #80ccdc 2px 2px 6px;
   box-shadow: #80ccdc 2px 2px 6px;

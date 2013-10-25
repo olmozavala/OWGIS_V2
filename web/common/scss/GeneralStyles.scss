@@ -50,10 +50,11 @@ for the main layers, the color palettes, the calendars etc.*/
 .defShadow{ color: $fontColor; @include textHalo($invColor); }
 //Inverse shadow for the text
 .invShadow{ color: $invColor; @include textHalo($fontColor); }
+
 //No shadow on the text, using default font color
 .noShadow{ color: $fontColor; }
 //No shadow on the text, using default inverse color
-.noShadow{ color: $fontColor; }
+.noShadowInv{ color: $invColor; }
 
 //Close button
 .closeButton{ float:right; }

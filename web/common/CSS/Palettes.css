@@ -21,13 +21,13 @@
 
 /* line 21, ../scss/Palettes.scss */
 #palettesTable {
-  cursor: pointer;
+  margin: 5px 0px;
 }
 
 /* Div of the optional palettes div */
-/* line 24, ../scss/Palettes.scss */
+/* line 26, ../scss/Palettes.scss */
 #palettes-div {
-  width: 240px;
+  width: 270px;
   top: 245px;
   left: 40%;
   position: absolute;
@@ -35,7 +35,7 @@
 }
 
 /* table that contains current palette and the color range*/
-/* line 35, ../scss/Palettes.scss */
+/* line 37, ../scss/Palettes.scss */
 #paletteWindowColorRange {
   width: 200px;
   top: 245px;
@@ -44,8 +44,33 @@
   display: none;
 }
 
-/* line 44, ../scss/Palettes.scss */
+/* line 46, ../scss/Palettes.scss */
 .inputSizePalettes {
   width: 55px;
   height: 13px;
+}
+
+/* line 52, ../scss/Palettes.scss */
+.optPaletteImg {
+  border-color: black;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: black 2px 2px 4px;
+  -moz-box-shadow: black 2px 2px 4px;
+  box-shadow: black 2px 2px 4px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  margin: 0px 1px;
+}
+/* line 60, ../scss/Palettes.scss */
+.optPaletteImg:hover {
+  background-color: #373737;
+  -webkit-box-shadow: #dcc380 2px 2px 6px;
+  -moz-box-shadow: #dcc380 2px 2px 6px;
+  box-shadow: #dcc380 2px 2px 6px;
 }

@@ -10,7 +10,7 @@
 @import "base";
 
 $sizeContainerColorRange: 200px;
-$sizeOptionalPalettes: 240px;
+$sizeOptionalPalettes: 270px;
 
 /* Id of the div that contains both Palettes windows */
 #palettesParent {
@@ -18,7 +18,9 @@ $sizeOptionalPalettes: 240px;
 }
 
 //Table that contains all the optional palettes
-#palettesTable{ cursor: pointer; }
+#palettesTable{
+    margin: 5px 0px;
+}
 
 /* Div of the optional palettes div */
 #palettes-div{
@@ -44,4 +46,19 @@ $sizeOptionalPalettes: 240px;
 .inputSizePalettes{
     width:55px;//TODO Is not working, it is hardcoded on file Palettes.jsp
     height: $defFontSize;
+}
+
+// Style for the optional layers (the images)
+.optPaletteImg{
+    border-color: $backColor;
+	@include border-radius(1px);
+	@include box-shadow(black 2px 2px $butBoxShadowSize - 2);
+	@include box-sizing(content-box);
+    cursor: pointer; 
+	margin: 0px 1px;
+
+    &:hover{
+		background-color:$butBackColorHover;
+        @include box-shadow($butSecondShadowColor 2px 2px $butBoxShadowSize);
+    }
 }

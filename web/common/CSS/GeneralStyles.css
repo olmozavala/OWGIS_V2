@@ -93,23 +93,23 @@ for the main layers, the color palettes, the calendars etc.*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
 }
 
-/* line 54, ../scss/GeneralStyles.scss */
+/* line 55, ../scss/GeneralStyles.scss */
 .noShadow {
   color: #ecf2f8;
 }
 
-/* line 56, ../scss/GeneralStyles.scss */
-.noShadow {
-  color: #ecf2f8;
+/* line 57, ../scss/GeneralStyles.scss */
+.noShadowInv {
+  color: black;
 }
 
-/* line 59, ../scss/GeneralStyles.scss */
+/* line 60, ../scss/GeneralStyles.scss */
 .closeButton {
   float: right;
 }
 
 /* Main div for user menu options. topmenu */
-/* line 62, ../scss/GeneralStyles.scss */
+/* line 63, ../scss/GeneralStyles.scss */
 .layersMenu {
   background-image: url("../images/transBack.png");
   top: 0px;
@@ -122,13 +122,13 @@ for the main layers, the color palettes, the calendars etc.*/
 }
 
 /* This is the default font type for the letters in the page */
-/* line 74, ../scss/GeneralStyles.scss */
+/* line 75, ../scss/GeneralStyles.scss */
 p {
   color: #ecf2f8;
 }
 
 /* Main title */
-/* line 77, ../scss/GeneralStyles.scss */
+/* line 78, ../scss/GeneralStyles.scss */
 .mapTitle {
   font-size: 20px;
   position: absolute;
@@ -141,7 +141,7 @@ p {
 }
 
 /* Default style for the page */
-/* line 91, ../scss/GeneralStyles.scss */
+/* line 92, ../scss/GeneralStyles.scss */
 html, body {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
@@ -153,19 +153,19 @@ html, body {
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 102, ../scss/GeneralStyles.scss */
+/* line 103, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 106, ../scss/GeneralStyles.scss */
+/* line 107, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
 /* Left fotter */
-/* line 111, ../scss/GeneralStyles.scss */
+/* line 112, ../scss/GeneralStyles.scss */
 div.leftFoot {
   position: absolute;
   bottom: 1%;
@@ -177,12 +177,12 @@ div.leftFoot {
   opacity: 0.8;
 }
 
-/* line 121, ../scss/GeneralStyles.scss */
+/* line 122, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 123, ../scss/GeneralStyles.scss */
+/* line 124, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -191,13 +191,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 131, ../scss/GeneralStyles.scss */
+/* line 132, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 134, ../scss/GeneralStyles.scss */
+/* line 135, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;

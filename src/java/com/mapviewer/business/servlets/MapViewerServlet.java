@@ -6,7 +6,6 @@ package com.mapviewer.business.servlets;
 
 import com.mapviewer.business.*;
 import com.mapviewer.conf.OpenLayerMapConfig;
-import com.mapviewer.conf.UserConfig;
 import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.PagesNames;
@@ -38,7 +37,6 @@ public class MapViewerServlet extends HttpServlet {
 
 	OpenLayersManager opManager;//OpenLayers Code
 	OpenLayerMapConfig mapConfig;
-	UserConfig userConfig;
 	NetCDFRequestManager ncManager;// This object is used to manage the netcdf curr_main_layers
 	AccessControls accessControl;
 	String[] linksVectorialesKmz;
@@ -101,11 +99,6 @@ public class MapViewerServlet extends HttpServlet {
 			response.setContentType("text/html;charset=iso-8859-1");
 			HttpSession session = request.getSession();//Se obtiene la sesion
 
-			userConfig = UserRequestManager.getClientOpConfig(session, mapConfig);//based on the session get mapconfiguration
-			userConfig = UserRequestManager.windowPosition(request, userConfig);//get the positions of the draggable windows
-
-			userConfig = UserRequestManager.updateCenterAndZoom(request, userConfig);//updates the center and zoom of map
-
 			//obtain the user selected layers from menu
 			TreeNode arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
 
@@ -116,17 +109,6 @@ public class MapViewerServlet extends HttpServlet {
 			int[] baseLayers = opManager.obtainArrayIndexOfLayers(rasterSelecteLayers);
 
 			Layer curr_main_layer = opManager.getRasterLayers().get(baseLayers[0]); //get main layer of user
-
-			String palette = request.getParameter("paletteSelect");
-			if (palette == null) {
-				palette = curr_main_layer.getPalette();
-				if (palette.equals("")) {
-					//In this case show the default palette for this layer
-					palette = "default";//The mapDisplay.js takes this value into account to display the default palette
-				}
-			} else {
-				userConfig.setPalette(palette);
-			}
 
 			//this variables are then read by the GlobalJavascript.jsp 
 
@@ -142,7 +124,7 @@ public class MapViewerServlet extends HttpServlet {
 			String language = HtmlTools.getLanguage(request.getHeader("Accept-Language"));
 
 			//openlayers configuration of javascript. 
-			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, userConfig, language);
+			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language);
 
 			//This is for the configuration of the page, this are read by the javascript throuhg jsp. 
 			request.setAttribute("openLayerConfig", openLayerConfig);
@@ -150,8 +132,15 @@ public class MapViewerServlet extends HttpServlet {
 			//add the link of the vactor layers the one with the checkboxes.            
 			request.setAttribute("sizeVectLayers", opManager.getVectorLayers().size());
 			request.setAttribute("linksKmzVect", linksVectorialesKmz);
+
+            String palette = request.getParameter("paletteSelect");
+            if (palette == null) {
+                palette = curr_main_layer.getPalette();
+            } 
+			request.setAttribute("palette", palette);
+
 			//We define the link to request a KML file
-			request.setAttribute("linkKML", UserRequestManager.getKmlLink(opManager, baseLayers, userConfig));
+			request.setAttribute("linkKML", UserRequestManager.getKmlLink(opManager, baseLayers, palette));
 			//Defines the title of the layer
 			String layerTitle = UserRequestManager.getTitleOfLayer(opManager, baseLayers, vectorLayers, language);
 			//we put the title of the layer next to Gulf of Mexico. 
@@ -161,7 +150,6 @@ public class MapViewerServlet extends HttpServlet {
 			request.setAttribute("idx_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
 			request.setAttribute("basepath", basePath);
 			request.setAttribute("mainLayer", curr_main_layer.getName());
-			request.setAttribute("palette", palette);
 			request.setAttribute("style", curr_main_layer.getStyle());
 			request.setAttribute("max_time_range", curr_main_layer.getMaxTimeLayer());
 			request.setAttribute("newSession", session.isNew());//Inidicates if is the first time the map was loaded
@@ -171,7 +159,6 @@ public class MapViewerServlet extends HttpServlet {
 			//Contains configuration of the Map like zoom, center, origin, etc.
 			request.setAttribute("mapConfig", mapConfig.toJSONObject());
 
-			request.setAttribute("userWindowPosition", userConfig.getJSONObject());
 			request.setAttribute("cqlcols", curr_main_layer.getCql_cols());
 			//The next variable is used to decide if the layer has
 			// a custom CQL filter
