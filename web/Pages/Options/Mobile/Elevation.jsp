@@ -27,7 +27,7 @@ There is 3 options. Either '-' or '+' or click the button to choose the disired 
         <tr>
 
             
-                <td class="elevationSelector" id="elevationSelector"> </td>
+                <td class="zaxis_selector" id="zaxis_selector"> </td>
             
 
         </tr>

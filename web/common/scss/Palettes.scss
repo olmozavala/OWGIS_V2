@@ -9,7 +9,7 @@
 
 @import "base";
 
-$sizeContainerColorRange: 200px;
+$sizeContainerColorRange: 210px;
 $sizeOptionalPalettes: 270px;
 
 /* Id of the div that contains both Palettes windows */
@@ -44,8 +44,8 @@ $sizeOptionalPalettes: 270px;
 
 // Define the size of the input to store color ranges
 .inputSizePalettes{
-    width:55px;//TODO Is not working, it is hardcoded on file Palettes.jsp
-    height: $defFontSize;
+    width:5em;//TODO Is not working, it is hardcoded on file Palettes.jsp
+    height: $defFontSize+5;
 }
 
 // Style for the optional layers (the images)

@@ -34,7 +34,7 @@ $defPadding: 5px;
 	z-index:1008;
 	position:absolute;
 	border:solid 1px white;
-	padding: $defPadding 2*$defPadding;
+	padding: $defPadding+2 $defPadding+2;
 	cursor: move;
     font-size: $defFontSize;
 	@include opacity($defOpacity);

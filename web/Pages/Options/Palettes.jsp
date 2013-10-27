@@ -6,16 +6,19 @@
 <c:if test='${netcdf}'>
     <!-- Holds the optional palettes -->
     <div class="transDraggableWindow" id="palettes-div">
-        <div class="row">
-            <div class="col-xs-12" id="optionalPalettesHeader">
-                <span class="invShadow title"> <fmt:message key="ncwms.newpal" /></span>
-                <span class="buttonStyle" id="defaultColorRangeButton" 
-                    onclick="DefaultPalette();"> Default</span>	
-                <div class="pull-right">
-                    <a class="btn btn-default btn-xs" href="#" onclick="displayOptionalPalettes();">
-                        <span class="glyphicon glyphicon-remove"> </span> </a>
-                </div>
+        <div class="row defRowSpace">
+            <div class="col-xs-6 invShadow title" > <fmt:message key="ncwms.newpal" /></div>
+            <div class="col-xs-4">
+                <span class="buttonStyle" id="defaultColorRangeButton"
+                    onclick="DefaultPalette();"> Default</span>
+            </div>	
+            <div class="col-xs-2 pull-right">
+                <a class="btn btn-default btn-xs" href="#" onclick="displayOptionalPalettes();">
+                    <span class="glyphicon glyphicon-remove"> </span> 
+                </a>
             </div>
+        </div>
+        <div class="row defRowSpace">
             <div class="col-xs-12">
                 <table id="palettesTable"></table>
             </div>
@@ -25,30 +28,29 @@
     <!-- Window with the color ranges -->
     <div id="paletteWindowColorRange" class="transDraggableWindow" >
         <div class="row">
-            <div class="invShadow title col-xs-10">
-                <!-- TODO put language text -->
-                Color range
-            </div>
-            <div class="col-xs-2">
-                <div class="pull-right">
-                    <a class="btn btn-default btn-xs" href="#" onclick="showPalettes();">
-                        <span class="glyphicon glyphicon-remove"> </span> </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-xs-2">
                 <img class="optPaletteImg" id="imgPalette" src="${paletteUrl}" onclick="displayOptionalPalettes();" 
                 onmouseover="this.style.cursor = 'pointer';"
                 onmouseout="this.style.cursor = 'crosshair';"/>
             </div>
             <div class="col-xs-10">
+                <div class="row">
+                    <div class="col-xs-8 invShadow title ">
+                        <!-- TODO put language text -->
+                        Color range
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="#" onclick="showPalettes();">
+                                <span class="glyphicon glyphicon-remove"> </span> </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="row ">
                     <div class="col-xs-12 defRowSpace">
                         <span class="invShadow"> Max:</span>
                         <input id="maxPal" class="inputSizePalettes input-sm" 
-                        name="maxPal" type="text" size="4"
-                        onblur="UpdatePalette(mappalette);" 
+                        name="maxPal" type="text" size="5" onblur="UpdatePalette(mappalette);" 
                         onkeydown="if (event.keyCode == 13) UpdatePalette(mappalette);" />
                         <a class="btn btn-default btn-xs" href="#" onclick="increaseMaxColorRange(1);">
                             <span class="glyphicon glyphicon-plus "> </span> </a>
@@ -68,7 +70,7 @@
                     <div class="col-xs-12 defRowSpace ">
                         <span class="invShadow"> Min:</span>
                         <input  class="inputSizePalettes input-sm" id="minPal" 
-                        name="minPal" type="text" size="4" 
+                        name="minPal" type="text" size="5" 
                         onblur="UpdatePalette(mappalette);"
                         onkeydown="if (event.keyCode == 13) UpdatePalette(mappalette);" />
                         <a class="btn btn-default btn-xs" href="#" onclick="decreaseMinColorRange(-1);">

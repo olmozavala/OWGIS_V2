@@ -94,7 +94,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                 <%@include file="NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 
                 <!-- Elevation -->
-                <span class="draggableWindow" id="elevationSelector">Vamos a ver si es verdad </span>
+                <div class="draggableWindow menuHidden" id="zaxis_selector"></div>
 
                 <!-- Current palette and color range -->
                 <!--<div id="palettesParent">-->

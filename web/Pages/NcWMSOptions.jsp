@@ -8,7 +8,7 @@
 
 <c:if test='${netcdf}' >
     <!-- Divs that hold the start and end calendar plus the related texts -->
-    <div class="transDraggableWindow" id="CalendarsAndStopContainer">
+    <div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
         <div id="CalendarParent" >
             <div class="row">
                 <div class="col-xs-6 text-center title " id="hideOneDay"> 
@@ -58,6 +58,7 @@
                 </div>
             </div>
         </div>
+        <!-- Stop animation button --> 
         <div class="row" id="s-animation" > 
             <div class="col-xs-2">
                 <button  class="buttonStyle" onclick="stopAnimation();" >

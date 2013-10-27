@@ -18,9 +18,14 @@ buttons, etc.
     border-color:red;
 }
 
-// Space used by default between bootstrap rows
+// Increases the default row space used on bootstrap
 .defRowSpace{
     margin: 5px 0px;
+}
+
+// Used by any menu that starts as a hidden menu
+.menuHidden{
+    display:none;
 }
 
 /* This is the CSS for a default floating window. It should be used
@@ -93,7 +98,7 @@ html,body {
     font-family:Tahoma, Verdana, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #296E8D;
+    background-color: #06122C;
     overflow:hidden;
 	width: 100%;
 	height: 100%;
@@ -129,7 +134,9 @@ a{ text-decoration: none; }
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-.bigFontSize{ font-size: 30px; }
+.bigFontSize{ 
+    font-size: 30px; 
+}
 
 /*Style for the 'contact' text. At the bottom of the page*/
 #emailText{

@@ -15,9 +15,9 @@
 		<MenuEntry ID="vectest" EN="Vector layer" ES="Ejemplo Vectorial"/>
 		<MenuEntry ID="veccqltest" EN="Vector CQL demo" ES="Ejemplo CQL"/>
 		<MenuEntry ID="geotifftest" EN="Raster (GeoTIFF)" ES="Ejemplo capa raster "/>
-		<MenuEntry ID="ncwmsall" EN="ncWMS with all" ES="ncwmsall ESP"/>
-		<MenuEntry ID="ncwmsonedate" EN="ncWMS with one date" ES="ncwmsone date ESP"/>
-		<MenuEntry ID="ncwmsonedepth" EN="ncWMS with one zaxis" ES="ncwmsone depth ESP"/>
+		<MenuEntry ID="ncwmsall" EN="ncWMS MultZ MultDate" ES="ncwmsall ESP"/>
+		<MenuEntry ID="ncwmsonedate" EN="ncWMS MultZ OneDate" ES="ncwmsone date ESP"/>
+		<MenuEntry ID="ncwmsonedepth" EN="ncWMS OneZ OneDate " ES="ncwmsone depth ESP"/>
 		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" ES="ncwmsone velocidad ESP"/>
 
 		<MenuEntry ID="states" EN="US states" ES="Estados"/>

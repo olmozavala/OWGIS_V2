@@ -16,16 +16,22 @@ function addElevationText(){
 }
 
 /**
- * Initializes the span of 'elevationSelector' with the
+ * Initializes the span of 'zaxis_selector' with the
  * zAxis options of the main layer
  */
 function createElevationSelector(){
-    var area = document.getElementById('elevationSelector');
 	
-    var elev_counter;
-    if(layerDetails.zaxis != undefined)
+    //Verify we have at least one z-axis
+    if(layerDetails.zaxis != undefined){
         elev_counter = layerDetails.zaxis.values.length;
+        _mainlayer_zaxisCoord = true;
+    } else{ 
+        return;//Do not create anything 
+    }
 	
+    var area = document.getElementById('zaxis_selector');
+    var elev_counter;
+
     var totByPage = 10;//Total number of element for each 'page'
 		
     var inner_text = "<table><tr>";
@@ -84,17 +90,17 @@ function createElevationSelector(){
 		
     inner_text += "</td></tr></table>";
       
-    $('#elevationSelector').html(inner_text);
+    $('#zaxis_selector').html(inner_text);
     
 }
 
 
 /**
- * Initializes the span of 'elevationSelector' with the
+ * Initializes the span of 'zaxis_selector' with the
  * zAxis options of the main layer
  */
 function createElevationSelectorMobile() {
-    var area = document.getElementById('elevationSelector');
+    var area = document.getElementById('zaxis_selector');
 
     var elev_counter;
     if (layerDetails.zaxis !== undefined)
@@ -124,7 +130,7 @@ function createElevationSelectorMobile() {
 
     inner_text += "</select></td></tr></table>";
 
-    $('#elevationSelector').html(inner_text);
+    $('#zaxis_selector').html(inner_text);
 
 }
 
@@ -150,8 +156,8 @@ function dispElevPage(num, total){
 /**Displays the different elevations for the user to select
  */
 function displayElevationSelector() {
-    //$(elevationSelector).slideToggle();
-    $(elevationSelector).fadeToggle();
+    //$(zaxis_selector).slideToggle();
+    $(zaxis_selector).fadeToggle();
 }
 
 /**

@@ -22,40 +22,33 @@
         onmouseout="hoverInstructions('transParentHover', '2',this,'below')" >
         <%@include file="Options/Transparency.jsp" %>
     </div>
-    <c:choose>
-        <c:when test='${netcdf}'>
-        <!-- Depth or elevation-->
-        <div class="buttonContainer" id="elevationParent"
-            style="position:relative"
-            onmouseover="hoverInstructions('elevationParentHover', '1',this,'below')" 
-            onmouseout="hoverInstructions('elevationParentHover', '2',this,'below')"  >
-            <%@include file="Options/Elevation.jsp" %>
-        </div>
-        <!-- Palettes -->
-        <div class="buttonStyle" id="palettesMenuParent" 
-            onmouseover="hoverInstructions('palettesHover', '1',this,'below')"
-            onmouseout="hoverInstructions('palettesHover', '2',this,'below')"
-             onclick="showPalettes()" id="dynamicFont_color"  >
-                <fmt:message key="ncwms.pal" />
-        </div>
-        <!-- Transect tool-->
-        <div class="buttonStyle" id="lineToggle" 
-            onmouseover="hoverInstructions('transectParentHover', '1',this,'below')"
-            onmouseout="hoverInstructions('transectParentHover', '2',this,'below')"
-             name="type" value="line" onclick="toggleControl(this,'below');" >
-                <fmt:message key="ncwms.transect" />
-        </div>
-        </c:when>
-        <c:when test='${!netcdf}'>
-        <!-- Download data-->
-        <div class="buttonStyle" id="downloadDataParent" 
-            onmouseover="hoverInstructions('downloadDataParentHover', '1',this,'below')"
-            onmouseout="hoverInstructions('downloadDataParentHover', '2',this,'below')"
-            onclick="getWCSV1Ajax('${basepath}');"  >
-            <fmt:message key="main.download" />
-        </div>
-        </c:when>
-    </c:choose>
+    <!-- Depth or elevation-->
+    <div class="buttonContainer menuHidden" id="elevationParent"
+        onmouseover="hoverInstructions('elevationParentHover', '1',this,'below')" 
+        onmouseout="hoverInstructions('elevationParentHover', '2',this,'below')"  >
+        <%@include file="Options/Elevation.jsp" %>
+    </div>
+    <!-- Palettes -->
+    <div class="buttonStyle menuHidden" id="palettesMenuParent" 
+        onmouseover="hoverInstructions('palettesHover', '1',this,'below')"
+        onmouseout="hoverInstructions('palettesHover', '2',this,'below')"
+         onclick="showPalettes()" id="dynamicFont_color"  >
+            <fmt:message key="ncwms.pal" />
+    </div>
+    <!-- Transect tool-->
+    <div class="buttonStyle menuHidden" id="lineToggle" 
+        onmouseover="hoverInstructions('transectParentHover', '1',this,'below')"
+        onmouseout="hoverInstructions('transectParentHover', '2',this,'below')"
+         name="type" value="line" onclick="toggleControl(this,'below');" >
+            <fmt:message key="ncwms.transect" />
+    </div>
+    <!-- Download data-->
+    <div class="buttonStyle menuHidden" id="downloadDataParent" 
+        onmouseover="hoverInstructions('downloadDataParentHover', '1',this,'below')"
+        onmouseout="hoverInstructions('downloadDataParentHover', '2',this,'below')"
+        onclick="getWCSV1Ajax('${basepath}');"  >
+        <fmt:message key="main.download" />
+    </div>
     <!-- Export map as PNG image -->
     <!--
     <div class="buttonStyle" id="exportPNGParent" valign="middle">

@@ -37,7 +37,7 @@
 /* table that contains current palette and the color range*/
 /* line 37, ../scss/Palettes.scss */
 #paletteWindowColorRange {
-  width: 200px;
+  width: 210px;
   top: 245px;
   left: 60%;
   position: absolute;
@@ -46,8 +46,8 @@
 
 /* line 46, ../scss/Palettes.scss */
 .inputSizePalettes {
-  width: 55px;
-  height: 13px;
+  width: 5em;
+  height: 18px;
 }
 
 /* line 52, ../scss/Palettes.scss */

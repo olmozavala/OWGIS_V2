@@ -30,14 +30,19 @@ buttons, etc.
   margin: 5px 0px;
 }
 
+/* line 27, ../scss/GeneralStyles.scss */
+.menuHidden {
+  display: none;
+}
+
 /* This is the CSS for a default floating window. It should be used
 for the help text, the optional layers, the depth etc.*/
-/* line 28, ../scss/GeneralStyles.scss */
+/* line 33, ../scss/GeneralStyles.scss */
 .draggableWindow {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 5px 10px;
+  padding: 7px 7px;
   cursor: move;
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -53,12 +58,12 @@ for the help text, the optional layers, the depth etc.*/
 
 /* This is the CSS for a default transparent floating window. It should be used
 for the main layers, the color palettes, the calendars etc.*/
-/* line 36, ../scss/GeneralStyles.scss */
+/* line 41, ../scss/GeneralStyles.scss */
 .transDraggableWindow {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 5px 10px;
+  padding: 7px 7px;
   cursor: move;
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -71,7 +76,7 @@ for the main layers, the color palettes, the calendars etc.*/
   background-color: transparent;
 }
 
-/* line 42, ../scss/GeneralStyles.scss */
+/* line 47, ../scss/GeneralStyles.scss */
 .title {
   font-size: 15px;
   font-weight: bold;
@@ -79,37 +84,37 @@ for the main layers, the color palettes, the calendars etc.*/
   padding: 5px 0px;
 }
 
-/* line 50, ../scss/GeneralStyles.scss */
+/* line 55, ../scss/GeneralStyles.scss */
 .defShadow {
   color: #ecf2f8;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
 }
 
-/* line 52, ../scss/GeneralStyles.scss */
+/* line 57, ../scss/GeneralStyles.scss */
 .invShadow {
   color: black;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
 }
 
-/* line 55, ../scss/GeneralStyles.scss */
+/* line 60, ../scss/GeneralStyles.scss */
 .noShadow {
   color: #ecf2f8;
 }
 
-/* line 57, ../scss/GeneralStyles.scss */
+/* line 62, ../scss/GeneralStyles.scss */
 .noShadowInv {
   color: black;
 }
 
-/* line 60, ../scss/GeneralStyles.scss */
+/* line 65, ../scss/GeneralStyles.scss */
 .closeButton {
   float: right;
 }
 
 /* Main div for user menu options. topmenu */
-/* line 63, ../scss/GeneralStyles.scss */
+/* line 68, ../scss/GeneralStyles.scss */
 .layersMenu {
   background-image: url("../images/transBack.png");
   top: 0px;
@@ -122,13 +127,13 @@ for the main layers, the color palettes, the calendars etc.*/
 }
 
 /* This is the default font type for the letters in the page */
-/* line 75, ../scss/GeneralStyles.scss */
+/* line 80, ../scss/GeneralStyles.scss */
 p {
   color: #ecf2f8;
 }
 
 /* Main title */
-/* line 78, ../scss/GeneralStyles.scss */
+/* line 83, ../scss/GeneralStyles.scss */
 .mapTitle {
   font-size: 20px;
   position: absolute;
@@ -141,31 +146,31 @@ p {
 }
 
 /* Default style for the page */
-/* line 92, ../scss/GeneralStyles.scss */
+/* line 97, ../scss/GeneralStyles.scss */
 html, body {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #296E8D;
+  background-color: #06122C;
   overflow: hidden;
   width: 100%;
   height: 100%;
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 103, ../scss/GeneralStyles.scss */
+/* line 108, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 107, ../scss/GeneralStyles.scss */
+/* line 112, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
 /* Left fotter */
-/* line 112, ../scss/GeneralStyles.scss */
+/* line 117, ../scss/GeneralStyles.scss */
 div.leftFoot {
   position: absolute;
   bottom: 1%;
@@ -177,12 +182,12 @@ div.leftFoot {
   opacity: 0.8;
 }
 
-/* line 122, ../scss/GeneralStyles.scss */
+/* line 127, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 124, ../scss/GeneralStyles.scss */
+/* line 129, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -191,13 +196,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 132, ../scss/GeneralStyles.scss */
+/* line 137, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 135, ../scss/GeneralStyles.scss */
+/* line 142, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;

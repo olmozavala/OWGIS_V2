@@ -66,7 +66,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 					// CalculateTime(date_frame);	
 					animation_layer.setVisible(true);
 
-                    setAnimationDivsVisibility('displaying');
+                    updateMenusDisplayVisibility('displaying');
 
                     getMainLayer().setVisibility(true);
                     //map.setLayerZIndex(animation_layer, idx_main_layer + 1);

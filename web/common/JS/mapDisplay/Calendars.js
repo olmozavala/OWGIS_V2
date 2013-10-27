@@ -67,7 +67,6 @@ function initCalendars(){
 
 	minValidDate = new Date(minYear,minMonth, minDay);
 	maxValidDate = new Date(maxYear,maxMonth, maxDay);
-             
         
 	//We verify that we have more than one day
 	if( minValidDate < maxValidDate){
@@ -107,11 +106,10 @@ function initCalendars(){
 		displayCalendars(true);
 
 		calInitialized = true;
-		updateCalendarOpts("startCal");
         _mainlayer_multipleDates= true;
+		updateCalendarOpts("startCal");
 	}
 	else{//If we only have one day then we hide all the calendar options
-		setAnimationDivsVisibility("noanimation");
         _mainlayer_multipleDates= false;
 	}
 
@@ -153,8 +151,6 @@ function updateCalendarOpts(calUpdated){
 
 		startDateTxt = Calendar.printDate(startDate, '%Y-%m-%d');
 		endDateTxt = Calendar.printDate(endDate, '%Y-%m-%d');                  
-
-		setAnimationDivsVisibility('BothCalendarsSelected');
 
 		if(calUpdated ===  "startCal"){
 			updateMainLayerDate(startDateTxt);

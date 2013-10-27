@@ -10,64 +10,70 @@ var currentBBOX;
 /**
  * Modifies the visibility of different html elements involved on 
  * the displaying of the animations.
- * @params status - the status of the animation ['BothCalendarsSelected', 'calendarSelected',
- * 					'selecting', 'loading', 'displaying']
+ * @params status - the status of the animation 
+ * ['SelectingDates','loading', 'displaying', 'noanimation']
  */
-function setAnimationDivsVisibility(status){
+function updateMenusDisplayVisibility(status){
+
+    // ------- Visibility of top menus (general menus) -------
 	if(netcdf){
+		// When we are selecting dates. 
+		switch( status ){
+            case "loading":
+                $('#CalendarParent').hide("fade");
+                $('#s-animation').show("fade");
+                $('#l-animation').show("fade");
+                $('#minPal').disabled = true;
+                $('#maxPal').disabled = true;
+                $('#palettes-div').hide("fade");
+                $('#hideCalendarButtonParent').hide("fade");
+                displayingAnimation = true;//I believe it is used to control the async calls to obtain the animation
+                break;
+            case "displaying":
+                $('#CalendarParent').hide("fade");
+                $('#s-animation').show("fade");
+                $('#l-animation').hide("fade");
+                $('#minPal').disabled = true;
+                $('#maxPal').disabled = true;
+                $('#palettes-div').hide("fade");
+                $('#elevationParent').hide("fade");
+                $('#hideCalendarButtonParent').hide("fade");
+                finishedLoading = true;
+                killTimeouts();
+                break;
+            case "SelectingDates":
+            default:
+                $("#palettesMenuParent").show();
+                $("#lineToggle").show();
+                $("#downloadDataParent").hide();
 
-		// When we are selecting dates. (Display calendars, enable palettes,
-		// don't display loading text
-		if( (status == 'BothCalendarsSelected')|| 
-			(status == 'calendarSelected')||
-			(status == 'selecting')){//Both calendars have been selected
-			//			$('#p-animation').css("display", 'inline');
-			$('#CalendarParent').css("display", 'inline');
-			$('#s-animation').css("display",'none');
-			$('#l-animation').css("visibility",'hidden');
-			$('#minPal').disabled = false;
-			$('#maxPal').disabled = false;
-			$('#hideCalendarButtonParent').css("display",'block');
+                if(_mainlayer_zaxisCoord){
+                    $('#elevationParent').show("fade");
+                }else{
+                    $('#elevationParent').hide();
+                }
+                if(_mainlayer_multipleDates){
+                    $('#CalendarsAndStopContainer').show();
+                    $('#CalendarParent').show("fade");
+                    $('#s-animation').hide("fade");
+                    $('#minPal').disabled = false;
+                    $('#maxPal').disabled = false;
+                    $('#hideCalendarButtonParent').show("fade");
+                    $('#l-animation').hide("fade");
+                }else{
+                    $('#CalendarsAndStopContainer').hide();
+                }
+                break;
+		}
+    }else{
+        //Menus when the layer is not a netcdf
+        $("#palettesMenuParent").hide();
+        $("#lineToggle").hide();
+        $("#downloadDataParent").show();
+        $("#elevationParent").hide();
+        $('#CalendarsAndStopContainer').hide();
+    }
 
-			if(layerDetails.zaxis != undefined){
-				$('#elevationParent').css("display",'inline');//Hide zaxis window
-			}
-		}
-
-		if(status == 'loading'){//Loading animation
-			$('#CalendarParent').css("display", 'none');
-			$('#s-animation').css("display",'inline');
-			$('#l-animation').css("visibility",'visible');
-			$('#minPal').disabled = true;
-			$('#maxPal').disabled = true;
-			$('#palettes-div').css("visibility","hidden");
-			$('#hideCalendarButtonParent').css("display",'none');
-			displayingAnimation = true;//I believe it is used to control the async calls to obtain the animation
-		}
-
-		//Displaying animation
-		if(status == 'displaying'){
-			$('#CalendarParent').css("display", 'none');
-			$('#s-animation').css("display",'inline');
-			$('#l-animation').css("visibility",'hidden');
-			$('#minPal').disabled = true;
-			$('#maxPal').disabled = true;
-			$('#palettes-div').css("visibility","hidden");//Hidde Palettes window
-			$('#elevationParent').css("display",'none');//Hide zaxis window
-			$('#hideCalendarButtonParent').css("display",'none');
-			finishedLoading = true;
-			killTimeouts();
-		}
-		// This is the case for netCDF layers with only
-		// one day 
-		if(status == 'noanimation'){
-			$('#l-animation').css("visibility",'hidden');
-			$('#minPal').disabled = false;
-			$('#maxPal').disabled = false;
-			$('#hideCalendarButtonParent').css("display",'none');
-			$('#CalendarsAndStopContainer').css("display",'none');
-		}
-	}
 }
 
 /** this function clears all timeouts that are executed in ajax.js in CalculateTime() 
@@ -87,7 +93,7 @@ function killTimeouts()
 function stopAnimation(){
 
 	killTimeouts();//destroy all the timers that update the loading % ...
-	setAnimationDivsVisibility("calendarSelected");
+	updateMenusDisplayVisibility("SelectingDates");
 
 	getMainLayer().setVisibility(true);
 	if(animation_layer != undefined)//If animation has been called. 
@@ -123,7 +129,7 @@ function Loaded() {
 	if(currentBBOX == map.getExtent().toBBOX()){ 
            
 		//console.log("enters when map arrives");
-		setAnimationDivsVisibility('displaying');
+		updateMenusDisplayVisibility('displaying');
 		   
 		getMainLayer().setVisibility(true);
 		map.setLayerZIndex(animation_layer,parseInt(idx_main_layer)+1);
@@ -170,7 +176,7 @@ function dispAnimation(){
         endDate = Calendar.printDate(endDate, '%Y-%m-%dT00:00:00.000Z');
 
         //While the animation is loading we don't show the  calendars
-        setAnimationDivsVisibility("loading");
+        updateMenusDisplayVisibility("loading");
 
         dispAnimationAjax(startDate, endDate, mainLayer,"dispAnimation");
     }else{
@@ -267,5 +273,5 @@ function animationLoaded(responseText){
     animation_layer.events.on({
         loadend: Loaded
     });*/
-    setAnimationDivsVisibility('displaying');
+    updateMenusDisplayVisibility('displaying');
 }

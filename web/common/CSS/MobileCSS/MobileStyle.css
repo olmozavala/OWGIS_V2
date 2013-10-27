@@ -361,7 +361,7 @@ but the size of the font is larger */
     left:300px;
 }
 
-#elevationSelector
+#zaxis_selector
 {
     top:80px;
     left:35px;
@@ -758,7 +758,7 @@ input[type=text]
    
 }
 
-.elevationSelector
+.zaxis_selector
 {
     color:white;
     font-size:30px;

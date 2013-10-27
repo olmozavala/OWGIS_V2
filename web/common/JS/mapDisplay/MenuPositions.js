@@ -30,6 +30,10 @@ function saveAllWindowPositionsAndVisualizationStatus(){
             localStorage.calendars_minimized =  $("#calendarsMinimize").css("display") == "none"? false: true;
             saveIndividualWindowPosition("pos_calendars", "#CalendarsAndStopContainer");
         }
+        if(_mainlayer_zaxisCoord){
+            localStorage.elev_selector_visible= $("#zaxis_selector").css("display") == "none"? false: true;
+            saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector");
+        }
     }
 }
 
@@ -44,11 +48,10 @@ function saveIndividualWindowPosition(localStorageVariable, windowElement){
     }
 }
 
-/**this function is called by the initMenus function and places the draggable windows to where the user last placed it. 
- it works based on session variables and the global variable 'userConfig' which is of json format. This function also handles the minimized
- *windows disaply or not.
+/** Places the draggable windows to where the user last placed them. Also controls if they where
+ * visible or minimized. 
  */
-function draggableUserPosition()
+function draggableUserPositionAndVisibility()
 {
     // Repositions the main layers menu
     repositionWindows(localStorage.pos_main_menu, localStorage.main_menu_minimized,
@@ -59,33 +62,42 @@ function draggableUserPosition()
             'optionalMenuParent', 'optionalsMinimize');
 
     // If the main layer is a netcdf layer then we update the position
-    // of the calendars
+    // of the calendars and palettes windows
     if (netcdf) {
-        repositionWindows(localStorage.pos_calendars, localStorage.calendars_minimized,
-                'CalendarsAndStopContainer', 'calendarsMinimize');
-
-        //The palettes window is never minimized
+                //The palettes window is never minimized
         repositionWindows(localStorage.pos_palettes, "false",
                 'palettes-div', 'none');
         repositionWindows(localStorage.pos_color_range, "false",
                 'paletteWindowColorRange', 'none');
+
+        if(_mainlayer_multipleDates){
+            repositionWindows(localStorage.pos_calendars, localStorage.calendars_minimized,
+                    'CalendarsAndStopContainer', 'calendarsMinimize');
+        }
+
+        if(_mainlayer_zaxisCoord){
+            repositionWindows(localStorage.pos_elev_selector, "false",
+                'zaxis_selector', 'none');
+        }
     }
-}
 
-
-/**
- * This function is in charge of showing or hidding the windows in the 
- * interface like the palettes, color ranges and depth windows
- */
-function toggleVisualizedWindows(){
-
-    if (netcdf) {
+   // -------- Visibility of windows ----------
+   if (netcdf) {
         //Check if the palette windows where visible
         if( localStorage.palette_visible !== undefined &&  localStorage.color_range_visible !== "undefined"){
             if ( localStorage.palette_visible === "true") $("#palettes-div").show("fade");
             if ( localStorage.color_range_visible === "true") $("#paletteWindowColorRange").show("fade");
         }
-    }
+
+        if( localStorage.elev_selector_visible!== undefined){
+            if(_mainlayer_zaxisCoord){
+                if ( localStorage.elev_selector_visible=== "true") {
+                    $("#zaxis_selector").show("fade");
+                }
+            }
+        }
+   }
+
 }
 
 /**
@@ -160,7 +172,7 @@ function respositionDraggables()
     }
 
     if (netcdf) {
-        moveOneWindow("elevationSelector");
+        //moveOneWindow("zaxis_selector");
         moveOneWindow("palettes-div");
         moveOneWindow("paletteWindowColorRange");
         moveOneWindow("CalendarsAndStopContainer");

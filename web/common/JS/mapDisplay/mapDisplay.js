@@ -22,74 +22,51 @@ jQuery(document).ready(function()
 	initHelpTxtPos();
 });
 
+function addDraggableWindows(){
+    //Only make windows draggable for 'topMenu' design
+    if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
+        $("#mainMenuParent").draggable({ containment: "body" });//Make dropdows draggable
+        $('#optionalMenuParent').draggable({ containment: "body" }); }
+    if (netcdf) {
+        if (mobile == false) {
+            $("#zaxis_selector").draggable({ containment: "body" });
+            $("#palettes-div").draggable({ containment: "body" });
+            $('#paletteWindowColorRange').draggable({ containment: "body" });
+            $('#CalendarsAndStopContainer').draggable({ containment: "body" });
+            if (cqlFilter ) {
+                $('#ocqlFilterInputTextParent').draggable({ containment: "body" });
+            }
+        }
+    }
+}
+
 /**
  * Initializes the calendars with the details of the active layer
  */
 function initMenus() {
 
-	disableEnterButton(); //disable enter button
+    disableEnterButton(); //disable enter button
+    addDraggableWindows(); // Make the proper windows draggable.
 
-	//Only make windows draggable for 'topMenu' design
-	if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
-		$("#mainMenuParent").draggable({
-			containment: "body"
-		});//Make dropdows draggable
-		$('#optionalMenuParent').draggable({
-			containment: "body" });
-	}
-	if (cqlFilter && mobile == false) {
-		$('#ocqlFilterInputTextParent').draggable({
-			containment: "body"
-		});
-	}
+    if (netcdf) {
+        //Show the palettes
+        loadPalettes();
+        initCalendars();
+        if (mobile == false) {
+            createElevationSelector(); //initialize depth selector
+        }else{
+            createElevationSelectorMobile(); //initialize depth selector
+        }
+    } 
 
-	if (netcdf) {
-		//Show the palettes
-		loadPalettes();
-		initCalendars();
+    updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
+    updateMenusDisplayVisibility("default");
+    draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 
-		if (mobile == false) {
-			createElevationSelector(); //initialize depth selector
-			$("#elevationSelector").draggable({
-				containment: "body"
-			});
-
-			$("#palettes-div").draggable({
-				containment: "body"
-			});
-
-		} else {
-			createElevationSelectorMobile(); //initialize depth selector
-		}
-
-		if (mobile == false) {
-			$('#paletteWindowColorRange').draggable({
-				containment: "body"
-			});
-			$('#CalendarsAndStopContainer').draggable({
-				containment: "body"
-			});
-		}
-
-		//if user changes the window size
-		$(window).resize(function() {
-			if (mobile == false) {
-				respositionDraggables();
-			}
-		});
-	}
-	else {
-		setAnimationDivsVisibility("noanimation");
-	}
-
-	updateTitleAndKmlLink();
-
-	if (mobile == false)
-	{
-		moveVerticalMenu();
-		draggableUserPosition();//moves the draggable windows to where the user last left them. 
-        toggleVisualizedWindows();
-	}
+    //if user changes the window size
+    $(window).resize(function() {
+        respositionDraggables();
+    });
 }
 
 /**
@@ -111,11 +88,11 @@ function minimizeWindow(appearId, disapearId)
  */
 function disableEnterButton()
 {
-	$('html').on('keypress', function(e) {
-		if (e.keyCode == 13) {
-			return false;
-		}
-	});
+    $('html').on('keypress', function(e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
 }
 
 
@@ -125,8 +102,8 @@ function disableEnterButton()
  */
 function KMZDownAlert()
 {
-	if (netcdf && anim_loaded && !stoppedAnimation)
-		alert("Your download will beggin shortly.");
+    if (netcdf && anim_loaded && !stoppedAnimation)
+        alert("Your download will beggin shortly.");
 }
 
 /**
@@ -137,65 +114,65 @@ function KMZDownAlert()
  */
 function updateTitle(dateText, elevText) {
 
-	//This symbol indicates when does the date and elevation text start
-	separationSymbol = "--";
+    //This symbol indicates when does the date and elevation text start
+    separationSymbol = "--";
 
-	var currTitle = $('#pTitleText').text();
+    var currTitle = $('#pTitleText').text();
 
-	currTitleLC = currTitle.toLowerCase();
-
-
-
-	//Removing date and elevation (search and remove -- )
-	startSymbol = currTitleLC.indexOf(separationSymbol);
+    currTitleLC = currTitle.toLowerCase();
 
 
 
-	// Remove everything until second br
-	if (startSymbol != -1) {
-		// The -4 is because we need to delete also the <br> part.
-		currTitle = currTitle.substring(0, startSymbol);
-	}
-
-	if ((dateText != "") || (elevText != "")) {
-
-		var resolutionAnim = $('input[name=video_res]:radio:checked').val();
-
-		var endDate = " ";
-
-		if (typeof calEnd != 'undefined') {
-			locendSel = calEnd.selection.get();
-			locendDate = Calendar.intToDate(locendSel);
-			endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
-		}
+    //Removing date and elevation (search and remove -- )
+    startSymbol = currTitleLC.indexOf(separationSymbol);
 
 
 
-		if (resolutionAnim !== "" && !stoppedAnimation)//falta hacer lo de resolution langauge y end date
-		{
-			if (resolutionAnim === "high")
-			{
-				resolutionAnim = resolutionHigh;
+    // Remove everything until second br
+    if (startSymbol != -1) {
+        // The -4 is because we need to delete also the <br> part.
+        currTitle = currTitle.substring(0, startSymbol);
+    }
 
-			}
-			else if (resolutionAnim === "normal")
-			{
-				resolutionAnim = resolutionMiddle;
+    if ((dateText != "") || (elevText != "")) {
 
-			}
-			else if (resolutionAnim === "low")
-			{
-				resolutionAnim = resolutionLow;
+        var resolutionAnim = $('input[name=video_res]:radio:checked').val();
 
-			}
+        var endDate = " ";
 
-			var resolutiontext = " " + resolutionGlob + " " + resolutionAnim;
-			$('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + resolutiontext + elevText + separationSymbol);
-		}
-		else {
-			$('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
-		}
-	}
+        if (typeof calEnd != 'undefined') {
+            locendSel = calEnd.selection.get();
+            locendDate = Calendar.intToDate(locendSel);
+            endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
+        }
+
+
+
+        if (resolutionAnim !== "" && !stoppedAnimation)//falta hacer lo de resolution langauge y end date
+        {
+            if (resolutionAnim === "high")
+            {
+                resolutionAnim = resolutionHigh;
+
+            }
+            else if (resolutionAnim === "normal")
+            {
+                resolutionAnim = resolutionMiddle;
+
+            }
+            else if (resolutionAnim === "low")
+            {
+                resolutionAnim = resolutionLow;
+
+            }
+
+            var resolutiontext = " " + resolutionGlob + " " + resolutionAnim;
+            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + resolutiontext + elevText + separationSymbol);
+        }
+        else {
+            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
+        }
+    }
 
 
 
@@ -208,14 +185,14 @@ function updateTitle(dateText, elevText) {
  * @params newElev - updated elevation
  */
 function updateKmlLink(newDate, newElev, cql_filter) {
-	if (newDate != '')
-		replaceGetParamInLink("#kmlLink", "TIME", newDate);
+    if (newDate != '')
+        replaceGetParamInLink("#kmlLink", "TIME", newDate);
 
-	if (newElev != '')
-		replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
+    if (newElev != '')
+        replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
 
-	if (cql_filter != '')
-		replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
+    if (cql_filter != '')
+        replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
 
 }
 
@@ -224,31 +201,31 @@ function updateKmlLink(newDate, newElev, cql_filter) {
  * and send them to updateTitle() and updateKmlLink()
  */
 function updateTitleAndKmlLink() {
-	if (netcdf) {
+    if (netcdf) {
 
-		dateForCal = '';
-		dateText = '';
+        dateForCal = '';
+        dateText = '';
 
-		currElevation = '';
-		currElevationTxt = '';
+        currElevation = '';
+        currElevationTxt = '';
 
-		//Building elevation text.
-		if (layerDetails.zaxis != undefined)
-		{
-			currElevation = layerDetails.zaxis.values[elev_glob_counter];
-			units = layerDetails.zaxis.units;
-			currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
-		}
+        //Building elevation text.
+        if (layerDetails.zaxis != undefined)
+        {
+            currElevation = layerDetails.zaxis.values[elev_glob_counter];
+            units = layerDetails.zaxis.units;
+            currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
+        }
 
-		if (typeof calStart != 'undefined') {
-			locstartSel = calStart.selection.get();
-			locstartDate = Calendar.intToDate(locstartSel);
-			dateText = Calendar.printDate(locstartDate, '%d-%B-%Y');
-			dateForCal = Calendar.printDate(locstartDate, '%Y-%m-%d');
-		}
-		updateKmlLink(dateForCal, currElevation, '');
-		updateTitle(dateText, currElevationTxt);
-	}
+        if (typeof calStart != 'undefined') {
+            locstartSel = calStart.selection.get();
+            locstartDate = Calendar.intToDate(locstartSel);
+            dateText = Calendar.printDate(locstartDate, '%d-%B-%Y');
+            dateForCal = Calendar.printDate(locstartDate, '%Y-%m-%d');
+        }
+        updateKmlLink(dateForCal, currElevation, '');
+        updateTitle(dateText, currElevationTxt);
+    }
 }
 
 /**
@@ -258,14 +235,14 @@ function updateTitleAndKmlLink() {
  * @params version - which version it is, it is passed to changeTransp() function
  */
 function changeTranspManager(val, version) {
-	layer = getMainLayer();
-	changeTransp(val, layer, version);
+    layer = getMainLayer();
+    changeTransp(val, layer, version);
 
-	if (netcdf) {
-		if (animation_layer != undefined) {
-			changeTransp(val, animation_layer, version);
-		}
-	}
+    if (netcdf) {
+        if (animation_layer != undefined) {
+            changeTransp(val, animation_layer, version);
+        }
+    }
 }
 
 /**this function initializes the gloabl optionalArray
@@ -273,7 +250,7 @@ function changeTranspManager(val, version) {
  */
 function CreateArraysOptional(checkboxNum)
 {
-	optionalArray[checkboxNum] = 1;
+    optionalArray[checkboxNum] = 1;
 }
 
 /**
@@ -286,36 +263,36 @@ function CreateArraysOptional(checkboxNum)
  */
 function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus, checkboxId)
 {
-	var checkid = document.getElementById(checkboxId);
+    var checkid = document.getElementById(checkboxId);
 
-	if (checkid.checked == true)//check if the layer is selected
-	{
-		optionalArray[index] = optionalArray[index] + val;
+    if (checkid.checked == true)//check if the layer is selected
+    {
+        optionalArray[index] = optionalArray[index] + val;
 
-		var optionOpacity = optionalArray[index];//locate which global opacity layer it is
+        var optionOpacity = optionalArray[index];//locate which global opacity layer it is
 
-		//Disables the buttons.
-		if (optionOpacity < maxOpacity) {
-			document.getElementById(id_minus).disabled = false;
-			changeColor(document.getElementById(id_minus), 0);//Change color to enabled
-		} else {
-			document.getElementById(id_minus).disabled = true;
-			changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-		}
+        //Disables the buttons.
+        if (optionOpacity < maxOpacity) {
+            document.getElementById(id_minus).disabled = false;
+            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+        } else {
+            document.getElementById(id_minus).disabled = true;
+            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        }
 
-		if (optionOpacity > minOpacity) {
-			document.getElementById(id_plus).disabled = false;
-			changeColor(document.getElementById(id_plus), 0);//Change color to enabled
-		} else {
-			document.getElementById(id_plus).disabled = true;
-			changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-		}
+        if (optionOpacity > minOpacity) {
+            document.getElementById(id_plus).disabled = false;
+            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+        } else {
+            document.getElementById(id_plus).disabled = true;
+            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        }
 
-		if (optionOpacity < .00001) {
-			optionOpacity = 0;
-		}
-		selectedLayer.setOpacity(optionOpacity);
-	}
+        if (optionOpacity < .00001) {
+            optionOpacity = 0;
+        }
+        selectedLayer.setOpacity(optionOpacity);
+    }
 }
 
 /*
@@ -328,40 +305,40 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
 function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
 {
 
-	var checkid = document.getElementById(checkboxId);
+    var checkid = document.getElementById(checkboxId);
 
 
-	if (checkid.checked == true)//check if the layer is selected
-	{
-		var optionOpacity = optionalArray[index];//localte which global opacity layer it is
+    if (checkid.checked == true)//check if the layer is selected
+    {
+        var optionOpacity = optionalArray[index];//localte which global opacity layer it is
 
-		//Disables the buttons.
-		if (optionOpacity < maxOpacity) {
-			document.getElementById(id_minus).disabled = false;
-			changeColor(document.getElementById(id_minus), 0);//Change color to enabled
-		} else {
-			document.getElementById(id_minus).disabled = true;
-			changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-		}
+        //Disables the buttons.
+        if (optionOpacity < maxOpacity) {
+            document.getElementById(id_minus).disabled = false;
+            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+        } else {
+            document.getElementById(id_minus).disabled = true;
+            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        }
 
-		if (optionOpacity > minOpacity) {
-			document.getElementById(id_plus).disabled = false;
-			changeColor(document.getElementById(id_plus), 0);//Change color to enabled
-		} else {
-			document.getElementById(id_plus).disabled = true;
-			changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-		}
-	}
-	else
-	{
-		//Disables the buttons.
-		document.getElementById(id_minus).disabled = true;
-		changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        if (optionOpacity > minOpacity) {
+            document.getElementById(id_plus).disabled = false;
+            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+        } else {
+            document.getElementById(id_plus).disabled = true;
+            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        }
+    }
+    else
+    {
+        //Disables the buttons.
+        document.getElementById(id_minus).disabled = true;
+        changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
 
-		document.getElementById(id_plus).disabled = true;
-		changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        document.getElementById(id_plus).disabled = true;
+        changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
 
-	}
+    }
 
 }
 
@@ -374,48 +351,48 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
  * so an alert is popped. 
  */
 function changeTransp(val, layer, version) {
-	opacity = opacity + val;
-	//Checks we are not in the limits of transparency
-	// This is only used for images, it should not display it for buttons
+    opacity = opacity + val;
+    //Checks we are not in the limits of transparency
+    // This is only used for images, it should not display it for buttons
 
-	if (version == "master")
-	{
-		if (opacity > maxOpacity) {
-			opacity = maxOpacity;
-			alert('You are at minimum transparency.');
-			return;
-		}
+    if (version == "master")
+    {
+        if (opacity > maxOpacity) {
+            opacity = maxOpacity;
+            alert('You are at minimum transparency.');
+            return;
+        }
 
-		if (opacity < minOpacity) {
-			opacity = minOpacity;
-			alert('You are at maximum transparency.');
-			return;
-		}
+        if (opacity < minOpacity) {
+            opacity = minOpacity;
+            alert('You are at maximum transparency.');
+            return;
+        }
 
-	}
+    }
 
-	//Disables the buttons.
-	if (opacity <= maxOpacity) {
+    //Disables the buttons.
+    if (opacity <= maxOpacity) {
         $(minusButtonTrans).css('visibility','visible');
-	} else {
+    } else {
         $(minusButtonTrans).css('visibility','hidden');
-	}
+    }
 
-	if (opacity >= minOpacity) {
+    if (opacity >= minOpacity) {
         $(plusButtonTrans).css('visibility','visible');
-	} else {
+    } else {
         $(plusButtonTrans).css('visibility','hidden');
-	}
+    }
 
-	layer.setOpacity(opacity);
+    layer.setOpacity(opacity);
 }
 
 /** This function is called when the Browser gets resized,
- it should keep all the user selections.
- */
+  it should keep all the user selections.
+  */
 function refreshWindow() {
-	resizeMap();
-	initHelpTxtPos();
+    resizeMap();
+    initHelpTxtPos();
 }
 
 /**
@@ -431,18 +408,18 @@ function resizeMap() {
  * This functions returns a valid browser height for IE or null
  */
 function findPageHeight() {
-	if (typeof window.innerHeight != 'undefined') {
-		return window.innerHeight;
-	}
-	if (document.documentElement && typeof
-			document.documentElement.clientWidth != 'undefined' &&
-			document.documentElement.clientHeight != 0) {
-		return document.documentElement.clientHeight;
-	}
-	if (document.body && typeof document.body.clientWidth != 'undefined') {
-		return document.body.clientHeight;
-	}
-	return (null);
+    if (typeof window.innerHeight != 'undefined') {
+        return window.innerHeight;
+    }
+    if (document.documentElement && typeof
+            document.documentElement.clientWidth != 'undefined' &&
+            document.documentElement.clientHeight != 0) {
+                return document.documentElement.clientHeight;
+            }
+    if (document.body && typeof document.body.clientWidth != 'undefined') {
+        return document.body.clientHeight;
+    }
+    return (null);
 }
 
 
@@ -455,10 +432,10 @@ function findPageHeight() {
  * 
  */
 function MapViewersubmitForm() {
-	if (map != null) {
+    if (map != null) {
         saveAllWindowPositionsAndVisualizationStatus();
-		submitForm();
-	}
+        submitForm();
+    }
 }
 
 /** This function reduces the font size for small Monitors less than 800 px
@@ -466,27 +443,13 @@ function MapViewersubmitForm() {
  */
 function smallMonitors()
 {
-	var height = screen.height;
+    var height = screen.height;
 
-	if (height <= 800)
-	{
-		$('.buttonStyle').css("font-size", '11px');
-		$("#layersMenu").css("height", "40px");
-	}
-}
-
-/*
- *moves vertical menu for small screens. 
- */
-function moveVerticalMenu()
-{
-	var menu = document.getElementById("allMenuParent");
-	height = screen.height;
-
-	if (height <= 800 && menu != null)
-	{
-		menu.style.top = "0px";
-	}
+    if (height <= 800)
+    {
+        $('.buttonStyle').css("font-size", '11px');
+        $("#layersMenu").css("height", "40px");
+    }
 }
 
 /**
@@ -495,23 +458,23 @@ function moveVerticalMenu()
  * @params pos - which color. 
  */
 function changeText(btn, pos) {
-	switch (pos) {
-		// When the mouse is not over and is not being clicked
-		case 0:
-			btn.style.color = "white";
-			break;
-			// When the mouse is over
-		case 1:
-			btn.style.color = "#36DC2C";
-			break;
-			// When the button is being clicked
-		case 2:
-			btn.style.color = "#33982D";
-			break;
-			// When the button is disabled
-		case 3:
-			btn.style.color = "gray";
-			break;
+    switch (pos) {
+        // When the mouse is not over and is not being clicked
+        case 0:
+            btn.style.color = "white";
+            break;
+            // When the mouse is over
+        case 1:
+            btn.style.color = "#36DC2C";
+            break;
+            // When the button is being clicked
+        case 2:
+            btn.style.color = "#33982D";
+            break;
+            // When the button is disabled
+        case 3:
+            btn.style.color = "gray";
+            break;
 
-	}
+    }
 }
