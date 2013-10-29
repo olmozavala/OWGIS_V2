@@ -23,7 +23,12 @@ div.halfHeightWindow {
   height: 50%;
 }
 
-/* line 22, ../scss/Ol3.scss */
+/* line 23, ../scss/Ol3.scss */
 .ol-zoom {
   top: 55px;
+}
+
+/* line 28, ../scss/Ol3.scss */
+.ol-zoomslider {
+  top: 115px;
 }

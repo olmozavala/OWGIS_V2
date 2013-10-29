@@ -23,12 +23,13 @@
 		//maxPalVal = layerDetails.scaleRange[1];
 	var max_time_range = '${max_time_range}'; //calendar time range
 	var idx_main_layer = '${idx_main_layer}';// What is the index of the main layer (depending on the number of background layers)
-	var first_optional_layer = '2';//Which number correponds to the first optional layer
 	var mapConfig = ${mapConfig}; //configurations such as resolution, size, zoom levels, etc...
 	var transectOn = false; //boolean for transect tool if the netcdf has the option or not
 	var currentZoom = 0; //This variable is used to avoid removing the 'Loading' text after zooming into the map (When an animation is been loading)
 	var cql_cols = '${cqlcols}'; // Set of columns that can be filtered by CQL
 	var cqlFilter = ${cqlfilter}; //Indicates if the base layer uses CQL filtering
+    var _map_projection = mapConfig.mapProjection;// This is the default map projection
+    var _map_bk_layer = mapConfig.backgroundLayer;// This is the background layer we are using
 
 	// For popup
 	var ol_popup = null;

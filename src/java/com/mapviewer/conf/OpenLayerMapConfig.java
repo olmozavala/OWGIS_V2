@@ -14,27 +14,30 @@ import java.util.Properties;
  * @author Olmo Zavala Romero
  */
 public class OpenLayerMapConfig {
-
+	
 	private String center = null;
 	private String zoom = null;
 	private double maxResolution = 0.05;//Controls the maximum resolution of the map
 	private double minResolution = 0.01;//Controls the minimum resolution of the map
 	private String restrictedExtent = "-180.0,-90.0,180.0,90.0";//Restricts the extent of the map
-        private String mapBounds="-180.0,-90.0,180.0,90.0";
+	private String mapBounds="-180.0,-90.0,180.0,90.0";
 	String[] tilesOrigin;
+	//This contains the properties used on JavaScript, which are not the same
+	//as the attributes. 
 	private Properties prop;
-	private static OpenLayerMapConfig instance;//Singleton 
-
+	private String mapProj;
+	private static OpenLayerMapConfig instance;//Singleton
+	
 	protected OpenLayerMapConfig() {
 	}
-
+	
 	public static synchronized OpenLayerMapConfig getInstance() {
 		if (instance == null) {//Only the first time we initialize
 			instance = new OpenLayerMapConfig();
 		}
 		return instance;
 	}
-
+	
 	/**
 	 * This function creates a JSON text with the information of each of the
 	 * variables. This text is used by JSP files
@@ -42,7 +45,7 @@ public class OpenLayerMapConfig {
 	 */
 	public String toJSONObject() {
 		String jsonText = "{";
-
+		
 		Enumeration e = prop.propertyNames();
 		while (e.hasMoreElements()) {
 			String key = (String) e.nextElement();
@@ -58,23 +61,45 @@ public class OpenLayerMapConfig {
 		return jsonText;
 	}
 
-    /**
-     *Read the property file.  
-     *@param{InputStream} stream
-     */
-	public void updateProperties(InputStream stream) {
+	/**
+	 * This function is used to update one of the properties externally. Most
+	 * of the properties in this class should remain the same at all times because they are 
+	 * the same for all users.
+	 * @param key
+	 * @param value 
+	 */
+	public void updateProperty(String key, String value){
+		prop.setProperty(key, value);
+	}
 
+	/**
+	 * Reads an specific property
+	 * @param key 
+	 */
+	public void readProperty(String key){
+		prop.getProperty(key);
+	}
+	
+	/**
+	 *Read the property file.
+	 *@param{InputStream} stream
+	 */
+	public void updateProperties(InputStream stream) {
+		
 		if (prop == null) {//It will only reload the properties file if is the first time
 			try {
 				prop = new Properties();
-				prop.load(stream);
+				prop.load(stream);//Loads all the properties from the Properties file
+				//This property gets initialized when reading the XML files or 
+				// by directly in JavaScript
+				prop.setProperty("mapProjection", "");
 				initializeVariables();
 			} catch (IOException ex) {
 				System.out.println("EXCEPTION can't load the properties file" + ex.getMessage());
 			}
 		}
 	}
-
+	
 	/**
 	 * Search a key inside the properties file and returns its value
 	 *
@@ -84,77 +109,85 @@ public class OpenLayerMapConfig {
 	public String getProperty(String key) {
 		return prop.getProperty(key);
 	}
-
+	
 	/**
 	 * Initializes the required variables for the display of the map
 	 */
 	public void initializeVariables() {
-
+		
 		this.setTilesOriginFromStr(getProperty("tilesOrigin"));
 		center = getProperty("mapcenter");
 		zoom = getProperty("zoom");
 		minResolution = Float.parseFloat(getProperty("minResolution"));
 		maxResolution = Float.parseFloat(getProperty("maxResolution"));
 		restrictedExtent = getProperty("maxExtent");
-                mapBounds=getProperty("mapBounds");
+		mapBounds=getProperty("mapBounds");
+		mapProj=getProperty("mapProjection");
 	}
-
+	
 	public String getCenter() {
 		return center;
 	}
-
+	
 	public void setCenter(String center) {
 		this.center = center;
 	}
-
+	
 	public String getZoom() {
 		return zoom;
 	}
-
+	
 	public void setZoom(String zoom) {
 		this.zoom = zoom;
 	}
-
+	
 	public String[] getTilesOrigin() {
 		return tilesOrigin;
 	}
-
+	
 	public void setTilesOrigin(String[] tilesOrigin) {
 		this.tilesOrigin = tilesOrigin;
 	}
-
+	
 	public void setTilesOriginFromStr(String tilesOriginStr) {
 		String[] localTilesOrigin = tilesOriginStr.split(",");
 		setTilesOrigin(localTilesOrigin);
 	}
-
+	
 	public double getMaxResolution() {
 		return maxResolution;
 	}
-
+	
 	public void setMaxResolution(double maxResolution) {
 		this.maxResolution = maxResolution;
 	}
-
+	
 	public double getMinResolution() {
 		return minResolution;
 	}
-
+	
 	public void setMinResolution(double minResolution) {
 		this.minResolution = minResolution;
 	}
-
+	
 	public String getRestrictedExtent() {
 		return restrictedExtent;
 	}
-        public void setRestrictedExtent(String restrictedExtent) {
+	public void setRestrictedExtent(String restrictedExtent) {
 		this.restrictedExtent = restrictedExtent;
 	}
-        public String getmapBounds() {
+	public String getmapBounds() {
 		return mapBounds;
 	}
-         public void setmapBounds(String mapBounds) {
-		 this.mapBounds=mapBounds;
+	public void setmapBounds(String mapBounds) {
+		this.mapBounds=mapBounds;
 	}
 	
+	public String getMapProjection() {
+		return mapProj;
+	}
+	
+	public void setMapProjection(String mapProj) {
+		this.mapProj = mapProj;
+	}
 }

@@ -13,10 +13,9 @@
     <!-- Divs that hold the start and end calendar plus the related texts -->
     <div id="CalendarsAndStopContainer">
         <table id="CalendarParent" border="0">
-            <!--<tr><th colspan="2"><p class="defShadow">Dates range for Base layer</p></th></tr>-->
             <tr>
-                <td><span id="hideOneDay" class="calTitle ie_shadow"><fmt:message key="ncwms.cal.start" /></span></td>
-                <td><span id="hideOneDayEnd" class="calTitle ie_shadow" style="padding-right:0px;"><fmt:message key="ncwms.cal.end" /></span></td>
+                <td><span id="hideOneDay" class="calTitle "><fmt:message key="ncwms.cal.start" /></span></td>
+                <td><span id="hideOneDayEnd" class="calTitle " style="padding-right:0px;"><fmt:message key="ncwms.cal.end" /></span></td>
 
             </tr>
             <tr>

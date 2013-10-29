@@ -131,7 +131,7 @@ public class NetCDFRequestManager {
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
 		JSONObject layerDetails = new JSONObject();
 
-		int maxTries = 5; //120
+		int maxTries = 3; //120
 		int tryNumber = 0;// Current try
 		boolean accepted = false;
 
@@ -175,16 +175,15 @@ public class NetCDFRequestManager {
 				}
 			}
 		}
-
+		
 		if (accepted) {
 			System.out.println("layer details: " + layerDetails.toString());
-                        return layerDetails.toString();
+			return layerDetails.toString();
 		} else {
-                        
-                      throw new Exception("ERROR: Not able to load layer details for layer:" + layer.getDisplayName("EN"));
+			throw new Exception("ERROR: Not able to load layer details for layer:" + layer.getDisplayName("EN"));
 		}
 	}
-
+	
 	/**
 	 * Gets the URL used to request the image of the color palette to a ncWMS
 	 * server
@@ -194,37 +193,37 @@ public class NetCDFRequestManager {
 	 * @return
 	 */
 	public static String getPaletteUrl(Layer layer, String palette) {
-
+		
 		if (!layer.isNetCDF()) {
 			return "";
 		}
-
+		
 		String paletteUrl = layer.getServer() + "?REQUEST=GetLegendGraphic"
 				+ "&LAYER=" + layer.getName()
 				+ "&COLORBARONLY=true"
 				+ "&PALETTE=" + palette
 				+ "&WIDTH=20&HEIGHT=120"
 				+ "&NUMCOLORBANDS=254";
-
+		
 		return paletteUrl;
 	}
-
-        /**
-         * Build the http request
-         * @param {Layer} layer
-         * @param {String} request
-         * @param {String} item
-         * @return String
-        */
+	
+	/**
+	 * Build the http request
+	 * @param {Layer} layer
+	 * @param {String} request
+	 * @param {String} item
+	 * @return String
+	 */
 	private static String buildRequest(Layer layer, String request, String item) {
 		String server = layer.getServer();
 		String layerName = layer.getName();
-
+		
 		String httpReq = server + "?";
 		httpReq += "REQUEST=" + request;
 		httpReq += "&item=" + item;
 		httpReq += "&layerName=" + layerName;
-
+		
 		return httpReq;
 	}
 }

@@ -160,7 +160,7 @@ public class OpenLayersManager {
 		layersScript+= 
 				"\t\t var coordinate = evt.getCoordinate();\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
-				"\t\t popup_container.style.display = 'none';\n" +
+				"\t\t $('#popup').hide();\n" +
 				"\t\t currPopupText = '';\n" +
 				"\t\t ol_popup.setPosition(coordinate);\n";
 
@@ -213,7 +213,7 @@ public class OpenLayersManager {
 		URLscript += "STYLES=&"
 				+ "WIDTH=\"+ map.getSize()[0] +\"&"
 				+ "HEIGHT=\"+ map.getSize()[1] +\"&"
-				+ "SRS=EPSG:4326&"
+				+ "SRS=\"+ _map_projection+ \"&"
 				+ "FORMAT=" + actualLayer.getFormat() + "&"
 				+ "VERSION=1.1.1&"
 				+ "REQUEST=GetFeatureInfo&"
@@ -283,6 +283,7 @@ public class OpenLayersManager {
 		layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n"
 				+ "\t\t source: new ol.source.TileWMS({\n"
 				+ "\t\t url: '"+ actualLayer.getServer() + "',\n"
+//				+ "\t\t crossOrigin: 'null',\n"
 				+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "', TILED: true";
 
 		if (actualLayer.isNetCDF()) {
@@ -293,7 +294,7 @@ public class OpenLayersManager {
 			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 		}
 
-		layersScript += ", SRS: '" + actualLayer.getProjection() + "'";
+		layersScript += ", SRS: '\"+_map_projection+\"'";
 
 		layersScript += "}\n\t\t\t})\n";
 		layersScript += "\t\t});\n";

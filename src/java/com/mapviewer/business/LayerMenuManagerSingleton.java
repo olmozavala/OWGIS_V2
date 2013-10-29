@@ -5,6 +5,7 @@
  */
 package com.mapviewer.business;
 
+import com.mapviewer.conf.OpenLayerMapConfig;
 import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.BoundaryBox;
 import com.mapviewer.model.Layer;
@@ -113,23 +114,45 @@ public class LayerMenuManagerSingleton {
 						this.mainLayers.add(newLayer);
 						break;
 					case "backgroundlayers":
+						//If this is the first background layer then we us its
+						// projection as the default map projection. In case
+						// we are using another background layer like OpenStreetMap, this
+						//value will be overwritten directly on JavaScript
+						if(this.backgroundLayers.isEmpty()){
+							OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance(); 
+							mapConfig.updateProperty("mapProjection", newLayer.getProjection());
+						}
 						this.backgroundLayers.add(newLayer);
 						break;
 					case "vectorlayers":
 						//Updates the Vector Tree menu with this new entry
 						updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
-//						updateMenu(layerMenu, this.rootVectorMenu, 0,newLayer.isSelected());
+
 						//Assigns the 'Tree' of this menu to the layer
 						newLayer.setIdLayer(searchMenuEntries(layerMenu));
 						this.vectorLayers.add(newLayer);
 						break;
 				}
+				validateLayer(newLayer);
+
 //				TreeMenuUtils.traverseTree(this.rootMenu);
 //				System.out.println("END");
 			} catch (Exception ex) {
 				throw new XMLFilesException("Fail to parse XML files:" + ex.getMessage());
 			}
 		}
+	}
+
+	/**
+	 * This function validates the final properties of a layer. It validates for example
+	 * that it has a url for the server, etc. 
+	 * @param newLayer 
+	 */
+	private void validateLayer(Layer newLayer) throws XMLFilesException {
+		if(newLayer.getServer() == null || newLayer.getServer().equals("")){
+			throw new XMLFilesException("Layer '"+newLayer.getName()+"' does not provides a url for the server");
+		}
+
 	}
 
 	/**
@@ -316,7 +339,13 @@ public class LayerMenuManagerSingleton {
 					if (curr.getName().equalsIgnoreCase("BackgroundLayers")
 							|| curr.getName().equalsIgnoreCase("MainLayers")
 							|| curr.getName().equalsIgnoreCase("VectorLayers")) {
-						addLayers(curr, curr.getName());
+						try{
+							addLayers(curr, curr.getName());
+						}catch(XMLFilesException ex){
+							throw new XMLFilesException("Error parsing XML file:'"+fileName+"' <br>"
+									+ "Element:" + curr.getName()+ "<br>"
+									+ "More Info:" + ex.getMessage());
+						}
 					}
 				}
 //				System.out.println("----------- Current Main MENU-------------");
@@ -334,7 +363,7 @@ public class LayerMenuManagerSingleton {
 
 		} catch (JDOMException | IOException ex) {
 			Logger.getLogger(LayerMenuManagerSingleton.class.getName()).log(Level.SEVERE, null, ex);
-			throw new XMLFilesException("Error updating menu. " + ex.getMessage());
+			throw new XMLFilesException("Error parsing XML files" + ex.getMessage());
 		}
 	}
 

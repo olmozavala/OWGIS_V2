@@ -19,6 +19,12 @@ div.halfHeightWindow{
 	height: 50%;
 }
 
+//Defines the position of the +,- zoom buttons
 .ol-zoom{
     top:55px;
+}
+
+//Changes position fo the Ol3 zoom slider
+.ol-zoomslider{
+    top:115px;
 }

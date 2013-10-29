@@ -177,7 +177,6 @@ public class MapViewerServlet extends HttpServlet {
 
 
 			//Detect Mobile Browser
-
 			String mobileGet = request.getParameter("mobile");
 
 			String ua = request.getHeader("User-Agent").toLowerCase();

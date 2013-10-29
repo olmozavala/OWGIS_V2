@@ -112,17 +112,14 @@ function testVisibility(id) {
 
 /**
  * This function enables or disables displaying the hover txts 
- * @param {img} img This is the image object that was pressed.
- * @param {string} path Is the path of the current application. 
- * @returns {undefined}
  */
-function displayHoverHelp(img, path) {
+function displayHoverHelp() {
 
     hoverInstructions('helpIconHover', '2');//Hides the text of the helpIcon
     hoverDisabled = !hoverDisabled;
     if (hoverDisabled) {
-        img.src = path + "/common/images/Help/Help1Disabled.png";
+        $("#helpHoverImg").attr("src","./common/images/Help/Help1Disabled.png");
     } else {
-        img.src = path + "/common/images/Help/Help1.png";
+        $("#helpHoverImg").attr("src","./common/images/Help/Help1.png");
     }
 }

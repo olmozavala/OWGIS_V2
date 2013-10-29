@@ -1,5 +1,6 @@
 <!-- Menu for Users -->
 <div id="layersMenu" class="layersMenu">
+
     <!--
     <c:choose>
     <c:when test='${netcdf}'>
@@ -68,9 +69,17 @@
             <fmt:message key="main.help" />
         </span>
     </div>
+    <!-- Reset view -->
+    <div class="buttonStyle" id="resetParent" valign="middle">
+        <span id="resetText"
+            onclick="resetView();" />
+            <fmt:message key="main.resetView" />
+        </span>
+    </div>
+
 </div>
 
 <div id="helpHoverSpan" >
     <img onmouseover="hoverInstructions('helpIconHover', '1',this,'belowleft',150,50)" onmouseout="hoverInstructions('helpIconHover', '2',this,'belowleft',150,0)"
-    onclick="displayHoverHelp(this, '${basepath}');" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
+    onclick="displayHoverHelp();" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
 </div>

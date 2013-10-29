@@ -294,8 +294,8 @@ Asynchronous.prototype.call = Asynchronous_call;
 function AsyncPunctualData(responseText) {
 
     currPopupText += responseText;
-    popup_content.innerHTML = currPopupText;
-    popup_container.style.display = 'block';
+    $("#popup-content").html(currPopupText);
+    $("#popup").show();
 }
 
 /**

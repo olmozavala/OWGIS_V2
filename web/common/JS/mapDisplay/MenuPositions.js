@@ -35,6 +35,8 @@ function saveAllWindowPositionsAndVisualizationStatus(){
             saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector");
         }
     }
+
+    localStorage.disable_hover = hoverDisabled;
 }
 
 /**
@@ -98,6 +100,21 @@ function draggableUserPositionAndVisibility()
         }
    }
 
+   // --------------- Map visualization and 
+    if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+    if( localStorage.map_center!== undefined){
+        strCenter = localStorage.map_center.split(",")
+        lat = Number(strCenter[0]);
+        lon = Number(strCenter[1]);
+        ol3view.setCenter([lat,lon]);// Center of the map
+    }
+    if( localStorage.disable_hover === "true"){
+        //Disables the text hovers 
+        displayHoverHelp();
+    }
+
+   // Finally we test if they fit on the screen
+   repositionDraggablesByScreenSize();
 }
 
 /**
@@ -131,51 +148,53 @@ function repositionWindows(localStorageVariable, localStorage_minimized,
  *This function moves one window when the browswer is reseized
  *@param id - id of draggable window.
  */
-function moveOneWindow(id)
+function moveOneWindowToFitOnScreen(id)
 {
-    var windowLeft = $(window).width();
-    var windowTop = $(window).height();
     var poundId = "#" + id;
-    var left = $(poundId).position().left;
-    var top = $(poundId).position().top;
-    var idWidth = $(poundId).width();
-    var idHeight = $(poundId).height();
-    var constant = 5;
 
-    var finalLeft = windowLeft - idWidth - constant; //subtract the width of draggable from the border of the browswer
-    var finalTop = windowTop - idHeight - constant;
+    //We only check the 'div' if it is visible
+    if($(poundId).is(":visible")){
+        var windowLeft = $(window).width();
+        var windowTop = $(window).height();
+        var left = $(poundId).position().left;
+        var top = $(poundId).position().top;
+        var idWidth = $(poundId).width();
+        var idHeight = $(poundId).height();
+        var constant = 10;// Extra space for moving windows
 
-    if (windowLeft < left + idWidth)
-    {
-        document.getElementById(id).style.left = finalLeft + "px";//move it from the left
-    }
+        var finalLeft = windowLeft - idWidth - constant; //subtract the width of draggable from the border of the browswer
+        var finalTop = windowTop - idHeight - constant;
 
-    if (windowTop < top + idHeight)
-    {
-        document.getElementById(id).style.top = finalTop + "px";//move it from the top
+        if (windowLeft < left + idWidth) {
+            document.getElementById(id).style.left= finalLeft+ "px";//move it from the left
+        }
+
+        if (windowTop < top + idHeight) {
+            document.getElementById(id).style.top = finalTop + "px";//move it from the top
+        }
     }
 }
 
 /**
  *This function moves the draggable windows when the user changes its window size. 
  */
-function respositionDraggables()
+function repositionDraggablesByScreenSize()
 {
 
     if (mapConfig['menuDesign'] == "topMenu") {
-        moveOneWindow("mainMenuParent");
-        moveOneWindow("optionalMenuParent");
+        moveOneWindowToFitOnScreen("mainMenuParent");
+        moveOneWindowToFitOnScreen("optionalMenuParent");
     }
 
     if (cqlFilter) {
-        moveOneWindow("ocqlFilterInputTextParent");
+        moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
     }
 
     if (netcdf) {
-        //moveOneWindow("zaxis_selector");
-        moveOneWindow("palettes-div");
-        moveOneWindow("paletteWindowColorRange");
-        moveOneWindow("CalendarsAndStopContainer");
+        moveOneWindowToFitOnScreen("palettes-div");
+        moveOneWindowToFitOnScreen("paletteWindowColorRange");
+        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector");
+        if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
     }
 }
 

@@ -65,7 +65,7 @@ function initMenus() {
 
     //if user changes the window size
     $(window).resize(function() {
-        respositionDraggables();
+        repositionDraggablesByScreenSize();
     });
 }
 
@@ -78,6 +78,11 @@ function minimizeWindow(appearId, disapearId)
 {
     $(eval(disapearId)).toggle("drop",{direction:"down"});
     $(eval(appearId)).toggle("drop",{direction:"down"});
+
+    //Check if they fit on the screen
+    //(after 1 second) to be sure it is visible
+    setTimeout( function (){repositionDraggablesByScreenSize()},
+                1000);
 }
 
 /**
@@ -477,4 +482,14 @@ function changeText(btn, pos) {
             break;
 
     }
+}
+
+/**
+ * This function is used to reset all the paramenters
+ * of the interface, like the positionso of the windows,
+ * and center of the map.
+ */
+function resetView(){
+    localStorage.clear();
+    submitForm();
 }

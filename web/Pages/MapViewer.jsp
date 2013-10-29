@@ -88,6 +88,14 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                 <%@include file="Options/CQLFilter.jsp" %> 
             </c:if>
 
+
+            <!-- OWGIS logo -->
+            <div id="owgislogocont">
+                <a href="http://owgis.org" target="_blank">
+                    <img border="0" src="${basepath}/common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />
+                </a>
+            </div>
+
             <!-- User Menu -->
             <%@include file="TopMenu.jsp" %> <%-- Upper menu with user options --%>
             <c:if test='${netcdf}'>

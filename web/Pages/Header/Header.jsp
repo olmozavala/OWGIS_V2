@@ -7,7 +7,7 @@
 <%-- 
     This page contains all the links to the CSS, and the javascript 
 --%>
-		<link rel="glyphicon glyphicon-" href="${basepath}/common/images/PageIcon.ico" type="image/x-icon" />
+		<link rel="icon" href="${basepath}/common/images/icon/PageIcon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <meta name="Description" content="OWGIS Template" />
         <meta name="Keywords" content="OWGIS " />

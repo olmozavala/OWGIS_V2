@@ -209,3 +209,12 @@ but the size of the font is larger */
   font-size: 11px;
   color: blue;
 }
+
+/* line 150, ../scss/GeneralStyles.scss */
+#owgislogocont {
+  position: absolute;
+  display: inline;
+  top: 1%;
+  left: 1%;
+  z-index: 1009;
+}
