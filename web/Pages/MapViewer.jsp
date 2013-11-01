@@ -35,7 +35,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <form id="baseForm" class="form-inline" name="baseForm" action="${basepath}${names.acdmServlet}" method="post">
 
             <!-- List of optional layers -->
-            <div class="transDraggableWindow" id="optionalMenuParent" 
+            <div class="draggableWindow" id="optionalMenuParent" 
                   onmouseover="hoverInstructionsFixedPos('optionalLayersParentHover', '1')" 
                   onmouseout="hoverInstructionsFixedPos('optionalLayersParentHover', '2')" >
                 <%@include file="Options/OptionalLayers.jsp" %>

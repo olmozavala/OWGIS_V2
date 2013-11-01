@@ -69,11 +69,12 @@ for the main layers, the color palettes, the calendars etc.*/
     background-image:url('../images/transBack.png');
     top:0px;
     left:0px;
-    padding: 10px 0px;
     position:absolute;
-    border-bottom:white 1px solid;
+    border-bottom:$fontColor + 20 1px solid;
     text-align: center;
     width:100%;
+    padding: $defPadding*2 0px;
+    height:$topMenuHeight;
 }
 
 /* This is the default font type for the letters in the page */
@@ -153,4 +154,15 @@ but the size of the font is larger */
     top:1%;
     left:1%;
     z-index:1009;
+}
+
+//This is just a container to restrict the movment of the draggable windows.
+// It is defined in RequiredDivs.jsp
+#draggable-container{
+    position:absolute;
+    width: 96%;
+    height: 93%;
+    top:50px;
+    left:40px;
+    pointer-events:none;
 }

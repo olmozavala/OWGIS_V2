@@ -44,6 +44,7 @@ for the help text, the optional layers, the depth etc.*/
   border: solid 1px white;
   padding: 7px 7px;
   cursor: move;
+  color: black;
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
@@ -65,6 +66,7 @@ for the main layers, the color palettes, the calendars etc.*/
   border: solid 1px white;
   padding: 7px 7px;
   cursor: move;
+  color: black;
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
@@ -119,21 +121,22 @@ for the main layers, the color palettes, the calendars etc.*/
   background-image: url("../images/transBack.png");
   top: 0px;
   left: 0px;
-  padding: 10px 0px;
   position: absolute;
   border-bottom: white 1px solid;
   text-align: center;
   width: 100%;
+  padding: 10px 0px;
+  height: 44px;
 }
 
 /* This is the default font type for the letters in the page */
-/* line 80, ../scss/GeneralStyles.scss */
+/* line 81, ../scss/GeneralStyles.scss */
 p {
   color: #ecf2f8;
 }
 
 /* Main title */
-/* line 83, ../scss/GeneralStyles.scss */
+/* line 84, ../scss/GeneralStyles.scss */
 .mapTitle {
   font-size: 20px;
   position: absolute;
@@ -146,7 +149,7 @@ p {
 }
 
 /* Default style for the page */
-/* line 97, ../scss/GeneralStyles.scss */
+/* line 98, ../scss/GeneralStyles.scss */
 html, body {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
@@ -158,19 +161,19 @@ html, body {
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 108, ../scss/GeneralStyles.scss */
+/* line 109, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 112, ../scss/GeneralStyles.scss */
+/* line 113, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
 /* Left fotter */
-/* line 117, ../scss/GeneralStyles.scss */
+/* line 118, ../scss/GeneralStyles.scss */
 div.leftFoot {
   position: absolute;
   bottom: 1%;
@@ -182,12 +185,12 @@ div.leftFoot {
   opacity: 0.8;
 }
 
-/* line 127, ../scss/GeneralStyles.scss */
+/* line 128, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 129, ../scss/GeneralStyles.scss */
+/* line 130, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -196,13 +199,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 137, ../scss/GeneralStyles.scss */
+/* line 138, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 142, ../scss/GeneralStyles.scss */
+/* line 143, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
@@ -210,11 +213,21 @@ but the size of the font is larger */
   color: blue;
 }
 
-/* line 150, ../scss/GeneralStyles.scss */
+/* line 151, ../scss/GeneralStyles.scss */
 #owgislogocont {
   position: absolute;
   display: inline;
   top: 1%;
   left: 1%;
   z-index: 1009;
+}
+
+/* line 161, ../scss/GeneralStyles.scss */
+#draggable-container {
+  position: absolute;
+  width: 96%;
+  height: 93%;
+  top: 50px;
+  left: 40px;
+  pointer-events: none;
 }

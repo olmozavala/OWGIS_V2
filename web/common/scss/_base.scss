@@ -29,6 +29,9 @@ $butBoxShadowSize: 6px;//How big the box shadow is on the buttons
 //Default padding for windows
 $defPadding: 5px;
 
+// TopMenu hight;
+$topMenuHeight: 44px;
+
 // Common style for floating windows
 @mixin floatingWindow{
 	z-index:1008;
@@ -36,6 +39,7 @@ $defPadding: 5px;
 	border:solid 1px white;
 	padding: $defPadding+2 $defPadding+2;
 	cursor: move;
+    color: $invColor;
     font-size: $defFontSize;
 	@include opacity($defOpacity);
 	@include border-radius();

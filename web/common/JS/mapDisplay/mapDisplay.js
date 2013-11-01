@@ -25,16 +25,16 @@ jQuery(document).ready(function()
 function addDraggableWindows(){
     //Only make windows draggable for 'topMenu' design
     if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
-        $("#mainMenuParent").draggable({ containment: "body" });//Make dropdows draggable
-        $('#optionalMenuParent').draggable({ containment: "body" }); }
+        $("#mainMenuParent").draggable({ containment: "#draggable-container",scroll:false });//Make dropdows draggable
+        $('#optionalMenuParent').draggable({ containment: "#draggable-container" ,scroll:false}); }
     if (netcdf) {
         if (mobile == false) {
-            $("#zaxis_selector").draggable({ containment: "body" });
-            $("#palettes-div").draggable({ containment: "body" });
-            $('#paletteWindowColorRange').draggable({ containment: "body" });
-            $('#CalendarsAndStopContainer').draggable({ containment: "body" });
+            $("#zaxis_selector").draggable({ containment: "#draggable-container",scroll:false });
+            $("#palettes-div").draggable({ containment: "#draggable-container",scroll:false });
+            $('#paletteWindowColorRange').draggable({ containment: "#draggable-container",scroll:false });
+            $('#CalendarsAndStopContainer').draggable({ containment: "#draggable-container",scroll:false });
             if (cqlFilter ) {
-                $('#ocqlFilterInputTextParent').draggable({ containment: "body" });
+                $('#ocqlFilterInputTextParent').draggable({ containment: "#draggable-container",scroll:false });
             }
         }
     }

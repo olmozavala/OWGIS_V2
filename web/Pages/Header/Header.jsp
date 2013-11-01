@@ -30,7 +30,6 @@
         <link href="${basepath}/common/CSS/BaseLayers.css" rel="stylesheet" type="text/css"/>
         <link href="${basepath}/common/CSS/Palettes.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/Popup.css" rel="stylesheet" type="text/css"/>
-		<link href="${basepath}/common/CSS/OpenLayersRelated.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/cqlFilter.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>

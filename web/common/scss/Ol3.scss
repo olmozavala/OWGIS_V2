@@ -6,6 +6,8 @@
         Purpose of the stylesheet follows.
 */
 
+@import "base";
+
 div.fullWindow {
 	width: 100%;
 	height: 100%;
@@ -21,10 +23,75 @@ div.halfHeightWindow{
 
 //Defines the position of the +,- zoom buttons
 .ol-zoom{
-    top:55px;
+    top: $topMenuHeight+10;
 }
 
 //Changes position fo the Ol3 zoom slider
 .ol-zoomslider{
-    top:115px;
+    top:$topMenuHeight+70;
 }
+
+/* This is the Scale line in the bottom of the map */
+.ol-scale-line{
+    bottom:40px;
+    left:40%;
+}
+
+/* This is the position of the button to go fullscreen */
+.ol-full-screen {
+    top: $topMenuHeight+5;
+}
+
+/* container of map image of openlayers */
+#map
+{
+	width: 100%;
+	height: 100%;
+    cursor:crosshair;
+    margin-left: auto ;
+    margin-right: auto ;
+    z-index:1020;
+}
+
+/* This is the div used to put the netCDF animation */
+#mapOverlayDiv{
+    position: absolute;
+    visibility: hidden;
+    width: 10%;
+    height: 10%;
+    top: 0%;
+    left: 1%;
+}
+
+/* Defines to not display anything if the layer was not found*/
+.olImageLoadError{
+	display: none !important;
+}
+
+/* This is the class that the FTL from geoserver uses 
+in most of their text */
+.map_content{
+    pointer-events: none;
+}
+
+/* Div to display latitude and longitude*/
+div.layersLonLat{
+    @include floatingWindow;
+    bottom:50px;
+    right:5%;
+    width: 14em;
+    height:4em;
+	cursor: auto;
+    pointer-events: none;
+    background-image:url('../images/transBack.png');
+	font-weight: bold;
+}
+/* Used by open layers to display longitude and latitude */
+.ol-lat-lon{
+    color: $invColor;
+    font-size: $defFontSize;
+    text-align: center;
+	font-weight: normal;
+}
+
+

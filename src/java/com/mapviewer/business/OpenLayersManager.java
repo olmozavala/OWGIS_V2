@@ -156,7 +156,7 @@ public class OpenLayersManager {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
-		layersScript = "\n\tmap.on('click', function (evt) {\n";//Se agrega al evento click del div map la siguiente funcion
+		layersScript = "\n\tmap.on('singleclick', function (evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
 				"\t\t var coordinate = evt.getCoordinate();\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+

@@ -14,9 +14,9 @@
 
 <!-- This div contains all the map --> 
 <div id="map"> </div>      
-<div class="layersLongLat">
+<div class="layersLonLat">
 	<!-- This div displays the specific data of the map -->
-	<b><fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;</b>
+	<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;</b>
 	<div id="location" ></div>
 </div>    
 	
@@ -24,3 +24,7 @@
 	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
 	<div id="popup-content"></div>
 </div>
+
+<!-- This div is only used to contain the movement of the
+draggable windows -->
+<div id="draggable-container"></div>

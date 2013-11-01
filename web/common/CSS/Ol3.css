@@ -5,30 +5,121 @@
     Description:
         Purpose of the stylesheet follows.
 */
-/* line 9, ../scss/Ol3.scss */
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : olmozavala
+*/
+/* line 11, ../scss/Ol3.scss */
 div.fullWindow {
   width: 100%;
   height: 100%;
 }
 
-/* line 13, ../scss/Ol3.scss */
+/* line 15, ../scss/Ol3.scss */
 div.halfWidthWindow {
   width: 50%;
   height: 100%;
 }
 
-/* line 17, ../scss/Ol3.scss */
+/* line 19, ../scss/Ol3.scss */
 div.halfHeightWindow {
   width: 100%;
   height: 50%;
 }
 
-/* line 23, ../scss/Ol3.scss */
+/* line 25, ../scss/Ol3.scss */
 .ol-zoom {
-  top: 55px;
+  top: 54px;
 }
 
-/* line 28, ../scss/Ol3.scss */
+/* line 30, ../scss/Ol3.scss */
 .ol-zoomslider {
-  top: 115px;
+  top: 114px;
+}
+
+/* This is the Scale line in the bottom of the map */
+/* line 35, ../scss/Ol3.scss */
+.ol-scale-line {
+  bottom: 40px;
+  left: 40%;
+}
+
+/* This is the position of the button to go fullscreen */
+/* line 41, ../scss/Ol3.scss */
+.ol-full-screen {
+  top: 49px;
+}
+
+/* container of map image of openlayers */
+/* line 47, ../scss/Ol3.scss */
+#map {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1020;
+}
+
+/* This is the div used to put the netCDF animation */
+/* line 57, ../scss/Ol3.scss */
+#mapOverlayDiv {
+  position: absolute;
+  visibility: hidden;
+  width: 10%;
+  height: 10%;
+  top: 0%;
+  left: 1%;
+}
+
+/* Defines to not display anything if the layer was not found*/
+/* line 67, ../scss/Ol3.scss */
+.olImageLoadError {
+  display: none !important;
+}
+
+/* This is the class that the FTL from geoserver uses 
+in most of their text */
+/* line 73, ../scss/Ol3.scss */
+.map_content {
+  pointer-events: none;
+}
+
+/* Div to display latitude and longitude*/
+/* line 78, ../scss/Ol3.scss */
+div.layersLonLat {
+  z-index: 1008;
+  position: absolute;
+  border: solid 1px white;
+  padding: 7px 7px;
+  cursor: move;
+  color: black;
+  font-size: 13px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  bottom: 50px;
+  right: 5%;
+  width: 14em;
+  height: 4em;
+  cursor: auto;
+  pointer-events: none;
+  background-image: url("../images/transBack.png");
+  font-weight: bold;
+}
+
+/* Used by open layers to display longitude and latitude */
+/* line 90, ../scss/Ol3.scss */
+.ol-lat-lon {
+  color: black;
+  font-size: 13px;
+  text-align: center;
+  font-weight: normal;
 }
