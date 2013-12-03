@@ -1,13 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!--
-	Document   : TestLayers.xml
-	Created on : October 17, 2013, 11:02 AM
-	Author     : Olmo Zavala Romero
-	Description:
-		This is an example of the XML configuration file
-		used by OWGIS to generate WebGIS sites.
--->
-
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<MenuEntries>
@@ -15,41 +5,44 @@
 		<MenuEntry ID="vectest" EN="Vector layer" ES="Ejemplo Vectorial"/>
 		<MenuEntry ID="veccqltest" EN="Vector CQL demo" ES="Ejemplo CQL"/>
 		<MenuEntry ID="geotifftest" EN="Raster (GeoTIFF)" ES="Ejemplo capa raster "/>
-		<MenuEntry ID="ncwmsall" EN="ncWMS MultZ MultDate" ES="ncwmsall ESP"/>
-		<MenuEntry ID="ncwmsonedate" EN="ncWMS MultZ OneDate" ES="ncwmsone date ESP"/>
-		<MenuEntry ID="ncwmsonedepth" EN="ncWMS OneZ OneDate " ES="ncwmsone depth ESP"/>
-		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" ES="ncwmsone velocidad ESP"/>
+		<MenuEntry ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
+		<MenuEntry ID="ncwmsMultDateOneZ" EN="ncWMS OneZ MultDate" ES="ESP ncWMS OneZ MultDate"/>
+		<MenuEntry ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
+		<MenuEntry ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
+		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" ES="ESP ncWMS velocity field"/>
 
+		<MenuEntry ID="vector" EN="Vector Layers" ES="Vectoriales"/>
+		<MenuEntry ID="raster" EN="Raster Layers" ES="Capas Raster"/>
+		<MenuEntry ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS"/>
 		<MenuEntry ID="states" EN="US states" ES="Estados"/>
 		<MenuEntry ID="countries" EN="Countries" ES="Paises"/>
 	</MenuEntries>
 
-    <!--<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">-->
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
 
 	<!-- Optional layers -->
-	<VectorLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
+	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
 				  server="http://owgis.servehttp.com:8080/geoserver/wms"
 				  vectorLayer="true"> 
 		<layer Menu="countries" name="demo:world_countries" />
 		<layer Menu="lev1,states" name="demo:us_states" />
-	</VectorLayers>
+	</OptionalLayers>
 
 	<!-- Vector layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
-				  server="http://owgis.servehttp.com:8080/geoserver/wms"
-				  vectorLayer="true">
-		<layer Menu='lev1,vectest' EN='Vector layer demo. World big cities. ' 
+				server="http://owgis.servehttp.com:8080/geoserver/wms"
+				vectorLayer="true">
+		<layer Menu='vector,vectest' EN='Vector layer demo. World big cities. ' 
 			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' name='demo:world_cities' />
 	</MainLayers>
 
 	<!-- Vector CQL layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
-				  server="http://owgis.servehttp.com:8080/geoserver/wms"
+				server="http://owgis.servehttp.com:8080/geoserver/wms"
 				cqlcols="NAME" >
-		<layer Menu="lev1,veccqltest" name="demo:world_cities" 
+		<layer Menu="vector,veccqltest" name="demo:world_cities" 
 			   EN="Demo CQL filtering. Estimated population in 2010 more 2 million" 
 			   ES="Ejemplo de filtrado con CQL. Grandes ciudades con mas de 2 millones de personas en 2010"
 			   CQL="MAX_POP10 > 2000000" />
@@ -58,7 +51,7 @@
 	<!-- GeotiffLayer -->
 	<MainLayers BBOX="-125.0,4.999999999999975,-75.00000000000003,35.0"
 				server="http://owgis.servehttp.com:8080/geoserver/wms">
-		<layer Menu="lev1,geotifftest" 
+		<layer Menu="raster,geotifftest" 
 			   EN="Demo of a raster (GeoTIFF) layer. Maximum average temperature of July month." 
 			   ES="Ejemplo de capa raster (GeoTIFF). Temperatura maxima promedio del mes de julio." name="demo:temp_max_mex"/>
 	</MainLayers>
@@ -67,47 +60,36 @@
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
 				ncWMS="true">  
-		<layer Menu="lev1,ncwmsonedate" 
+		<layer Menu="ncwms,ncwmsOneDateMultZ" 
 			   EN="Demo of an ncWMS layer with only one day. World eastward wind."
-			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." name="worl_temp/ua"  />
+			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." name="onedatemultdepth/ua"  />
 	</MainLayers>
 
 	<!-- ncWMS velocity-->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
 				ncWMS="true">  
-		<layer Menu="lev1,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
+		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
 			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
-			   name="gulf_vel/sea_water_velocity" style="vector" />
+			   name="velocity/sea_water_velocity" style="vector" />
 	</MainLayers>
 
 	<!-- ncWMS with one depth-->
 	<MainLayers BBOX="-180.0, -88.927734375, 180.0, 88.927734375"
 				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
 				ncWMS="true" >
-		<layer Menu="lev1,ncwmsonedepth" 
+		<layer Menu="ncwms,ncwmsOneDepthOneZ" 
 			   EN="Demo of an ncWMS layer with only one depth. World precipitation flux."
-			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." name="worl_temp/pr"  />
+			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." name="onedatemultdepth/pr"  />
 	</MainLayers>
 
 	<!-- ncWMS all -->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
 				ncWMS="true" >  
-		<layer Menu="lev1,ncwmsall" 
+		<layer Menu="ncwms,ncwmsMultDateMultDepth" 
 			   EN="Demo of an ncWMS layer with different times and depths. Gulf of Mexico temperature "
-			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="gulf_temp/temperature"  />
+			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="multdatemultdepth/temperature"  />
 	</MainLayers>
-
-	<!-- ncWMS velocity -->
-	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
-				tiled="false" ncWMS="true" mincolor="-0.113" maxcolor="2.4" style="vector" trans_effect="none"
-				max_time_range="month">  
-		<layer Menu="lev1,ncwmvelocity" EN="ncWMS velocity"
-			   ES="ncWMS velocidad" name="hycom2013/sea_water_velocity"  />
-	</MainLayers>
-
-
 </MenuConf>
 

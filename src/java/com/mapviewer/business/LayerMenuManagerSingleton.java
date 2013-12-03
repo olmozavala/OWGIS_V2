@@ -109,7 +109,7 @@ public class LayerMenuManagerSingleton {
 					case "backgroundlayers":
 						newLayer.setDisplayTitle(false);
 						break;
-					case "vectorlayers":
+					case "optionallayers":
 						newLayer.setDisplayTitle(false);
 						newLayer.setIsVectorLayer(true);
 						break;
@@ -140,7 +140,7 @@ public class LayerMenuManagerSingleton {
 						}
 						this.backgroundLayers.add(newLayer);
 						break;
-					case "vectorlayers":
+					case "optionallayers":
 						//Updates the Vector Tree menu with this new entry
 						updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
 
@@ -354,7 +354,7 @@ public class LayerMenuManagerSingleton {
 					Element curr = (Element) it.next();
 					if (curr.getName().equalsIgnoreCase("BackgroundLayers")
 							|| curr.getName().equalsIgnoreCase("MainLayers")
-							|| curr.getName().equalsIgnoreCase("VectorLayers")) {
+							|| curr.getName().equalsIgnoreCase("OptionalLayers")) {
 						try{
 							addLayers(curr, curr.getName());
 						}catch(XMLFilesException ex){
