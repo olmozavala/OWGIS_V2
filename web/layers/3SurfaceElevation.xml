@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!-- The width and height of the image affects the resolution of the animated gif it is important -->
+<!-- The featureInfo is required, if it doesn't have data then use 'none'		
+By the default, the feature info is the same as the name of the layer -->
+
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- Surface Elevation 2011 -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://viewer.coaps.fsu.edu/ncWMS/wms"
+				tiled="true" ncWMS="true" mincolor="-.64" maxcolor="0.95" max_time_range="month">  
+		<layer Menu="omodel,hycom,2014,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2014"
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2014" name="hycom2014/ssh"  />
+		<layer Menu="omodel,hycom,2013,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2013"
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2013" name="hycom2013/ssh"  />
+		<layer Menu="omodel,hycom,2012,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2012"
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2012" name="hycom2012/ssh"  />
+		<layer Menu="omodel,hycom,2011,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2011" 
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2011" name="hycom2011/ssh"   />
+		<layer Menu="omodel,hycom,2010,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2010"
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2010" name="hycom2010/ssh"   />
+
+	</MainLayers>
+</MenuConf>

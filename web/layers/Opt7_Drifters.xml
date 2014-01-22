@@ -1,0 +1,22 @@
+<!-- This xml file contains the Drifters configuration -->
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <MenuEntries>
+        <MenuEntry ID="drif" EN="Drifters" ES="Drifters"/>
+    </MenuEntries>
+
+    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true" > 
+        <layer Menu="drif" EN="Drifters" name="postgis:drifters_view" />
+    </MainLayers>
+
+    <!-- __________________ Optional menus _____________  -->
+    <OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true">
+
+        <layer Menu='drif' EN='Drifters' name='postgis:drifters_view' />
+
+    </OptionalLayers>
+</MenuConf>
+

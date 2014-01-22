@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+<!--	<BackgroundLayers BBOX="-180,90,-90,180" 
+				format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:gebco" title="GEBCO"/>
+	</BackgroundLayers>-->
+	<BackgroundLayers BBOX="-180,90,-90,180" 
+				format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco" title="GEBCO"/>
+<!--		<layer Menu="us_st" name="comm:states" />-->
+	</BackgroundLayers>
+
+	<!--
+
+	<BackgroundLayers BBOX="-180,90,-90,180" width="480" height="480"
+				format="image/jpeg" proj="EPSG:4326" server="http://wms.jpl.nasa.gov/wms.cgi">
+		<layer name="BMNG" title="GEBCO"/>
+	</BackgroundLayers>
+	-->
+<!--
+				format="image/jpeg"  server="http://onearth.jpl.nasa.gov/wms.cgi"
+				<layer Menu="deep,Jan" EN="Eng" ES="ES" title="Title" name="global_mosaic" featureInfo="global_mosaic" />
+
+				format="image/jpeg"  server="http://wms.jpl.nasa.gov/wms.cgi?"
+			<layer Menu="deep,Feb" EN="Eng" ES="ES" title="Title" name="global_mosaic" featureInfo="global_mosaic" />
+			<layer Menu="deep,Mar" EN="Eng" ES="ES" title="Title" name="gdem" featureInfo="gdem" />
+			<layer Menu="deep,Apr" EN="Eng" ES="ES" title="Title" name="BMNG" featureInfo="BMNG" />
+
+				format="image/jpeg"  server="http://tds.hycom.org/thredds/wms/GLBa0.08/expt_90.8/2011"
+			<layer Menu="deep,Jan" EN="Eng" ES="ES" title="Title" name="global_mosaic" featureInfo="global_mosaic" />
+-->
+
+
+<!--   
+	<BackgroundLayers BBOX="-180,85.0511287798,-85.0511287798,180" 
+				format="image/jpeg" server="http://vmap0.tiles.osgeo.org/wms/vmap0"
+				tiled="true">
+		<layer name="basic" featureInfo="none" />
+	</BackgroundLayers>
+
+<BackgroundLayers minLong="-180.000001" minLat="-90.000001" maxLong="90.000008" maxLat="180.000018" 
+				format="image/png"  server="http://plurel.jrc.ec.europa.eu/ArcGIS/services/worldwithEGM/mapserver/wmsserver"
+				width="3601" 		height="3601" tiled="true" tileOrigLong="-180.000001" tileOrigLat="-90.000001" >
+		<layer name="3" featureInfo="none" />
+	</BackgroundLayers>-->
+
+
+</MenuConf>
+	

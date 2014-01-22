@@ -1,0 +1,121 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!--- Cruises menus ids -->
+	<MenuEntries>
+		<MenuEntry ID='ap-1307' EN='AP-1307' ES='AP-1307' />
+		<MenuEntry ID='be-1204' EN='BE-1204' ES='BE-1204' />
+		<MenuEntry ID='be-1205' EN='BE-1205' ES='BE-1205' />
+		<MenuEntry ID='be-1212' EN='BE-1212' ES='BE-1212' />
+		<MenuEntry ID='be-1301' EN='BE-1301' ES='BE-1301' />
+		<MenuEntry ID='be-1302' EN='BE-1302' ES='BE-1302' />
+		<MenuEntry ID='be-1307' EN='BE-1307' ES='BE-1307' />
+		<MenuEntry ID='be-1311' EN='BE-1311' ES='BE-1311' />
+		<MenuEntry ID='be-1317' EN='BE-1317' ES='BE-1317' />
+		<MenuEntry ID='be-1322' EN='BE-1322' ES='BE-1322' />
+		<MenuEntry ID='be-1323' EN='BE-1323' ES='BE-1323' />
+		<MenuEntry ID='be-1403' EN='BE-1403' ES='BE-1403' />
+		<MenuEntry ID='pe12-26' EN='PE12-26' ES='PE12-26' />
+		<MenuEntry ID='pe13-27' EN='PE13-27' ES='PE13-27' />
+		<MenuEntry ID='sab-1201' EN='SAB-1201' ES='SAB-1201' />
+		<MenuEntry ID='wb-1118' EN='WB-1118' ES='WB-1118' />
+		<MenuEntry ID='wb-1204' EN='WB-1204' ES='WB-1204' />
+		<MenuEntry ID='wb-1212' EN='WB-1212' ES='WB-1212' />
+		<MenuEntry ID='wb-1215' EN='WB-1215' ES='WB-1215' />
+		<MenuEntry ID='wb-1218' EN='WB-1218' ES='WB-1218' />
+		<MenuEntry ID='wb-1303' EN='WB-1303' ES='WB-1303' />
+		<MenuEntry ID='wb-1304' EN='WB-1304' ES='WB-1304' />
+		<MenuEntry ID='wb-1305' EN='WB-1305' ES='WB-1305' />
+		<MenuEntry ID='wb1306' EN='WB1306' ES='WB1306' />
+		<MenuEntry ID='wb-1307' EN='WB-1307' ES='WB-1307' />
+		<MenuEntry ID='wb-1310' EN='WB-1310' ES='WB-1310' />
+		<MenuEntry ID='wb-1318' EN='WB-1318' ES='WB-1318' />
+		<MenuEntry ID='wb-1403' EN='WB-1403' ES='WB-1403' />
+		<MenuEntry ID='wb-1405' EN='WB-1405' ES='WB-1405' />
+	</MenuEntries>
+
+    <!-- All Cruises --> 
+    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+                    format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+                    tiled="true" trans_effect="none" vectorLayer="true"
+                    cqlcols="year, id, dep (departure date), name (PI)" > 
+        <layer Menu="cruises,all" EN="Cruises" name="postgis:all_cruises" />
+    </MainLayers>
+
+    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666"
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true">
+
+		<layer Menu="cruises,year,2011" EN="All cruises from 2011" name="postgis:all_cruises" CQL="year='2011'" 
+                            cqlcols="id, dep (departure date), name (PI)" />
+		<layer Menu="cruises,year,2012" EN="All cruises from 2012" name="postgis:all_cruises" CQL="year='2012'" 
+                            cqlcols="id, dep (departure date), name (PI)" />
+		<layer Menu="cruises,year,2013" EN="All cruises from 2013" name="postgis:all_cruises" CQL="year='2013'" 
+                            cqlcols="id, dep (departure date), name (PI)" />
+		<layer Menu="cruises,year,2014" EN="All cruises from 2014" name="postgis:all_cruises" CQL="year='2014'" 
+                            cqlcols="id, dep (departure date), name (PI)" />
+
+		<layer Menu='cruises,id,ap-1307' EN='Cruise AP-1307' name='postgis:all_cruises' CQL="id='AP-1307'" />
+		<layer Menu='cruises,id,be-1204' EN='Cruise BE-1204' name='postgis:all_cruises' CQL="id='BE-1204'" />
+		<layer Menu='cruises,id,be-1205' EN='Cruise BE-1205' name='postgis:all_cruises' CQL="id='BE-1205'" />
+		<layer Menu='cruises,id,be-1212' EN='Cruise BE-1212' name='postgis:all_cruises' CQL="id='BE-1212'" />
+		<layer Menu='cruises,id,be-1301' EN='Cruise BE-1301' name='postgis:all_cruises' CQL="id='BE-1301'" />
+		<layer Menu='cruises,id,be-1302' EN='Cruise BE-1302' name='postgis:all_cruises' CQL="id='BE-1302'" />
+		<layer Menu='cruises,id,be-1307' EN='Cruise BE-1307' name='postgis:all_cruises' CQL="id='BE-1307'" />
+		<layer Menu='cruises,id,be-1311' EN='Cruise BE-1311' name='postgis:all_cruises' CQL="id='BE-1311'" />
+		<layer Menu='cruises,id,be-1317' EN='Cruise BE-1317' name='postgis:all_cruises' CQL="id='BE-1317'" />
+		<layer Menu='cruises,id,be-1322' EN='Cruise BE-1322' name='postgis:all_cruises' CQL="id='BE-1322'" />
+		<layer Menu='cruises,id,be-1323' EN='Cruise BE-1323' name='postgis:all_cruises' CQL="id='BE-1323'" />
+		<layer Menu='cruises,id,be-1403' EN='Cruise BE-1403' name='postgis:all_cruises' CQL="id='BE-1403'" />
+		<layer Menu='cruises,id,pe12-26' EN='Cruise PE12-26' name='postgis:all_cruises' CQL="id='PE12-26'" />
+		<layer Menu='cruises,id,pe13-27' EN='Cruise PE13-27' name='postgis:all_cruises' CQL="id='PE13-27'" />
+		<layer Menu='cruises,id,sab-1201' EN='Cruise SAB-1201' name='postgis:all_cruises' CQL="id='SAB-1201'" />
+		<layer Menu='cruises,id,wb-1118' EN='Cruise WB-1118' name='postgis:all_cruises' CQL="id='WB-1118'" />
+		<layer Menu='cruises,id,wb-1204' EN='Cruise WB-1204' name='postgis:all_cruises' CQL="id='WB-1204'" />
+		<layer Menu='cruises,id,wb-1212' EN='Cruise WB-1212' name='postgis:all_cruises' CQL="id='WB-1212'" />
+		<layer Menu='cruises,id,wb-1215' EN='Cruise WB-1215' name='postgis:all_cruises' CQL="id='WB-1215'" />
+		<layer Menu='cruises,id,wb-1218' EN='Cruise WB-1218' name='postgis:all_cruises' CQL="id='WB-1218'" />
+		<layer Menu='cruises,id,wb-1303' EN='Cruise WB-1303' name='postgis:all_cruises' CQL="id='WB-1303'" />
+		<layer Menu='cruises,id,wb-1304' EN='Cruise WB-1304' name='postgis:all_cruises' CQL="id='WB-1304'" />
+		<layer Menu='cruises,id,wb-1305' EN='Cruise WB-1305' name='postgis:all_cruises' CQL="id='WB-1305'" />
+		<layer Menu='cruises,id,wb1306' EN='Cruise WB1306' name='postgis:all_cruises' CQL="id='WB1306'" />
+		<layer Menu='cruises,id,wb-1307' EN='Cruise WB-1307' name='postgis:all_cruises' CQL="id='WB-1307'" />
+		<layer Menu='cruises,id,wb-1310' EN='Cruise WB-1310' name='postgis:all_cruises' CQL="id='WB-1310'" />
+		<layer Menu='cruises,id,wb-1318' EN='Cruise WB-1318' name='postgis:all_cruises' CQL="id='WB-1318'" />
+		<layer Menu='cruises,id,wb-1403' EN='Cruise WB-1403' name='postgis:all_cruises' CQL="id='WB-1403'" />
+		<layer Menu='cruises,id,wb-1405' EN='Cruise WB-1405' name='postgis:all_cruises' CQL="id='WB-1405'" />
+	</MainLayers>
+
+    <OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666"
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true">
+
+		<layer Menu='cruises,2013,ap-1307' EN='Cruise AP-1307' name='postgis:all_cruises' CQL="id='AP-1307'" />
+		<layer Menu='cruises,2011,be-1204' EN='Cruise BE-1204' name='postgis:all_cruises' CQL="id='BE-1204'" />
+		<layer Menu='cruises,2011,be-1205' EN='Cruise BE-1205' name='postgis:all_cruises' CQL="id='BE-1205'" />
+		<layer Menu='cruises,2012,be-1212' EN='Cruise BE-1212' name='postgis:all_cruises' CQL="id='BE-1212'" />
+		<layer Menu='cruises,2012,be-1301' EN='Cruise BE-1301' name='postgis:all_cruises' CQL="id='BE-1301'" />
+		<layer Menu='cruises,2012,be-1302' EN='Cruise BE-1302' name='postgis:all_cruises' CQL="id='BE-1302'" />
+		<layer Menu='cruises,2012,be-1307' EN='Cruise BE-1307' name='postgis:all_cruises' CQL="id='BE-1307'" />
+		<layer Menu='cruises,2012,be-1311' EN='Cruise BE-1311' name='postgis:all_cruises' CQL="id='BE-1311'" />
+		<layer Menu='cruises,2013,be-1317' EN='Cruise BE-1317' name='postgis:all_cruises' CQL="id='BE-1317'" />
+		<layer Menu='cruises,2013,be-1322' EN='Cruise BE-1322' name='postgis:all_cruises' CQL="id='BE-1322'" />
+		<layer Menu='cruises,2013,be-1323' EN='Cruise BE-1323' name='postgis:all_cruises' CQL="id='BE-1323'" />
+		<layer Menu='cruises,2013,be-1403' EN='Cruise BE-1403' name='postgis:all_cruises' CQL="id='BE-1403'" />
+		<layer Menu='cruises,2012,pe12-26' EN='Cruise PE12-26' name='postgis:all_cruises' CQL="id='PE12-26'" />
+		<layer Menu='cruises,2013,pe13-27' EN='Cruise PE13-27' name='postgis:all_cruises' CQL="id='PE13-27'" />
+		<layer Menu='cruises,2012,sab-1201' EN='Cruise SAB-1201' name='postgis:all_cruises' CQL="id='SAB-1201'" />
+		<layer Menu='cruises,2011,wb-1118' EN='Cruise WB-1118' name='postgis:all_cruises' CQL="id='WB-1118'" />
+		<layer Menu='cruises,2011,wb-1204' EN='Cruise WB-1204' name='postgis:all_cruises' CQL="id='WB-1204'" />
+		<layer Menu='cruises,2012,wb-1212' EN='Cruise WB-1212' name='postgis:all_cruises' CQL="id='WB-1212'" />
+		<layer Menu='cruises,2012,wb-1215' EN='Cruise WB-1215' name='postgis:all_cruises' CQL="id='WB-1215'" />
+		<layer Menu='cruises,2012,wb-1218' EN='Cruise WB-1218' name='postgis:all_cruises' CQL="id='WB-1218'" />
+		<layer Menu='cruises,2012,wb-1303' EN='Cruise WB-1303' name='postgis:all_cruises' CQL="id='WB-1303'" />
+		<layer Menu='cruises,2012,wb-1304' EN='Cruise WB-1304' name='postgis:all_cruises' CQL="id='WB-1304'" />
+		<layer Menu='cruises,2012,wb-1305' EN='Cruise WB-1305' name='postgis:all_cruises' CQL="id='WB-1305'" />
+		<layer Menu='cruises,2012,wb1306' EN='Cruise WB1306' name='postgis:all_cruises' CQL="id='WB1306'" />
+		<layer Menu='cruises,2012,wb-1307' EN='Cruise WB-1307' name='postgis:all_cruises' CQL="id='WB-1307'" />
+		<layer Menu='cruises,2013,wb-1310' EN='Cruise WB-1310' name='postgis:all_cruises' CQL="id='WB-1310'" />
+		<layer Menu='cruises,2013,wb-1318' EN='Cruise WB-1318' name='postgis:all_cruises' CQL="id='WB-1318'" />
+		<layer Menu='cruises,2013,wb-1403' EN='Cruise WB-1403' name='postgis:all_cruises' CQL="id='WB-1403'" />
+		<layer Menu='cruises,2013,wb-1405' EN='Cruise WB-1405' name='postgis:all_cruises' CQL="id='WB-1405'" />
+	</OptionalLayers>
+</MenuConf>

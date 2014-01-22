@@ -1,0 +1,16 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+        <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" format="image/jpeg"
+                                server="http://viewer.coaps.fsu.edu/geoserver/wms"
+                                tiled="true" trans_effect="none" vectorLayer="true">
+                <layer Menu="sailbuoy,location"
+                                EN="Deep-C consortium - CMR SailBuoy tracking"
+                                ES="Deep-C consortium - CMR SailBuoy"
+                                name="SailbuoyGroup" featureInfo="postgis:sailbuoy" 
+                           cqlcols="time, ct_temperature, ct_conductivity, oxygen, saturation, oxy_temperature, salinity" />
+                <layer Menu="sailbuoy,path"
+                                EN="Deep-C consortium - CMR SailBuoy tracking"
+                                ES="Deep-C consortium - CMR SailBuoy"
+                                name="SailbouyPathGroup" featureInfo="postgis:sailbuoypathview"/>
+        </MainLayers>
+</MenuConf>
+

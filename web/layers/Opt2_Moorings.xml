@@ -1,0 +1,24 @@
+<!-- This xml file contains the Moorings configuration -->
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <MenuEntries>
+        <MenuEntry ID="moor" EN="Moorings" ES="Moorings"/>
+    </MenuEntries>
+
+    <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true" > 
+        <layer Menu="moor" EN="Drifters" name="postgis:moorings_view" 
+                featureInfo="postgis:moorings_view,postgis:moorings_device_view"/>
+    </MainLayers>
+
+    <!-- __________________ Optional menus _____________  -->
+    <OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true">
+
+        <layer Menu='moor' EN='Drifters' name='postgis:moorings_view'
+            featureInfo="postgis:moorings_view,postgis:moorings_device_view" />
+
+    </OptionalLayers>
+</MenuConf>
+

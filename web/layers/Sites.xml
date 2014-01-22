@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+
+    <!-- All sites -->
+	<MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+				format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+                cqlcols="year, event_type, date, site"
+				tiled="true" trans_effect="none" vectorLayer="true">
+		<layer Menu="sites,all" EN="All sites" name="postgis:sites_events" />
+	</MainLayers>
+    
+    <!-- Sites by event type -->
+	<OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
+				format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+				tiled="true" trans_effect="none" vectorLayer="true">
+
+		<!-- Sites by type -->
+		<layer Menu="sites,ctd" 		EN="Sites with CTD events" name="postgis:sites_events" CQL="event_type='CTD'" style="YellowSites"/>
+		<layer Menu="sites,drifters" 	EN="Sites with Drifters deployed " name="postgis:sites_events" CQL="event_type='Drifter event'" style="RedSites"/>
+        <!-- <layer Menu="sites,fauna" 		EN="Sites with Fauna events" name="postgis:sites_events" CQL="event_type='Fauna'" style="Sites"/> -->
+		<layer Menu="sites,general" 	EN="Sites with General events" name="postgis:sites_events" CQL="event_type='General'" style="BlueSites"/>
+		<layer Menu="sites,longlt" 	EN="Sites with Long line trap events" name="postgis:sites_events" CQL="event_type='Longline Trap'" style="MagentaSites"/>
+		<layer Menu="sites,multicore" 	EN="Sites with Multicore events" name="postgis:sites_events" CQL="event_type='Multicore'" style="CyanSites"/>
+		<layer Menu="sites,plankton" 	EN="Sites with Plankton events" name="postgis:sites_events" CQL="event_type='Plankton'" style="YellowSites"/>
+		<layer Menu="sites,sediment" 	EN="Sites with Sediment events" name="postgis:sites_events" CQL="event_type='Sediment'" style="RedSites"/>
+		<layer Menu="sites,survey" 	EN="Sites with Survey events" name="postgis:sites_events" CQL="event_type='Survey'" style="BlueSites"/>
+	</OptionalLayers>
+</MenuConf>
+
