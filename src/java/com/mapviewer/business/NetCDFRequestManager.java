@@ -147,7 +147,7 @@ public class NetCDFRequestManager {
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
 		JSONObject layerDetails = new JSONObject();
 
-		int maxTries = 3; //120
+		int maxTries = 3; // How many times are we going to request the layer  details to the server.
 		int tryNumber = 0;// Current try
 		boolean accepted = false;
 
@@ -184,7 +184,7 @@ public class NetCDFRequestManager {
 			} catch (JSONException | IOException e) {
 				try {
 					tryNumber++;
-					System.out.println("Layer details try number:" + tryNumber + " Error:"+ e.getMessage());
+					System.out.println("Layer details for "+ layer.getName() + " try number:" + tryNumber + " Error:"+ e.getMessage());
 					Thread.sleep(1000);//We wait for 1 seconds.
 				} catch (InterruptedException ex) {
 					System.out.println("Interrupted exception while waiting for layer details:" + ex.getMessage());
