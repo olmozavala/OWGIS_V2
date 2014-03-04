@@ -62,7 +62,7 @@
 				ncWMS="true">  
 		<layer Menu="ncwms,ncwmsOneDateMultZ" 
 			   EN="Demo of an ncWMS layer with only one day. World eastward wind."
-			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." name="onedatemultdepth/ua"  />
+			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." name="world_temp/ua"  />
 	</MainLayers>
 
 	<!-- ncWMS velocity-->
@@ -71,7 +71,7 @@
 				ncWMS="true">  
 		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
 			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
-			   name="velocity/sea_water_velocity" style="vector" />
+			   name="gulf_vel/sea_water_velocity" style="vector" />
 	</MainLayers>
 
 	<!-- ncWMS with one depth-->
@@ -80,7 +80,7 @@
 				ncWMS="true" >
 		<layer Menu="ncwms,ncwmsOneDepthOneZ" 
 			   EN="Demo of an ncWMS layer with only one depth. World precipitation flux."
-			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." name="onedatemultdepth/pr"  />
+			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." name="world_temp/pr"  />
 	</MainLayers>
 
 	<!-- ncWMS all -->
@@ -89,7 +89,7 @@
 				ncWMS="true" >  
 		<layer Menu="ncwms,ncwmsMultDateMultDepth" 
 			   EN="Demo of an ncWMS layer with different times and depths. Gulf of Mexico temperature "
-			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="multdatemultdepth/temperature"  />
+			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="gulf_temp/temperature"  />
 	</MainLayers>
 </MenuConf>
 

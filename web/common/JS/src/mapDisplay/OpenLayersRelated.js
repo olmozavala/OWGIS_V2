@@ -34,7 +34,7 @@ function handleDrawing(line)
     
     var CRS = map.options['projection']; //get current map projection
     
-    var url = getMainLayer().url; //get server
+    var url = owgis.layers.main.getLayer().url; //get server
     url = url + '?REQUEST=GetTransect&LAYER=';
     
     url = url + mainLayer + "&CRS=" + CRS + "&TIME=" + time;
@@ -113,10 +113,12 @@ function toggleControlMobile()
  * This function replaces one parameter of the main layer and refresh the map
  */
 function updateMainLayerParam(param,value){
-    layerParams= getMainLayer().getSource().getParams();
-    //eval('layerParams.'+param+'=\''+value+'\'');//Modify the time parameter
-    eval("layerParams."+param+"=\""+value+"\"");//Modify the time parameter
-    getMainLayer().getSource().updateParams(layerParams);//Updates the layer
+	//Obtain the current parameters of the main layer
+    layerParams= owgis.layers.main.getLayer().getSource().getParams();
+
+    eval("layerParams."+param+"=\""+value+"\"");//Modify the desired parameter
+	
+    owgis.layers.main.getLayer().getSource().updateParams(layerParams);//Updates the layer
 }
 
 /**

@@ -49,7 +49,7 @@ function setColorRangeFromMinMax(){
 
     var url = currUrl+'/simpleAjaxRedirect?';
 
-    url += paramsToUrl(urlParams);
+    url += owgis.utils.paramsToUrl(urlParams);
 
     var path_image = basepath+"/common/images/load.gif";//loading ...
     //Show the Loading message
@@ -113,13 +113,13 @@ function UpdatePalette(newPal){
         updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
 
         //Update the KMLlink to visualize on google earth
-        replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
-        replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPalVal+ ',' + maxPalVal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPalVal+ ',' + maxPalVal);
     }else{
         updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
-        replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
     }
 }
 
@@ -134,21 +134,21 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        getMainLayer().setOptions({
+        owgis.layers.main.getLayer().setOptions({
             styles: lay_style+"/"+newPal, 
             colorscalerange: minPal+ ',' + maxPal
         });
 
         //Update the KMLlink to visualize on google earth
-        replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
-        replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPal+ ',' + maxPal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPal+ ',' + maxPal);
     }else{
-        getMainLayer().setOptions({
+        owgis.layers.main.getLayer().setOptions({
             styles: lay_style+"/"+newPal
         });
 
         //Update the KMLlink to visualize on google earth
-        replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
     }
 }
 

@@ -232,7 +232,7 @@ public class RedirectServersServlet extends HttpServlet {
 							if (!time.equals("No current date")) {
 								vertProfUrl += "&TIME=" + time;
 							}//if no current date
-							result += "<b>Vertical profile: </b> <a href='#' onclick=\"popItUp('" + vertProfUrl + "',520,420)\" > show </a><br>";
+							result += "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popItUp('" + vertProfUrl + "',520,420)\" > show </a><br>";
 						}
 						// Add link for time series plot
 						time = request.getParameter("BOTHTIMES");
@@ -240,7 +240,7 @@ public class RedirectServersServlet extends HttpServlet {
 						//We only add the link if we receive the TIME information
 						if (!time.equals("No current date")) {
 							timeSeriesUrl += "&TIME=" + time;
-							result += "<b>Time series plot: </b> <a href='#' onclick=\"popItUp('" + timeSeriesUrl + "',520,420)\" > show </a><br>";
+							result += "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popItUp('" + timeSeriesUrl + "',520,420)\" > show </a><br>";
 						}//
 					} else {
 						result = "";

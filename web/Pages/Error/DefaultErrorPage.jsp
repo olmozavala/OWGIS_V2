@@ -12,9 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="Description" content="Deep-C Error" />
-        <meta name="Keywords" content="DeepC, GIS, COAPS, map viewer, Deep-C, Oceanography" />
+        <meta name="Keywords" content="GIS, COAPS, map viewer, Deep-C, Oceanography" />
 
-		<link href="/DeepCProject/common/CSS/ErrorPage.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/ErrorPage.css" rel="stylesheet" type="text/css"/>
 
         <title>Ups, something went wrong!</title>
     </head>

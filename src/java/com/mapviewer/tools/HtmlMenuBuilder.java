@@ -261,10 +261,10 @@ public class HtmlMenuBuilder {
 			String finalHtml = tabs + "<A href=\"" + solicitudWCS[0][0] + "\">\n";
 			tabs += "\t";
 			finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png\" \n";
-			finalHtml += tabs + "     onmouseover=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
-			finalHtml += tabs + "     onmouseout=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png' )\" \n";
-			finalHtml += tabs + "     onmousedown=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over_click.png' )\" \n";
-//			finalHtml += tabs + "     onmouseup=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
+			finalHtml += tabs + "     onmouseover=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
+			finalHtml += tabs + "     onmouseout=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png' )\" \n";
+			finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over_click.png' )\" \n";
+//			finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
 			finalHtml += tabs + "     border=\"0\" /> </A> \n";
 
 			return finalHtml;
@@ -285,10 +285,10 @@ public class HtmlMenuBuilder {
 		String finalHtml = tabs + "<A href=\"" + HtmlMenuBuilder.vecLinks[layerNum - 1] + "\">\n";
 		tabs += "\t";
 		finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png\" \n";
-		finalHtml += tabs + "     onmouseover=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
-		finalHtml += tabs + "     onmouseout=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png' )\" \n";
-		finalHtml += tabs + "     onmousedown=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over_click.png' )\" \n";
-//		finalHtml += tabs + "     onmouseup=\"rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
+		finalHtml += tabs + "     onmouseover=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
+		finalHtml += tabs + "     onmouseout=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png' )\" \n";
+		finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over_click.png' )\" \n";
+//		finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
 		finalHtml += tabs + "     border=\"0\" alt=\"Descargar KMZ\" onload=\"CreateArraysOptional(" + layerNum + "); ";
 		finalHtml += "DisableTranspOptionalLayers(" + layerNum + ",'minusButtonOptional" + layerNum + "',";
 		finalHtml += "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"></A> \n";

@@ -174,7 +174,7 @@ public class OpenLayersManager {
 		int layerCount = 0;
 		layersScript = "\n\tmap.on('singleclick', function (evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
-				"\t\t var coordinate = evt.getCoordinate();\n" +
+				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t\t $('#popup').hide();\n" +
 				"\t\t currPopupText = '';\n" +
@@ -234,8 +234,8 @@ public class OpenLayersManager {
 				+ "VERSION=1.1.1&"
 				+ "REQUEST=GetFeatureInfo&"
 				+ "EXCEPTIONS=application/vnd.ogc.se_xml&"
-				+ "x=\"+ Math.floor(evt.getPixel()[0]) +\"&"
-				+ "y=\"+ Math.floor(evt.getPixel()[1]) +\"&"
+				+ "x=\"+ Math.floor(evt.pixel[0]) +\"&"
+				+ "y=\"+ Math.floor(evt.pixel[1]) +\"&"
 				+ "BBOX=\"+ currBBOX +\"&"
 				+ "SERVICE=WMS&";
 

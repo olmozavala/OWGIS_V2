@@ -16,6 +16,7 @@
 */
 package com.mapviewer.model.menu;
 
+import com.mapviewer.business.LayerMenuManagerSingleton;
 import com.mapviewer.exceptions.XMLFilesException;
 import java.util.ArrayList;
 
@@ -88,6 +89,7 @@ public class TreeMenuUtils {
 		//It is used to catch exceptions. This can happen when the menu that is being
 		// searched on the current tree does not exists. 
 		boolean found = true;
+
 		while (actualNode.getChilds() != null && found) {//while the node has children
 			found = false;
 			for (int i = 0; i < actualNode.getChilds().size(); i++) {//cover all node children
@@ -101,9 +103,11 @@ public class TreeMenuUtils {
 		}
 
 		if(!found){
-			throw new XMLFilesException("The selected menu does not exists, please "
-					+ "refresh the website");
+			//If it is not found then we select the default menu
+			TreeNode defRootNode = LayerMenuManagerSingleton.getInstance().getRootMenu();
+			return TreeMenuUtils.obtieneMenuSeleccionado(defRootNode);
 		}
+
 		MenuEntry[] selecteMenuArray = new MenuEntry[selectedMenu.size()];
 		return selectedMenu.toArray(selecteMenuArray);//make list into array and return. 
 	}
