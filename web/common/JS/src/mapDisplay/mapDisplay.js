@@ -1,3 +1,24 @@
+goog.provide('owgis');
+
+goog.require('ol.Map');
+goog.require('ol.View2D');
+goog.require('ol.coordinate');
+goog.require('ol.layer.Tile');
+goog.require('ol.source.TileJSON');
+goog.require('ol.source.TileWMS');
+goog.require('ol.source.MapQuest');
+goog.require('ol.proj');
+goog.require('ol.Overlay');
+goog.require('ol.control.MousePosition');
+goog.require('ol.control.ScaleLine');
+goog.require('ol.control.FullScreen');
+goog.require('ol.control.ZoomSlider');
+goog.require('ol.proj.Projection');
+
+goog.require('owgis.ol3');
+goog.require('owgis.utils');
+goog.require('owgis.layers.main');
+
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
 var minOpacity = 0.1;
@@ -15,12 +36,13 @@ if (window.location.protocol != "http:") {
  * Instructions executed when the page
  * is ready
  */
-jQuery(document).ready(function()
-{
+function owgisMain(){
 	initOl3();
+    addLayers();
+    initVariables();
 	initMenus();
 	initHelpTxtPos();
-});
+}
 
 function addDraggableWindows(){
     //Only make windows draggable for 'topMenu' design
@@ -191,13 +213,13 @@ function updateTitle(dateText, elevText) {
  */
 function updateKmlLink(newDate, newElev, cql_filter) {
     if (newDate != '')
-        replaceGetParamInLink("#kmlLink", "TIME", newDate);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "TIME", newDate);
 
     if (newElev != '')
-        replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
 
     if (cql_filter != '')
-        replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
+        owgis.utils.replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
 
 }
 
@@ -240,7 +262,7 @@ function updateTitleAndKmlLink() {
  * @params version - which version it is, it is passed to changeTransp() function
  */
 function changeTranspManager(val, version) {
-    layer = getMainLayer();
+    layer = owgis.layers.main.getLayer();
     changeTransp(val, layer, version);
 
     if (netcdf) {
@@ -493,3 +515,6 @@ function resetView(){
     localStorage.clear();
     submitForm();
 }
+
+goog.exportSymbol('owgis',owgis);
+

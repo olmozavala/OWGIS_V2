@@ -68,7 +68,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 
                     updateMenusDisplayVisibility('displaying');
 
-                    getMainLayer().setVisibility(true);
+                    owgis.layers.main.getLayer().setVisibility(true);
                     //map.setLayerZIndex(animation_layer, idx_main_layer + 1);
                     stoppedAnimation = false;
                     updateTitleAndKmlLink();//change title resolution
@@ -118,12 +118,12 @@ function getWCSV1Ajax(path) {
     //Generamos el URL que se manda llamar de manera asincrona
     var url2 = path + '/WCSServlet?wcs=True&height=' + height +
         "&width=" + width +
-        "&bbox=" + map.getExtent().toBBOX() +
+        //"&bbox=" + map.getExtent().toBBOX() +
         "&zoom=" + map.getZoom().toString() +
         "&esWcs=True" + //Indicamos que es una solicitud de WCS
         "&mainLayer=" + mainLayer;
 
-    if (getMainLayer().params.CQL_FILTER != undefined) {
+    if (owgis.layers.main.getLayer().params.CQL_FILTER != undefined) {
         url2 += "&cqlfilter=" + applyCqlFilter();
     }
 

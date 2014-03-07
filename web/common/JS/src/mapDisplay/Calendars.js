@@ -47,7 +47,7 @@ function initCalendars(){
 	}
 
 	for (var month in datesWithData[minYear]) {
-		if(IsNumeric(month)){//Assume the first month is the minimum
+		if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
 			if(month < minMonth){
 				minMonth = parseInt(month);
 				minDay =datesWithData[minYear][month][0];//Assumes it has at least one day
@@ -56,7 +56,7 @@ function initCalendars(){
 	}
 
 	for (var month2 in datesWithData[maxYear]) {
-		if(IsNumeric(month2)){
+		if(owgis.utils.IsNumeric(month2)){
 			if(parseInt(month2) > maxMonth){
 				maxMonth = parseInt(month2);
 				//Assumes it has at least one day

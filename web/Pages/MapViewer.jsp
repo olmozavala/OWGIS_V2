@@ -18,12 +18,12 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="${language}">
     <head>
         <%@include file="Header/GlobalJavaScript.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
-
         <%@include file="Header/Header.jsp" %> <%-- contains all the css links and javascript links --%>
-        <%@include file="OpenLayersConfig.jsp" %> <%-- this is a javascript file that initiazlies the OpenLayers map --%>
+		<script type="text/javascript" src="common/JS/compiled/script.js"></script> 
+        <%@include file="Header/InitJSVariables.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
     </head>
 
-    <body id="bodyClass" onresize="refreshWindow();" >
+    <body id="bodyClass" >
 
 		<span id="helpInstrContainer" class="draggableWindow" >
 			<%@include file="Options/MapInstructionsLatest.jsp" %>
@@ -133,7 +133,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                     <a  href="#">
 						<p class="footNote" align="left">
 							&nbsp 
-							&copy; <script language="javascript">document.write(getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
+							&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
 						</p></a>
                     <a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
 				</div>
@@ -144,6 +144,17 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			
         <!-- Help texts file -->
         <%@include file="Help/HelpTexts.jsp" %>
+
+		<script>
+			function addLayers(){
+				${openLayerConfig}
+			};
+		</script>
+		<script>
+			jQuery(document).ready(function() {
+				owgisMain();
+			});
+		</script> 
     </body>
 </html>
 

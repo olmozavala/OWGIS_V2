@@ -4,7 +4,7 @@
 		<link rel="icon" href="${basepath}/common/images/icon/Gulf.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <meta name="Description" content="Deep-C atlas" />
-        <meta name="Keywords" content="DeepC, GIS, COAPS, map viewer, Deep-C, Oceanography" />
+        <meta name="Keywords" content="GIS, COAPS, map viewer, Deep-C, Oceanography" />
 
         <link href="${basepath}/common/CSS/MobileCSS/MobileStyle.css" rel="stylesheet" type="text/css"/>
         <link href="${basepath}/common/CSS/MobileCSS/MobilePalettes.css" rel="stylesheet" type="text/css"/>

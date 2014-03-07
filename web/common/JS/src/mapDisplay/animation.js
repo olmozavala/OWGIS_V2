@@ -95,7 +95,7 @@ function stopAnimation(){
 	killTimeouts();//destroy all the timers that update the loading % ...
 	updateMenusDisplayVisibility("SelectingDates");
 
-	getMainLayer().setVisibility(true);
+	owgis.layers.main.getLayer().setVisibility(true);
 	if(animation_layer != undefined)//If animation has been called. 
 	{             
 		animation_layer.setVisibility(false);
@@ -131,7 +131,7 @@ function Loaded() {
 		//console.log("enters when map arrives");
 		updateMenusDisplayVisibility('displaying');
 		   
-		getMainLayer().setVisibility(true);
+		owgis.layers.main.getLayer().setVisibility(true);
 		map.setLayerZIndex(animation_layer,parseInt(idx_main_layer)+1);
 
 		anim_loaded = true;

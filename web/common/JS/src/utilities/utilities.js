@@ -1,3 +1,4 @@
+goog.provide('owgis.utils');
 
 /**
  * This function receives a 'map' of key values 
@@ -6,21 +7,12 @@
  * @params params - parameter list to add to url
  * @return urlstr - returns the url containing key and value pair. 
  */
-function paramsToUrl(params){
-	
+owgis.utils.paramsToUrl = function(params){
 	urlstr = '';
 	for (var key in params) {
 		urlstr += key+"="+ params[key] +"&";
 	}
 	return urlstr;
-}
-
-/**
- *Depending on the number of background layers, this function
- * returns the OpenLayers 'mainlayer'
- */
-function getMainLayer(){
-	return eval('layer'+idx_main_layer);
 }
 
 /**
@@ -31,7 +23,7 @@ function getMainLayer(){
  * @params param - parameter to replace
  * @params newval - new value to replace with
  */
-function replaceGetParamInLink(name, param, newval){
+owgis.utils.replaceGetParamInLink = function(name, param, newval){
 	// Updates the kml link to download the main data 
 	link = $(name).attr("href");
 
@@ -68,7 +60,7 @@ function replaceGetParamInLink(name, param, newval){
  *@params height - height of new window
  *@return false - it returns false to exit the function. 
  */
-function popItUp(url, width, height ) {
+owgis.utils.popItUp = function(url, width, height ) {
 	newwindow=window.open(url,'','height='+height+',width='+width);
 	if (window.focus) {
 		newwindow.focus()
@@ -83,7 +75,7 @@ function popItUp(url, width, height ) {
  *@return value - returns smaller value
  */
 
-function minimo(value1,value2){
+owgis.utils.minimo = function(value1,value2){
 	if(value1<value2)
 		return value1;
 	else
@@ -95,7 +87,7 @@ function minimo(value1,value2){
  *@params val - value of string to check
  *@return true or false depending if value is numeric or not
  */
-function IsNumeric(val) {
+owgis.utils.IsNumeric = function(val) {
 
 	if (isNaN(parseFloat(val))) {
 		return false;
@@ -111,7 +103,7 @@ function IsNumeric(val) {
 
  * */
 
-function rollImageBtn(img, img_src){
+owgis.utils.rollImageBtn = function(img, img_src){
 	img.style.backgroundImage = img_src;
 }
 
@@ -120,7 +112,7 @@ function rollImageBtn(img, img_src){
  * @params img - imaged to attach src
  * @params img_src - src link
  */
-function rollImage(img, img_src){
+owgis.utils.rollImage = function(img, img_src){
 	img.src = img_src;
 }
 
@@ -128,7 +120,7 @@ function rollImage(img, img_src){
  *@params id - id to change of css
  *@params mode - case of switch statment. case 1 is black, 2 is white. 
  */
-function changeShadow(id, mode){
+owgis.utils.changeShadow = function(id, mode){
 	switch(mode){
 		case 1:
 			id.style.color = 'black';
@@ -163,7 +155,7 @@ function changeShadow(id, mode){
  *@params width - width of new window
  *@params height - height of new window
  */
-function popUp(url, width, height)
+owgis.utils.popUp = function(url, width, height)
 {
 	var day = new Date();
 	var id = day.getTime();
@@ -178,7 +170,7 @@ function popUp(url, width, height)
  *Example: pass 15 return 15. 
  *@params number - number to pad
  */
-function pad(number) 
+owgis.utils.pad = function(number) 
 {  
 	if(number < 10 && String(number).substr(0,1) == '0')
 	{
@@ -195,7 +187,7 @@ function pad(number)
  * @param formato - format of date. %Y for just year. 
  * @return date string depeinding on format passed in. 
  */ 
-function getDate(formato)
+owgis.utils.getDate = function(formato)
 {   
 	var hoy = new Date()
 	var numDia = hoy.getDate();
@@ -237,4 +229,14 @@ function getDate(formato)
 	formato = formato.replace(/%m/, numMesS);
 	formato = formato.replace(/%M/, meses[numMes]);
 	return formato;
+}
+
+/**
+ * This method is simple used to check for undefined variables
+ */
+owgis.utils.isNotUndefined = function(variable, name){
+    if(variable === undefined){
+        throw "Variable: "+ name +" is undefined";
+    }
+    return variable;
 }
