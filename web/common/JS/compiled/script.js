@@ -42163,6 +42163,7 @@ ol.style.Icon.prototype.getAnchor = function() {
  */
 ol.style.Icon.prototype.getImage = function(pixelRatio) {
   return this.iconImage_.getImage(pixelRatio);
+<<<<<<< HEAD
 };
 
 
@@ -42188,11 +42189,14 @@ ol.style.Icon.prototype.getHitDetectionImage = function(pixelRatio) {
  */
 ol.style.Icon.prototype.getSrc = function() {
   return this.iconImage_.getSrc();
+=======
+>>>>>>> ConectaDF
 };
 
 
 /**
  * @inheritDoc
+<<<<<<< HEAD
  * @todo api
  */
 ol.style.Icon.prototype.getSize = function() {
@@ -42345,19 +42349,32 @@ ol.style.IconImage_.prototype.handleImageLoad_ = function() {
   this.unlistenImage_();
   this.determineTainting_();
   this.dispatchChangeEvent_();
+=======
+ */
+ol.style.Icon.prototype.getImageState = function() {
+  return this.iconImage_.getImageState();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} pixelRatio Pixel ratio.
  * @return {Image} Image element.
  */
 ol.style.IconImage_.prototype.getImage = function(pixelRatio) {
   return this.image_;
+=======
+ * @inheritDoc
+ */
+ol.style.Icon.prototype.getHitDetectionImage = function(pixelRatio) {
+  return this.iconImage_.getHitDetectionImage(pixelRatio);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.style.ImageState} Image state.
  */
 ol.style.IconImage_.prototype.getImageState = function() {
@@ -42421,10 +42438,18 @@ ol.style.IconImage_.prototype.load = function() {
       this.handleImageError_();
     }
   }
+=======
+ * @return {string|undefined} Image src.
+ * @todo api
+ */
+ol.style.Icon.prototype.getSrc = function() {
+  return this.iconImage_.getSrc();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Discards event handlers which listen for load completion or errors.
  *
  * @private
@@ -46158,6 +46183,13 @@ ol.geom.flat.lineStringCoordinateAtM =
   coordinate.push(m);
   goog.asserts.assert(coordinate.length == stride);
   return coordinate;
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.style.Icon.prototype.getSize = function() {
+  return goog.isNull(this.size_) ? this.iconImage_.getSize() : this.size_;
+>>>>>>> ConectaDF
 };
 
 
@@ -46171,6 +46203,7 @@ ol.geom.flat.lineStringCoordinateAtM =
  * @param {boolean} interpolate Interpolate.
  * @return {ol.Coordinate} Coordinate.
  */
+<<<<<<< HEAD
 ol.geom.flat.lineStringsCoordinateAtM = function(
     flatCoordinates, offset, ends, stride, m, extrapolate, interpolate) {
   if (interpolate) {
@@ -46214,6 +46247,12 @@ ol.geom.flat.lineStringsCoordinateAtM = function(
   return null;
 };
 goog.provide('ol.geom.LineString');
+=======
+ol.style.Icon.prototype.listenImageChange = function(listener, thisArg) {
+  return goog.events.listen(this.iconImage_, goog.events.EventType.CHANGE,
+      listener, false, thisArg);
+};
+>>>>>>> ConectaDF
 
 goog.require('goog.array');
 goog.require('goog.asserts');
@@ -46228,6 +46267,15 @@ goog.require('ol.geom.flat.interpolate');
 goog.require('ol.geom.flat.length');
 goog.require('ol.geom.flat.simplify');
 
+<<<<<<< HEAD
+=======
+/**
+ * Load not yet loaded URI.
+ */
+ol.style.Icon.prototype.load = function() {
+  this.iconImage_.load();
+};
+>>>>>>> ConectaDF
 
 
 /**
@@ -46237,6 +46285,7 @@ goog.require('ol.geom.flat.simplify');
  * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
  * @todo api
  */
+<<<<<<< HEAD
 ol.geom.LineString = function(coordinates, opt_layout) {
 
   goog.base(this);
@@ -46252,6 +46301,74 @@ ol.geom.LineString = function(coordinates, opt_layout) {
    * @type {number}
    */
   this.flatMidpointRevision_ = -1;
+=======
+ol.style.Icon.prototype.unlistenImageChange = function(listener, thisArg) {
+  goog.events.unlisten(this.iconImage_, goog.events.EventType.CHANGE,
+      listener, false, thisArg);
+};
+
+
+
+/**
+ * @constructor
+ * @param {string} src Src.
+ * @param {?string} crossOrigin Cross origin.
+ * @extends {goog.events.EventTarget}
+ * @private
+ */
+ol.style.IconImage_ = function(src, crossOrigin) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {Image|HTMLCanvasElement}
+   */
+  this.hitDetectionImage_ = null;
+
+  /**
+   * @private
+   * @type {Image}
+   */
+  this.image_ = new Image();
+
+  if (!goog.isNull(crossOrigin)) {
+    this.image_.crossOrigin = crossOrigin;
+  }
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.imageListenerKeys_ = null;
+
+  /**
+   * @private
+   * @type {ol.style.ImageState}
+   */
+  this.imageState_ = ol.style.ImageState.IDLE;
+
+  /**
+   * @private
+   * @type {ol.Size}
+   */
+  this.size_ = null;
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.src_ = src;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.tainting_ = false;
+
+};
+goog.inherits(ol.style.IconImage_, goog.events.EventTarget);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -46259,15 +46376,33 @@ ol.geom.LineString = function(coordinates, opt_layout) {
    */
   this.maxDelta_ = -1;
 
+<<<<<<< HEAD
   /**
    * @private
    * @type {number}
    */
   this.maxDeltaRevision_ = -1;
+=======
+/**
+ * @param {string} src Src.
+ * @param {?string} crossOrigin Cross origin.
+ * @return {ol.style.IconImage_} Icon image.
+ */
+ol.style.IconImage_.get = function(src, crossOrigin) {
+  var iconImageCache = ol.style.IconImageCache.getInstance();
+  var iconImage = iconImageCache.get(src, crossOrigin);
+  if (goog.isNull(iconImage)) {
+    iconImage = new ol.style.IconImage_(src, crossOrigin);
+    iconImageCache.set(src, crossOrigin, iconImage);
+  }
+  return iconImage;
+};
+>>>>>>> ConectaDF
 
   this.setCoordinates(coordinates,
       /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
 
+<<<<<<< HEAD
 };
 goog.inherits(ol.geom.LineString, ol.geom.SimpleGeometry);
 
@@ -46284,10 +46419,32 @@ ol.geom.LineString.prototype.appendCoordinate = function(coordinate) {
     ol.array.safeExtend(this.flatCoordinates, coordinate);
   }
   this.dispatchChangeEvent();
+=======
+/**
+ * @private
+ */
+ol.style.IconImage_.prototype.determineTainting_ = function() {
+  var context = ol.dom.createCanvasContext2D(1, 1);
+  context.drawImage(this.image_, 0, 0);
+  try {
+    context.getImageData(0, 0, 1, 1);
+  } catch (e) {
+    this.tainting_ = true;
+  }
 };
 
 
 /**
+ * @private
+ */
+ol.style.IconImage_.prototype.dispatchChangeEvent_ = function() {
+  this.dispatchEvent(goog.events.EventType.CHANGE);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -46295,12 +46452,21 @@ ol.geom.LineString.prototype.clone = function() {
   var lineString = new ol.geom.LineString(null);
   lineString.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
   return lineString;
+=======
+ * @private
+ */
+ol.style.IconImage_.prototype.handleImageError_ = function() {
+  this.imageState_ = ol.style.ImageState.ERROR;
+  this.unlistenImage_();
+  this.dispatchChangeEvent_();
+>>>>>>> ConectaDF
 };
 
 
 /**
- * @inheritDoc
+ * @private
  */
+<<<<<<< HEAD
 ol.geom.LineString.prototype.closestPointXY =
     function(x, y, closestPoint, minSquaredDistance) {
   if (minSquaredDistance <
@@ -46315,10 +46481,19 @@ ol.geom.LineString.prototype.closestPointXY =
   return ol.geom.flat.closest.getClosestPoint(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
       this.maxDelta_, false, x, y, closestPoint, minSquaredDistance);
+=======
+ol.style.IconImage_.prototype.handleImageLoad_ = function() {
+  this.imageState_ = ol.style.ImageState.LOADED;
+  this.size_ = [this.image_.width, this.image_.height];
+  this.unlistenImage_();
+  this.determineTainting_();
+  this.dispatchChangeEvent_();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Returns the coordinate at `m` using linear interpolation, or `null` if no
  * such coordinate exists.
  *
@@ -46340,30 +46515,64 @@ ol.geom.LineString.prototype.getCoordinateAtM = function(m, opt_extrapolate) {
   var extrapolate = goog.isDef(opt_extrapolate) ? opt_extrapolate : false;
   return ol.geom.flat.lineStringCoordinateAtM(this.flatCoordinates, 0,
       this.flatCoordinates.length, this.stride, m, extrapolate);
+=======
+ * @param {number} pixelRatio Pixel ratio.
+ * @return {Image} Image element.
+ */
+ol.style.IconImage_.prototype.getImage = function(pixelRatio) {
+  return this.image_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.geom.RawLineString} Coordinates.
  * @todo api
  */
 ol.geom.LineString.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinates(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+=======
+ * @return {ol.style.ImageState} Image state.
+ */
+ol.style.IconImage_.prototype.getImageState = function() {
+  return this.imageState_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {number} Length.
  * @todo api
  */
 ol.geom.LineString.prototype.getLength = function() {
   return ol.geom.flat.length.lineString(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+=======
+ * @param {number} pixelRatio Pixel ratio.
+ * @return {Image|HTMLCanvasElement} Image element.
+ */
+ol.style.IconImage_.prototype.getHitDetectionImage = function(pixelRatio) {
+  if (goog.isNull(this.hitDetectionImage_)) {
+    if (this.tainting_) {
+      var width = this.size_[0];
+      var height = this.size_[1];
+      var context = ol.dom.createCanvasContext2D(width, height);
+      context.fillRect(0, 0, width, height);
+      this.hitDetectionImage_ = context.canvas;
+    } else {
+      this.hitDetectionImage_ = this.image_;
+    }
+  }
+  return this.hitDetectionImage_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<number>} Flat midpoint.
  */
 ol.geom.LineString.prototype.getFlatMidpoint = function() {
@@ -46374,12 +46583,19 @@ ol.geom.LineString.prototype.getFlatMidpoint = function() {
     this.flatMidpointRevision_ = this.getRevision();
   }
   return this.flatMidpoint_;
+=======
+ * @return {ol.Size} Image size.
+ */
+ol.style.IconImage_.prototype.getSize = function() {
+  return this.size_;
+>>>>>>> ConectaDF
 };
 
 
 /**
- * @inheritDoc
+ * @return {string|undefined} Image src.
  */
+<<<<<<< HEAD
 ol.geom.LineString.prototype.getSimplifiedGeometryInternal =
     function(squaredTolerance) {
   var simplifiedFlatCoordinates = [];
@@ -46390,19 +46606,46 @@ ol.geom.LineString.prototype.getSimplifiedGeometryInternal =
   simplifiedLineString.setFlatCoordinates(
       ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates);
   return simplifiedLineString;
+=======
+ol.style.IconImage_.prototype.getSrc = function() {
+  return this.src_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
 ol.geom.LineString.prototype.getType = function() {
   return ol.geom.GeometryType.LINE_STRING;
+=======
+ * Load not yet loaded URI.
+ */
+ol.style.IconImage_.prototype.load = function() {
+  if (this.imageState_ == ol.style.ImageState.IDLE) {
+    goog.asserts.assert(goog.isDef(this.src_));
+    goog.asserts.assert(goog.isNull(this.imageListenerKeys_));
+    this.imageState_ = ol.style.ImageState.LOADING;
+    this.imageListenerKeys_ = [
+      goog.events.listenOnce(this.image_, goog.events.EventType.ERROR,
+          this.handleImageError_, false, this),
+      goog.events.listenOnce(this.image_, goog.events.EventType.LOAD,
+          this.handleImageLoad_, false, this)
+    ];
+    try {
+      this.image_.src = this.src_;
+    } catch (e) {
+      this.handleImageError_();
+    }
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawLineString} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
  * @todo api
@@ -46471,21 +46714,81 @@ ol.geom.MultiLineString = function(coordinates, opt_layout) {
    * @type {number}
    */
   this.maxDelta_ = -1;
+=======
+ * Discards event handlers which listen for load completion or errors.
+ *
+ * @private
+ */
+ol.style.IconImage_.prototype.unlistenImage_ = function() {
+  goog.asserts.assert(!goog.isNull(this.imageListenerKeys_));
+  goog.array.forEach(this.imageListenerKeys_, goog.events.unlistenByKey);
+  this.imageListenerKeys_ = null;
+};
+
+
+
+/**
+ * @constructor
+ */
+ol.style.IconImageCache = function() {
 
   /**
+   * @type {Object.<string, ol.style.IconImage_>}
    * @private
+   */
+  this.cache_ = {};
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.cacheSize_ = 0;
+>>>>>>> ConectaDF
+
+  /**
+   * @const
+   * @type {number}
+   * @private
+<<<<<<< HEAD
    * @type {number}
    */
   this.maxDeltaRevision_ = -1;
+=======
+   */
+  this.maxCacheSize_ = 32;
+};
+goog.addSingletonGetter(ol.style.IconImageCache);
+
+
+/**
+ * @param {string} src Src.
+ * @param {?string} crossOrigin Cross origin.
+ * @return {string} Cache key.
+ */
+ol.style.IconImageCache.getKey = function(src, crossOrigin) {
+  goog.asserts.assert(goog.isDef(crossOrigin));
+  return crossOrigin + ':' + src;
+};
+>>>>>>> ConectaDF
 
   this.setCoordinates(coordinates,
       /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
 
+<<<<<<< HEAD
+=======
+/**
+ * FIXME empty description for jsdoc
+ */
+ol.style.IconImageCache.prototype.clear = function() {
+  this.cache_ = {};
+  this.cacheSize_ = 0;
+>>>>>>> ConectaDF
 };
 goog.inherits(ol.geom.MultiLineString, ol.geom.SimpleGeometry);
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.LineString} lineString LineString.
  * @todo api
  */
@@ -46499,10 +46802,38 @@ ol.geom.MultiLineString.prototype.appendLineString = function(lineString) {
   }
   this.ends_.push(this.flatCoordinates.length);
   this.dispatchChangeEvent();
+=======
+ * FIXME empty description for jsdoc
+ */
+ol.style.IconImageCache.prototype.expire = function() {
+  if (this.cacheSize_ > this.maxCacheSize_) {
+    var i = 0;
+    var key, iconImage;
+    for (key in this.cache_) {
+      iconImage = this.cache_[key];
+      if ((i++ & 3) === 0 && !goog.events.hasListener(iconImage)) {
+        delete this.cache_[key];
+        --this.cacheSize_;
+      }
+    }
+  }
 };
 
 
 /**
+ * @param {string} src Src.
+ * @param {?string} crossOrigin Cross origin.
+ * @return {ol.style.IconImage_} Icon image.
+ */
+ol.style.IconImageCache.prototype.get = function(src, crossOrigin) {
+  var key = ol.style.IconImageCache.getKey(src, crossOrigin);
+  return key in this.cache_ ? this.cache_[key] : null;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -46511,12 +46842,92 @@ ol.geom.MultiLineString.prototype.clone = function() {
   multiLineString.setFlatCoordinates(
       this.layout, this.flatCoordinates.slice(), this.ends_.slice());
   return multiLineString;
+=======
+ * @param {string} src Src.
+ * @param {?string} crossOrigin Cross origin.
+ * @param {ol.style.IconImage_} iconImage Icon image.
+ */
+ol.style.IconImageCache.prototype.set = function(src, crossOrigin, iconImage) {
+  var key = ol.style.IconImageCache.getKey(src, crossOrigin);
+  this.cache_[key] = iconImage;
+  ++this.cacheSize_;
+};
+goog.provide('ol.renderer.Map');
+
+goog.require('goog.Disposable');
+goog.require('goog.asserts');
+goog.require('goog.dispose');
+goog.require('goog.object');
+goog.require('goog.vec.Mat4');
+goog.require('ol.layer.Layer');
+goog.require('ol.renderer.Layer');
+goog.require('ol.style.IconImageCache');
+goog.require('ol.vec.Mat4');
+
+
+
+/**
+ * @constructor
+ * @extends {goog.Disposable}
+ * @param {Element} container Container.
+ * @param {ol.Map} map Map.
+ * @suppress {checkStructDictInheritance}
+ * @struct
+ */
+ol.renderer.Map = function(container, map) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {ol.Map}
+   */
+  this.map_ = map;
+
+  /**
+   * @private
+   * @type {Object.<string, ol.renderer.Layer>}
+   */
+  this.layerRenderers_ = {};
+
+};
+goog.inherits(ol.renderer.Map, goog.Disposable);
+
+
+/**
+ * @param {oli.FrameState} frameState FrameState.
+ * @protected
+ */
+ol.renderer.Map.prototype.calculateMatrices2D = function(frameState) {
+  var view2DState = frameState.view2DState;
+  var coordinateToPixelMatrix = frameState.coordinateToPixelMatrix;
+  goog.asserts.assert(!goog.isNull(coordinateToPixelMatrix));
+  ol.vec.Mat4.makeTransform2D(coordinateToPixelMatrix,
+      frameState.size[0] / 2, frameState.size[1] / 2,
+      1 / view2DState.resolution, -1 / view2DState.resolution,
+      -view2DState.rotation,
+      -view2DState.center[0], -view2DState.center[1]);
+  var inverted = goog.vec.Mat4.invert(
+      coordinateToPixelMatrix, frameState.pixelToCoordinateMatrix);
+  goog.asserts.assert(inverted);
+};
+
+
+/**
+ * @param {ol.layer.Layer} layer Layer.
+ * @protected
+ * @return {ol.renderer.Layer} layerRenderer Layer renderer.
+ */
+ol.renderer.Map.prototype.createLayerRenderer = function(layer) {
+  return new ol.renderer.Layer(this, layer);
+>>>>>>> ConectaDF
 };
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
 ol.geom.MultiLineString.prototype.closestPointXY =
     function(x, y, closestPoint, minSquaredDistance) {
   if (minSquaredDistance <
@@ -46531,10 +46942,18 @@ ol.geom.MultiLineString.prototype.closestPointXY =
   return ol.geom.flat.closest.getsClosestPoint(
       this.flatCoordinates, 0, this.ends_, this.stride,
       this.maxDelta_, false, x, y, closestPoint, minSquaredDistance);
+=======
+ol.renderer.Map.prototype.disposeInternal = function() {
+  goog.object.forEach(this.layerRenderers_, function(layerRenderer) {
+    goog.dispose(layerRenderer);
+  });
+  goog.base(this, 'disposeInternal');
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Returns the coordinate at `m` using linear interpolation, or `null` if no
  * such coordinate exists.
  *
@@ -46567,28 +46986,89 @@ ol.geom.MultiLineString.prototype.getCoordinateAtM =
   var interpolate = goog.isDef(opt_interpolate) ? opt_interpolate : false;
   return ol.geom.flat.lineStringsCoordinateAtM(this.flatCoordinates, 0,
       this.ends_, this.stride, m, extrapolate, interpolate);
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {oli.FrameState} frameState FrameState.
+ * @param {function(this: S, ol.Feature, ol.layer.Layer): T} callback Feature
+ *     callback.
+ * @param {S} thisArg Value to use as `this` when executing `callback`.
+ * @param {function(this: U, ol.layer.Layer): boolean} layerFilter Layer filter
+ *     function, only layers which are visible and for which this function
+ *     returns `true` will be tested for features.  By default, all visible
+ *     layers will be tested.
+ * @param {U} thisArg2 Value to use as `this` when executing `layerFilter`.
+ * @return {T|undefined} Callback result.
+ * @template S,T,U
+ */
+ol.renderer.Map.prototype.forEachFeatureAtPixel =
+    function(coordinate, frameState, callback, thisArg,
+        layerFilter, thisArg2) {
+  var layerStates = this.map_.getLayerGroup().getLayerStatesArray();
+  var numLayers = layerStates.length;
+  var i;
+  for (i = numLayers - 1; i >= 0; --i) {
+    var layerState = layerStates[i];
+    var layer = layerState.layer;
+    if (layerState.visible && layerFilter.call(thisArg2, layer)) {
+      var layerRenderer = this.getLayerRenderer(layer);
+      var result = layerRenderer.forEachFeatureAtPixel(
+          coordinate, frameState, callback, thisArg);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return undefined;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.geom.RawMultiLineString} Coordinates.
  * @todo api
  */
 ol.geom.MultiLineString.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinatess(
       this.flatCoordinates, 0, this.ends_, this.stride);
+=======
+ * @param {ol.layer.Layer} layer Layer.
+ * @protected
+ * @return {ol.renderer.Layer} Layer renderer.
+ */
+ol.renderer.Map.prototype.getLayerRenderer = function(layer) {
+  var layerKey = goog.getUid(layer).toString();
+  if (layerKey in this.layerRenderers_) {
+    return this.layerRenderers_[layerKey];
+  } else {
+    var layerRenderer = this.createLayerRenderer(layer);
+    this.layerRenderers_[layerKey] = layerRenderer;
+    return layerRenderer;
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<number>} Ends.
  */
 ol.geom.MultiLineString.prototype.getEnds = function() {
   return this.ends_;
+=======
+ * @param {string} layerKey Layer key.
+ * @protected
+ * @return {ol.renderer.Layer} Layer renderer.
+ */
+ol.renderer.Map.prototype.getLayerRendererByKey = function(layerKey) {
+  goog.asserts.assert(layerKey in this.layerRenderers_);
+  return this.layerRenderers_[layerKey];
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} index Index.
  * @return {ol.geom.LineString} LineString.
  * @todo api
@@ -46602,10 +47082,26 @@ ol.geom.MultiLineString.prototype.getLineString = function(index) {
   lineString.setFlatCoordinates(this.layout, this.flatCoordinates.slice(
       index === 0 ? 0 : this.ends_[index - 1], this.ends_[index]));
   return lineString;
+=======
+ * @protected
+ * @return {Object.<number, ol.renderer.Layer>} Layer renderers.
+ */
+ol.renderer.Map.prototype.getLayerRenderers = function() {
+  return this.layerRenderers_;
 };
 
 
 /**
+ * @return {ol.Map} Map.
+ */
+ol.renderer.Map.prototype.getMap = function() {
+  return this.map_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @return {Array.<ol.geom.LineString>} LineStrings.
  * @todo api
  */
@@ -46625,10 +47121,22 @@ ol.geom.MultiLineString.prototype.getLineStrings = function() {
     offset = end;
   }
   return lineStrings;
+=======
+ * @param {string} layerKey Layer key.
+ * @return {ol.renderer.Layer} Layer renderer.
+ * @private
+ */
+ol.renderer.Map.prototype.removeLayerRendererByKey_ = function(layerKey) {
+  goog.asserts.assert(layerKey in this.layerRenderers_);
+  var layerRenderer = this.layerRenderers_[layerKey];
+  delete this.layerRenderers_[layerKey];
+  return layerRenderer;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<number>} Flat midpoints.
  */
 ol.geom.MultiLineString.prototype.getFlatMidpoints = function() {
@@ -46647,11 +47155,20 @@ ol.geom.MultiLineString.prototype.getFlatMidpoints = function() {
   }
   return midpoints;
 };
+=======
+ * Render.
+ * @param {?oli.FrameState} frameState Frame state.
+ */
+ol.renderer.Map.prototype.renderFrame = goog.nullFunction;
+>>>>>>> ConectaDF
 
 
 /**
- * @inheritDoc
+ * @param {ol.Map} map Map.
+ * @param {oli.FrameState} frameState Frame state.
+ * @private
  */
+<<<<<<< HEAD
 ol.geom.MultiLineString.prototype.getSimplifiedGeometryInternal =
     function(squaredTolerance) {
   var simplifiedFlatCoordinates = [];
@@ -46663,19 +47180,45 @@ ol.geom.MultiLineString.prototype.getSimplifiedGeometryInternal =
   simplifiedMultiLineString.setFlatCoordinates(
       ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates, simplifiedEnds);
   return simplifiedMultiLineString;
+=======
+ol.renderer.Map.prototype.removeUnusedLayerRenderers_ =
+    function(map, frameState) {
+  var layerKey;
+  for (layerKey in this.layerRenderers_) {
+    if (goog.isNull(frameState) || !(layerKey in frameState.layerStates)) {
+      goog.dispose(this.removeLayerRendererByKey_(layerKey));
+    }
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
 ol.geom.MultiLineString.prototype.getType = function() {
   return ol.geom.GeometryType.MULTI_LINE_STRING;
+=======
+ * @param {oli.FrameState} frameState Frame state.
+ * @protected
+ */
+ol.renderer.Map.prototype.scheduleExpireIconCache = function(frameState) {
+  frameState.postRenderFunctions.push(
+      /**
+       * @param {ol.Map} map Map.
+       * @param {oli.FrameState} frameState Frame state.
+       */
+      function(map, frameState) {
+        ol.style.IconImageCache.getInstance().expire();
+      });
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawMultiLineString} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
  * @todo api
@@ -46688,6 +47231,19 @@ ol.geom.MultiLineString.prototype.setCoordinates =
     this.setLayout(opt_layout, coordinates, 2);
     if (goog.isNull(this.flatCoordinates)) {
       this.flatCoordinates = [];
+=======
+ * @param {!oli.FrameState} frameState Frame state.
+ * @protected
+ */
+ol.renderer.Map.prototype.scheduleRemoveUnusedLayerRenderers =
+    function(frameState) {
+  var layerKey;
+  for (layerKey in this.layerRenderers_) {
+    if (!(layerKey in frameState.layerStates)) {
+      frameState.postRenderFunctions.push(
+          goog.bind(this.removeUnusedLayerRenderers_, this));
+      return;
+>>>>>>> ConectaDF
     }
     var ends = ol.geom.flat.deflate.coordinatess(
         this.flatCoordinates, 0, coordinates, this.stride, this.ends_);
@@ -46695,9 +47251,13 @@ ol.geom.MultiLineString.prototype.setCoordinates =
     this.dispatchChangeEvent();
   }
 };
+goog.provide('ol.layer.Tile');
+
+goog.require('ol.layer.Layer');
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.GeometryLayout} layout Layout.
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {Array.<number>} ends Ends.
@@ -46714,10 +47274,19 @@ ol.geom.MultiLineString.prototype.setFlatCoordinates =
   this.setFlatCoordinatesInternal(layout, flatCoordinates);
   this.ends_ = ends;
   this.dispatchChangeEvent();
+=======
+ * @enum {string}
+ */
+ol.layer.TileProperty = {
+  PRELOAD: 'preload',
+  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError'
+>>>>>>> ConectaDF
 };
 
 
+
 /**
+<<<<<<< HEAD
  * @param {Array.<ol.geom.LineString>} lineStrings LineStrings.
  */
 ol.geom.MultiLineString.prototype.setLineStrings = function(lineStrings) {
@@ -46748,11 +47317,99 @@ goog.require('goog.object');
 goog.require('ol.extent');
 goog.require('ol.geom.Geometry');
 goog.require('ol.geom.GeometryType');
+=======
+ * @constructor
+ * @extends {ol.layer.Layer}
+ * @fires {@link ol.render.Event} ol.render.Event
+ * @param {olx.layer.TileOptions} options Tile layer options.
+ * @todo observable preload {number} the level to preload tiles up to
+ * @todo api
+ */
+ol.layer.Tile = function(options) {
+  goog.base(this, options);
+
+};
+goog.inherits(ol.layer.Tile, ol.layer.Layer);
+
+
+/**
+ * @return {number|undefined} Preload.
+ */
+ol.layer.Tile.prototype.getPreload = function() {
+  return /** @type {number|undefined} */ (
+      this.get(ol.layer.TileProperty.PRELOAD));
+};
+goog.exportProperty(
+    ol.layer.Tile.prototype,
+    'getPreload',
+    ol.layer.Tile.prototype.getPreload);
+
+
+/**
+ * @param {number} preload Preload.
+ */
+ol.layer.Tile.prototype.setPreload = function(preload) {
+  this.set(ol.layer.TileProperty.PRELOAD, preload);
+};
+goog.exportProperty(
+    ol.layer.Tile.prototype,
+    'setPreload',
+    ol.layer.Tile.prototype.setPreload);
+
+
+/**
+ * @return {boolean|undefined} Use interim tiles on error.
+ */
+ol.layer.Tile.prototype.getUseInterimTilesOnError = function() {
+  return /** @type {boolean|undefined} */ (
+      this.get(ol.layer.TileProperty.USE_INTERIM_TILES_ON_ERROR));
+};
+goog.exportProperty(
+    ol.layer.Tile.prototype,
+    'getUseInterimTilesOnError',
+    ol.layer.Tile.prototype.getUseInterimTilesOnError);
+
+
+/**
+ * @param {boolean|undefined} useInterimTilesOnError Use interim tiles on error.
+ */
+ol.layer.Tile.prototype.setUseInterimTilesOnError =
+    function(useInterimTilesOnError) {
+  this.set(
+      ol.layer.TileProperty.USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
+};
+goog.exportProperty(
+    ol.layer.Tile.prototype,
+    'setUseInterimTilesOnError',
+    ol.layer.Tile.prototype.setUseInterimTilesOnError);
+// FIXME find correct globalCompositeOperation
+// FIXME optimize :-)
+
+goog.provide('ol.renderer.canvas.TileLayer');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.object');
+goog.require('goog.vec.Mat4');
+goog.require('ol.Size');
+goog.require('ol.Tile');
+goog.require('ol.TileCoord');
+goog.require('ol.TileRange');
+goog.require('ol.TileState');
+goog.require('ol.dom');
+goog.require('ol.extent');
+goog.require('ol.layer.Tile');
+goog.require('ol.renderer.Map');
+goog.require('ol.renderer.canvas.Layer');
+goog.require('ol.source.Tile');
+goog.require('ol.vec.Mat4');
+>>>>>>> ConectaDF
 
 
 
 /**
  * @constructor
+<<<<<<< HEAD
  * @extends {ol.geom.Geometry}
  * @param {Array.<ol.geom.Geometry>=} opt_geometries Geometries.
  * @todo api
@@ -46770,6 +47427,63 @@ ol.geom.GeometryCollection = function(opt_geometries) {
   this.listenGeometriesChange_();
 };
 goog.inherits(ol.geom.GeometryCollection, ol.geom.Geometry);
+=======
+ * @extends {ol.renderer.canvas.Layer}
+ * @param {ol.renderer.Map} mapRenderer Map renderer.
+ * @param {ol.layer.Tile} tileLayer Tile layer.
+ */
+ol.renderer.canvas.TileLayer = function(mapRenderer, tileLayer) {
+
+  goog.base(this, mapRenderer, tileLayer);
+
+  /**
+   * @private
+   * @type {HTMLCanvasElement}
+   */
+  this.canvas_ = null;
+
+  /**
+   * @private
+   * @type {ol.Size}
+   */
+  this.canvasSize_ = null;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.canvasTooBig_ = false;
+
+  /**
+   * @private
+   * @type {CanvasRenderingContext2D}
+   */
+  this.context_ = null;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.imageTransform_ = goog.vec.Mat4.createNumber();
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.renderedCanvasZ_ = NaN;
+
+  /**
+   * @private
+   * @type {ol.TileRange}
+   */
+  this.renderedCanvasTileRange_ = null;
+
+  /**
+   * @private
+   * @type {Array.<ol.Tile|undefined>}
+   */
+  this.renderedTiles_ = null;
+>>>>>>> ConectaDF
 
 
 /**
@@ -46785,11 +47499,16 @@ ol.geom.GeometryCollection.cloneGeometries_ = function(geometries) {
   }
   return clonedGeometries;
 };
+<<<<<<< HEAD
+=======
+goog.inherits(ol.renderer.canvas.TileLayer, ol.renderer.canvas.Layer);
+>>>>>>> ConectaDF
 
 
 /**
  * @private
  */
+<<<<<<< HEAD
 ol.geom.GeometryCollection.prototype.unlistenGeometriesChange_ = function() {
   var i, ii;
   if (goog.isNull(this.geometries_)) {
@@ -46846,12 +47565,17 @@ ol.geom.GeometryCollection.prototype.closestPointXY =
         x, y, closestPoint, minSquaredDistance);
   }
   return minSquaredDistance;
+=======
+ol.renderer.canvas.TileLayer.prototype.getImage = function() {
+  return this.canvas_;
+>>>>>>> ConectaDF
 };
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
 ol.geom.GeometryCollection.prototype.containsXY = function(x, y) {
   var geometries = this.geometries_;
   var i, ii;
@@ -46898,6 +47622,10 @@ ol.geom.GeometryCollection.prototype.getGeometries = function() {
  */
 ol.geom.GeometryCollection.prototype.getGeometriesArray = function() {
   return this.geometries_;
+=======
+ol.renderer.canvas.TileLayer.prototype.getImageTransform = function() {
+  return this.imageTransform_;
+>>>>>>> ConectaDF
 };
 
 
@@ -46905,6 +47633,7 @@ ol.geom.GeometryCollection.prototype.getGeometriesArray = function() {
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
 ol.geom.GeometryCollection.prototype.getSimplifiedGeometry =
     function(squaredTolerance) {
   if (this.simplifiedGeometryRevision != this.getRevision()) {
@@ -46931,8 +47660,214 @@ ol.geom.GeometryCollection.prototype.getSimplifiedGeometry =
       simplifiedGeometries.push(simplifiedGeometry);
       if (simplifiedGeometry !== geometry) {
         simplified = true;
+=======
+ol.renderer.canvas.TileLayer.prototype.prepareFrame =
+    function(frameState, layerState) {
+
+  //
+  // Warning! You're entering a dangerous zone!
+  //
+  // The canvas tile layer renderering is highly optimized, hence
+  // the complexity of this function. For best performance we try
+  // to minimize the number of pixels to update on the canvas. This
+  // includes:
+  //
+  // - Only drawing pixels that will be visible.
+  // - Not re-drawing pixels/tiles that are already correct.
+  // - Minimizing calls to clearRect.
+  // - Never shrink the canvas. Just make it bigger when necessary.
+  //   Re-sizing the canvas also clears it, which further means
+  //   re-creating it (expensive).
+  //
+  // The various steps performed by this functions:
+  //
+  // - Create a canvas element if none has been created yet.
+  //
+  // - Make the canvas bigger if it's too small. Note that we never shrink
+  //   the canvas, we just make it bigger when necessary, when rotating for
+  //   example. Note also that the canvas always contains a whole number
+  //   of tiles.
+  //
+  // - Invalidate the canvas tile range (renderedCanvasTileRange_ = null)
+  //   if (1) the canvas has been enlarged, or (2) the zoom level changes,
+  //   or (3) the canvas tile range doesn't contain the required tile
+  //   range. This canvas tile range invalidation thing is related to
+  //   an optimization where we attempt to redraw as few pixels as
+  //   possible on each prepareFrame call.
+  //
+  // - If the canvas tile range has been invalidated we reset
+  //   renderedCanvasTileRange_ and reset the renderedTiles_ array.
+  //   The renderedTiles_ array is the structure used to determine
+  //   the canvas pixels that need not be redrawn from one prepareFrame
+  //   call to another. It records while tile has been rendered at
+  //   which position in the canvas.
+  //
+  // - We then determine the tiles to draw on the canvas. Tiles for
+  //   the target resolution may not be loaded yet. In that case we
+  //   use low-resolution/interim tiles if loaded already. And, if
+  //   for a non-yet-loaded tile we haven't found a corresponding
+  //   low-resolution tile we indicate that the pixels for that
+  //   tile must be cleared on the canvas. Note: determining the
+  //   interim tiles is based on tile extents instead of tile
+  //   coords, this is to be able to handler irregular tile grids.
+  //
+  // - We're now ready to render. We start by calling clearRect
+  //   for the tiles that aren't loaded yet and are not fully covered
+  //   by a low-resolution tile (if they're loaded, we'll draw them;
+  //   if they're fully covered by a low-resolution tile then there's
+  //   no need to clear). We then render the tiles "back to front",
+  //   i.e. starting with the low-resolution tiles.
+  //
+  // - After rendering some bookkeeping is performed (updateUsedTiles,
+  //   etc.). manageTilePyramid is what enqueue tiles in the tile
+  //   queue for loading.
+  //
+  // - The last step involves updating the image transform matrix,
+  //   which will be used by the map renderer for the final
+  //   composition and positioning.
+  //
+
+  var pixelRatio = frameState.pixelRatio;
+  var view2DState = frameState.view2DState;
+  var projection = view2DState.projection;
+
+  var tileLayer = this.getLayer();
+  goog.asserts.assertInstanceof(tileLayer, ol.layer.Tile);
+  var tileSource = tileLayer.getSource();
+  goog.asserts.assertInstanceof(tileSource, ol.source.Tile);
+  var tileGrid = tileSource.getTileGridForProjection(projection);
+  var tileGutter = tileSource.getGutter();
+  var z = tileGrid.getZForResolution(view2DState.resolution);
+  var tilePixelSize =
+      tileSource.getTilePixelSize(z, frameState.pixelRatio, projection);
+  var tilePixelRatio = tilePixelSize / tileGrid.getTileSize(z);
+  var tileResolution = tileGrid.getResolution(z);
+  var tilePixelResolution = tileResolution / tilePixelRatio;
+  var center = view2DState.center;
+  var extent;
+  if (tileResolution == view2DState.resolution) {
+    center = this.snapCenterToPixel(center, tileResolution, frameState.size);
+    extent = ol.extent.getForView2DAndSize(
+        center, tileResolution, view2DState.rotation, frameState.size);
+  } else {
+    extent = frameState.extent;
+  }
+  var tileRange = tileGrid.getTileRangeForExtentAndResolution(
+      extent, tileResolution);
+
+  var canvasWidth = tilePixelSize * tileRange.getWidth();
+  var canvasHeight = tilePixelSize * tileRange.getHeight();
+
+  var canvas, context;
+  if (goog.isNull(this.canvas_)) {
+    goog.asserts.assert(goog.isNull(this.canvasSize_));
+    goog.asserts.assert(goog.isNull(this.context_));
+    goog.asserts.assert(goog.isNull(this.renderedCanvasTileRange_));
+    context = ol.dom.createCanvasContext2D(canvasWidth, canvasHeight);
+    this.canvas_ = context.canvas;
+    this.canvasSize_ = [canvasWidth, canvasHeight];
+    this.context_ = context;
+    this.canvasTooBig_ =
+        !ol.renderer.canvas.Layer.testCanvasSize(this.canvasSize_);
+  } else {
+    goog.asserts.assert(!goog.isNull(this.canvasSize_));
+    goog.asserts.assert(!goog.isNull(this.context_));
+    canvas = this.canvas_;
+    context = this.context_;
+    if (this.canvasSize_[0] < canvasWidth ||
+        this.canvasSize_[1] < canvasHeight ||
+        (this.canvasTooBig_ && (this.canvasSize_[0] > canvasWidth ||
+        this.canvasSize_[1] > canvasHeight))) {
+      // Canvas is too small, resize it. We never shrink the canvas, unless
+      // we know that the current canvas size exceeds the maximum size
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+      this.canvasSize_ = [canvasWidth, canvasHeight];
+      this.canvasTooBig_ =
+          !ol.renderer.canvas.Layer.testCanvasSize(this.canvasSize_);
+      this.renderedCanvasTileRange_ = null;
+    } else {
+      canvasWidth = this.canvasSize_[0];
+      canvasHeight = this.canvasSize_[1];
+      if (z != this.renderedCanvasZ_ ||
+          !this.renderedCanvasTileRange_.containsTileRange(tileRange)) {
+        this.renderedCanvasTileRange_ = null;
       }
     }
+  }
+
+  var canvasTileRange, canvasTileRangeWidth, minX, minY;
+  if (goog.isNull(this.renderedCanvasTileRange_)) {
+    canvasTileRangeWidth = canvasWidth / tilePixelSize;
+    var canvasTileRangeHeight = canvasHeight / tilePixelSize;
+    minX = tileRange.minX -
+        Math.floor((canvasTileRangeWidth - tileRange.getWidth()) / 2);
+    minY = tileRange.minY -
+        Math.floor((canvasTileRangeHeight - tileRange.getHeight()) / 2);
+    this.renderedCanvasZ_ = z;
+    this.renderedCanvasTileRange_ = new ol.TileRange(
+        minX, minX + canvasTileRangeWidth - 1,
+        minY, minY + canvasTileRangeHeight - 1);
+    this.renderedTiles_ =
+        new Array(canvasTileRangeWidth * canvasTileRangeHeight);
+    canvasTileRange = this.renderedCanvasTileRange_;
+  } else {
+    canvasTileRange = this.renderedCanvasTileRange_;
+    canvasTileRangeWidth = canvasTileRange.getWidth();
+  }
+
+  goog.asserts.assert(canvasTileRange.containsTileRange(tileRange));
+
+  /**
+   * @type {Object.<number, Object.<string, ol.Tile>>}
+   */
+  var tilesToDrawByZ = {};
+  tilesToDrawByZ[z] = {};
+  /** @type {Array.<ol.Tile>} */
+  var tilesToClear = [];
+
+  var getTileIfLoaded = this.createGetTileIfLoadedFunction(function(tile) {
+    return !goog.isNull(tile) && tile.getState() == ol.TileState.LOADED;
+  }, tileSource, pixelRatio, projection);
+  var findLoadedTiles = goog.bind(tileSource.findLoadedTiles, tileSource,
+      tilesToDrawByZ, getTileIfLoaded);
+
+  var useInterimTilesOnError = tileLayer.getUseInterimTilesOnError();
+  if (!goog.isDef(useInterimTilesOnError)) {
+    useInterimTilesOnError = true;
+  }
+
+  var tmpExtent = ol.extent.createEmpty();
+  var tmpTileRange = new ol.TileRange(0, 0, 0, 0);
+  var childTileRange, fullyLoaded, tile, tileState, x, y;
+  for (x = tileRange.minX; x <= tileRange.maxX; ++x) {
+    for (y = tileRange.minY; y <= tileRange.maxY; ++y) {
+
+      tile = tileSource.getTile(z, x, y, pixelRatio, projection);
+      tileState = tile.getState();
+      if (tileState == ol.TileState.LOADED ||
+          tileState == ol.TileState.EMPTY ||
+          (tileState == ol.TileState.ERROR && !useInterimTilesOnError)) {
+        tilesToDrawByZ[z][tile.tileCoord.toString()] = tile;
+        continue;
+      }
+
+      fullyLoaded = tileGrid.forEachTileCoordParentTileRange(
+          tile.tileCoord, findLoadedTiles, null, tmpTileRange, tmpExtent);
+      if (!fullyLoaded) {
+        // FIXME we do not need to clear the tile if it is fully covered by its
+        //       children
+        tilesToClear.push(tile);
+        childTileRange = tileGrid.getTileCoordChildTileRange(
+            tile.tileCoord, tmpTileRange, tmpExtent);
+        if (!goog.isNull(childTileRange)) {
+          findLoadedTiles(z + 1, childTileRange);
+        }
+>>>>>>> ConectaDF
+      }
+
+    }
+<<<<<<< HEAD
     if (simplified) {
       var simplifiedGeometryCollection = new ol.geom.GeometryCollection(null);
       simplifiedGeometryCollection.setGeometriesArray(simplifiedGeometries);
@@ -46941,9 +47876,110 @@ ol.geom.GeometryCollection.prototype.getSimplifiedGeometry =
     } else {
       this.simplifiedGeometryMaxMinSquaredTolerance = squaredTolerance;
       return this;
+=======
+  }
+
+  var i, ii;
+  for (i = 0, ii = tilesToClear.length; i < ii; ++i) {
+    tile = tilesToClear[i];
+    x = tilePixelSize * (tile.tileCoord.x - canvasTileRange.minX);
+    y = tilePixelSize * (canvasTileRange.maxY - tile.tileCoord.y);
+    context.clearRect(x, y, tilePixelSize, tilePixelSize);
+  }
+
+  /** @type {Array.<number>} */
+  var zs = goog.array.map(goog.object.getKeys(tilesToDrawByZ), Number);
+  goog.array.sort(zs);
+  var opaque = tileSource.getOpaque();
+  var origin = ol.extent.getTopLeft(tileGrid.getTileCoordExtent(
+      new ol.TileCoord(z, canvasTileRange.minX, canvasTileRange.maxY),
+      tmpExtent));
+  var currentZ, index, scale, tileCoordKey, tileExtent, tilesToDraw;
+  var ix, iy, interimTileExtent, interimTileRange, maxX, maxY;
+  var height, width;
+  for (i = 0, ii = zs.length; i < ii; ++i) {
+    currentZ = zs[i];
+    tilePixelSize =
+        tileSource.getTilePixelSize(currentZ, pixelRatio, projection);
+    tilesToDraw = tilesToDrawByZ[currentZ];
+    if (currentZ == z) {
+      for (tileCoordKey in tilesToDraw) {
+        tile = tilesToDraw[tileCoordKey];
+        index =
+            (tile.tileCoord.y - canvasTileRange.minY) * canvasTileRangeWidth +
+            (tile.tileCoord.x - canvasTileRange.minX);
+        if (this.renderedTiles_[index] != tile) {
+          x = tilePixelSize * (tile.tileCoord.x - canvasTileRange.minX);
+          y = tilePixelSize * (canvasTileRange.maxY - tile.tileCoord.y);
+          tileState = tile.getState();
+          if (tileState == ol.TileState.EMPTY ||
+              (tileState == ol.TileState.ERROR && !useInterimTilesOnError) ||
+              !opaque) {
+            context.clearRect(x, y, tilePixelSize, tilePixelSize);
+          }
+          if (tileState == ol.TileState.LOADED) {
+            context.drawImage(tile.getImage(),
+                tileGutter, tileGutter, tilePixelSize, tilePixelSize,
+                x, y, tilePixelSize, tilePixelSize);
+          }
+          this.renderedTiles_[index] = tile;
+        }
+      }
+    } else {
+      scale = tileGrid.getResolution(currentZ) / tileResolution;
+      for (tileCoordKey in tilesToDraw) {
+        tile = tilesToDraw[tileCoordKey];
+        tileExtent = tileGrid.getTileCoordExtent(tile.tileCoord, tmpExtent);
+        x = (tileExtent[0] - origin[0]) / tilePixelResolution;
+        y = (origin[1] - tileExtent[3]) / tilePixelResolution;
+        width = scale * tilePixelSize;
+        height = scale * tilePixelSize;
+        tileState = tile.getState();
+        if (tileState == ol.TileState.EMPTY || !opaque) {
+          context.clearRect(x, y, width, height);
+        }
+        if (tileState == ol.TileState.LOADED) {
+          context.drawImage(tile.getImage(),
+              tileGutter, tileGutter, tilePixelSize, tilePixelSize,
+              x, y, width, height);
+        }
+        interimTileRange =
+            tileGrid.getTileRangeForExtentAndZ(tileExtent, z, tmpTileRange);
+        minX = Math.max(interimTileRange.minX, canvasTileRange.minX);
+        maxX = Math.min(interimTileRange.maxX, canvasTileRange.maxX);
+        minY = Math.max(interimTileRange.minY, canvasTileRange.minY);
+        maxY = Math.min(interimTileRange.maxY, canvasTileRange.maxY);
+        for (ix = minX; ix <= maxX; ++ix) {
+          for (iy = minY; iy <= maxY; ++iy) {
+            index = (iy - canvasTileRange.minY) * canvasTileRangeWidth +
+                    (ix - canvasTileRange.minX);
+            this.renderedTiles_[index] = undefined;
+          }
+        }
+      }
+>>>>>>> ConectaDF
     }
   }
+
+  this.updateUsedTiles(frameState.usedTiles, tileSource, z, tileRange);
+  this.manageTilePyramid(frameState, tileSource, tileGrid, pixelRatio,
+      projection, extent, z, tileLayer.getPreload());
+  this.scheduleExpireCache(frameState, tileSource);
+  this.updateLogos(frameState, tileSource);
+
+  ol.vec.Mat4.makeTransform2D(this.imageTransform_,
+      pixelRatio * frameState.size[0] / 2,
+      pixelRatio * frameState.size[1] / 2,
+      pixelRatio * tilePixelResolution / view2DState.resolution,
+      pixelRatio * tilePixelResolution / view2DState.resolution,
+      view2DState.rotation,
+      (origin[0] - center[0]) / tilePixelResolution,
+      (center[1] - origin[1]) / tilePixelResolution);
+
 };
+goog.provide('ol.layer.Image');
+
+goog.require('ol.layer.Layer');
 
 
 /**
@@ -46956,6 +47992,7 @@ ol.geom.GeometryCollection.prototype.getType = function() {
 
 
 /**
+<<<<<<< HEAD
  * @return {boolean} Is empty.
  */
 ol.geom.GeometryCollection.prototype.isEmpty = function() {
@@ -46994,20 +48031,91 @@ ol.geom.GeometryCollection.prototype.applyTransform = function(transformFn) {
     geometries[i].applyTransform(transformFn);
   }
   this.dispatchChangeEvent();
+=======
+ * @constructor
+ * @extends {ol.layer.Layer}
+ * @fires {@link ol.render.Event} ol.render.Event
+ * @param {olx.layer.LayerOptions} options Layer options.
+ * @todo api
+ */
+ol.layer.Image = function(options) {
+  goog.base(this, options);
+};
+goog.inherits(ol.layer.Image, ol.layer.Layer);
+goog.provide('ol.style.Stroke');
+
+goog.require('ol.color');
+
+
+
+/**
+ * @constructor
+ * @param {olx.style.StrokeOptions=} opt_options Options.
+ * @todo api
+ */
+ol.style.Stroke = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @private
+   * @type {ol.Color|string}
+   */
+  this.color_ = goog.isDef(options.color) ? options.color : null;
+
+  /**
+   * @private
+   * @type {string|undefined}
+   */
+  this.lineCap_ = options.lineCap;
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.lineDash_ = goog.isDef(options.lineDash) ? options.lineDash : null;
+
+  /**
+   * @private
+   * @type {string|undefined}
+   */
+  this.lineJoin_ = options.lineJoin;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.miterLimit_ = options.miterLimit;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.width_ = options.width;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.GeometryCollection.prototype.disposeInternal = function() {
   this.unlistenGeometriesChange_();
   goog.base(this, 'disposeInternal');
+=======
+ * @return {ol.Color|string} Color.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getColor = function() {
+  return this.color_;
+>>>>>>> ConectaDF
 };
 goog.provide('ol.geom.flat.area');
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {number} end End.
@@ -47026,10 +48134,18 @@ ol.geom.flat.area.linearRing = function(flatCoordinates, offset, end, stride) {
     y1 = y2;
   }
   return twiceArea / 2;
+=======
+ * @return {string|undefined} Line cap.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getLineCap = function() {
+  return this.lineCap_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<number>} ends Ends.
@@ -47046,10 +48162,18 @@ ol.geom.flat.area.linearRings =
     offset = end;
   }
   return area;
+=======
+ * @return {Array.<number>} Line dash.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getLineDash = function() {
+  return this.lineDash_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<Array.<number>>} endss Endss.
@@ -47117,10 +48241,18 @@ ol.geom.flat.orient.linearRingIsClockwise =
     y1 = y2;
   }
   return edge > 0;
+=======
+ * @return {string|undefined} Line join.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getLineJoin = function() {
+  return this.lineJoin_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<number>} ends Ends.
@@ -47141,10 +48273,18 @@ ol.geom.flat.orient.linearRingsAreOriented =
     offset = end;
   }
   return true;
+=======
+ * @return {number|undefined} Miter limit.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getMiterLimit = function() {
+  return this.miterLimit_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<Array.<number>>} endss Endss.
@@ -47162,10 +48302,22 @@ ol.geom.flat.linearRingssAreOriented =
     }
   }
   return true;
+=======
+ * @return {number|undefined} Width.
+ * @todo api
+ */
+ol.style.Stroke.prototype.getWidth = function() {
+  return this.width_;
+>>>>>>> ConectaDF
 };
+goog.provide('ol.style.Fill');
+
+goog.require('ol.color');
+
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<number>} ends Ends.
@@ -47186,10 +48338,26 @@ ol.geom.flat.orient.orientLinearRings =
     offset = end;
   }
   return offset;
+=======
+ * @constructor
+ * @param {olx.style.FillOptions=} opt_options Options.
+ * @todo api
+ */
+ol.style.Fill = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @private
+   * @type {ol.Color|string}
+   */
+  this.color_ = goog.isDef(options.color) ? options.color : null;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {Array.<Array.<number>>} endss Endss.
@@ -47215,11 +48383,32 @@ goog.require('ol.geom.flat.closest');
 goog.require('ol.geom.flat.deflate');
 goog.require('ol.geom.flat.inflate');
 goog.require('ol.geom.flat.simplify');
+=======
+ * @return {ol.Color|string} Color.
+ * @todo api
+ */
+ol.style.Fill.prototype.getColor = function() {
+  return this.color_;
+};
+// FIXME decide default value for snapToPixel
+
+goog.provide('ol.style.Circle');
+
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('ol.color');
+goog.require('ol.render.canvas');
+goog.require('ol.style.Fill');
+goog.require('ol.style.Image');
+goog.require('ol.style.ImageState');
+goog.require('ol.style.Stroke');
+>>>>>>> ConectaDF
 
 
 
 /**
  * @constructor
+<<<<<<< HEAD
  * @extends {ol.geom.SimpleGeometry}
  * @param {ol.geom.RawLinearRing} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
@@ -47228,17 +48417,44 @@ goog.require('ol.geom.flat.simplify');
 ol.geom.LinearRing = function(coordinates, opt_layout) {
 
   goog.base(this);
+=======
+ * @param {olx.style.CircleOptions=} opt_options Options.
+ * @extends {ol.style.Image}
+ * @todo api
+ */
+ol.style.Circle = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
 
   /**
    * @private
-   * @type {number}
+   * @type {HTMLCanvasElement}
    */
+  this.canvas_ = /** @type {HTMLCanvasElement} */
+      (goog.dom.createElement(goog.dom.TagName.CANVAS));
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {HTMLCanvasElement}
+   */
+<<<<<<< HEAD
   this.maxDelta_ = -1;
+=======
+  this.hitDetectionCanvas_ = null;
+
+  /**
+   * @private
+   * @type {ol.style.Fill}
+   */
+  this.fill_ = goog.isDef(options.fill) ? options.fill : null;
+>>>>>>> ConectaDF
 
   /**
    * @private
    * @type {number}
    */
+<<<<<<< HEAD
   this.maxDeltaRevision_ = -1;
 
   this.setCoordinates(coordinates,
@@ -47246,22 +48462,89 @@ ol.geom.LinearRing = function(coordinates, opt_layout) {
 
 };
 goog.inherits(ol.geom.LinearRing, ol.geom.SimpleGeometry);
+=======
+  this.radius_ = options.radius;
+
+  /**
+   * @private
+   * @type {ol.style.Stroke}
+   */
+  this.stroke_ = goog.isDef(options.stroke) ? options.stroke : null;
+
+  var size = this.render_();
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.anchor_ = [size / 2, size / 2];
+
+  /**
+   * @private
+   * @type {ol.Size}
+   */
+  this.size_ = [size, size];
+
+  goog.base(this, {
+    opacity: 1,
+    origin: [0, 0],
+    rotateWithView: false,
+    rotation: 0,
+    scale: 1,
+    snapToPixel: undefined
+  });
+
+};
+goog.inherits(ol.style.Circle, ol.style.Image);
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
 ol.geom.LinearRing.prototype.clone = function() {
   var linearRing = new ol.geom.LinearRing(null);
   linearRing.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
   return linearRing;
+=======
+ol.style.Circle.prototype.getAnchor = function() {
+  return this.anchor_;
+};
+
+
+/**
+ * @return {ol.style.Fill} Fill style.
+ * @todo api
+ */
+ol.style.Circle.prototype.getFill = function() {
+  return this.fill_;
 };
 
 
 /**
  * @inheritDoc
  */
+ol.style.Circle.prototype.getHitDetectionImage = function(pixelRatio) {
+  return this.hitDetectionCanvas_;
+};
+
+
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.style.Circle.prototype.getImage = function(pixelRatio) {
+  return this.canvas_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
 ol.geom.LinearRing.prototype.closestPointXY =
     function(x, y, closestPoint, minSquaredDistance) {
   if (minSquaredDistance <
@@ -47276,32 +48559,62 @@ ol.geom.LinearRing.prototype.closestPointXY =
   return ol.geom.flat.closest.getClosestPoint(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
       this.maxDelta_, true, x, y, closestPoint, minSquaredDistance);
+=======
+ol.style.Circle.prototype.getImageState = function() {
+  return ol.style.ImageState.LOADED;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {number} Area.
  * @todo api
  */
 ol.geom.LinearRing.prototype.getArea = function() {
   return ol.geom.flat.area.linearRing(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+=======
+ * @return {number} Radius.
+ * @todo api
+ */
+ol.style.Circle.prototype.getRadius = function() {
+  return this.radius_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.geom.RawLinearRing} Coordinates.
  * @todo api
  */
 ol.geom.LinearRing.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinates(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.style.Circle.prototype.getSize = function() {
+  return this.size_;
+};
+
+
+/**
+ * @return {ol.style.Stroke} Stroke style.
+ * @todo api
+ */
+ol.style.Circle.prototype.getStroke = function() {
+  return this.stroke_;
+>>>>>>> ConectaDF
 };
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
 ol.geom.LinearRing.prototype.getSimplifiedGeometryInternal =
     function(squaredTolerance) {
   var simplifiedFlatCoordinates = [];
@@ -47342,10 +48655,103 @@ ol.geom.LinearRing.prototype.setCoordinates =
         this.flatCoordinates, 0, coordinates, this.stride);
     this.dispatchChangeEvent();
   }
-};
+=======
+ol.style.Circle.prototype.listenImageChange = goog.nullFunction;
 
 
 /**
+ * @inheritDoc
+ */
+ol.style.Circle.prototype.load = goog.nullFunction;
+
+
+/**
+ * @inheritDoc
+ */
+ol.style.Circle.prototype.unlistenImageChange = goog.nullFunction;
+
+
+/**
+ * @private
+ * @return {number} Size.
+ */
+ol.style.Circle.prototype.render_ = function() {
+  var canvas = this.canvas_;
+  var strokeStyle, strokeWidth;
+
+  if (goog.isNull(this.stroke_)) {
+    strokeWidth = 0;
+  } else {
+    strokeStyle = ol.color.asString(this.stroke_.getColor());
+    strokeWidth = this.stroke_.getWidth();
+    if (!goog.isDef(strokeWidth)) {
+      strokeWidth = ol.render.canvas.defaultLineWidth;
+    }
+  }
+
+  var size = 2 * (this.radius_ + strokeWidth) + 1;
+
+  // draw the circle on the canvas
+
+  canvas.height = size;
+  canvas.width = size;
+
+  // canvas.width and height are rounded to the closest integer
+  size = canvas.width;
+
+  var context = /** @type {CanvasRenderingContext2D} */
+      (canvas.getContext('2d'));
+  context.arc(size / 2, size / 2, this.radius_, 0, 2 * Math.PI, true);
+
+  if (!goog.isNull(this.fill_)) {
+    context.fillStyle = ol.color.asString(this.fill_.getColor());
+    context.fill();
+  }
+  if (!goog.isNull(this.stroke_)) {
+    context.strokeStyle = strokeStyle;
+    context.lineWidth = strokeWidth;
+    context.stroke();
+  }
+
+  // deal with the hit detection canvas
+
+  if (!goog.isNull(this.fill_)) {
+    this.hitDetectionCanvas_ = canvas;
+  } else {
+    this.hitDetectionCanvas_ = /** @type {HTMLCanvasElement} */
+        (goog.dom.createElement(goog.dom.TagName.CANVAS));
+    canvas = this.hitDetectionCanvas_;
+
+    canvas.height = size;
+    canvas.width = size;
+
+    context = /** @type {CanvasRenderingContext2D} */
+        (canvas.getContext('2d'));
+    context.arc(size / 2, size / 2, this.radius_, 0, 2 * Math.PI, true);
+
+    context.fillStyle = ol.render.canvas.defaultFillStyle;
+    context.fill();
+    if (!goog.isNull(this.stroke_)) {
+      context.strokeStyle = strokeStyle;
+      context.lineWidth = strokeWidth;
+      context.stroke();
+    }
+  }
+
+  return size;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.Geometry');
+goog.provide('ol.geom.GeometryType');
+
+goog.require('goog.asserts');
+goog.require('goog.functions');
+goog.require('ol.Observable');
+goog.require('ol.proj');
+
+
+/**
+<<<<<<< HEAD
  * @param {ol.geom.GeometryLayout} layout Layout.
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  */
@@ -47362,11 +48768,46 @@ goog.require('ol.geom.GeometryType');
 goog.require('ol.geom.SimpleGeometry');
 goog.require('ol.geom.flat.deflate');
 goog.require('ol.math');
+=======
+ * The geometry type. One of `'Point'`, `'LineString'`, `'LinearRing'`,
+ * `'Polygon'`, `'MultiPoint'`, `'MultiLineString'`, `'MultiPolygon'`,
+ * `'GeometryCollection'`, `'Circle'`.
+ * @enum {string}
+ * @todo api
+ */
+ol.geom.GeometryType = {
+  POINT: 'Point',
+  LINE_STRING: 'LineString',
+  LINEAR_RING: 'LinearRing',
+  POLYGON: 'Polygon',
+  MULTI_POINT: 'MultiPoint',
+  MULTI_LINE_STRING: 'MultiLineString',
+  MULTI_POLYGON: 'MultiPolygon',
+  GEOMETRY_COLLECTION: 'GeometryCollection',
+  CIRCLE: 'Circle'
+};
+
+
+/**
+ * The coordinate layout for geometries, indicating whether a 3rd or 4th z ('Z')
+ * or measure ('M') coordinate is available. Supported values are `'XY'`,
+ * `'XYZ'`, `'XYM'`, `'XYZM'`.
+ * @enum {string}
+ * @todo api
+ */
+ol.geom.GeometryLayout = {
+  XY: 'XY',
+  XYZ: 'XYZ',
+  XYM: 'XYM',
+  XYZM: 'XYZM'
+};
+>>>>>>> ConectaDF
 
 
 
 /**
  * @constructor
+<<<<<<< HEAD
  * @extends {ol.geom.SimpleGeometry}
  * @param {ol.geom.RawPoint} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
@@ -47412,6 +48853,44 @@ ol.geom.Point.prototype.closestPointXY =
   }
 };
 
+=======
+ * @extends {ol.Observable}
+ * @todo api
+ */
+ol.geom.Geometry = function() {
+
+  goog.base(this);
+
+  /**
+   * @protected
+   * @type {ol.Extent|undefined}
+   */
+  this.extent = undefined;
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.extentRevision = -1;
+
+  /**
+   * @protected
+   * @type {Object.<string, ol.geom.Geometry>}
+   */
+  this.simplifiedGeometryCache = {};
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.simplifiedGeometryMaxMinSquaredTolerance = 0;
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.simplifiedGeometryRevision = 0;
+>>>>>>> ConectaDF
 
 /**
  * @return {ol.geom.RawPoint} Coordinates.
@@ -47420,11 +48899,17 @@ ol.geom.Point.prototype.closestPointXY =
 ol.geom.Point.prototype.getCoordinates = function() {
   return this.flatCoordinates.slice();
 };
+<<<<<<< HEAD
+=======
+goog.inherits(ol.geom.Geometry, ol.Observable);
+>>>>>>> ConectaDF
 
 
 /**
- * @inheritDoc
+ * @function
+ * @return {ol.geom.Geometry} Clone.
  */
+<<<<<<< HEAD
 ol.geom.Point.prototype.getExtent = function(opt_extent) {
   if (this.extentRevision != this.getRevision()) {
     this.extent = ol.extent.createOrUpdateFromCoordinate(
@@ -47472,6 +48957,32 @@ ol.geom.Point.prototype.setCoordinates = function(coordinates, opt_layout) {
 ol.geom.Point.prototype.setFlatCoordinates = function(layout, flatCoordinates) {
   this.setFlatCoordinatesInternal(layout, flatCoordinates);
   this.dispatchChangeEvent();
+=======
+ol.geom.Geometry.prototype.clone = goog.abstractMethod;
+
+
+/**
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @param {ol.Coordinate} closestPoint Closest point.
+ * @param {number} minSquaredDistance Minimum squared distance.
+ * @return {number} Minimum squared distance.
+ */
+ol.geom.Geometry.prototype.closestPointXY = goog.abstractMethod;
+
+
+/**
+ * @param {ol.Coordinate} point Point.
+ * @param {ol.Coordinate=} opt_closestPoint Closest point.
+ * @return {ol.Coordinate} Closest point.
+ * @todo api
+ */
+ol.geom.Geometry.prototype.getClosestPoint = function(point, opt_closestPoint) {
+  var closestPoint = goog.isDef(opt_closestPoint) ?
+      opt_closestPoint : [NaN, NaN];
+  this.closestPointXY(point[0], point[1], closestPoint, Infinity);
+  return closestPoint;
+>>>>>>> ConectaDF
 };
 goog.provide('ol.geom.flat.contains');
 
@@ -47479,6 +48990,7 @@ goog.require('goog.asserts');
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {number} end End.
@@ -47705,6 +49217,74 @@ ol.geom.Polygon = function(coordinates, opt_layout) {
    * @type {ol.Coordinate}
    */
   this.flatInteriorPoint_ = null;
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @return {boolean} Contains coordinate.
+ */
+ol.geom.Geometry.prototype.containsCoordinate = function(coordinate) {
+  return this.containsXY(coordinate[0], coordinate[1]);
+};
+
+
+/**
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @return {boolean} Contains (x, y).
+ */
+ol.geom.Geometry.prototype.containsXY = goog.functions.FALSE;
+
+
+/**
+ * Get the extent of the geometry.
+ * @function
+ * @param {ol.Extent=} opt_extent Extent.
+ * @return {ol.Extent} extent Extent.
+ * @todo api
+ */
+ol.geom.Geometry.prototype.getExtent = goog.abstractMethod;
+
+
+/**
+ * @function
+ * @param {number} squaredTolerance Squared tolerance.
+ * @return {ol.geom.Geometry} Simplified geometry.
+ */
+ol.geom.Geometry.prototype.getSimplifiedGeometry = goog.abstractMethod;
+
+
+/**
+ * @function
+ * @return {ol.geom.GeometryType} Geometry type.
+ */
+ol.geom.Geometry.prototype.getType = goog.abstractMethod;
+
+
+/**
+ * Apply a transform function to the geometry.  Modifies the geometry in place.
+ * @function
+ * @param {ol.TransformFunction} transformFn Transform.
+ * @todo api
+ */
+ol.geom.Geometry.prototype.applyTransform = goog.abstractMethod;
+
+
+/**
+ * Transform a geometry from one coordinate reference system to another.
+ * Modifies the geometry in place.
+ *
+ * @param {ol.proj.ProjectionLike} source The current projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @param {ol.proj.ProjectionLike} destination The desired projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @return {ol.geom.Geometry} This geometry.  Note that original geometry is
+ *     modified in place.
+ * @todo api
+ */
+ol.geom.Geometry.prototype.transform = function(source, destination) {
+  this.applyTransform(ol.proj.getTransform(source, destination));
+  return this;
+};
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -47712,11 +49292,18 @@ ol.geom.Polygon = function(coordinates, opt_layout) {
    */
   this.maxDelta_ = -1;
 
+<<<<<<< HEAD
   /**
    * @private
    * @type {number}
    */
   this.maxDeltaRevision_ = -1;
+=======
+/**
+ * @typedef {ol.Coordinate}
+ */
+ol.geom.RawPoint;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -47733,6 +49320,7 @@ ol.geom.Polygon = function(coordinates, opt_layout) {
   this.setCoordinates(coordinates,
       /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
 
+<<<<<<< HEAD
 };
 goog.inherits(ol.geom.Polygon, ol.geom.SimpleGeometry);
 
@@ -47811,18 +49399,110 @@ ol.geom.Polygon.prototype.getArea = function() {
 ol.geom.Polygon.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinatess(
       this.flatCoordinates, 0, this.ends_, this.stride);
+=======
+/**
+ * @typedef {Array.<ol.Coordinate>}
+ */
+ol.geom.RawLineString;
+
+
+/**
+ * @typedef {Array.<ol.Coordinate>}
+ *
+ */
+ol.geom.RawLinearRing;
+
+
+/**
+ * @typedef {Array.<ol.geom.RawLinearRing>}
+ */
+ol.geom.RawPolygon;
+
+
+/**
+ * @typedef {Array.<ol.geom.RawPoint>}
+ */
+ol.geom.RawMultiPoint;
+
+
+/**
+ * @typedef {Array.<ol.geom.RawLineString>}
+ */
+ol.geom.RawMultiLineString;
+
+
+/**
+ * @typedef {Array.<ol.geom.RawPolygon>}
+ */
+ol.geom.RawMultiPolygon;
+goog.provide('ol.style.Style');
+
+goog.require('ol.style.Fill');
+goog.require('ol.style.Image');
+
+
+
+/**
+ * @constructor
+ * @param {olx.style.StyleOptions=} opt_options Style options.
+ * @todo api
+ */
+ol.style.Style = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @private
+   * @type {ol.style.Fill}
+   */
+  this.fill_ = goog.isDef(options.fill) ? options.fill : null;
+
+  /**
+   * @private
+   * @type {ol.style.Image}
+   */
+  this.image_ = goog.isDef(options.image) ? options.image : null;
+
+  /**
+   * @private
+   * @type {ol.style.Stroke}
+   */
+  this.stroke_ = goog.isDef(options.stroke) ? options.stroke : null;
+
+  /**
+   * @private
+   * @type {ol.style.Text}
+   */
+  this.text_ = goog.isDef(options.text) ? options.text : null;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.zIndex_ = options.zIndex;
+
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<number>} Ends.
  */
 ol.geom.Polygon.prototype.getEnds = function() {
   return this.ends_;
+=======
+ * @return {ol.style.Fill} Fill style.
+ * @todo api
+ */
+ol.style.Style.prototype.getFill = function() {
+  return this.fill_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<number>} Interior point.
  */
 ol.geom.Polygon.prototype.getFlatInteriorPoint = function() {
@@ -47834,19 +49514,35 @@ ol.geom.Polygon.prototype.getFlatInteriorPoint = function() {
     this.flatInteriorPointRevision_ = this.getRevision();
   }
   return this.flatInteriorPoint_;
+=======
+ * @return {ol.style.Image} Image style.
+ * @todo api
+ */
+ol.style.Style.prototype.getImage = function() {
+  return this.image_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.geom.Point} Interior point.
  * @todo api
  */
 ol.geom.Polygon.prototype.getInteriorPoint = function() {
   return new ol.geom.Point(this.getFlatInteriorPoint());
+=======
+ * @return {ol.style.Stroke} Stroke style.
+ * @todo api
+ */
+ol.style.Style.prototype.getStroke = function() {
+  return this.stroke_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} index Index.
  * @return {ol.geom.LinearRing} Linear ring.
  * @todo api
@@ -47860,10 +49556,18 @@ ol.geom.Polygon.prototype.getLinearRing = function(index) {
   linearRing.setFlatCoordinates(this.layout, this.flatCoordinates.slice(
       index === 0 ? 0 : this.ends_[index - 1], this.ends_[index]));
   return linearRing;
+=======
+ * @return {ol.style.Text} Text style.
+ * @todo api
+ */
+ol.style.Style.prototype.getText = function() {
+  return this.text_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<ol.geom.LinearRing>} Linear rings.
  * @todo api
  */
@@ -47904,9 +49608,32 @@ ol.geom.Polygon.prototype.getOrientedFlatCoordinates = function() {
   }
   return this.orientedFlatCoordinates_;
 };
+=======
+ * @return {number|undefined} ZIndex.
+ * @todo api
+ */
+ol.style.Style.prototype.getZIndex = function() {
+  return this.zIndex_;
+};
+goog.provide('ol.Feature');
+goog.provide('ol.feature');
+
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.functions');
+goog.require('ol.Object');
+goog.require('ol.geom.Geometry');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.style.Circle');
+goog.require('ol.style.Fill');
+goog.require('ol.style.Stroke');
+goog.require('ol.style.Style');
+>>>>>>> ConectaDF
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.Polygon.prototype.getSimplifiedGeometryInternal =
@@ -47971,10 +49698,95 @@ ol.geom.Polygon.prototype.setFlatCoordinates =
   this.setFlatCoordinatesInternal(layout, flatCoordinates);
   this.ends_ = ends;
   this.dispatchChangeEvent();
+=======
+ * @constructor
+ * @extends {ol.Object}
+ * @param {ol.geom.Geometry|Object.<string, *>=} opt_geometryOrValues
+ *     Values or geometry.
+ * @todo api
+ */
+ol.Feature = function(opt_geometryOrValues) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {number|string|undefined}
+   */
+  this.id_ = undefined;
+
+  /**
+   * @type {string}
+   * @private
+   */
+  this.geometryName_ = 'geometry';
+
+  /**
+   * User provided style.
+   * @private
+   * @type {ol.style.Style|Array.<ol.style.Style>|
+   *     ol.feature.FeatureStyleFunction}
+   */
+  this.style_ = null;
+
+  /**
+   * @private
+   * @type {ol.feature.FeatureStyleFunction|undefined}
+   */
+  this.styleFunction_ = undefined;
+
+  /**
+   * @private
+   * @type {goog.events.Key}
+   */
+  this.geometryChangeKey_ = null;
+
+  goog.events.listen(
+      this, ol.Object.getChangeEventType(this.geometryName_),
+      this.handleGeometryChanged_, false, this);
+
+  if (goog.isDefAndNotNull(opt_geometryOrValues)) {
+    if (opt_geometryOrValues instanceof ol.geom.Geometry) {
+      var geometry = /** @type {ol.geom.Geometry} */ (opt_geometryOrValues);
+      this.setGeometry(geometry);
+    } else {
+      goog.asserts.assert(goog.isObject(opt_geometryOrValues));
+      var values = /** @type {Object.<string, *>} */ (opt_geometryOrValues);
+      this.setValues(values);
+    }
+  } else {
+    this.setGeometry(null);
+  }
+};
+goog.inherits(ol.Feature, ol.Object);
+
+
+/**
+ * @return {ol.geom.Geometry|undefined} Geometry.
+ * @todo api
+ */
+ol.Feature.prototype.getGeometry = function() {
+  return /** @type {ol.geom.Geometry|undefined} */ (
+      this.get(this.geometryName_));
+};
+goog.exportProperty(
+    ol.Feature.prototype,
+    'getGeometry',
+    ol.Feature.prototype.getGeometry);
+
+
+/**
+ * @return {number|string|undefined} Id.
+ * @todo api
+ */
+ol.Feature.prototype.getId = function() {
+  return this.id_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Create an approximation of a circle on the surface of a sphere.
  * @param {ol.Sphere} sphere The sphere.
  * @param {ol.Coordinate} center Center.
@@ -48012,10 +49824,28 @@ ol.render.ReplayType = {
   LINE_STRING: 'LineString',
   POLYGON: 'Polygon',
   TEXT: 'Text'
+=======
+ * @return {string} Geometry property name.
+ * @todo api
+ */
+ol.Feature.prototype.getGeometryName = function() {
+  return this.geometryName_;
 };
 
 
 /**
+ * @return {ol.style.Style|Array.<ol.style.Style>|
+ *     ol.feature.FeatureStyleFunction} User provided style.
+ * @todo api
+ */
+ol.Feature.prototype.getStyle = function() {
+  return this.style_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @const
  * @type {Array.<ol.render.ReplayType>}
  */
@@ -48032,17 +49862,49 @@ ol.render.REPLAY_ORDER = [
  * @interface
  */
 ol.render.IReplayGroup = function() {
+=======
+ * @return {ol.feature.FeatureStyleFunction|undefined} Style function.
+ * @todo api
+ */
+ol.Feature.prototype.getStyleFunction = function() {
+  return this.styleFunction_;
 };
 
 
 /**
+ * @private
+ */
+ol.Feature.prototype.handleGeometryChange_ = function() {
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * FIXME empty description for jsdoc
  */
 ol.render.IReplayGroup.prototype.finish = function() {
+=======
+ * @private
+ */
+ol.Feature.prototype.handleGeometryChanged_ = function() {
+  if (!goog.isNull(this.geometryChangeKey_)) {
+    goog.events.unlistenByKey(this.geometryChangeKey_);
+    this.geometryChangeKey_ = null;
+  }
+  var geometry = this.getGeometry();
+  if (goog.isDefAndNotNull(geometry)) {
+    this.geometryChangeKey_ = goog.events.listen(geometry,
+        goog.events.EventType.CHANGE, this.handleGeometryChange_, false, this);
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number|undefined} zIndex Z index.
  * @param {ol.render.ReplayType} replayType Replay type.
  * @return {ol.render.IVectorContext} Replay.
@@ -48055,6 +49917,29 @@ ol.render.IReplayGroup.prototype.getReplay = function(zIndex, replayType) {
  * @return {boolean} Is empty.
  */
 ol.render.IReplayGroup.prototype.isEmpty = function() {
+=======
+ * @param {ol.geom.Geometry|undefined} geometry Geometry.
+ * @todo api
+ */
+ol.Feature.prototype.setGeometry = function(geometry) {
+  this.set(this.geometryName_, geometry);
+};
+goog.exportProperty(
+    ol.Feature.prototype,
+    'setGeometry',
+    ol.Feature.prototype.setGeometry);
+
+
+/**
+ * @param {ol.style.Style|Array.<ol.style.Style>|
+ *     ol.feature.FeatureStyleFunction} style Feature style.
+ * @todo api
+ */
+ol.Feature.prototype.setStyle = function(style) {
+  this.style_ = style;
+  this.styleFunction_ = ol.feature.createFeatureStyleFunction(style);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
 };
 goog.provide('ol.geom.MultiPoint');
 
@@ -48072,6 +49957,7 @@ goog.require('ol.math');
 
 
 /**
+<<<<<<< HEAD
  * @constructor
  * @extends {ol.geom.SimpleGeometry}
  * @param {ol.geom.RawMultiPoint} coordinates Coordinates.
@@ -48098,10 +49984,18 @@ ol.geom.MultiPoint.prototype.appendPoint = function(point) {
     ol.array.safeExtend(this.flatCoordinates, point.getFlatCoordinates());
   }
   this.dispatchChangeEvent();
+=======
+ * @param {number|string|undefined} id Id.
+ * @todo api
+ */
+ol.Feature.prototype.setId = function(id) {
+  this.id_ = id;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -48109,10 +50003,25 @@ ol.geom.MultiPoint.prototype.clone = function() {
   var multiPoint = new ol.geom.MultiPoint(null);
   multiPoint.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
   return multiPoint;
+=======
+ * @param {string} name Geometry property name.
+ * @todo api
+ */
+ol.Feature.prototype.setGeometryName = function(name) {
+  goog.events.unlisten(
+      this, ol.Object.getChangeEventType(this.geometryName_),
+      this.handleGeometryChanged_, false, this);
+  this.geometryName_ = name;
+  goog.events.listen(
+      this, ol.Object.getChangeEventType(this.geometryName_),
+      this.handleGeometryChanged_, false, this);
+  this.handleGeometryChanged_();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.MultiPoint.prototype.closestPointXY =
@@ -48146,10 +50055,59 @@ ol.geom.MultiPoint.prototype.closestPointXY =
 ol.geom.MultiPoint.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinates(
       this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+=======
+ * A function that takes a `{number}` representing the view's resolution. It
+ * returns an Array of {@link ol.style.Style}. This way individual features
+ * can be styled. The this keyword inside the function references the
+ * {@link ol.Feature} to be styled.
+ *
+ * @typedef {function(this: ol.Feature, number): Array.<ol.style.Style>}
+ * @todo api
+ */
+ol.feature.FeatureStyleFunction;
+
+
+/**
+ * Default style function for features.
+ * @param {number} resolution Resolution.
+ * @return {Array.<ol.style.Style>} Style.
+ * @this {ol.Feature}
+ */
+ol.feature.defaultFeatureStyleFunction = function(resolution) {
+  var fill = new ol.style.Fill({
+    color: 'rgba(255,255,255,0.4)'
+  });
+  var stroke = new ol.style.Stroke({
+    color: '#3399CC',
+    width: 1.25
+  });
+  var styles = [
+    new ol.style.Style({
+      image: new ol.style.Circle({
+        fill: fill,
+        stroke: stroke,
+        radius: 5
+      }),
+      fill: fill,
+      stroke: stroke
+    })
+  ];
+
+  // now that we've run it the first time,
+  // replace the function with a constant version
+  ol.feature.defaultFeatureStyleFunction =
+      /** @type {function(this:ol.Feature):Array.<ol.style.Style>} */(
+      function(resolution) {
+        return styles;
+      });
+
+  return styles;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} index Index.
  * @return {ol.geom.Point} Point.
  * @todo api
@@ -48185,19 +50143,76 @@ ol.geom.MultiPoint.prototype.getPoints = function() {
     points.push(point);
   }
   return points;
+=======
+ * A function that takes an {@link ol.Feature} and a `{number}` representing
+ * the view's resolution. The function should return an array of
+ * {@link ol.style.Style}. This way e.g. a vector layer can be styled.
+ *
+ * @typedef {function(ol.Feature, number): Array.<ol.style.Style>}
+ * @todo api
+ */
+ol.feature.StyleFunction;
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @param {number} resolution Resolution.
+ * @return {Array.<ol.style.Style>} Style.
+ */
+ol.feature.defaultStyleFunction = function(feature, resolution) {
+  var featureStyleFunction = feature.getStyleFunction();
+  if (!goog.isDef(featureStyleFunction)) {
+    featureStyleFunction = ol.feature.defaultFeatureStyleFunction;
+  }
+  return featureStyleFunction.call(feature, resolution);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
 ol.geom.MultiPoint.prototype.getType = function() {
   return ol.geom.GeometryType.MULTI_POINT;
+=======
+ * Convert the provided object into a feature style function.  Functions passed
+ * through unchanged.  Arrays of ol.style.Style or single style objects wrapped
+ * in a new feature style function.
+ * @param {ol.feature.FeatureStyleFunction|Array.<ol.style.Style>|
+ *     ol.style.Style} obj A feature style function, a single style, or an array
+ *     of styles.
+ * @return {ol.feature.FeatureStyleFunction} A style function.
+ */
+ol.feature.createFeatureStyleFunction = function(obj) {
+  /**
+   * @type {ol.feature.FeatureStyleFunction}
+   */
+  var styleFunction;
+
+  if (goog.isFunction(obj)) {
+    styleFunction = /** @type {ol.feature.FeatureStyleFunction} */ (obj);
+  } else {
+    /**
+     * @type {Array.<ol.style.Style>}
+     */
+    var styles;
+    if (goog.isArray(obj)) {
+      styles = obj;
+    } else {
+      goog.asserts.assertInstanceof(obj, ol.style.Style);
+      styles = [obj];
+    }
+    styleFunction = goog.functions.constant(styles);
+  }
+  return styleFunction;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawMultiPoint} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
  * @todo api
@@ -48214,11 +50229,42 @@ ol.geom.MultiPoint.prototype.setCoordinates =
     this.flatCoordinates.length = ol.geom.flat.deflate.coordinates(
         this.flatCoordinates, 0, coordinates, this.stride);
     this.dispatchChangeEvent();
+=======
+ * Convert the provided object into a style function.  Functions passed through
+ * unchanged.  Arrays of ol.style.Style or single style objects wrapped in a
+ * new style function.
+ * @param {ol.feature.StyleFunction|Array.<ol.style.Style>|ol.style.Style} obj
+ *     A style function, a single style, or an array of styles.
+ * @return {ol.feature.StyleFunction} A style function.
+ */
+ol.feature.createStyleFunction = function(obj) {
+  /**
+   * @type {ol.feature.StyleFunction}
+   */
+  var styleFunction;
+
+  if (goog.isFunction(obj)) {
+    styleFunction = /** @type {ol.feature.StyleFunction} */ (obj);
+  } else {
+    /**
+     * @type {Array.<ol.style.Style>}
+     */
+    var styles;
+    if (goog.isArray(obj)) {
+      styles = obj;
+    } else {
+      goog.asserts.assertInstanceof(obj, ol.style.Style);
+      styles = [obj];
+    }
+    styleFunction = goog.functions.constant(styles);
+>>>>>>> ConectaDF
   }
+  return styleFunction;
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.GeometryLayout} layout Layout.
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  */
@@ -48291,6 +50337,124 @@ ol.geom.MultiPolygon = function(coordinates, opt_layout) {
    * @private
    */
   this.endss_ = [];
+=======
+ * Default styles for editing features.
+ * @return {Object.<ol.geom.GeometryType, Array.<ol.style.Style>>} Styles
+ */
+ol.feature.createDefaultEditingStyles = function() {
+  /** @type {Object.<ol.geom.GeometryType, Array.<ol.style.Style>>} */
+  var styles = {};
+  var white = [255, 255, 255, 1];
+  var blue = [0, 153, 255, 1];
+  var width = 3;
+  styles[ol.geom.GeometryType.POLYGON] = [
+    new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: [255, 255, 255, 0.5]
+      })
+    })
+  ];
+  styles[ol.geom.GeometryType.MULTI_POLYGON] =
+      styles[ol.geom.GeometryType.POLYGON];
+
+  styles[ol.geom.GeometryType.LINE_STRING] = [
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: white,
+        width: width + 2
+      })
+    }),
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: blue,
+        width: width
+      })
+    })
+  ];
+  styles[ol.geom.GeometryType.MULTI_LINE_STRING] =
+      styles[ol.geom.GeometryType.LINE_STRING];
+
+  styles[ol.geom.GeometryType.POINT] = [
+    new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: width * 2,
+        fill: new ol.style.Fill({
+          color: blue
+        }),
+        stroke: new ol.style.Stroke({
+          color: white,
+          width: width / 2
+        })
+      }),
+      zIndex: Infinity
+    })
+  ];
+  styles[ol.geom.GeometryType.MULTI_POINT] =
+      styles[ol.geom.GeometryType.POINT];
+
+  styles[ol.geom.GeometryType.GEOMETRY_COLLECTION] =
+      styles[ol.geom.GeometryType.POLYGON].concat(
+          styles[ol.geom.GeometryType.POINT]
+      );
+
+  return styles;
+};
+goog.provide('ol.layer.Vector');
+
+goog.require('goog.array');
+goog.require('goog.object');
+goog.require('ol.feature');
+goog.require('ol.layer.Layer');
+
+
+/**
+ * @enum {string}
+ */
+ol.layer.VectorProperty = {
+  RENDER_ORDER: 'renderOrder'
+};
+
+
+
+/**
+ *
+ * @constructor
+ * @extends {ol.layer.Layer}
+ * @fires {@link ol.render.Event} ol.render.Event
+ * @param {olx.layer.VectorOptions=} opt_options Options.
+ * @todo api
+ */
+ol.layer.Vector = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ?
+      opt_options : /** @type {olx.layer.VectorOptions} */ ({});
+
+  var baseOptions = goog.object.clone(options);
+
+  delete baseOptions.style;
+  goog.base(this, /** @type {olx.layer.LayerOptions} */ (baseOptions));
+
+  /**
+   * User provided style.
+   * @type {ol.style.Style|Array.<ol.style.Style>|ol.feature.StyleFunction}
+   * @private
+   */
+  this.style_ = null;
+
+  /**
+   * Style function for use within the library.
+   * @type {ol.feature.StyleFunction|undefined}
+   * @private
+   */
+  this.styleFunction_ = undefined;
+
+  if (goog.isDef(options.style)) {
+    this.setStyle(options.style);
+  }
+
+};
+goog.inherits(ol.layer.Vector, ol.layer.Layer);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -48331,6 +50495,7 @@ ol.geom.MultiPolygon = function(coordinates, opt_layout) {
   this.setCoordinates(coordinates,
       /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
 
+<<<<<<< HEAD
 };
 goog.inherits(ol.geom.MultiPolygon, ol.geom.SimpleGeometry);
 
@@ -48358,10 +50523,32 @@ ol.geom.MultiPolygon.prototype.appendPolygon = function(polygon) {
   }
   this.endss_.push(ends);
   this.dispatchChangeEvent();
+=======
+/**
+ * @return {function(ol.Feature, ol.Feature): number|null|undefined} Render
+ *     order.
+ */
+ol.layer.Vector.prototype.getRenderOrder = function() {
+  return /** @type {function(ol.Feature, ol.Feature):number|null|undefined} */ (
+      this.get(ol.layer.VectorProperty.RENDER_ORDER));
 };
 
 
 /**
+ * Get the style for features.  This returns whatever was passed to the `style`
+ * option at construction or to the `setStyle` method.
+ * @return {ol.style.Style|Array.<ol.style.Style>|ol.feature.StyleFunction}
+ *     Layer style.
+ * @todo api
+ */
+ol.layer.Vector.prototype.getStyle = function() {
+  return this.style_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -48370,10 +50557,19 @@ ol.geom.MultiPolygon.prototype.clone = function() {
   multiPolygon.setFlatCoordinates(
       this.layout, this.flatCoordinates.slice(), this.endss_.slice());
   return multiPolygon;
+=======
+ * Get the style function.
+ * @return {ol.feature.StyleFunction|undefined} Layer style function.
+ * @todo api
+ */
+ol.layer.Vector.prototype.getStyleFunction = function() {
+  return this.styleFunction_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.MultiPolygon.prototype.closestPointXY =
@@ -48390,10 +50586,18 @@ ol.geom.MultiPolygon.prototype.closestPointXY =
   return ol.geom.flat.closest.getssClosestPoint(
       this.getOrientedFlatCoordinates(), 0, this.endss_, this.stride,
       this.maxDelta_, true, x, y, closestPoint, minSquaredDistance);
+=======
+ * @param {function(ol.Feature, ol.Feature):number|null|undefined} renderOrder
+ *     Render order.
+ */
+ol.layer.Vector.prototype.setRenderOrder = function(renderOrder) {
+  this.set(ol.layer.VectorProperty.RENDER_ORDER, renderOrder);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.MultiPolygon.prototype.containsXY = function(x, y) {
@@ -48420,9 +50624,44 @@ ol.geom.MultiPolygon.prototype.getCoordinates = function() {
   return ol.geom.flat.inflate.coordinatesss(
       this.flatCoordinates, 0, this.endss_, this.stride);
 };
+=======
+ * Set the style for features.  This can be a single style object, an array
+ * of styles, or a function that takes a feature and resolution and returns
+ * an array of styles.
+ * @param {ol.style.Style|Array.<ol.style.Style>|ol.feature.StyleFunction} style
+ *     Layer style.
+ * @todo api
+ */
+ol.layer.Vector.prototype.setStyle = function(style) {
+  this.style_ = style;
+  this.styleFunction_ = ol.feature.createStyleFunction(style);
+  this.dispatchChangeEvent();
+};
+goog.provide('ol.source.Image');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.Attribution');
+goog.require('ol.Extent');
+goog.require('ol.Image');
+goog.require('ol.array');
+goog.require('ol.source.Source');
 
 
 /**
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *            extent: (null|ol.Extent|undefined),
+ *            logo: (string|undefined),
+ *            projection: ol.proj.ProjectionLike,
+ *            resolutions: (Array.<number>|undefined),
+ *            state: (ol.source.State|string|undefined)}}
+ */
+ol.source.ImageOptions;
+>>>>>>> ConectaDF
+
+
+/**
+<<<<<<< HEAD
  * @return {Array.<Array.<number>>} Endss.
  */
 ol.geom.MultiPolygon.prototype.getEndss = function() {
@@ -48476,10 +50715,48 @@ ol.geom.MultiPolygon.prototype.getOrientedFlatCoordinates = function() {
     this.orientedRevision_ = this.getRevision();
   }
   return this.orientedFlatCoordinates_;
+=======
+ * @constructor
+ * @extends {ol.source.Source}
+ * @param {ol.source.ImageOptions} options Single image source options.
+ */
+ol.source.Image = function(options) {
+
+  goog.base(this, {
+    attributions: options.attributions,
+    extent: options.extent,
+    logo: options.logo,
+    projection: options.projection,
+    state: options.state
+  });
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.resolutions_ = goog.isDef(options.resolutions) ?
+      options.resolutions : null;
+  goog.asserts.assert(goog.isNull(this.resolutions_) ||
+      goog.array.isSorted(this.resolutions_,
+          function(a, b) {
+            return b - a;
+          }, true));
+
+};
+goog.inherits(ol.source.Image, ol.source.Source);
+
+
+/**
+ * @return {Array.<number>} Resolutions.
+ */
+ol.source.Image.prototype.getResolutions = function() {
+  return this.resolutions_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.geom.MultiPolygon.prototype.getSimplifiedGeometryInternal =
@@ -48526,10 +50803,24 @@ ol.geom.MultiPolygon.prototype.getPolygon = function(index) {
   polygon.setFlatCoordinates(
       this.layout, this.flatCoordinates.slice(offset, end), ends);
   return polygon;
+=======
+ * @protected
+ * @param {number} resolution Resolution.
+ * @return {number} Resolution.
+ */
+ol.source.Image.prototype.findNearestResolution =
+    function(resolution) {
+  if (!goog.isNull(this.resolutions_)) {
+    var idx = ol.array.linearFindNearest(this.resolutions_, resolution, 0);
+    resolution = this.resolutions_[idx];
+  }
+  return resolution;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<ol.geom.Polygon>} Polygons.
  * @todo api
  */
@@ -48564,10 +50855,31 @@ ol.geom.MultiPolygon.prototype.getPolygons = function() {
  */
 ol.geom.MultiPolygon.prototype.getType = function() {
   return ol.geom.GeometryType.MULTI_POLYGON;
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {number} resolution Resolution.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {ol.proj.Projection} projection Projection.
+ * @return {ol.ImageBase} Single image.
+ */
+ol.source.Image.prototype.getImage = goog.abstractMethod;
+goog.provide('ol.IView2D');
+
+goog.require('ol.Coordinate');
+
+
+
+/**
+ * Interface for views.
+ * @interface
+ */
+ol.IView2D = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawMultiPolygon} coordinates Coordinates.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
  * @todo api
@@ -48588,10 +50900,16 @@ ol.geom.MultiPolygon.prototype.setCoordinates =
         0 : lastEnds[lastEnds.length - 1];
     this.dispatchChangeEvent();
   }
+=======
+ * @return {ol.Coordinate|undefined} Map center.
+ */
+ol.IView2D.prototype.getCenter = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.GeometryLayout} layout Layout.
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {Array.<Array.<number>>} endss Endss.
@@ -48609,10 +50927,16 @@ ol.geom.MultiPolygon.prototype.setFlatCoordinates =
   this.setFlatCoordinatesInternal(layout, flatCoordinates);
   this.endss_ = endss;
   this.dispatchChangeEvent();
+=======
+ * @return {ol.proj.Projection|undefined} Map projection.
+ */
+ol.IView2D.prototype.getProjection = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<ol.geom.Polygon>} polygons Polygons.
  */
 ol.geom.MultiPolygon.prototype.setPolygons = function(polygons) {
@@ -48662,11 +50986,24 @@ ol.geom.Circle = function(center, opt_radius, opt_layout) {
   var radius = goog.isDef(opt_radius) ? opt_radius : 0;
   this.setCenterAndRadius(center, radius,
       /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+=======
+ * @return {number|undefined} Map resolution.
+ */
+ol.IView2D.prototype.getResolution = function() {
+};
+
+
+/**
+ * @return {number|undefined} Map rotation.
+ */
+ol.IView2D.prototype.getRotation = function() {
+>>>>>>> ConectaDF
 };
 goog.inherits(ol.geom.Circle, ol.geom.SimpleGeometry);
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -48674,12 +51011,18 @@ ol.geom.Circle.prototype.clone = function() {
   var circle = new ol.geom.Circle(null);
   circle.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
   return circle;
+=======
+ * @return {oli.View2DState} View2D state.
+ */
+ol.IView2D.prototype.getView2DState = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
- * @inheritDoc
+ * @return {boolean} Is defined.
  */
+<<<<<<< HEAD
 ol.geom.Circle.prototype.closestPointXY =
     function(x, y, closestPoint, minSquaredDistance) {
   var flatCoordinates = this.flatCoordinates;
@@ -48716,19 +51059,44 @@ ol.geom.Circle.prototype.containsXY = function(x, y) {
   var dx = x - flatCoordinates[0];
   var dy = y - flatCoordinates[1];
   return dx * dx + dy * dy <= this.getRadiusSquared_();
+=======
+ol.IView2D.prototype.isDef = function() {
+};
+goog.provide('ol.IView3D');
+
+
+
+/**
+ * Interface for views.
+ * @interface
+ */
+ol.IView3D = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.geom.RawPoint} Center.
  * @todo api
  */
 ol.geom.Circle.prototype.getCenter = function() {
   return this.flatCoordinates.slice(0, this.stride);
+=======
+ * @return {boolean} Is defined.
+ */
+ol.IView3D.prototype.isDef = function() {
+>>>>>>> ConectaDF
 };
+goog.provide('ol.IView');
+
+goog.require('ol.IView2D');
+goog.require('ol.IView3D');
+
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
@@ -48744,19 +51112,32 @@ ol.geom.Circle.prototype.getExtent = function(opt_extent) {
   }
   goog.asserts.assert(goog.isDef(this.extent));
   return ol.extent.returnOrUpdate(this.extent, opt_extent);
+=======
+ * Interface for views. Currently {@link ol.View2D} is implemented.
+ * @interface
+ */
+ol.IView = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {number} Radius.
  * @todo api
  */
 ol.geom.Circle.prototype.getRadius = function() {
   return Math.sqrt(this.getRadiusSquared_());
+=======
+ * @return {ol.IView2D} View2D.
+ */
+ol.IView.prototype.getView2D = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @private
  * @return {number} Radius squared.
  */
@@ -48764,28 +51145,56 @@ ol.geom.Circle.prototype.getRadiusSquared_ = function() {
   var dx = this.flatCoordinates[this.stride] - this.flatCoordinates[0];
   var dy = this.flatCoordinates[this.stride + 1] - this.flatCoordinates[1];
   return dx * dx + dy * dy;
+=======
+ * @return {ol.IView3D} View3D.
+ */
+ol.IView.prototype.getView3D = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
 ol.geom.Circle.prototype.getSimplifiedGeometry = function(squaredTolerance) {
   return this;
+=======
+ * @return {boolean} Is defined.
+ */
+ol.IView.prototype.isDef = function() {
+>>>>>>> ConectaDF
 };
+goog.provide('ol.View');
+goog.provide('ol.ViewHint');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.IView');
+goog.require('ol.Object');
 
 
 /**
+<<<<<<< HEAD
  * @inheritDoc
  * @todo api
  */
 ol.geom.Circle.prototype.getType = function() {
   return ol.geom.GeometryType.CIRCLE;
+=======
+ * @enum {number}
+ */
+ol.ViewHint = {
+  ANIMATING: 0,
+  INTERACTING: 1
+>>>>>>> ConectaDF
 };
 
 
+
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawPoint} center Center.
  * @todo api
  */
@@ -48800,10 +51209,28 @@ ol.geom.Circle.prototype.setCenter = function(center) {
     flatCoordinates[stride + i] = center[i];
   }
   this.setFlatCoordinates(this.layout, flatCoordinates);
+=======
+ * @constructor
+ * @implements {ol.IView}
+ * @extends {ol.Object}
+ */
+ol.View = function() {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.hints_ = [0, 0];
+
+>>>>>>> ConectaDF
 };
+goog.inherits(ol.View, ol.Object);
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.RawPoint} center Center.
  * @param {number} radius Radius.
  * @param {ol.geom.GeometryLayout=} opt_layout Layout.
@@ -48830,10 +51257,17 @@ ol.geom.Circle.prototype.setCenterAndRadius =
     flatCoordinates.length = offset;
     this.dispatchChangeEvent();
   }
+=======
+ * @return {Array.<number>} Hint.
+ */
+ol.View.prototype.getHints = function() {
+  return goog.array.clone(this.hints_);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.geom.GeometryLayout} layout Layout.
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  */
@@ -48841,10 +51275,19 @@ ol.geom.Circle.prototype.setFlatCoordinates =
     function(layout, flatCoordinates) {
   this.setFlatCoordinatesInternal(layout, flatCoordinates);
   this.dispatchChangeEvent();
+=======
+ * @inheritDoc
+ */
+ol.View.prototype.getView2D = function() {
+  // FIXME for some reason, we can't use goog.abstractMethod here
+  goog.asserts.fail();
+  return null;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} radius Radius.
  * @todo api
  */
@@ -48852,12 +51295,21 @@ ol.geom.Circle.prototype.setRadius = function(radius) {
   goog.asserts.assert(!goog.isNull(this.flatCoordinates));
   this.flatCoordinates[this.stride] = this.flatCoordinates[0] + radius;
   this.dispatchChangeEvent();
+=======
+ * @inheritDoc
+ */
+ol.View.prototype.getView3D = function() {
+  // FIXME for some reason, we can't use goog.abstractMethod here
+  goog.asserts.fail();
+  return null;
+>>>>>>> ConectaDF
 };
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
 ol.geom.Circle.prototype.applyTransform = goog.abstractMethod;
 goog.provide('ol.renderer.vector');
 
@@ -48952,10 +51404,93 @@ ol.renderer.vector.renderFeature = function(
     }
   }
   return loading;
+=======
+ol.View.prototype.isDef = function() {
+  // FIXME for some reason, we can't use goog.abstractMethod here
+  goog.asserts.fail();
+  return false;
 };
 
 
 /**
+ * @param {ol.ViewHint} hint Hint.
+ * @param {number} delta Delta.
+ * @return {number} New value.
+ */
+ol.View.prototype.setHint = function(hint, delta) {
+  goog.asserts.assert(0 <= hint && hint < this.hints_.length);
+  this.hints_[hint] += delta;
+  goog.asserts.assert(this.hints_[hint] >= 0);
+  return this.hints_[hint];
+};
+goog.provide('ol.renderer.canvas.ImageLayer');
+
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.vec.Mat4');
+goog.require('ol.ImageBase');
+goog.require('ol.ImageState');
+goog.require('ol.ViewHint');
+goog.require('ol.layer.Image');
+goog.require('ol.renderer.Map');
+goog.require('ol.renderer.canvas.Layer');
+goog.require('ol.source.Image');
+goog.require('ol.vec.Mat4');
+
+
+
+/**
+ * @constructor
+ * @extends {ol.renderer.canvas.Layer}
+ * @param {ol.renderer.Map} mapRenderer Map renderer.
+ * @param {ol.layer.Image} imageLayer Single image layer.
+ */
+ol.renderer.canvas.ImageLayer = function(mapRenderer, imageLayer) {
+
+  goog.base(this, mapRenderer, imageLayer);
+
+  /**
+   * @private
+   * @type {?ol.ImageBase}
+   */
+  this.image_ = null;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.imageTransform_ = goog.vec.Mat4.createNumber();
+
+};
+goog.inherits(ol.renderer.canvas.ImageLayer, ol.renderer.canvas.Layer);
+
+
+/**
+ * @inheritDoc
+ */
+ol.renderer.canvas.ImageLayer.prototype.forEachFeatureAtPixel =
+    function(coordinate, frameState, callback, thisArg) {
+  var layer = this.getLayer();
+  var source = layer.getSource();
+  goog.asserts.assertInstanceof(source, ol.source.Image);
+  var extent = frameState.extent;
+  var resolution = frameState.view2DState.resolution;
+  var rotation = frameState.view2DState.rotation;
+  return source.forEachFeatureAtPixel(extent, resolution, rotation, coordinate,
+      /**
+       * @param {ol.Feature} feature Feature.
+       * @return {?} Callback result.
+       */
+      function(feature) {
+        return callback.call(thisArg, feature, layer);
+      });
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @param {ol.render.IReplayGroup} replayGroup Replay group.
  * @param {ol.Feature} feature Feature.
  * @param {ol.style.Style} style Style.
@@ -48974,10 +51509,18 @@ ol.renderer.vector.renderFeature_ = function(
       ol.renderer.vector.GEOMETRY_RENDERERS_[simplifiedGeometry.getType()];
   goog.asserts.assert(goog.isDef(geometryRenderer));
   geometryRenderer(replayGroup, simplifiedGeometry, style, data);
+=======
+ * @inheritDoc
+ */
+ol.renderer.canvas.ImageLayer.prototype.getImage = function() {
+  return goog.isNull(this.image_) ?
+      null : this.image_.getImageElement();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.render.IReplayGroup} replayGroup Replay group.
  * @param {ol.geom.Geometry} geometry Geometry.
  * @param {ol.style.Style} style Style.
@@ -48995,10 +51538,17 @@ ol.renderer.vector.renderGeometryCollectionGeometry_ =
     goog.asserts.assert(goog.isDef(geometryRenderer));
     geometryRenderer(replayGroup, geometries[i], style, data);
   }
+=======
+ * @inheritDoc
+ */
+ol.renderer.canvas.ImageLayer.prototype.getImageTransform = function() {
+  return this.imageTransform_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.render.IReplayGroup} replayGroup Replay group.
  * @param {ol.geom.Geometry} geometry Geometry.
  * @param {ol.style.Style} style Style.
@@ -49138,8 +51688,26 @@ ol.renderer.vector.renderMultiPointGeometry_ =
         geometry.getStride(), geometry, data);
   }
 };
+=======
+ * @inheritDoc
+ */
+ol.renderer.canvas.ImageLayer.prototype.prepareFrame =
+    function(frameState, layerState) {
 
+  var pixelRatio = frameState.pixelRatio;
+  var view2DState = frameState.view2DState;
+  var viewCenter = view2DState.center;
+  var viewResolution = view2DState.resolution;
+  var viewRotation = view2DState.rotation;
+>>>>>>> ConectaDF
 
+  var image;
+  var imageLayer = this.getLayer();
+  goog.asserts.assertInstanceof(imageLayer, ol.layer.Image);
+  var imageSource = imageLayer.getSource();
+  goog.asserts.assertInstanceof(imageSource, ol.source.Image);
+
+<<<<<<< HEAD
 /**
  * @param {ol.render.IReplayGroup} replayGroup Replay group.
  * @param {ol.geom.Geometry} geometry Geometry.
@@ -49167,8 +51735,26 @@ ol.renderer.vector.renderPolygonGeometry_ =
         geometry.getFlatInteriorPoint(), 0, 2, 2, geometry, data);
   }
 };
+=======
+  var hints = frameState.viewHints;
+>>>>>>> ConectaDF
 
+  if (!hints[ol.ViewHint.ANIMATING] && !hints[ol.ViewHint.INTERACTING]) {
+    image = imageSource.getImage(
+        frameState.extent, viewResolution, pixelRatio, view2DState.projection);
+    if (!goog.isNull(image)) {
+      var imageState = image.getState();
+      if (imageState == ol.ImageState.IDLE) {
+        goog.events.listenOnce(image, goog.events.EventType.CHANGE,
+            this.handleImageChange, false, this);
+        image.load();
+      } else if (imageState == ol.ImageState.LOADED) {
+        this.image_ = image;
+      }
+    }
+  }
 
+<<<<<<< HEAD
 /**
  * @const
  * @private
@@ -49216,8 +51802,56 @@ goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.object');
 goog.require('ol.extent');
+=======
+  if (!goog.isNull(this.image_)) {
+    image = this.image_;
+    var imageExtent = image.getExtent();
+    var imageResolution = image.getResolution();
+    var imagePixelRatio = image.getPixelRatio();
+    var scale = pixelRatio * imageResolution /
+        (viewResolution * imagePixelRatio);
+    ol.vec.Mat4.makeTransform2D(this.imageTransform_,
+        pixelRatio * frameState.size[0] / 2,
+        pixelRatio * frameState.size[1] / 2,
+        scale, scale,
+        viewRotation,
+        imagePixelRatio * (imageExtent[0] - viewCenter[0]) / imageResolution,
+        imagePixelRatio * (viewCenter[1] - imageExtent[3]) / imageResolution);
+    this.updateAttributions(frameState.attributions, image.getAttributions());
+    this.updateLogos(frameState, imageSource);
+  }
 
+};
+// Based on simplify-js https://github.com/mourner/simplify-js
+// Copyright (c) 2012, Vladimir Agafonkin
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+//    1. Redistributions of source code must retain the above copyright notice,
+//       this list of conditions and the following disclaimer.
+//
+//    2. Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+>>>>>>> ConectaDF
 
+goog.provide('ol.geom.flat.simplify');
+
+<<<<<<< HEAD
 
 /**
  * @constructor
@@ -49237,12 +51871,117 @@ ol.structs.RBushNode = function(extent, height, children, value) {
     goog.asserts.assert(!goog.isNull(children));
     goog.asserts.assert(goog.isNull(value));
   }
+=======
+goog.require('ol.math');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {boolean} highQuality Highest quality.
+ * @param {Array.<number>=} opt_simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @return {Array.<number>} Simplified line string.
+ */
+ol.geom.flat.simplify.lineString = function(flatCoordinates, offset, end,
+    stride, squaredTolerance, highQuality, opt_simplifiedFlatCoordinates) {
+  var simplifiedFlatCoordinates = goog.isDef(opt_simplifiedFlatCoordinates) ?
+      opt_simplifiedFlatCoordinates : [];
+  if (!highQuality) {
+    end = ol.geom.flat.simplify.radialDistance(flatCoordinates, offset, end,
+        stride, squaredTolerance,
+        simplifiedFlatCoordinates, 0);
+    flatCoordinates = simplifiedFlatCoordinates;
+    offset = 0;
+    stride = 2;
+  }
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.douglasPeucker(
+      flatCoordinates, offset, end, stride, squaredTolerance,
+      simplifiedFlatCoordinates, 0);
+  return simplifiedFlatCoordinates;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.douglasPeucker = function(flatCoordinates, offset, end,
+    stride, squaredTolerance, simplifiedFlatCoordinates, simplifiedOffset) {
+  var n = (end - offset) / stride;
+  if (n < 3) {
+    for (; offset < end; offset += stride) {
+      simplifiedFlatCoordinates[simplifiedOffset++] =
+          flatCoordinates[offset];
+      simplifiedFlatCoordinates[simplifiedOffset++] =
+          flatCoordinates[offset + 1];
+    }
+    return simplifiedOffset;
+  }
+  /** @type {Array.<number>} */
+  var markers = new Array(n);
+  markers[0] = 1;
+  markers[n - 1] = 1;
+  /** @type {Array.<number>} */
+  var stack = [offset, end - stride];
+  var index = 0;
+  var i;
+  while (stack.length > 0) {
+    var last = stack.pop();
+    var first = stack.pop();
+    var maxSquaredDistance = 0;
+    var x1 = flatCoordinates[first];
+    var y1 = flatCoordinates[first + 1];
+    var x2 = flatCoordinates[last];
+    var y2 = flatCoordinates[last + 1];
+    for (i = first + stride; i < last; i += stride) {
+      var x = flatCoordinates[i];
+      var y = flatCoordinates[i + 1];
+      var squaredDistance = ol.math.squaredSegmentDistance(
+          x, y, x1, y1, x2, y2);
+      if (squaredDistance > maxSquaredDistance) {
+        index = i;
+        maxSquaredDistance = squaredDistance;
+      }
+    }
+    if (maxSquaredDistance > squaredTolerance) {
+      markers[(index - offset) / stride] = 1;
+      if (first + stride < index) {
+        stack.push(first, index);
+      }
+      if (index + stride < last) {
+        stack.push(index, last);
+      }
+    }
+  }
+  for (i = 0; i < n; ++i) {
+    if (markers[i]) {
+      simplifiedFlatCoordinates[simplifiedOffset++] =
+          flatCoordinates[offset + i * stride];
+      simplifiedFlatCoordinates[simplifiedOffset++] =
+          flatCoordinates[offset + i * stride + 1];
+    }
+  }
+  return simplifiedOffset;
+};
+>>>>>>> ConectaDF
 
   /**
    * @type {ol.Extent}
    */
   this.extent = extent;
 
+<<<<<<< HEAD
   /**
    * @type {number}
    */
@@ -49252,16 +51991,74 @@ ol.structs.RBushNode = function(extent, height, children, value) {
    * @type {Array.<ol.structs.RBushNode.<T>>}
    */
   this.children = children;
+=======
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @param {Array.<number>} simplifiedEnds Simplified ends.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.douglasPeuckers = function(flatCoordinates, offset,
+    ends, stride, squaredTolerance, simplifiedFlatCoordinates,
+    simplifiedOffset, simplifiedEnds) {
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    simplifiedOffset = ol.geom.flat.simplify.douglasPeucker(
+        flatCoordinates, offset, end, stride, squaredTolerance,
+        simplifiedFlatCoordinates, simplifiedOffset);
+    simplifiedEnds.push(simplifiedOffset);
+    offset = end;
+  }
+  return simplifiedOffset;
+};
+>>>>>>> ConectaDF
 
   /**
    * @type {?T}
    */
   this.value = value;
 
+<<<<<<< HEAD
+=======
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @param {Array.<Array.<number>>} simplifiedEndss Simplified endss.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.douglasPeuckerss = function(
+    flatCoordinates, offset, endss, stride, squaredTolerance,
+    simplifiedFlatCoordinates, simplifiedOffset, simplifiedEndss) {
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    var simplifiedEnds = [];
+    simplifiedOffset = ol.geom.flat.simplify.douglasPeuckers(
+        flatCoordinates, offset, ends, stride, squaredTolerance,
+        simplifiedFlatCoordinates, simplifiedOffset, simplifiedEnds);
+    simplifiedEndss.push(simplifiedEnds);
+    offset = ends[ends.length - 1];
+  }
+  return simplifiedOffset;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node1 Node 1.
  * @param {ol.structs.RBushNode.<T>} node2 Node 2.
  * @return {number} Compare minimum X.
@@ -49269,10 +52066,58 @@ ol.structs.RBushNode = function(extent, height, children, value) {
  */
 ol.structs.RBushNode.compareMinX = function(node1, node2) {
   return node1.extent[0] - node2.extent[0];
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.radialDistance = function(flatCoordinates, offset, end,
+    stride, squaredTolerance, simplifiedFlatCoordinates, simplifiedOffset) {
+  if (end <= offset + stride) {
+    // zero or one point, no simplification possible, so copy and return
+    for (; offset < end; offset += stride) {
+      simplifiedFlatCoordinates[simplifiedOffset++] = flatCoordinates[offset];
+      simplifiedFlatCoordinates[simplifiedOffset++] =
+          flatCoordinates[offset + 1];
+    }
+    return simplifiedOffset;
+  }
+  var x1 = flatCoordinates[offset];
+  var y1 = flatCoordinates[offset + 1];
+  // copy first point
+  simplifiedFlatCoordinates[simplifiedOffset++] = x1;
+  simplifiedFlatCoordinates[simplifiedOffset++] = y1;
+  var x2 = x1;
+  var y2 = y1;
+  for (offset += stride; offset < end; offset += stride) {
+    x2 = flatCoordinates[offset];
+    y2 = flatCoordinates[offset + 1];
+    if (ol.math.squaredDistance(x1, y1, x2, y2) > squaredTolerance) {
+      // copy point at offset
+      simplifiedFlatCoordinates[simplifiedOffset++] = x2;
+      simplifiedFlatCoordinates[simplifiedOffset++] = y2;
+      x1 = x2;
+      y1 = y2;
+    }
+  }
+  if (x2 != x1 || y2 != y1) {
+    // copy last point
+    simplifiedFlatCoordinates[simplifiedOffset++] = x2;
+    simplifiedFlatCoordinates[simplifiedOffset++] = y2;
+  }
+  return simplifiedOffset;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node1 Node 1.
  * @param {ol.structs.RBushNode.<T>} node2 Node 2.
  * @return {number} Compare minimum Y.
@@ -49280,10 +52125,19 @@ ol.structs.RBushNode.compareMinX = function(node1, node2) {
  */
 ol.structs.RBushNode.compareMinY = function(node1, node2) {
   return node1.extent[1] - node2.extent[1];
+=======
+ * @param {number} value Value.
+ * @param {number} tolerance Squared tolerance.
+ * @return {number} Rounded value.
+ */
+ol.geom.flat.simplify.snap = function(value, tolerance) {
+  return tolerance * Math.round(value / tolerance);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} maxEntries Max entries.
  */
 ol.structs.RBushNode.prototype.assertValid = function(maxEntries) {
@@ -49299,12 +52153,102 @@ ol.structs.RBushNode.prototype.assertValid = function(maxEntries) {
       var child = this.children[i];
       goog.asserts.assert(ol.extent.containsExtent(this.extent, child.extent));
       child.assertValid(maxEntries);
-    }
+=======
+ * Simplifies a line string using an algorithm designed by Tim Schaub.
+ * Coordinates are snapped to the nearest value in a virtual grid and
+ * consecutive duplicate coordinates are discarded.  This effectively preserves
+ * topology as the simplification of any subsection of a line string is
+ * independent of the rest of the line string.  This means that, for examples,
+ * the common edge between two polygons will be simplified to the same line
+ * string independently in both polygons.  This implementation uses a single
+ * pass over the coordinates and eliminates intermediate collinear points.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} tolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.quantize = function(flatCoordinates, offset, end, stride,
+    tolerance, simplifiedFlatCoordinates, simplifiedOffset) {
+  // do nothing if the line is empty
+  if (offset == end) {
+    return simplifiedOffset;
   }
+  // snap the first coordinate (P1)
+  var x1 = ol.geom.flat.simplify.snap(flatCoordinates[offset], tolerance);
+  var y1 = ol.geom.flat.simplify.snap(flatCoordinates[offset + 1], tolerance);
+  offset += stride;
+  // add the first coordinate to the output
+  simplifiedFlatCoordinates[simplifiedOffset++] = x1;
+  simplifiedFlatCoordinates[simplifiedOffset++] = y1;
+  // find the next coordinate that does not snap to the same value as the first
+  // coordinate (P2)
+  var x2, y2;
+  do {
+    x2 = ol.geom.flat.simplify.snap(flatCoordinates[offset], tolerance);
+    y2 = ol.geom.flat.simplify.snap(flatCoordinates[offset + 1], tolerance);
+    offset += stride;
+    if (offset == end) {
+      // all coordinates snap to the same value, the line collapses to a point
+      // push the last snapped value anyway to ensure that the output contains
+      // at least two points
+      // FIXME should we really return at least two points anyway?
+      simplifiedFlatCoordinates[simplifiedOffset++] = x2;
+      simplifiedFlatCoordinates[simplifiedOffset++] = y2;
+      return simplifiedOffset;
+    }
+  } while (x2 == x1 && y2 == y1);
+  while (offset < end) {
+    var x3, y3;
+    // snap the next coordinate (P3)
+    x3 = ol.geom.flat.simplify.snap(flatCoordinates[offset], tolerance);
+    y3 = ol.geom.flat.simplify.snap(flatCoordinates[offset + 1], tolerance);
+    offset += stride;
+    // skip P3 if it is equal to P2
+    if (x3 == x2 && y3 == y2) {
+      continue;
+    }
+    // calculate the delta between P1 and P2
+    var dx1 = x2 - x1;
+    var dy1 = y2 - y1;
+    // calculate the delta between P3 and P1
+    var dx2 = x3 - x1;
+    var dy2 = y3 - y1;
+    // if P1, P2, and P3 are colinear and P3 is further from P1 than P2 is from
+    // P1 in the same direction then P2 is on the straight line between P1 and
+    // P3
+    if ((dx1 * dy2 == dy1 * dx2) &&
+        ((dx1 < 0 && dx2 < dx1) || dx1 == dx2 || (dx1 > 0 && dx2 > dx1)) &&
+        ((dy1 < 0 && dy2 < dy1) || dy1 == dy2 || (dy1 > 0 && dy2 > dy1))) {
+      // discard P2 and set P2 = P3
+      x2 = x3;
+      y2 = y3;
+      continue;
+>>>>>>> ConectaDF
+    }
+    // either P1, P2, and P3 are not colinear, or they are colinear but P3 is
+    // between P3 and P1 or on the opposite half of the line to P2.  add P2,
+    // and continue with P1 = P2 and P2 = P3
+    simplifiedFlatCoordinates[simplifiedOffset++] = x2;
+    simplifiedFlatCoordinates[simplifiedOffset++] = y2;
+    x1 = x2;
+    y1 = y2;
+    x2 = x3;
+    y2 = y3;
+  }
+  // add the last point (P2)
+  simplifiedFlatCoordinates[simplifiedOffset++] = x2;
+  simplifiedFlatCoordinates[simplifiedOffset++] = y2;
+  return simplifiedOffset;
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number} start Start.
  * @param {number} stop Stop.
  * @param {ol.Extent=} opt_extent Extent.
@@ -49320,10 +52264,73 @@ ol.structs.RBushNode.prototype.getChildrenExtent =
     ol.extent.extend(extent, children[i].extent);
   }
   return extent;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} tolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @param {Array.<number>} simplifiedEnds Simplified ends.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.quantizes = function(
+    flatCoordinates, offset, ends, stride,
+    tolerance,
+    simplifiedFlatCoordinates, simplifiedOffset, simplifiedEnds) {
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    simplifiedOffset = ol.geom.flat.simplify.quantize(
+        flatCoordinates, offset, end, stride,
+        tolerance,
+        simplifiedFlatCoordinates, simplifiedOffset);
+    simplifiedEnds.push(simplifiedOffset);
+    offset = end;
+  }
+  return simplifiedOffset;
 };
 
 
 /**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {number} tolerance Squared tolerance.
+ * @param {Array.<number>} simplifiedFlatCoordinates Simplified flat
+ *     coordinates.
+ * @param {number} simplifiedOffset Simplified offset.
+ * @param {Array.<Array.<number>>} simplifiedEndss Simplified endss.
+ * @return {number} Simplified offset.
+ */
+ol.geom.flat.simplify.quantizess = function(
+    flatCoordinates, offset, endss, stride,
+    tolerance,
+    simplifiedFlatCoordinates, simplifiedOffset, simplifiedEndss) {
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    var simplifiedEnds = [];
+    simplifiedOffset = ol.geom.flat.simplify.quantizes(
+        flatCoordinates, offset, ends, stride,
+        tolerance,
+        simplifiedFlatCoordinates, simplifiedOffset, simplifiedEnds);
+    simplifiedEndss.push(simplifiedEnds);
+    offset = ends[ends.length - 1];
+  }
+  return simplifiedOffset;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.flat.deflate');
+
+goog.require('goog.asserts');
+
+
+/**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {T} value Value.
  * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
@@ -49355,10 +52362,49 @@ ol.structs.RBushNode.prototype.remove = function(extent, value, path) {
     }
   }
   return false;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {number} stride Stride.
+ * @return {number} offset Offset.
+ */
+ol.geom.flat.deflate.coordinate =
+    function(flatCoordinates, offset, coordinate, stride) {
+  goog.asserts.assert(coordinate.length == stride);
+  var i, ii;
+  for (i = 0, ii = coordinate.length; i < ii; ++i) {
+    flatCoordinates[offset++] = coordinate[i];
+  }
+  return offset;
 };
 
 
 /**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<ol.Coordinate>} coordinates Coordinates.
+ * @param {number} stride Stride.
+ * @return {number} offset Offset.
+ */
+ol.geom.flat.deflate.coordinates =
+    function(flatCoordinates, offset, coordinates, stride) {
+  var i, ii;
+  for (i = 0, ii = coordinates.length; i < ii; ++i) {
+    var coordinate = coordinates[i];
+    goog.asserts.assert(coordinate.length == stride);
+    var j;
+    for (j = 0; j < stride; ++j) {
+      flatCoordinates[offset++] = coordinate[j];
+    }
+  }
+  return offset;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * FIXME empty description for jsdoc
  */
 ol.structs.RBushNode.prototype.updateExtent = function() {
@@ -49369,20 +52415,146 @@ ol.structs.RBushNode.prototype.updateExtent = function() {
   for (i = 0, ii = children.length; i < ii; ++i) {
     ol.extent.extend(extent, children[i].extent);
   }
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<ol.Coordinate>>} coordinatess Coordinatess.
+ * @param {number} stride Stride.
+ * @param {Array.<number>=} opt_ends Ends.
+ * @return {Array.<number>} Ends.
+ */
+ol.geom.flat.deflate.coordinatess =
+    function(flatCoordinates, offset, coordinatess, stride, opt_ends) {
+  var ends = goog.isDef(opt_ends) ? opt_ends : [];
+  var i = 0;
+  var j, jj;
+  for (j = 0, jj = coordinatess.length; j < jj; ++j) {
+    var end = ol.geom.flat.deflate.coordinates(
+        flatCoordinates, offset, coordinatess[j], stride);
+    ends[i++] = end;
+    offset = end;
+  }
+  ends.length = i;
+  return ends;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {boolean} Is leaf.
  */
 ol.structs.RBushNode.prototype.isLeaf = function() {
   return goog.isNull(this.children);
 };
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<Array.<ol.Coordinate>>>} coordinatesss Coordinatesss.
+ * @param {number} stride Stride.
+ * @param {Array.<Array.<number>>=} opt_endss Endss.
+ * @return {Array.<Array.<number>>} Endss.
+ */
+ol.geom.flat.deflate.coordinatesss =
+    function(flatCoordinates, offset, coordinatesss, stride, opt_endss) {
+  var endss = goog.isDef(opt_endss) ? opt_endss : [];
+  var i = 0;
+  var j, jj;
+  for (j = 0, jj = coordinatesss.length; j < jj; ++j) {
+    var ends = ol.geom.flat.deflate.coordinatess(
+        flatCoordinates, offset, coordinatesss[j], stride, endss[i]);
+    endss[i++] = ends;
+    offset = ends[ends.length - 1];
+  }
+  endss.length = i;
+  return endss;
+};
+goog.provide('ol.geom.flat.inflate');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {Array.<ol.Coordinate>=} opt_coordinates Coordinates.
+ * @return {Array.<ol.Coordinate>} Coordinates.
+ */
+ol.geom.flat.inflate.coordinates =
+    function(flatCoordinates, offset, end, stride, opt_coordinates) {
+  var coordinates = goog.isDef(opt_coordinates) ? opt_coordinates : [];
+  var i = 0;
+  var j;
+  for (j = offset; j < end; j += stride) {
+    coordinates[i++] = flatCoordinates.slice(j, j + stride);
+  }
+  coordinates.length = i;
+  return coordinates;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {Array.<Array.<ol.Coordinate>>=} opt_coordinatess Coordinatess.
+ * @return {Array.<Array.<ol.Coordinate>>} Coordinatess.
+ */
+ol.geom.flat.inflate.coordinatess =
+    function(flatCoordinates, offset, ends, stride, opt_coordinatess) {
+  var coordinatess = goog.isDef(opt_coordinatess) ? opt_coordinatess : [];
+  var i = 0;
+  var j, jj;
+  for (j = 0, jj = ends.length; j < jj; ++j) {
+    var end = ends[j];
+    coordinatess[i++] = ol.geom.flat.inflate.coordinates(
+        flatCoordinates, offset, end, stride, coordinatess[i]);
+    offset = end;
+  }
+  coordinatess.length = i;
+  return coordinatess;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {Array.<Array.<Array.<ol.Coordinate>>>=} opt_coordinatesss
+ *     Coordinatesss.
+ * @return {Array.<Array.<Array.<ol.Coordinate>>>} Coordinatesss.
+ */
+ol.geom.flat.inflate.coordinatesss =
+    function(flatCoordinates, offset, endss, stride, opt_coordinatesss) {
+  var coordinatesss = goog.isDef(opt_coordinatesss) ? opt_coordinatesss : [];
+  var i = 0;
+  var j, jj;
+  for (j = 0, jj = endss.length; j < jj; ++j) {
+    var ends = endss[j];
+    coordinatesss[i++] = ol.geom.flat.inflate.coordinatess(
+        flatCoordinates, offset, ends, stride, coordinatesss[i]);
+    offset = ends[ends.length - 1];
+  }
+  coordinatesss.length = i;
+  return coordinatesss;
+};
+goog.provide('ol.geom.SimpleGeometry');
+
+goog.require('goog.asserts');
+goog.require('goog.functions');
+goog.require('goog.object');
+goog.require('ol.extent');
+goog.require('ol.geom.Geometry');
+goog.require('ol.geom.flat.transform');
+>>>>>>> ConectaDF
 
 
 
 /**
  * @constructor
+<<<<<<< HEAD
  * @param {number=} opt_maxEntries Max entries.
  * @see https://github.com/mourner/rbush
  * @struct
@@ -49408,6 +52580,79 @@ ol.structs.RBush = function(opt_maxEntries) {
    * @type {ol.structs.RBushNode.<T>}
    */
   this.root_ = new ol.structs.RBushNode(ol.extent.createEmpty(), 1, [], null);
+=======
+ * @extends {ol.geom.Geometry}
+ * @todo api
+ */
+ol.geom.SimpleGeometry = function() {
+
+  goog.base(this);
+
+  /**
+   * @protected
+   * @type {ol.geom.GeometryLayout}
+   */
+  this.layout = ol.geom.GeometryLayout.XY;
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.stride = 2;
+
+  /**
+   * @protected
+   * @type {Array.<number>}
+   */
+  this.flatCoordinates = null;
+
+};
+goog.inherits(ol.geom.SimpleGeometry, ol.geom.Geometry);
+
+
+/**
+ * @param {number} stride Stride.
+ * @private
+ * @return {ol.geom.GeometryLayout} layout Layout.
+ */
+ol.geom.SimpleGeometry.getLayoutForStride_ = function(stride) {
+  if (stride == 2) {
+    return ol.geom.GeometryLayout.XY;
+  } else if (stride == 3) {
+    return ol.geom.GeometryLayout.XYZ;
+  } else if (stride == 4) {
+    return ol.geom.GeometryLayout.XYZM;
+  } else {
+    throw new Error('unsupported stride: ' + stride);
+  }
+};
+
+
+/**
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @private
+ * @return {number} Stride.
+ */
+ol.geom.SimpleGeometry.getStrideForLayout_ = function(layout) {
+  if (layout == ol.geom.GeometryLayout.XY) {
+    return 2;
+  } else if (layout == ol.geom.GeometryLayout.XYZ) {
+    return 3;
+  } else if (layout == ol.geom.GeometryLayout.XYM) {
+    return 3;
+  } else if (layout == ol.geom.GeometryLayout.XYZM) {
+    return 4;
+  } else {
+    throw new Error('unsupported layout: ' + layout);
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.geom.SimpleGeometry.prototype.containsXY = goog.functions.FALSE;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -49415,18 +52660,45 @@ ol.structs.RBush = function(opt_maxEntries) {
    */
   this.valueExtent_ = {};
 
+<<<<<<< HEAD
   if (goog.DEBUG) {
     /**
      * @private
      * @type {number}
      */
     this.readers_ = 0;
+=======
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.SimpleGeometry.prototype.getExtent = function(opt_extent) {
+  if (this.extentRevision != this.getRevision()) {
+    this.extent = ol.extent.createOrUpdateFromFlatCoordinates(
+        this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+        this.extent);
+    this.extentRevision = this.getRevision();
+>>>>>>> ConectaDF
   }
+  goog.asserts.assert(goog.isDef(this.extent));
+  return ol.extent.returnOrUpdate(this.extent, opt_extent);
+};
 
+<<<<<<< HEAD
+=======
+
+/**
+ * @return {ol.Coordinate} First coordinate.
+ * @todo api
+ */
+ol.geom.SimpleGeometry.prototype.getFirstCoordinate = function() {
+  return this.flatCoordinates.slice(0, this.stride);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node Node.
  * @param {function(ol.structs.RBushNode.<T>, ol.structs.RBushNode.<T>): number}
  *     compare Compare.
@@ -49452,18 +52724,33 @@ ol.structs.RBush.prototype.allDistMargin_ = function(node, compare) {
     margin += ol.extent.getMargin(rightExtent);
   }
   return margin;
+=======
+ * @return {Array.<number>} Flat coordinates.
+ */
+ol.geom.SimpleGeometry.prototype.getFlatCoordinates = function() {
+  return this.flatCoordinates;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * FIXME empty description for jsdoc
  */
 ol.structs.RBush.prototype.assertValid = function() {
   this.root_.assertValid(this.maxEntries_);
+=======
+ * @return {ol.Coordinate} Last point.
+ * @todo api
+ */
+ol.geom.SimpleGeometry.prototype.getLastCoordinate = function() {
+  return this.flatCoordinates.slice(this.flatCoordinates.length - this.stride);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node Node.
  * @private
  */
@@ -49473,10 +52760,18 @@ ol.structs.RBush.prototype.chooseSplitAxis_ = function(node) {
   if (xMargin < yMargin) {
     goog.array.sort(node.children, ol.structs.RBushNode.compareMinX);
   }
+=======
+ * @return {ol.geom.GeometryLayout} Layout.
+ * @todo api
+ */
+ol.geom.SimpleGeometry.prototype.getLayout = function() {
+  return this.layout;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node Node.
  * @private
  * @return {number} Split index.
@@ -49506,10 +52801,51 @@ ol.structs.RBush.prototype.chooseSplitIndex_ = function(node) {
     }
   }
   return index;
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.SimpleGeometry.prototype.getSimplifiedGeometry =
+    function(squaredTolerance) {
+  if (this.simplifiedGeometryRevision != this.getRevision()) {
+    goog.object.clear(this.simplifiedGeometryCache);
+    this.simplifiedGeometryMaxMinSquaredTolerance = 0;
+    this.simplifiedGeometryRevision = this.getRevision();
+  }
+  // If squaredTolerance is negative or if we know that simplification will not
+  // have any effect then just return this.
+  if (squaredTolerance < 0 ||
+      (this.simplifiedGeometryMaxMinSquaredTolerance !== 0 &&
+       squaredTolerance <= this.simplifiedGeometryMaxMinSquaredTolerance)) {
+    return this;
+  }
+  var key = squaredTolerance.toString();
+  if (this.simplifiedGeometryCache.hasOwnProperty(key)) {
+    return this.simplifiedGeometryCache[key];
+  } else {
+    var simplifiedGeometry =
+        this.getSimplifiedGeometryInternal(squaredTolerance);
+    var simplifiedFlatCoordinates = simplifiedGeometry.getFlatCoordinates();
+    if (simplifiedFlatCoordinates.length < this.flatCoordinates.length) {
+      this.simplifiedGeometryCache[key] = simplifiedGeometry;
+      return simplifiedGeometry;
+    } else {
+      // Simplification did not actually remove any coordinates.  We now know
+      // that any calls to getSimplifiedGeometry with a squaredTolerance less
+      // than or equal to the current squaredTolerance will also not have any
+      // effect.  This allows us to short circuit simplification (saving CPU
+      // cycles) and prevents the cache of simplified geometries from filling
+      // up with useless identical copies of this geometry (saving memory).
+      this.simplifiedGeometryMaxMinSquaredTolerance = squaredTolerance;
+      return this;
+    }
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {ol.structs.RBushNode.<T>} node Node.
  * @param {number} level Level.
@@ -49543,10 +52879,20 @@ ol.structs.RBush.prototype.chooseSubtree_ =
     path.push(node);
   }
   return node;
+=======
+ * @param {number} squaredTolerance Squared tolerance.
+ * @return {ol.geom.SimpleGeometry} Simplified geometry.
+ * @protected
+ */
+ol.geom.SimpleGeometry.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  return this;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * FIXME empty description for jsdoc
  */
 ol.structs.RBush.prototype.clear = function() {
@@ -49556,10 +52902,17 @@ ol.structs.RBush.prototype.clear = function() {
   node.children.length = 0;
   node.value = null;
   goog.object.clear(this.valueExtent_);
+=======
+ * @return {number} Stride.
+ */
+ol.geom.SimpleGeometry.prototype.getStride = function() {
+  return this.stride;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
  * @private
  */
@@ -49577,10 +52930,22 @@ ol.structs.RBush.prototype.condense_ = function(path) {
       node.updateExtent();
     }
   }
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @protected
+ */
+ol.geom.SimpleGeometry.prototype.setFlatCoordinatesInternal =
+    function(layout, flatCoordinates) {
+  this.stride = ol.geom.SimpleGeometry.getStrideForLayout_(layout);
+  this.layout = layout;
+  this.flatCoordinates = flatCoordinates;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Calls a callback function with each node in the tree. Inside the callback,
  * no tree modifications (insert, update, remove) can be made.
  * @param {function(this: S, T): *} callback Callback.
@@ -49599,10 +52964,40 @@ ol.structs.RBush.prototype.forEach = function(callback, opt_this) {
   } else {
     return this.forEach_(this.root_, callback, opt_this);
   }
+=======
+ * @param {ol.geom.GeometryLayout|undefined} layout Layout.
+ * @param {Array} coordinates Coordinates.
+ * @param {number} nesting Nesting.
+ * @protected
+ */
+ol.geom.SimpleGeometry.prototype.setLayout =
+    function(layout, coordinates, nesting) {
+  /** @type {number} */
+  var stride;
+  if (goog.isDef(layout)) {
+    stride = ol.geom.SimpleGeometry.getStrideForLayout_(layout);
+  } else {
+    var i;
+    for (i = 0; i < nesting; ++i) {
+      if (coordinates.length === 0) {
+        this.layout = ol.geom.GeometryLayout.XY;
+        this.stride = 2;
+        return;
+      } else {
+        coordinates = /** @type {Array} */ (coordinates[0]);
+      }
+    }
+    stride = (/** @type {Array} */ (coordinates)).length;
+    layout = ol.geom.SimpleGeometry.getLayoutForStride_(stride);
+  }
+  this.layout = layout;
+  this.stride = stride;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node Node.
  * @param {function(this: S, T): *} callback Callback.
  * @param {S=} opt_this The object to use as `this` in `callback`.
@@ -49628,11 +53023,20 @@ ol.structs.RBush.prototype.forEach_ = function(node, callback, opt_this) {
     } else {
       toVisit.push.apply(toVisit, children);
     }
+=======
+ * @inheritDoc
+ */
+ol.geom.SimpleGeometry.prototype.applyTransform = function(transformFn) {
+  if (!goog.isNull(this.flatCoordinates)) {
+    transformFn(this.flatCoordinates, this.flatCoordinates, this.stride);
+    this.dispatchChangeEvent();
+>>>>>>> ConectaDF
   }
 };
 
 
 /**
+<<<<<<< HEAD
  * Calls a callback function with each node in the provided extent. Inside the
  * callback, no tree modifications (insert, update, remove) can be made.
  * @param {ol.Extent} extent Extent.
@@ -49652,9 +53056,27 @@ ol.structs.RBush.prototype.forEachInExtent =
     }
   } else {
     return this.forEachInExtent_(extent, callback, opt_this);
+=======
+ * @param {ol.geom.SimpleGeometry} simpleGeometry Simple geometry.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {Array.<number>=} opt_dest Destination.
+ * @return {Array.<number>} Transformed flat coordinates.
+ */
+ol.geom.transformSimpleGeometry2D =
+    function(simpleGeometry, transform, opt_dest) {
+  var flatCoordinates = simpleGeometry.getFlatCoordinates();
+  if (goog.isNull(flatCoordinates)) {
+    return null;
+  } else {
+    var stride = simpleGeometry.getStride();
+    return ol.geom.flat.transform.transform2D(
+        flatCoordinates, stride, transform, opt_dest);
+>>>>>>> ConectaDF
   }
 };
+goog.provide('ol.geom.flat.closest');
 
+<<<<<<< HEAD
 
 /**
  * @param {ol.Extent} extent Extent.
@@ -49711,10 +53133,58 @@ ol.structs.RBush.prototype.forEachNode = function(callback, opt_this) {
     }
   }
   return undefined;
+=======
+goog.require('goog.asserts');
+goog.require('goog.math');
+goog.require('ol.math');
+
+
+/**
+ * Returns the point on the 2D line segment flatCoordinates[offset1] to
+ * flatCoordinates[offset2] that is closest to the point (x, y).  Extra
+ * dimensions are linearly interpolated.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset1 Offset 1.
+ * @param {number} offset2 Offset 2.
+ * @param {number} stride Stride.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @param {Array.<number>} closestPoint Closest point.
+ */
+ol.geom.flat.closest.point =
+    function(flatCoordinates, offset1, offset2, stride, x, y, closestPoint) {
+  var x1 = flatCoordinates[offset1];
+  var y1 = flatCoordinates[offset1 + 1];
+  var dx = flatCoordinates[offset2] - x1;
+  var dy = flatCoordinates[offset2 + 1] - y1;
+  var i, offset;
+  if (dx === 0 && dy === 0) {
+    offset = offset1;
+  } else {
+    var t = ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy);
+    if (t > 1) {
+      offset = offset2;
+    } else if (t > 0) {
+      for (i = 0; i < stride; ++i) {
+        closestPoint[i] = goog.math.lerp(flatCoordinates[offset1 + i],
+            flatCoordinates[offset2 + i], t);
+      }
+      closestPoint.length = stride;
+      return;
+    } else {
+      offset = offset1;
+    }
+  }
+  for (i = 0; i < stride; ++i) {
+    closestPoint[i] = flatCoordinates[offset + i];
+  }
+  closestPoint.length = stride;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {Array.<T>} All.
  */
 ol.structs.RBush.prototype.getAll = function() {
@@ -49727,10 +53197,37 @@ ol.structs.RBush.prototype.getAll = function() {
         values.push(value);
       });
   return values;
+=======
+ * Return the squared of the largest distance between any pair of consecutive
+ * coordinates.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} maxSquaredDelta Max squared delta.
+ * @return {number} Max squared delta.
+ */
+ol.geom.flat.closest.getMaxSquaredDelta =
+    function(flatCoordinates, offset, end, stride, maxSquaredDelta) {
+  var x1 = flatCoordinates[offset];
+  var y1 = flatCoordinates[offset + 1];
+  for (offset += stride; offset < end; offset += stride) {
+    var x2 = flatCoordinates[offset];
+    var y2 = flatCoordinates[offset + 1];
+    var squaredDelta = ol.math.squaredDistance(x1, y1, x2, y2);
+    if (squaredDelta > maxSquaredDelta) {
+      maxSquaredDelta = squaredDelta;
+    }
+    x1 = x2;
+    y1 = y2;
+  }
+  return maxSquaredDelta;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @return {Array.<T>} All in extent.
  */
@@ -49744,19 +53241,59 @@ ol.structs.RBush.prototype.getInExtent = function(extent) {
         values.push(value);
       });
   return values;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} maxSquaredDelta Max squared delta.
+ * @return {number} Max squared delta.
+ */
+ol.geom.flat.closest.getsMaxSquaredDelta =
+    function(flatCoordinates, offset, ends, stride, maxSquaredDelta) {
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    maxSquaredDelta = ol.geom.flat.closest.getMaxSquaredDelta(
+        flatCoordinates, offset, end, stride, maxSquaredDelta);
+    offset = end;
+  }
+  return maxSquaredDelta;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent=} opt_extent Extent.
  * @return {ol.Extent} Extent.
  */
 ol.structs.RBush.prototype.getExtent = function(opt_extent) {
   return ol.extent.returnOrUpdate(this.root_.extent, opt_extent);
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {number} maxSquaredDelta Max squared delta.
+ * @return {number} Max squared delta.
+ */
+ol.geom.flat.closest.getssMaxSquaredDelta =
+    function(flatCoordinates, offset, endss, stride, maxSquaredDelta) {
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    maxSquaredDelta = ol.geom.flat.closest.getsMaxSquaredDelta(
+        flatCoordinates, offset, ends, stride, maxSquaredDelta);
+    offset = ends[ends.length - 1];
+  }
+  return maxSquaredDelta;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {T} value Value.
  * @private
  * @return {string} Key.
@@ -49764,10 +53301,329 @@ ol.structs.RBush.prototype.getExtent = function(opt_extent) {
 ol.structs.RBush.prototype.getKey_ = function(value) {
   goog.asserts.assert(goog.isObject(value));
   return goog.getUid(value).toString();
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} maxDelta Max delta.
+ * @param {boolean} isRing Is ring.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @param {Array.<number>} closestPoint Closest point.
+ * @param {number} minSquaredDistance Minimum squared distance.
+ * @param {Array.<number>=} opt_tmpPoint Temporary point object.
+ * @return {number} Minimum squared distance.
+ */
+ol.geom.flat.closest.getClosestPoint = function(flatCoordinates, offset, end,
+    stride, maxDelta, isRing, x, y, closestPoint, minSquaredDistance,
+    opt_tmpPoint) {
+  if (offset == end) {
+    return minSquaredDistance;
+  }
+  var i, squaredDistance;
+  if (maxDelta === 0) {
+    // All points are identical, so just test the first point.
+    squaredDistance = ol.math.squaredDistance(
+        x, y, flatCoordinates[offset], flatCoordinates[offset + 1]);
+    if (squaredDistance < minSquaredDistance) {
+      for (i = 0; i < stride; ++i) {
+        closestPoint[i] = flatCoordinates[offset + i];
+      }
+      closestPoint.length = stride;
+      return squaredDistance;
+    } else {
+      return minSquaredDistance;
+    }
+  }
+  goog.asserts.assert(maxDelta > 0);
+  var tmpPoint = goog.isDef(opt_tmpPoint) ? opt_tmpPoint : [NaN, NaN];
+  var index = offset + stride;
+  while (index < end) {
+    ol.geom.flat.closest.point(
+        flatCoordinates, index - stride, index, stride, x, y, tmpPoint);
+    squaredDistance = ol.math.squaredDistance(x, y, tmpPoint[0], tmpPoint[1]);
+    if (squaredDistance < minSquaredDistance) {
+      minSquaredDistance = squaredDistance;
+      for (i = 0; i < stride; ++i) {
+        closestPoint[i] = tmpPoint[i];
+      }
+      closestPoint.length = stride;
+      index += stride;
+    } else {
+      // Skip ahead multiple points, because we know that all the skipped
+      // points cannot be any closer than the closest point we have found so
+      // far.  We know this because we know how close the current point is, how
+      // close the closest point we have found so far is, and the maximum
+      // distance between consecutive points.  For example, if we're currently
+      // at distance 10, the best we've found so far is 3, and that the maximum
+      // distance between consecutive points is 2, then we'll need to skip at
+      // least (10 - 3) / 2 == 3 (rounded down) points to have any chance of
+      // finding a closer point.  We use Math.max(..., 1) to ensure that we
+      // always advance at least one point, to avoid an infinite loop.
+      index += stride * Math.max(
+          ((Math.sqrt(squaredDistance) -
+            Math.sqrt(minSquaredDistance)) / maxDelta) | 0, 1);
+    }
+  }
+  if (isRing) {
+    // Check the closing segment.
+    ol.geom.flat.closest.point(
+        flatCoordinates, end - stride, offset, stride, x, y, tmpPoint);
+    squaredDistance = ol.math.squaredDistance(x, y, tmpPoint[0], tmpPoint[1]);
+    if (squaredDistance < minSquaredDistance) {
+      minSquaredDistance = squaredDistance;
+      for (i = 0; i < stride; ++i) {
+        closestPoint[i] = tmpPoint[i];
+      }
+      closestPoint.length = stride;
+    }
+  }
+  return minSquaredDistance;
 };
 
 
 /**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} maxDelta Max delta.
+ * @param {boolean} isRing Is ring.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @param {Array.<number>} closestPoint Closest point.
+ * @param {number} minSquaredDistance Minimum squared distance.
+ * @param {Array.<number>=} opt_tmpPoint Temporary point object.
+ * @return {number} Minimum squared distance.
+ */
+ol.geom.flat.closest.getsClosestPoint = function(flatCoordinates, offset, ends,
+    stride, maxDelta, isRing, x, y, closestPoint, minSquaredDistance,
+    opt_tmpPoint) {
+  var tmpPoint = goog.isDef(opt_tmpPoint) ? opt_tmpPoint : [NaN, NaN];
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    minSquaredDistance = ol.geom.flat.closest.getClosestPoint(
+        flatCoordinates, offset, end, stride,
+        maxDelta, isRing, x, y, closestPoint, minSquaredDistance, tmpPoint);
+    offset = end;
+  }
+  return minSquaredDistance;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {number} maxDelta Max delta.
+ * @param {boolean} isRing Is ring.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @param {Array.<number>} closestPoint Closest point.
+ * @param {number} minSquaredDistance Minimum squared distance.
+ * @param {Array.<number>=} opt_tmpPoint Temporary point object.
+ * @return {number} Minimum squared distance.
+ */
+ol.geom.flat.closest.getssClosestPoint = function(flatCoordinates, offset,
+    endss, stride, maxDelta, isRing, x, y, closestPoint, minSquaredDistance,
+    opt_tmpPoint) {
+  var tmpPoint = goog.isDef(opt_tmpPoint) ? opt_tmpPoint : [NaN, NaN];
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    minSquaredDistance = ol.geom.flat.closest.getsClosestPoint(
+        flatCoordinates, offset, ends, stride,
+        maxDelta, isRing, x, y, closestPoint, minSquaredDistance, tmpPoint);
+    offset = ends[ends.length - 1];
+  }
+  return minSquaredDistance;
+};
+goog.provide('ol.geom.flat.length');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @return {number} Length.
+ */
+ol.geom.flat.length.lineString =
+    function(flatCoordinates, offset, end, stride) {
+  var x1 = flatCoordinates[offset];
+  var y1 = flatCoordinates[offset + 1];
+  var length = 0;
+  var i;
+  for (i = offset + stride; i < end; i += stride) {
+    var x2 = flatCoordinates[i];
+    var y2 = flatCoordinates[i + 1];
+    length += Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    x1 = x2;
+    y1 = y2;
+  }
+  return length;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @return {number} Perimeter.
+ */
+ol.geom.flat.length.linearRing =
+    function(flatCoordinates, offset, end, stride) {
+  var perimeter =
+      ol.geom.flat.length.lineString(flatCoordinates, offset, end, stride);
+  var dx = flatCoordinates[end - stride] - flatCoordinates[offset];
+  var dy = flatCoordinates[end - stride + 1] - flatCoordinates[offset + 1];
+  perimeter += Math.sqrt(dx * dx + dy * dy);
+  return perimeter;
+};
+goog.provide('ol.geom.flat.interpolate');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.math');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} fraction Fraction.
+ * @param {Array.<number>=} opt_dest Destination.
+ * @return {Array.<number>} Destination.
+ */
+ol.geom.flat.interpolate.lineString =
+    function(flatCoordinates, offset, end, stride, fraction, opt_dest) {
+  // FIXME interpolate extra dimensions
+  goog.asserts.assert(0 <= fraction && fraction <= 1);
+  var pointX = NaN;
+  var pointY = NaN;
+  var n = (end - offset) / stride;
+  if (n === 0) {
+    goog.asserts.fail();
+  } else if (n == 1) {
+    pointX = flatCoordinates[offset];
+    pointY = flatCoordinates[offset + 1];
+  } else if (n == 2) {
+    pointX = (1 - fraction) * flatCoordinates[offset] +
+        fraction * flatCoordinates[offset + stride];
+    pointY = (1 - fraction) * flatCoordinates[offset + 1] +
+        fraction * flatCoordinates[offset + stride + 1];
+  } else {
+    var x1 = flatCoordinates[offset];
+    var y1 = flatCoordinates[offset + 1];
+    var length = 0;
+    var cumulativeLengths = [0];
+    var i;
+    for (i = offset + stride; i < end; i += stride) {
+      var x2 = flatCoordinates[i];
+      var y2 = flatCoordinates[i + 1];
+      length += Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+      cumulativeLengths.push(length);
+      x1 = x2;
+      y1 = y2;
+    }
+    var target = fraction * length;
+    var index = goog.array.binarySearch(cumulativeLengths, target);
+    if (index < 0) {
+      var t = (target - cumulativeLengths[-index - 2]) /
+          (cumulativeLengths[-index - 1] - cumulativeLengths[-index - 2]);
+      var o = offset + (-index - 2) * stride;
+      pointX = goog.math.lerp(
+          flatCoordinates[o], flatCoordinates[o + stride], t);
+      pointY = goog.math.lerp(
+          flatCoordinates[o + 1], flatCoordinates[o + stride + 1], t);
+    } else {
+      pointX = flatCoordinates[offset + index * stride];
+      pointY = flatCoordinates[offset + index * stride + 1];
+    }
+  }
+  if (goog.isDefAndNotNull(opt_dest)) {
+    opt_dest.push(pointX, pointY);
+    return opt_dest;
+  } else {
+    return [pointX, pointY];
+  }
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} m M.
+ * @param {boolean} extrapolate Extrapolate.
+ * @return {ol.Coordinate} Coordinate.
+ */
+ol.geom.flat.lineStringCoordinateAtM =
+    function(flatCoordinates, offset, end, stride, m, extrapolate) {
+  if (end == offset) {
+    return null;
+  }
+  var coordinate;
+  if (m < flatCoordinates[offset + stride - 1]) {
+    if (extrapolate) {
+      coordinate = flatCoordinates.slice(offset, offset + stride);
+      coordinate[stride - 1] = m;
+      return coordinate;
+    } else {
+      return null;
+    }
+  } else if (flatCoordinates[end - 1] < m) {
+    if (extrapolate) {
+      coordinate = flatCoordinates.slice(end - stride, end);
+      coordinate[stride - 1] = m;
+      return coordinate;
+    } else {
+      return null;
+    }
+  }
+  // FIXME use O(1) search
+  if (m == flatCoordinates[offset + stride - 1]) {
+    return flatCoordinates.slice(offset, offset + stride);
+  }
+  var lo = offset / stride;
+  var hi = end / stride;
+  while (lo < hi) {
+    var mid = (lo + hi) >> 1;
+    if (m < flatCoordinates[(mid + 1) * stride - 1]) {
+      hi = mid;
+    } else {
+      lo = mid + 1;
+    }
+  }
+  var m0 = flatCoordinates[lo * stride - 1];
+  if (m == m0) {
+    return flatCoordinates.slice((lo - 1) * stride, (lo - 1) * stride + stride);
+  }
+  var m1 = flatCoordinates[(lo + 1) * stride - 1];
+  goog.asserts.assert(m0 < m);
+  goog.asserts.assert(m <= m1);
+  var t = (m - m0) / (m1 - m0);
+  coordinate = [];
+  var i;
+  for (i = 0; i < stride - 1; ++i) {
+    coordinate.push(goog.math.lerp(flatCoordinates[(lo - 1) * stride + i],
+        flatCoordinates[lo * stride + i], t));
+  }
+  coordinate.push(m);
+  goog.asserts.assert(coordinate.length == stride);
+  return coordinate;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {T} value Value.
  */
@@ -49807,18 +53663,153 @@ ol.structs.RBush.prototype.insert_ = function(extent, value, level) {
     ol.extent.extend(path[i].extent, extent);
   }
   return node;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} m M.
+ * @param {boolean} extrapolate Extrapolate.
+ * @param {boolean} interpolate Interpolate.
+ * @return {ol.Coordinate} Coordinate.
+ */
+ol.geom.flat.lineStringsCoordinateAtM = function(
+    flatCoordinates, offset, ends, stride, m, extrapolate, interpolate) {
+  if (interpolate) {
+    return ol.geom.flat.lineStringCoordinateAtM(
+        flatCoordinates, offset, ends[ends.length - 1], stride, m, extrapolate);
+  }
+  var coordinate;
+  if (m < flatCoordinates[stride - 1]) {
+    if (extrapolate) {
+      coordinate = flatCoordinates.slice(0, stride);
+      coordinate[stride - 1] = m;
+      return coordinate;
+    } else {
+      return null;
+    }
+  }
+  if (flatCoordinates[flatCoordinates.length - 1] < m) {
+    if (extrapolate) {
+      coordinate = flatCoordinates.slice(flatCoordinates.length - stride);
+      coordinate[stride - 1] = m;
+      return coordinate;
+    } else {
+      return null;
+    }
+  }
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    if (offset == end) {
+      continue;
+    }
+    if (m < flatCoordinates[offset + stride - 1]) {
+      return null;
+    } else if (m <= flatCoordinates[end - 1]) {
+      return ol.geom.flat.lineStringCoordinateAtM(
+          flatCoordinates, offset, end, stride, m, false);
+    }
+    offset = end;
+  }
+  goog.asserts.fail();
+  return null;
 };
+goog.provide('ol.geom.LineString');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.array');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.closest');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.geom.flat.interpolate');
+goog.require('ol.geom.flat.length');
+goog.require('ol.geom.flat.simplify');
+
 
 
 /**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawLineString} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.LineString = function(coordinates, opt_layout) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {ol.Coordinate}
+   */
+  this.flatMidpoint_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.flatMidpointRevision_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDelta_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDeltaRevision_ = -1;
+
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.geom.LineString, ol.geom.SimpleGeometry);
+
+
+/**
+<<<<<<< HEAD
  * @return {boolean} Is empty.
  */
 ol.structs.RBush.prototype.isEmpty = function() {
   return this.root_.children.length === 0;
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @todo api
+ */
+ol.geom.LineString.prototype.appendCoordinate = function(coordinate) {
+  goog.asserts.assert(coordinate.length == this.stride);
+  if (goog.isNull(this.flatCoordinates)) {
+    this.flatCoordinates = coordinate.slice();
+  } else {
+    ol.array.safeExtend(this.flatCoordinates, coordinate);
+  }
+  this.dispatchChangeEvent();
 };
 
 
 /**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.LineString.prototype.clone = function() {
+  var lineString = new ol.geom.LineString(null);
+  lineString.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return lineString;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @param {T} value Value.
  * @return {boolean} Removed.
  */
@@ -49831,10 +53822,54 @@ ol.structs.RBush.prototype.remove = function(value) {
   var extent = this.valueExtent_[key];
   delete this.valueExtent_[key];
   return this.remove_(extent, value);
+=======
+ * @inheritDoc
+ */
+ol.geom.LineString.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  if (this.maxDeltaRevision_ != this.getRevision()) {
+    this.maxDelta_ = Math.sqrt(ol.geom.flat.closest.getMaxSquaredDelta(
+        this.flatCoordinates, 0, this.flatCoordinates.length, this.stride, 0));
+    this.maxDeltaRevision_ = this.getRevision();
+  }
+  return ol.geom.flat.closest.getClosestPoint(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+      this.maxDelta_, false, x, y, closestPoint, minSquaredDistance);
 };
 
 
 /**
+ * Returns the coordinate at `m` using linear interpolation, or `null` if no
+ * such coordinate exists.
+ *
+ * `opt_extrapolate` controls extrapolation beyond the range of Ms in the
+ * MultiLineString. If `opt_extrapolate` is `true` then Ms less than the first
+ * M will return the first coordinate and Ms greater than the last M will
+ * return the last coordinate.
+ *
+ * @param {number} m M.
+ * @param {boolean=} opt_extrapolate Extrapolate.
+ * @return {ol.Coordinate} Coordinate.
+ * @todo api
+ */
+ol.geom.LineString.prototype.getCoordinateAtM = function(m, opt_extrapolate) {
+  if (this.layout != ol.geom.GeometryLayout.XYM &&
+      this.layout != ol.geom.GeometryLayout.XYZM) {
+    return null;
+  }
+  var extrapolate = goog.isDef(opt_extrapolate) ? opt_extrapolate : false;
+  return ol.geom.flat.lineStringCoordinateAtM(this.flatCoordinates, 0,
+      this.flatCoordinates.length, this.stride, m, extrapolate);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {T} value Value.
  * @private
@@ -49851,10 +53886,29 @@ ol.structs.RBush.prototype.remove_ = function(extent, value) {
     goog.asserts.assert(path[0] === root);
   }
   return removed;
+=======
+ * @return {ol.geom.RawLineString} Coordinates.
+ * @todo api
+ */
+ol.geom.LineString.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinates(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
 };
 
 
 /**
+ * @return {number} Length.
+ * @todo api
+ */
+ol.geom.LineString.prototype.getLength = function() {
+  return ol.geom.flat.length.lineString(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
  * @param {number} level Level.
  * @private
@@ -49874,10 +53928,23 @@ ol.structs.RBush.prototype.split_ = function(path, level) {
   } else {
     this.splitRoot_(node, newNode);
   }
+=======
+ * @return {Array.<number>} Flat midpoint.
+ */
+ol.geom.LineString.prototype.getFlatMidpoint = function() {
+  if (this.flatMidpointRevision_ != this.getRevision()) {
+    this.flatMidpoint_ = ol.geom.flat.interpolate.lineString(
+        this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+        0.5, this.flatMidpoint_);
+    this.flatMidpointRevision_ = this.getRevision();
+  }
+  return this.flatMidpoint_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.structs.RBushNode.<T>} node1 Node 1.
  * @param {ol.structs.RBushNode.<T>} node2 Node 2.
  * @private
@@ -49907,6 +53974,49 @@ ol.structs.RBush.prototype.update = function(extent, value) {
     goog.asserts.assert(removed);
     this.insert_(extent, value, this.root_.height - 1);
     this.valueExtent_[key] = ol.extent.clone(extent, currentExtent);
+=======
+ * @inheritDoc
+ */
+ol.geom.LineString.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  var simplifiedFlatCoordinates = [];
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.douglasPeucker(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+      squaredTolerance, simplifiedFlatCoordinates, 0);
+  var simplifiedLineString = new ol.geom.LineString(null);
+  simplifiedLineString.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates);
+  return simplifiedLineString;
+};
+
+
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.LineString.prototype.getType = function() {
+  return ol.geom.GeometryType.LINE_STRING;
+};
+
+
+/**
+ * @param {ol.geom.RawLineString} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.LineString.prototype.setCoordinates =
+    function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null);
+  } else {
+    this.setLayout(opt_layout, coordinates, 1);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    this.flatCoordinates.length = ol.geom.flat.deflate.coordinates(
+        this.flatCoordinates, 0, coordinates, this.stride);
+    this.dispatchChangeEvent();
+>>>>>>> ConectaDF
   }
 };
 // FIXME bulk feature upload - suppress events
@@ -49930,6 +54040,7 @@ goog.require('ol.structs.RBush');
 
 
 /**
+<<<<<<< HEAD
  * @enum {string}
  */
 ol.source.VectorEventType = {
@@ -49945,12 +54056,36 @@ ol.source.VectorEventType = {
    * @todo api
    */
   REMOVEFEATURE: 'removefeature'
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+ol.geom.LineString.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
 };
+goog.provide('ol.geom.MultiLineString');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.array');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.LineString');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.closest');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.geom.flat.interpolate');
+goog.require('ol.geom.flat.simplify');
 
 
 
 /**
  * @constructor
+<<<<<<< HEAD
  * @extends {ol.source.Source}
  * @fires {@link ol.source.VectorEvent} ol.source.VectorEvent
  * @param {olx.source.VectorOptions=} opt_options Vector source options.
@@ -49992,8 +54127,39 @@ ol.source.Vector = function(opt_options) {
 
 };
 goog.inherits(ol.source.Vector, ol.source.Source);
+=======
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawMultiLineString} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiLineString = function(coordinates, opt_layout) {
 
+  goog.base(this);
 
+  /**
+   * @type {Array.<number>}
+   * @private
+   */
+  this.ends_ = [];
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDelta_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDeltaRevision_ = -1;
+>>>>>>> ConectaDF
+
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+
+<<<<<<< HEAD
 /**
  * @param {ol.Feature} feature Feature.
  * @todo api
@@ -50001,10 +54167,14 @@ goog.inherits(ol.source.Vector, ol.source.Source);
 ol.source.Vector.prototype.addFeature = function(feature) {
   this.addFeatureInternal(feature);
   this.dispatchChangeEvent();
+=======
+>>>>>>> ConectaDF
 };
+goog.inherits(ol.geom.MultiLineString, ol.geom.SimpleGeometry);
 
 
 /**
+<<<<<<< HEAD
  * Add a feature without firing a `change` event.
  * @param {ol.Feature} feature Feature.
  * @protected
@@ -50029,20 +54199,47 @@ ol.source.Vector.prototype.addFeatureInternal = function(feature) {
   }
   this.dispatchEvent(
       new ol.source.VectorEvent(ol.source.VectorEventType.ADDFEATURE, feature));
+=======
+ * @param {ol.geom.LineString} lineString LineString.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.appendLineString = function(lineString) {
+  goog.asserts.assert(lineString.getLayout() == this.layout);
+  if (goog.isNull(this.flatCoordinates)) {
+    this.flatCoordinates = lineString.getFlatCoordinates().slice();
+  } else {
+    ol.array.safeExtend(
+        this.flatCoordinates, lineString.getFlatCoordinates().slice());
+  }
+  this.ends_.push(this.flatCoordinates.length);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<ol.Feature>} features Features.
  * @todo api
  */
 ol.source.Vector.prototype.addFeatures = function(features) {
   this.addFeaturesInternal(features);
   this.dispatchChangeEvent();
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.clone = function() {
+  var multiLineString = new ol.geom.MultiLineString(null);
+  multiLineString.setFlatCoordinates(
+      this.layout, this.flatCoordinates.slice(), this.ends_.slice());
+  return multiLineString;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Add features without firing a `change` event.
  * @param {Array.<ol.Feature>} features Features.
  * @protected
@@ -50079,10 +54276,29 @@ ol.source.Vector.prototype.clear = function() {
  */
 ol.source.Vector.prototype.forEachFeature = function(f, opt_this) {
   return this.rBush_.forEach(f, opt_this);
+=======
+ * @inheritDoc
+ */
+ol.geom.MultiLineString.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  if (this.maxDeltaRevision_ != this.getRevision()) {
+    this.maxDelta_ = Math.sqrt(ol.geom.flat.closest.getsMaxSquaredDelta(
+        this.flatCoordinates, 0, this.ends_, this.stride, 0));
+    this.maxDeltaRevision_ = this.getRevision();
+  }
+  return ol.geom.flat.closest.getsClosestPoint(
+      this.flatCoordinates, 0, this.ends_, this.stride,
+      this.maxDelta_, false, x, y, closestPoint, minSquaredDistance);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Coordinate} coordinate Coordinate.
  * @param {function(this: T, ol.Feature): S} f Callback.
  * @param {T=} opt_this The object to use as `this` in `f`.
@@ -50101,10 +54317,45 @@ ol.source.Vector.prototype.forEachFeatureAtCoordinate =
       return undefined;
     }
   });
+=======
+ * Returns the coordinate at `m` using linear interpolation, or `null` if no
+ * such coordinate exists.
+ *
+ * `opt_extrapolate` controls extrapolation beyond the range of Ms in the
+ * MultiLineString. If `opt_extrapolate` is `true` then Ms less than the first
+ * M will return the first coordinate and Ms greater than the last M will
+ * return the last coordinate.
+ *
+ * `opt_interpolate` controls interpolation between consecutive LineStrings
+ * within the MultiLineString. If `opt_interpolate` is `true` the coordinates
+ * will be linearly interpolated between the last coordinate of one LineString
+ * and the first coordinate of the next LineString.  If `opt_interpolate` is
+ * `false` then the function will return `null` for Ms falling between
+ * LineStrings.
+ *
+ * @param {number} m M.
+ * @param {boolean=} opt_extrapolate Extrapolate.
+ * @param {boolean=} opt_interpolate Interpolate.
+ * @return {ol.Coordinate} Coordinate.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.getCoordinateAtM =
+    function(m, opt_extrapolate, opt_interpolate) {
+  if ((this.layout != ol.geom.GeometryLayout.XYM &&
+       this.layout != ol.geom.GeometryLayout.XYZM) ||
+      this.flatCoordinates.length === 0) {
+    return null;
+  }
+  var extrapolate = goog.isDef(opt_extrapolate) ? opt_extrapolate : false;
+  var interpolate = goog.isDef(opt_interpolate) ? opt_interpolate : false;
+  return ol.geom.flat.lineStringsCoordinateAtM(this.flatCoordinates, 0,
+      this.ends_, this.stride, m, extrapolate, interpolate);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {function(this: T, ol.Feature): S} f Callback.
  * @param {T=} opt_this The object to use as `this` in `f`.
@@ -50143,10 +54394,19 @@ ol.source.Vector.prototype.getFeatures = function() {
         features, goog.object.getValues(this.nullGeometryFeatures_));
   }
   return features;
+=======
+ * @return {ol.geom.RawMultiLineString} Coordinates.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinatess(
+      this.flatCoordinates, 0, this.ends_, this.stride);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Coordinate} coordinate Coordinate.
  * @return {Array.<ol.Feature>} Features.
  * @todo api
@@ -50157,10 +54417,17 @@ ol.source.Vector.prototype.getFeaturesAtCoordinate = function(coordinate) {
     features.push(feature);
   });
   return features;
+=======
+ * @return {Array.<number>} Ends.
+ */
+ol.geom.MultiLineString.prototype.getEnds = function() {
+  return this.ends_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @return {Array.<ol.Feature>} Features.
  */
@@ -50213,19 +54480,57 @@ ol.source.Vector.prototype.getClosestFeatureToCoordinate =
         }
       });
   return closestFeature;
+=======
+ * @param {number} index Index.
+ * @return {ol.geom.LineString} LineString.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.getLineString = function(index) {
+  goog.asserts.assert(0 <= index && index < this.ends_.length);
+  if (index < 0 || this.ends_.length <= index) {
+    return null;
+  }
+  var lineString = new ol.geom.LineString(null);
+  lineString.setFlatCoordinates(this.layout, this.flatCoordinates.slice(
+      index === 0 ? 0 : this.ends_[index - 1], this.ends_[index]));
+  return lineString;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {ol.Extent} Extent.
  * @todo api
  */
 ol.source.Vector.prototype.getExtent = function() {
   return this.rBush_.getExtent();
+=======
+ * @return {Array.<ol.geom.LineString>} LineStrings.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.getLineStrings = function() {
+  var flatCoordinates = this.flatCoordinates;
+  var ends = this.ends_;
+  var layout = this.layout;
+  /** @type {Array.<ol.geom.LineString>} */
+  var lineStrings = [];
+  var offset = 0;
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var lineString = new ol.geom.LineString(null);
+    lineString.setFlatCoordinates(layout, flatCoordinates.slice(offset, end));
+    lineStrings.push(lineString);
+    offset = end;
+  }
+  return lineStrings;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {goog.events.Event} event Event.
  * @private
  */
@@ -50248,19 +54553,55 @@ ol.source.Vector.prototype.handleFeatureChange_ = function(event) {
     }
   }
   this.dispatchChangeEvent();
+=======
+ * @return {Array.<number>} Flat midpoints.
+ */
+ol.geom.MultiLineString.prototype.getFlatMidpoints = function() {
+  var midpoints = [];
+  var flatCoordinates = this.flatCoordinates;
+  var offset = 0;
+  var ends = this.ends_;
+  var stride = this.stride;
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var midpoint = ol.geom.flat.interpolate.lineString(
+        flatCoordinates, offset, end, stride, 0.5);
+    ol.array.safeExtend(midpoints, midpoint);
+    offset = end;
+  }
+  return midpoints;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {boolean} Is empty.
  */
 ol.source.Vector.prototype.isEmpty = function() {
   return this.rBush_.isEmpty() &&
       goog.object.isEmpty(this.nullGeometryFeatures_);
+=======
+ * @inheritDoc
+ */
+ol.geom.MultiLineString.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  var simplifiedFlatCoordinates = [];
+  var simplifiedEnds = [];
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.douglasPeuckers(
+      this.flatCoordinates, 0, this.ends_, this.stride, squaredTolerance,
+      simplifiedFlatCoordinates, 0, simplifiedEnds);
+  var simplifiedMultiLineString = new ol.geom.MultiLineString(null);
+  simplifiedMultiLineString.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates, simplifiedEnds);
+  return simplifiedMultiLineString;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.Extent} extent Extent.
  * @param {number} resolution Resolution.
  * @param {ol.proj.Projection} projection Projection.
@@ -50281,10 +54622,40 @@ ol.source.Vector.prototype.removeFeature = function(feature) {
   }
   this.removeFeatureInternal(feature);
   this.dispatchChangeEvent();
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.getType = function() {
+  return ol.geom.GeometryType.MULTI_LINE_STRING;
 };
 
 
 /**
+ * @param {ol.geom.RawMultiLineString} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiLineString.prototype.setCoordinates =
+    function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null, this.ends_);
+  } else {
+    this.setLayout(opt_layout, coordinates, 2);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    var ends = ol.geom.flat.deflate.coordinatess(
+        this.flatCoordinates, 0, coordinates, this.stride, this.ends_);
+    this.flatCoordinates.length = ends.length === 0 ? 0 : ends[ends.length - 1];
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
  * Remove feature without firing a `change` event.
  * @param {ol.Feature} feature Feature.
  * @protected
@@ -50448,6 +54819,95 @@ ol.render.canvas.Replay = function(tolerance, maxExtent, resolution) {
    * @type {ol.Extent}
    */
   this.extent_ = ol.extent.createEmpty();
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {Array.<number>} ends Ends.
+ */
+ol.geom.MultiLineString.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates, ends) {
+  if (goog.isNull(flatCoordinates)) {
+    goog.asserts.assert(!goog.isNull(ends) && ends.length === 0);
+  } else if (ends.length === 0) {
+    goog.asserts.assert(flatCoordinates.length === 0);
+  } else {
+    goog.asserts.assert(flatCoordinates.length == ends[ends.length - 1]);
+  }
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.ends_ = ends;
+  this.dispatchChangeEvent();
+};
+
+
+/**
+ * @param {Array.<ol.geom.LineString>} lineStrings LineStrings.
+ */
+ol.geom.MultiLineString.prototype.setLineStrings = function(lineStrings) {
+  var layout = ol.geom.GeometryLayout.XY;
+  var flatCoordinates = [];
+  var ends = [];
+  var i, ii;
+  for (i = 0, ii = lineStrings.length; i < ii; ++i) {
+    var lineString = lineStrings[i];
+    if (i === 0) {
+      layout = lineString.getLayout();
+    } else {
+      // FIXME better handle the case of non-matching layouts
+      goog.asserts.assert(lineString.getLayout() == layout);
+    }
+    ol.array.safeExtend(flatCoordinates, lineString.getFlatCoordinates());
+    ends.push(flatCoordinates.length);
+  }
+  this.setFlatCoordinates(layout, flatCoordinates, ends);
+};
+goog.provide('ol.geom.GeometryCollection');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.object');
+goog.require('ol.extent');
+goog.require('ol.geom.Geometry');
+goog.require('ol.geom.GeometryType');
+
+
+
+/**
+ * @constructor
+ * @extends {ol.geom.Geometry}
+ * @param {Array.<ol.geom.Geometry>=} opt_geometries Geometries.
+ * @todo api
+ */
+ol.geom.GeometryCollection = function(opt_geometries) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {Array.<ol.geom.Geometry>}
+   */
+  this.geometries_ = goog.isDef(opt_geometries) ? opt_geometries : null;
+
+  this.listenGeometriesChange_();
+};
+goog.inherits(ol.geom.GeometryCollection, ol.geom.Geometry);
+
+
+/**
+ * @param {Array.<ol.geom.Geometry>} geometries Geometries.
+ * @private
+ * @return {Array.<ol.geom.Geometry>} Cloned geometries.
+ */
+ol.geom.GeometryCollection.cloneGeometries_ = function(geometries) {
+  var clonedGeometries = [];
+  var i, ii;
+  for (i = 0, ii = geometries.length; i < ii; ++i) {
+    clonedGeometries.push(geometries[i].clone());
+  }
+  return clonedGeometries;
+};
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -50455,10 +54915,27 @@ ol.render.canvas.Replay = function(tolerance, maxExtent, resolution) {
    */
   this.tmpLocalTransform_ = goog.vec.Mat4.createNumber();
 
+<<<<<<< HEAD
+=======
+/**
+ * @private
+ */
+ol.geom.GeometryCollection.prototype.unlistenGeometriesChange_ = function() {
+  var i, ii;
+  if (goog.isNull(this.geometries_)) {
+    return;
+  }
+  for (i = 0, ii = this.geometries_.length; i < ii; ++i) {
+    goog.events.unlisten(
+        this.geometries_[i], goog.events.EventType.CHANGE,
+        this.dispatchChangeEvent, false, this);
+  }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {Array.<number>} flatCoordinates Flat coordinates.
  * @param {number} offset Offset.
  * @param {number} end End.
@@ -50500,6 +54977,21 @@ ol.render.canvas.Replay.prototype.appendFlatCoordinates =
     lastCoord[1] = nextCoord[1];
     lastRel = nextRel;
   }
+=======
+ * @private
+ */
+ol.geom.GeometryCollection.prototype.listenGeometriesChange_ = function() {
+  var i, ii;
+  if (goog.isNull(this.geometries_)) {
+    return;
+  }
+  for (i = 0, ii = this.geometries_.length; i < ii; ++i) {
+    goog.events.listen(
+        this.geometries_[i], goog.events.EventType.CHANGE,
+        this.dispatchChangeEvent, false, this);
+  }
+};
+>>>>>>> ConectaDF
 
   // handle case where there is only one point to append
   if (i === offset + stride) {
@@ -50507,15 +54999,8001 @@ ol.render.canvas.Replay.prototype.appendFlatCoordinates =
     this.coordinates[myEnd++] = lastCoord[1];
   }
 
+<<<<<<< HEAD
   if (close) {
     this.coordinates[myEnd++] = flatCoordinates[offset];
     this.coordinates[myEnd++] = flatCoordinates[offset + 1];
   }
   return myEnd;
+=======
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.clone = function() {
+  var geometryCollection = new ol.geom.GeometryCollection(null);
+  geometryCollection.setGeometries(this.geometries_);
+  return geometryCollection;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @protected
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {Object} data Opaque data object.
+ */
+ol.render.canvas.Replay.prototype.beginGeometry = function(geometry, data) {
+  this.beginGeometryInstruction1_ =
+      [ol.render.canvas.Instruction.BEGIN_GEOMETRY, geometry, data, 0];
+  this.instructions.push(this.beginGeometryInstruction1_);
+  this.beginGeometryInstruction2_ =
+      [ol.render.canvas.Instruction.BEGIN_GEOMETRY, geometry, data, 0];
+  this.hitDetectionInstructions.push(this.beginGeometryInstruction2_);
+=======
+ * @inheritDoc
+ */
+ol.geom.GeometryCollection.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  var geometries = this.geometries_;
+  var i, ii;
+  for (i = 0, ii = geometries.length; i < ii; ++i) {
+    minSquaredDistance = geometries[i].closestPointXY(
+        x, y, closestPoint, minSquaredDistance);
+  }
+  return minSquaredDistance;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip.
+ * @param {Array.<*>} instructions Instructions array.
+ * @param {function(ol.geom.Geometry, Object): T|undefined} geometryCallback
+ *     Geometry callback.
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.Replay.prototype.replay_ = function(
+    context, pixelRatio, transform, viewRotation, skippedFeaturesHash,
+    instructions, geometryCallback) {
+  /** @type {Array.<number>} */
+  var pixelCoordinates;
+  if (ol.vec.Mat4.equals2D(transform, this.renderedTransform_)) {
+    pixelCoordinates = this.pixelCoordinates_;
+  } else {
+    pixelCoordinates = ol.geom.flat.transform.transform2D(
+        this.coordinates, 2, transform, this.pixelCoordinates_);
+    goog.vec.Mat4.setFromArray(this.renderedTransform_, transform);
+    goog.asserts.assert(pixelCoordinates === this.pixelCoordinates_);
+  }
+  var i = 0; // instruction index
+  var ii = instructions.length; // end of instructions
+  var d = 0; // data index
+  var dd; // end of per-instruction data
+  var localTransform = this.tmpLocalTransform_;
+  while (i < ii) {
+    var instruction = instructions[i];
+    var type = /** @type {ol.render.canvas.Instruction} */ (instruction[0]);
+    var data, fill, geometry, stroke, text, x, y;
+    switch (type) {
+      case ol.render.canvas.Instruction.BEGIN_GEOMETRY:
+        geometry = /** @type {ol.geom.Geometry} */ (instruction[1]);
+        data = /** @type {Object} */ (instruction[2]);
+        var dataUid = goog.getUid(data).toString();
+        if (!goog.isDef(goog.object.get(skippedFeaturesHash, dataUid))) {
+          ++i;
+        } else {
+          i = /** @type {number} */ (instruction[3]);
+        }
+        break;
+      case ol.render.canvas.Instruction.BEGIN_PATH:
+        context.beginPath();
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.CIRCLE:
+        var x1 = pixelCoordinates[d];
+        var y1 = pixelCoordinates[d + 1];
+        var x2 = pixelCoordinates[d + 2];
+        var y2 = pixelCoordinates[d + 3];
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+        var r = Math.sqrt(dx * dx + dy * dy);
+        context.arc(x1, y1, r, 0, 2 * Math.PI, true);
+        d += 4;
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.CLOSE_PATH:
+        context.closePath();
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.DRAW_IMAGE:
+        goog.asserts.assert(goog.isNumber(instruction[1]));
+        d = /** @type {number} */ (instruction[1]);
+        goog.asserts.assert(goog.isNumber(instruction[2]));
+        dd = /** @type {number} */ (instruction[2]);
+        var image =  /** @type {HTMLCanvasElement|HTMLVideoElement|Image} */
+            (instruction[3]);
+        // Remaining arguments in DRAW_IMAGE are in alphabetical order
+        var anchorX = /** @type {number} */ (instruction[4]) * pixelRatio;
+        var anchorY = /** @type {number} */ (instruction[5]) * pixelRatio;
+        var height = /** @type {number} */ (instruction[6]) * pixelRatio;
+        var opacity = /** @type {number} */ (instruction[7]);
+        var originX = /** @type {number} */ (instruction[8]);
+        var originY = /** @type {number} */ (instruction[9]);
+        var rotateWithView = /** @type {boolean} */ (instruction[10]);
+        var rotation = /** @type {number} */ (instruction[11]);
+        var scale = /** @type {number} */ (instruction[12]);
+        var snapToPixel = /** @type {boolean|undefined} */ (instruction[13]);
+        var width = /** @type {number} */ (instruction[14]) * pixelRatio;
+        if (rotateWithView) {
+          rotation += viewRotation;
+        }
+        for (; d < dd; d += 2) {
+          x = pixelCoordinates[d] - anchorX;
+          y = pixelCoordinates[d + 1] - anchorY;
+          if (snapToPixel) {
+            x = (x + 0.5) | 0;
+            y = (y + 0.5) | 0;
+          }
+          if (scale != 1 || rotation !== 0) {
+            var centerX = x + anchorX;
+            var centerY = y + anchorY;
+            ol.vec.Mat4.makeTransform2D(
+                localTransform, centerX, centerY, scale, scale,
+                rotation, -centerX, -centerY);
+            context.setTransform(
+                goog.vec.Mat4.getElement(localTransform, 0, 0),
+                goog.vec.Mat4.getElement(localTransform, 1, 0),
+                goog.vec.Mat4.getElement(localTransform, 0, 1),
+                goog.vec.Mat4.getElement(localTransform, 1, 1),
+                goog.vec.Mat4.getElement(localTransform, 0, 3),
+                goog.vec.Mat4.getElement(localTransform, 1, 3));
+          }
+          var alpha = context.globalAlpha;
+          if (opacity != 1) {
+            context.globalAlpha = alpha * opacity;
+          }
+
+          context.drawImage(image, originX, originY, width, height,
+              x, y, width, height);
+
+          if (opacity != 1) {
+            context.globalAlpha = alpha;
+          }
+          if (scale != 1 || rotation !== 0) {
+            context.setTransform(1, 0, 0, 1, 0, 0);
+          }
+        }
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.DRAW_TEXT:
+        goog.asserts.assert(goog.isNumber(instruction[1]));
+        d = /** @type {number} */ (instruction[1]);
+        goog.asserts.assert(goog.isNumber(instruction[2]));
+        dd = /** @type {number} */ (instruction[2]);
+        goog.asserts.assert(goog.isString(instruction[3]));
+        text = /** @type {string} */ (instruction[3]);
+        goog.asserts.assert(goog.isNumber(instruction[4]));
+        var offsetX = /** @type {number} */ (instruction[4]) * pixelRatio;
+        goog.asserts.assert(goog.isNumber(instruction[5]));
+        var offsetY = /** @type {number} */ (instruction[5]) * pixelRatio;
+        goog.asserts.assert(goog.isNumber(instruction[6]));
+        rotation = /** @type {number} */ (instruction[6]);
+        goog.asserts.assert(goog.isNumber(instruction[7]));
+        scale = /** @type {number} */ (instruction[7]) * pixelRatio;
+        goog.asserts.assert(goog.isBoolean(instruction[8]));
+        fill = /** @type {boolean} */ (instruction[8]);
+        goog.asserts.assert(goog.isBoolean(instruction[9]));
+        stroke = /** @type {boolean} */ (instruction[9]);
+        for (; d < dd; d += 2) {
+          x = pixelCoordinates[d] + offsetX;
+          y = pixelCoordinates[d + 1] + offsetY;
+          if (scale != 1 || rotation !== 0) {
+            ol.vec.Mat4.makeTransform2D(
+                localTransform, x, y, scale, scale, rotation, -x, -y);
+            context.setTransform(
+                goog.vec.Mat4.getElement(localTransform, 0, 0),
+                goog.vec.Mat4.getElement(localTransform, 1, 0),
+                goog.vec.Mat4.getElement(localTransform, 0, 1),
+                goog.vec.Mat4.getElement(localTransform, 1, 1),
+                goog.vec.Mat4.getElement(localTransform, 0, 3),
+                goog.vec.Mat4.getElement(localTransform, 1, 3));
+          }
+          if (stroke) {
+            context.strokeText(text, x, y);
+          }
+          if (fill) {
+            context.fillText(text, x, y);
+          }
+          if (scale != 1 || rotation !== 0) {
+            context.setTransform(1, 0, 0, 1, 0, 0);
+          }
+        }
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.END_GEOMETRY:
+        if (goog.isDef(geometryCallback)) {
+          geometry = /** @type {ol.geom.Geometry} */ (instruction[1]);
+          data = /** @type {Object} */ (instruction[2]);
+          var result = geometryCallback(geometry, data);
+          if (result) {
+            return result;
+          }
+        }
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.FILL:
+        context.fill();
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.MOVE_TO_LINE_TO:
+        goog.asserts.assert(goog.isNumber(instruction[1]));
+        d = /** @type {number} */ (instruction[1]);
+        goog.asserts.assert(goog.isNumber(instruction[2]));
+        dd = /** @type {number} */ (instruction[2]);
+        context.moveTo(pixelCoordinates[d], pixelCoordinates[d + 1]);
+        for (d += 2; d < dd; d += 2) {
+          context.lineTo(pixelCoordinates[d], pixelCoordinates[d + 1]);
+        }
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.SET_FILL_STYLE:
+        goog.asserts.assert(goog.isString(instruction[1]));
+        context.fillStyle = /** @type {string} */ (instruction[1]);
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.SET_STROKE_STYLE:
+        goog.asserts.assert(goog.isString(instruction[1]));
+        goog.asserts.assert(goog.isNumber(instruction[2]));
+        goog.asserts.assert(goog.isString(instruction[3]));
+        goog.asserts.assert(goog.isString(instruction[4]));
+        goog.asserts.assert(goog.isNumber(instruction[5]));
+        goog.asserts.assert(!goog.isNull(instruction[6]));
+        context.strokeStyle = /** @type {string} */ (instruction[1]);
+        context.lineWidth = /** @type {number} */ (instruction[2]) * pixelRatio;
+        context.lineCap = /** @type {string} */ (instruction[3]);
+        context.lineJoin = /** @type {string} */ (instruction[4]);
+        context.miterLimit = /** @type {number} */ (instruction[5]);
+        if (ol.BrowserFeature.HAS_CANVAS_LINE_DASH) {
+          context.setLineDash(/** @type {Array.<number>} */ (instruction[6]));
+        }
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.SET_TEXT_STYLE:
+        goog.asserts.assert(goog.isString(instruction[1]));
+        goog.asserts.assert(goog.isString(instruction[2]));
+        goog.asserts.assert(goog.isString(instruction[3]));
+        context.font = /** @type {string} */ (instruction[1]);
+        context.textAlign = /** @type {string} */ (instruction[2]);
+        context.textBaseline = /** @type {string} */ (instruction[3]);
+        ++i;
+        break;
+      case ol.render.canvas.Instruction.STROKE:
+        context.stroke();
+        ++i;
+        break;
+      default:
+        goog.asserts.fail();
+        ++i; // consume the instruction anyway, to avoid an infinite loop
+        break;
+=======
+ * @inheritDoc
+ */
+ol.geom.GeometryCollection.prototype.containsXY = function(x, y) {
+  var geometries = this.geometries_;
+  var i, ii;
+  for (i = 0, ii = geometries.length; i < ii; ++i) {
+    if (geometries[i].containsXY(x, y)) {
+      return true;
+>>>>>>> ConectaDF
+    }
+  }
+  // assert that all instructions were consumed
+  goog.asserts.assert(i == instructions.length);
+  return undefined;
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.Replay.prototype.replay = function(
+    context, pixelRatio, transform, viewRotation, skippedFeaturesHash) {
+  var instructions = this.instructions;
+  return this.replay_(context, pixelRatio, transform, viewRotation,
+      skippedFeaturesHash, instructions, undefined);
+};
+
+
+/**
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @param {function(ol.geom.Geometry, Object): T=} opt_geometryCallback
+ *     Geometry callback.
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.Replay.prototype.replayHitDetection = function(
+    context, transform, viewRotation, skippedFeaturesHash,
+    opt_geometryCallback) {
+  var instructions = this.hitDetectionInstructions;
+  return this.replay_(context, 1, transform, viewRotation,
+      skippedFeaturesHash, instructions, opt_geometryCallback);
+};
+
+
+/**
+ * @private
+ */
+ol.render.canvas.Replay.prototype.reverseHitDetectionInstructions_ =
+    function() {
+  var hitDetectionInstructions = this.hitDetectionInstructions;
+  // step 1 - reverse array
+  hitDetectionInstructions.reverse();
+  // step 2 - reverse instructions within geometry blocks
+  var i;
+  var n = hitDetectionInstructions.length;
+  var instruction;
+  var type;
+  var begin = -1;
+  for (i = 0; i < n; ++i) {
+    instruction = hitDetectionInstructions[i];
+    type = /** @type {ol.render.canvas.Instruction} */ (instruction[0]);
+    if (type == ol.render.canvas.Instruction.END_GEOMETRY) {
+      goog.asserts.assert(begin == -1);
+      begin = i;
+    } else if (type == ol.render.canvas.Instruction.BEGIN_GEOMETRY) {
+      instruction[3] = i;
+      goog.asserts.assert(begin >= 0);
+      ol.array.reverseSubArray(this.hitDetectionInstructions, begin, i);
+      begin = -1;
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.getExtent = function(opt_extent) {
+  if (this.extentRevision != this.getRevision()) {
+    var extent = ol.extent.createOrUpdateEmpty(this.extent);
+    var geometries = this.geometries_;
+    var i, ii;
+    for (i = 0, ii = geometries.length; i < ii; ++i) {
+      ol.extent.extend(extent, geometries[i].getExtent());
+>>>>>>> ConectaDF
+    }
+    this.extent = extent;
+    this.extentRevision = this.getRevision();
+  }
+<<<<<<< HEAD
+=======
+  goog.asserts.assert(goog.isDef(this.extent));
+  return ol.extent.returnOrUpdate(this.extent, opt_extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawAsync = goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawCircleGeometry = goog.abstractMethod;
+=======
+ * @return {Array.<ol.geom.Geometry>} Geometries.
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.getGeometries = function() {
+  return ol.geom.GeometryCollection.cloneGeometries_(this.geometries_);
+};
+
+
+/**
+ * @return {Array.<ol.geom.Geometry>} Geometries.
+ */
+ol.geom.GeometryCollection.prototype.getGeometriesArray = function() {
+  return this.geometries_;
+};
+>>>>>>> ConectaDF
+
+
+/**
+ * @inheritDoc
+<<<<<<< HEAD
+ */
+ol.render.canvas.Replay.prototype.drawFeature = goog.abstractMethod;
+=======
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.getSimplifiedGeometry =
+    function(squaredTolerance) {
+  if (this.simplifiedGeometryRevision != this.getRevision()) {
+    goog.object.clear(this.simplifiedGeometryCache);
+    this.simplifiedGeometryMaxMinSquaredTolerance = 0;
+    this.simplifiedGeometryRevision = this.getRevision();
+  }
+  if (squaredTolerance < 0 ||
+      (this.simplifiedGeometryMaxMinSquaredTolerance !== 0 &&
+       squaredTolerance < this.simplifiedGeometryMaxMinSquaredTolerance)) {
+    return this;
+  }
+  var key = squaredTolerance.toString();
+  if (this.simplifiedGeometryCache.hasOwnProperty(key)) {
+    return this.simplifiedGeometryCache[key];
+  } else {
+    var simplifiedGeometries = [];
+    var geometries = this.geometries_;
+    var simplified = false;
+    var i, ii;
+    for (i = 0, ii = geometries.length; i < ii; ++i) {
+      var geometry = geometries[i];
+      var simplifiedGeometry = geometry.getSimplifiedGeometry(squaredTolerance);
+      simplifiedGeometries.push(simplifiedGeometry);
+      if (simplifiedGeometry !== geometry) {
+        simplified = true;
+      }
+    }
+    if (simplified) {
+      var simplifiedGeometryCollection = new ol.geom.GeometryCollection(null);
+      simplifiedGeometryCollection.setGeometriesArray(simplifiedGeometries);
+      this.simplifiedGeometryCache[key] = simplifiedGeometryCollection;
+      return simplifiedGeometryCollection;
+    } else {
+      this.simplifiedGeometryMaxMinSquaredTolerance = squaredTolerance;
+      return this;
+    }
+  }
+};
+>>>>>>> ConectaDF
+
+
+/**
+ * @inheritDoc
+<<<<<<< HEAD
+ */
+ol.render.canvas.Replay.prototype.drawGeometryCollectionGeometry =
+    goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawLineStringGeometry = goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawMultiLineStringGeometry =
+    goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawPointGeometry = goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawMultiPointGeometry = goog.abstractMethod;
+=======
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.getType = function() {
+  return ol.geom.GeometryType.GEOMETRY_COLLECTION;
+};
+
+
+/**
+ * @return {boolean} Is empty.
+ */
+ol.geom.GeometryCollection.prototype.isEmpty = function() {
+  return goog.array.isEmpty(this.geometries_);
+};
+
+
+/**
+ * @param {Array.<ol.geom.Geometry>} geometries Geometries.
+ * @todo api
+ */
+ol.geom.GeometryCollection.prototype.setGeometries = function(geometries) {
+  this.setGeometriesArray(
+      ol.geom.GeometryCollection.cloneGeometries_(geometries));
+};
+
+
+/**
+ * @param {Array.<ol.geom.Geometry>} geometries Geometries.
+ */
+ol.geom.GeometryCollection.prototype.setGeometriesArray = function(geometries) {
+  this.unlistenGeometriesChange_();
+  this.geometries_ = geometries;
+  this.listenGeometriesChange_();
+  this.dispatchChangeEvent();
+};
+>>>>>>> ConectaDF
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.render.canvas.Replay.prototype.drawPolygonGeometry = goog.abstractMethod;
+=======
+ol.geom.GeometryCollection.prototype.applyTransform = function(transformFn) {
+  var geometries = this.geometries_;
+  var i, ii;
+  for (i = 0, ii = geometries.length; i < ii; ++i) {
+    geometries[i].applyTransform(transformFn);
+  }
+  this.dispatchChangeEvent();
+};
+>>>>>>> ConectaDF
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.render.canvas.Replay.prototype.drawMultiPolygonGeometry =
+    goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.drawText = goog.abstractMethod;
+
+
+/**
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {Object} data Opaque data object.
+ */
+ol.render.canvas.Replay.prototype.endGeometry =
+    function(geometry, data) {
+  goog.asserts.assert(!goog.isNull(this.beginGeometryInstruction1_));
+  this.beginGeometryInstruction1_[3] = this.instructions.length;
+  this.beginGeometryInstruction1_ = null;
+  goog.asserts.assert(!goog.isNull(this.beginGeometryInstruction2_));
+  this.beginGeometryInstruction2_[3] = this.hitDetectionInstructions.length;
+  this.beginGeometryInstruction2_ = null;
+  var endGeometryInstruction =
+      [ol.render.canvas.Instruction.END_GEOMETRY, geometry, data];
+  this.instructions.push(endGeometryInstruction);
+  this.hitDetectionInstructions.push(endGeometryInstruction);
+=======
+ol.geom.GeometryCollection.prototype.disposeInternal = function() {
+  this.unlistenGeometriesChange_();
+  goog.base(this, 'disposeInternal');
+};
+goog.provide('ol.geom.flat.area');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @return {number} Area.
+ */
+ol.geom.flat.area.linearRing = function(flatCoordinates, offset, end, stride) {
+  var twiceArea = 0;
+  var x1 = flatCoordinates[end - stride];
+  var y1 = flatCoordinates[end - stride + 1];
+  for (; offset < end; offset += stride) {
+    var x2 = flatCoordinates[offset];
+    var y2 = flatCoordinates[offset + 1];
+    twiceArea += y1 * x2 - x1 * y2;
+    x1 = x2;
+    y1 = y2;
+  }
+  return twiceArea / 2;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * FIXME empty description for jsdoc
+ */
+ol.render.canvas.Replay.prototype.finish = goog.nullFunction;
+
+
+/**
+ * Get the buffered rendering extent.  Rendering will be clipped to the extent
+ * provided to the constructor.  To account for symbolizers that may intersect
+ * this extent, we calculate a buffered extent (e.g. based on stroke width).
+ * @return {ol.Extent} The buffered rendering extent.
+ * @protected
+ */
+ol.render.canvas.Replay.prototype.getBufferedMaxExtent = function() {
+  return this.maxExtent;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @return {number} Area.
+ */
+ol.geom.flat.area.linearRings =
+    function(flatCoordinates, offset, ends, stride) {
+  var area = 0;
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    area += ol.geom.flat.area.linearRing(flatCoordinates, offset, end, stride);
+    offset = end;
+  }
+  return area;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @return {number} Area.
+ */
+ol.geom.flat.area.linearRingss =
+    function(flatCoordinates, offset, endss, stride) {
+  var area = 0;
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    area +=
+        ol.geom.flat.area.linearRings(flatCoordinates, offset, ends, stride);
+    offset = ends[ends.length - 1];
+  }
+  return area;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.flat.reverse');
+
+
+/**
+<<<<<<< HEAD
+ * @return {ol.Extent} Extent.
+ */
+ol.render.canvas.Replay.prototype.getExtent = function() {
+  return this.extent_;
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ */
+ol.geom.flat.reverse.coordinates =
+    function(flatCoordinates, offset, end, stride) {
+  while (offset < end - stride) {
+    var i;
+    for (i = 0; i < stride; ++i) {
+      var tmp = flatCoordinates[offset + i];
+      flatCoordinates[offset + i] = flatCoordinates[end - stride + i];
+      flatCoordinates[end - stride + i] = tmp;
+    }
+    offset += stride;
+    end -= stride;
+  }
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.flat.orient');
+
+goog.require('ol.geom.flat.reverse');
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.setFillStrokeStyle = goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.setImageStyle = goog.abstractMethod;
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.Replay.prototype.setTextStyle = goog.abstractMethod;
+
+
+
+/**
+ * @constructor
+ * @extends {ol.render.canvas.Replay}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Maximum extent.
+ * @param {number} resolution Resolution.
+ * @protected
+ * @struct
+ */
+ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
+=======
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @return {boolean} Is clockwise.
+ */
+ol.geom.flat.orient.linearRingIsClockwise =
+    function(flatCoordinates, offset, end, stride) {
+  // http://tinyurl.com/clockwise-method
+  // https://github.com/OSGeo/gdal/blob/trunk/gdal/ogr/ogrlinearring.cpp
+  var edge = 0;
+  var x1 = flatCoordinates[end - stride];
+  var y1 = flatCoordinates[end - stride + 1];
+  for (; offset < end; offset += stride) {
+    var x2 = flatCoordinates[offset];
+    var y2 = flatCoordinates[offset + 1];
+    edge += (x2 - x1) * (y2 + y1);
+    x1 = x2;
+    y1 = y2;
+  }
+  return edge > 0;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @return {boolean} `true` if all rings are correctly oriented, `false`
+ *     otherwise.
+ */
+ol.geom.flat.orient.linearRingsAreOriented =
+    function(flatCoordinates, offset, ends, stride) {
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var isClockwise = ol.geom.flat.orient.linearRingIsClockwise(
+        flatCoordinates, offset, end, stride);
+    if (i === 0 ? !isClockwise : isClockwise) {
+      return false;
+    }
+    offset = end;
+  }
+  return true;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @return {boolean} `true` if all rings are correctly oriented, `false`
+ *     otherwise.
+ */
+ol.geom.flat.linearRingssAreOriented =
+    function(flatCoordinates, offset, endss, stride) {
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    if (!ol.geom.flat.orient.linearRingsAreOriented(
+        flatCoordinates, offset, endss[i], stride)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @return {number} End.
+ */
+ol.geom.flat.orient.orientLinearRings =
+    function(flatCoordinates, offset, ends, stride) {
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var isClockwise = ol.geom.flat.orient.linearRingIsClockwise(
+        flatCoordinates, offset, end, stride);
+    var reverse = i === 0 ? !isClockwise : isClockwise;
+    if (reverse) {
+      ol.geom.flat.reverse.coordinates(flatCoordinates, offset, end, stride);
+    }
+    offset = end;
+  }
+  return offset;
+};
+>>>>>>> ConectaDF
+
+  goog.base(this, tolerance, maxExtent, resolution);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {HTMLCanvasElement|HTMLVideoElement|Image}
+   */
+  this.hitDetectionImage_ = null;
+
+  /**
+   * @private
+   * @type {HTMLCanvasElement|HTMLVideoElement|Image}
+   */
+  this.image_ = null;
+=======
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @return {number} End.
+ */
+ol.geom.flat.orient.orientLinearRingss =
+    function(flatCoordinates, offset, endss, stride) {
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    offset = ol.geom.flat.orient.orientLinearRings(
+        flatCoordinates, offset, endss[i], stride);
+  }
+  return offset;
+};
+goog.provide('ol.geom.LinearRing');
+
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.area');
+goog.require('ol.geom.flat.closest');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.geom.flat.simplify');
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.anchorX_ = undefined;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.anchorY_ = undefined;
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.height_ = undefined;
+=======
+/**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawLinearRing} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.LinearRing = function(coordinates, opt_layout) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDelta_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDeltaRevision_ = -1;
+
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+
+};
+goog.inherits(ol.geom.LinearRing, ol.geom.SimpleGeometry);
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.opacity_ = undefined;
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.originX_ = undefined;
+=======
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.LinearRing.prototype.clone = function() {
+  var linearRing = new ol.geom.LinearRing(null);
+  linearRing.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return linearRing;
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.originY_ = undefined;
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {boolean|undefined}
+   */
+  this.rotateWithView_ = undefined;
+=======
+/**
+ * @inheritDoc
+ */
+ol.geom.LinearRing.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  if (this.maxDeltaRevision_ != this.getRevision()) {
+    this.maxDelta_ = Math.sqrt(ol.geom.flat.closest.getMaxSquaredDelta(
+        this.flatCoordinates, 0, this.flatCoordinates.length, this.stride, 0));
+    this.maxDeltaRevision_ = this.getRevision();
+  }
+  return ol.geom.flat.closest.getClosestPoint(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+      this.maxDelta_, true, x, y, closestPoint, minSquaredDistance);
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.rotation_ = undefined;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.scale_ = undefined;
+
+  /**
+   * @private
+   * @type {boolean|undefined}
+   */
+  this.snapToPixel_ = undefined;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.width_ = undefined;
+
+<<<<<<< HEAD
+=======
+/**
+ * @return {number} Area.
+ * @todo api
+ */
+ol.geom.LinearRing.prototype.getArea = function() {
+  return ol.geom.flat.area.linearRing(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.render.canvas.ImageReplay, ol.render.canvas.Replay);
+
+
+/**
+<<<<<<< HEAD
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @private
+ * @return {number} My end.
+ */
+ol.render.canvas.ImageReplay.prototype.drawCoordinates_ =
+    function(flatCoordinates, offset, end, stride) {
+  return this.appendFlatCoordinates(
+      flatCoordinates, offset, end, stride, false);
+=======
+ * @return {ol.geom.RawLinearRing} Coordinates.
+ * @todo api
+ */
+ol.geom.LinearRing.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinates(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.render.canvas.ImageReplay.prototype.drawPointGeometry =
+    function(pointGeometry, data) {
+  if (goog.isNull(this.image_)) {
+    return;
+  }
+  goog.asserts.assert(goog.isDef(this.anchorX_));
+  goog.asserts.assert(goog.isDef(this.anchorY_));
+  goog.asserts.assert(goog.isDef(this.height_));
+  goog.asserts.assert(goog.isDef(this.opacity_));
+  goog.asserts.assert(goog.isDef(this.originX_));
+  goog.asserts.assert(goog.isDef(this.originY_));
+  goog.asserts.assert(goog.isDef(this.rotateWithView_));
+  goog.asserts.assert(goog.isDef(this.rotation_));
+  goog.asserts.assert(goog.isDef(this.scale_));
+  goog.asserts.assert(goog.isDef(this.width_));
+  ol.extent.extend(this.extent_, pointGeometry.getExtent());
+  this.beginGeometry(pointGeometry, data);
+  var flatCoordinates = pointGeometry.getFlatCoordinates();
+  var stride = pointGeometry.getStride();
+  var myBegin = this.coordinates.length;
+  var myEnd = this.drawCoordinates_(
+      flatCoordinates, 0, flatCoordinates.length, stride);
+  this.instructions.push([
+    ol.render.canvas.Instruction.DRAW_IMAGE, myBegin, myEnd, this.image_,
+    // Remaining arguments to DRAW_IMAGE are in alphabetical order
+    this.anchorX_, this.anchorY_, this.height_, this.opacity_,
+    this.originX_, this.originY_, this.rotateWithView_, this.rotation_,
+    this.scale_, this.snapToPixel_, this.width_
+  ]);
+  this.hitDetectionInstructions.push([
+    ol.render.canvas.Instruction.DRAW_IMAGE, myBegin, myEnd,
+    this.hitDetectionImage_,
+    // Remaining arguments to DRAW_IMAGE are in alphabetical order
+    this.anchorX_, this.anchorY_, this.height_, this.opacity_,
+    this.originX_, this.originY_, this.rotateWithView_, this.rotation_,
+    this.scale_, this.snapToPixel_, this.width_
+  ]);
+  this.endGeometry(pointGeometry, data);
+=======
+ol.geom.LinearRing.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  var simplifiedFlatCoordinates = [];
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.douglasPeucker(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride,
+      squaredTolerance, simplifiedFlatCoordinates, 0);
+  var simplifiedLinearRing = new ol.geom.LinearRing(null);
+  simplifiedLinearRing.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates);
+  return simplifiedLinearRing;
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+<<<<<<< HEAD
+ */
+ol.render.canvas.ImageReplay.prototype.drawMultiPointGeometry =
+    function(multiPointGeometry, data) {
+  if (goog.isNull(this.image_)) {
+    return;
+  }
+  goog.asserts.assert(goog.isDef(this.anchorX_));
+  goog.asserts.assert(goog.isDef(this.anchorY_));
+  goog.asserts.assert(goog.isDef(this.height_));
+  goog.asserts.assert(goog.isDef(this.opacity_));
+  goog.asserts.assert(goog.isDef(this.originX_));
+  goog.asserts.assert(goog.isDef(this.originY_));
+  goog.asserts.assert(goog.isDef(this.rotateWithView_));
+  goog.asserts.assert(goog.isDef(this.rotation_));
+  goog.asserts.assert(goog.isDef(this.scale_));
+  goog.asserts.assert(goog.isDef(this.width_));
+  ol.extent.extend(this.extent_, multiPointGeometry.getExtent());
+  this.beginGeometry(multiPointGeometry, data);
+  var flatCoordinates = multiPointGeometry.getFlatCoordinates();
+  var stride = multiPointGeometry.getStride();
+  var myBegin = this.coordinates.length;
+  var myEnd = this.drawCoordinates_(
+      flatCoordinates, 0, flatCoordinates.length, stride);
+  this.instructions.push([
+    ol.render.canvas.Instruction.DRAW_IMAGE, myBegin, myEnd, this.image_,
+    // Remaining arguments to DRAW_IMAGE are in alphabetical order
+    this.anchorX_, this.anchorY_, this.height_, this.opacity_,
+    this.originX_, this.originY_, this.rotateWithView_, this.rotation_,
+    this.scale_, this.snapToPixel_, this.width_
+  ]);
+  this.hitDetectionInstructions.push([
+    ol.render.canvas.Instruction.DRAW_IMAGE, myBegin, myEnd,
+    this.hitDetectionImage_,
+    // Remaining arguments to DRAW_IMAGE are in alphabetical order
+    this.anchorX_, this.anchorY_, this.height_, this.opacity_,
+    this.originX_, this.originY_, this.rotateWithView_, this.rotation_,
+    this.scale_, this.snapToPixel_, this.width_
+  ]);
+  this.endGeometry(multiPointGeometry, data);
+=======
+ * @todo api
+ */
+ol.geom.LinearRing.prototype.getType = function() {
+  return ol.geom.GeometryType.LINEAR_RING;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.ImageReplay.prototype.finish = function() {
+  this.reverseHitDetectionInstructions_();
+  // FIXME this doesn't really protect us against further calls to draw*Geometry
+  this.anchorX_ = undefined;
+  this.anchorY_ = undefined;
+  this.hitDetectionImage_ = null;
+  this.image_ = null;
+  this.height_ = undefined;
+  this.scale_ = undefined;
+  this.opacity_ = undefined;
+  this.originX_ = undefined;
+  this.originY_ = undefined;
+  this.rotateWithView_ = undefined;
+  this.rotation_ = undefined;
+  this.snapToPixel_ = undefined;
+  this.width_ = undefined;
+=======
+ * @param {ol.geom.RawLinearRing} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.LinearRing.prototype.setCoordinates =
+    function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null);
+  } else {
+    this.setLayout(opt_layout, coordinates, 1);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    this.flatCoordinates.length = ol.geom.flat.deflate.coordinates(
+        this.flatCoordinates, 0, coordinates, this.stride);
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.ImageReplay.prototype.setImageStyle = function(imageStyle) {
+  goog.asserts.assert(!goog.isNull(imageStyle));
+  var anchor = imageStyle.getAnchor();
+  goog.asserts.assert(!goog.isNull(anchor));
+  var size = imageStyle.getSize();
+  goog.asserts.assert(!goog.isNull(size));
+  var hitDetectionImage = imageStyle.getHitDetectionImage(1);
+  goog.asserts.assert(!goog.isNull(hitDetectionImage));
+  var image = imageStyle.getImage(1);
+  goog.asserts.assert(!goog.isNull(image));
+  var origin = imageStyle.getOrigin();
+  goog.asserts.assert(!goog.isNull(origin));
+  this.anchorX_ = anchor[0];
+  this.anchorY_ = anchor[1];
+  this.hitDetectionImage_ = hitDetectionImage;
+  this.image_ = image;
+  this.height_ = size[1];
+  this.opacity_ = imageStyle.getOpacity();
+  this.originX_ = origin[0];
+  this.originY_ = origin[1];
+  this.rotateWithView_ = imageStyle.getRotateWithView();
+  this.rotation_ = imageStyle.getRotation();
+  this.scale_ = imageStyle.getScale();
+  this.snapToPixel_ = imageStyle.getSnapToPixel();
+  this.width_ = size[0];
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+ol.geom.LinearRing.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.Point');
+
+goog.require('goog.asserts');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.math');
+
+
+
+<<<<<<< HEAD
+
+/**
+ * @constructor
+ * @extends {ol.render.canvas.Replay}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Maximum extent.
+ * @param {number} resolution Resolution.
+ * @protected
+ * @struct
+ */
+ol.render.canvas.LineStringReplay = function(tolerance, maxExtent, resolution) {
+
+  goog.base(this, tolerance, maxExtent, resolution);
+
+  /**
+   * @private
+   * @type {{currentStrokeStyle: (string|undefined),
+   *         currentLineCap: (string|undefined),
+   *         currentLineDash: Array.<number>,
+   *         currentLineJoin: (string|undefined),
+   *         currentLineWidth: (number|undefined),
+   *         currentMiterLimit: (number|undefined),
+   *         lastStroke: number,
+   *         strokeStyle: (string|undefined),
+   *         lineCap: (string|undefined),
+   *         lineDash: Array.<number>,
+   *         lineJoin: (string|undefined),
+   *         lineWidth: (number|undefined),
+   *         miterLimit: (number|undefined)}|null}
+   */
+  this.state_ = {
+    currentStrokeStyle: undefined,
+    currentLineCap: undefined,
+    currentLineDash: null,
+    currentLineJoin: undefined,
+    currentLineWidth: undefined,
+    currentMiterLimit: undefined,
+    lastStroke: 0,
+    strokeStyle: undefined,
+    lineCap: undefined,
+    lineDash: null,
+    lineJoin: undefined,
+    lineWidth: undefined,
+    miterLimit: undefined
+  };
+
+=======
+/**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawPoint} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Point = function(coordinates, opt_layout) {
+  goog.base(this);
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+};
+goog.inherits(ol.geom.Point, ol.geom.SimpleGeometry);
+
+
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Point.prototype.clone = function() {
+  var point = new ol.geom.Point(null);
+  point.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return point;
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.geom.Point.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  var flatCoordinates = this.flatCoordinates;
+  var squaredDistance = ol.math.squaredDistance(
+      x, y, flatCoordinates[0], flatCoordinates[1]);
+  if (squaredDistance < minSquaredDistance) {
+    var stride = this.stride;
+    var i;
+    for (i = 0; i < stride; ++i) {
+      closestPoint[i] = flatCoordinates[i];
+    }
+    closestPoint.length = stride;
+    return squaredDistance;
+  } else {
+    return minSquaredDistance;
+  }
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.render.canvas.LineStringReplay, ol.render.canvas.Replay);
+
+
+/**
+<<<<<<< HEAD
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @private
+ * @return {number} end.
+ */
+ol.render.canvas.LineStringReplay.prototype.drawFlatCoordinates_ =
+    function(flatCoordinates, offset, end, stride) {
+  var myBegin = this.coordinates.length;
+  var myEnd = this.appendFlatCoordinates(
+      flatCoordinates, offset, end, stride, false);
+  var moveToLineToInstruction =
+      [ol.render.canvas.Instruction.MOVE_TO_LINE_TO, myBegin, myEnd];
+  this.instructions.push(moveToLineToInstruction);
+  this.hitDetectionInstructions.push(moveToLineToInstruction);
+  return end;
+=======
+ * @return {ol.geom.RawPoint} Coordinates.
+ * @todo api
+ */
+ol.geom.Point.prototype.getCoordinates = function() {
+  return this.flatCoordinates.slice();
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.render.canvas.LineStringReplay.prototype.getBufferedMaxExtent = function() {
+  var extent = this.maxExtent;
+  if (this.maxLineWidth) {
+    extent = ol.extent.buffer(
+        extent, this.resolution * (this.maxLineWidth + 1) / 2);
+  }
+  return extent;
+=======
+ol.geom.Point.prototype.getExtent = function(opt_extent) {
+  if (this.extentRevision != this.getRevision()) {
+    this.extent = ol.extent.createOrUpdateFromCoordinate(
+        this.flatCoordinates, this.extent);
+    this.extentRevision = this.getRevision();
+  }
+  goog.asserts.assert(goog.isDef(this.extent));
+  return ol.extent.returnOrUpdate(this.extent, opt_extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ */
+ol.render.canvas.LineStringReplay.prototype.setStrokeStyle_ = function() {
+  var state = this.state_;
+  var strokeStyle = state.strokeStyle;
+  var lineCap = state.lineCap;
+  var lineDash = state.lineDash;
+  var lineJoin = state.lineJoin;
+  var lineWidth = state.lineWidth;
+  var miterLimit = state.miterLimit;
+  goog.asserts.assert(goog.isDef(strokeStyle));
+  goog.asserts.assert(goog.isDef(lineCap));
+  goog.asserts.assert(!goog.isNull(lineDash));
+  goog.asserts.assert(goog.isDef(lineJoin));
+  goog.asserts.assert(goog.isDef(lineWidth));
+  goog.asserts.assert(goog.isDef(miterLimit));
+  if (state.currentStrokeStyle != strokeStyle ||
+      state.currentLineCap != lineCap ||
+      !goog.array.equals(state.currentLineDash, lineDash) ||
+      state.currentLineJoin != lineJoin ||
+      state.currentLineWidth != lineWidth ||
+      state.currentMiterLimit != miterLimit) {
+    if (state.lastStroke != this.coordinates.length) {
+      this.instructions.push(
+          [ol.render.canvas.Instruction.STROKE]);
+      state.lastStroke = this.coordinates.length;
+    }
+    this.instructions.push(
+        [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+         strokeStyle, lineWidth, lineCap, lineJoin, miterLimit, lineDash],
+        [ol.render.canvas.Instruction.BEGIN_PATH]);
+    state.currentStrokeStyle = strokeStyle;
+    state.currentLineCap = lineCap;
+    state.currentLineDash = lineDash;
+    state.currentLineJoin = lineJoin;
+    state.currentLineWidth = lineWidth;
+    state.currentMiterLimit = miterLimit;
+  }
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Point.prototype.getType = function() {
+  return ol.geom.GeometryType.POINT;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.LineStringReplay.prototype.drawLineStringGeometry =
+    function(lineStringGeometry, data) {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  var strokeStyle = state.strokeStyle;
+  var lineWidth = state.lineWidth;
+  if (!goog.isDef(strokeStyle) || !goog.isDef(lineWidth)) {
+    return;
+  }
+  ol.extent.extend(this.extent_, lineStringGeometry.getExtent());
+  this.setStrokeStyle_();
+  this.beginGeometry(lineStringGeometry, data);
+  this.hitDetectionInstructions.push(
+      [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+       state.strokeStyle, state.lineWidth, state.lineCap, state.lineJoin,
+       state.miterLimit, state.lineDash],
+      [ol.render.canvas.Instruction.BEGIN_PATH]);
+  var flatCoordinates = lineStringGeometry.getFlatCoordinates();
+  var stride = lineStringGeometry.getStride();
+  this.drawFlatCoordinates_(
+      flatCoordinates, 0, flatCoordinates.length, stride);
+  this.hitDetectionInstructions.push([ol.render.canvas.Instruction.STROKE]);
+  this.endGeometry(lineStringGeometry, data);
+=======
+ * @param {ol.geom.RawPoint} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Point.prototype.setCoordinates = function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null);
+  } else {
+    this.setLayout(opt_layout, coordinates, 0);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    this.flatCoordinates.length = ol.geom.flat.deflate.coordinate(
+        this.flatCoordinates, 0, coordinates, this.stride);
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.LineStringReplay.prototype.drawMultiLineStringGeometry =
+    function(multiLineStringGeometry, data) {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  var strokeStyle = state.strokeStyle;
+  var lineWidth = state.lineWidth;
+  if (!goog.isDef(strokeStyle) || !goog.isDef(lineWidth)) {
+    return;
+  }
+  ol.extent.extend(this.extent_, multiLineStringGeometry.getExtent());
+  this.setStrokeStyle_();
+  this.beginGeometry(multiLineStringGeometry, data);
+  this.hitDetectionInstructions.push(
+      [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+       state.strokeStyle, state.lineWidth, state.lineCap, state.lineJoin,
+       state.miterLimit, state.lineDash],
+      [ol.render.canvas.Instruction.BEGIN_PATH]);
+  var ends = multiLineStringGeometry.getEnds();
+  var flatCoordinates = multiLineStringGeometry.getFlatCoordinates();
+  var stride = multiLineStringGeometry.getStride();
+  var offset = 0;
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    offset = this.drawFlatCoordinates_(
+        flatCoordinates, offset, ends[i], stride);
+  }
+  this.hitDetectionInstructions.push([ol.render.canvas.Instruction.STROKE]);
+  this.endGeometry(multiLineStringGeometry, data);
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.LineStringReplay.prototype.finish = function() {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  if (state.lastStroke != this.coordinates.length) {
+    this.instructions.push([ol.render.canvas.Instruction.STROKE]);
+  }
+  this.reverseHitDetectionInstructions_();
+  this.state_ = null;
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+ol.geom.Point.prototype.setFlatCoordinates = function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.dispatchChangeEvent();
+};
+goog.provide('ol.geom.flat.contains');
+
+goog.require('goog.asserts');
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @return {boolean} Contains (x, y).
+ */
+ol.geom.flat.contains.linearRingContainsXY =
+    function(flatCoordinates, offset, end, stride, x, y) {
+  // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+  var contains = false;
+  var x1 = flatCoordinates[end - stride];
+  var y1 = flatCoordinates[end - stride + 1];
+  for (; offset < end; offset += stride) {
+    var x2 = flatCoordinates[offset];
+    var y2 = flatCoordinates[offset + 1];
+    var intersect = ((y1 > y) != (y2 > y)) &&
+        (x < (x2 - x1) * (y - y1) / (y2 - y1) + x1);
+    if (intersect) {
+      contains = !contains;
+    }
+    x1 = x2;
+    y1 = y2;
+  }
+  return contains;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @return {boolean} Contains (x, y).
+ */
+ol.geom.flat.contains.linearRingsContainsXY =
+    function(flatCoordinates, offset, ends, stride, x, y) {
+  goog.asserts.assert(ends.length > 0);
+  if (ends.length === 0) {
+    return false;
+  }
+  if (!ol.geom.flat.contains.linearRingContainsXY(
+      flatCoordinates, offset, ends[0], stride, x, y)) {
+    return false;
+  }
+  var i, ii;
+  for (i = 1, ii = ends.length; i < ii; ++i) {
+    if (ol.geom.flat.contains.linearRingContainsXY(
+        flatCoordinates, ends[i - 1], ends[i], stride, x, y)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {number} x X.
+ * @param {number} y Y.
+ * @return {boolean} Contains (x, y).
+ */
+ol.geom.flat.contains.linearRingssContainsXY =
+    function(flatCoordinates, offset, endss, stride, x, y) {
+  goog.asserts.assert(endss.length > 0);
+  if (endss.length === 0) {
+    return false;
+  }
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    if (ol.geom.flat.contains.linearRingsContainsXY(
+        flatCoordinates, offset, ends, stride, x, y)) {
+      return true;
+    }
+    offset = ends[ends.length - 1];
+  }
+  return false;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.flat.interiorpoint');
+
+goog.require('goog.asserts');
+goog.require('ol.geom.flat.contains');
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.LineStringReplay.prototype.setFillStrokeStyle =
+    function(fillStyle, strokeStyle) {
+  goog.asserts.assert(!goog.isNull(this.state_));
+  goog.asserts.assert(goog.isNull(fillStyle));
+  goog.asserts.assert(!goog.isNull(strokeStyle));
+  var strokeStyleColor = strokeStyle.getColor();
+  this.state_.strokeStyle = ol.color.asString(!goog.isNull(strokeStyleColor) ?
+      strokeStyleColor : ol.render.canvas.defaultStrokeStyle);
+  var strokeStyleLineCap = strokeStyle.getLineCap();
+  this.state_.lineCap = goog.isDef(strokeStyleLineCap) ?
+      strokeStyleLineCap : ol.render.canvas.defaultLineCap;
+  var strokeStyleLineDash = strokeStyle.getLineDash();
+  this.state_.lineDash = !goog.isNull(strokeStyleLineDash) ?
+      strokeStyleLineDash : ol.render.canvas.defaultLineDash;
+  var strokeStyleLineJoin = strokeStyle.getLineJoin();
+  this.state_.lineJoin = goog.isDef(strokeStyleLineJoin) ?
+      strokeStyleLineJoin : ol.render.canvas.defaultLineJoin;
+  var strokeStyleWidth = strokeStyle.getWidth();
+  this.state_.lineWidth = goog.isDef(strokeStyleWidth) ?
+      strokeStyleWidth : ol.render.canvas.defaultLineWidth;
+  var strokeStyleMiterLimit = strokeStyle.getMiterLimit();
+  this.state_.miterLimit = goog.isDef(strokeStyleMiterLimit) ?
+      strokeStyleMiterLimit : ol.render.canvas.defaultMiterLimit;
+  this.maxLineWidth = Math.max(this.maxLineWidth, this.state_.lineWidth);
+=======
+ * Calculates a point that is likely to lie in the interior of the linear rings.
+ * Inspired by JTS's com.vividsolutions.jts.geom.Geometry#getInteriorPoint.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @param {Array.<number>} flatCenters Flat centers.
+ * @param {number} flatCentersOffset Flat center offset.
+ * @param {Array.<number>=} opt_dest Destination.
+ * @return {Array.<number>} Destination.
+ */
+ol.geom.flat.interiorpoint.linearRings = function(flatCoordinates, offset,
+    ends, stride, flatCenters, flatCentersOffset, opt_dest) {
+  var i, ii, x, x1, x2, y1, y2;
+  var y = flatCenters[flatCentersOffset + 1];
+  /** @type {Array.<number>} */
+  var intersections = [];
+  // Calculate intersections with the horizontal line
+  var end = ends[0];
+  x1 = flatCoordinates[end - stride];
+  y1 = flatCoordinates[end - stride + 1];
+  for (i = offset; i < end; i += stride) {
+    x2 = flatCoordinates[i];
+    y2 = flatCoordinates[i + 1];
+    if ((y <= y1 && y2 <= y) || (y1 <= y && y <= y2)) {
+      x = (y - y1) / (y2 - y1) * (x2 - x1) + x1;
+      intersections.push(x);
+    }
+    x1 = x2;
+    y1 = y2;
+  }
+  // Find the longest segment of the horizontal line that has its center point
+  // inside the linear ring.
+  var pointX = NaN;
+  var maxSegmentLength = -Infinity;
+  intersections.sort();
+  x1 = intersections[0];
+  for (i = 1, ii = intersections.length; i < ii; ++i) {
+    x2 = intersections[i];
+    var segmentLength = Math.abs(x2 - x1);
+    if (segmentLength > maxSegmentLength) {
+      x = (x1 + x2) / 2;
+      if (ol.geom.flat.contains.linearRingsContainsXY(
+          flatCoordinates, offset, ends, stride, x, y)) {
+        pointX = x;
+        maxSegmentLength = segmentLength;
+      }
+    }
+    x1 = x2;
+  }
+  if (isNaN(pointX)) {
+    // There is no horizontal line that has its center point inside the linear
+    // ring.  Use the center of the the linear ring's extent.
+    pointX = flatCenters[flatCentersOffset];
+  }
+  if (goog.isDef(opt_dest)) {
+    opt_dest.push(pointX, y);
+    return opt_dest;
+  } else {
+    return [pointX, y];
+  }
+};
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @param {Array.<number>} flatCenters Flat centers.
+ * @return {Array.<number>} Interior points.
+ */
+ol.geom.flat.interiorpoint.linearRingss =
+    function(flatCoordinates, offset, endss, stride, flatCenters) {
+  goog.asserts.assert(2 * endss.length == flatCenters.length);
+  var interiorPoints = [];
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    interiorPoints = ol.geom.flat.interiorpoint.linearRings(flatCoordinates,
+        offset, ends, stride, flatCenters, 2 * i, interiorPoints);
+    offset = ends[ends.length - 1];
+  }
+  return interiorPoints;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.geom.Polygon');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.array');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.LinearRing');
+goog.require('ol.geom.Point');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.area');
+goog.require('ol.geom.flat.closest');
+goog.require('ol.geom.flat.contains');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.geom.flat.interiorpoint');
+goog.require('ol.geom.flat.orient');
+goog.require('ol.geom.flat.simplify');
+
+
+
+
+/**
+ * @constructor
+<<<<<<< HEAD
+ * @extends {ol.render.canvas.Replay}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Maximum extent.
+ * @param {number} resolution Resolution.
+ * @protected
+ * @struct
+ */
+ol.render.canvas.PolygonReplay = function(tolerance, maxExtent, resolution) {
+
+  goog.base(this, tolerance, maxExtent, resolution);
+
+  /**
+   * @private
+   * @type {{currentFillStyle: (string|undefined),
+   *         currentStrokeStyle: (string|undefined),
+   *         currentLineCap: (string|undefined),
+   *         currentLineDash: Array.<number>,
+   *         currentLineJoin: (string|undefined),
+   *         currentLineWidth: (number|undefined),
+   *         currentMiterLimit: (number|undefined),
+   *         fillStyle: (string|undefined),
+   *         strokeStyle: (string|undefined),
+   *         lineCap: (string|undefined),
+   *         lineDash: Array.<number>,
+   *         lineJoin: (string|undefined),
+   *         lineWidth: (number|undefined),
+   *         miterLimit: (number|undefined)}|null}
+   */
+  this.state_ = {
+    currentFillStyle: undefined,
+    currentStrokeStyle: undefined,
+    currentLineCap: undefined,
+    currentLineDash: null,
+    currentLineJoin: undefined,
+    currentLineWidth: undefined,
+    currentMiterLimit: undefined,
+    fillStyle: undefined,
+    strokeStyle: undefined,
+    lineCap: undefined,
+    lineDash: null,
+    lineJoin: undefined,
+    lineWidth: undefined,
+    miterLimit: undefined
+  };
+
+};
+goog.inherits(ol.render.canvas.PolygonReplay, ol.render.canvas.Replay);
+
+
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<number>} ends Ends.
+ * @param {number} stride Stride.
+ * @private
+ * @return {number} End.
+ */
+ol.render.canvas.PolygonReplay.prototype.drawFlatCoordinatess_ =
+    function(flatCoordinates, offset, ends, stride) {
+  var state = this.state_;
+  var beginPathInstruction = [ol.render.canvas.Instruction.BEGIN_PATH];
+  this.instructions.push(beginPathInstruction);
+  this.hitDetectionInstructions.push(beginPathInstruction);
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var myBegin = this.coordinates.length;
+    var myEnd = this.appendFlatCoordinates(
+        flatCoordinates, offset, end, stride, true);
+    var moveToLineToInstruction =
+        [ol.render.canvas.Instruction.MOVE_TO_LINE_TO, myBegin, myEnd];
+    var closePathInstruction = [ol.render.canvas.Instruction.CLOSE_PATH];
+    this.instructions.push(moveToLineToInstruction, closePathInstruction);
+    this.hitDetectionInstructions.push(moveToLineToInstruction,
+        closePathInstruction);
+    offset = end;
+  }
+  // FIXME is it quicker to fill and stroke each polygon individually,
+  // FIXME or all polygons together?
+  var fillInstruction = [ol.render.canvas.Instruction.FILL];
+  this.hitDetectionInstructions.push(fillInstruction);
+  if (goog.isDef(state.fillStyle)) {
+    this.instructions.push(fillInstruction);
+  }
+  if (goog.isDef(state.strokeStyle)) {
+    goog.asserts.assert(goog.isDef(state.lineWidth));
+    var strokeInstruction = [ol.render.canvas.Instruction.STROKE];
+    this.instructions.push(strokeInstruction);
+    this.hitDetectionInstructions.push(strokeInstruction);
+  }
+  return offset;
+=======
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawPolygon} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Polygon = function(coordinates, opt_layout) {
+
+  goog.base(this);
+
+  /**
+   * @type {Array.<number>}
+   * @private
+   */
+  this.ends_ = [];
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.flatInteriorPointRevision_ = -1;
+
+  /**
+   * @private
+   * @type {ol.Coordinate}
+   */
+  this.flatInteriorPoint_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDelta_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDeltaRevision_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.orientedRevision_ = -1;
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.orientedFlatCoordinates_ = null;
+
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+
+};
+goog.inherits(ol.geom.Polygon, ol.geom.SimpleGeometry);
+
+
+/**
+ * @param {ol.geom.LinearRing} linearRing Linear ring.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.appendLinearRing = function(linearRing) {
+  goog.asserts.assert(linearRing.getLayout() == this.layout);
+  if (goog.isNull(this.flatCoordinates)) {
+    this.flatCoordinates = linearRing.getFlatCoordinates().slice();
+  } else {
+    ol.array.safeExtend(this.flatCoordinates, linearRing.getFlatCoordinates());
+  }
+  this.ends_.push(this.flatCoordinates.length);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+<<<<<<< HEAD
+ */
+ol.render.canvas.PolygonReplay.prototype.drawCircleGeometry =
+    function(circleGeometry, data) {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  var fillStyle = state.fillStyle;
+  var strokeStyle = state.strokeStyle;
+  if (!goog.isDef(fillStyle) && !goog.isDef(strokeStyle)) {
+    return;
+  }
+  if (goog.isDef(strokeStyle)) {
+    goog.asserts.assert(goog.isDef(state.lineWidth));
+  }
+  ol.extent.extend(this.extent_, circleGeometry.getExtent());
+  this.setFillStrokeStyles_();
+  this.beginGeometry(circleGeometry, data);
+  // always fill the circle for hit detection
+  this.hitDetectionInstructions.push(
+      [ol.render.canvas.Instruction.SET_FILL_STYLE,
+       ol.color.asString(ol.render.canvas.defaultFillStyle)]);
+  if (goog.isDef(state.strokeStyle)) {
+    this.hitDetectionInstructions.push(
+        [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+         state.strokeStyle, state.lineWidth, state.lineCap, state.lineJoin,
+         state.miterLimit, state.lineDash]);
+  }
+  var flatCoordinates = circleGeometry.getFlatCoordinates();
+  var stride = circleGeometry.getStride();
+  this.appendFlatCoordinates(
+      flatCoordinates, 0, flatCoordinates.length, stride, false);
+  var beginPathInstruction = [ol.render.canvas.Instruction.BEGIN_PATH];
+  var circleInstruction = [ol.render.canvas.Instruction.CIRCLE];
+  this.instructions.push(beginPathInstruction, circleInstruction);
+  this.hitDetectionInstructions.push(beginPathInstruction, circleInstruction);
+  this.endGeometry(circleGeometry, data);
+  var fillInstruction = [ol.render.canvas.Instruction.FILL];
+  this.hitDetectionInstructions.push(fillInstruction);
+  if (goog.isDef(state.fillStyle)) {
+    this.instructions.push(fillInstruction);
+  }
+  if (goog.isDef(state.strokeStyle)) {
+    goog.asserts.assert(goog.isDef(state.lineWidth));
+    var strokeInstruction = [ol.render.canvas.Instruction.STROKE];
+    this.instructions.push(strokeInstruction);
+    this.hitDetectionInstructions.push(strokeInstruction);
+  }
+=======
+ * @todo api
+ */
+ol.geom.Polygon.prototype.clone = function() {
+  var polygon = new ol.geom.Polygon(null);
+  polygon.setFlatCoordinates(
+      this.layout, this.flatCoordinates.slice(), this.ends_.slice());
+  return polygon;
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.render.canvas.PolygonReplay.prototype.drawPolygonGeometry =
+    function(polygonGeometry, data) {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  var fillStyle = state.fillStyle;
+  var strokeStyle = state.strokeStyle;
+  if (!goog.isDef(fillStyle) && !goog.isDef(strokeStyle)) {
+    return;
+  }
+  if (goog.isDef(strokeStyle)) {
+    goog.asserts.assert(goog.isDef(state.lineWidth));
+  }
+  ol.extent.extend(this.extent_, polygonGeometry.getExtent());
+  this.setFillStrokeStyles_();
+  this.beginGeometry(polygonGeometry, data);
+  // always fill the polygon for hit detection
+  this.hitDetectionInstructions.push(
+      [ol.render.canvas.Instruction.SET_FILL_STYLE,
+       ol.color.asString(ol.render.canvas.defaultFillStyle)]);
+  if (goog.isDef(state.strokeStyle)) {
+    this.hitDetectionInstructions.push(
+        [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+         state.strokeStyle, state.lineWidth, state.lineCap, state.lineJoin,
+         state.miterLimit, state.lineDash]);
+  }
+  var ends = polygonGeometry.getEnds();
+  var flatCoordinates = polygonGeometry.getOrientedFlatCoordinates();
+  var stride = polygonGeometry.getStride();
+  this.drawFlatCoordinatess_(flatCoordinates, 0, ends, stride);
+  this.endGeometry(polygonGeometry, data);
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.PolygonReplay.prototype.drawMultiPolygonGeometry =
+    function(multiPolygonGeometry, data) {
+  var state = this.state_;
+  goog.asserts.assert(!goog.isNull(state));
+  var fillStyle = state.fillStyle;
+  var strokeStyle = state.strokeStyle;
+  if (!goog.isDef(fillStyle) && !goog.isDef(strokeStyle)) {
+    return;
+  }
+  if (goog.isDef(strokeStyle)) {
+    goog.asserts.assert(goog.isDef(state.lineWidth));
+  }
+  ol.extent.extend(this.extent_, multiPolygonGeometry.getExtent());
+  this.setFillStrokeStyles_();
+  this.beginGeometry(multiPolygonGeometry, data);
+  // always fill the multi-polygon for hit detection
+  this.hitDetectionInstructions.push(
+      [ol.render.canvas.Instruction.SET_FILL_STYLE,
+       ol.color.asString(ol.render.canvas.defaultFillStyle)]);
+  if (goog.isDef(state.strokeStyle)) {
+    this.hitDetectionInstructions.push(
+        [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+         state.strokeStyle, state.lineWidth, state.lineCap, state.lineJoin,
+         state.miterLimit, state.lineDash]);
+  }
+  var endss = multiPolygonGeometry.getEndss();
+  var flatCoordinates = multiPolygonGeometry.getOrientedFlatCoordinates();
+  var stride = multiPolygonGeometry.getStride();
+  var offset = 0;
+  var i, ii;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    offset = this.drawFlatCoordinatess_(
+        flatCoordinates, offset, endss[i], stride);
+  }
+  this.endGeometry(multiPolygonGeometry, data);
+=======
+ol.geom.Polygon.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  if (this.maxDeltaRevision_ != this.getRevision()) {
+    this.maxDelta_ = Math.sqrt(ol.geom.flat.closest.getsMaxSquaredDelta(
+        this.flatCoordinates, 0, this.ends_, this.stride, 0));
+    this.maxDeltaRevision_ = this.getRevision();
+  }
+  return ol.geom.flat.closest.getsClosestPoint(
+      this.flatCoordinates, 0, this.ends_, this.stride,
+      this.maxDelta_, true, x, y, closestPoint, minSquaredDistance);
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.geom.Polygon.prototype.containsXY = function(x, y) {
+  return ol.geom.flat.contains.linearRingsContainsXY(
+      this.getOrientedFlatCoordinates(), 0, this.ends_, this.stride, x, y);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.PolygonReplay.prototype.finish = function() {
+  goog.asserts.assert(!goog.isNull(this.state_));
+  this.reverseHitDetectionInstructions_();
+  this.state_ = null;
+  // We want to preserve topology when drawing polygons.  Polygons are
+  // simplified using quantization and point elimination. However, we might
+  // have received a mix of quantized and non-quantized geometries, so ensure
+  // that all are quantized by quantizing all coordinates in the batch.
+  var tolerance = this.tolerance;
+  if (tolerance !== 0) {
+    var coordinates = this.coordinates;
+    var i, ii;
+    for (i = 0, ii = coordinates.length; i < ii; ++i) {
+      coordinates[i] = ol.geom.flat.simplify.snap(coordinates[i], tolerance);
+    }
+  }
+=======
+ * @return {number} Area.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getArea = function() {
+  return ol.geom.flat.area.linearRings(
+      this.getOrientedFlatCoordinates(), 0, this.ends_, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.PolygonReplay.prototype.getBufferedMaxExtent = function() {
+  var extent = this.maxExtent;
+  if (this.maxLineWidth) {
+    extent = ol.extent.buffer(
+        extent, this.resolution * (this.maxLineWidth + 1) / 2);
+  }
+  return extent;
+=======
+ * @return {ol.geom.RawPolygon} Coordinates.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinatess(
+      this.flatCoordinates, 0, this.ends_, this.stride);
+};
+
+
+/**
+ * @return {Array.<number>} Ends.
+ */
+ol.geom.Polygon.prototype.getEnds = function() {
+  return this.ends_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.PolygonReplay.prototype.setFillStrokeStyle =
+    function(fillStyle, strokeStyle) {
+  goog.asserts.assert(!goog.isNull(this.state_));
+  goog.asserts.assert(!goog.isNull(fillStyle) || !goog.isNull(strokeStyle));
+  var state = this.state_;
+  if (!goog.isNull(fillStyle)) {
+    var fillStyleColor = fillStyle.getColor();
+    state.fillStyle = ol.color.asString(!goog.isNull(fillStyleColor) ?
+        fillStyleColor : ol.render.canvas.defaultFillStyle);
+  } else {
+    state.fillStyle = undefined;
+  }
+  if (!goog.isNull(strokeStyle)) {
+    var strokeStyleColor = strokeStyle.getColor();
+    state.strokeStyle = ol.color.asString(!goog.isNull(strokeStyleColor) ?
+        strokeStyleColor : ol.render.canvas.defaultStrokeStyle);
+    var strokeStyleLineCap = strokeStyle.getLineCap();
+    state.lineCap = goog.isDef(strokeStyleLineCap) ?
+        strokeStyleLineCap : ol.render.canvas.defaultLineCap;
+    var strokeStyleLineDash = strokeStyle.getLineDash();
+    state.lineDash = !goog.isNull(strokeStyleLineDash) ?
+        strokeStyleLineDash.slice() : ol.render.canvas.defaultLineDash;
+    var strokeStyleLineJoin = strokeStyle.getLineJoin();
+    state.lineJoin = goog.isDef(strokeStyleLineJoin) ?
+        strokeStyleLineJoin : ol.render.canvas.defaultLineJoin;
+    var strokeStyleWidth = strokeStyle.getWidth();
+    state.lineWidth = goog.isDef(strokeStyleWidth) ?
+        strokeStyleWidth : ol.render.canvas.defaultLineWidth;
+    var strokeStyleMiterLimit = strokeStyle.getMiterLimit();
+    state.miterLimit = goog.isDef(strokeStyleMiterLimit) ?
+        strokeStyleMiterLimit : ol.render.canvas.defaultMiterLimit;
+    this.maxLineWidth = Math.max(this.maxLineWidth, state.lineWidth);
+  } else {
+    state.strokeStyle = undefined;
+    state.lineCap = undefined;
+    state.lineDash = null;
+    state.lineJoin = undefined;
+    state.lineWidth = undefined;
+    state.miterLimit = undefined;
+  }
+=======
+ * @return {Array.<number>} Interior point.
+ */
+ol.geom.Polygon.prototype.getFlatInteriorPoint = function() {
+  if (this.flatInteriorPointRevision_ != this.getRevision()) {
+    var flatCenter = ol.extent.getCenter(this.getExtent());
+    this.flatInteriorPoint_ = ol.geom.flat.interiorpoint.linearRings(
+        this.getOrientedFlatCoordinates(), 0, this.ends_, this.stride,
+        flatCenter, 0);
+    this.flatInteriorPointRevision_ = this.getRevision();
+  }
+  return this.flatInteriorPoint_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ */
+ol.render.canvas.PolygonReplay.prototype.setFillStrokeStyles_ = function() {
+  var state = this.state_;
+  var fillStyle = state.fillStyle;
+  var strokeStyle = state.strokeStyle;
+  var lineCap = state.lineCap;
+  var lineDash = state.lineDash;
+  var lineJoin = state.lineJoin;
+  var lineWidth = state.lineWidth;
+  var miterLimit = state.miterLimit;
+  if (goog.isDef(fillStyle) && state.currentFillStyle != fillStyle) {
+    this.instructions.push(
+        [ol.render.canvas.Instruction.SET_FILL_STYLE, fillStyle]);
+    state.currentFillStyle = state.fillStyle;
+  }
+  if (goog.isDef(strokeStyle)) {
+    goog.asserts.assert(goog.isDef(lineCap));
+    goog.asserts.assert(!goog.isNull(lineDash));
+    goog.asserts.assert(goog.isDef(lineJoin));
+    goog.asserts.assert(goog.isDef(lineWidth));
+    goog.asserts.assert(goog.isDef(miterLimit));
+    if (state.currentStrokeStyle != strokeStyle ||
+        state.currentLineCap != lineCap ||
+        state.currentLineDash != lineDash ||
+        state.currentLineJoin != lineJoin ||
+        state.currentLineWidth != lineWidth ||
+        state.currentMiterLimit != miterLimit) {
+      this.instructions.push(
+          [ol.render.canvas.Instruction.SET_STROKE_STYLE,
+           strokeStyle, lineWidth, lineCap, lineJoin, miterLimit, lineDash]);
+      state.currentStrokeStyle = strokeStyle;
+      state.currentLineCap = lineCap;
+      state.currentLineDash = lineDash;
+      state.currentLineJoin = lineJoin;
+      state.currentLineWidth = lineWidth;
+      state.currentMiterLimit = miterLimit;
+    }
+  }
+=======
+ * @return {ol.geom.Point} Interior point.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getInteriorPoint = function() {
+  return new ol.geom.Point(this.getFlatInteriorPoint());
+>>>>>>> ConectaDF
+};
+
+
+
+/**
+<<<<<<< HEAD
+ * @constructor
+ * @extends {ol.render.canvas.Replay}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Maximum extent.
+ * @param {number} resolution Resolution.
+ * @protected
+ * @struct
+ */
+ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
+
+  goog.base(this, tolerance, maxExtent, resolution);
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.FillState}
+   */
+  this.replayFillState_ = null;
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.StrokeState}
+   */
+  this.replayStrokeState_ = null;
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.TextState}
+   */
+  this.replayTextState_ = null;
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.text_ = '';
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.textOffsetX_ = 0;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.textOffsetY_ = 0;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.textRotation_ = 0;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.textScale_ = 0;
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.FillState}
+   */
+  this.textFillState_ = null;
+=======
+ * @param {number} index Index.
+ * @return {ol.geom.LinearRing} Linear ring.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getLinearRing = function(index) {
+  goog.asserts.assert(0 <= index && index < this.ends_.length);
+  if (index < 0 || this.ends_.length <= index) {
+    return null;
+  }
+  var linearRing = new ol.geom.LinearRing(null);
+  linearRing.setFlatCoordinates(this.layout, this.flatCoordinates.slice(
+      index === 0 ? 0 : this.ends_[index - 1], this.ends_[index]));
+  return linearRing;
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.StrokeState}
+   */
+  this.textStrokeState_ = null;
+
+  /**
+   * @private
+   * @type {?ol.render.canvas.TextState}
+   */
+  this.textState_ = null;
+
+<<<<<<< HEAD
+=======
+/**
+ * @return {Array.<ol.geom.LinearRing>} Linear rings.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getLinearRings = function() {
+  var layout = this.layout;
+  var flatCoordinates = this.flatCoordinates;
+  var ends = this.ends_;
+  var linearRings = [];
+  var offset = 0;
+  var i, ii;
+  for (i = 0, ii = ends.length; i < ii; ++i) {
+    var end = ends[i];
+    var linearRing = new ol.geom.LinearRing(null);
+    linearRing.setFlatCoordinates(layout, flatCoordinates.slice(offset, end));
+    linearRings.push(linearRing);
+    offset = end;
+  }
+  return linearRings;
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.render.canvas.TextReplay, ol.render.canvas.Replay);
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.TextReplay.prototype.drawText =
+    function(flatCoordinates, offset, end, stride, geometry, data) {
+  if (this.text_ === '' ||
+      goog.isNull(this.textState_) ||
+      (goog.isNull(this.textFillState_) &&
+       goog.isNull(this.textStrokeState_))) {
+    return;
+  }
+  ol.extent.extendFlatCoordinates(
+      this.extent_, flatCoordinates, offset, end, stride);
+  if (!goog.isNull(this.textFillState_)) {
+    this.setReplayFillState_(this.textFillState_);
+  }
+  if (!goog.isNull(this.textStrokeState_)) {
+    this.setReplayStrokeState_(this.textStrokeState_);
+  }
+  this.setReplayTextState_(this.textState_);
+  this.beginGeometry(geometry, data);
+  var myBegin = this.coordinates.length;
+  var myEnd =
+      this.appendFlatCoordinates(flatCoordinates, offset, end, stride, false);
+  var fill = !goog.isNull(this.textFillState_);
+  var stroke = !goog.isNull(this.textStrokeState_);
+  var drawTextInstruction = [
+    ol.render.canvas.Instruction.DRAW_TEXT, myBegin, myEnd, this.text_,
+    this.textOffsetX_, this.textOffsetY_, this.textRotation_, this.textScale_,
+    fill, stroke];
+  this.instructions.push(drawTextInstruction);
+  this.hitDetectionInstructions.push(drawTextInstruction);
+  this.endGeometry(geometry, data);
+=======
+ * @return {Array.<number>} Oriented flat coordinates.
+ */
+ol.geom.Polygon.prototype.getOrientedFlatCoordinates = function() {
+  if (this.orientedRevision_ != this.getRevision()) {
+    var flatCoordinates = this.flatCoordinates;
+    if (ol.geom.flat.orient.linearRingsAreOriented(
+        flatCoordinates, 0, this.ends_, this.stride)) {
+      this.orientedFlatCoordinates_ = flatCoordinates;
+    } else {
+      this.orientedFlatCoordinates_ = flatCoordinates.slice();
+      this.orientedFlatCoordinates_.length =
+          ol.geom.flat.orient.orientLinearRings(
+              this.orientedFlatCoordinates_, 0, this.ends_, this.stride);
+    }
+    this.orientedRevision_ = this.getRevision();
+  }
+  return this.orientedFlatCoordinates_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.render.canvas.FillState} fillState Fill state.
+ * @private
+ */
+ol.render.canvas.TextReplay.prototype.setReplayFillState_ =
+    function(fillState) {
+  var replayFillState = this.replayFillState_;
+  if (!goog.isNull(replayFillState) &&
+      replayFillState.fillStyle == fillState.fillStyle) {
+    return;
+  }
+  var setFillStyleInstruction =
+      [ol.render.canvas.Instruction.SET_FILL_STYLE, fillState.fillStyle];
+  this.instructions.push(setFillStyleInstruction);
+  this.hitDetectionInstructions.push(setFillStyleInstruction);
+  if (goog.isNull(replayFillState)) {
+    this.replayFillState_ = {
+      fillStyle: fillState.fillStyle
+    };
+  } else {
+    replayFillState.fillStyle = fillState.fillStyle;
+  }
+=======
+ * @inheritDoc
+ */
+ol.geom.Polygon.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  var simplifiedFlatCoordinates = [];
+  var simplifiedEnds = [];
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.quantizes(
+      this.flatCoordinates, 0, this.ends_, this.stride,
+      Math.sqrt(squaredTolerance),
+      simplifiedFlatCoordinates, 0, simplifiedEnds);
+  var simplifiedPolygon = new ol.geom.Polygon(null);
+  simplifiedPolygon.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates, simplifiedEnds);
+  return simplifiedPolygon;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.render.canvas.StrokeState} strokeState Stroke state.
+ * @private
+ */
+ol.render.canvas.TextReplay.prototype.setReplayStrokeState_ =
+    function(strokeState) {
+  var replayStrokeState = this.replayStrokeState_;
+  if (!goog.isNull(replayStrokeState) &&
+      replayStrokeState.lineCap == strokeState.lineCap &&
+      replayStrokeState.lineDash == strokeState.lineDash &&
+      replayStrokeState.lineJoin == strokeState.lineJoin &&
+      replayStrokeState.lineWidth == strokeState.lineWidth &&
+      replayStrokeState.miterLimit == strokeState.miterLimit &&
+      replayStrokeState.strokeStyle == strokeState.strokeStyle) {
+    return;
+  }
+  var setStrokeStyleInstruction = [
+    ol.render.canvas.Instruction.SET_STROKE_STYLE, strokeState.strokeStyle,
+    strokeState.lineWidth, strokeState.lineCap, strokeState.lineJoin,
+    strokeState.miterLimit, strokeState.lineDash
+  ];
+  this.instructions.push(setStrokeStyleInstruction);
+  this.hitDetectionInstructions.push(setStrokeStyleInstruction);
+  if (goog.isNull(replayStrokeState)) {
+    this.replayStrokeState_ = {
+      lineCap: strokeState.lineCap,
+      lineDash: strokeState.lineDash,
+      lineJoin: strokeState.lineJoin,
+      lineWidth: strokeState.lineWidth,
+      miterLimit: strokeState.miterLimit,
+      strokeStyle: strokeState.strokeStyle
+    };
+  } else {
+    replayStrokeState.lineCap = strokeState.lineCap;
+    replayStrokeState.lineDash = strokeState.lineDash;
+    replayStrokeState.lineJoin = strokeState.lineJoin;
+    replayStrokeState.lineWidth = strokeState.lineWidth;
+    replayStrokeState.miterLimit = strokeState.miterLimit;
+    replayStrokeState.strokeStyle = strokeState.strokeStyle;
+  }
+};
+
+
+/**
+ * @param {ol.render.canvas.TextState} textState Text state.
+ * @private
+ */
+ol.render.canvas.TextReplay.prototype.setReplayTextState_ =
+    function(textState) {
+  var replayTextState = this.replayTextState_;
+  if (!goog.isNull(replayTextState) &&
+      replayTextState.font == textState.font &&
+      replayTextState.textAlign == textState.textAlign &&
+      replayTextState.textBaseline == textState.textBaseline) {
+    return;
+  }
+  var setTextStyleInstruction = [ol.render.canvas.Instruction.SET_TEXT_STYLE,
+    textState.font, textState.textAlign, textState.textBaseline];
+  this.instructions.push(setTextStyleInstruction);
+  this.hitDetectionInstructions.push(setTextStyleInstruction);
+  if (goog.isNull(replayTextState)) {
+    this.replayTextState_ = {
+      font: textState.font,
+      textAlign: textState.textAlign,
+      textBaseline: textState.textBaseline
+    };
+  } else {
+    replayTextState.font = textState.font;
+    replayTextState.textAlign = textState.textAlign;
+    replayTextState.textBaseline = textState.textBaseline;
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.TextReplay.prototype.setTextStyle = function(textStyle) {
+  if (goog.isNull(textStyle)) {
+    this.text_ = '';
+  } else {
+    var textFillStyle = textStyle.getFill();
+    if (goog.isNull(textFillStyle)) {
+      this.textFillState_ = null;
+    } else {
+      var textFillStyleColor = textFillStyle.getColor();
+      var fillStyle = ol.color.asString(!goog.isNull(textFillStyleColor) ?
+          textFillStyleColor : ol.render.canvas.defaultFillStyle);
+      if (goog.isNull(this.textFillState_)) {
+        this.textFillState_ = {
+          fillStyle: fillStyle
+        };
+      } else {
+        var textFillState = this.textFillState_;
+        textFillState.fillStyle = fillStyle;
+      }
+    }
+    var textStrokeStyle = textStyle.getStroke();
+    if (goog.isNull(textStrokeStyle)) {
+      this.textStrokeState_ = null;
+    } else {
+      var textStrokeStyleColor = textStrokeStyle.getColor();
+      var textStrokeStyleLineCap = textStrokeStyle.getLineCap();
+      var textStrokeStyleLineDash = textStrokeStyle.getLineDash();
+      var textStrokeStyleLineJoin = textStrokeStyle.getLineJoin();
+      var textStrokeStyleWidth = textStrokeStyle.getWidth();
+      var textStrokeStyleMiterLimit = textStrokeStyle.getMiterLimit();
+      var lineCap = goog.isDef(textStrokeStyleLineCap) ?
+          textStrokeStyleLineCap : ol.render.canvas.defaultLineCap;
+      var lineDash = goog.isDefAndNotNull(textStrokeStyleLineDash) ?
+          textStrokeStyleLineDash.slice() : ol.render.canvas.defaultLineDash;
+      var lineJoin = goog.isDef(textStrokeStyleLineJoin) ?
+          textStrokeStyleLineJoin : ol.render.canvas.defaultLineJoin;
+      var lineWidth = goog.isDef(textStrokeStyleWidth) ?
+          textStrokeStyleWidth : ol.render.canvas.defaultLineWidth;
+      var miterLimit = goog.isDef(textStrokeStyleMiterLimit) ?
+          textStrokeStyleMiterLimit : ol.render.canvas.defaultMiterLimit;
+      var strokeStyle = ol.color.asString(!goog.isNull(textStrokeStyleColor) ?
+          textStrokeStyleColor : ol.render.canvas.defaultStrokeStyle);
+      if (goog.isNull(this.textStrokeState_)) {
+        this.textStrokeState_ = {
+          lineCap: lineCap,
+          lineDash: lineDash,
+          lineJoin: lineJoin,
+          lineWidth: lineWidth,
+          miterLimit: miterLimit,
+          strokeStyle: strokeStyle
+        };
+      } else {
+        var textStrokeState = this.textStrokeState_;
+        textStrokeState.lineCap = lineCap;
+        textStrokeState.lineDash = lineDash;
+        textStrokeState.lineJoin = lineJoin;
+        textStrokeState.lineWidth = lineWidth;
+        textStrokeState.miterLimit = miterLimit;
+        textStrokeState.strokeStyle = strokeStyle;
+      }
+    }
+    var textFont = textStyle.getFont();
+    var textOffsetX = textStyle.getOffsetX();
+    var textOffsetY = textStyle.getOffsetY();
+    var textRotation = textStyle.getRotation();
+    var textScale = textStyle.getScale();
+    var textText = textStyle.getText();
+    var textTextAlign = textStyle.getTextAlign();
+    var textTextBaseline = textStyle.getTextBaseline();
+    var font = goog.isDef(textFont) ?
+        textFont : ol.render.canvas.defaultFont;
+    var textAlign = goog.isDef(textTextAlign) ?
+        textTextAlign : ol.render.canvas.defaultTextAlign;
+    var textBaseline = goog.isDef(textTextBaseline) ?
+        textTextBaseline : ol.render.canvas.defaultTextBaseline;
+    if (goog.isNull(this.textState_)) {
+      this.textState_ = {
+        font: font,
+        textAlign: textAlign,
+        textBaseline: textBaseline
+      };
+    } else {
+      var textState = this.textState_;
+      textState.font = font;
+      textState.textAlign = textAlign;
+      textState.textBaseline = textBaseline;
+    }
+    this.text_ = goog.isDef(textText) ? textText : '';
+    this.textOffsetX_ = goog.isDef(textOffsetX) ? textOffsetX : 0;
+    this.textOffsetY_ = goog.isDef(textOffsetY) ? textOffsetY : 0;
+    this.textRotation_ = goog.isDef(textRotation) ? textRotation : 0;
+    this.textScale_ = goog.isDef(textScale) ? textScale : 1;
+  }
+};
+
+
+
+/**
+ * @constructor
+ * @implements {ol.render.IReplayGroup}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Max extent.
+ * @param {number} resolution Resolution.
+ * @struct
+ */
+ol.render.canvas.ReplayGroup = function(tolerance, maxExtent, resolution) {
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Polygon.prototype.getType = function() {
+  return ol.geom.GeometryType.POLYGON;
+};
+
+
+/**
+ * @param {ol.geom.RawPolygon} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Polygon.prototype.setCoordinates = function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null, this.ends_);
+  } else {
+    this.setLayout(opt_layout, coordinates, 2);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    var ends = ol.geom.flat.deflate.coordinatess(
+        this.flatCoordinates, 0, coordinates, this.stride, this.ends_);
+    this.flatCoordinates.length = ends.length === 0 ? 0 : ends[ends.length - 1];
+    this.dispatchChangeEvent();
+  }
+};
+
+
+/**
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {Array.<number>} ends Ends.
+ */
+ol.geom.Polygon.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates, ends) {
+  if (goog.isNull(flatCoordinates)) {
+    goog.asserts.assert(!goog.isNull(ends) && ends.length === 0);
+  } else if (ends.length === 0) {
+    goog.asserts.assert(flatCoordinates.length === 0);
+  } else {
+    goog.asserts.assert(flatCoordinates.length == ends[ends.length - 1]);
+  }
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.ends_ = ends;
+  this.dispatchChangeEvent();
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.tolerance_ = tolerance;
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {ol.Extent}
+   */
+  this.maxExtent_ = maxExtent;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.resolution_ = resolution;
+
+  /**
+   * @private
+   * @type {Object.<string,
+   *        Object.<ol.render.ReplayType, ol.render.canvas.Replay>>}
+   */
+  this.replaysByZIndex_ = {};
+=======
+/**
+ * Create an approximation of a circle on the surface of a sphere.
+ * @param {ol.Sphere} sphere The sphere.
+ * @param {ol.Coordinate} center Center.
+ * @param {number} radius Radius.
+ * @param {number=} opt_n Optional number of points.  Default is `32`.
+ * @return {ol.geom.Polygon} Circle geometry.
+ * @todo api
+ */
+ol.geom.Polygon.circular = function(sphere, center, radius, opt_n) {
+  var n = goog.isDef(opt_n) ? opt_n : 32;
+  /** @type {Array.<number>} */
+  var flatCoordinates = [];
+  var i;
+  for (i = 0; i < n; ++i) {
+    goog.array.extend(
+        flatCoordinates, sphere.offset(center, radius, 2 * Math.PI * i / n));
+  }
+  flatCoordinates.push(flatCoordinates[0], flatCoordinates[1]);
+  var polygon = new ol.geom.Polygon(null);
+  polygon.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, flatCoordinates, [flatCoordinates.length]);
+  return polygon;
+};
+goog.provide('ol.render.IReplayGroup');
+
+goog.require('goog.functions');
+goog.require('ol.render.IVectorContext');
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {CanvasRenderingContext2D}
+   */
+  this.hitDetectionContext_ = ol.dom.createCanvasContext2D(1, 1);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.hitDetectionTransform_ = goog.vec.Mat4.createNumber();
+
+=======
+/**
+ * @enum {string}
+ */
+ol.render.ReplayType = {
+  IMAGE: 'Image',
+  LINE_STRING: 'LineString',
+  POLYGON: 'Polygon',
+  TEXT: 'Text'
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {ol.Extent} extent Extent.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.ReplayGroup.prototype.replay = function(context, extent,
+    pixelRatio, transform, viewRotation, skippedFeaturesHash) {
+  /** @type {Array.<number>} */
+  var zs = goog.array.map(goog.object.getKeys(this.replaysByZIndex_), Number);
+  goog.array.sort(zs);
+  return this.replay_(zs, context, extent, pixelRatio, transform,
+      viewRotation, skippedFeaturesHash);
+};
+
+
+/**
+ * @private
+ * @param {Array.<number>} zs Z-indices array.
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {ol.Extent} extent Extent.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @param {function(ol.geom.Geometry, Object): T} geometryCallback Geometry
+ *     callback.
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.ReplayGroup.prototype.replayHitDetection_ = function(
+    zs, context, extent, transform, viewRotation, skippedFeaturesHash,
+    geometryCallback) {
+  var i, ii, replays, replayType, replay, result;
+  for (i = 0, ii = zs.length; i < ii; ++i) {
+    replays = this.replaysByZIndex_[zs[i].toString()];
+    for (replayType in replays) {
+      replay = replays[replayType];
+      if (ol.extent.intersects(extent, replay.getExtent())) {
+        result = replay.replayHitDetection(context, transform, viewRotation,
+            skippedFeaturesHash, geometryCallback);
+        if (result) {
+          return result;
+        }
+      }
+    }
+  }
+  return undefined;
+=======
+ * @const
+ * @type {Array.<ol.render.ReplayType>}
+ */
+ol.render.REPLAY_ORDER = [
+  ol.render.ReplayType.POLYGON,
+  ol.render.ReplayType.LINE_STRING,
+  ol.render.ReplayType.IMAGE,
+  ol.render.ReplayType.TEXT
+];
+
+
+
+/**
+ * @interface
+ */
+ol.render.IReplayGroup = function() {
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ * @param {Array.<number>} zs Z-indices array.
+ * @param {CanvasRenderingContext2D} context Context.
+ * @param {ol.Extent} extent Extent.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {goog.vec.Mat4.Number} transform Transform.
+ * @param {number} viewRotation View rotation.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.ReplayGroup.prototype.replay_ = function(
+    zs, context, extent, pixelRatio, transform, viewRotation,
+    skippedFeaturesHash) {
+
+  var maxExtent = this.maxExtent_;
+  var minX = maxExtent[0];
+  var minY = maxExtent[1];
+  var maxX = maxExtent[2];
+  var maxY = maxExtent[3];
+  var flatClipCoords = ol.geom.flat.transform.transform2D(
+      [minX, minY, minX, maxY, maxX, maxY, maxX, minY], 2, transform);
+  context.save();
+  context.beginPath();
+  context.moveTo(flatClipCoords[0], flatClipCoords[1]);
+  context.lineTo(flatClipCoords[2], flatClipCoords[3]);
+  context.lineTo(flatClipCoords[4], flatClipCoords[5]);
+  context.lineTo(flatClipCoords[6], flatClipCoords[7]);
+  context.closePath();
+  context.clip();
+=======
+ * FIXME empty description for jsdoc
+ */
+ol.render.IReplayGroup.prototype.finish = function() {
+};
+>>>>>>> ConectaDF
+
+  var i, ii, j, jj, replays, replayType, replay, result;
+  for (i = 0, ii = zs.length; i < ii; ++i) {
+    replays = this.replaysByZIndex_[zs[i].toString()];
+    for (j = 0, jj = ol.render.REPLAY_ORDER.length; j < jj; ++j) {
+      replay = replays[ol.render.REPLAY_ORDER[j]];
+      if (goog.isDef(replay) &&
+          ol.extent.intersects(extent, replay.getExtent())) {
+        result = replay.replay(context, pixelRatio, transform, viewRotation,
+            skippedFeaturesHash);
+        if (result) {
+          return result;
+        }
+      }
+    }
+  }
+
+<<<<<<< HEAD
+  context.restore();
+  return undefined;
+=======
+/**
+ * @param {number|undefined} zIndex Z index.
+ * @param {ol.render.ReplayType} replayType Replay type.
+ * @return {ol.render.IVectorContext} Replay.
+ */
+ol.render.IReplayGroup.prototype.getReplay = function(zIndex, replayType) {
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Extent} extent Extent.
+ * @param {number} resolution Resolution.
+ * @param {number} rotation Rotation.
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {Object} skippedFeaturesHash Ids of features to skip
+ * @param {function(ol.geom.Geometry, Object): T} callback Geometry callback.
+ * @return {T|undefined} Callback result.
+ * @template T
+ */
+ol.render.canvas.ReplayGroup.prototype.forEachGeometryAtPixel = function(
+    extent, resolution, rotation, coordinate,
+    skippedFeaturesHash, callback) {
+
+  var transform = this.hitDetectionTransform_;
+  ol.vec.Mat4.makeTransform2D(transform, 0.5, 0.5,
+      1 / resolution, -1 / resolution, -rotation,
+      -coordinate[0], -coordinate[1]);
+
+  /** @type {Array.<number>} */
+  var zs = goog.array.map(goog.object.getKeys(this.replaysByZIndex_), Number);
+  goog.array.sort(zs, function(a, b) { return b - a; });
+
+  var context = this.hitDetectionContext_;
+  context.clearRect(0, 0, 1, 1);
+
+  return this.replayHitDetection_(zs, context, extent, transform,
+      rotation, skippedFeaturesHash,
+      /**
+       * @param {ol.geom.Geometry} geometry Geometry.
+       * @param {Object} data Opaque data object.
+       * @return {?} Callback result.
+       */
+      function(geometry, data) {
+        var imageData = context.getImageData(0, 0, 1, 1).data;
+        if (imageData[3] > 0) {
+          var result = callback(geometry, data);
+          if (result) {
+            return result;
+          }
+          context.clearRect(0, 0, 1, 1);
+        }
+      });
+};
+=======
+ * @return {boolean} Is empty.
+ */
+ol.render.IReplayGroup.prototype.isEmpty = function() {
+};
+goog.provide('ol.geom.MultiPoint');
+>>>>>>> ConectaDF
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.array');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.Point');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.math');
+
+<<<<<<< HEAD
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.ReplayGroup.prototype.finish = function() {
+  var zKey;
+  for (zKey in this.replaysByZIndex_) {
+    var replays = this.replaysByZIndex_[zKey];
+    var replayKey;
+    for (replayKey in replays) {
+      replays[replayKey].finish();
+    }
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.canvas.ReplayGroup.prototype.getReplay =
+    function(zIndex, replayType) {
+  var zIndexKey = goog.isDef(zIndex) ? zIndex.toString() : '0';
+  var replays = this.replaysByZIndex_[zIndexKey];
+  if (!goog.isDef(replays)) {
+    replays = {};
+    this.replaysByZIndex_[zIndexKey] = replays;
+  }
+  var replay = replays[replayType];
+  if (!goog.isDef(replay)) {
+    var Constructor = ol.render.canvas.BATCH_CONSTRUCTORS_[replayType];
+    goog.asserts.assert(goog.isDef(Constructor));
+    replay = new Constructor(this.tolerance_, this.maxExtent_,
+        this.resolution_);
+    replays[replayType] = replay;
+  }
+  return replay;
+=======
+
+
+/**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawMultiPoint} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiPoint = function(coordinates, opt_layout) {
+  goog.base(this);
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.geom.MultiPoint, ol.geom.SimpleGeometry);
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.render.canvas.ReplayGroup.prototype.isEmpty = function() {
+  return goog.object.isEmpty(this.replaysByZIndex_);
+=======
+ * @param {ol.geom.Point} point Point.
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.appendPoint = function(point) {
+  goog.asserts.assert(point.getLayout() == this.layout);
+  if (goog.isNull(this.flatCoordinates)) {
+    this.flatCoordinates = point.getFlatCoordinates().slice();
+  } else {
+    ol.array.safeExtend(this.flatCoordinates, point.getFlatCoordinates());
+  }
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @const
+ * @private
+ * @type {Object.<ol.render.ReplayType,
+ *                function(new: ol.render.canvas.Replay, number, ol.Extent,
+ *                number)>}
+ */
+ol.render.canvas.BATCH_CONSTRUCTORS_ = {
+  'Image': ol.render.canvas.ImageReplay,
+  'LineString': ol.render.canvas.LineStringReplay,
+  'Polygon': ol.render.canvas.PolygonReplay,
+  'Text': ol.render.canvas.TextReplay
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.clone = function() {
+  var multiPoint = new ol.geom.MultiPoint(null);
+  multiPoint.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return multiPoint;
+>>>>>>> ConectaDF
+};
+goog.provide('ol.renderer.canvas.VectorLayer');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('ol.ViewHint');
+goog.require('ol.dom');
+goog.require('ol.extent');
+goog.require('ol.feature');
+goog.require('ol.layer.Vector');
+goog.require('ol.render.EventType');
+goog.require('ol.render.canvas.ReplayGroup');
+goog.require('ol.renderer.canvas.Layer');
+goog.require('ol.renderer.vector');
+goog.require('ol.source.Vector');
+
+<<<<<<< HEAD
+
+
+/**
+ * @constructor
+ * @extends {ol.renderer.canvas.Layer}
+ * @param {ol.renderer.Map} mapRenderer Map renderer.
+ * @param {ol.layer.Vector} vectorLayer Vector layer.
+ */
+ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
+=======
+/**
+ * @inheritDoc
+ */
+ol.geom.MultiPoint.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  var flatCoordinates = this.flatCoordinates;
+  var stride = this.stride;
+  var i, ii, j;
+  for (i = 0, ii = flatCoordinates.length; i < ii; i += stride) {
+    var squaredDistance = ol.math.squaredDistance(
+        x, y, flatCoordinates[i], flatCoordinates[i + 1]);
+    if (squaredDistance < minSquaredDistance) {
+      minSquaredDistance = squaredDistance;
+      for (j = 0; j < stride; ++j) {
+        closestPoint[j] = flatCoordinates[i + j];
+      }
+      closestPoint.length = stride;
+    }
+  }
+  return minSquaredDistance;
+};
+
+
+/**
+ * @return {ol.geom.RawMultiPoint} Coordinates.
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinates(
+      this.flatCoordinates, 0, this.flatCoordinates.length, this.stride);
+};
+>>>>>>> ConectaDF
+
+  goog.base(this, mapRenderer, vectorLayer);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.dirty_ = false;
+=======
+/**
+ * @param {number} index Index.
+ * @return {ol.geom.Point} Point.
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.getPoint = function(index) {
+  var n = goog.isNull(this.flatCoordinates) ?
+      0 : this.flatCoordinates.length / this.stride;
+  goog.asserts.assert(0 <= index && index < n);
+  if (index < 0 || n <= index) {
+    return null;
+  }
+  var point = new ol.geom.Point(null);
+  point.setFlatCoordinates(this.layout, this.flatCoordinates.slice(
+      index * this.stride, (index + 1) * this.stride));
+  return point;
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.renderedRevision_ = -1;
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {number}
+   */
+  this.renderedResolution_ = NaN;
+=======
+/**
+ * @return {Array.<ol.geom.Point>} Points.
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.getPoints = function() {
+  var flatCoordinates = this.flatCoordinates;
+  var layout = this.layout;
+  var stride = this.stride;
+  /** @type {Array.<ol.geom.Point>} */
+  var points = [];
+  var i, ii;
+  for (i = 0, ii = flatCoordinates.length; i < ii; i += stride) {
+    var point = new ol.geom.Point(null);
+    point.setFlatCoordinates(layout, flatCoordinates.slice(i, i + stride));
+    points.push(point);
+  }
+  return points;
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.Extent}
+   */
+  this.renderedExtent_ = ol.extent.createEmpty();
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {function(ol.Feature, ol.Feature): number|null}
+   */
+  this.renderedRenderOrder_ = null;
+=======
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.getType = function() {
+  return ol.geom.GeometryType.MULTI_POINT;
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.render.canvas.ReplayGroup}
+   */
+  this.replayGroup_ = null;
+
+  /**
+   * @private
+   * @type {CanvasRenderingContext2D}
+   */
+  this.context_ = ol.dom.createCanvasContext2D();
+
+<<<<<<< HEAD
+=======
+/**
+ * @param {ol.geom.RawMultiPoint} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiPoint.prototype.setCoordinates =
+    function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null);
+  } else {
+    this.setLayout(opt_layout, coordinates, 1);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    this.flatCoordinates.length = ol.geom.flat.deflate.coordinates(
+        this.flatCoordinates, 0, coordinates, this.stride);
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.renderer.canvas.VectorLayer, ol.renderer.canvas.Layer);
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.renderer.canvas.VectorLayer.prototype.composeFrame =
+    function(frameState, layerState, context) {
+
+  var transform = this.getTransform(frameState);
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+ol.geom.MultiPoint.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.dispatchChangeEvent();
+};
+goog.provide('ol.geom.flat.center');
+
+goog.require('ol.extent');
+>>>>>>> ConectaDF
+
+  this.dispatchPreComposeEvent(context, frameState, transform);
+
+<<<<<<< HEAD
+  var replayGroup = this.replayGroup_;
+  if (!goog.isNull(replayGroup) && !replayGroup.isEmpty()) {
+    var layer = this.getLayer();
+    var replayContext;
+    if (layer.hasListener(ol.render.EventType.RENDER)) {
+      // resize and clear
+      this.context_.canvas.width = context.canvas.width;
+      this.context_.canvas.height = context.canvas.height;
+      replayContext = this.context_;
+    } else {
+      replayContext = context;
+    }
+    replayContext.globalAlpha = layerState.opacity;
+    replayGroup.replay(
+        replayContext, frameState.extent, frameState.pixelRatio, transform,
+        frameState.view2DState.rotation, frameState.skippedFeatureUids_);
+
+    if (replayContext != context) {
+      this.dispatchRenderEvent(replayContext, frameState, transform);
+      context.drawImage(replayContext.canvas, 0, 0);
+    }
+  }
+
+  this.dispatchPostComposeEvent(context, frameState, transform);
+
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.renderer.canvas.VectorLayer.prototype.forEachFeatureAtPixel =
+    function(coordinate, frameState, callback, thisArg) {
+  if (goog.isNull(this.replayGroup_)) {
+    return undefined;
+  } else {
+    var extent = frameState.extent;
+    var resolution = frameState.view2DState.resolution;
+    var rotation = frameState.view2DState.rotation;
+    var layer = this.getLayer();
+    return this.replayGroup_.forEachGeometryAtPixel(extent, resolution,
+        rotation, coordinate, frameState.skippedFeatureUids_,
+        /**
+         * @param {ol.geom.Geometry} geometry Geometry.
+         * @param {Object} data Data.
+         * @return {?} Callback result.
+         */
+        function(geometry, data) {
+          var feature = /** @type {ol.Feature} */ (data);
+          goog.asserts.assert(goog.isDef(feature));
+          return callback.call(thisArg, feature, layer);
+        });
+  }
+};
+=======
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {Array.<Array.<number>>} endss Endss.
+ * @param {number} stride Stride.
+ * @return {Array.<number>} Flat centers.
+ */
+ol.geom.flat.center.linearRingss =
+    function(flatCoordinates, offset, endss, stride) {
+  var flatCenters = [];
+  var i, ii;
+  var extent = ol.extent.createEmpty();
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i];
+    extent = ol.extent.createOrUpdateFromFlatCoordinates(
+        flatCoordinates, offset, ends[0], stride);
+    flatCenters.push((extent[0] + extent[2]) / 2, (extent[1] + extent[3]) / 2);
+    offset = ends[ends.length - 1];
+  }
+  return flatCenters;
+};
+goog.provide('ol.geom.MultiPolygon');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('ol.array');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.MultiPoint');
+goog.require('ol.geom.Polygon');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.area');
+goog.require('ol.geom.flat.center');
+goog.require('ol.geom.flat.closest');
+goog.require('ol.geom.flat.contains');
+goog.require('ol.geom.flat.deflate');
+goog.require('ol.geom.flat.inflate');
+goog.require('ol.geom.flat.interiorpoint');
+goog.require('ol.geom.flat.orient');
+goog.require('ol.geom.flat.simplify');
+
+
+
+/**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawMultiPolygon} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiPolygon = function(coordinates, opt_layout) {
+>>>>>>> ConectaDF
+
+  goog.base(this);
+
+<<<<<<< HEAD
+/**
+ * Handle changes in image style state.
+ * @param {goog.events.Event} event Image style change event.
+ * @private
+ */
+ol.renderer.canvas.VectorLayer.prototype.handleImageChange_ =
+    function(event) {
+  this.renderIfReadyAndVisible();
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
+    function(frameState, layerState) {
+
+  var vectorLayer = this.getLayer();
+  goog.asserts.assertInstanceof(vectorLayer, ol.layer.Vector);
+  var vectorSource = vectorLayer.getSource();
+  goog.asserts.assertInstanceof(vectorSource, ol.source.Vector);
+
+  this.updateAttributions(
+      frameState.attributions, vectorSource.getAttributions());
+  this.updateLogos(frameState, vectorSource);
+
+  if (!this.dirty_ && (frameState.viewHints[ol.ViewHint.ANIMATING] ||
+      frameState.viewHints[ol.ViewHint.INTERACTING])) {
+    return;
+  }
+
+  var frameStateExtent = frameState.extent;
+  var view2DState = frameState.view2DState;
+  var projection = view2DState.projection;
+  var resolution = view2DState.resolution;
+  var pixelRatio = frameState.pixelRatio;
+  var vectorLayerRevision = vectorLayer.getRevision();
+  var vectorLayerRenderOrder = vectorLayer.getRenderOrder();
+  if (!goog.isDef(vectorLayerRenderOrder)) {
+    vectorLayerRenderOrder = ol.renderer.vector.defaultOrder;
+  }
+
+  if (!this.dirty_ &&
+      this.renderedResolution_ == resolution &&
+      this.renderedRevision_ == vectorLayerRevision &&
+      this.renderedRenderOrder_ == vectorLayerRenderOrder &&
+      ol.extent.containsExtent(this.renderedExtent_, frameStateExtent)) {
+    return;
+  }
+
+  var extent = this.renderedExtent_;
+  var xBuffer = ol.extent.getWidth(frameStateExtent) / 4;
+  var yBuffer = ol.extent.getHeight(frameStateExtent) / 4;
+  extent[0] = frameStateExtent[0] - xBuffer;
+  extent[1] = frameStateExtent[1] - yBuffer;
+  extent[2] = frameStateExtent[2] + xBuffer;
+  extent[3] = frameStateExtent[3] + yBuffer;
+
+  // FIXME dispose of old replayGroup in post render
+  goog.dispose(this.replayGroup_);
+  this.replayGroup_ = null;
+
+  this.dirty_ = false;
+
+  var styleFunction = vectorLayer.getStyleFunction();
+  if (!goog.isDef(styleFunction)) {
+    styleFunction = ol.feature.defaultStyleFunction;
+  }
+  var tolerance = resolution / (2 * pixelRatio);
+  var replayGroup =
+      new ol.render.canvas.ReplayGroup(tolerance, extent, resolution);
+  vectorSource.loadFeatures(extent, resolution, projection);
+  var renderFeature =
+      /**
+       * @param {ol.Feature} feature Feature.
+       * @this {ol.renderer.canvas.VectorLayer}
+       */
+      function(feature) {
+    goog.asserts.assert(goog.isDef(styleFunction));
+    var dirty = this.renderFeature(
+        feature, resolution, pixelRatio, styleFunction, replayGroup);
+    this.dirty_ = this.dirty_ || dirty;
+  };
+  if (!goog.isNull(vectorLayerRenderOrder)) {
+    /** @type {Array.<ol.Feature>} */
+    var features = [];
+    vectorSource.forEachFeatureInExtentAtResolution(extent, resolution,
+        /**
+         * @param {ol.Feature} feature Feature.
+         */
+        function(feature) {
+          features.push(feature);
+        }, this);
+    goog.array.sort(features, vectorLayerRenderOrder);
+    goog.array.forEach(features, renderFeature, this);
+  } else {
+    vectorSource.forEachFeatureInExtentAtResolution(
+        extent, resolution, renderFeature, this);
+  }
+  replayGroup.finish();
+
+  this.renderedResolution_ = resolution;
+  this.renderedRevision_ = vectorLayerRevision;
+  this.renderedRenderOrder_ = vectorLayerRenderOrder;
+  this.replayGroup_ = replayGroup;
+=======
+  /**
+   * @type {Array.<Array.<number>>}
+   * @private
+   */
+  this.endss_ = [];
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.flatInteriorPointsRevision_ = -1;
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.flatInteriorPoints_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDelta_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxDeltaRevision_ = -1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.orientedRevision_ = -1;
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.orientedFlatCoordinates_ = null;
+
+  this.setCoordinates(coordinates,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+>>>>>>> ConectaDF
+
+};
+goog.inherits(ol.geom.MultiPolygon, ol.geom.SimpleGeometry);
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Feature} feature Feature.
+ * @param {number} resolution Resolution.
+ * @param {number} pixelRatio Pixel ratio.
+ * @param {ol.feature.StyleFunction} styleFunction Style function.
+ * @param {ol.render.canvas.ReplayGroup} replayGroup Replay group.
+ * @return {boolean} `true` if an image is loading.
+ */
+ol.renderer.canvas.VectorLayer.prototype.renderFeature =
+    function(feature, resolution, pixelRatio, styleFunction, replayGroup) {
+  var styles = styleFunction(feature, resolution);
+  if (!goog.isDefAndNotNull(styles)) {
+    return false;
+  }
+  // simplify to a tolerance of half a device pixel
+  var squaredTolerance =
+      resolution * resolution / (4 * pixelRatio * pixelRatio);
+  var i, ii, loading = false;
+  for (i = 0, ii = styles.length; i < ii; ++i) {
+    loading = ol.renderer.vector.renderFeature(
+        replayGroup, feature, styles[i], squaredTolerance, feature,
+        this.handleImageChange_, this) || loading;
+  }
+  return loading;
+=======
+ * @param {ol.geom.Polygon} polygon Polygon.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.appendPolygon = function(polygon) {
+  goog.asserts.assert(polygon.getLayout() == this.layout);
+  /** @type {Array.<number>} */
+  var ends;
+  if (goog.isNull(this.flatCoordinates)) {
+    this.flatCoordinates = polygon.getFlatCoordinates().slice();
+    ends = polygon.getEnds().slice();
+    this.endss_.push();
+  } else {
+    var offset = this.flatCoordinates.length;
+    ol.array.safeExtend(this.flatCoordinates, polygon.getFlatCoordinates());
+    ends = polygon.getEnds().slice();
+    var i, ii;
+    for (i = 0, ii = ends.length; i < ii; ++i) {
+      ends[i] += offset;
+    }
+  }
+  this.endss_.push(ends);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+// FIXME offset panning
+
+goog.provide('ol.renderer.canvas.Map');
+
+goog.require('goog.asserts');
+goog.require('goog.dom');
+goog.require('goog.style');
+goog.require('goog.vec.Mat4');
+goog.require('ol');
+goog.require('ol.css');
+goog.require('ol.dom');
+goog.require('ol.layer.Image');
+goog.require('ol.layer.Tile');
+goog.require('ol.layer.Vector');
+goog.require('ol.render.Event');
+goog.require('ol.render.EventType');
+goog.require('ol.render.canvas.Immediate');
+goog.require('ol.renderer.Map');
+goog.require('ol.renderer.canvas.ImageLayer');
+goog.require('ol.renderer.canvas.Layer');
+goog.require('ol.renderer.canvas.TileLayer');
+goog.require('ol.renderer.canvas.VectorLayer');
+goog.require('ol.source.State');
+goog.require('ol.vec.Mat4');
+
+<<<<<<< HEAD
+
+
+/**
+ * @constructor
+ * @extends {ol.renderer.Map}
+ * @param {Element} container Container.
+ * @param {ol.Map} map Map.
+ */
+ol.renderer.canvas.Map = function(container, map) {
+=======
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.clone = function() {
+  var multiPolygon = new ol.geom.MultiPolygon(null);
+  multiPolygon.setFlatCoordinates(
+      this.layout, this.flatCoordinates.slice(), this.endss_.slice());
+  return multiPolygon;
+};
+>>>>>>> ConectaDF
+
+  goog.base(this, container, map);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {CanvasRenderingContext2D}
+   */
+  this.context_ = ol.dom.createCanvasContext2D();
+
+  /**
+   * @private
+   * @type {HTMLCanvasElement}
+   */
+  this.canvas_ = this.context_.canvas;
+=======
+/**
+ * @inheritDoc
+ */
+ol.geom.MultiPolygon.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  if (minSquaredDistance <
+      ol.extent.closestSquaredDistanceXY(this.getExtent(), x, y)) {
+    return minSquaredDistance;
+  }
+  if (this.maxDeltaRevision_ != this.getRevision()) {
+    this.maxDelta_ = Math.sqrt(ol.geom.flat.closest.getssMaxSquaredDelta(
+        this.flatCoordinates, 0, this.endss_, this.stride, 0));
+    this.maxDeltaRevision_ = this.getRevision();
+  }
+  return ol.geom.flat.closest.getssClosestPoint(
+      this.getOrientedFlatCoordinates(), 0, this.endss_, this.stride,
+      this.maxDelta_, true, x, y, closestPoint, minSquaredDistance);
+};
+>>>>>>> ConectaDF
+
+  this.canvas_.style.width = '100%';
+  this.canvas_.style.height = '100%';
+  this.canvas_.className = ol.css.CLASS_UNSELECTABLE;
+  goog.dom.insertChildAt(container, this.canvas_, 0);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.transform_ = goog.vec.Mat4.createNumber();
+
+};
+goog.inherits(ol.renderer.canvas.Map, ol.renderer.Map);
+
+
+/**
+ * @inheritDoc
+ */
+ol.renderer.canvas.Map.prototype.createLayerRenderer = function(layer) {
+  if (ol.ENABLE_IMAGE && layer instanceof ol.layer.Image) {
+    return new ol.renderer.canvas.ImageLayer(this, layer);
+  } else if (ol.ENABLE_TILE && layer instanceof ol.layer.Tile) {
+    return new ol.renderer.canvas.TileLayer(this, layer);
+  } else if (ol.ENABLE_VECTOR && layer instanceof ol.layer.Vector) {
+    return new ol.renderer.canvas.VectorLayer(this, layer);
+  } else {
+    goog.asserts.fail();
+    return null;
+  }
+=======
+/**
+ * @inheritDoc
+ */
+ol.geom.MultiPolygon.prototype.containsXY = function(x, y) {
+  return ol.geom.flat.contains.linearRingssContainsXY(
+      this.getOrientedFlatCoordinates(), 0, this.endss_, this.stride, x, y);
+};
+
+
+/**
+ * @return {number} Area.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getArea = function() {
+  return ol.geom.flat.area.linearRingss(
+      this.getOrientedFlatCoordinates(), 0, this.endss_, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.render.EventType} type Event type.
+ * @param {oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.renderer.canvas.Map.prototype.dispatchComposeEvent_ =
+    function(type, frameState) {
+  var map = this.getMap();
+  var context = this.context_;
+  if (map.hasListener(type)) {
+    var view2DState = frameState.view2DState;
+    var pixelRatio = frameState.pixelRatio;
+    ol.vec.Mat4.makeTransform2D(this.transform_,
+        this.canvas_.width / 2,
+        this.canvas_.height / 2,
+        pixelRatio / view2DState.resolution,
+        -pixelRatio / view2DState.resolution,
+        -view2DState.rotation,
+        -view2DState.center[0], -view2DState.center[1]);
+    var render = new ol.render.canvas.Immediate(context, pixelRatio,
+        frameState.extent, this.transform_, view2DState.rotation);
+    var composeEvent = new ol.render.Event(type, map, render, frameState,
+        context, null);
+    map.dispatchEvent(composeEvent);
+    render.flush();
+  }
+=======
+ * @return {ol.geom.RawMultiPolygon} Coordinates.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getCoordinates = function() {
+  return ol.geom.flat.inflate.coordinatesss(
+      this.flatCoordinates, 0, this.endss_, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.layer.Layer} layer Layer.
+ * @return {ol.renderer.canvas.Layer} Canvas layer renderer.
+ */
+ol.renderer.canvas.Map.prototype.getCanvasLayerRenderer = function(layer) {
+  var layerRenderer = this.getLayerRenderer(layer);
+  goog.asserts.assertInstanceof(layerRenderer, ol.renderer.canvas.Layer);
+  return /** @type {ol.renderer.canvas.Layer} */ (layerRenderer);
+=======
+ * @return {Array.<Array.<number>>} Endss.
+ */
+ol.geom.MultiPolygon.prototype.getEndss = function() {
+  return this.endss_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.renderer.canvas.Map.prototype.renderFrame = function(frameState) {
+
+  if (goog.isNull(frameState)) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.canvas_, false);
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var context = this.context_;
+  var width = frameState.size[0] * frameState.pixelRatio;
+  var height = frameState.size[1] * frameState.pixelRatio;
+  if (this.canvas_.width != width || this.canvas_.height != height) {
+    this.canvas_.width = width;
+    this.canvas_.height = height;
+  } else {
+    context.clearRect(0, 0, this.canvas_.width, this.canvas_.height);
+  }
+
+  this.calculateMatrices2D(frameState);
+
+  this.dispatchComposeEvent_(ol.render.EventType.PRECOMPOSE, frameState);
+
+  var layerStatesArray = frameState.layerStatesArray;
+  var viewResolution = frameState.view2DState.resolution;
+  var i, ii, layer, layerRenderer, layerState;
+  for (i = 0, ii = layerStatesArray.length; i < ii; ++i) {
+    layerState = layerStatesArray[i];
+    layer = layerState.layer;
+    layerRenderer = this.getLayerRenderer(layer);
+    goog.asserts.assertInstanceof(layerRenderer, ol.renderer.canvas.Layer);
+    if (!layerState.visible ||
+        layerState.sourceState != ol.source.State.READY ||
+        viewResolution >= layerState.maxResolution ||
+        viewResolution < layerState.minResolution) {
+      continue;
+    }
+    layerRenderer.prepareFrame(frameState, layerState);
+    layerRenderer.composeFrame(frameState, layerState, context);
+  }
+
+  this.dispatchComposeEvent_(ol.render.EventType.POSTCOMPOSE, frameState);
+
+  if (!this.renderedVisible_) {
+    goog.style.setElementShown(this.canvas_, true);
+    this.renderedVisible_ = true;
+  }
+
+  this.scheduleRemoveUnusedLayerRenderers(frameState);
+  this.scheduleExpireIconCache(frameState);
+};
+// FIXME add view3DState
+// FIXME factor out common code between usedTiles and wantedTiles
+
+goog.provide('ol.PostRenderFunction');
+goog.provide('ol.PreRenderFunction');
+
+
+/**
+ * @typedef {function(ol.Map, ?oli.FrameState): boolean}
+ */
+ol.PostRenderFunction;
+
+
+/**
+ * Function to perform manipulations before rendering. This function is called
+ * with the {@link ol.Map} as first and an optional {@link oli.FrameState} as
+ * second argument. Return `true` to keep this function for the next frame,
+ * `false` to remove it.
+ * @typedef {function(ol.Map, ?oli.FrameState): boolean}
+ * @todo api
+ */
+ol.PreRenderFunction;
+/**
+ * An implementation of Google Maps' MVCArray.
+ * @see https://developers.google.com/maps/documentation/javascript/reference
+ */
+
+goog.provide('ol.Collection');
+goog.provide('ol.CollectionEvent');
+goog.provide('ol.CollectionEventType');
+
+goog.require('goog.array');
+goog.require('goog.events.Event');
+goog.require('ol.Object');
+
+
+/**
+ * @enum {string}
+ */
+ol.CollectionEventType = {
+  /**
+   * Triggered when an item is added to the collection.
+   * @event ol.CollectionEvent#add
+   * @todo api
+   */
+  ADD: 'add',
+  /**
+   * Triggered when an item is removed from the collection.
+   * @event ol.CollectionEvent#remove
+   * @todo api
+   */
+  REMOVE: 'remove'
+=======
+ * @return {Array.<number>} Flat interior points.
+ */
+ol.geom.MultiPolygon.prototype.getFlatInteriorPoints = function() {
+  if (this.flatInteriorPointsRevision_ != this.getRevision()) {
+    var flatCenters = ol.geom.flat.center.linearRingss(
+        this.flatCoordinates, 0, this.endss_, this.stride);
+    this.flatInteriorPoints_ = ol.geom.flat.interiorpoint.linearRingss(
+        this.getOrientedFlatCoordinates(), 0, this.endss_, this.stride,
+        flatCenters);
+    this.flatInteriorPointsRevision_ = this.getRevision();
+  }
+  return this.flatInteriorPoints_;
+};
+
+
+/**
+ * @return {ol.geom.MultiPoint} Interior points.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getInteriorPoints = function() {
+  var interiorPoints = new ol.geom.MultiPoint(null);
+  interiorPoints.setFlatCoordinates(ol.geom.GeometryLayout.XY,
+      this.getFlatInteriorPoints().slice());
+  return interiorPoints;
+};
+
+
+/**
+ * @return {Array.<number>} Oriented flat coordinates.
+ */
+ol.geom.MultiPolygon.prototype.getOrientedFlatCoordinates = function() {
+  if (this.orientedRevision_ != this.getRevision()) {
+    var flatCoordinates = this.flatCoordinates;
+    if (ol.geom.flat.linearRingssAreOriented(
+        flatCoordinates, 0, this.endss_, this.stride)) {
+      this.orientedFlatCoordinates_ = flatCoordinates;
+    } else {
+      this.orientedFlatCoordinates_ = flatCoordinates.slice();
+      this.orientedFlatCoordinates_.length =
+          ol.geom.flat.orient.orientLinearRingss(
+              this.orientedFlatCoordinates_, 0, this.endss_, this.stride);
+    }
+    this.orientedRevision_ = this.getRevision();
+  }
+  return this.orientedFlatCoordinates_;
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.geom.MultiPolygon.prototype.getSimplifiedGeometryInternal =
+    function(squaredTolerance) {
+  var simplifiedFlatCoordinates = [];
+  var simplifiedEndss = [];
+  simplifiedFlatCoordinates.length = ol.geom.flat.simplify.quantizess(
+      this.flatCoordinates, 0, this.endss_, this.stride,
+      Math.sqrt(squaredTolerance),
+      simplifiedFlatCoordinates, 0, simplifiedEndss);
+  var simplifiedMultiPolygon = new ol.geom.MultiPolygon(null);
+  simplifiedMultiPolygon.setFlatCoordinates(
+      ol.geom.GeometryLayout.XY, simplifiedFlatCoordinates, simplifiedEndss);
+  return simplifiedMultiPolygon;
+>>>>>>> ConectaDF
+};
+
+
+
+/**
+<<<<<<< HEAD
+ * @constructor
+ * @extends {goog.events.Event}
+ * @implements {oli.CollectionEvent}
+ * @param {ol.CollectionEventType} type Type.
+ * @param {*=} opt_element Element.
+ * @param {Object=} opt_target Target.
+ */
+ol.CollectionEvent = function(type, opt_element, opt_target) {
+
+  goog.base(this, type, opt_target);
+
+  /**
+   * The element that is added to or removed from the collection.
+   * @type {*}
+   */
+  this.element = opt_element;
+
+};
+goog.inherits(ol.CollectionEvent, goog.events.Event);
+
+
+/**
+ * @enum {string}
+ */
+ol.CollectionProperty = {
+  LENGTH: 'length'
+};
+
+
+
+/**
+ * A mutable MVC Array.
+ * @constructor
+ * @extends {ol.Object}
+ * @fires {@link ol.CollectionEvent} ol.CollectionEvent
+ * @param {Array=} opt_array Array.
+ * @todo observable length {number} readonly the length of the array
+ * @todo api
+ */
+ol.Collection = function(opt_array) {
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {Array.<*>}
+   */
+  this.array_ = opt_array || [];
+
+  this.updateLength_();
+
+=======
+ * @param {number} index Index.
+ * @return {ol.geom.Polygon} Polygon.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getPolygon = function(index) {
+  goog.asserts.assert(0 <= index && index < this.endss_.length);
+  if (index < 0 || this.endss_.length <= index) {
+    return null;
+  }
+  var offset;
+  if (index === 0) {
+    offset = 0;
+  } else {
+    var prevEnds = this.endss_[index - 1];
+    offset = prevEnds[prevEnds.length - 1];
+  }
+  var ends = this.endss_[index].slice();
+  var end = ends[ends.length - 1];
+  if (offset !== 0) {
+    var i, ii;
+    for (i = 0, ii = ends.length; i < ii; ++i) {
+      ends[i] -= offset;
+    }
+  }
+  var polygon = new ol.geom.Polygon(null);
+  polygon.setFlatCoordinates(
+      this.layout, this.flatCoordinates.slice(offset, end), ends);
+  return polygon;
+};
+
+
+/**
+ * @return {Array.<ol.geom.Polygon>} Polygons.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getPolygons = function() {
+  var layout = this.layout;
+  var flatCoordinates = this.flatCoordinates;
+  var endss = this.endss_;
+  var polygons = [];
+  var offset = 0;
+  var i, ii, j, jj;
+  for (i = 0, ii = endss.length; i < ii; ++i) {
+    var ends = endss[i].slice();
+    var end = ends[ends.length - 1];
+    if (offset !== 0) {
+      for (j = 0, jj = ends.length; j < jj; ++j) {
+        ends[j] -= offset;
+      }
+    }
+    var polygon = new ol.geom.Polygon(null);
+    polygon.setFlatCoordinates(
+        layout, flatCoordinates.slice(offset, end), ends);
+    polygons.push(polygon);
+    offset = end;
+  }
+  return polygons;
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.Collection, ol.Object);
+
+
+/**
+<<<<<<< HEAD
+ * Remove all elements from the collection.
+ * @todo api
+ */
+ol.Collection.prototype.clear = function() {
+  while (this.getLength() > 0) {
+    this.pop();
+  }
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.getType = function() {
+  return ol.geom.GeometryType.MULTI_POLYGON;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {Array} arr Array.
+ * @return {ol.Collection} This collection.
+ * @todo api
+ */
+ol.Collection.prototype.extend = function(arr) {
+  var i, ii;
+  for (i = 0, ii = arr.length; i < ii; ++i) {
+    this.push(arr[i]);
+  }
+  return this;
+=======
+ * @param {ol.geom.RawMultiPolygon} coordinates Coordinates.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.MultiPolygon.prototype.setCoordinates =
+    function(coordinates, opt_layout) {
+  if (goog.isNull(coordinates)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null, this.endss_);
+  } else {
+    this.setLayout(opt_layout, coordinates, 3);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    var endss = ol.geom.flat.deflate.coordinatesss(
+        this.flatCoordinates, 0, coordinates, this.stride, this.endss_);
+    var lastEnds = endss[endss.length - 1];
+    this.flatCoordinates.length = lastEnds.length === 0 ?
+        0 : lastEnds[lastEnds.length - 1];
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Iterate over each element, calling the provided callback.
+ * @param {function(this: S, T, number, Array.<T>): *} f The function to call
+ *     for every element. This function takes 3 arguments (the element, the
+ *     index and the array). The return value is ignored.
+ * @param {S=} opt_this The object to use as `this` in `f`.
+ * @template T,S
+ * @todo api
+ */
+ol.Collection.prototype.forEach = function(f, opt_this) {
+  goog.array.forEach(this.array_, f, opt_this);
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {Array.<Array.<number>>} endss Endss.
+ */
+ol.geom.MultiPolygon.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates, endss) {
+  goog.asserts.assert(!goog.isNull(endss));
+  if (goog.isNull(flatCoordinates) || flatCoordinates.length === 0) {
+    goog.asserts.assert(endss.length === 0);
+  } else {
+    goog.asserts.assert(endss.length > 0);
+    var ends = endss[endss.length - 1];
+    goog.asserts.assert(flatCoordinates.length == ends[ends.length - 1]);
+  }
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.endss_ = endss;
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Get a reference to the underlying Array object. Warning: if the array
+ * is mutated, no events will be dispatched by the collection, and the
+ * collection's "length" property won't be in sync with the actual length
+ * of the array.
+ * @return {Array} Array.
+ * @todo api
+ */
+ol.Collection.prototype.getArray = function() {
+  return this.array_;
+};
+=======
+ * @param {Array.<ol.geom.Polygon>} polygons Polygons.
+ */
+ol.geom.MultiPolygon.prototype.setPolygons = function(polygons) {
+  var layout = ol.geom.GeometryLayout.XY;
+  var flatCoordinates = [];
+  var endss = [];
+  var i, ii, ends;
+  for (i = 0, ii = polygons.length; i < ii; ++i) {
+    var polygon = polygons[i];
+    if (i === 0) {
+      layout = polygon.getLayout();
+    } else {
+      // FIXME better handle the case of non-matching layouts
+      goog.asserts.assert(polygon.getLayout() == layout);
+    }
+    var offset = flatCoordinates.length;
+    ends = polygon.getEnds();
+    var j, jj;
+    for (j = 0, jj = ends.length; j < jj; ++j) {
+      ends[j] += offset;
+    }
+    ol.array.safeExtend(flatCoordinates, polygon.getFlatCoordinates());
+    endss.push(ends);
+  }
+  this.setFlatCoordinates(layout, flatCoordinates, endss);
+};
+goog.provide('ol.geom.Circle');
+>>>>>>> ConectaDF
+
+goog.require('goog.asserts');
+goog.require('ol.extent');
+goog.require('ol.geom.GeometryType');
+goog.require('ol.geom.SimpleGeometry');
+goog.require('ol.geom.flat.deflate');
+
+<<<<<<< HEAD
+/**
+ * Get the element at the provided index.
+ * @param {number} index Index.
+ * @return {*} Element.
+ * @todo api
+ */
+ol.Collection.prototype.getAt = function(index) {
+  return this.array_[index];
+};
+
+
+/**
+ * Get the length of this collection.
+ * @return {number} Length.
+ * @todo api
+ */
+ol.Collection.prototype.getLength = function() {
+  return /** @type {number} */ (this.get(ol.CollectionProperty.LENGTH));
+};
+
+
+/**
+ * Insert an element at the provided index.
+ * @param {number} index Index.
+ * @param {*} elem Element.
+ * @todo api
+ */
+ol.Collection.prototype.insertAt = function(index, elem) {
+  goog.array.insertAt(this.array_, elem, index);
+  this.updateLength_();
+  this.dispatchEvent(
+      new ol.CollectionEvent(ol.CollectionEventType.ADD, elem, this));
+=======
+
+
+/**
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.geom.RawPoint} center Center.
+ * @param {number=} opt_radius Radius.
+ * @param {ol.geom.GeometryLayout|string=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Circle = function(center, opt_radius, opt_layout) {
+  goog.base(this);
+  var radius = goog.isDef(opt_radius) ? opt_radius : 0;
+  this.setCenterAndRadius(center, radius,
+      /** @type {ol.geom.GeometryLayout|undefined} */ (opt_layout));
+};
+goog.inherits(ol.geom.Circle, ol.geom.SimpleGeometry);
+
+
+/**
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Circle.prototype.clone = function() {
+  var circle = new ol.geom.Circle(null);
+  circle.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return circle;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Remove the last element of the collection.
+ * @return {*} Element.
+ * @todo api
+ */
+ol.Collection.prototype.pop = function() {
+  return this.removeAt(this.getLength() - 1);
+};
+
+
+/**
+ * Insert the provided element at the end of the collection.
+ * @param {*} elem Element.
+ * @return {number} Length.
+ * @todo api
+ */
+ol.Collection.prototype.push = function(elem) {
+  var n = this.array_.length;
+  this.insertAt(n, elem);
+  return n;
+};
+
+
+/**
+ * Removes the first occurence of elem from the collection.
+ * @param {*} elem Element.
+ * @return {*} The removed element or undefined if elem was not found.
+ * @todo api
+ */
+ol.Collection.prototype.remove = function(elem) {
+  var arr = this.array_;
+  var i, ii;
+  for (i = 0, ii = arr.length; i < ii; ++i) {
+    if (arr[i] === elem) {
+      return this.removeAt(i);
+    }
+  }
+  return undefined;
+=======
+ * @inheritDoc
+ */
+ol.geom.Circle.prototype.closestPointXY =
+    function(x, y, closestPoint, minSquaredDistance) {
+  var flatCoordinates = this.flatCoordinates;
+  var dx = x - flatCoordinates[0];
+  var dy = y - flatCoordinates[1];
+  var squaredDistance = dx * dx + dy * dy;
+  if (squaredDistance < minSquaredDistance) {
+    var i;
+    if (squaredDistance === 0) {
+      for (i = 0; i < this.stride; ++i) {
+        closestPoint[i] = flatCoordinates[i];
+      }
+    } else {
+      var delta = this.getRadius() / Math.sqrt(squaredDistance);
+      closestPoint[0] = flatCoordinates[0] + delta * dx;
+      closestPoint[1] = flatCoordinates[1] + delta * dy;
+      for (i = 2; i < this.stride; ++i) {
+        closestPoint[i] = flatCoordinates[i];
+      }
+    }
+    closestPoint.length = this.stride;
+    return squaredDistance;
+  } else {
+    return minSquaredDistance;
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.geom.Circle.prototype.containsXY = function(x, y) {
+  var flatCoordinates = this.flatCoordinates;
+  var dx = x - flatCoordinates[0];
+  var dy = y - flatCoordinates[1];
+  return dx * dx + dy * dy <= this.getRadiusSquared_();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Remove the element at the provided index.
+ * @param {number} index Index.
+ * @return {*} Value.
+ * @todo api
+ */
+ol.Collection.prototype.removeAt = function(index) {
+  var prev = this.array_[index];
+  goog.array.removeAt(this.array_, index);
+  this.updateLength_();
+  this.dispatchEvent(
+      new ol.CollectionEvent(ol.CollectionEventType.REMOVE, prev, this));
+  return prev;
+=======
+ * @return {ol.geom.RawPoint} Center.
+ * @todo api
+ */
+ol.geom.Circle.prototype.getCenter = function() {
+  return this.flatCoordinates.slice(0, this.stride);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Set the element at the provided index.
+ * @param {number} index Index.
+ * @param {*} elem Element.
+ * @todo api
+ */
+ol.Collection.prototype.setAt = function(index, elem) {
+  var n = this.getLength();
+  if (index < n) {
+    var prev = this.array_[index];
+    this.array_[index] = elem;
+    this.dispatchEvent(
+        new ol.CollectionEvent(ol.CollectionEventType.REMOVE, prev, this));
+    this.dispatchEvent(
+        new ol.CollectionEvent(ol.CollectionEventType.ADD, elem, this));
+  } else {
+    var j;
+    for (j = n; j < index; ++j) {
+      this.insertAt(j, undefined);
+    }
+    this.insertAt(index, elem);
+  }
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Circle.prototype.getExtent = function(opt_extent) {
+  if (this.extentRevision != this.getRevision()) {
+    var flatCoordinates = this.flatCoordinates;
+    var radius = flatCoordinates[this.stride] - flatCoordinates[0];
+    this.extent = ol.extent.createOrUpdate(
+        flatCoordinates[0] - radius, flatCoordinates[1] - radius,
+        flatCoordinates[0] + radius, flatCoordinates[1] + radius,
+        this.extent);
+    this.extentRevision = this.getRevision();
+  }
+  goog.asserts.assert(goog.isDef(this.extent));
+  return ol.extent.returnOrUpdate(this.extent, opt_extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ */
+ol.Collection.prototype.updateLength_ = function() {
+  this.set(ol.CollectionProperty.LENGTH, this.array_.length);
+};
+goog.provide('ol.layer.Group');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.math');
+goog.require('goog.object');
+goog.require('ol.Collection');
+goog.require('ol.CollectionEvent');
+goog.require('ol.CollectionEventType');
+goog.require('ol.Object');
+goog.require('ol.ObjectEventType');
+goog.require('ol.layer.Base');
+goog.require('ol.source.State');
+
+
+/**
+ * @enum {string}
+ */
+ol.layer.GroupProperty = {
+  LAYERS: 'layers'
+=======
+ * @return {number} Radius.
+ * @todo api
+ */
+ol.geom.Circle.prototype.getRadius = function() {
+  return Math.sqrt(this.getRadiusSquared_());
+};
+
+
+/**
+ * @private
+ * @return {number} Radius squared.
+ */
+ol.geom.Circle.prototype.getRadiusSquared_ = function() {
+  var dx = this.flatCoordinates[this.stride] - this.flatCoordinates[0];
+  var dy = this.flatCoordinates[this.stride + 1] - this.flatCoordinates[1];
+  return dx * dx + dy * dy;
+>>>>>>> ConectaDF
+};
+
+
+
+/**
+<<<<<<< HEAD
+ * @constructor
+ * @extends {ol.layer.Base}
+ * @param {olx.layer.GroupOptions=} opt_options Layer options.
+ * @todo observable layers {ol.Collection} collection of {@link ol.layer} layers
+ *       that are part of this group
+ * @todo api
+ */
+ol.layer.Group = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+  var baseOptions = /** @type {olx.layer.GroupOptions} */
+      (goog.object.clone(options));
+  delete baseOptions.layers;
+
+  var layers = options.layers;
+
+  goog.base(this, baseOptions);
+
+  /**
+   * @private
+   * @type {Object.<string, goog.events.Key>}
+   */
+  this.listenerKeys_ = null;
+
+  goog.events.listen(this,
+      ol.Object.getChangeEventType(ol.layer.GroupProperty.LAYERS),
+      this.handleLayersChanged_, false, this);
+
+  if (goog.isDef(layers)) {
+    if (goog.isArray(layers)) {
+      layers = new ol.Collection(goog.array.clone(layers));
+    } else {
+      goog.asserts.assertInstanceof(layers, ol.Collection);
+      layers = layers;
+    }
+  } else {
+    layers = new ol.Collection();
+  }
+
+  this.setLayers(layers);
+
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Circle.prototype.getSimplifiedGeometry = function(squaredTolerance) {
+  return this;
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.layer.Group, ol.layer.Base);
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ */
+ol.layer.Group.prototype.handleLayerChange_ = function() {
+  if (this.getVisible()) {
+    this.dispatchChangeEvent();
+  }
+};
+
+
+/**
+ * @param {goog.events.Event} event Event.
+ * @private
+ */
+ol.layer.Group.prototype.handleLayersChanged_ = function(event) {
+  if (!goog.isNull(this.listenerKeys_)) {
+    goog.array.forEach(
+        goog.object.getValues(this.listenerKeys_), goog.events.unlistenByKey);
+    this.listenerKeys_ = null;
+  }
+
+  var layers = this.getLayers();
+  if (goog.isDefAndNotNull(layers)) {
+    this.listenerKeys_ = {
+      'add': goog.events.listen(layers, ol.CollectionEventType.ADD,
+          this.handleLayersAdd_, false, this),
+      'remove': goog.events.listen(layers, ol.CollectionEventType.REMOVE,
+          this.handleLayersRemove_, false, this)
+    };
+
+    var layersArray = layers.getArray();
+    var i, ii, layer;
+    for (i = 0, ii = layersArray.length; i < ii; i++) {
+      layer = layersArray[i];
+      this.listenerKeys_[goog.getUid(layer).toString()] =
+          goog.events.listen(layer,
+              [ol.ObjectEventType.PROPERTYCHANGE, goog.events.EventType.CHANGE],
+              this.handleLayerChange_, false, this);
+    }
+  }
+
+  this.dispatchChangeEvent();
+=======
+ * @inheritDoc
+ * @todo api
+ */
+ol.geom.Circle.prototype.getType = function() {
+  return ol.geom.GeometryType.CIRCLE;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.CollectionEvent} collectionEvent Collection event.
+ * @private
+ */
+ol.layer.Group.prototype.handleLayersAdd_ = function(collectionEvent) {
+  var layer = /** @type {ol.layer.Base} */ (collectionEvent.element);
+  this.listenerKeys_[goog.getUid(layer).toString()] = goog.events.listen(
+      layer, [ol.ObjectEventType.PROPERTYCHANGE, goog.events.EventType.CHANGE],
+      this.handleLayerChange_, false, this);
+  this.dispatchChangeEvent();
+};
+
+
+/**
+ * @param {ol.CollectionEvent} collectionEvent Collection event.
+ * @private
+ */
+ol.layer.Group.prototype.handleLayersRemove_ = function(collectionEvent) {
+  var layer = /** @type {ol.layer.Base} */ (collectionEvent.element);
+  var key = goog.getUid(layer).toString();
+  goog.events.unlistenByKey(this.listenerKeys_[key]);
+  delete this.listenerKeys_[key];
+  this.dispatchChangeEvent();
+=======
+ * @param {ol.geom.RawPoint} center Center.
+ * @todo api
+ */
+ol.geom.Circle.prototype.setCenter = function(center) {
+  var stride = this.stride;
+  goog.asserts.assert(center.length == stride);
+  var radius = this.flatCoordinates[stride] - this.flatCoordinates[0];
+  var flatCoordinates = center.slice();
+  flatCoordinates[stride] = flatCoordinates[0] + radius;
+  var i;
+  for (i = 1; i < stride; ++i) {
+    flatCoordinates[stride + i] = center[i];
+  }
+  this.setFlatCoordinates(this.layout, flatCoordinates);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @return {ol.Collection|undefined} Collection of layers.
+ */
+ol.layer.Group.prototype.getLayers = function() {
+  return /** @type {ol.Collection|undefined} */ (this.get(
+      ol.layer.GroupProperty.LAYERS));
+=======
+ * @param {ol.geom.RawPoint} center Center.
+ * @param {number} radius Radius.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @todo api
+ */
+ol.geom.Circle.prototype.setCenterAndRadius =
+    function(center, radius, opt_layout) {
+  if (goog.isNull(center)) {
+    this.setFlatCoordinates(ol.geom.GeometryLayout.XY, null);
+  } else {
+    this.setLayout(opt_layout, center, 0);
+    if (goog.isNull(this.flatCoordinates)) {
+      this.flatCoordinates = [];
+    }
+    /** @type {Array.<number>} */
+    var flatCoordinates = this.flatCoordinates;
+    var offset = ol.geom.flat.deflate.coordinate(
+        flatCoordinates, 0, center, this.stride);
+    flatCoordinates[offset++] = flatCoordinates[0] + radius;
+    var i, ii;
+    for (i = 1, ii = this.stride; i < ii; ++i) {
+      flatCoordinates[offset++] = flatCoordinates[i];
+    }
+    flatCoordinates.length = offset;
+    this.dispatchChangeEvent();
+  }
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.layer.Group.prototype,
+    'getLayers',
+    ol.layer.Group.prototype.getLayers);
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Collection|undefined} layers Collection of layers.
+ */
+ol.layer.Group.prototype.setLayers = function(layers) {
+  this.set(ol.layer.GroupProperty.LAYERS, layers);
+=======
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+ol.geom.Circle.prototype.setFlatCoordinates =
+    function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.layer.Group.prototype,
+    'setLayers',
+    ol.layer.Group.prototype.setLayers);
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.layer.Group.prototype.getLayersArray = function(opt_array) {
+  var array = (goog.isDef(opt_array)) ? opt_array : [];
+  this.getLayers().forEach(function(layer) {
+    layer.getLayersArray(array);
+  });
+  return array;
+=======
+ * @param {number} radius Radius.
+ * @todo api
+ */
+ol.geom.Circle.prototype.setRadius = function(radius) {
+  goog.asserts.assert(!goog.isNull(this.flatCoordinates));
+  this.flatCoordinates[this.stride] = this.flatCoordinates[0] + radius;
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+ * @inheritDoc
+ */
+<<<<<<< HEAD
+ol.layer.Group.prototype.getLayerStatesArray = function(opt_states) {
+  var states = (goog.isDef(opt_states)) ? opt_states : [];
+
+  var pos = states.length;
+
+  this.getLayers().forEach(function(layer) {
+    layer.getLayerStatesArray(states);
+  });
+
+  var ownLayerState = this.getLayerState();
+  var i, ii, layerState;
+  for (i = pos, ii = states.length; i < ii; i++) {
+    layerState = states[i];
+    layerState.brightness = goog.math.clamp(
+        layerState.brightness + ownLayerState.brightness, -1, 1);
+    layerState.contrast *= ownLayerState.contrast;
+    layerState.hue += ownLayerState.hue;
+    layerState.opacity *= ownLayerState.opacity;
+    layerState.saturation *= ownLayerState.saturation;
+    layerState.visible = layerState.visible && ownLayerState.visible;
+    layerState.maxResolution = Math.min(
+        layerState.maxResolution, ownLayerState.maxResolution);
+    layerState.minResolution = Math.max(
+        layerState.minResolution, ownLayerState.minResolution);
+  }
+
+  return states;
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.layer.Group.prototype.getSourceState = function() {
+  return ol.source.State.READY;
+=======
+ol.geom.Circle.prototype.applyTransform = goog.abstractMethod;
+goog.provide('ol.renderer.vector');
+
+goog.require('goog.asserts');
+goog.require('ol.geom.Circle');
+goog.require('ol.geom.GeometryCollection');
+goog.require('ol.geom.LineString');
+goog.require('ol.geom.MultiLineString');
+goog.require('ol.geom.MultiPoint');
+goog.require('ol.geom.MultiPolygon');
+goog.require('ol.geom.Point');
+goog.require('ol.geom.Polygon');
+goog.require('ol.render.IReplayGroup');
+goog.require('ol.style.ImageState');
+goog.require('ol.style.Style');
+
+
+/**
+ * @param {ol.Feature} feature1 Feature 1.
+ * @param {ol.Feature} feature2 Feature 2.
+ * @return {number} Order.
+ */
+ol.renderer.vector.defaultOrder = function(feature1, feature2) {
+  return goog.getUid(feature1) - goog.getUid(feature2);
+>>>>>>> ConectaDF
+};
+goog.provide('ol.CenterConstraint');
+goog.provide('ol.CenterConstraintType');
+
+goog.require('goog.math');
+
+
+/**
+<<<<<<< HEAD
+ * @typedef {function((ol.Coordinate|undefined)): (ol.Coordinate|undefined)}
+ * @todo api
+ */
+ol.CenterConstraintType;
+
+
+/**
+ * @param {ol.Extent} extent Extent.
+ * @return {ol.CenterConstraintType}
+ */
+ol.CenterConstraint.createExtent = function(extent) {
+  return (
+      /**
+       * @param {ol.Coordinate|undefined} center Center.
+       * @return {ol.Coordinate|undefined} Center.
+       */
+      function(center) {
+        if (goog.isDef(center)) {
+          return [
+            goog.math.clamp(center[0], extent[0], extent[2]),
+            goog.math.clamp(center[1], extent[1], extent[3])
+          ];
+        } else {
+          return undefined;
+        }
+      });
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderCircleGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.Circle);
+  var fillStyle = style.getFill();
+  var strokeStyle = style.getStroke();
+  if (!goog.isNull(fillStyle) || !goog.isNull(strokeStyle)) {
+    var polygonReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.POLYGON);
+    polygonReplay.setFillStrokeStyle(fillStyle, strokeStyle);
+    polygonReplay.drawCircleGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    textReplay.drawText(geometry.getCenter(), 0, 2, 2, geometry, data);
+  }
+};
+
+
+/**
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.Feature} feature Feature.
+ * @param {ol.style.Style} style Style.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Object} data Opaque data object.
+ * @param {function(this: T, goog.events.Event)} listener Listener function.
+ * @param {T} thisArg Value to use as `this` when executing `listener`.
+ * @return {boolean} `true` if style is loading.
+ * @template T
+ */
+ol.renderer.vector.renderFeature = function(
+    replayGroup, feature, style, squaredTolerance, data, listener, thisArg) {
+  var loading = false;
+  var imageStyle, imageState;
+  imageStyle = style.getImage();
+  if (goog.isNull(imageStyle)) {
+    ol.renderer.vector.renderFeature_(
+        replayGroup, feature, style, squaredTolerance, data);
+  } else {
+    imageState = imageStyle.getImageState();
+    if (imageState == ol.style.ImageState.LOADED ||
+        imageState == ol.style.ImageState.ERROR) {
+      imageStyle.unlistenImageChange(listener, thisArg);
+      if (imageState == ol.style.ImageState.LOADED) {
+        ol.renderer.vector.renderFeature_(
+            replayGroup, feature, style, squaredTolerance, data);
+      }
+    } else {
+      if (imageState == ol.style.ImageState.IDLE) {
+        imageStyle.load();
+      }
+      imageState = imageStyle.getImageState();
+      goog.asserts.assert(imageState == ol.style.ImageState.LOADING);
+      imageStyle.listenImageChange(listener, thisArg);
+      loading = true;
+    }
+  }
+  return loading;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Coordinate|undefined} center Center.
+ * @return {ol.Coordinate|undefined} Center.
+ */
+ol.CenterConstraint.none = function(center) {
+  return center;
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.Feature} feature Feature.
+ * @param {ol.style.Style} style Style.
+ * @param {number} squaredTolerance Squared tolerance.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderFeature_ = function(
+    replayGroup, feature, style, squaredTolerance, data) {
+  var geometry = feature.getGeometry();
+  if (goog.isNull(geometry)) {
+    return;
+  }
+  var simplifiedGeometry = geometry.getSimplifiedGeometry(squaredTolerance);
+  var geometryRenderer =
+      ol.renderer.vector.GEOMETRY_RENDERERS_[simplifiedGeometry.getType()];
+  goog.asserts.assert(goog.isDef(geometryRenderer));
+  geometryRenderer(replayGroup, simplifiedGeometry, style, data);
+>>>>>>> ConectaDF
+};
+goog.provide('ol.RotationConstraint');
+goog.provide('ol.RotationConstraintType');
+
+goog.require('goog.math');
+
+
+/**
+<<<<<<< HEAD
+ * @typedef {function((number|undefined), number): (number|undefined)}
+ */
+ol.RotationConstraintType;
+
+
+/**
+ * @param {number|undefined} rotation Rotation.
+ * @param {number} delta Delta.
+ * @return {number|undefined} Rotation.
+ */
+ol.RotationConstraint.disable = function(rotation, delta) {
+  if (goog.isDef(rotation)) {
+    return 0;
+  } else {
+    return undefined;
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderGeometryCollectionGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.GeometryCollection);
+  var geometries = geometry.getGeometriesArray();
+  var i, ii;
+  for (i = 0, ii = geometries.length; i < ii; ++i) {
+    var geometryRenderer =
+        ol.renderer.vector.GEOMETRY_RENDERERS_[geometries[i].getType()];
+    goog.asserts.assert(goog.isDef(geometryRenderer));
+    geometryRenderer(replayGroup, geometries[i], style, data);
+  }
+};
+
+
+/**
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderLineStringGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.LineString);
+  var strokeStyle = style.getStroke();
+  if (!goog.isNull(strokeStyle)) {
+    var lineStringReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.LINE_STRING);
+    lineStringReplay.setFillStrokeStyle(null, strokeStyle);
+    lineStringReplay.drawLineStringGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    textReplay.drawText(geometry.getFlatMidpoint(), 0, 2, 2, geometry, data);
+>>>>>>> ConectaDF
+  }
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {number|undefined} rotation Rotation.
+ * @param {number} delta Delta.
+ * @return {number|undefined} Rotation.
+ */
+ol.RotationConstraint.none = function(rotation, delta) {
+  if (goog.isDef(rotation)) {
+    return rotation + delta;
+  } else {
+    return undefined;
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderMultiLineStringGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.MultiLineString);
+  var strokeStyle = style.getStroke();
+  if (!goog.isNull(strokeStyle)) {
+    var lineStringReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.LINE_STRING);
+    lineStringReplay.setFillStrokeStyle(null, strokeStyle);
+    lineStringReplay.drawMultiLineStringGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    var flatMidpointCoordinates = geometry.getFlatMidpoints();
+    textReplay.drawText(flatMidpointCoordinates, 0,
+        flatMidpointCoordinates.length, 2, geometry, data);
+>>>>>>> ConectaDF
+  }
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {number} n N.
+ * @return {ol.RotationConstraintType} Rotation constraint.
+ */
+ol.RotationConstraint.createSnapToN = function(n) {
+  var theta = 2 * Math.PI / n;
+  return (
+      /**
+       * @param {number|undefined} rotation Rotation.
+       * @param {number} delta Delta.
+       * @return {number|undefined} Rotation.
+       */
+      function(rotation, delta) {
+        if (goog.isDef(rotation)) {
+          rotation = Math.floor((rotation + delta) / theta + 0.5) * theta;
+          return rotation;
+        } else {
+          return undefined;
+        }
+      });
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderMultiPolygonGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.MultiPolygon);
+  var fillStyle = style.getFill();
+  var strokeStyle = style.getStroke();
+  if (!goog.isNull(strokeStyle) || !goog.isNull(fillStyle)) {
+    var polygonReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.POLYGON);
+    polygonReplay.setFillStrokeStyle(fillStyle, strokeStyle);
+    polygonReplay.drawMultiPolygonGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    var flatInteriorPointCoordinates = geometry.getFlatInteriorPoints();
+    textReplay.drawText(flatInteriorPointCoordinates, 0,
+        flatInteriorPointCoordinates.length, 2, geometry, data);
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {number=} opt_tolerance Tolerance.
+ * @return {ol.RotationConstraintType} Rotation constraint.
+ */
+ol.RotationConstraint.createSnapToZero = function(opt_tolerance) {
+  var tolerance = opt_tolerance || goog.math.toRadians(5);
+  return (
+      /**
+       * @param {number|undefined} rotation Rotation.
+       * @param {number} delta Delta.
+       * @return {number|undefined} Rotation.
+       */
+      function(rotation, delta) {
+        if (goog.isDef(rotation)) {
+          if (Math.abs(rotation + delta) <= tolerance) {
+            return 0;
+          } else {
+            return rotation + delta;
+          }
+        } else {
+          return undefined;
+        }
+      });
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderPointGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.Point);
+  var imageStyle = style.getImage();
+  if (!goog.isNull(imageStyle)) {
+    var imageReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.IMAGE);
+    imageReplay.setImageStyle(imageStyle);
+    imageReplay.drawPointGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    textReplay.drawText(geometry.getCoordinates(), 0, 2, 2, geometry, data);
+  }
+>>>>>>> ConectaDF
+};
+goog.provide('ol.ResolutionConstraint');
+goog.provide('ol.ResolutionConstraintType');
+
+goog.require('goog.math');
+goog.require('ol.array');
+
+
+/**
+<<<<<<< HEAD
+ * @typedef {function((number|undefined), number, number): (number|undefined)}
+ */
+ol.ResolutionConstraintType;
+
+
+/**
+ * @param {Array.<number>} resolutions Resolutions.
+ * @return {ol.ResolutionConstraintType} Zoom function.
+ */
+ol.ResolutionConstraint.createSnapToResolutions =
+    function(resolutions) {
+  return (
+      /**
+       * @param {number|undefined} resolution Resolution.
+       * @param {number} delta Delta.
+       * @param {number} direction Direction.
+       * @return {number|undefined} Resolution.
+       */
+      function(resolution, delta, direction) {
+        if (goog.isDef(resolution)) {
+          var z =
+              ol.array.linearFindNearest(resolutions, resolution, direction);
+          z = goog.math.clamp(z + delta, 0, resolutions.length - 1);
+          return resolutions[z];
+        } else {
+          return undefined;
+        }
+      });
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderMultiPointGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.MultiPoint);
+  var imageStyle = style.getImage();
+  if (!goog.isNull(imageStyle)) {
+    var imageReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.IMAGE);
+    imageReplay.setImageStyle(imageStyle);
+    imageReplay.drawMultiPointGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    var flatCoordinates = geometry.getFlatCoordinates();
+    textReplay.drawText(flatCoordinates, 0, flatCoordinates.length,
+        geometry.getStride(), geometry, data);
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {number} power Power.
+ * @param {number} maxResolution Maximum resolution.
+ * @param {number=} opt_maxLevel Maximum level.
+ * @return {ol.ResolutionConstraintType} Zoom function.
+ */
+ol.ResolutionConstraint.createSnapToPower =
+    function(power, maxResolution, opt_maxLevel) {
+  return (
+      /**
+       * @param {number|undefined} resolution Resolution.
+       * @param {number} delta Delta.
+       * @param {number} direction Direction.
+       * @return {number|undefined} Resolution.
+       */
+      function(resolution, delta, direction) {
+        if (goog.isDef(resolution)) {
+          var offset;
+          if (direction > 0) {
+            offset = 0;
+          } else if (direction < 0) {
+            offset = 1;
+          } else {
+            offset = 0.5;
+          }
+          var oldLevel = Math.floor(
+              Math.log(maxResolution / resolution) / Math.log(power) + offset);
+          var newLevel = Math.max(oldLevel + delta, 0);
+          if (goog.isDef(opt_maxLevel)) {
+            newLevel = Math.min(newLevel, opt_maxLevel);
+          }
+          return maxResolution / Math.pow(power, newLevel);
+        } else {
+          return undefined;
+        }
+      });
+=======
+ * @param {ol.render.IReplayGroup} replayGroup Replay group.
+ * @param {ol.geom.Geometry} geometry Geometry.
+ * @param {ol.style.Style} style Style.
+ * @param {Object} data Opaque data object.
+ * @private
+ */
+ol.renderer.vector.renderPolygonGeometry_ =
+    function(replayGroup, geometry, style, data) {
+  goog.asserts.assertInstanceof(geometry, ol.geom.Polygon);
+  var fillStyle = style.getFill();
+  var strokeStyle = style.getStroke();
+  if (!goog.isNull(fillStyle) || !goog.isNull(strokeStyle)) {
+    var polygonReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.POLYGON);
+    polygonReplay.setFillStrokeStyle(fillStyle, strokeStyle);
+    polygonReplay.drawPolygonGeometry(geometry, data);
+  }
+  var textStyle = style.getText();
+  if (!goog.isNull(textStyle)) {
+    var textReplay = replayGroup.getReplay(
+        style.getZIndex(), ol.render.ReplayType.TEXT);
+    textReplay.setTextStyle(textStyle);
+    textReplay.drawText(
+        geometry.getFlatInteriorPoint(), 0, 2, 2, geometry, data);
+  }
+>>>>>>> ConectaDF
+};
+goog.provide('ol.Constraints');
+
+goog.require('ol.CenterConstraintType');
+goog.require('ol.ResolutionConstraintType');
+goog.require('ol.RotationConstraintType');
+
+
+
+/**
+<<<<<<< HEAD
+ * @constructor
+ * @param {ol.CenterConstraintType} centerConstraint Center constraint.
+ * @param {ol.ResolutionConstraintType} resolutionConstraint
+ *     Resolution constraint.
+ * @param {ol.RotationConstraintType} rotationConstraint
+ *     Rotation constraint.
+ */
+ol.Constraints =
+    function(centerConstraint, resolutionConstraint, rotationConstraint) {
+
+  /**
+   * @type {ol.CenterConstraintType}
+   */
+  this.center = centerConstraint;
+
+  /**
+   * @type {ol.ResolutionConstraintType}
+   */
+  this.resolution = resolutionConstraint;
+
+  /**
+   * @type {ol.RotationConstraintType}
+   */
+  this.rotation = rotationConstraint;
+
+};
+// FIXME getView3D has not return type
+
+goog.provide('ol.View2D');
+goog.provide('ol.View2DProperty');
+
+goog.require('goog.asserts');
+goog.require('ol');
+goog.require('ol.CenterConstraint');
+goog.require('ol.Constraints');
+goog.require('ol.IView2D');
+goog.require('ol.IView3D');
+goog.require('ol.ResolutionConstraint');
+goog.require('ol.RotationConstraint');
+goog.require('ol.RotationConstraintType');
+goog.require('ol.Size');
+goog.require('ol.View');
+goog.require('ol.coordinate');
+goog.require('ol.extent');
+goog.require('ol.proj');
+goog.require('ol.proj.METERS_PER_UNIT');
+goog.require('ol.proj.Projection');
+goog.require('ol.proj.Units');
+=======
+ * @const
+ * @private
+ * @type {Object.<ol.geom.GeometryType,
+ *                function(ol.render.IReplayGroup, ol.geom.Geometry,
+ *                         ol.style.Style, Object)>}
+ */
+ol.renderer.vector.GEOMETRY_RENDERERS_ = {
+  'Point': ol.renderer.vector.renderPointGeometry_,
+  'LineString': ol.renderer.vector.renderLineStringGeometry_,
+  'Polygon': ol.renderer.vector.renderPolygonGeometry_,
+  'MultiPoint': ol.renderer.vector.renderMultiPointGeometry_,
+  'MultiLineString': ol.renderer.vector.renderMultiLineStringGeometry_,
+  'MultiPolygon': ol.renderer.vector.renderMultiPolygonGeometry_,
+  'GeometryCollection': ol.renderer.vector.renderGeometryCollectionGeometry_,
+  'Circle': ol.renderer.vector.renderCircleGeometry_
+};
+// Based on rbush https://github.com/mourner/rbush
+// Copyright (c) 2013 Vladimir Agafonkin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+// FIXME bulk inserts
+// FIXME is level argument needed to insert_?
+>>>>>>> ConectaDF
+
+goog.provide('ol.structs.RBush');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.object');
+goog.require('ol.extent');
+
+<<<<<<< HEAD
+/**
+ * @enum {string}
+ */
+ol.View2DProperty = {
+  CENTER: 'center',
+  PROJECTION: 'projection',
+  RESOLUTION: 'resolution',
+  ROTATION: 'rotation'
+};
+=======
+>>>>>>> ConectaDF
+
+
+
+/**
+<<<<<<< HEAD
+ * @class
+ * An ol.View2D object represents a simple 2D view of the map.
+ *
+ * This is the object to act upon to change the center, resolution,
+ * and rotation of the map.
+ *
+ * ### The view states
+ *
+ * An `ol.View2D` is determined by three states: `center`, `resolution`,
+ * and `rotation`. To each state corresponds a getter and a setter. E.g.
+ * `getCenter` and `setCenter` for the `center` state.
+ *
+ * An `ol.View2D` has a `projection`. The projection determines the
+ * coordinate system of the center, and its units determine the units of the
+ * resolution (projection units per pixel). The default projection is
+ * Spherical Mercator (EPSG:3857).
+ *
+ * ### The constraints
+ *
+ * `setCenter`, `setResolution` and `setRotation` can be used to change the
+ * states of the view. Any value can be passed to the setters. And the value
+ * that is passed to a setter will effectively be the value set in the view,
+ * and returned by the corresponding getter.
+ *
+ * But an `ol.View2D` object also has a *resolution constraint* and a
+ * *rotation constraint*. There's currently no *center constraint*, but
+ * this may change in the future.
+ *
+ * As said above no constraints are applied when the setters are used to set
+ * new states for the view. Applying constraints is done explicitly through
+ * the use of the `constrain*` functions (`constrainResolution` and
+ * `constrainRotation`).
+ *
+ * The main users of the constraints are the interactions and the
+ * controls. For example, double-clicking on the map changes the view to
+ * the "next" resolution. And releasing the fingers after pinch-zooming
+ * snaps to the closest resolution (with an animation).
+ *
+ * So the *resolution constraint* snaps to specific resolutions. It is
+ * determined by the following options: `resolutions`, `maxResolution`,
+ * `maxZoom`, and `zoomFactor`. If `resolutions` is set, the other three
+ * options are ignored. See {@link ol.View2DOptions} for more information.
+ *
+ * The *rotation constaint* is currently not configurable. It snaps the
+ * rotation value to zero when approaching the horizontal.
+ *
+ * @constructor
+ * @implements {ol.IView2D}
+ * @implements {ol.IView3D}
+ * @extends {ol.View}
+ * @param {olx.View2DOptions=} opt_options View2D options.
+ * @todo observable center {ol.Coordinate} the center of the view
+ * @todo observable projection {ol.proj.Projection} the projection of the view
+ * @todo observable resolution {number} the resolution of the view
+ * @todo observable rotation {number} the rotation of the view
+ * @todo api
+ */
+ol.View2D = function(opt_options) {
+  goog.base(this);
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @type {Object.<string, *>}
+   */
+  var values = {};
+  values[ol.View2DProperty.CENTER] = goog.isDef(options.center) ?
+      options.center : null;
+  values[ol.View2DProperty.PROJECTION] = ol.proj.createProjection(
+      options.projection, 'EPSG:3857');
+=======
+ * @constructor
+ * @param {ol.Extent} extent Extent.
+ * @param {number} height Height.
+ * @param {Array.<ol.structs.RBushNode.<T>>} children Children.
+ * @param {?T} value Value.
+ * @struct
+ * @template T
+ */
+ol.structs.RBushNode = function(extent, height, children, value) {
+
+  if (height === 0) {
+    goog.asserts.assert(goog.isNull(children));
+    goog.asserts.assert(!goog.isNull(value));
+  } else {
+    goog.asserts.assert(!goog.isNull(children));
+    goog.asserts.assert(goog.isNull(value));
+  }
+
+  /**
+   * @type {ol.Extent}
+   */
+  this.extent = extent;
+
+  /**
+   * @type {number}
+   */
+  this.height = height;
+
+  /**
+   * @type {Array.<ol.structs.RBushNode.<T>>}
+   */
+  this.children = children;
+
+  /**
+   * @type {?T}
+   */
+  this.value = value;
+
+};
+
+
+/**
+ * @param {ol.structs.RBushNode.<T>} node1 Node 1.
+ * @param {ol.structs.RBushNode.<T>} node2 Node 2.
+ * @return {number} Compare minimum X.
+ * @template T
+ */
+ol.structs.RBushNode.compareMinX = function(node1, node2) {
+  return node1.extent[0] - node2.extent[0];
+};
+>>>>>>> ConectaDF
+
+  var resolutionConstraintInfo = ol.View2D.createResolutionConstraint_(
+      options);
+
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxResolution_ = resolutionConstraintInfo.maxResolution;
+=======
+/**
+ * @param {ol.structs.RBushNode.<T>} node1 Node 1.
+ * @param {ol.structs.RBushNode.<T>} node2 Node 2.
+ * @return {number} Compare minimum Y.
+ * @template T
+ */
+ol.structs.RBushNode.compareMinY = function(node1, node2) {
+  return node1.extent[1] - node2.extent[1];
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.minResolution_ = resolutionConstraintInfo.minResolution;
+
+<<<<<<< HEAD
+  var centerConstraint = ol.View2D.createCenterConstraint_(options);
+  var resolutionConstraint = resolutionConstraintInfo.constraint;
+  var rotationConstraint = ol.View2D.createRotationConstraint_(options);
+=======
+/**
+ * @param {number} maxEntries Max entries.
+ */
+ol.structs.RBushNode.prototype.assertValid = function(maxEntries) {
+  if (this.height === 0) {
+    goog.asserts.assert(goog.isNull(this.children));
+    goog.asserts.assert(!goog.isNull(this.value));
+  } else {
+    goog.asserts.assert(!goog.isNull(this.children));
+    goog.asserts.assert(goog.isNull(this.value));
+    goog.asserts.assert(this.children.length <= maxEntries);
+    var i, ii;
+    for (i = 0, ii = this.children.length; i < ii; ++i) {
+      var child = this.children[i];
+      goog.asserts.assert(ol.extent.containsExtent(this.extent, child.extent));
+      child.assertValid(maxEntries);
+    }
+  }
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.Constraints}
+   */
+  this.constraints_ = new ol.Constraints(
+      centerConstraint, resolutionConstraint, rotationConstraint);
+
+<<<<<<< HEAD
+  if (goog.isDef(options.resolution)) {
+    values[ol.View2DProperty.RESOLUTION] = options.resolution;
+  } else if (goog.isDef(options.zoom)) {
+    values[ol.View2DProperty.RESOLUTION] = this.constrainResolution(
+        this.maxResolution_, options.zoom);
+  }
+  values[ol.View2DProperty.ROTATION] =
+      goog.isDef(options.rotation) ? options.rotation : 0;
+  this.setValues(values);
+=======
+/**
+ * @param {number} start Start.
+ * @param {number} stop Stop.
+ * @param {ol.Extent=} opt_extent Extent.
+ * @return {ol.Extent} Extent.
+ */
+ol.structs.RBushNode.prototype.getChildrenExtent =
+    function(start, stop, opt_extent) {
+  goog.asserts.assert(!this.isLeaf());
+  var children = this.children;
+  var extent = ol.extent.createOrUpdateEmpty(opt_extent);
+  var i;
+  for (i = start; i < stop; ++i) {
+    ol.extent.extend(extent, children[i].extent);
+  }
+  return extent;
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.View2D, ol.View);
+
+
+/**
+<<<<<<< HEAD
+ * @param {number} rotation Target rotation.
+ * @param {ol.Coordinate} anchor Rotation anchor.
+ * @return {ol.Coordinate|undefined} Center for rotation and anchor.
+ */
+ol.View2D.prototype.calculateCenterRotate = function(rotation, anchor) {
+  var center;
+  var currentCenter = this.getCenter();
+  if (goog.isDef(currentCenter)) {
+    center = [currentCenter[0] - anchor[0], currentCenter[1] - anchor[1]];
+    ol.coordinate.rotate(center, rotation - this.getRotation());
+    ol.coordinate.add(center, anchor);
+  }
+  return center;
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {T} value Value.
+ * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
+ * @return {boolean} Removed.
+ */
+ol.structs.RBushNode.prototype.remove = function(extent, value, path) {
+  var children = this.children;
+  var ii = children.length;
+  var child, i;
+  if (this.height == 1) {
+    for (i = 0; i < ii; ++i) {
+      child = children[i];
+      if (child.value === value) {
+        goog.array.removeAt(children, i);
+        return true;
+      }
+    }
+  } else {
+    goog.asserts.assert(this.height > 1);
+    for (i = 0; i < ii; ++i) {
+      child = children[i];
+      if (ol.extent.containsExtent(child.extent, extent)) {
+        path.push(child);
+        if (child.remove(extent, value, path)) {
+          return true;
+        }
+        path.pop();
+      }
+    }
+  }
+  return false;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {number} resolution Target resolution.
+ * @param {ol.Coordinate} anchor Zoom anchor.
+ * @return {ol.Coordinate|undefined} Center for resolution and anchor.
+ */
+ol.View2D.prototype.calculateCenterZoom = function(resolution, anchor) {
+  var center;
+  var currentCenter = this.getCenter();
+  var currentResolution = this.getResolution();
+  if (goog.isDef(currentCenter) && goog.isDef(currentResolution)) {
+    var x = anchor[0] -
+        resolution * (anchor[0] - currentCenter[0]) / currentResolution;
+    var y = anchor[1] -
+        resolution * (anchor[1] - currentCenter[1]) / currentResolution;
+    center = [x, y];
+=======
+ * FIXME empty description for jsdoc
+ */
+ol.structs.RBushNode.prototype.updateExtent = function() {
+  goog.asserts.assert(!this.isLeaf());
+  var extent = ol.extent.createOrUpdateEmpty(this.extent);
+  var children = this.children;
+  var i, ii;
+  for (i = 0, ii = children.length; i < ii; ++i) {
+    ol.extent.extend(extent, children[i].extent);
+>>>>>>> ConectaDF
+  }
+  return center;
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Coordinate|undefined} center Center.
+ * @return {ol.Coordinate|undefined} Constrained center.
+ */
+ol.View2D.prototype.constrainCenter = function(center) {
+  return this.constraints_.center(center);
+};
+
+
+/**
+ * Get the constrained the resolution of this view.
+ * @param {number|undefined} resolution Resolution.
+ * @param {number=} opt_delta Delta. Default is `0`.
+ * @param {number=} opt_direction Direction. Default is `0`.
+ * @return {number|undefined} Constrained resolution.
+ * @todo api
+ */
+ol.View2D.prototype.constrainResolution = function(
+    resolution, opt_delta, opt_direction) {
+  var delta = opt_delta || 0;
+  var direction = opt_direction || 0;
+  return this.constraints_.resolution(resolution, delta, direction);
+};
+
+
+/**
+ * Get the constrained rotation of this view.
+ * @param {number|undefined} rotation Rotation.
+ * @param {number=} opt_delta Delta. Default is `0`.
+ * @return {number|undefined} Constrained rotation.
+ * @todo api
+ */
+ol.View2D.prototype.constrainRotation = function(rotation, opt_delta) {
+  var delta = opt_delta || 0;
+  return this.constraints_.rotation(rotation, delta);
+=======
+ * @return {boolean} Is leaf.
+ */
+ol.structs.RBushNode.prototype.isLeaf = function() {
+  return goog.isNull(this.children);
+};
+
+
+
+/**
+ * @constructor
+ * @param {number=} opt_maxEntries Max entries.
+ * @see https://github.com/mourner/rbush
+ * @struct
+ * @template T
+ */
+ol.structs.RBush = function(opt_maxEntries) {
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.maxEntries_ =
+      Math.max(4, goog.isDef(opt_maxEntries) ? opt_maxEntries : 9);
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.minEntries_ = Math.max(2, Math.ceil(0.4 * this.maxEntries_));
+
+  /**
+   * @private
+   * @type {ol.structs.RBushNode.<T>}
+   */
+  this.root_ = new ol.structs.RBushNode(ol.extent.createEmpty(), 1, [], null);
+
+  /**
+   * @private
+   * @type {Object.<string, ol.Extent>}
+   */
+  this.valueExtent_ = {};
+
+  if (goog.DEBUG) {
+    /**
+     * @private
+     * @type {number}
+     */
+    this.readers_ = 0;
+  }
+
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ * @todo api
+ */
+ol.View2D.prototype.getCenter = function() {
+  return /** @type {ol.Coordinate|undefined} */ (
+      this.get(ol.View2DProperty.CENTER));
+=======
+ * @param {ol.structs.RBushNode.<T>} node Node.
+ * @param {function(ol.structs.RBushNode.<T>, ol.structs.RBushNode.<T>): number}
+ *     compare Compare.
+ * @private
+ * @return {number} All distance margin.
+ */
+ol.structs.RBush.prototype.allDistMargin_ = function(node, compare) {
+  var children = node.children;
+  var m = this.minEntries_;
+  var M = children.length;
+  var i;
+  goog.array.sort(children, compare);
+  var leftExtent = node.getChildrenExtent(0, m);
+  var rightExtent = node.getChildrenExtent(M - m, M);
+  var margin =
+      ol.extent.getMargin(leftExtent) + ol.extent.getMargin(rightExtent);
+  for (i = m; i < M - m; ++i) {
+    ol.extent.extend(leftExtent, children[i].extent);
+    margin += ol.extent.getMargin(leftExtent);
+  }
+  for (i = M - m - 1; i >= m; --i) {
+    ol.extent.extend(rightExtent, children[i].extent);
+    margin += ol.extent.getMargin(rightExtent);
+  }
+  return margin;
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'getCenter',
+    ol.View2D.prototype.getCenter);
+
+
+/**
+<<<<<<< HEAD
+ * Calculate the extent for the given size in pixels, based on the current
+ * resolution and the current center.
+ * @param {ol.Size} size Box pixel size.
+ * @return {ol.Extent} Extent.
+ * @todo api
+ */
+ol.View2D.prototype.calculateExtent = function(size) {
+  goog.asserts.assert(this.isDef());
+  var center = this.getCenter();
+  var resolution = this.getResolution();
+  var minX = center[0] - resolution * size[0] / 2;
+  var maxX = center[0] + resolution * size[0] / 2;
+  var minY = center[1] - resolution * size[1] / 2;
+  var maxY = center[1] + resolution * size[1] / 2;
+  return [minX, minY, maxX, maxY];
+=======
+ * FIXME empty description for jsdoc
+ */
+ol.structs.RBush.prototype.assertValid = function() {
+  this.root_.assertValid(this.maxEntries_);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ * @todo api
+ */
+ol.View2D.prototype.getProjection = function() {
+  return /** @type {ol.proj.Projection|undefined} */ (
+      this.get(ol.View2DProperty.PROJECTION));
+=======
+ * @param {ol.structs.RBushNode.<T>} node Node.
+ * @private
+ */
+ol.structs.RBush.prototype.chooseSplitAxis_ = function(node) {
+  var xMargin = this.allDistMargin_(node, ol.structs.RBushNode.compareMinX);
+  var yMargin = this.allDistMargin_(node, ol.structs.RBushNode.compareMinY);
+  if (xMargin < yMargin) {
+    goog.array.sort(node.children, ol.structs.RBushNode.compareMinX);
+  }
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'getProjection',
+    ol.View2D.prototype.getProjection);
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ * @todo api
+ */
+ol.View2D.prototype.getResolution = function() {
+  return /** @type {number|undefined} */ (
+      this.get(ol.View2DProperty.RESOLUTION));
+=======
+ * @param {ol.structs.RBushNode.<T>} node Node.
+ * @private
+ * @return {number} Split index.
+ */
+ol.structs.RBush.prototype.chooseSplitIndex_ = function(node) {
+  var children = node.children;
+  var m = this.minEntries_;
+  var M = children.length;
+  var minOverlap = Infinity;
+  var minArea = Infinity;
+  var extent1 = ol.extent.createEmpty();
+  var extent2 = ol.extent.createEmpty();
+  var index = 0;
+  var i;
+  for (i = m; i <= M - m; ++i) {
+    extent1 = node.getChildrenExtent(0, i, extent1);
+    extent2 = node.getChildrenExtent(i, M, extent2);
+    var overlap = ol.extent.getIntersectionArea(extent1, extent2);
+    var area = ol.extent.getArea(extent1) + ol.extent.getArea(extent2);
+    if (overlap < minOverlap) {
+      minOverlap = overlap;
+      minArea = Math.min(area, minArea);
+      index = i;
+    } else if (overlap == minOverlap && area < minArea) {
+      minArea = area;
+      index = i;
+    }
+  }
+  return index;
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'getResolution',
+    ol.View2D.prototype.getResolution);
+
+
+/**
+ * @param {ol.Extent} extent Extent.
+<<<<<<< HEAD
+ * @param {ol.Size} size Box pixel size.
+ * @return {number} Resolution.
+ */
+ol.View2D.prototype.getResolutionForExtent = function(extent, size) {
+  var xResolution = ol.extent.getWidth(extent) / size[0];
+  var yResolution = ol.extent.getHeight(extent) / size[1];
+  return Math.max(xResolution, yResolution);
+};
+
+
+/**
+ * Return a function that returns a value between 0 and 1 for a
+ * resolution. Exponential scaling is assumed.
+ * @param {number=} opt_power Power.
+ * @return {function(number): number} Resolution for value function.
+ */
+ol.View2D.prototype.getResolutionForValueFunction = function(opt_power) {
+  var power = opt_power || 2;
+  var maxResolution = this.maxResolution_;
+  var minResolution = this.minResolution_;
+  var max = Math.log(maxResolution / minResolution) / Math.log(power);
+  return (
+      /**
+       * @param {number} value Value.
+       * @return {number} Resolution.
+       */
+      function(value) {
+        var resolution = maxResolution / Math.pow(power, value * max);
+        goog.asserts.assert(resolution >= minResolution &&
+            resolution <= maxResolution);
+        return resolution;
+      });
+=======
+ * @param {ol.structs.RBushNode.<T>} node Node.
+ * @param {number} level Level.
+ * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
+ * @private
+ * @return {ol.structs.RBushNode.<T>} Node.
+ */
+ol.structs.RBush.prototype.chooseSubtree_ =
+    function(extent, node, level, path) {
+  while (!node.isLeaf() && path.length - 1 != level) {
+    var minArea = Infinity;
+    var minEnlargement = Infinity;
+    var children = node.children;
+    var bestChild = null;
+    var i, ii;
+    for (i = 0, ii = children.length; i < ii; ++i) {
+      var child = children[i];
+      var area = ol.extent.getArea(child.extent);
+      var enlargement = ol.extent.getEnlargedArea(child.extent, extent) - area;
+      if (enlargement < minEnlargement) {
+        minEnlargement = enlargement;
+        minArea = Math.min(area, minArea);
+        bestChild = child;
+      } else if (enlargement == minEnlargement && area < minArea) {
+        minArea = area;
+        bestChild = child;
+      }
+    }
+    goog.asserts.assert(!goog.isNull(bestChild));
+    node = bestChild;
+    path.push(node);
+  }
+  return node;
+};
+
+
+/**
+ * FIXME empty description for jsdoc
+ */
+ol.structs.RBush.prototype.clear = function() {
+  var node = this.root_;
+  node.extent = ol.extent.createOrUpdateEmpty(this.root_.extent);
+  node.height = 1;
+  node.children.length = 0;
+  node.value = null;
+  goog.object.clear(this.valueExtent_);
+};
+
+
+/**
+ * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
+ * @private
+ */
+ol.structs.RBush.prototype.condense_ = function(path) {
+  var i;
+  for (i = path.length - 1; i >= 0; --i) {
+    var node = path[i];
+    if (node.children.length === 0) {
+      if (i > 0) {
+        goog.array.remove(path[i - 1].children, node);
+      } else {
+        this.clear();
+      }
+    } else {
+      node.updateExtent();
+    }
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ * @todo api
+ */
+ol.View2D.prototype.getRotation = function() {
+  return /** @type {number|undefined} */ (this.get(ol.View2DProperty.ROTATION));
+=======
+ * Calls a callback function with each node in the tree. Inside the callback,
+ * no tree modifications (insert, update, remove) can be made.
+ * @param {function(this: S, T): *} callback Callback.
+ * @param {S=} opt_this The object to use as `this` in `callback`.
+ * @return {*} Callback return value.
+ * @template S
+ */
+ol.structs.RBush.prototype.forEach = function(callback, opt_this) {
+  if (goog.DEBUG) {
+    ++this.readers_;
+    try {
+      return this.forEach_(this.root_, callback, opt_this);
+    } finally {
+      --this.readers_;
+    }
+  } else {
+    return this.forEach_(this.root_, callback, opt_this);
+  }
+>>>>>>> ConectaDF
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'getRotation',
+    ol.View2D.prototype.getRotation);
+
+
+/**
+<<<<<<< HEAD
+ * Return a function that returns a resolution for a value between
+ * 0 and 1. Exponential scaling is assumed.
+ * @param {number=} opt_power Power.
+ * @return {function(number): number} Value for resolution function.
+ */
+ol.View2D.prototype.getValueForResolutionFunction = function(opt_power) {
+  var power = opt_power || 2;
+  var maxResolution = this.maxResolution_;
+  var minResolution = this.minResolution_;
+  var max = Math.log(maxResolution / minResolution) / Math.log(power);
+  return (
+      /**
+       * @param {number} resolution Resolution.
+       * @return {number} Value.
+       */
+      function(resolution) {
+        var value =
+            (Math.log(maxResolution / resolution) / Math.log(power)) / max;
+        goog.asserts.assert(value >= 0 && value <= 1);
+        return value;
+      });
+=======
+ * @param {ol.structs.RBushNode.<T>} node Node.
+ * @param {function(this: S, T): *} callback Callback.
+ * @param {S=} opt_this The object to use as `this` in `callback`.
+ * @private
+ * @return {*} Callback return value.
+ * @template S
+ */
+ol.structs.RBush.prototype.forEach_ = function(node, callback, opt_this) {
+  goog.asserts.assert(!node.isLeaf());
+  /** @type {Array.<ol.structs.RBushNode.<T>>} */
+  var toVisit = [node];
+  var children, i, ii, result;
+  while (toVisit.length > 0) {
+    node = toVisit.pop();
+    children = node.children;
+    if (node.height == 1) {
+      for (i = 0, ii = children.length; i < ii; ++i) {
+        result = callback.call(opt_this, children[i].value);
+        if (result) {
+          return result;
+        }
+      }
+    } else {
+      toVisit.push.apply(toVisit, children);
+    }
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ * @todo api
+ */
+ol.View2D.prototype.getView2D = function() {
+  return this;
+=======
+ * Calls a callback function with each node in the provided extent. Inside the
+ * callback, no tree modifications (insert, update, remove) can be made.
+ * @param {ol.Extent} extent Extent.
+ * @param {function(this: S, T): *} callback Callback.
+ * @param {S=} opt_this The object to use as `this` in `callback`.
+ * @return {*} Callback return value.
+ * @template S
+ */
+ol.structs.RBush.prototype.forEachInExtent =
+    function(extent, callback, opt_this) {
+  if (goog.DEBUG) {
+    ++this.readers_;
+    try {
+      return this.forEachInExtent_(extent, callback, opt_this);
+    } finally {
+      --this.readers_;
+    }
+  } else {
+    return this.forEachInExtent_(extent, callback, opt_this);
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.View2D.prototype.getView2DState = function() {
+  goog.asserts.assert(this.isDef());
+  var center = /** @type {ol.Coordinate} */ (this.getCenter());
+  var projection = this.getProjection();
+  var resolution = /** @type {number} */ (this.getResolution());
+  var rotation = this.getRotation();
+  return /** @type {oli.View2DState} */ ({
+    center: center.slice(),
+    projection: goog.isDef(projection) ? projection : null,
+    resolution: resolution,
+    rotation: goog.isDef(rotation) ? rotation : 0
+  });
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {function(this: S, T): *} callback Callback.
+ * @param {S=} opt_this The object to use as `this` in `callback`.
+ * @private
+ * @return {*} Callback return value.
+ * @template S
+ */
+ol.structs.RBush.prototype.forEachInExtent_ =
+    function(extent, callback, opt_this) {
+  /** @type {Array.<ol.structs.RBushNode.<T>>} */
+  var toVisit = [this.root_];
+  var result;
+  while (toVisit.length > 0) {
+    var node = toVisit.pop();
+    if (ol.extent.intersects(extent, node.extent)) {
+      if (node.isLeaf()) {
+        result = callback.call(opt_this, node.value);
+        if (result) {
+          return result;
+        }
+      } else if (ol.extent.containsExtent(extent, node.extent)) {
+        result = this.forEach_(node, callback, opt_this);
+        if (result) {
+          return result;
+        }
+      } else {
+        toVisit.push.apply(toVisit, node.children);
+      }
+    }
+  }
+  return undefined;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * FIXME return type
+ */
+ol.View2D.prototype.getView3D = function() {
+=======
+ * @param {function(this: S, ol.structs.RBushNode.<T>): *} callback Callback.
+ * @param {S=} opt_this The object to use as `this` in `callback`.
+ * @return {*} Callback return value.
+ * @template S
+ */
+ol.structs.RBush.prototype.forEachNode = function(callback, opt_this) {
+  /** @type {Array.<ol.structs.RBushNode.<T>>} */
+  var toVisit = [this.root_];
+  while (toVisit.length > 0) {
+    var node = toVisit.pop();
+    var result = callback.call(opt_this, node);
+    if (result) {
+      return result;
+    }
+    if (!node.isLeaf()) {
+      toVisit.push.apply(toVisit, node.children);
+    }
+  }
+  return undefined;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Get the current zoom level. Return undefined if the current
+ * resolution is undefined or not a "constrained resolution".
+ * @return {number|undefined} Zoom.
+ * @todo api
+ */
+ol.View2D.prototype.getZoom = function() {
+  var zoom;
+  var resolution = this.getResolution();
+
+  if (goog.isDef(resolution)) {
+    var res, z = 0;
+    do {
+      res = this.constrainResolution(this.maxResolution_, z);
+      if (res == resolution) {
+        zoom = z;
+        break;
+      }
+      ++z;
+    } while (res > this.minResolution_);
+  }
+
+  return zoom;
+=======
+ * @return {Array.<T>} All.
+ */
+ol.structs.RBush.prototype.getAll = function() {
+  var values = [];
+  this.forEach(
+      /**
+       * @param {T} value Value.
+       */
+      function(value) {
+        values.push(value);
+      });
+  return values;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Fit the given extent based on the given map size.
+ * @param {ol.Extent} extent Extent.
+ * @param {ol.Size} size Box pixel size.
+ * @todo api
+ */
+ol.View2D.prototype.fitExtent = function(extent, size) {
+  if (!ol.extent.isEmpty(extent)) {
+    this.setCenter(ol.extent.getCenter(extent));
+    var resolution = this.getResolutionForExtent(extent, size);
+    var constrainedResolution = this.constrainResolution(resolution, 0, 0);
+    if (constrainedResolution < resolution) {
+      constrainedResolution =
+          this.constrainResolution(constrainedResolution, -1, 0);
+    }
+    this.setResolution(constrainedResolution);
+  }
+=======
+ * @param {ol.Extent} extent Extent.
+ * @return {Array.<T>} All in extent.
+ */
+ol.structs.RBush.prototype.getInExtent = function(extent) {
+  var values = [];
+  this.forEachInExtent(extent,
+      /**
+       * @param {T} value Value.
+       */
+      function(value) {
+        values.push(value);
+      });
+  return values;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Fit the given geometry based on the given map size and border.
+ * Take care on the map angle.
+ * @param {ol.geom.SimpleGeometry} geometry Geometry.
+ * @param {ol.Size} size Box pixel size.
+ * @param {olx.View2D.fitGeometryOptions=} opt_options Options.
+ * @todo api
+ */
+ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  var padding = goog.isDef(options.padding) ? options.padding : [0, 0, 0, 0];
+  var constrainResolution = goog.isDef(options.constrainResolution) ?
+      options.constrainResolution : true;
+  var nearest = goog.isDef(options.nearest) ? options.nearest : false;
+  var minResolution = goog.isDef(options.minResolution) ?
+      options.minResolution : 0;
+  var coords = geometry.getFlatCoordinates();
+
+  // calculate rotated extent
+  var rotation = this.getRotation();
+  goog.asserts.assert(goog.isDef(rotation));
+  var cosAngle = Math.cos(-rotation);
+  var sinAngle = Math.sin(-rotation);
+  var minRotX = +Infinity;
+  var minRotY = +Infinity;
+  var maxRotX = -Infinity;
+  var maxRotY = -Infinity;
+  var stride = geometry.getStride();
+  for (var i = 0, ii = coords.length; i < ii; i += stride) {
+    var rotX = coords[i] * cosAngle - coords[i + 1] * sinAngle;
+    var rotY = coords[i] * sinAngle + coords[i + 1] * cosAngle;
+    minRotX = Math.min(minRotX, rotX);
+    minRotY = Math.min(minRotY, rotY);
+    maxRotX = Math.max(maxRotX, rotX);
+    maxRotY = Math.max(maxRotY, rotY);
+  }
+
+  // calculate resolution
+  var resolution = this.getResolutionForExtent(
+      [minRotX, minRotY, maxRotX, maxRotY],
+      [size[0] - padding[1] - padding[3], size[1] - padding[0] - padding[2]]);
+  resolution = isNaN(resolution) ? minResolution :
+      Math.max(resolution, minResolution);
+  if (constrainResolution) {
+    var constrainedResolution = this.constrainResolution(resolution, 0, 0);
+    if (!nearest && constrainedResolution < resolution) {
+      constrainedResolution = this.constrainResolution(
+          constrainedResolution, -1, 0);
+    }
+    resolution = constrainedResolution;
+  }
+  this.setResolution(resolution);
+
+  // calculate center
+  sinAngle = -sinAngle; // go back to original rotation
+  var centerRotX = (minRotX + maxRotX) / 2;
+  var centerRotY = (minRotY + maxRotY) / 2;
+  centerRotX += (padding[1] - padding[3]) / 2 * resolution;
+  centerRotY += (padding[0] - padding[2]) / 2 * resolution;
+  var centerX = centerRotX * cosAngle - centerRotY * sinAngle;
+  var centerY = centerRotY * cosAngle + centerRotX * sinAngle;
+
+  this.setCenter([centerX, centerY]);
+=======
+ * @param {ol.Extent=} opt_extent Extent.
+ * @return {ol.Extent} Extent.
+ */
+ol.structs.RBush.prototype.getExtent = function(opt_extent) {
+  return ol.extent.returnOrUpdate(this.root_.extent, opt_extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Center on coordinate and view position.
+ * Take care on the map angle.
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {ol.Size} size Box pixel size.
+ * @param {ol.Pixel} position Position on the view to center on.
+ * @todo api
+ */
+ol.View2D.prototype.centerOn = function(coordinate, size, position) {
+  // calculate rotated position
+  var rotation = this.getRotation();
+  var cosAngle = Math.cos(-rotation);
+  var sinAngle = Math.sin(-rotation);
+  var rotX = coordinate[0] * cosAngle - coordinate[1] * sinAngle;
+  var rotY = coordinate[1] * cosAngle + coordinate[0] * sinAngle;
+  var resolution = this.getResolution();
+  rotX += (size[0] / 2 - position[0]) * resolution;
+  rotY += (position[1] - size[1] / 2) * resolution;
+
+  // go back to original angle
+  sinAngle = -sinAngle; // go back to original rotation
+  var centerX = rotX * cosAngle - rotY * sinAngle;
+  var centerY = rotY * cosAngle + rotX * sinAngle;
+
+  this.setCenter([centerX, centerY]);
+=======
+ * @param {T} value Value.
+ * @private
+ * @return {string} Key.
+ */
+ol.structs.RBush.prototype.getKey_ = function(value) {
+  goog.asserts.assert(goog.isObject(value));
+  return goog.getUid(value).toString();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @return {boolean} Is defined.
+ */
+ol.View2D.prototype.isDef = function() {
+  return goog.isDefAndNotNull(this.getCenter()) &&
+      goog.isDef(this.getResolution());
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {T} value Value.
+ */
+ol.structs.RBush.prototype.insert = function(extent, value) {
+  if (goog.DEBUG && this.readers_) {
+    throw new Error('cannot insert value while reading');
+  }
+  var key = this.getKey_(value);
+  goog.asserts.assert(!this.valueExtent_.hasOwnProperty(key));
+  this.insert_(extent, value, this.root_.height - 1);
+  this.valueExtent_[key] = ol.extent.clone(extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Rotate the view around a given coordinate.
+ * @param {number} rotation New rotation value for the view.
+ * @param {ol.Coordinate=} opt_anchor The rotation center.
+ * @todo api
+ */
+ol.View2D.prototype.rotate = function(rotation, opt_anchor) {
+  if (goog.isDef(opt_anchor)) {
+    var center = this.calculateCenterRotate(rotation, opt_anchor);
+    this.setCenter(center);
+  }
+  this.setRotation(rotation);
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {T} value Value.
+ * @param {number} level Level.
+ * @private
+ * @return {ol.structs.RBushNode.<T>} Node.
+ */
+ol.structs.RBush.prototype.insert_ = function(extent, value, level) {
+  /** @type {Array.<ol.structs.RBushNode.<T>>} */
+  var path = [this.root_];
+  var node = this.chooseSubtree_(extent, this.root_, level, path);
+  node.children.push(new ol.structs.RBushNode(extent, 0, null, value));
+  ol.extent.extend(node.extent, extent);
+  var i;
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path[i].children.length > this.maxEntries_) {
+      this.split_(path, i);
+    } else {
+      break;
+    }
+  }
+  for (; i >= 0; --i) {
+    ol.extent.extend(path[i].extent, extent);
+  }
+  return node;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Set the center of the current view.
+ * @param {ol.Coordinate|undefined} center Center.
+ * @todo api
+ */
+ol.View2D.prototype.setCenter = function(center) {
+  this.set(ol.View2DProperty.CENTER, center);
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'setCenter',
+    ol.View2D.prototype.setCenter);
+
+
+/**
+ * Set the projection of this view.
+ * Warning! This code is not yet implemented. Function should not be used.
+ * @param {ol.proj.Projection|undefined} projection Projection.
+ * @todo api
+ */
+ol.View2D.prototype.setProjection = function(projection) {
+  this.set(ol.View2DProperty.PROJECTION, projection);
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'setProjection',
+    ol.View2D.prototype.setProjection);
+
+
+/**
+ * Set the resolution for this view.
+ * @param {number|undefined} resolution Resolution.
+ * @todo api
+ */
+ol.View2D.prototype.setResolution = function(resolution) {
+  this.set(ol.View2DProperty.RESOLUTION, resolution);
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'setResolution',
+    ol.View2D.prototype.setResolution);
+
+
+/**
+ * Set the rotation for this view.
+ * @param {number|undefined} rotation Rotation.
+ * @todo api
+ */
+ol.View2D.prototype.setRotation = function(rotation) {
+  this.set(ol.View2DProperty.ROTATION, rotation);
+};
+goog.exportProperty(
+    ol.View2D.prototype,
+    'setRotation',
+    ol.View2D.prototype.setRotation);
+
+
+/**
+ * Zoom to a specific zoom level.
+ * @param {number} zoom Zoom level.
+ * @todo api
+ */
+ol.View2D.prototype.setZoom = function(zoom) {
+  var resolution = this.constrainResolution(this.maxResolution_, zoom, 0);
+  this.setResolution(resolution);
+=======
+ * @return {boolean} Is empty.
+ */
+ol.structs.RBush.prototype.isEmpty = function() {
+  return this.root_.children.length === 0;
+};
+
+
+/**
+ * @param {T} value Value.
+ * @return {boolean} Removed.
+ */
+ol.structs.RBush.prototype.remove = function(value) {
+  if (goog.DEBUG && this.readers_) {
+    throw new Error('cannot remove value while reading');
+  }
+  var key = this.getKey_(value);
+  goog.asserts.assert(this.valueExtent_.hasOwnProperty(key));
+  var extent = this.valueExtent_[key];
+  delete this.valueExtent_[key];
+  return this.remove_(extent, value);
+};
+
+
+/**
+ * @param {ol.Extent} extent Extent.
+ * @param {T} value Value.
+ * @private
+ * @return {boolean} Removed.
+ */
+ol.structs.RBush.prototype.remove_ = function(extent, value) {
+  var root = this.root_;
+  var path = [root];
+  var removed = root.remove(extent, value, path);
+  if (removed) {
+    this.condense_(path);
+  } else {
+    goog.asserts.assert(path.length == 1);
+    goog.asserts.assert(path[0] === root);
+  }
+  return removed;
+};
+
+
+/**
+ * @param {Array.<ol.structs.RBushNode.<T>>} path Path.
+ * @param {number} level Level.
+ * @private
+ */
+ol.structs.RBush.prototype.split_ = function(path, level) {
+  var node = path[level];
+  this.chooseSplitAxis_(node);
+  var splitIndex = this.chooseSplitIndex_(node);
+  // FIXME too few arguments to splice here
+  var newChildren = node.children.splice(splitIndex);
+  var newNode = new ol.structs.RBushNode(
+      ol.extent.createEmpty(), node.height, newChildren, null);
+  node.updateExtent();
+  newNode.updateExtent();
+  if (level) {
+    path[level - 1].children.push(newNode);
+  } else {
+    this.splitRoot_(node, newNode);
+  }
+};
+
+
+/**
+ * @param {ol.structs.RBushNode.<T>} node1 Node 1.
+ * @param {ol.structs.RBushNode.<T>} node2 Node 2.
+ * @private
+ */
+ol.structs.RBush.prototype.splitRoot_ = function(node1, node2) {
+  goog.asserts.assert(node1 === this.root_);
+  var height = node1.height + 1;
+  var extent = ol.extent.extend(node1.extent.slice(), node2.extent);
+  var children = [node1, node2];
+  this.root_ = new ol.structs.RBushNode(extent, height, children, null);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {olx.View2DOptions} options View2D options.
+ * @private
+ * @return {ol.CenterConstraintType}
+ */
+ol.View2D.createCenterConstraint_ = function(options) {
+  if (goog.isDef(options.extent)) {
+    return ol.CenterConstraint.createExtent(options.extent);
+  } else {
+    return ol.CenterConstraint.none;
+  }
+};
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {T} value Value.
+ */
+ol.structs.RBush.prototype.update = function(extent, value) {
+  if (goog.DEBUG && this.readers_) {
+    throw new Error('cannot update value while reading');
+  }
+  var key = this.getKey_(value);
+  var currentExtent = this.valueExtent_[key];
+  goog.asserts.assert(goog.isDef(currentExtent));
+  if (!ol.extent.equals(currentExtent, extent)) {
+    var removed = this.remove_(currentExtent, value);
+    goog.asserts.assert(removed);
+    this.insert_(extent, value, this.root_.height - 1);
+    this.valueExtent_[key] = ol.extent.clone(extent, currentExtent);
+  }
+};
+// FIXME bulk feature upload - suppress events
+// FIXME put features in an ol.Collection
+// FIXME make change-detection more refined (notably, geometry hint)
+>>>>>>> ConectaDF
+
+goog.provide('ol.source.Vector');
+goog.provide('ol.source.VectorEvent');
+goog.provide('ol.source.VectorEventType');
+
+<<<<<<< HEAD
+/**
+ * @private
+ * @param {olx.View2DOptions} options View2D options.
+ * @return {{constraint: ol.ResolutionConstraintType, maxResolution: number,
+ *     minResolution: number}}
+ */
+ol.View2D.createResolutionConstraint_ = function(options) {
+  var resolutionConstraint;
+  var maxResolution;
+  var minResolution;
+  if (goog.isDef(options.resolutions)) {
+    var resolutions = options.resolutions;
+    maxResolution = resolutions[0];
+    minResolution = resolutions[resolutions.length - 1];
+    resolutionConstraint = ol.ResolutionConstraint.createSnapToResolutions(
+        resolutions);
+  } else {
+    maxResolution = options.maxResolution;
+    if (!goog.isDef(maxResolution)) {
+      var projection = options.projection;
+      var projectionExtent = ol.proj.createProjection(projection, 'EPSG:3857')
+          .getExtent();
+      var size = goog.isNull(projectionExtent) ?
+          // use an extent that can fit the whole world if need be
+          360 * ol.proj.METERS_PER_UNIT[ol.proj.Units.DEGREES] /
+              ol.proj.METERS_PER_UNIT[projection.getUnits()] :
+          Math.max(projectionExtent[2] - projectionExtent[0],
+              projectionExtent[3] - projectionExtent[1]);
+      maxResolution = size / ol.DEFAULT_TILE_SIZE;
+    }
+    var maxZoom = options.maxZoom;
+    if (!goog.isDef(maxZoom)) {
+      maxZoom = 28;
+    }
+    var zoomFactor = options.zoomFactor;
+    if (!goog.isDef(zoomFactor)) {
+      zoomFactor = 2;
+    }
+    minResolution = maxResolution / Math.pow(zoomFactor, maxZoom);
+    resolutionConstraint = ol.ResolutionConstraint.createSnapToPower(
+        zoomFactor, maxResolution, maxZoom);
+  }
+  return {constraint: resolutionConstraint, maxResolution: maxResolution,
+    minResolution: minResolution};
+};
+
+
+/**
+ * @private
+ * @param {olx.View2DOptions} options View2D options.
+ * @return {ol.RotationConstraintType} Rotation constraint.
+ */
+ol.View2D.createRotationConstraint_ = function(options) {
+  var enableRotation = goog.isDef(options.enableRotation) ?
+      options.enableRotation : true;
+  if (enableRotation) {
+    var constrainRotation = options.constrainRotation;
+    if (!goog.isDef(constrainRotation) || constrainRotation === true) {
+      return ol.RotationConstraint.createSnapToZero();
+    } else if (constrainRotation === false) {
+      return ol.RotationConstraint.none;
+    } else if (goog.isNumber(constrainRotation)) {
+      return ol.RotationConstraint.createSnapToN(constrainRotation);
+    } else {
+      goog.asserts.fail();
+      return ol.RotationConstraint.none;
+    }
+  } else {
+    return ol.RotationConstraint.disable;
+  }
+};
+// Copyright 2011 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Defines the collection interface.
+ *
+ * @author nnaze@google.com (Nathan Naze)
+ */
+=======
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.Event');
+goog.require('goog.events.EventType');
+goog.require('goog.object');
+goog.require('ol.ObjectEventType');
+goog.require('ol.proj');
+goog.require('ol.source.Source');
+goog.require('ol.structs.RBush');
+
+
+/**
+ * @enum {string}
+ */
+ol.source.VectorEventType = {
+  /**
+   * Triggered when a feature is added to the source.
+   * @event ol.source.VectorEvent#addfeature
+   * @todo api
+   */
+  ADDFEATURE: 'addfeature',
+  /**
+   * Triggered when a feature is removed from the source.
+   * @event ol.source.VectorEvent#removefeature
+   * @todo api
+   */
+  REMOVEFEATURE: 'removefeature'
+};
+
+>>>>>>> ConectaDF
+
+goog.provide('goog.structs.Collection');
+
+<<<<<<< HEAD
+=======
+/**
+ * @constructor
+ * @extends {ol.source.Source}
+ * @fires {@link ol.source.VectorEvent} ol.source.VectorEvent
+ * @param {olx.source.VectorOptions=} opt_options Vector source options.
+ * @todo api
+ */
+ol.source.Vector = function(opt_options) {
+>>>>>>> ConectaDF
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+<<<<<<< HEAD
+/**
+ * An interface for a collection of values.
+ * @interface
+ * @template T
+ */
+goog.structs.Collection = function() {};
+=======
+  goog.base(this, {
+    attributions: options.attributions,
+    extent: options.extent,
+    logo: options.logo,
+    projection: options.projection,
+    state: options.state
+  });
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.structs.RBush.<ol.Feature>}
+   */
+  this.rBush_ = new ol.structs.RBush();
+
+<<<<<<< HEAD
+/**
+ * @param {T} value Value to add to the collection.
+ */
+goog.structs.Collection.prototype.add;
+=======
+  /**
+   * @private
+   * @type {Object.<string, ol.Feature>}
+   */
+  this.nullGeometryFeatures_ = {};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {Object.<string, Array.<goog.events.Key>>}
+   */
+  this.featureChangeKeys_ = {};
+
+<<<<<<< HEAD
+/**
+ * @param {T} value Value to remove from the collection.
+ */
+goog.structs.Collection.prototype.remove;
+
+
+/**
+ * @param {T} value Value to find in the collection.
+ * @return {boolean} Whether the collection contains the specified value.
+ */
+goog.structs.Collection.prototype.contains;
+
+
+/**
+ * @return {number} The number of values stored in the collection.
+ */
+goog.structs.Collection.prototype.getCount;
+=======
+  if (goog.isDef(options.features)) {
+    this.addFeaturesInternal(options.features);
+  }
+
+};
+goog.inherits(ol.source.Vector, ol.source.Source);
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @todo api
+ */
+ol.source.Vector.prototype.addFeature = function(feature) {
+  this.addFeatureInternal(feature);
+  this.dispatchChangeEvent();
+};
+
+
+/**
+ * Add a feature without firing a `change` event.
+ * @param {ol.Feature} feature Feature.
+ * @protected
+ */
+ol.source.Vector.prototype.addFeatureInternal = function(feature) {
+  var featureKey = goog.getUid(feature).toString();
+  goog.asserts.assert(!(featureKey in this.featureChangeKeys_));
+  this.featureChangeKeys_[featureKey] = [
+    goog.events.listen(feature,
+        goog.events.EventType.CHANGE,
+        this.handleFeatureChange_, false, this),
+    goog.events.listen(feature,
+        ol.ObjectEventType.PROPERTYCHANGE,
+        this.handleFeatureChange_, false, this)
+  ];
+  var geometry = feature.getGeometry();
+  if (goog.isNull(geometry)) {
+    this.nullGeometryFeatures_[goog.getUid(feature).toString()] = feature;
+  } else {
+    var extent = geometry.getExtent();
+    this.rBush_.insert(extent, feature);
+  }
+  this.dispatchEvent(
+      new ol.source.VectorEvent(ol.source.VectorEventType.ADDFEATURE, feature));
+};
+>>>>>>> ConectaDF
+
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+<<<<<<< HEAD
+ * @fileoverview Datastructure: Set.
+ *
+ * @author arv@google.com (Erik Arvidsson)
+ * @author pallosp@google.com (Peter Pallos)
+ *
+ * This class implements a set data structure. Adding and removing is O(1). It
+ * supports both object and primitive values. Be careful because you can add
+ * both 1 and new Number(1), because these are not the same. You can even add
+ * multiple new Number(1) because these are not equal.
+ */
+
+
+goog.provide('goog.structs.Set');
+=======
+ * @param {Array.<ol.Feature>} features Features.
+ * @todo api
+ */
+ol.source.Vector.prototype.addFeatures = function(features) {
+  this.addFeaturesInternal(features);
+  this.dispatchChangeEvent();
+};
+
+
+/**
+ * Add features without firing a `change` event.
+ * @param {Array.<ol.Feature>} features Features.
+ * @protected
+ */
+ol.source.Vector.prototype.addFeaturesInternal = function(features) {
+  // FIXME use R-Bush bulk load when available
+  var i, ii;
+  for (i = 0, ii = features.length; i < ii; ++i) {
+    this.addFeatureInternal(features[i]);
+  }
+};
+>>>>>>> ConectaDF
+
+goog.require('goog.structs');
+goog.require('goog.structs.Collection');
+goog.require('goog.structs.Map');
+
+<<<<<<< HEAD
+
+
+/**
+ * A set that can contain both primitives and objects.  Adding and removing
+ * elements is O(1).  Primitives are treated as identical if they have the same
+ * type and convert to the same string.  Objects are treated as identical only
+ * if they are references to the same object.  WARNING: A goog.structs.Set can
+ * contain both 1 and (new Number(1)), because they are not the same.  WARNING:
+ * Adding (new Number(1)) twice will yield two distinct elements, because they
+ * are two different objects.  WARNING: Any object that is added to a
+ * goog.structs.Set will be modified!  Because goog.getUid() is used to
+ * identify objects, every object in the set will be mutated.
+ * @param {Array.<T>|Object.<?,T>=} opt_values Initial values to start with.
+ * @constructor
+ * @implements {goog.structs.Collection.<T>}
+ * @final
+ * @template T
+ */
+goog.structs.Set = function(opt_values) {
+  this.map_ = new goog.structs.Map;
+  if (opt_values) {
+    this.addAll(opt_values);
+  }
+=======
+/**
+ * Clear the source
+ */
+ol.source.Vector.prototype.clear = function() {
+  this.rBush_.forEach(this.removeFeatureInternal, this);
+  this.rBush_.clear();
+  goog.object.forEach(
+      this.nullGeometryFeatures_, this.removeFeatureInternal, this);
+  goog.object.clear(this.nullGeometryFeatures_);
+  goog.asserts.assert(goog.object.isEmpty(this.featureChangeKeys_));
+  this.dispatchChangeEvent();
+};
+
+
+/**
+ * @param {function(this: T, ol.Feature): S} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @return {S|undefined}
+ * @template T,S
+ * @todo api
+ */
+ol.source.Vector.prototype.forEachFeature = function(f, opt_this) {
+  return this.rBush_.forEach(f, opt_this);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Obtains a unique key for an element of the set.  Primitives will yield the
+ * same key if they have the same type and convert to the same string.  Object
+ * references will yield the same key only if they refer to the same object.
+ * @param {*} val Object or primitive value to get a key for.
+ * @return {string} A unique key for this value/object.
+ * @private
+ */
+goog.structs.Set.getKey_ = function(val) {
+  var type = typeof val;
+  if (type == 'object' && val || type == 'function') {
+    return 'o' + goog.getUid(/** @type {Object} */ (val));
+  } else {
+    return type.substr(0, 1) + val;
+  }
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @param {function(this: T, ol.Feature): S} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @return {S|undefined}
+ * @template T,S
+ */
+ol.source.Vector.prototype.forEachFeatureAtCoordinate =
+    function(coordinate, f, opt_this) {
+  var extent = [coordinate[0], coordinate[1], coordinate[0], coordinate[1]];
+  return this.forEachFeatureInExtent(extent, function(feature) {
+    var geometry = feature.getGeometry();
+    goog.asserts.assert(!goog.isNull(geometry));
+    if (geometry.containsCoordinate(coordinate)) {
+      return f.call(opt_this, feature);
+    } else {
+      return undefined;
+    }
+  });
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @return {number} The number of elements in the set.
+ * @override
+ */
+goog.structs.Set.prototype.getCount = function() {
+  return this.map_.getCount();
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {function(this: T, ol.Feature): S} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @return {S|undefined}
+ * @template T,S
+ * @todo api
+ */
+ol.source.Vector.prototype.forEachFeatureInExtent =
+    function(extent, f, opt_this) {
+  return this.rBush_.forEachInExtent(extent, f, opt_this);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Add a primitive or an object to the set.
+ * @param {T} element The primitive or object to add.
+ * @override
+ */
+goog.structs.Set.prototype.add = function(element) {
+  this.map_.set(goog.structs.Set.getKey_(element), element);
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {number} resolution Resolution.
+ * @param {function(this: T, ol.Feature): S} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @return {S|undefined}
+ * @template T,S
+ */
+ol.source.Vector.prototype.forEachFeatureInExtentAtResolution =
+    function(extent, resolution, f, opt_this) {
+  return this.forEachFeatureInExtent(extent, f, opt_this);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Adds all the values in the given collection to this set.
+ * @param {Array.<T>|goog.structs.Collection.<T>|Object.<?,T>} col A collection
+ *     containing the elements to add.
+ */
+goog.structs.Set.prototype.addAll = function(col) {
+  var values = goog.structs.getValues(col);
+  var l = values.length;
+  for (var i = 0; i < l; i++) {
+    this.add(values[i]);
+  }
+=======
+ * @return {Array.<ol.Feature>} Features.
+ * @todo api
+ */
+ol.source.Vector.prototype.getFeatures = function() {
+  var features = this.rBush_.getAll();
+  if (!goog.object.isEmpty(this.nullGeometryFeatures_)) {
+    goog.array.extend(
+        features, goog.object.getValues(this.nullGeometryFeatures_));
+  }
+  return features;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Removes all values in the given collection from this set.
+ * @param {Array.<T>|goog.structs.Collection.<T>|Object.<?,T>} col A collection
+ *     containing the elements to remove.
+ */
+goog.structs.Set.prototype.removeAll = function(col) {
+  var values = goog.structs.getValues(col);
+  var l = values.length;
+  for (var i = 0; i < l; i++) {
+    this.remove(values[i]);
+  }
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @return {Array.<ol.Feature>} Features.
+ * @todo api
+ */
+ol.source.Vector.prototype.getFeaturesAtCoordinate = function(coordinate) {
+  var features = [];
+  this.forEachFeatureAtCoordinate(coordinate, function(feature) {
+    features.push(feature);
+  });
+  return features;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Removes the given element from this set.
+ * @param {T} element The primitive or object to remove.
+ * @return {boolean} Whether the element was found and removed.
+ * @override
+ */
+goog.structs.Set.prototype.remove = function(element) {
+  return this.map_.remove(goog.structs.Set.getKey_(element));
+=======
+ * @param {ol.Extent} extent Extent.
+ * @return {Array.<ol.Feature>} Features.
+ */
+ol.source.Vector.prototype.getFeaturesInExtent = function(extent) {
+  return this.rBush_.getInExtent(extent);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Removes all elements from this set.
+ */
+goog.structs.Set.prototype.clear = function() {
+  this.map_.clear();
+=======
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @return {ol.Feature} Closest feature.
+ * @todo api
+ */
+ol.source.Vector.prototype.getClosestFeatureToCoordinate =
+    function(coordinate) {
+  // Find the closest feature using branch and bound.  We start searching an
+  // infinite extent, and find the distance from the first feature found.  This
+  // becomes the closest feature.  We then compute a smaller extent which any
+  // closer feature must intersect.  We continue searching with this smaller
+  // extent, trying to find a closer feature.  Every time we find a closer
+  // feature, we update the extent being searched so that any even closer
+  // feature must intersect it.  We continue until we run out of features.
+  var x = coordinate[0];
+  var y = coordinate[1];
+  var closestFeature = null;
+  var closestPoint = [NaN, NaN];
+  var minSquaredDistance = Infinity;
+  var extent = [-Infinity, -Infinity, Infinity, Infinity];
+  this.rBush_.forEachInExtent(extent,
+      /**
+       * @param {ol.Feature} feature Feature.
+       */
+      function(feature) {
+        var geometry = feature.getGeometry();
+        goog.asserts.assert(!goog.isNull(geometry));
+        var previousMinSquaredDistance = minSquaredDistance;
+        minSquaredDistance = geometry.closestPointXY(
+            x, y, closestPoint, minSquaredDistance);
+        if (minSquaredDistance < previousMinSquaredDistance) {
+          closestFeature = feature;
+          // This is sneaky.  Reduce the extent that it is currently being
+          // searched while the R-Tree traversal using this same extent object
+          // is still in progress.  This is safe because the new extent is
+          // strictly contained by the old extent.
+          var minDistance = Math.sqrt(minSquaredDistance);
+          extent[0] = x - minDistance;
+          extent[1] = y - minDistance;
+          extent[2] = x + minDistance;
+          extent[3] = y + minDistance;
+        }
+      });
+  return closestFeature;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Tests whether this set is empty.
+ * @return {boolean} True if there are no elements in this set.
+ */
+goog.structs.Set.prototype.isEmpty = function() {
+  return this.map_.isEmpty();
+=======
+ * @return {ol.Extent} Extent.
+ * @todo api
+ */
+ol.source.Vector.prototype.getExtent = function() {
+  return this.rBush_.getExtent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Tests whether this set contains the given element.
+ * @param {T} element The primitive or object to test for.
+ * @return {boolean} True if this set contains the given element.
+ * @override
+ */
+goog.structs.Set.prototype.contains = function(element) {
+  return this.map_.containsKey(goog.structs.Set.getKey_(element));
+=======
+ * @param {goog.events.Event} event Event.
+ * @private
+ */
+ol.source.Vector.prototype.handleFeatureChange_ = function(event) {
+  var feature = /** @type {ol.Feature} */ (event.target);
+  var featureKey = goog.getUid(feature).toString();
+  var geometry = feature.getGeometry();
+  if (goog.isNull(geometry)) {
+    if (!(featureKey in this.nullGeometryFeatures_)) {
+      this.rBush_.remove(feature);
+      this.nullGeometryFeatures_[featureKey] = feature;
+    }
+  } else {
+    var extent = geometry.getExtent();
+    if (featureKey in this.nullGeometryFeatures_) {
+      delete this.nullGeometryFeatures_[featureKey];
+      this.rBush_.insert(extent, feature);
+    } else {
+      this.rBush_.update(extent, feature);
+    }
+  }
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Tests whether this set contains all the values in a given collection.
+ * Repeated elements in the collection are ignored, e.g.  (new
+ * goog.structs.Set([1, 2])).containsAll([1, 1]) is True.
+ * @param {goog.structs.Collection.<T>|Object} col A collection-like object.
+ * @return {boolean} True if the set contains all elements.
+ */
+goog.structs.Set.prototype.containsAll = function(col) {
+  return goog.structs.every(col, this.contains, this);
+=======
+ * @return {boolean} Is empty.
+ */
+ol.source.Vector.prototype.isEmpty = function() {
+  return this.rBush_.isEmpty() &&
+      goog.object.isEmpty(this.nullGeometryFeatures_);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Finds all values that are present in both this set and the given collection.
+ * @param {Array.<S>|Object.<?,S>} col A collection.
+ * @return {!goog.structs.Set.<T|S>} A new set containing all the values
+ *     (primitives or objects) present in both this set and the given
+ *     collection.
+ * @template S
+ */
+goog.structs.Set.prototype.intersection = function(col) {
+  var result = new goog.structs.Set();
+
+  var values = goog.structs.getValues(col);
+  for (var i = 0; i < values.length; i++) {
+    var value = values[i];
+    if (this.contains(value)) {
+      result.add(value);
+    }
+  }
+
+  return result;
+};
+
+
+/**
+ * Finds all values that are present in this set and not in the given
+ * collection.
+ * @param {Array.<T>|goog.structs.Collection.<T>|Object.<?,T>} col A collection.
+ * @return {!goog.structs.Set} A new set containing all the values
+ *     (primitives or objects) present in this set but not in the given
+ *     collection.
+ */
+goog.structs.Set.prototype.difference = function(col) {
+  var result = this.clone();
+  result.removeAll(col);
+  return result;
+=======
+ * @param {ol.Extent} extent Extent.
+ * @param {number} resolution Resolution.
+ * @param {ol.proj.Projection} projection Projection.
+ */
+ol.source.Vector.prototype.loadFeatures = goog.nullFunction;
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @todo api
+ */
+ol.source.Vector.prototype.removeFeature = function(feature) {
+  var featureKey = goog.getUid(feature).toString();
+  if (featureKey in this.nullGeometryFeatures_) {
+    delete this.nullGeometryFeatures_[featureKey];
+  } else {
+    this.rBush_.remove(feature);
+  }
+  this.removeFeatureInternal(feature);
+  this.dispatchChangeEvent();
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Returns an array containing all the elements in this set.
+ * @return {!Array.<T>} An array containing all the elements in this set.
+ */
+goog.structs.Set.prototype.getValues = function() {
+  return this.map_.getValues();
+};
+
+
+/**
+ * Creates a shallow clone of this set.
+ * @return {!goog.structs.Set.<T>} A new set containing all the same elements as
+ *     this set.
+ */
+goog.structs.Set.prototype.clone = function() {
+  return new goog.structs.Set(this);
+};
+=======
+ * Remove feature without firing a `change` event.
+ * @param {ol.Feature} feature Feature.
+ * @protected
+ */
+ol.source.Vector.prototype.removeFeatureInternal = function(feature) {
+  var featureKey = goog.getUid(feature).toString();
+  goog.asserts.assert(featureKey in this.featureChangeKeys_);
+  goog.array.forEach(this.featureChangeKeys_[featureKey],
+      goog.events.unlistenByKey);
+  delete this.featureChangeKeys_[featureKey];
+  this.dispatchEvent(new ol.source.VectorEvent(
+      ol.source.VectorEventType.REMOVEFEATURE, feature));
+};
+
+
+
+/**
+ * @constructor
+ * @extends {goog.events.Event}
+ * @implements {oli.source.VectorEvent}
+ * @param {string} type Type.
+ * @param {ol.Feature=} opt_feature Feature.
+ */
+ol.source.VectorEvent = function(type, opt_feature) {
+>>>>>>> ConectaDF
+
+  goog.base(this, type);
+
+<<<<<<< HEAD
+/**
+ * Tests whether the given collection consists of the same elements as this set,
+ * regardless of order, without repetition.  Primitives are treated as equal if
+ * they have the same type and convert to the same string; objects are treated
+ * as equal if they are references to the same object.  This operation is O(n).
+ * @param {goog.structs.Collection.<T>|Object} col A collection.
+ * @return {boolean} True if the given collection consists of the same elements
+ *     as this set, regardless of order, without repetition.
+ */
+goog.structs.Set.prototype.equals = function(col) {
+  return this.getCount() == goog.structs.getCount(col) && this.isSubsetOf(col);
+};
+=======
+  /**
+   * The feature being added or removed.
+   * @type {ol.Feature|undefined}
+   */
+  this.feature = opt_feature;
+>>>>>>> ConectaDF
+
+};
+goog.inherits(ol.source.VectorEvent, goog.events.Event);
+// FIXME decide default snapToPixel behaviour
+// FIXME add option to apply snapToPixel to all coordinates?
+// FIXME can eliminate empty set styles and strokes (when all geoms skipped)
+
+<<<<<<< HEAD
+/**
+ * Tests whether the given collection contains all the elements in this set.
+ * Primitives are treated as equal if they have the same type and convert to the
+ * same string; objects are treated as equal if they are references to the same
+ * object.  This operation is O(n).
+ * @param {goog.structs.Collection.<T>|Object} col A collection.
+ * @return {boolean} True if this set is a subset of the given collection.
+ */
+goog.structs.Set.prototype.isSubsetOf = function(col) {
+  var colCount = goog.structs.getCount(col);
+  if (this.getCount() > colCount) {
+    return false;
+  }
+  // TODO(user) Find the minimal collection size where the conversion makes
+  // the contains() method faster.
+  if (!(col instanceof goog.structs.Set) && colCount > 5) {
+    // Convert to a goog.structs.Set so that goog.structs.contains runs in
+    // O(1) time instead of O(n) time.
+    col = new goog.structs.Set(col);
+  }
+  return goog.structs.every(this, function(value) {
+    return goog.structs.contains(col, value);
+  });
+};
+
+
+/**
+ * Returns an iterator that iterates over the elements in this set.
+ * @param {boolean=} opt_keys This argument is ignored.
+ * @return {!goog.iter.Iterator} An iterator over the elements in this set.
+ */
+goog.structs.Set.prototype.__iterator__ = function(opt_keys) {
+  return this.map_.__iterator__(false);
+};
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Logging and debugging utilities.
+ *
+ * @see ../demos/debug.html
+ */
+
+goog.provide('goog.debug');
+
+goog.require('goog.array');
+goog.require('goog.string');
+goog.require('goog.structs.Set');
+goog.require('goog.userAgent');
+=======
+goog.provide('ol.render.canvas.Replay');
+goog.provide('ol.render.canvas.ReplayGroup');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.object');
+goog.require('goog.vec.Mat4');
+goog.require('ol.BrowserFeature');
+goog.require('ol.array');
+goog.require('ol.color');
+goog.require('ol.dom');
+goog.require('ol.extent');
+goog.require('ol.extent.Relationship');
+goog.require('ol.geom.flat.simplify');
+goog.require('ol.geom.flat.transform');
+goog.require('ol.render.IReplayGroup');
+goog.require('ol.render.IVectorContext');
+goog.require('ol.render.canvas');
+goog.require('ol.vec.Mat4');
+
+
+/**
+ * @enum {number}
+ */
+ol.render.canvas.Instruction = {
+  BEGIN_GEOMETRY: 0,
+  BEGIN_PATH: 1,
+  CIRCLE: 2,
+  CLOSE_PATH: 3,
+  DRAW_IMAGE: 4,
+  DRAW_TEXT: 5,
+  END_GEOMETRY: 6,
+  FILL: 7,
+  MOVE_TO_LINE_TO: 8,
+  SET_FILL_STYLE: 9,
+  SET_STROKE_STYLE: 10,
+  SET_TEXT_STYLE: 11,
+  STROKE: 12
+};
+
+
+
+/**
+ * @constructor
+ * @implements {ol.render.IVectorContext}
+ * @param {number} tolerance Tolerance.
+ * @param {ol.Extent} maxExtent Maximum extent.
+ * @param {number} resolution Resolution.
+ * @protected
+ * @struct
+ */
+ol.render.canvas.Replay = function(tolerance, maxExtent, resolution) {
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.tolerance = tolerance;
+
+  /**
+   * @protected
+   * @type {ol.Extent}
+   */
+  this.maxExtent = maxExtent;
+>>>>>>> ConectaDF
+
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.maxLineWidth = 0;
+
+<<<<<<< HEAD
+/** @define {boolean} Whether logging should be enabled. */
+goog.define('goog.debug.LOGGING_ENABLED', goog.DEBUG);
+=======
+  /**
+   * @protected
+   * @type {number}
+   */
+  this.resolution = resolution;
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {Array.<*>}
+   */
+  this.beginGeometryInstruction1_ = null;
+
+<<<<<<< HEAD
+/**
+ * Catches onerror events fired by windows and similar objects.
+ * @param {function(Object)} logFunc The function to call with the error
+ *    information.
+ * @param {boolean=} opt_cancel Whether to stop the error from reaching the
+ *    browser.
+ * @param {Object=} opt_target Object that fires onerror events.
+ */
+goog.debug.catchErrors = function(logFunc, opt_cancel, opt_target) {
+  var target = opt_target || goog.global;
+  var oldErrorHandler = target.onerror;
+  var retVal = !!opt_cancel;
+
+  // Chrome interprets onerror return value backwards (http://crbug.com/92062)
+  // until it was fixed in webkit revision r94061 (Webkit 535.3). This
+  // workaround still needs to be skipped in Safari after the webkit change
+  // gets pushed out in Safari.
+  // See https://bugs.webkit.org/show_bug.cgi?id=67119
+  if (goog.userAgent.WEBKIT &&
+      !goog.userAgent.isVersionOrHigher('535.3')) {
+    retVal = !retVal;
+  }
+
+  /**
+   * New onerror handler for this target. This onerror handler follows the spec
+   * according to
+   * http://www.whatwg.org/specs/web-apps/current-work/#runtime-script-errors
+   * The spec was changed in August 2013 to support receiving column information
+   * and an error object for all scripts on the same origin or cross origin
+   * scripts with the proper headers. See
+   * https://mikewest.org/2013/08/debugging-runtime-errors-with-window-onerror
+   *
+   * @param {string} message The error message. For cross-origin errors, this
+   *     will be scrubbed to just "Script error.". For new browsers that have
+   *     updated to follow the latest spec, errors that come from origins that
+   *     have proper cross origin headers will not be scrubbed.
+   * @param {string} url The URL of the script that caused the error. The URL
+   *     will be scrubbed to "" for cross origin scripts unless the script has
+   *     proper cross origin headers and the browser has updated to the latest
+   *     spec.
+   * @param {number} line The line number in the script that the error
+   *     occurred on.
+   * @param {number=} opt_col The optional column number that the error
+   *     occurred on. Only browsers that have updated to the latest spec will
+   *     include this.
+   * @param {Error=} opt_error The optional actual error object for this
+   *     error that should include the stack. Only browsers that have updated
+   *     to the latest spec will inlude this parameter.
+   * @return {boolean} Whether to prevent the error from reaching the browser.
+   */
+  target.onerror = function(message, url, line, opt_col, opt_error) {
+    if (oldErrorHandler) {
+      oldErrorHandler(message, url, line, opt_col, opt_error);
+    }
+    logFunc({
+      message: message,
+      fileName: url,
+      line: line,
+      col: opt_col,
+      error: opt_error
+    });
+    return retVal;
+  };
+};
+=======
+  /**
+   * @private
+   * @type {Array.<*>}
+   */
+  this.beginGeometryInstruction2_ = null;
+
+  /**
+   * @protected
+   * @type {Array.<*>}
+   */
+  this.instructions = [];
+
+  /**
+   * @protected
+   * @type {Array.<number>}
+   */
+  this.coordinates = [];
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {goog.vec.Mat4.Number}
+   */
+  this.renderedTransform_ = goog.vec.Mat4.createNumber();
+
+<<<<<<< HEAD
+/**
+ * Creates a string representing an object and all its properties.
+ * @param {Object|null|undefined} obj Object to expose.
+ * @param {boolean=} opt_showFn Show the functions as well as the properties,
+ *     default is false.
+ * @return {string} The string representation of {@code obj}.
+ */
+goog.debug.expose = function(obj, opt_showFn) {
+  if (typeof obj == 'undefined') {
+    return 'undefined';
+  }
+  if (obj == null) {
+    return 'NULL';
+  }
+  var str = [];
+
+  for (var x in obj) {
+    if (!opt_showFn && goog.isFunction(obj[x])) {
+      continue;
+    }
+    var s = x + ' = ';
+    /** @preserveTry */
+    try {
+      s += obj[x];
+    } catch (e) {
+      s += '*** ' + e + ' ***';
+    }
+    str.push(s);
+  }
+  return str.join('\n');
+};
+=======
+  /**
+   * @protected
+   * @type {Array.<*>}
+   */
+  this.hitDetectionInstructions = [];
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.pixelCoordinates_ = [];
+
+<<<<<<< HEAD
+/**
+ * Creates a string representing a given primitive or object, and for an
+ * object, all its properties and nested objects.  WARNING: If an object is
+ * given, it and all its nested objects will be modified.  To detect reference
+ * cycles, this method identifies objects using goog.getUid() which mutates the
+ * object.
+ * @param {*} obj Object to expose.
+ * @param {boolean=} opt_showFn Also show properties that are functions (by
+ *     default, functions are omitted).
+ * @return {string} A string representation of {@code obj}.
+ */
+goog.debug.deepExpose = function(obj, opt_showFn) {
+  var str = [];
+
+  var helper = function(obj, space, parentSeen) {
+    var nestspace = space + '  ';
+    var seen = new goog.structs.Set(parentSeen);
+
+    var indentMultiline = function(str) {
+      return str.replace(/\n/g, '\n' + space);
+    };
+=======
+  /**
+   * @private
+   * @type {ol.Extent}
+   */
+  this.extent_ = ol.extent.createEmpty();
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.tmpLocalTransform_ = goog.vec.Mat4.createNumber();
+
+};
+>>>>>>> ConectaDF
+
+    /** @preserveTry */
+    try {
+      if (!goog.isDef(obj)) {
+        str.push('undefined');
+      } else if (goog.isNull(obj)) {
+        str.push('NULL');
+      } else if (goog.isString(obj)) {
+        str.push('"' + indentMultiline(obj) + '"');
+      } else if (goog.isFunction(obj)) {
+        str.push(indentMultiline(String(obj)));
+      } else if (goog.isObject(obj)) {
+        if (seen.contains(obj)) {
+          str.push('*** reference loop detected ***');
+        } else {
+          seen.add(obj);
+          str.push('{');
+          for (var x in obj) {
+            if (!opt_showFn && goog.isFunction(obj[x])) {
+              continue;
+            }
+            str.push('\n');
+            str.push(nestspace);
+            str.push(x + ' = ');
+            helper(obj[x], nestspace, seen);
+          }
+          str.push('\n' + space + '}');
+        }
+      } else {
+        str.push(obj);
+      }
+    } catch (e) {
+      str.push('*** ' + e + ' ***');
+    }
+  };
+
+<<<<<<< HEAD
+  helper(obj, '', new goog.structs.Set());
+  return str.join('');
+};
+=======
+/**
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ * @param {number} offset Offset.
+ * @param {number} end End.
+ * @param {number} stride Stride.
+ * @param {boolean} close Close.
+ * @protected
+ * @return {number} My end.
+ */
+ol.render.canvas.Replay.prototype.appendFlatCoordinates =
+    function(flatCoordinates, offset, end, stride, close) {
+>>>>>>> ConectaDF
+
+  var myEnd = this.coordinates.length;
+  var extent = this.getBufferedMaxExtent();
+  var lastCoord = [flatCoordinates[offset], flatCoordinates[offset + 1]];
+  var nextCoord = [NaN, NaN];
+  var skipped = true;
+
+<<<<<<< HEAD
+/**
+ * Recursively outputs a nested array as a string.
+ * @param {Array} arr The array.
+ * @return {string} String representing nested array.
+ */
+goog.debug.exposeArray = function(arr) {
+  var str = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (goog.isArray(arr[i])) {
+      str.push(goog.debug.exposeArray(arr[i]));
+    } else {
+      str.push(arr[i]);
+    }
+  }
+  return '[ ' + str.join(', ') + ' ]';
+};
+=======
+  var i, lastRel, nextRel;
+  for (i = offset + stride; i < end; i += stride) {
+    nextCoord[0] = flatCoordinates[i];
+    nextCoord[1] = flatCoordinates[i + 1];
+    nextRel = ol.extent.coordinateRelationship(extent, nextCoord);
+    if (nextRel !== lastRel) {
+      if (skipped) {
+        this.coordinates[myEnd++] = lastCoord[0];
+        this.coordinates[myEnd++] = lastCoord[1];
+      }
+      this.coordinates[myEnd++] = nextCoord[0];
+      this.coordinates[myEnd++] = nextCoord[1];
+      skipped = false;
+    } else if (nextRel === ol.extent.Relationship.INTERSECTING) {
+      this.coordinates[myEnd++] = nextCoord[0];
+      this.coordinates[myEnd++] = nextCoord[1];
+      skipped = false;
+    } else {
+      skipped = true;
+    }
+    lastCoord[0] = nextCoord[0];
+    lastCoord[1] = nextCoord[1];
+    lastRel = nextRel;
+  }
+>>>>>>> ConectaDF
+
+  // handle case where there is only one point to append
+  if (i === offset + stride) {
+    this.coordinates[myEnd++] = lastCoord[0];
+    this.coordinates[myEnd++] = lastCoord[1];
+  }
+
+<<<<<<< HEAD
+/**
+ * Exposes an exception that has been caught by a try...catch and outputs the
+ * error with a stack trace.
+ * @param {Object} err Error object or string.
+ * @param {Function=} opt_fn Optional function to start stack trace from.
+ * @return {string} Details of exception.
+ */
+goog.debug.exposeException = function(err, opt_fn) {
+  /** @preserveTry */
+  try {
+    var e = goog.debug.normalizeErrorObject(err);
+
+    // Create the error message
+    var error = 'Message: ' + goog.string.htmlEscape(e.message) +
+        '\nUrl: <a href="view-source:' + e.fileName + '" target="_new">' +
+        e.fileName + '</a>\nLine: ' + e.lineNumber + '\n\nBrowser stack:\n' +
+        goog.string.htmlEscape(e.stack + '-> ') +
+        '[end]\n\nJS stack traversal:\n' + goog.string.htmlEscape(
+            goog.debug.getStacktrace(opt_fn) + '-> ');
+    return error;
+  } catch (e2) {
+    return 'Exception trying to expose exception! You win, we lose. ' + e2;
+  }
+=======
+  if (close) {
+    this.coordinates[myEnd++] = flatCoordinates[offset];
+    this.coordinates[myEnd++] = flatCoordinates[offset + 1];
+  }
+  return myEnd;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Normalizes the error/exception object between browsers.
+ * @param {Object} err Raw error object.
+ * @return {Object} Normalized error object.
+ */
+goog.debug.normalizeErrorObject = function(err) {
+  var href = goog.getObjectByName('window.location.href');
+  if (goog.isString(err)) {
+    return {
+      'message': err,
+      'name': 'Unknown error',
+      'lineNumber': 'Not available',
+      'fileName': href,
+      'stack': 'Not available'
+    };
+  }
+=======
  * @protected
  * @param {ol.geom.Geometry} geometry Geometry.
  * @param {Object} data Opaque data object.
@@ -50528,8 +63006,48 @@ ol.render.canvas.Replay.prototype.beginGeometry = function(geometry, data) {
       [ol.render.canvas.Instruction.BEGIN_GEOMETRY, geometry, data, 0];
   this.hitDetectionInstructions.push(this.beginGeometryInstruction2_);
 };
+>>>>>>> ConectaDF
 
+  var lineNumber, fileName;
+  var threwError = false;
 
+<<<<<<< HEAD
+  try {
+    lineNumber = err.lineNumber || err.line || 'Not available';
+  } catch (e) {
+    // Firefox 2 sometimes throws an error when accessing 'lineNumber':
+    // Message: Permission denied to get property UnnamedClass.lineNumber
+    lineNumber = 'Not available';
+    threwError = true;
+  }
+
+  try {
+    fileName = err.fileName || err.filename || err.sourceURL ||
+        // $googDebugFname may be set before a call to eval to set the filename
+        // that the eval is supposed to present.
+        goog.global['$googDebugFname'] || href;
+  } catch (e) {
+    // Firefox 2 may also throw an error when accessing 'filename'.
+    fileName = 'Not available';
+    threwError = true;
+  }
+
+  // The IE Error object contains only the name and the message.
+  // The Safari Error object uses the line and sourceURL fields.
+  if (threwError || !err.lineNumber || !err.fileName || !err.stack ||
+      !err.message || !err.name) {
+    return {
+      'message': err.message || 'Not available',
+      'name': err.name || 'UnknownError',
+      'lineNumber': lineNumber,
+      'fileName': fileName,
+      'stack': err.stack || 'Not available'
+    };
+  }
+
+  // Standards error object
+  return err;
+=======
 /**
  * @private
  * @param {CanvasRenderingContext2D} context Context.
@@ -50771,10 +63289,37 @@ ol.render.canvas.Replay.prototype.replay_ = function(
   // assert that all instructions were consumed
   goog.asserts.assert(i == instructions.length);
   return undefined;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Converts an object to an Error if it's a String,
+ * adds a stacktrace if there isn't one,
+ * and optionally adds an extra message.
+ * @param {Error|string} err  the original thrown object or string.
+ * @param {string=} opt_message  optional additional message to add to the
+ *     error.
+ * @return {Error} If err is a string, it is used to create a new Error,
+ *     which is enhanced and returned.  Otherwise err itself is enhanced
+ *     and returned.
+ */
+goog.debug.enhanceError = function(err, opt_message) {
+  var error = typeof err == 'string' ? Error(err) : err;
+  if (!error.stack) {
+    error.stack = goog.debug.getStacktrace(arguments.callee.caller);
+  }
+  if (opt_message) {
+    // find the first unoccupied 'messageX' property
+    var x = 0;
+    while (error['message' + x]) {
+      ++x;
+    }
+    error['message' + x] = String(opt_message);
+  }
+  return error;
+=======
  * @param {CanvasRenderingContext2D} context Context.
  * @param {number} pixelRatio Pixel ratio.
  * @param {goog.vec.Mat4.Number} transform Transform.
@@ -50788,10 +63333,23 @@ ol.render.canvas.Replay.prototype.replay = function(
   var instructions = this.instructions;
   return this.replay_(context, pixelRatio, transform, viewRotation,
       skippedFeaturesHash, instructions, undefined);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Gets the current stack trace. Simple and iterative - doesn't worry about
+ * catching circular references or getting the args.
+ * @param {number=} opt_depth Optional maximum depth to trace back to.
+ * @return {string} A string with the function names of all functions in the
+ *     stack, separated by \n.
+ */
+goog.debug.getStacktraceSimple = function(opt_depth) {
+  var sb = [];
+  var fn = arguments.callee.caller;
+  var depth = 0;
+=======
  * @param {CanvasRenderingContext2D} context Context.
  * @param {goog.vec.Mat4.Number} transform Transform.
  * @param {number} viewRotation View rotation.
@@ -50808,8 +63366,33 @@ ol.render.canvas.Replay.prototype.replayHitDetection = function(
   return this.replay_(context, 1, transform, viewRotation,
       skippedFeaturesHash, instructions, opt_geometryCallback);
 };
+>>>>>>> ConectaDF
 
+  while (fn && (!opt_depth || depth < opt_depth)) {
+    sb.push(goog.debug.getFunctionName(fn));
+    sb.push('()\n');
+    /** @preserveTry */
+    try {
+      fn = fn.caller;
+    } catch (e) {
+      sb.push('[exception trying to get caller]\n');
+      break;
+    }
+    depth++;
+    if (depth >= goog.debug.MAX_STACK_DEPTH) {
+      sb.push('[...long stack...]');
+      break;
+    }
+  }
+  if (opt_depth && depth >= opt_depth) {
+    sb.push('[...reached max depth limit...]');
+  } else {
+    sb.push('[end]');
+  }
 
+<<<<<<< HEAD
+  return sb.join('');
+=======
 /**
  * @private
  */
@@ -50837,10 +63420,40 @@ ol.render.canvas.Replay.prototype.reverseHitDetectionInstructions_ =
       begin = -1;
     }
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Max length of stack to try and output
+ * @type {number}
+ */
+goog.debug.MAX_STACK_DEPTH = 50;
+
+
+/**
+ * Gets the current stack trace, either starting from the caller or starting
+ * from a specified function that's currently on the call stack.
+ * @param {Function=} opt_fn Optional function to start getting the trace from.
+ *     If not provided, defaults to the function that called this.
+ * @return {string} Stack trace.
+ */
+goog.debug.getStacktrace = function(opt_fn) {
+  return goog.debug.getStacktraceHelper_(opt_fn || arguments.callee.caller, []);
+};
+
+
+/**
+ * Private helper for getStacktrace().
+ * @param {Function} fn Function to start getting the trace from.
+ * @param {Array} visited List of functions visited so far.
+ * @return {string} Stack trace starting from function fn.
+ * @private
+ */
+goog.debug.getStacktraceHelper_ = function(fn, visited) {
+  var sb = [];
+=======
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawAsync = goog.abstractMethod;
@@ -50856,28 +63469,126 @@ ol.render.canvas.Replay.prototype.drawCircleGeometry = goog.abstractMethod;
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawFeature = goog.abstractMethod;
+>>>>>>> ConectaDF
 
+  // Circular reference, certain functions like bind seem to cause a recursive
+  // loop so we need to catch circular references
+  if (goog.array.contains(visited, fn)) {
+    sb.push('[...circular reference...]');
 
+<<<<<<< HEAD
+  // Traverse the call stack until function not found or max depth is reached
+  } else if (fn && visited.length < goog.debug.MAX_STACK_DEPTH) {
+    sb.push(goog.debug.getFunctionName(fn) + '(');
+    var args = fn.arguments;
+    // Args may be null for some special functions such as host objects or eval.
+    for (var i = 0; args && i < args.length; i++) {
+      if (i > 0) {
+        sb.push(', ');
+      }
+      var argDesc;
+      var arg = args[i];
+      switch (typeof arg) {
+        case 'object':
+          argDesc = arg ? 'object' : 'null';
+          break;
+=======
 /**
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawGeometryCollectionGeometry =
     goog.abstractMethod;
+>>>>>>> ConectaDF
 
+        case 'string':
+          argDesc = arg;
+          break;
 
+<<<<<<< HEAD
+        case 'number':
+          argDesc = String(arg);
+          break;
+=======
 /**
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawLineStringGeometry = goog.abstractMethod;
+>>>>>>> ConectaDF
 
+        case 'boolean':
+          argDesc = arg ? 'true' : 'false';
+          break;
 
+<<<<<<< HEAD
+        case 'function':
+          argDesc = goog.debug.getFunctionName(arg);
+          argDesc = argDesc ? argDesc : '[fn]';
+          break;
+=======
 /**
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawMultiLineStringGeometry =
     goog.abstractMethod;
+>>>>>>> ConectaDF
+
+        case 'undefined':
+        default:
+          argDesc = typeof arg;
+          break;
+      }
+
+<<<<<<< HEAD
+      if (argDesc.length > 40) {
+        argDesc = argDesc.substr(0, 40) + '...';
+      }
+      sb.push(argDesc);
+    }
+    visited.push(fn);
+    sb.push(')\n');
+    /** @preserveTry */
+    try {
+      sb.push(goog.debug.getStacktraceHelper_(fn.caller, visited));
+    } catch (e) {
+      sb.push('[exception trying to get caller]\n');
+    }
+
+  } else if (fn) {
+    sb.push('[...long stack...]');
+  } else {
+    sb.push('[end]');
+  }
+  return sb.join('');
+};
 
 
+/**
+ * Set a custom function name resolver.
+ * @param {function(Function): string} resolver Resolves functions to their
+ *     names.
+ */
+goog.debug.setFunctionResolver = function(resolver) {
+  goog.debug.fnNameResolver_ = resolver;
+};
+
+
+/**
+ * Gets a function name
+ * @param {Function} fn Function to get name of.
+ * @return {string} Function's name.
+ */
+goog.debug.getFunctionName = function(fn) {
+  if (goog.debug.fnNameCache_[fn]) {
+    return goog.debug.fnNameCache_[fn];
+  }
+  if (goog.debug.fnNameResolver_) {
+    var name = goog.debug.fnNameResolver_(fn);
+    if (name) {
+      goog.debug.fnNameCache_[fn] = name;
+      return name;
+    }
+  }
+=======
 /**
  * @inheritDoc
  */
@@ -50894,8 +63605,76 @@ ol.render.canvas.Replay.prototype.drawMultiPointGeometry = goog.abstractMethod;
  * @inheritDoc
  */
 ol.render.canvas.Replay.prototype.drawPolygonGeometry = goog.abstractMethod;
+>>>>>>> ConectaDF
+
+  // Heuristically determine function name based on code.
+  var functionSource = String(fn);
+  if (!goog.debug.fnNameCache_[functionSource]) {
+    var matches = /function ([^\(]+)/.exec(functionSource);
+    if (matches) {
+      var method = matches[1];
+      goog.debug.fnNameCache_[functionSource] = method;
+    } else {
+      goog.debug.fnNameCache_[functionSource] = '[Anonymous]';
+    }
+  }
+
+<<<<<<< HEAD
+  return goog.debug.fnNameCache_[functionSource];
+};
 
 
+/**
+ * Makes whitespace visible by replacing it with printable characters.
+ * This is useful in finding diffrences between the expected and the actual
+ * output strings of a testcase.
+ * @param {string} string whose whitespace needs to be made visible.
+ * @return {string} string whose whitespace is made visible.
+ */
+goog.debug.makeWhitespaceVisible = function(string) {
+  return string.replace(/ /g, '[_]')
+      .replace(/\f/g, '[f]')
+      .replace(/\n/g, '[n]\n')
+      .replace(/\r/g, '[r]')
+      .replace(/\t/g, '[t]');
+};
+
+
+/**
+ * Hash map for storing function names that have already been looked up.
+ * @type {Object}
+ * @private
+ */
+goog.debug.fnNameCache_ = {};
+
+
+/**
+ * Resolves functions to their names.  Resolved function names will be cached.
+ * @type {function(Function):string}
+ * @private
+ */
+goog.debug.fnNameResolver_;
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Definition of the LogRecord class. Please minimize
+ * dependencies this file has on other closure classes as any dependency it
+ * takes won't be able to use the logging infrastructure.
+ *
+ */
+=======
 /**
  * @inheritDoc
  */
@@ -50944,8 +63723,54 @@ ol.render.canvas.Replay.prototype.finish = goog.nullFunction;
 ol.render.canvas.Replay.prototype.getBufferedMaxExtent = function() {
   return this.maxExtent;
 };
+>>>>>>> ConectaDF
+
+goog.provide('goog.debug.LogRecord');
+
+<<<<<<< HEAD
 
 
+/**
+ * LogRecord objects are used to pass logging requests between
+ * the logging framework and individual log Handlers.
+ * @constructor
+ * @param {goog.debug.Logger.Level} level One of the level identifiers.
+ * @param {string} msg The string message.
+ * @param {string} loggerName The name of the source logger.
+ * @param {number=} opt_time Time this log record was created if other than now.
+ *     If 0, we use #goog.now.
+ * @param {number=} opt_sequenceNumber Sequence number of this log record. This
+ *     should only be passed in when restoring a log record from persistence.
+ */
+goog.debug.LogRecord = function(level, msg, loggerName,
+    opt_time, opt_sequenceNumber) {
+  this.reset(level, msg, loggerName, opt_time, opt_sequenceNumber);
+};
+
+
+/**
+ * Time the LogRecord was created.
+ * @type {number}
+ * @private
+ */
+goog.debug.LogRecord.prototype.time_;
+
+
+/**
+ * Level of the LogRecord
+ * @type {goog.debug.Logger.Level}
+ * @private
+ */
+goog.debug.LogRecord.prototype.level_;
+
+
+/**
+ * Message associated with the record
+ * @type {string}
+ * @private
+ */
+goog.debug.LogRecord.prototype.msg_;
+=======
 /**
  * @return {ol.Extent} Extent.
  */
@@ -50983,14 +63808,24 @@ ol.render.canvas.Replay.prototype.setTextStyle = goog.abstractMethod;
  * @struct
  */
 ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
+>>>>>>> ConectaDF
 
   goog.base(this, tolerance, maxExtent, resolution);
 
+<<<<<<< HEAD
+/**
+ * Name of the logger that created the record.
+ * @type {string}
+ * @private
+ */
+goog.debug.LogRecord.prototype.loggerName_;
+=======
   /**
    * @private
    * @type {HTMLCanvasElement|HTMLVideoElement|Image}
    */
   this.hitDetectionImage_ = null;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -50998,11 +63833,21 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.image_ = null;
 
+<<<<<<< HEAD
+/**
+ * Sequence number for the LogRecord. Each record has a unique sequence number
+ * that is greater than all log records created before it.
+ * @type {number}
+ * @private
+ */
+goog.debug.LogRecord.prototype.sequenceNumber_ = 0;
+=======
   /**
    * @private
    * @type {number|undefined}
    */
   this.anchorX_ = undefined;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51010,11 +63855,20 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.anchorY_ = undefined;
 
+<<<<<<< HEAD
+/**
+ * Exception associated with the record
+ * @type {Object}
+ * @private
+ */
+goog.debug.LogRecord.prototype.exception_ = null;
+=======
   /**
    * @private
    * @type {number|undefined}
    */
   this.height_ = undefined;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51022,11 +63876,20 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.opacity_ = undefined;
 
+<<<<<<< HEAD
+/**
+ * Exception text associated with the record
+ * @type {?string}
+ * @private
+ */
+goog.debug.LogRecord.prototype.exceptionText_ = null;
+=======
   /**
    * @private
    * @type {number|undefined}
    */
   this.originX_ = undefined;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51034,6 +63897,12 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.originY_ = undefined;
 
+<<<<<<< HEAD
+/**
+ * @define {boolean} Whether to enable log sequence numbers.
+ */
+goog.define('goog.debug.LogRecord.ENABLE_SEQUENCE_NUMBERS', true);
+=======
   /**
    * @private
    * @type {boolean|undefined}
@@ -51045,6 +63914,7 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    * @type {number|undefined}
    */
   this.rotation_ = undefined;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51052,11 +63922,21 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.scale_ = undefined;
 
+<<<<<<< HEAD
+/**
+ * A sequence counter for assigning increasing sequence numbers to LogRecord
+ * objects.
+ * @type {number}
+ * @private
+ */
+goog.debug.LogRecord.nextSequenceNumber_ = 0;
+=======
   /**
    * @private
    * @type {boolean|undefined}
    */
   this.snapToPixel_ = undefined;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51064,6 +63944,31 @@ ol.render.canvas.ImageReplay = function(tolerance, maxExtent, resolution) {
    */
   this.width_ = undefined;
 
+<<<<<<< HEAD
+/**
+ * Sets all fields of the log record.
+ * @param {goog.debug.Logger.Level} level One of the level identifiers.
+ * @param {string} msg The string message.
+ * @param {string} loggerName The name of the source logger.
+ * @param {number=} opt_time Time this log record was created if other than now.
+ *     If 0, we use #goog.now.
+ * @param {number=} opt_sequenceNumber Sequence number of this log record. This
+ *     should only be passed in when restoring a log record from persistence.
+ */
+goog.debug.LogRecord.prototype.reset = function(level, msg, loggerName,
+    opt_time, opt_sequenceNumber) {
+  if (goog.debug.LogRecord.ENABLE_SEQUENCE_NUMBERS) {
+    this.sequenceNumber_ = typeof opt_sequenceNumber == 'number' ?
+        opt_sequenceNumber : goog.debug.LogRecord.nextSequenceNumber_++;
+  }
+
+  this.time_ = opt_time || goog.now();
+  this.level_ = level;
+  this.msg_ = msg;
+  this.loggerName_ = loggerName;
+  delete this.exception_;
+  delete this.exceptionText_;
+=======
 };
 goog.inherits(ol.render.canvas.ImageReplay, ol.render.canvas.Replay);
 
@@ -51080,10 +63985,19 @@ ol.render.canvas.ImageReplay.prototype.drawCoordinates_ =
     function(flatCoordinates, offset, end, stride) {
   return this.appendFlatCoordinates(
       flatCoordinates, offset, end, stride, false);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Get the source Logger's name.
+ *
+ * @return {string} source logger name (may be null).
+ */
+goog.debug.LogRecord.prototype.getLoggerName = function() {
+  return this.loggerName_;
+=======
  * @inheritDoc
  */
 ol.render.canvas.ImageReplay.prototype.drawPointGeometry =
@@ -51124,10 +64038,19 @@ ol.render.canvas.ImageReplay.prototype.drawPointGeometry =
     this.scale_, this.snapToPixel_, this.width_
   ]);
   this.endGeometry(pointGeometry, data);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Get the exception that is part of the log record.
+ *
+ * @return {Object} the exception.
+ */
+goog.debug.LogRecord.prototype.getException = function() {
+  return this.exception_;
+=======
  * @inheritDoc
  */
 ol.render.canvas.ImageReplay.prototype.drawMultiPointGeometry =
@@ -51168,10 +64091,19 @@ ol.render.canvas.ImageReplay.prototype.drawMultiPointGeometry =
     this.scale_, this.snapToPixel_, this.width_
   ]);
   this.endGeometry(multiPointGeometry, data);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Set the exception that is part of the log record.
+ *
+ * @param {Object} exception the exception.
+ */
+goog.debug.LogRecord.prototype.setException = function(exception) {
+  this.exception_ = exception;
+=======
  * @inheritDoc
  */
 ol.render.canvas.ImageReplay.prototype.finish = function() {
@@ -51190,10 +64122,40 @@ ol.render.canvas.ImageReplay.prototype.finish = function() {
   this.rotation_ = undefined;
   this.snapToPixel_ = undefined;
   this.width_ = undefined;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Get the exception text that is part of the log record.
+ *
+ * @return {?string} Exception text.
+ */
+goog.debug.LogRecord.prototype.getExceptionText = function() {
+  return this.exceptionText_;
+};
+
+
+/**
+ * Set the exception text that is part of the log record.
+ *
+ * @param {string} text The exception text.
+ */
+goog.debug.LogRecord.prototype.setExceptionText = function(text) {
+  this.exceptionText_ = text;
+};
+
+
+/**
+ * Get the source Logger's name.
+ *
+ * @param {string} loggerName source logger name (may be null).
+ */
+goog.debug.LogRecord.prototype.setLoggerName = function(loggerName) {
+  this.loggerName_ = loggerName;
+};
+=======
  * @inheritDoc
  */
 ol.render.canvas.ImageReplay.prototype.setImageStyle = function(imageStyle) {
@@ -51235,9 +64197,37 @@ ol.render.canvas.ImageReplay.prototype.setImageStyle = function(imageStyle) {
  * @struct
  */
 ol.render.canvas.LineStringReplay = function(tolerance, maxExtent, resolution) {
+>>>>>>> ConectaDF
 
   goog.base(this, tolerance, maxExtent, resolution);
 
+<<<<<<< HEAD
+/**
+ * Get the logging message level, for example Level.SEVERE.
+ * @return {goog.debug.Logger.Level} the logging message level.
+ */
+goog.debug.LogRecord.prototype.getLevel = function() {
+  return this.level_;
+};
+
+
+/**
+ * Set the logging message level, for example Level.SEVERE.
+ * @param {goog.debug.Logger.Level} level the logging message level.
+ */
+goog.debug.LogRecord.prototype.setLevel = function(level) {
+  this.level_ = level;
+};
+
+
+/**
+ * Get the "raw" log message, before localization or formatting.
+ *
+ * @return {string} the raw message string.
+ */
+goog.debug.LogRecord.prototype.getMessage = function() {
+  return this.msg_;
+=======
   /**
    * @private
    * @type {{currentStrokeStyle: (string|undefined),
@@ -51292,10 +64282,19 @@ ol.render.canvas.LineStringReplay.prototype.drawFlatCoordinates_ =
   this.instructions.push(moveToLineToInstruction);
   this.hitDetectionInstructions.push(moveToLineToInstruction);
   return end;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Set the "raw" log message, before localization or formatting.
+ *
+ * @param {string} msg the raw message string.
+ */
+goog.debug.LogRecord.prototype.setMessage = function(msg) {
+  this.msg_ = msg;
+=======
  * @inheritDoc
  */
 ol.render.canvas.LineStringReplay.prototype.getBufferedMaxExtent = function() {
@@ -51305,10 +64304,19 @@ ol.render.canvas.LineStringReplay.prototype.getBufferedMaxExtent = function() {
         extent, this.resolution * (this.maxLineWidth + 1) / 2);
   }
   return extent;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Get event time in milliseconds since 1970.
+ *
+ * @return {number} event time in millis since 1970.
+ */
+goog.debug.LogRecord.prototype.getMillis = function() {
+  return this.time_;
+=======
  * @private
  */
 ol.render.canvas.LineStringReplay.prototype.setStrokeStyle_ = function() {
@@ -51347,10 +64355,19 @@ ol.render.canvas.LineStringReplay.prototype.setStrokeStyle_ = function() {
     state.currentLineWidth = lineWidth;
     state.currentMiterLimit = miterLimit;
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Set event time in milliseconds since 1970.
+ *
+ * @param {number} time event time in millis since 1970.
+ */
+goog.debug.LogRecord.prototype.setMillis = function(time) {
+  this.time_ = time;
+=======
  * @inheritDoc
  */
 ol.render.canvas.LineStringReplay.prototype.drawLineStringGeometry =
@@ -51376,10 +64393,22 @@ ol.render.canvas.LineStringReplay.prototype.drawLineStringGeometry =
       flatCoordinates, 0, flatCoordinates.length, stride);
   this.hitDetectionInstructions.push([ol.render.canvas.Instruction.STROKE]);
   this.endGeometry(lineStringGeometry, data);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Get the sequence number.
+ * <p>
+ * Sequence numbers are normally assigned in the LogRecord
+ * constructor, which assigns unique sequence numbers to
+ * each new LogRecord in increasing order.
+ * @return {number} the sequence number.
+ */
+goog.debug.LogRecord.prototype.getSequenceNumber = function() {
+  return this.sequenceNumber_;
+=======
  * @inheritDoc
  */
 ol.render.canvas.LineStringReplay.prototype.drawMultiLineStringGeometry =
@@ -51410,10 +64439,34 @@ ol.render.canvas.LineStringReplay.prototype.drawMultiLineStringGeometry =
   }
   this.hitDetectionInstructions.push([ol.render.canvas.Instruction.STROKE]);
   this.endGeometry(multiLineStringGeometry, data);
+>>>>>>> ConectaDF
 };
 
+// Copyright 2010 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 /**
+<<<<<<< HEAD
+ * @fileoverview A buffer for log records. The purpose of this is to improve
+ * logging performance by re-using old objects when the buffer becomes full and
+ * to eliminate the need for each app to implement their own log buffer. The
+ * disadvantage to doing this is that log handlers cannot maintain references to
+ * log records and expect that they are not overwriten at a later point.
+ *
+ * @author agrieve@google.com (Andrew Grieve)
+ */
+=======
  * @inheritDoc
  */
 ol.render.canvas.LineStringReplay.prototype.finish = function() {
@@ -51425,8 +64478,14 @@ ol.render.canvas.LineStringReplay.prototype.finish = function() {
   this.reverseHitDetectionInstructions_();
   this.state_ = null;
 };
+>>>>>>> ConectaDF
 
+goog.provide('goog.debug.LogBuffer');
 
+<<<<<<< HEAD
+goog.require('goog.asserts');
+goog.require('goog.debug.LogRecord');
+=======
 /**
  * @inheritDoc
  */
@@ -51455,10 +64514,38 @@ ol.render.canvas.LineStringReplay.prototype.setFillStrokeStyle =
       strokeStyleMiterLimit : ol.render.canvas.defaultMiterLimit;
   this.maxLineWidth = Math.max(this.maxLineWidth, this.state_.lineWidth);
 };
+>>>>>>> ConectaDF
 
 
 
 /**
+<<<<<<< HEAD
+ * Creates the log buffer.
+ * @constructor
+ * @final
+ */
+goog.debug.LogBuffer = function() {
+  goog.asserts.assert(goog.debug.LogBuffer.isBufferingEnabled(),
+      'Cannot use goog.debug.LogBuffer without defining ' +
+      'goog.debug.LogBuffer.CAPACITY.');
+  this.clear();
+};
+
+
+/**
+ * A static method that always returns the same instance of LogBuffer.
+ * @return {!goog.debug.LogBuffer} The LogBuffer singleton instance.
+ */
+goog.debug.LogBuffer.getInstance = function() {
+  if (!goog.debug.LogBuffer.instance_) {
+    // This function is written with the return statement after the assignment
+    // to avoid the jscompiler StripCode bug described in http://b/2608064.
+    // After that bug is fixed this can be refactored.
+    goog.debug.LogBuffer.instance_ = new goog.debug.LogBuffer();
+  }
+  return goog.debug.LogBuffer.instance_;
+};
+=======
  * @constructor
  * @extends {ol.render.canvas.Replay}
  * @param {number} tolerance Tolerance.
@@ -51470,6 +64557,7 @@ ol.render.canvas.LineStringReplay.prototype.setFillStrokeStyle =
 ol.render.canvas.PolygonReplay = function(tolerance, maxExtent, resolution) {
 
   goog.base(this, tolerance, maxExtent, resolution);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51505,6 +64593,57 @@ ol.render.canvas.PolygonReplay = function(tolerance, maxExtent, resolution) {
     miterLimit: undefined
   };
 
+<<<<<<< HEAD
+/**
+ * @define {number} The number of log records to buffer. 0 means disable
+ * buffering.
+ */
+goog.define('goog.debug.LogBuffer.CAPACITY', 0);
+
+
+/**
+ * The array to store the records.
+ * @type {!Array.<!goog.debug.LogRecord|undefined>}
+ * @private
+ */
+goog.debug.LogBuffer.prototype.buffer_;
+
+
+/**
+ * The index of the most recently added record or -1 if there are no records.
+ * @type {number}
+ * @private
+ */
+goog.debug.LogBuffer.prototype.curIndex_;
+
+
+/**
+ * Whether the buffer is at capacity.
+ * @type {boolean}
+ * @private
+ */
+goog.debug.LogBuffer.prototype.isFull_;
+
+
+/**
+ * Adds a log record to the buffer, possibly overwriting the oldest record.
+ * @param {goog.debug.Logger.Level} level One of the level identifiers.
+ * @param {string} msg The string message.
+ * @param {string} loggerName The name of the source logger.
+ * @return {!goog.debug.LogRecord} The log record.
+ */
+goog.debug.LogBuffer.prototype.addRecord = function(level, msg, loggerName) {
+  var curIndex = (this.curIndex_ + 1) % goog.debug.LogBuffer.CAPACITY;
+  this.curIndex_ = curIndex;
+  if (this.isFull_) {
+    var ret = this.buffer_[curIndex];
+    ret.reset(level, msg, loggerName);
+    return ret;
+  }
+  this.isFull_ = curIndex == goog.debug.LogBuffer.CAPACITY - 1;
+  return this.buffer_[curIndex] =
+      new goog.debug.LogRecord(level, msg, loggerName);
+=======
 };
 goog.inherits(ol.render.canvas.PolygonReplay, ol.render.canvas.Replay);
 
@@ -51679,10 +64818,17 @@ ol.render.canvas.PolygonReplay.prototype.drawMultiPolygonGeometry =
         flatCoordinates, offset, endss[i], stride);
   }
   this.endGeometry(multiPolygonGeometry, data);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @return {boolean} Whether the log buffer is enabled.
+ */
+goog.debug.LogBuffer.isBufferingEnabled = function() {
+  return goog.debug.LogBuffer.CAPACITY > 0;
+=======
  * @inheritDoc
  */
 ol.render.canvas.PolygonReplay.prototype.finish = function() {
@@ -51701,10 +64847,19 @@ ol.render.canvas.PolygonReplay.prototype.finish = function() {
       coordinates[i] = ol.geom.flat.simplify.snap(coordinates[i], tolerance);
     }
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Removes all buffered log records.
+ */
+goog.debug.LogBuffer.prototype.clear = function() {
+  this.buffer_ = new Array(goog.debug.LogBuffer.CAPACITY);
+  this.curIndex_ = -1;
+  this.isFull_ = false;
+=======
  * @inheritDoc
  */
 ol.render.canvas.PolygonReplay.prototype.getBufferedMaxExtent = function() {
@@ -51714,10 +64869,29 @@ ol.render.canvas.PolygonReplay.prototype.getBufferedMaxExtent = function() {
         extent, this.resolution * (this.maxLineWidth + 1) / 2);
   }
   return extent;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Calls the given function for each buffered log record, starting with the
+ * oldest one.
+ * @param {function(!goog.debug.LogRecord)} func The function to call.
+ */
+goog.debug.LogBuffer.prototype.forEachRecord = function(func) {
+  var buffer = this.buffer_;
+  // Corner case: no records.
+  if (!buffer[0]) {
+    return;
+  }
+  var curIndex = this.curIndex_;
+  var i = this.isFull_ ? curIndex : -1;
+  do {
+    i = (i + 1) % goog.debug.LogBuffer.CAPACITY;
+    func(/** @type {!goog.debug.LogRecord} */ (buffer[i]));
+  } while (i != curIndex);
+=======
  * @inheritDoc
  */
 ol.render.canvas.PolygonReplay.prototype.setFillStrokeStyle =
@@ -51760,10 +64934,108 @@ ol.render.canvas.PolygonReplay.prototype.setFillStrokeStyle =
     state.lineWidth = undefined;
     state.miterLimit = undefined;
   }
+>>>>>>> ConectaDF
 };
+
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+<<<<<<< HEAD
+ * @fileoverview Definition of the Logger class. Please minimize dependencies
+ * this file has on other closure classes as any dependency it takes won't be
+ * able to use the logging infrastructure.
+ *
+ * @see ../demos/debug.html
+ */
+
+goog.provide('goog.debug.LogManager');
+goog.provide('goog.debug.Loggable');
+goog.provide('goog.debug.Logger');
+goog.provide('goog.debug.Logger.Level');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.debug');
+goog.require('goog.debug.LogBuffer');
+goog.require('goog.debug.LogRecord');
 
 
 /**
+ * A message value that can be handled by a Logger.
+ *
+ * Functions are treated like callbacks, but are only called when the event's
+ * log level is enabled. This is useful for logging messages that are expensive
+ * to construct.
+ *
+ * @typedef {string|function(): string}
+ */
+goog.debug.Loggable;
+
+
+
+/**
+ * The Logger is an object used for logging debug messages. Loggers are
+ * normally named, using a hierarchical dot-separated namespace. Logger names
+ * can be arbitrary strings, but they should normally be based on the package
+ * name or class name of the logged component, such as goog.net.BrowserChannel.
+ *
+ * The Logger object is loosely based on the java class
+ * java.util.logging.Logger. It supports different levels of filtering for
+ * different loggers.
+ *
+ * The logger object should never be instantiated by application code. It
+ * should always use the goog.debug.Logger.getLogger function.
+ *
+ * @constructor
+ * @param {string} name The name of the Logger.
+ * @final
+ */
+goog.debug.Logger = function(name) {
+  /**
+   * Name of the Logger. Generally a dot-separated namespace
+   * @private {string}
+   */
+  this.name_ = name;
+
+  /**
+   * Parent Logger.
+   * @private {goog.debug.Logger}
+   */
+  this.parent_ = null;
+
+  /**
+   * Level that this logger only filters above. Null indicates it should
+   * inherit from the parent.
+   * @private {goog.debug.Logger.Level}
+   */
+  this.level_ = null;
+
+  /**
+   * Map of children loggers. The keys are the leaf names of the children and
+   * the values are the child loggers.
+   * @private {Object}
+   */
+  this.children_ = null;
+
+  /**
+   * Handlers that are listening to this logger.
+   * @private {Array.<Function>}
+   */
+  this.handlers_ = null;
+};
+=======
  * @private
  */
 ol.render.canvas.PolygonReplay.prototype.setFillStrokeStyles_ = function() {
@@ -51843,6 +65115,7 @@ ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
    * @type {string}
    */
   this.text_ = '';
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51850,11 +65123,20 @@ ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
    */
   this.textOffsetX_ = 0;
 
+<<<<<<< HEAD
+/**
+ * @define {boolean} Toggles whether loggers other than the root logger can have
+ *     log handlers attached to them and whether they can have their log level
+ *     set. Logging is a bit faster when this is set to false.
+ */
+goog.define('goog.debug.Logger.ENABLE_HIERARCHY', true);
+=======
   /**
    * @private
    * @type {number}
    */
   this.textOffsetY_ = 0;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51862,11 +65144,20 @@ ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
    */
   this.textRotation_ = 0;
 
+<<<<<<< HEAD
+if (!goog.debug.Logger.ENABLE_HIERARCHY) {
+  /**
+   * @type {!Array.<Function>}
+   * @private
+   */
+  goog.debug.Logger.rootHandlers_ = [];
+=======
   /**
    * @private
    * @type {number}
    */
   this.textScale_ = 0;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51875,10 +65166,19 @@ ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
   this.textFillState_ = null;
 
   /**
+<<<<<<< HEAD
+   * @type {goog.debug.Logger.Level}
+   * @private
+   */
+  goog.debug.Logger.rootLevel_;
+}
+
+=======
    * @private
    * @type {?ol.render.canvas.StrokeState}
    */
   this.textStrokeState_ = null;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -51886,6 +65186,57 @@ ol.render.canvas.TextReplay = function(tolerance, maxExtent, resolution) {
    */
   this.textState_ = null;
 
+<<<<<<< HEAD
+/**
+ * The Level class defines a set of standard logging levels that
+ * can be used to control logging output.  The logging Level objects
+ * are ordered and are specified by ordered integers.  Enabling logging
+ * at a given level also enables logging at all higher levels.
+ * <p>
+ * Clients should normally use the predefined Level constants such
+ * as Level.SEVERE.
+ * <p>
+ * The levels in descending order are:
+ * <ul>
+ * <li>SEVERE (highest value)
+ * <li>WARNING
+ * <li>INFO
+ * <li>CONFIG
+ * <li>FINE
+ * <li>FINER
+ * <li>FINEST  (lowest value)
+ * </ul>
+ * In addition there is a level OFF that can be used to turn
+ * off logging, and a level ALL that can be used to enable
+ * logging of all messages.
+ *
+ * @param {string} name The name of the level.
+ * @param {number} value The numeric value of the level.
+ * @constructor
+ * @final
+ */
+goog.debug.Logger.Level = function(name, value) {
+  /**
+   * The name of the level
+   * @type {string}
+   */
+  this.name = name;
+
+  /**
+   * The numeric value of the level
+   * @type {number}
+   */
+  this.value = value;
+};
+
+
+/**
+ * @return {string} String representation of the logger level.
+ * @override
+ */
+goog.debug.Logger.Level.prototype.toString = function() {
+  return this.name;
+=======
 };
 goog.inherits(ol.render.canvas.TextReplay, ol.render.canvas.Replay);
 
@@ -51923,10 +65274,59 @@ ol.render.canvas.TextReplay.prototype.drawText =
   this.instructions.push(drawTextInstruction);
   this.hitDetectionInstructions.push(drawTextInstruction);
   this.endGeometry(geometry, data);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * OFF is a special level that can be used to turn off logging.
+ * This level is initialized to <CODE>Infinity</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.OFF =
+    new goog.debug.Logger.Level('OFF', Infinity);
+
+
+/**
+ * SHOUT is a message level for extra debugging loudness.
+ * This level is initialized to <CODE>1200</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.SHOUT = new goog.debug.Logger.Level('SHOUT', 1200);
+
+
+/**
+ * SEVERE is a message level indicating a serious failure.
+ * This level is initialized to <CODE>1000</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.SEVERE = new goog.debug.Logger.Level('SEVERE', 1000);
+
+
+/**
+ * WARNING is a message level indicating a potential problem.
+ * This level is initialized to <CODE>900</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.WARNING = new goog.debug.Logger.Level('WARNING', 900);
+
+
+/**
+ * INFO is a message level for informational messages.
+ * This level is initialized to <CODE>800</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.INFO = new goog.debug.Logger.Level('INFO', 800);
+
+
+/**
+ * CONFIG is a message level for static configuration messages.
+ * This level is initialized to <CODE>700</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.CONFIG = new goog.debug.Logger.Level('CONFIG', 700);
+=======
  * @param {ol.render.canvas.FillState} fillState Fill state.
  * @private
  */
@@ -52134,6 +65534,7 @@ ol.render.canvas.TextReplay.prototype.setTextStyle = function(textStyle) {
  * @struct
  */
 ol.render.canvas.ReplayGroup = function(tolerance, maxExtent, resolution) {
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52141,6 +65542,30 @@ ol.render.canvas.ReplayGroup = function(tolerance, maxExtent, resolution) {
    */
   this.tolerance_ = tolerance;
 
+<<<<<<< HEAD
+/**
+ * FINE is a message level providing tracing information.
+ * This level is initialized to <CODE>500</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.FINE = new goog.debug.Logger.Level('FINE', 500);
+
+
+/**
+ * FINER indicates a fairly detailed tracing message.
+ * This level is initialized to <CODE>400</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.FINER = new goog.debug.Logger.Level('FINER', 400);
+
+/**
+ * FINEST indicates a highly detailed tracing message.
+ * This level is initialized to <CODE>300</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+
+goog.debug.Logger.Level.FINEST = new goog.debug.Logger.Level('FINEST', 300);
+=======
   /**
    * @private
    * @type {ol.Extent}
@@ -52165,6 +65590,7 @@ ol.render.canvas.ReplayGroup = function(tolerance, maxExtent, resolution) {
    * @type {CanvasRenderingContext2D}
    */
   this.hitDetectionContext_ = ol.dom.createCanvasContext2D(1, 1);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52172,6 +65598,55 @@ ol.render.canvas.ReplayGroup = function(tolerance, maxExtent, resolution) {
    */
   this.hitDetectionTransform_ = goog.vec.Mat4.createNumber();
 
+<<<<<<< HEAD
+/**
+ * ALL indicates that all messages should be logged.
+ * This level is initialized to <CODE>0</CODE>.
+ * @type {!goog.debug.Logger.Level}
+ */
+goog.debug.Logger.Level.ALL = new goog.debug.Logger.Level('ALL', 0);
+
+
+/**
+ * The predefined levels.
+ * @type {!Array.<!goog.debug.Logger.Level>}
+ * @final
+ */
+goog.debug.Logger.Level.PREDEFINED_LEVELS = [
+  goog.debug.Logger.Level.OFF,
+  goog.debug.Logger.Level.SHOUT,
+  goog.debug.Logger.Level.SEVERE,
+  goog.debug.Logger.Level.WARNING,
+  goog.debug.Logger.Level.INFO,
+  goog.debug.Logger.Level.CONFIG,
+  goog.debug.Logger.Level.FINE,
+  goog.debug.Logger.Level.FINER,
+  goog.debug.Logger.Level.FINEST,
+  goog.debug.Logger.Level.ALL];
+
+
+/**
+ * A lookup map used to find the level object based on the name or value of
+ * the level object.
+ * @type {Object}
+ * @private
+ */
+goog.debug.Logger.Level.predefinedLevelsCache_ = null;
+
+
+/**
+ * Creates the predefined levels cache and populates it.
+ * @private
+ */
+goog.debug.Logger.Level.createPredefinedLevelsCache_ = function() {
+  goog.debug.Logger.Level.predefinedLevelsCache_ = {};
+  for (var i = 0, level; level = goog.debug.Logger.Level.PREDEFINED_LEVELS[i];
+       i++) {
+    goog.debug.Logger.Level.predefinedLevelsCache_[level.value] = level;
+    goog.debug.Logger.Level.predefinedLevelsCache_[level.name] = level;
+  }
+};
+=======
 };
 
 
@@ -52260,6 +65735,7 @@ ol.render.canvas.ReplayGroup.prototype.replay_ = function(
   context.lineTo(flatClipCoords[6], flatClipCoords[7]);
   context.closePath();
   context.clip();
+>>>>>>> ConectaDF
 
   var i, ii, j, jj, replays, replayType, replay, result;
   for (i = 0, ii = zs.length; i < ii; ++i) {
@@ -52277,12 +65753,49 @@ ol.render.canvas.ReplayGroup.prototype.replay_ = function(
     }
   }
 
+<<<<<<< HEAD
+/**
+ * Gets the predefined level with the given name.
+ * @param {string} name The name of the level.
+ * @return {goog.debug.Logger.Level} The level, or null if none found.
+ */
+goog.debug.Logger.Level.getPredefinedLevel = function(name) {
+  if (!goog.debug.Logger.Level.predefinedLevelsCache_) {
+    goog.debug.Logger.Level.createPredefinedLevelsCache_();
+  }
+
+  return goog.debug.Logger.Level.predefinedLevelsCache_[name] || null;
+=======
   context.restore();
   return undefined;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Gets the highest predefined level <= #value.
+ * @param {number} value Level value.
+ * @return {goog.debug.Logger.Level} The level, or null if none found.
+ */
+goog.debug.Logger.Level.getPredefinedLevelByValue = function(value) {
+  if (!goog.debug.Logger.Level.predefinedLevelsCache_) {
+    goog.debug.Logger.Level.createPredefinedLevelsCache_();
+  }
+
+  if (value in goog.debug.Logger.Level.predefinedLevelsCache_) {
+    return goog.debug.Logger.Level.predefinedLevelsCache_[value];
+  }
+
+  for (var i = 0; i < goog.debug.Logger.Level.PREDEFINED_LEVELS.length; ++i) {
+    var level = goog.debug.Logger.Level.PREDEFINED_LEVELS[i];
+    if (level.value <= value) {
+      return level;
+    }
+  }
+  return null;
+};
+=======
  * @param {ol.Extent} extent Extent.
  * @param {number} resolution Resolution.
  * @param {number} rotation Rotation.
@@ -52304,10 +65817,29 @@ ol.render.canvas.ReplayGroup.prototype.forEachGeometryAtPixel = function(
   /** @type {Array.<number>} */
   var zs = goog.array.map(goog.object.getKeys(this.replaysByZIndex_), Number);
   goog.array.sort(zs, function(a, b) { return b - a; });
+>>>>>>> ConectaDF
 
   var context = this.hitDetectionContext_;
   context.clearRect(0, 0, 1, 1);
 
+<<<<<<< HEAD
+/**
+ * Finds or creates a logger for a named subsystem. If a logger has already been
+ * created with the given name it is returned. Otherwise a new logger is
+ * created. If a new logger is created its log level will be configured based
+ * on the LogManager configuration and it will configured to also send logging
+ * output to its parent's handlers. It will be registered in the LogManager
+ * global namespace.
+ *
+ * @param {string} name A name for the logger. This should be a dot-separated
+ * name and should normally be based on the package name or class name of the
+ * subsystem, such as goog.net.BrowserChannel.
+ * @return {!goog.debug.Logger} The named logger.
+ * @deprecated use goog.log instead. http://go/goog-debug-logger-deprecated
+ */
+goog.debug.Logger.getLogger = function(name) {
+  return goog.debug.LogManager.getLogger(name);
+=======
   return this.replayHitDetection_(zs, context, extent, transform,
       rotation, skippedFeaturesHash,
       /**
@@ -52325,10 +65857,35 @@ ol.render.canvas.ReplayGroup.prototype.forEachGeometryAtPixel = function(
           context.clearRect(0, 0, 1, 1);
         }
       });
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Logs a message to profiling tools, if available.
+ * {@see http://code.google.com/webtoolkit/speedtracer/logging-api.html}
+ * {@see http://msdn.microsoft.com/en-us/library/dd433074(VS.85).aspx}
+ * @param {string} msg The message to log.
+ */
+goog.debug.Logger.logToProfilers = function(msg) {
+  // Using goog.global, as loggers might be used in window-less contexts.
+  if (goog.global['console']) {
+    if (goog.global['console']['timeStamp']) {
+      // Logs a message to Firebug, Web Inspector, SpeedTracer, etc.
+      goog.global['console']['timeStamp'](msg);
+    } else if (goog.global['console']['markTimeline']) {
+      // TODO(user): markTimeline is deprecated. Drop this else clause entirely
+      // after Chrome M14 hits stable.
+      goog.global['console']['markTimeline'](msg);
+    }
+  }
+
+  if (goog.global['msWriteProfilerMark']) {
+    // Logs a message to the Microsoft profiler
+    goog.global['msWriteProfilerMark'](msg);
+  }
+=======
  * @inheritDoc
  */
 ol.render.canvas.ReplayGroup.prototype.finish = function() {
@@ -52340,10 +65897,18 @@ ol.render.canvas.ReplayGroup.prototype.finish = function() {
       replays[replayKey].finish();
     }
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Gets the name of this logger.
+ * @return {string} The name of this logger.
+ */
+goog.debug.Logger.prototype.getName = function() {
+  return this.name_;
+=======
  * @inheritDoc
  */
 ol.render.canvas.ReplayGroup.prototype.getReplay =
@@ -52363,18 +65928,56 @@ ol.render.canvas.ReplayGroup.prototype.getReplay =
     replays[replayType] = replay;
   }
   return replay;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Adds a handler to the logger. This doesn't use the event system because
+ * we want to be able to add logging to the event system.
+ * @param {Function} handler Handler function to add.
+ */
+goog.debug.Logger.prototype.addHandler = function(handler) {
+  if (goog.debug.LOGGING_ENABLED) {
+    if (goog.debug.Logger.ENABLE_HIERARCHY) {
+      if (!this.handlers_) {
+        this.handlers_ = [];
+      }
+      this.handlers_.push(handler);
+    } else {
+      goog.asserts.assert(!this.name_,
+          'Cannot call addHandler on a non-root logger when ' +
+          'goog.debug.Logger.ENABLE_HIERARCHY is false.');
+      goog.debug.Logger.rootHandlers_.push(handler);
+    }
+  }
+=======
  * @inheritDoc
  */
 ol.render.canvas.ReplayGroup.prototype.isEmpty = function() {
   return goog.object.isEmpty(this.replaysByZIndex_);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Removes a handler from the logger. This doesn't use the event system because
+ * we want to be able to add logging to the event system.
+ * @param {Function} handler Handler function to remove.
+ * @return {boolean} Whether the handler was removed.
+ */
+goog.debug.Logger.prototype.removeHandler = function(handler) {
+  if (goog.debug.LOGGING_ENABLED) {
+    var handlers = goog.debug.Logger.ENABLE_HIERARCHY ? this.handlers_ :
+        goog.debug.Logger.rootHandlers_;
+    return !!handlers && goog.array.remove(handlers, handler);
+  } else {
+    return false;
+  }
+};
+=======
  * @const
  * @private
  * @type {Object.<ol.render.ReplayType,
@@ -52388,6 +65991,7 @@ ol.render.canvas.BATCH_CONSTRUCTORS_ = {
   'Text': ol.render.canvas.TextReplay
 };
 goog.provide('ol.renderer.canvas.VectorLayer');
+>>>>>>> ConectaDF
 
 goog.require('goog.array');
 goog.require('goog.asserts');
@@ -52403,6 +66007,51 @@ goog.require('ol.renderer.canvas.Layer');
 goog.require('ol.renderer.vector');
 goog.require('ol.source.Vector');
 
+<<<<<<< HEAD
+/**
+ * Returns the parent of this logger.
+ * @return {goog.debug.Logger} The parent logger or null if this is the root.
+ */
+goog.debug.Logger.prototype.getParent = function() {
+  return this.parent_;
+};
+
+
+/**
+ * Returns the children of this logger as a map of the child name to the logger.
+ * @return {!Object} The map where the keys are the child leaf names and the
+ *     values are the Logger objects.
+ */
+goog.debug.Logger.prototype.getChildren = function() {
+  if (!this.children_) {
+    this.children_ = {};
+  }
+  return this.children_;
+};
+
+
+/**
+ * Set the log level specifying which message levels will be logged by this
+ * logger. Message levels lower than this value will be discarded.
+ * The level value Level.OFF can be used to turn off logging. If the new level
+ * is null, it means that this node should inherit its level from its nearest
+ * ancestor with a specific (non-null) level value.
+ *
+ * @param {goog.debug.Logger.Level} level The new level.
+ */
+goog.debug.Logger.prototype.setLevel = function(level) {
+  if (goog.debug.LOGGING_ENABLED) {
+    if (goog.debug.Logger.ENABLE_HIERARCHY) {
+      this.level_ = level;
+    } else {
+      goog.asserts.assert(!this.name_,
+          'Cannot call setLevel() on a non-root logger when ' +
+          'goog.debug.Logger.ENABLE_HIERARCHY is false.');
+      goog.debug.Logger.rootLevel_ = level;
+    }
+  }
+};
+=======
 
 
 /**
@@ -52414,6 +66063,7 @@ goog.require('ol.source.Vector');
 ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
 
   goog.base(this, mapRenderer, vectorLayer);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52421,11 +66071,27 @@ ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
    */
   this.dirty_ = false;
 
+<<<<<<< HEAD
+/**
+ * Gets the log level specifying which message levels will be logged by this
+ * logger. Message levels lower than this value will be discarded.
+ * The level value Level.OFF can be used to turn off logging. If the level
+ * is null, it means that this node should inherit its level from its nearest
+ * ancestor with a specific (non-null) level value.
+ *
+ * @return {goog.debug.Logger.Level} The level.
+ */
+goog.debug.Logger.prototype.getLevel = function() {
+  return goog.debug.LOGGING_ENABLED ?
+      this.level_ : goog.debug.Logger.Level.OFF;
+};
+=======
   /**
    * @private
    * @type {number}
    */
   this.renderedRevision_ = -1;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52433,11 +66099,35 @@ ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
    */
   this.renderedResolution_ = NaN;
 
+<<<<<<< HEAD
+/**
+ * Returns the effective level of the logger based on its ancestors' levels.
+ * @return {goog.debug.Logger.Level} The level.
+ */
+goog.debug.Logger.prototype.getEffectiveLevel = function() {
+  if (!goog.debug.LOGGING_ENABLED) {
+    return goog.debug.Logger.Level.OFF;
+  }
+
+  if (!goog.debug.Logger.ENABLE_HIERARCHY) {
+    return goog.debug.Logger.rootLevel_;
+  }
+  if (this.level_) {
+    return this.level_;
+  }
+  if (this.parent_) {
+    return this.parent_.getEffectiveLevel();
+  }
+  goog.asserts.fail('Root logger has no level set.');
+  return null;
+};
+=======
   /**
    * @private
    * @type {ol.Extent}
    */
   this.renderedExtent_ = ol.extent.createEmpty();
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52445,11 +66135,25 @@ ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
    */
   this.renderedRenderOrder_ = null;
 
+<<<<<<< HEAD
+/**
+ * Checks if a message of the given level would actually be logged by this
+ * logger. This check is based on the Loggers effective level, which may be
+ * inherited from its parent.
+ * @param {goog.debug.Logger.Level} level The level to check.
+ * @return {boolean} Whether the message would be logged.
+ */
+goog.debug.Logger.prototype.isLoggable = function(level) {
+  return goog.debug.LOGGING_ENABLED &&
+      level.value >= this.getEffectiveLevel().value;
+};
+=======
   /**
    * @private
    * @type {ol.render.canvas.ReplayGroup}
    */
   this.replayGroup_ = null;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52457,6 +66161,52 @@ ol.renderer.canvas.VectorLayer = function(mapRenderer, vectorLayer) {
    */
   this.context_ = ol.dom.createCanvasContext2D();
 
+<<<<<<< HEAD
+/**
+ * Logs a message. If the logger is currently enabled for the
+ * given message level then the given message is forwarded to all the
+ * registered output Handler objects.
+ * @param {goog.debug.Logger.Level} level One of the level identifiers.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error|Object=} opt_exception An exception associated with the
+ *     message.
+ */
+goog.debug.Logger.prototype.log = function(level, msg, opt_exception) {
+  // java caches the effective level, not sure it's necessary here
+  if (goog.debug.LOGGING_ENABLED && this.isLoggable(level)) {
+    // Message callbacks can be useful when a log message is expensive to build.
+    if (goog.isFunction(msg)) {
+      msg = msg();
+    }
+
+    this.doLogRecord_(this.getLogRecord(level, msg, opt_exception));
+  }
+};
+
+
+/**
+ * Creates a new log record and adds the exception (if present) to it.
+ * @param {goog.debug.Logger.Level} level One of the level identifiers.
+ * @param {string} msg The string message.
+ * @param {Error|Object=} opt_exception An exception associated with the
+ *     message.
+ * @return {!goog.debug.LogRecord} A log record.
+ */
+goog.debug.Logger.prototype.getLogRecord = function(level, msg, opt_exception) {
+  if (goog.debug.LogBuffer.isBufferingEnabled()) {
+    var logRecord =
+        goog.debug.LogBuffer.getInstance().addRecord(level, msg, this.name_);
+  } else {
+    logRecord = new goog.debug.LogRecord(level, String(msg), this.name_);
+  }
+  if (opt_exception) {
+    logRecord.setException(opt_exception);
+    logRecord.setExceptionText(
+        goog.debug.exposeException(opt_exception, arguments.callee.caller));
+  }
+  return logRecord;
+};
+=======
 };
 goog.inherits(ol.renderer.canvas.VectorLayer, ol.renderer.canvas.Layer);
 
@@ -52466,10 +66216,26 @@ goog.inherits(ol.renderer.canvas.VectorLayer, ol.renderer.canvas.Layer);
  */
 ol.renderer.canvas.VectorLayer.prototype.composeFrame =
     function(frameState, layerState, context) {
+>>>>>>> ConectaDF
 
   var transform = this.getTransform(frameState);
 
+<<<<<<< HEAD
+/**
+ * Logs a message at the Logger.Level.SHOUT level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.shout = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.SHOUT, msg, opt_exception);
+  }
+};
+=======
   this.dispatchPreComposeEvent(context, frameState, transform);
+>>>>>>> ConectaDF
 
   var replayGroup = this.replayGroup_;
   if (!goog.isNull(replayGroup) && !replayGroup.isEmpty()) {
@@ -52488,18 +66254,58 @@ ol.renderer.canvas.VectorLayer.prototype.composeFrame =
         replayContext, frameState.extent, frameState.pixelRatio, transform,
         frameState.view2DState.rotation, frameState.skippedFeatureUids_);
 
+<<<<<<< HEAD
+/**
+ * Logs a message at the Logger.Level.SEVERE level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.severe = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.SEVERE, msg, opt_exception);
+  }
+};
+=======
     if (replayContext != context) {
       this.dispatchRenderEvent(replayContext, frameState, transform);
       context.drawImage(replayContext.canvas, 0, 0);
     }
   }
+>>>>>>> ConectaDF
 
   this.dispatchPostComposeEvent(context, frameState, transform);
 
+<<<<<<< HEAD
+/**
+ * Logs a message at the Logger.Level.WARNING level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.warning = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.WARNING, msg, opt_exception);
+  }
+=======
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Logs a message at the Logger.Level.INFO level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.info = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.INFO, msg, opt_exception);
+=======
  * @inheritDoc
  */
 ol.renderer.canvas.VectorLayer.prototype.forEachFeatureAtPixel =
@@ -52523,11 +66329,24 @@ ol.renderer.canvas.VectorLayer.prototype.forEachFeatureAtPixel =
           goog.asserts.assert(goog.isDef(feature));
           return callback.call(thisArg, feature, layer);
         });
+>>>>>>> ConectaDF
   }
 };
 
 
 /**
+<<<<<<< HEAD
+ * Logs a message at the Logger.Level.CONFIG level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.config = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.CONFIG, msg, opt_exception);
+  }
+=======
  * Handle changes in image style state.
  * @param {goog.events.Event} event Image style change event.
  * @private
@@ -52535,10 +66354,38 @@ ol.renderer.canvas.VectorLayer.prototype.forEachFeatureAtPixel =
 ol.renderer.canvas.VectorLayer.prototype.handleImageChange_ =
     function(event) {
   this.renderIfReadyAndVisible();
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Logs a message at the Logger.Level.FINE level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.fine = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.FINE, msg, opt_exception);
+  }
+};
+
+
+/**
+ * Logs a message at the Logger.Level.FINER level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.finer = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.FINER, msg, opt_exception);
+  }
+};
+=======
  * @inheritDoc
  */
 ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
@@ -52548,15 +66395,31 @@ ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
   goog.asserts.assertInstanceof(vectorLayer, ol.layer.Vector);
   var vectorSource = vectorLayer.getSource();
   goog.asserts.assertInstanceof(vectorSource, ol.source.Vector);
+>>>>>>> ConectaDF
 
   this.updateAttributions(
       frameState.attributions, vectorSource.getAttributions());
   this.updateLogos(frameState, vectorSource);
 
+<<<<<<< HEAD
+/**
+ * Logs a message at the Logger.Level.FINEST level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.debug.Logger.prototype.finest = function(msg, opt_exception) {
+  if (goog.debug.LOGGING_ENABLED) {
+    this.log(goog.debug.Logger.Level.FINEST, msg, opt_exception);
+  }
+};
+=======
   if (!this.dirty_ && (frameState.viewHints[ol.ViewHint.ANIMATING] ||
       frameState.viewHints[ol.ViewHint.INTERACTING])) {
     return;
   }
+>>>>>>> ConectaDF
 
   var frameStateExtent = frameState.extent;
   var view2DState = frameState.view2DState;
@@ -52569,6 +66432,19 @@ ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
     vectorLayerRenderOrder = ol.renderer.vector.defaultOrder;
   }
 
+<<<<<<< HEAD
+/**
+ * Logs a LogRecord. If the logger is currently enabled for the
+ * given message level then the given message is forwarded to all the
+ * registered output Handler objects.
+ * @param {goog.debug.LogRecord} logRecord A log record to log.
+ */
+goog.debug.Logger.prototype.logRecord = function(logRecord) {
+  if (goog.debug.LOGGING_ENABLED && this.isLoggable(logRecord.getLevel())) {
+    this.doLogRecord_(logRecord);
+  }
+};
+=======
   if (!this.dirty_ &&
       this.renderedResolution_ == resolution &&
       this.renderedRevision_ == vectorLayerRevision &&
@@ -52576,6 +66452,7 @@ ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
       ol.extent.containsExtent(this.renderedExtent_, frameStateExtent)) {
     return;
   }
+>>>>>>> ConectaDF
 
   var extent = this.renderedExtent_;
   var xBuffer = ol.extent.getWidth(frameStateExtent) / 4;
@@ -52585,12 +66462,48 @@ ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
   extent[2] = frameStateExtent[2] + xBuffer;
   extent[3] = frameStateExtent[3] + yBuffer;
 
+<<<<<<< HEAD
+/**
+ * Logs a LogRecord.
+ * @param {goog.debug.LogRecord} logRecord A log record to log.
+ * @private
+ */
+goog.debug.Logger.prototype.doLogRecord_ = function(logRecord) {
+  goog.debug.Logger.logToProfilers('log:' + logRecord.getMessage());
+  if (goog.debug.Logger.ENABLE_HIERARCHY) {
+    var target = this;
+    while (target) {
+      target.callPublish_(logRecord);
+      target = target.getParent();
+    }
+  } else {
+    for (var i = 0, handler; handler = goog.debug.Logger.rootHandlers_[i++]; ) {
+      handler(logRecord);
+    }
+  }
+};
+=======
   // FIXME dispose of old replayGroup in post render
   goog.dispose(this.replayGroup_);
   this.replayGroup_ = null;
+>>>>>>> ConectaDF
 
   this.dirty_ = false;
 
+<<<<<<< HEAD
+/**
+ * Calls the handlers for publish.
+ * @param {goog.debug.LogRecord} logRecord The log record to publish.
+ * @private
+ */
+goog.debug.Logger.prototype.callPublish_ = function(logRecord) {
+  if (this.handlers_) {
+    for (var i = 0, handler; handler = this.handlers_[i]; i++) {
+      handler(logRecord);
+    }
+  }
+};
+=======
   var styleFunction = vectorLayer.getStyleFunction();
   if (!goog.isDef(styleFunction)) {
     styleFunction = ol.feature.defaultStyleFunction;
@@ -52627,16 +66540,37 @@ ol.renderer.canvas.VectorLayer.prototype.prepareFrame =
         extent, resolution, renderFeature, this);
   }
   replayGroup.finish();
+>>>>>>> ConectaDF
 
   this.renderedResolution_ = resolution;
   this.renderedRevision_ = vectorLayerRevision;
   this.renderedRenderOrder_ = vectorLayerRenderOrder;
   this.replayGroup_ = replayGroup;
 
+<<<<<<< HEAD
+/**
+ * Sets the parent of this logger. This is used for setting up the logger tree.
+ * @param {goog.debug.Logger} parent The parent logger.
+ * @private
+ */
+goog.debug.Logger.prototype.setParent_ = function(parent) {
+  this.parent_ = parent;
+=======
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Adds a child to this logger. This is used for setting up the logger tree.
+ * @param {string} name The leaf name of the child.
+ * @param {goog.debug.Logger} logger The child logger.
+ * @private
+ */
+goog.debug.Logger.prototype.addChild_ = function(name, logger) {
+  this.getChildren()[name] = logger;
+};
+=======
  * @param {ol.Feature} feature Feature.
  * @param {number} resolution Resolution.
  * @param {number} pixelRatio Pixel ratio.
@@ -52662,9 +66596,47 @@ ol.renderer.canvas.VectorLayer.prototype.renderFeature =
   return loading;
 };
 // FIXME offset panning
+>>>>>>> ConectaDF
 
 goog.provide('ol.renderer.canvas.Map');
 
+<<<<<<< HEAD
+/**
+ * There is a single global LogManager object that is used to maintain a set of
+ * shared state about Loggers and log services. This is loosely based on the
+ * java class java.util.logging.LogManager.
+ */
+goog.debug.LogManager = {};
+
+
+/**
+ * Map of logger names to logger objects.
+ *
+ * @type {!Object.<string, !goog.debug.Logger>}
+ * @private
+ */
+goog.debug.LogManager.loggers_ = {};
+
+
+/**
+ * The root logger which is the root of the logger tree.
+ * @type {goog.debug.Logger}
+ * @private
+ */
+goog.debug.LogManager.rootLogger_ = null;
+
+
+/**
+ * Initializes the LogManager if not already initialized.
+ */
+goog.debug.LogManager.initialize = function() {
+  if (!goog.debug.LogManager.rootLogger_) {
+    goog.debug.LogManager.rootLogger_ = new goog.debug.Logger('');
+    goog.debug.LogManager.loggers_[''] = goog.debug.LogManager.rootLogger_;
+    goog.debug.LogManager.rootLogger_.setLevel(goog.debug.Logger.Level.CONFIG);
+  }
+};
+=======
 goog.require('goog.asserts');
 goog.require('goog.dom');
 goog.require('goog.style');
@@ -52697,6 +66669,7 @@ goog.require('ol.vec.Mat4');
 ol.renderer.canvas.Map = function(container, map) {
 
   goog.base(this, container, map);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52704,22 +66677,46 @@ ol.renderer.canvas.Map = function(container, map) {
    */
   this.context_ = ol.dom.createCanvasContext2D();
 
+<<<<<<< HEAD
+/**
+ * Returns all the loggers.
+ * @return {!Object.<string, !goog.debug.Logger>} Map of logger names to logger
+ *     objects.
+ */
+goog.debug.LogManager.getLoggers = function() {
+  return goog.debug.LogManager.loggers_;
+};
+=======
   /**
    * @private
    * @type {HTMLCanvasElement}
    */
   this.canvas_ = this.context_.canvas;
+>>>>>>> ConectaDF
 
   this.canvas_.style.width = '100%';
   this.canvas_.style.height = '100%';
   this.canvas_.className = ol.css.CLASS_UNSELECTABLE;
   goog.dom.insertChildAt(container, this.canvas_, 0);
 
+<<<<<<< HEAD
+/**
+ * Returns the root of the logger tree namespace, the logger with the empty
+ * string as its name.
+ *
+ * @return {!goog.debug.Logger} The root logger.
+ */
+goog.debug.LogManager.getRoot = function() {
+  goog.debug.LogManager.initialize();
+  return /** @type {!goog.debug.Logger} */ (goog.debug.LogManager.rootLogger_);
+};
+=======
   /**
    * @private
    * @type {boolean}
    */
   this.renderedVisible_ = true;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -52727,6 +66724,36 @@ ol.renderer.canvas.Map = function(container, map) {
    */
   this.transform_ = goog.vec.Mat4.createNumber();
 
+<<<<<<< HEAD
+/**
+ * Finds a named logger.
+ *
+ * @param {string} name A name for the logger. This should be a dot-separated
+ * name and should normally be based on the package name or class name of the
+ * subsystem, such as goog.net.BrowserChannel.
+ * @return {!goog.debug.Logger} The named logger.
+ */
+goog.debug.LogManager.getLogger = function(name) {
+  goog.debug.LogManager.initialize();
+  var ret = goog.debug.LogManager.loggers_[name];
+  return ret || goog.debug.LogManager.createLogger_(name);
+};
+
+
+/**
+ * Creates a function that can be passed to goog.debug.catchErrors. The function
+ * will log all reported errors using the given logger.
+ * @param {goog.debug.Logger=} opt_logger The logger to log the errors to.
+ *     Defaults to the root logger.
+ * @return {function(Object)} The created function.
+ */
+goog.debug.LogManager.createFunctionForCatchErrors = function(opt_logger) {
+  return function(info) {
+    var logger = opt_logger || goog.debug.LogManager.getRoot();
+    logger.severe('Error: ' + info.message + ' (' + info.fileName +
+                  ' @ Line: ' + info.line + ')');
+  };
+=======
 };
 goog.inherits(ol.renderer.canvas.Map, ol.renderer.Map);
 
@@ -52745,10 +66772,32 @@ ol.renderer.canvas.Map.prototype.createLayerRenderer = function(layer) {
     goog.asserts.fail();
     return null;
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Creates the named logger. Will also create the parents of the named logger
+ * if they don't yet exist.
+ * @param {string} name The name of the logger.
+ * @return {!goog.debug.Logger} The named logger.
+ * @private
+ */
+goog.debug.LogManager.createLogger_ = function(name) {
+  // find parent logger
+  var logger = new goog.debug.Logger(name);
+  if (goog.debug.Logger.ENABLE_HIERARCHY) {
+    var lastDotIndex = name.lastIndexOf('.');
+    var parentName = name.substr(0, lastDotIndex);
+    var leafName = name.substr(lastDotIndex + 1);
+    var parentLogger = goog.debug.LogManager.getLogger(parentName);
+
+    // tell the parent about the child and the child about the parent
+    parentLogger.addChild_(leafName, logger);
+    logger.setParent_(parentLogger);
+  }
+=======
  * @param {ol.render.EventType} type Event type.
  * @param {oli.FrameState} frameState Frame state.
  * @private
@@ -52786,9 +66835,48 @@ ol.renderer.canvas.Map.prototype.getCanvasLayerRenderer = function(layer) {
   goog.asserts.assertInstanceof(layerRenderer, ol.renderer.canvas.Layer);
   return /** @type {ol.renderer.canvas.Layer} */ (layerRenderer);
 };
+>>>>>>> ConectaDF
 
+  goog.debug.LogManager.loggers_[name] = logger;
+  return logger;
+};
+// Copyright 2013 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 /**
+<<<<<<< HEAD
+ * @fileoverview Basic strippable logging definitions.
+ * @see http://go/closurelogging
+ *
+ * @author johnlenz@google.com (John Lenz)
+ */
+
+goog.provide('goog.log');
+goog.provide('goog.log.Level');
+goog.provide('goog.log.LogRecord');
+goog.provide('goog.log.Logger');
+
+goog.require('goog.debug');
+goog.require('goog.debug.LogManager');
+goog.require('goog.debug.LogRecord');
+goog.require('goog.debug.Logger');
+
+
+/** @define {boolean} Whether logging is enabled. */
+goog.define('goog.log.ENABLED', goog.debug.LOGGING_ENABLED);
+
+=======
  * @inheritDoc
  */
 ol.renderer.canvas.Map.prototype.renderFrame = function(frameState) {
@@ -52832,9 +66920,61 @@ ol.renderer.canvas.Map.prototype.renderFrame = function(frameState) {
     layerRenderer.prepareFrame(frameState, layerState);
     layerRenderer.composeFrame(frameState, layerState, context);
   }
+>>>>>>> ConectaDF
 
   this.dispatchComposeEvent_(ol.render.EventType.POSTCOMPOSE, frameState);
 
+<<<<<<< HEAD
+/**
+ * @constructor
+ * @final
+ */
+goog.log.Logger = goog.debug.Logger;
+
+
+
+/**
+ * @constructor
+ * @final
+ */
+goog.log.Level = goog.debug.Logger.Level;
+
+
+
+/**
+ * @constructor
+ * @final
+ */
+goog.log.LogRecord = goog.debug.LogRecord;
+
+
+/**
+ * Finds or creates a logger for a named subsystem. If a logger has already been
+ * created with the given name it is returned. Otherwise a new logger is
+ * created. If a new logger is created its log level will be configured based
+ * on the goog.debug.LogManager configuration and it will configured to also
+ * send logging output to its parent's handlers.
+ * @see goog.debug.LogManager
+ *
+ * @param {string} name A name for the logger. This should be a dot-separated
+ *     name and should normally be based on the package name or class name of
+ *     the subsystem, such as goog.net.BrowserChannel.
+ * @param {goog.log.Level=} opt_level If provided, override the
+ *     default logging level with the provided level.
+ * @return {goog.log.Logger} The named logger or null if logging is disabled.
+ */
+goog.log.getLogger = function(name, opt_level) {
+  if (goog.log.ENABLED) {
+    var logger = goog.debug.LogManager.getLogger(name);
+    if (opt_level && logger) {
+      logger.setLevel(opt_level);
+    }
+    return logger;
+  } else {
+    return null;
+  }
+};
+=======
   if (!this.renderedVisible_) {
     goog.style.setElementShown(this.canvas_, true);
     this.renderedVisible_ = true;
@@ -52869,11 +67009,89 @@ ol.PreRenderFunction;
  * An implementation of Google Maps' MVCArray.
  * @see https://developers.google.com/maps/documentation/javascript/reference
  */
+>>>>>>> ConectaDF
 
 goog.provide('ol.Collection');
 goog.provide('ol.CollectionEvent');
 goog.provide('ol.CollectionEventType');
 
+<<<<<<< HEAD
+// TODO(johnlenz): try to tighten the types to these functions.
+/**
+ * Adds a handler to the logger. This doesn't use the event system because
+ * we want to be able to add logging to the event system.
+ * @param {goog.log.Logger} logger
+ * @param {Function} handler Handler function to add.
+ */
+goog.log.addHandler = function(logger, handler) {
+  if (goog.log.ENABLED && logger) {
+    logger.addHandler(handler);
+  }
+};
+
+
+/**
+ * Removes a handler from the logger. This doesn't use the event system because
+ * we want to be able to add logging to the event system.
+ * @param {goog.log.Logger} logger
+ * @param {Function} handler Handler function to remove.
+ * @return {boolean} Whether the handler was removed.
+ */
+goog.log.removeHandler = function(logger, handler) {
+  if (goog.log.ENABLED && logger) {
+    return logger.removeHandler(handler);
+  } else {
+    return false;
+  }
+};
+
+
+/**
+ * Logs a message. If the logger is currently enabled for the
+ * given message level then the given message is forwarded to all the
+ * registered output Handler objects.
+ * @param {goog.log.Logger} logger
+ * @param {goog.log.Level} level One of the level identifiers.
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error|Object=} opt_exception An exception associated with the
+ *     message.
+ */
+goog.log.log = function(logger, level, msg, opt_exception) {
+  if (goog.log.ENABLED && logger) {
+    logger.log(level, msg, opt_exception);
+  }
+};
+
+
+/**
+ * Logs a message at the Level.SEVERE level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.log.Logger} logger
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.log.error = function(logger, msg, opt_exception) {
+  if (goog.log.ENABLED && logger) {
+    logger.severe(msg, opt_exception);
+  }
+};
+
+
+/**
+ * Logs a message at the Level.WARNING level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.log.Logger} logger
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.log.warning = function(logger, msg, opt_exception) {
+  if (goog.log.ENABLED && logger) {
+    logger.warning(msg, opt_exception);
+  }
+};
+=======
 goog.require('goog.array');
 goog.require('goog.events.Event');
 goog.require('ol.Object');
@@ -52910,6 +67128,7 @@ ol.CollectionEventType = {
 ol.CollectionEvent = function(type, opt_element, opt_target) {
 
   goog.base(this, type, opt_target);
+>>>>>>> ConectaDF
 
   /**
    * The element that is added to or removed from the collection.
@@ -52917,6 +67136,65 @@ ol.CollectionEvent = function(type, opt_element, opt_target) {
    */
   this.element = opt_element;
 
+<<<<<<< HEAD
+/**
+ * Logs a message at the Level.INFO level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.log.Logger} logger
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.log.info = function(logger, msg, opt_exception) {
+  if (goog.log.ENABLED && logger) {
+    logger.info(msg, opt_exception);
+  }
+};
+
+
+/**
+ * Logs a message at the Level.Fine level.
+ * If the logger is currently enabled for the given message level then the
+ * given message is forwarded to all the registered output Handler objects.
+ * @param {goog.log.Logger} logger
+ * @param {goog.debug.Loggable} msg The message to log.
+ * @param {Error=} opt_exception An exception associated with the message.
+ */
+goog.log.fine = function(logger, msg, opt_exception) {
+  if (goog.log.ENABLED && logger) {
+    logger.fine(msg, opt_exception);
+  }
+};
+// Copyright 2011 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+/**
+ * @fileoverview Constants used by the WebGL rendering, including all of the
+ * constants used from the WebGL context.  For example, instead of using
+ * context.ARRAY_BUFFER, your code can use
+ * goog.webgl.ARRAY_BUFFER. The benefits for doing this include allowing
+ * the compiler to optimize your code so that the compiled code does not have to
+ * contain large strings to reference these properties, and reducing runtime
+ * property access.
+ *
+ * Values are taken from the WebGL Spec:
+ * https://www.khronos.org/registry/webgl/specs/1.0/#WEBGLRENDERINGCONTEXT
+ */
+
+goog.provide('goog.webgl');
+=======
 };
 goog.inherits(ol.CollectionEvent, goog.events.Event);
 
@@ -52928,6 +67206,7 @@ ol.CollectionProperty = {
   LENGTH: 'length'
 };
 
+>>>>>>> ConectaDF
 
 
 /**
@@ -52939,31 +67218,55 @@ ol.CollectionProperty = {
  * @todo observable length {number} readonly the length of the array
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_BUFFER_BIT = 0x00000100;
+=======
 ol.Collection = function(opt_array) {
+>>>>>>> ConectaDF
 
   goog.base(this);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_BUFFER_BIT = 0x00000400;
+=======
   /**
    * @private
    * @type {Array.<*>}
    */
   this.array_ = opt_array || [];
+>>>>>>> ConectaDF
 
   this.updateLength_();
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.COLOR_BUFFER_BIT = 0x00004000;
+=======
 };
 goog.inherits(ol.Collection, ol.Object);
+>>>>>>> ConectaDF
 
 
 /**
  * Remove all elements from the collection.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.POINTS = 0x0000;
+=======
 ol.Collection.prototype.clear = function() {
   while (this.getLength() > 0) {
     this.pop();
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -52971,6 +67274,9 @@ ol.Collection.prototype.clear = function() {
  * @return {ol.Collection} This collection.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.LINES = 0x0001;
+=======
 ol.Collection.prototype.extend = function(arr) {
   var i, ii;
   for (i = 0, ii = arr.length; i < ii; ++i) {
@@ -52978,6 +67284,7 @@ ol.Collection.prototype.extend = function(arr) {
   }
   return this;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -52989,9 +67296,13 @@ ol.Collection.prototype.extend = function(arr) {
  * @template T,S
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.LINE_LOOP = 0x0002;
+=======
 ol.Collection.prototype.forEach = function(f, opt_this) {
   goog.array.forEach(this.array_, f, opt_this);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53002,9 +67313,13 @@ ol.Collection.prototype.forEach = function(f, opt_this) {
  * @return {Array} Array.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.LINE_STRIP = 0x0003;
+=======
 ol.Collection.prototype.getArray = function() {
   return this.array_;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53013,9 +67328,13 @@ ol.Collection.prototype.getArray = function() {
  * @return {*} Element.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.TRIANGLES = 0x0004;
+=======
 ol.Collection.prototype.getAt = function(index) {
   return this.array_[index];
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53023,9 +67342,13 @@ ol.Collection.prototype.getAt = function(index) {
  * @return {number} Length.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.TRIANGLE_STRIP = 0x0005;
+=======
 ol.Collection.prototype.getLength = function() {
   return /** @type {number} */ (this.get(ol.CollectionProperty.LENGTH));
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53034,12 +67357,16 @@ ol.Collection.prototype.getLength = function() {
  * @param {*} elem Element.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.TRIANGLE_FAN = 0x0006;
+=======
 ol.Collection.prototype.insertAt = function(index, elem) {
   goog.array.insertAt(this.array_, elem, index);
   this.updateLength_();
   this.dispatchEvent(
       new ol.CollectionEvent(ol.CollectionEventType.ADD, elem, this));
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53047,9 +67374,13 @@ ol.Collection.prototype.insertAt = function(index, elem) {
  * @return {*} Element.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.ZERO = 0;
+=======
 ol.Collection.prototype.pop = function() {
   return this.removeAt(this.getLength() - 1);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53058,11 +67389,15 @@ ol.Collection.prototype.pop = function() {
  * @return {number} Length.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.ONE = 1;
+=======
 ol.Collection.prototype.push = function(elem) {
   var n = this.array_.length;
   this.insertAt(n, elem);
   return n;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53071,6 +67406,9 @@ ol.Collection.prototype.push = function(elem) {
  * @return {*} The removed element or undefined if elem was not found.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.SRC_COLOR = 0x0300;
+=======
 ol.Collection.prototype.remove = function(elem) {
   var arr = this.array_;
   var i, ii;
@@ -53081,6 +67419,7 @@ ol.Collection.prototype.remove = function(elem) {
   }
   return undefined;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53089,6 +67428,9 @@ ol.Collection.prototype.remove = function(elem) {
  * @return {*} Value.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.ONE_MINUS_SRC_COLOR = 0x0301;
+=======
 ol.Collection.prototype.removeAt = function(index) {
   var prev = this.array_[index];
   goog.array.removeAt(this.array_, index);
@@ -53097,6 +67439,7 @@ ol.Collection.prototype.removeAt = function(index) {
       new ol.CollectionEvent(ol.CollectionEventType.REMOVE, prev, this));
   return prev;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53105,6 +67448,9 @@ ol.Collection.prototype.removeAt = function(index) {
  * @param {*} elem Element.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.SRC_ALPHA = 0x0302;
+=======
 ol.Collection.prototype.setAt = function(index, elem) {
   var n = this.getLength();
   if (index < n) {
@@ -53122,11 +67468,15 @@ ol.Collection.prototype.setAt = function(index, elem) {
     this.insertAt(index, elem);
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @private
  */
+<<<<<<< HEAD
+goog.webgl.ONE_MINUS_SRC_ALPHA = 0x0303;
+=======
 ol.Collection.prototype.updateLength_ = function() {
   this.set(ol.CollectionProperty.LENGTH, this.array_.length);
 };
@@ -53145,15 +67495,20 @@ goog.require('ol.Object');
 goog.require('ol.ObjectEventType');
 goog.require('ol.layer.Base');
 goog.require('ol.source.State');
+>>>>>>> ConectaDF
 
 
 /**
  * @enum {string}
  */
+<<<<<<< HEAD
+goog.webgl.DST_ALPHA = 0x0304;
+=======
 ol.layer.GroupProperty = {
   LAYERS: 'layers'
 };
 
+>>>>>>> ConectaDF
 
 
 /**
@@ -53164,27 +67519,90 @@ ol.layer.GroupProperty = {
  *       that are part of this group
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.ONE_MINUS_DST_ALPHA = 0x0305;
+=======
 ol.layer.Group = function(opt_options) {
+>>>>>>> ConectaDF
 
   var options = goog.isDef(opt_options) ? opt_options : {};
   var baseOptions = /** @type {olx.layer.GroupOptions} */
       (goog.object.clone(options));
   delete baseOptions.layers;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DST_COLOR = 0x0306;
+=======
   var layers = options.layers;
+>>>>>>> ConectaDF
 
   goog.base(this, baseOptions);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ONE_MINUS_DST_COLOR = 0x0307;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SRC_ALPHA_SATURATE = 0x0308;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FUNC_ADD = 0x8006;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND_EQUATION = 0x8009;
+
+
+/**
+ * Same as BLEND_EQUATION
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND_EQUATION_RGB = 0x8009;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND_EQUATION_ALPHA = 0x883D;
+=======
   /**
    * @private
    * @type {Object.<string, goog.events.Key>}
    */
   this.listenerKeys_ = null;
+>>>>>>> ConectaDF
 
   goog.events.listen(this,
       ol.Object.getChangeEventType(ol.layer.GroupProperty.LAYERS),
       this.handleLayersChanged_, false, this);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FUNC_SUBTRACT = 0x800A;
+=======
   if (goog.isDef(layers)) {
     if (goog.isArray(layers)) {
       layers = new ol.Collection(goog.array.clone(layers));
@@ -53195,27 +67613,50 @@ ol.layer.Group = function(opt_options) {
   } else {
     layers = new ol.Collection();
   }
+>>>>>>> ConectaDF
 
   this.setLayers(layers);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FUNC_REVERSE_SUBTRACT = 0x800B;
+=======
 };
 goog.inherits(ol.layer.Group, ol.layer.Base);
+>>>>>>> ConectaDF
 
 
 /**
  * @private
  */
+<<<<<<< HEAD
+goog.webgl.BLEND_DST_RGB = 0x80C8;
+=======
 ol.layer.Group.prototype.handleLayerChange_ = function() {
   if (this.getVisible()) {
     this.dispatchChangeEvent();
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {goog.events.Event} event Event.
  * @private
  */
+<<<<<<< HEAD
+goog.webgl.BLEND_SRC_RGB = 0x80C9;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND_DST_ALPHA = 0x80CA;
+=======
 ol.layer.Group.prototype.handleLayersChanged_ = function(event) {
   if (!goog.isNull(this.listenerKeys_)) {
     goog.array.forEach(
@@ -53231,6 +67672,7 @@ ol.layer.Group.prototype.handleLayersChanged_ = function(event) {
       'remove': goog.events.listen(layers, ol.CollectionEventType.REMOVE,
           this.handleLayersRemove_, false, this)
     };
+>>>>>>> ConectaDF
 
     var layersArray = layers.getArray();
     var i, ii, layer;
@@ -53243,14 +67685,25 @@ ol.layer.Group.prototype.handleLayersChanged_ = function(event) {
     }
   }
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND_SRC_ALPHA = 0x80CB;
+=======
   this.dispatchChangeEvent();
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.CollectionEvent} collectionEvent Collection event.
  * @private
  */
+<<<<<<< HEAD
+goog.webgl.CONSTANT_COLOR = 0x8001;
+=======
 ol.layer.Group.prototype.handleLayersAdd_ = function(collectionEvent) {
   var layer = /** @type {ol.layer.Base} */ (collectionEvent.element);
   this.listenerKeys_[goog.getUid(layer).toString()] = goog.events.listen(
@@ -53258,12 +67711,16 @@ ol.layer.Group.prototype.handleLayersAdd_ = function(collectionEvent) {
       this.handleLayerChange_, false, this);
   this.dispatchChangeEvent();
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.CollectionEvent} collectionEvent Collection event.
  * @private
  */
+<<<<<<< HEAD
+goog.webgl.ONE_MINUS_CONSTANT_COLOR = 0x8002;
+=======
 ol.layer.Group.prototype.handleLayersRemove_ = function(collectionEvent) {
   var layer = /** @type {ol.layer.Base} */ (collectionEvent.element);
   var key = goog.getUid(layer).toString();
@@ -53271,11 +67728,15 @@ ol.layer.Group.prototype.handleLayersRemove_ = function(collectionEvent) {
   delete this.listenerKeys_[key];
   this.dispatchChangeEvent();
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @return {ol.Collection|undefined} Collection of layers.
  */
+<<<<<<< HEAD
+goog.webgl.CONSTANT_ALPHA = 0x8003;
+=======
 ol.layer.Group.prototype.getLayers = function() {
   return /** @type {ol.Collection|undefined} */ (this.get(
       ol.layer.GroupProperty.LAYERS));
@@ -53284,11 +67745,15 @@ goog.exportProperty(
     ol.layer.Group.prototype,
     'getLayers',
     ol.layer.Group.prototype.getLayers);
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.Collection|undefined} layers Collection of layers.
  */
+<<<<<<< HEAD
+goog.webgl.ONE_MINUS_CONSTANT_ALPHA = 0x8004;
+=======
 ol.layer.Group.prototype.setLayers = function(layers) {
   this.set(ol.layer.GroupProperty.LAYERS, layers);
 };
@@ -53296,11 +67761,15 @@ goog.exportProperty(
     ol.layer.Group.prototype,
     'setLayers',
     ol.layer.Group.prototype.setLayers);
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
+goog.webgl.BLEND_COLOR = 0x8005;
+=======
 ol.layer.Group.prototype.getLayersArray = function(opt_array) {
   var array = (goog.isDef(opt_array)) ? opt_array : [];
   this.getLayers().forEach(function(layer) {
@@ -53308,19 +67777,32 @@ ol.layer.Group.prototype.getLayersArray = function(opt_array) {
   });
   return array;
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
+goog.webgl.ARRAY_BUFFER = 0x8892;
+=======
 ol.layer.Group.prototype.getLayerStatesArray = function(opt_states) {
   var states = (goog.isDef(opt_states)) ? opt_states : [];
+>>>>>>> ConectaDF
 
   var pos = states.length;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ELEMENT_ARRAY_BUFFER = 0x8893;
+=======
   this.getLayers().forEach(function(layer) {
     layer.getLayerStatesArray(states);
   });
+>>>>>>> ConectaDF
 
   var ownLayerState = this.getLayerState();
   var i, ii, layerState;
@@ -53339,13 +67821,31 @@ ol.layer.Group.prototype.getLayerStatesArray = function(opt_states) {
         layerState.minResolution, ownLayerState.minResolution);
   }
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ARRAY_BUFFER_BINDING = 0x8894;
+=======
   return states;
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
+goog.webgl.ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STREAM_DRAW = 0x88E0;
+=======
 ol.layer.Group.prototype.getSourceState = function() {
   return ol.source.State.READY;
 };
@@ -53353,19 +67853,27 @@ goog.provide('ol.CenterConstraint');
 goog.provide('ol.CenterConstraintType');
 
 goog.require('goog.math');
+>>>>>>> ConectaDF
 
 
 /**
  * @typedef {function((ol.Coordinate|undefined)): (ol.Coordinate|undefined)}
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STATIC_DRAW = 0x88E4;
+=======
 ol.CenterConstraintType;
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.Extent} extent Extent.
  * @return {ol.CenterConstraintType}
  */
+<<<<<<< HEAD
+goog.webgl.DYNAMIC_DRAW = 0x88E8;
+=======
 ol.CenterConstraint.createExtent = function(extent) {
   return (
       /**
@@ -53383,12 +67891,23 @@ ol.CenterConstraint.createExtent = function(extent) {
         }
       });
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.Coordinate|undefined} center Center.
  * @return {ol.Coordinate|undefined} Center.
  */
+<<<<<<< HEAD
+goog.webgl.BUFFER_SIZE = 0x8764;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BUFFER_USAGE = 0x8765;
+=======
 ol.CenterConstraint.none = function(center) {
   return center;
 };
@@ -53396,12 +67915,17 @@ goog.provide('ol.RotationConstraint');
 goog.provide('ol.RotationConstraintType');
 
 goog.require('goog.math');
+>>>>>>> ConectaDF
 
 
 /**
  * @typedef {function((number|undefined), number): (number|undefined)}
  */
+<<<<<<< HEAD
+goog.webgl.CURRENT_VERTEX_ATTRIB = 0x8626;
+=======
 ol.RotationConstraintType;
+>>>>>>> ConectaDF
 
 
 /**
@@ -53409,6 +67933,9 @@ ol.RotationConstraintType;
  * @param {number} delta Delta.
  * @return {number|undefined} Rotation.
  */
+<<<<<<< HEAD
+goog.webgl.FRONT = 0x0404;
+=======
 ol.RotationConstraint.disable = function(rotation, delta) {
   if (goog.isDef(rotation)) {
     return 0;
@@ -53416,6 +67943,7 @@ ol.RotationConstraint.disable = function(rotation, delta) {
     return undefined;
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53423,6 +67951,9 @@ ol.RotationConstraint.disable = function(rotation, delta) {
  * @param {number} delta Delta.
  * @return {number|undefined} Rotation.
  */
+<<<<<<< HEAD
+goog.webgl.BACK = 0x0405;
+=======
 ol.RotationConstraint.none = function(rotation, delta) {
   if (goog.isDef(rotation)) {
     return rotation + delta;
@@ -53430,12 +67961,16 @@ ol.RotationConstraint.none = function(rotation, delta) {
     return undefined;
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {number} n N.
  * @return {ol.RotationConstraintType} Rotation constraint.
  */
+<<<<<<< HEAD
+goog.webgl.FRONT_AND_BACK = 0x0408;
+=======
 ol.RotationConstraint.createSnapToN = function(n) {
   var theta = 2 * Math.PI / n;
   return (
@@ -53453,12 +67988,23 @@ ol.RotationConstraint.createSnapToN = function(n) {
         }
       });
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {number=} opt_tolerance Tolerance.
  * @return {ol.RotationConstraintType} Rotation constraint.
  */
+<<<<<<< HEAD
+goog.webgl.CULL_FACE = 0x0B44;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLEND = 0x0BE2;
+=======
 ol.RotationConstraint.createSnapToZero = function(opt_tolerance) {
   var tolerance = opt_tolerance || goog.math.toRadians(5);
   return (
@@ -53484,18 +68030,26 @@ goog.provide('ol.ResolutionConstraintType');
 
 goog.require('goog.math');
 goog.require('ol.array');
+>>>>>>> ConectaDF
 
 
 /**
  * @typedef {function((number|undefined), number, number): (number|undefined)}
  */
+<<<<<<< HEAD
+goog.webgl.DITHER = 0x0BD0;
+=======
 ol.ResolutionConstraintType;
+>>>>>>> ConectaDF
 
 
 /**
  * @param {Array.<number>} resolutions Resolutions.
  * @return {ol.ResolutionConstraintType} Zoom function.
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_TEST = 0x0B90;
+=======
 ol.ResolutionConstraint.createSnapToResolutions =
     function(resolutions) {
   return (
@@ -53516,6 +68070,7 @@ ol.ResolutionConstraint.createSnapToResolutions =
         }
       });
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53524,6 +68079,9 @@ ol.ResolutionConstraint.createSnapToResolutions =
  * @param {number=} opt_maxLevel Maximum level.
  * @return {ol.ResolutionConstraintType} Zoom function.
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_TEST = 0x0B71;
+=======
 ol.ResolutionConstraint.createSnapToPower =
     function(power, maxResolution, opt_maxLevel) {
   return (
@@ -53556,11 +68114,20 @@ ol.ResolutionConstraint.createSnapToPower =
       });
 };
 goog.provide('ol.Constraints');
+>>>>>>> ConectaDF
 
 goog.require('ol.CenterConstraintType');
 goog.require('ol.ResolutionConstraintType');
 goog.require('ol.RotationConstraintType');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SCISSOR_TEST = 0x0C11;
+=======
+>>>>>>> ConectaDF
 
 
 /**
@@ -53571,30 +68138,57 @@ goog.require('ol.RotationConstraintType');
  * @param {ol.RotationConstraintType} rotationConstraint
  *     Rotation constraint.
  */
+<<<<<<< HEAD
+goog.webgl.POLYGON_OFFSET_FILL = 0x8037;
+=======
 ol.Constraints =
     function(centerConstraint, resolutionConstraint, rotationConstraint) {
+>>>>>>> ConectaDF
 
   /**
    * @type {ol.CenterConstraintType}
    */
   this.center = centerConstraint;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLE_ALPHA_TO_COVERAGE = 0x809E;
+=======
   /**
    * @type {ol.ResolutionConstraintType}
    */
   this.resolution = resolutionConstraint;
+>>>>>>> ConectaDF
 
   /**
    * @type {ol.RotationConstraintType}
    */
   this.rotation = rotationConstraint;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLE_COVERAGE = 0x80A0;
+=======
 };
 // FIXME getView3D has not return type
+>>>>>>> ConectaDF
 
 goog.provide('ol.View2D');
 goog.provide('ol.View2DProperty');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NO_ERROR = 0;
+=======
 goog.require('goog.asserts');
 goog.require('ol');
 goog.require('ol.CenterConstraint');
@@ -53612,11 +68206,22 @@ goog.require('ol.proj');
 goog.require('ol.proj.METERS_PER_UNIT');
 goog.require('ol.proj.Projection');
 goog.require('ol.proj.Units');
+>>>>>>> ConectaDF
 
 
 /**
  * @enum {string}
  */
+<<<<<<< HEAD
+goog.webgl.INVALID_ENUM = 0x0500;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INVALID_VALUE = 0x0501;
+=======
 ol.View2DProperty = {
   CENTER: 'center',
   PROJECTION: 'projection',
@@ -53624,6 +68229,7 @@ ol.View2DProperty = {
   ROTATION: 'rotation'
 };
 
+>>>>>>> ConectaDF
 
 
 /**
@@ -53684,6 +68290,16 @@ ol.View2DProperty = {
  * @todo observable rotation {number} the rotation of the view
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.INVALID_OPERATION = 0x0502;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.OUT_OF_MEMORY = 0x0505;
+=======
 ol.View2D = function(opt_options) {
   goog.base(this);
   var options = goog.isDef(opt_options) ? opt_options : {};
@@ -53696,15 +68312,24 @@ ol.View2D = function(opt_options) {
       options.center : null;
   values[ol.View2DProperty.PROJECTION] = ol.proj.createProjection(
       options.projection, 'EPSG:3857');
+>>>>>>> ConectaDF
 
   var resolutionConstraintInfo = ol.View2D.createResolutionConstraint_(
       options);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.CW = 0x0900;
+=======
   /**
    * @private
    * @type {number}
    */
   this.maxResolution_ = resolutionConstraintInfo.maxResolution;
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -53712,9 +68337,17 @@ ol.View2D = function(opt_options) {
    */
   this.minResolution_ = resolutionConstraintInfo.minResolution;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.CCW = 0x0901;
+=======
   var centerConstraint = ol.View2D.createCenterConstraint_(options);
   var resolutionConstraint = resolutionConstraintInfo.constraint;
   var rotationConstraint = ol.View2D.createRotationConstraint_(options);
+>>>>>>> ConectaDF
 
   /**
    * @private
@@ -53723,6 +68356,13 @@ ol.View2D = function(opt_options) {
   this.constraints_ = new ol.Constraints(
       centerConstraint, resolutionConstraint, rotationConstraint);
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LINE_WIDTH = 0x0B21;
+=======
   if (goog.isDef(options.resolution)) {
     values[ol.View2DProperty.RESOLUTION] = options.resolution;
   } else if (goog.isDef(options.zoom)) {
@@ -53734,6 +68374,7 @@ ol.View2D = function(opt_options) {
   this.setValues(values);
 };
 goog.inherits(ol.View2D, ol.View);
+>>>>>>> ConectaDF
 
 
 /**
@@ -53741,6 +68382,9 @@ goog.inherits(ol.View2D, ol.View);
  * @param {ol.Coordinate} anchor Rotation anchor.
  * @return {ol.Coordinate|undefined} Center for rotation and anchor.
  */
+<<<<<<< HEAD
+goog.webgl.ALIASED_POINT_SIZE_RANGE = 0x846D;
+=======
 ol.View2D.prototype.calculateCenterRotate = function(rotation, anchor) {
   var center;
   var currentCenter = this.getCenter();
@@ -53751,6 +68395,7 @@ ol.View2D.prototype.calculateCenterRotate = function(rotation, anchor) {
   }
   return center;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53758,6 +68403,9 @@ ol.View2D.prototype.calculateCenterRotate = function(rotation, anchor) {
  * @param {ol.Coordinate} anchor Zoom anchor.
  * @return {ol.Coordinate|undefined} Center for resolution and anchor.
  */
+<<<<<<< HEAD
+goog.webgl.ALIASED_LINE_WIDTH_RANGE = 0x846E;
+=======
 ol.View2D.prototype.calculateCenterZoom = function(resolution, anchor) {
   var center;
   var currentCenter = this.getCenter();
@@ -53771,15 +68419,20 @@ ol.View2D.prototype.calculateCenterZoom = function(resolution, anchor) {
   }
   return center;
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @param {ol.Coordinate|undefined} center Center.
  * @return {ol.Coordinate|undefined} Constrained center.
  */
+<<<<<<< HEAD
+goog.webgl.CULL_FACE_MODE = 0x0B45;
+=======
 ol.View2D.prototype.constrainCenter = function(center) {
   return this.constraints_.center(center);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53790,12 +68443,16 @@ ol.View2D.prototype.constrainCenter = function(center) {
  * @return {number|undefined} Constrained resolution.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.FRONT_FACE = 0x0B46;
+=======
 ol.View2D.prototype.constrainResolution = function(
     resolution, opt_delta, opt_direction) {
   var delta = opt_delta || 0;
   var direction = opt_direction || 0;
   return this.constraints_.resolution(resolution, delta, direction);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53805,16 +68462,23 @@ ol.View2D.prototype.constrainResolution = function(
  * @return {number|undefined} Constrained rotation.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_RANGE = 0x0B70;
+=======
 ol.View2D.prototype.constrainRotation = function(rotation, opt_delta) {
   var delta = opt_delta || 0;
   return this.constraints_.rotation(rotation, delta);
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_WRITEMASK = 0x0B72;
+=======
 ol.View2D.prototype.getCenter = function() {
   return /** @type {ol.Coordinate|undefined} */ (
       this.get(ol.View2DProperty.CENTER));
@@ -53823,6 +68487,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'getCenter',
     ol.View2D.prototype.getCenter);
+>>>>>>> ConectaDF
 
 
 /**
@@ -53832,6 +68497,9 @@ goog.exportProperty(
  * @return {ol.Extent} Extent.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_CLEAR_VALUE = 0x0B73;
+=======
 ol.View2D.prototype.calculateExtent = function(size) {
   goog.asserts.assert(this.isDef());
   var center = this.getCenter();
@@ -53842,12 +68510,16 @@ ol.View2D.prototype.calculateExtent = function(size) {
   var maxY = center[1] + resolution * size[1] / 2;
   return [minX, minY, maxX, maxY];
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_FUNC = 0x0B74;
+=======
 ol.View2D.prototype.getProjection = function() {
   return /** @type {ol.proj.Projection|undefined} */ (
       this.get(ol.View2DProperty.PROJECTION));
@@ -53856,12 +68528,16 @@ goog.exportProperty(
     ol.View2D.prototype,
     'getProjection',
     ol.View2D.prototype.getProjection);
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_CLEAR_VALUE = 0x0B91;
+=======
 ol.View2D.prototype.getResolution = function() {
   return /** @type {number|undefined} */ (
       this.get(ol.View2DProperty.RESOLUTION));
@@ -53870,6 +68546,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'getResolution',
     ol.View2D.prototype.getResolution);
+>>>>>>> ConectaDF
 
 
 /**
@@ -53877,11 +68554,15 @@ goog.exportProperty(
  * @param {ol.Size} size Box pixel size.
  * @return {number} Resolution.
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_FUNC = 0x0B92;
+=======
 ol.View2D.prototype.getResolutionForExtent = function(extent, size) {
   var xResolution = ol.extent.getWidth(extent) / size[0];
   var yResolution = ol.extent.getHeight(extent) / size[1];
   return Math.max(xResolution, yResolution);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53890,6 +68571,9 @@ ol.View2D.prototype.getResolutionForExtent = function(extent, size) {
  * @param {number=} opt_power Power.
  * @return {function(number): number} Resolution for value function.
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_FAIL = 0x0B94;
+=======
 ol.View2D.prototype.getResolutionForValueFunction = function(opt_power) {
   var power = opt_power || 2;
   var maxResolution = this.maxResolution_;
@@ -53907,12 +68591,16 @@ ol.View2D.prototype.getResolutionForValueFunction = function(opt_power) {
         return resolution;
       });
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_PASS_DEPTH_FAIL = 0x0B95;
+=======
 ol.View2D.prototype.getRotation = function() {
   return /** @type {number|undefined} */ (this.get(ol.View2DProperty.ROTATION));
 };
@@ -53920,6 +68608,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'getRotation',
     ol.View2D.prototype.getRotation);
+>>>>>>> ConectaDF
 
 
 /**
@@ -53928,6 +68617,9 @@ goog.exportProperty(
  * @param {number=} opt_power Power.
  * @return {function(number): number} Value for resolution function.
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_PASS_DEPTH_PASS = 0x0B96;
+=======
 ol.View2D.prototype.getValueForResolutionFunction = function(opt_power) {
   var power = opt_power || 2;
   var maxResolution = this.maxResolution_;
@@ -53945,20 +68637,28 @@ ol.View2D.prototype.getValueForResolutionFunction = function(opt_power) {
         return value;
       });
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_REF = 0x0B97;
+=======
 ol.View2D.prototype.getView2D = function() {
   return this;
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @inheritDoc
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_VALUE_MASK = 0x0B93;
+=======
 ol.View2D.prototype.getView2DState = function() {
   goog.asserts.assert(this.isDef());
   var center = /** @type {ol.Coordinate} */ (this.getCenter());
@@ -53972,13 +68672,18 @@ ol.View2D.prototype.getView2DState = function() {
     rotation: goog.isDef(rotation) ? rotation : 0
   });
 };
+>>>>>>> ConectaDF
 
 
 /**
  * FIXME return type
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_WRITEMASK = 0x0B98;
+=======
 ol.View2D.prototype.getView3D = function() {
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -53987,9 +68692,13 @@ ol.View2D.prototype.getView3D = function() {
  * @return {number|undefined} Zoom.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_BACK_FUNC = 0x8800;
+=======
 ol.View2D.prototype.getZoom = function() {
   var zoom;
   var resolution = this.getResolution();
+>>>>>>> ConectaDF
 
   if (goog.isDef(resolution)) {
     var res, z = 0;
@@ -54003,8 +68712,16 @@ ol.View2D.prototype.getZoom = function() {
     } while (res > this.minResolution_);
   }
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_BACK_FAIL = 0x8801;
+=======
   return zoom;
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54013,6 +68730,9 @@ ol.View2D.prototype.getZoom = function() {
  * @param {ol.Size} size Box pixel size.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_BACK_PASS_DEPTH_FAIL = 0x8802;
+=======
 ol.View2D.prototype.fitExtent = function(extent, size) {
   if (!ol.extent.isEmpty(extent)) {
     this.setCenter(ol.extent.getCenter(extent));
@@ -54025,6 +68745,7 @@ ol.View2D.prototype.fitExtent = function(extent, size) {
     this.setResolution(constrainedResolution);
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54035,8 +68756,12 @@ ol.View2D.prototype.fitExtent = function(extent, size) {
  * @param {olx.View2D.fitGeometryOptions=} opt_options Options.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_BACK_PASS_DEPTH_PASS = 0x8803;
+=======
 ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
   var options = goog.isDef(opt_options) ? opt_options : {};
+>>>>>>> ConectaDF
 
   var padding = goog.isDef(options.padding) ? options.padding : [0, 0, 0, 0];
   var constrainResolution = goog.isDef(options.constrainResolution) ?
@@ -54046,6 +68771,13 @@ ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
       options.minResolution : 0;
   var coords = geometry.getFlatCoordinates();
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_BACK_REF = 0x8CA3;
+=======
   // calculate rotated extent
   var rotation = this.getRotation();
   goog.asserts.assert(goog.isDef(rotation));
@@ -54080,6 +68812,7 @@ ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
     resolution = constrainedResolution;
   }
   this.setResolution(resolution);
+>>>>>>> ConectaDF
 
   // calculate center
   sinAngle = -sinAngle; // go back to original rotation
@@ -54090,8 +68823,16 @@ ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
   var centerX = centerRotX * cosAngle - centerRotY * sinAngle;
   var centerY = centerRotY * cosAngle + centerRotX * sinAngle;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_BACK_VALUE_MASK = 0x8CA4;
+=======
   this.setCenter([centerX, centerY]);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54102,6 +68843,9 @@ ol.View2D.prototype.fitGeometry = function(geometry, size, opt_options) {
  * @param {ol.Pixel} position Position on the view to center on.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.STENCIL_BACK_WRITEMASK = 0x8CA5;
+=======
 ol.View2D.prototype.centerOn = function(coordinate, size, position) {
   // calculate rotated position
   var rotation = this.getRotation();
@@ -54112,23 +68856,36 @@ ol.View2D.prototype.centerOn = function(coordinate, size, position) {
   var resolution = this.getResolution();
   rotX += (size[0] / 2 - position[0]) * resolution;
   rotY += (position[1] - size[1] / 2) * resolution;
+>>>>>>> ConectaDF
 
   // go back to original angle
   sinAngle = -sinAngle; // go back to original rotation
   var centerX = rotX * cosAngle - rotY * sinAngle;
   var centerY = rotY * cosAngle + rotX * sinAngle;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VIEWPORT = 0x0BA2;
+=======
   this.setCenter([centerX, centerY]);
 };
+>>>>>>> ConectaDF
 
 
 /**
  * @return {boolean} Is defined.
  */
+<<<<<<< HEAD
+goog.webgl.SCISSOR_BOX = 0x0C10;
+=======
 ol.View2D.prototype.isDef = function() {
   return goog.isDefAndNotNull(this.getCenter()) &&
       goog.isDef(this.getResolution());
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54137,6 +68894,9 @@ ol.View2D.prototype.isDef = function() {
  * @param {ol.Coordinate=} opt_anchor The rotation center.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.COLOR_CLEAR_VALUE = 0x0C22;
+=======
 ol.View2D.prototype.rotate = function(rotation, opt_anchor) {
   if (goog.isDef(opt_anchor)) {
     var center = this.calculateCenterRotate(rotation, opt_anchor);
@@ -54144,6 +68904,7 @@ ol.View2D.prototype.rotate = function(rotation, opt_anchor) {
   }
   this.setRotation(rotation);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54151,6 +68912,9 @@ ol.View2D.prototype.rotate = function(rotation, opt_anchor) {
  * @param {ol.Coordinate|undefined} center Center.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.COLOR_WRITEMASK = 0x0C23;
+=======
 ol.View2D.prototype.setCenter = function(center) {
   this.set(ol.View2DProperty.CENTER, center);
 };
@@ -54158,6 +68922,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'setCenter',
     ol.View2D.prototype.setCenter);
+>>>>>>> ConectaDF
 
 
 /**
@@ -54166,6 +68931,9 @@ goog.exportProperty(
  * @param {ol.proj.Projection|undefined} projection Projection.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.UNPACK_ALIGNMENT = 0x0CF5;
+=======
 ol.View2D.prototype.setProjection = function(projection) {
   this.set(ol.View2DProperty.PROJECTION, projection);
 };
@@ -54173,6 +68941,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'setProjection',
     ol.View2D.prototype.setProjection);
+>>>>>>> ConectaDF
 
 
 /**
@@ -54180,6 +68949,9 @@ goog.exportProperty(
  * @param {number|undefined} resolution Resolution.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.PACK_ALIGNMENT = 0x0D05;
+=======
 ol.View2D.prototype.setResolution = function(resolution) {
   this.set(ol.View2DProperty.RESOLUTION, resolution);
 };
@@ -54187,6 +68959,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'setResolution',
     ol.View2D.prototype.setResolution);
+>>>>>>> ConectaDF
 
 
 /**
@@ -54194,6 +68967,9 @@ goog.exportProperty(
  * @param {number|undefined} rotation Rotation.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.MAX_TEXTURE_SIZE = 0x0D33;
+=======
 ol.View2D.prototype.setRotation = function(rotation) {
   this.set(ol.View2DProperty.ROTATION, rotation);
 };
@@ -54201,6 +68977,7 @@ goog.exportProperty(
     ol.View2D.prototype,
     'setRotation',
     ol.View2D.prototype.setRotation);
+>>>>>>> ConectaDF
 
 
 /**
@@ -54208,10 +68985,14 @@ goog.exportProperty(
  * @param {number} zoom Zoom level.
  * @todo api
  */
+<<<<<<< HEAD
+goog.webgl.MAX_VIEWPORT_DIMS = 0x0D3A;
+=======
 ol.View2D.prototype.setZoom = function(zoom) {
   var resolution = this.constrainResolution(this.maxResolution_, zoom, 0);
   this.setResolution(resolution);
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54219,6 +69000,9 @@ ol.View2D.prototype.setZoom = function(zoom) {
  * @private
  * @return {ol.CenterConstraintType}
  */
+<<<<<<< HEAD
+goog.webgl.SUBPIXEL_BITS = 0x0D50;
+=======
 ol.View2D.createCenterConstraint_ = function(options) {
   if (goog.isDef(options.extent)) {
     return ol.CenterConstraint.createExtent(options.extent);
@@ -54226,6 +69010,7 @@ ol.View2D.createCenterConstraint_ = function(options) {
     return ol.CenterConstraint.none;
   }
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54234,6 +69019,23 @@ ol.View2D.createCenterConstraint_ = function(options) {
  * @return {{constraint: ol.ResolutionConstraintType, maxResolution: number,
  *     minResolution: number}}
  */
+<<<<<<< HEAD
+goog.webgl.RED_BITS = 0x0D52;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.GREEN_BITS = 0x0D53;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BLUE_BITS = 0x0D54;
+=======
 ol.View2D.createResolutionConstraint_ = function(options) {
   var resolutionConstraint;
   var maxResolution;
@@ -54273,6 +69075,7 @@ ol.View2D.createResolutionConstraint_ = function(options) {
   return {constraint: resolutionConstraint, maxResolution: maxResolution,
     minResolution: minResolution};
 };
+>>>>>>> ConectaDF
 
 
 /**
@@ -54280,6 +69083,10 @@ ol.View2D.createResolutionConstraint_ = function(options) {
  * @param {olx.View2DOptions} options View2D options.
  * @return {ol.RotationConstraintType} Rotation constraint.
  */
+<<<<<<< HEAD
+goog.webgl.ALPHA_BITS = 0x0D55;
+
+=======
 ol.View2D.createRotationConstraint_ = function(options) {
   var enableRotation = goog.isDef(options.enableRotation) ?
       options.enableRotation : true;
@@ -54312,15 +69119,28 @@ ol.View2D.createRotationConstraint_ = function(options) {
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+>>>>>>> ConectaDF
 
 /**
  * @fileoverview Defines the collection interface.
  *
  * @author nnaze@google.com (Nathan Naze)
  */
+<<<<<<< HEAD
+goog.webgl.DEPTH_BITS = 0x0D56;
+=======
+>>>>>>> ConectaDF
 
 goog.provide('goog.structs.Collection');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_BITS = 0x0D57;
+=======
+>>>>>>> ConectaDF
 
 
 /**
@@ -54328,18 +69148,43 @@ goog.provide('goog.structs.Collection');
  * @interface
  * @template T
  */
+<<<<<<< HEAD
+goog.webgl.POLYGON_OFFSET_UNITS = 0x2A00;
+=======
 goog.structs.Collection = function() {};
+>>>>>>> ConectaDF
 
 
 /**
  * @param {T} value Value to add to the collection.
  */
+<<<<<<< HEAD
+goog.webgl.POLYGON_OFFSET_FACTOR = 0x8038;
+=======
 goog.structs.Collection.prototype.add;
+>>>>>>> ConectaDF
 
 
 /**
  * @param {T} value Value to remove from the collection.
  */
+<<<<<<< HEAD
+goog.webgl.TEXTURE_BINDING_2D = 0x8069;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLE_BUFFERS = 0x80A8;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLES = 0x80A9;
+=======
 goog.structs.Collection.prototype.remove;
 
 
@@ -54354,6 +69199,7 @@ goog.structs.Collection.prototype.contains;
  * @return {number} The number of values stored in the collection.
  */
 goog.structs.Collection.prototype.getCount;
+>>>>>>> ConectaDF
 
 // Copyright 2006 The Closure Library Authors. All Rights Reserved.
 //
@@ -54370,6 +69216,19 @@ goog.structs.Collection.prototype.getCount;
 // limitations under the License.
 
 /**
+<<<<<<< HEAD
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLE_COVERAGE_VALUE = 0x80AA;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLE_COVERAGE_INVERT = 0x80AB;
+=======
  * @fileoverview Datastructure: Set.
  *
  * @author arv@google.com (Erik Arvidsson)
@@ -54383,11 +69242,103 @@ goog.structs.Collection.prototype.getCount;
 
 
 goog.provide('goog.structs.Set');
+>>>>>>> ConectaDF
 
 goog.require('goog.structs');
 goog.require('goog.structs.Collection');
 goog.require('goog.structs.Map');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPRESSED_TEXTURE_FORMATS = 0x86A3;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DONT_CARE = 0x1100;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FASTEST = 0x1101;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NICEST = 0x1102;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.GENERATE_MIPMAP_HINT = 0x8192;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BYTE = 0x1400;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_BYTE = 0x1401;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SHORT = 0x1402;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_SHORT = 0x1403;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INT = 0x1404;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_INT = 0x1405;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT = 0x1406;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DEPTH_COMPONENT = 0x1902;
+=======
 
 
 /**
@@ -54540,6 +69491,7 @@ goog.structs.Set.prototype.containsAll = function(col) {
  */
 goog.structs.Set.prototype.intersection = function(col) {
   var result = new goog.structs.Set();
+>>>>>>> ConectaDF
 
   var values = goog.structs.getValues(col);
   for (var i = 0; i < values.length; i++) {
@@ -54549,6 +69501,69 @@ goog.structs.Set.prototype.intersection = function(col) {
     }
   }
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ALPHA = 0x1906;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RGB = 0x1907;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RGBA = 0x1908;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LUMINANCE = 0x1909;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LUMINANCE_ALPHA = 0x190A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_SHORT_4_4_4_4 = 0x8033;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_SHORT_5_5_5_1 = 0x8034;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNSIGNED_SHORT_5_6_5 = 0x8363;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAGMENT_SHADER = 0x8B30;
+=======
   return result;
 };
 
@@ -54656,12 +69671,55 @@ goog.structs.Set.prototype.__iterator__ = function(opt_keys) {
  */
 
 goog.provide('goog.debug');
+>>>>>>> ConectaDF
 
 goog.require('goog.array');
 goog.require('goog.string');
 goog.require('goog.structs.Set');
 goog.require('goog.userAgent');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_SHADER = 0x8B31;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_VERTEX_ATTRIBS = 0x8869;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_VERTEX_UNIFORM_VECTORS = 0x8DFB;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_VARYING_VECTORS = 0x8DFC;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C;
+=======
 
 /** @define {boolean} Whether logging should be enabled. */
 goog.define('goog.debug.LOGGING_ENABLED', goog.DEBUG);
@@ -54888,10 +69946,60 @@ goog.debug.normalizeErrorObject = function(err) {
       'stack': 'Not available'
     };
   }
+>>>>>>> ConectaDF
 
   var lineNumber, fileName;
   var threwError = false;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_TEXTURE_IMAGE_UNITS = 0x8872;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_FRAGMENT_UNIFORM_VECTORS = 0x8DFD;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SHADER_TYPE = 0x8B4F;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DELETE_STATUS = 0x8B80;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LINK_STATUS = 0x8B82;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VALIDATE_STATUS = 0x8B83;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ATTACHED_SHADERS = 0x8B85;
+=======
   try {
     lineNumber = err.lineNumber || err.line || 'Not available';
   } catch (e) {
@@ -55024,12 +70132,20 @@ goog.debug.getStacktrace = function(opt_fn) {
  */
 goog.debug.getStacktraceHelper_ = function(fn, visited) {
   var sb = [];
+>>>>>>> ConectaDF
 
   // Circular reference, certain functions like bind seem to cause a recursive
   // loop so we need to catch circular references
   if (goog.array.contains(visited, fn)) {
     sb.push('[...circular reference...]');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ACTIVE_UNIFORMS = 0x8B86;
+=======
   // Traverse the call stack until function not found or max depth is reached
   } else if (fn && visited.length < goog.debug.MAX_STACK_DEPTH) {
     sb.push(goog.debug.getFunctionName(fn) + '(');
@@ -55045,23 +70161,40 @@ goog.debug.getStacktraceHelper_ = function(fn, visited) {
         case 'object':
           argDesc = arg ? 'object' : 'null';
           break;
+>>>>>>> ConectaDF
 
         case 'string':
           argDesc = arg;
           break;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ACTIVE_ATTRIBUTES = 0x8B89;
+=======
         case 'number':
           argDesc = String(arg);
           break;
+>>>>>>> ConectaDF
 
         case 'boolean':
           argDesc = arg ? 'true' : 'false';
           break;
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SHADING_LANGUAGE_VERSION = 0x8B8C;
+=======
         case 'function':
           argDesc = goog.debug.getFunctionName(arg);
           argDesc = argDesc ? argDesc : '[fn]';
           break;
+>>>>>>> ConectaDF
 
         case 'undefined':
         default:
@@ -55069,6 +70202,69 @@ goog.debug.getStacktraceHelper_ = function(fn, visited) {
           break;
       }
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.CURRENT_PROGRAM = 0x8B8D;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NEVER = 0x0200;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LESS = 0x0201;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.EQUAL = 0x0202;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LEQUAL = 0x0203;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.GREATER = 0x0204;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NOTEQUAL = 0x0205;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.GEQUAL = 0x0206;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ALWAYS = 0x0207;
+=======
       if (argDesc.length > 40) {
         argDesc = argDesc.substr(0, 40) + '...';
       }
@@ -55185,9 +70381,199 @@ goog.debug.fnNameResolver_;
  * takes won't be able to use the logging infrastructure.
  *
  */
+>>>>>>> ConectaDF
 
 goog.provide('goog.debug.LogRecord');
 
+<<<<<<< HEAD
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.KEEP = 0x1E00;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.REPLACE = 0x1E01;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INCR = 0x1E02;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DECR = 0x1E03;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INVERT = 0x150A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INCR_WRAP = 0x8507;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DECR_WRAP = 0x8508;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VENDOR = 0x1F00;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERER = 0x1F01;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERSION = 0x1F02;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NEAREST = 0x2600;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LINEAR = 0x2601;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NEAREST_MIPMAP_NEAREST = 0x2700;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LINEAR_MIPMAP_NEAREST = 0x2701;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NEAREST_MIPMAP_LINEAR = 0x2702;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LINEAR_MIPMAP_LINEAR = 0x2703;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_MAG_FILTER = 0x2800;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_MIN_FILTER = 0x2801;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_WRAP_S = 0x2802;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_WRAP_T = 0x2803;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_2D = 0x0DE1;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE = 0x1702;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP = 0x8513;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_BINDING_CUBE_MAP = 0x8514;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517;
+=======
 
 
 /**
@@ -55435,6 +70821,7 @@ goog.debug.LogRecord.prototype.setMillis = function(time) {
 goog.debug.LogRecord.prototype.getSequenceNumber = function() {
   return this.sequenceNumber_;
 };
+>>>>>>> ConectaDF
 
 // Copyright 2010 The Closure Library Authors. All Rights Reserved.
 //
@@ -55451,6 +70838,54 @@ goog.debug.LogRecord.prototype.getSequenceNumber = function() {
 // limitations under the License.
 
 /**
+<<<<<<< HEAD
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_CUBE_MAP_TEXTURE_SIZE = 0x851C;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE0 = 0x84C0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE1 = 0x84C1;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE2 = 0x84C2;
+=======
  * @fileoverview A buffer for log records. The purpose of this is to improve
  * logging performance by re-using old objects when the buffer becomes full and
  * to eliminate the need for each app to implement their own log buffer. The
@@ -55628,10 +71063,709 @@ goog.require('goog.debug.LogRecord');
  * @typedef {string|function(): string}
  */
 goog.debug.Loggable;
-
+>>>>>>> ConectaDF
 
 
 /**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE3 = 0x84C3;
+
+
+/**
+<<<<<<< HEAD
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE4 = 0x84C4;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE5 = 0x84C5;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE6 = 0x84C6;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE7 = 0x84C7;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE8 = 0x84C8;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE9 = 0x84C9;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE10 = 0x84CA;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE11 = 0x84CB;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE12 = 0x84CC;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE13 = 0x84CD;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE14 = 0x84CE;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE15 = 0x84CF;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE16 = 0x84D0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE17 = 0x84D1;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE18 = 0x84D2;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE19 = 0x84D3;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE20 = 0x84D4;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE21 = 0x84D5;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE22 = 0x84D6;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE23 = 0x84D7;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE24 = 0x84D8;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE25 = 0x84D9;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE26 = 0x84DA;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE27 = 0x84DB;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE28 = 0x84DC;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE29 = 0x84DD;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE30 = 0x84DE;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE31 = 0x84DF;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.ACTIVE_TEXTURE = 0x84E0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.REPEAT = 0x2901;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.CLAMP_TO_EDGE = 0x812F;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MIRRORED_REPEAT = 0x8370;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_VEC2 = 0x8B50;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_VEC3 = 0x8B51;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_VEC4 = 0x8B52;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INT_VEC2 = 0x8B53;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INT_VEC3 = 0x8B54;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INT_VEC4 = 0x8B55;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BOOL = 0x8B56;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BOOL_VEC2 = 0x8B57;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BOOL_VEC3 = 0x8B58;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BOOL_VEC4 = 0x8B59;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_MAT2 = 0x8B5A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_MAT3 = 0x8B5B;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FLOAT_MAT4 = 0x8B5C;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLER_2D = 0x8B5E;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.SAMPLER_CUBE = 0x8B60;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_SIZE = 0x8623;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_TYPE = 0x8625;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_POINTER = 0x8645;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPILE_STATUS = 0x8B81;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LOW_FLOAT = 0x8DF0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MEDIUM_FLOAT = 0x8DF1;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.HIGH_FLOAT = 0x8DF2;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.LOW_INT = 0x8DF3;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MEDIUM_INT = 0x8DF4;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.HIGH_INT = 0x8DF5;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER = 0x8D40;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER = 0x8D41;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RGBA4 = 0x8056;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RGB5_A1 = 0x8057;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RGB565 = 0x8D62;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DEPTH_COMPONENT16 = 0x81A5;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_INDEX = 0x1901;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_INDEX8 = 0x8D48;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DEPTH_STENCIL = 0x84F9;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_WIDTH = 0x8D42;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_HEIGHT = 0x8D43;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_INTERNAL_FORMAT = 0x8D44;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_RED_SIZE = 0x8D50;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_GREEN_SIZE = 0x8D51;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_BLUE_SIZE = 0x8D52;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_ALPHA_SIZE = 0x8D53;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_DEPTH_SIZE = 0x8D54;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_STENCIL_SIZE = 0x8D55;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE = 0x8CD0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_ATTACHMENT_OBJECT_NAME = 0x8CD1;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL = 0x8CD2;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.COLOR_ATTACHMENT0 = 0x8CE0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DEPTH_ATTACHMENT = 0x8D00;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.STENCIL_ATTACHMENT = 0x8D20;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.DEPTH_STENCIL_ATTACHMENT = 0x821A;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.NONE = 0;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_COMPLETE = 0x8CD5;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT = 0x8CD6;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS = 0x8CD9;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_UNSUPPORTED = 0x8CDD;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAMEBUFFER_BINDING = 0x8CA6;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.RENDERBUFFER_BINDING = 0x8CA7;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_RENDERBUFFER_SIZE = 0x84E8;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.INVALID_FRAMEBUFFER_OPERATION = 0x0506;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNPACK_FLIP_Y_WEBGL = 0x9240;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241;
+=======
  * The Logger is an object used for logging debug messages. Loggers are
  * normally named, using a hierarchical dot-separated namespace. Logger names
  * can be arbitrary strings, but they should normally be based on the package
@@ -56536,10 +72670,238 @@ goog.log.getLogger = function(name, opt_level) {
     return null;
   }
 };
+>>>>>>> ConectaDF
 
 
 // TODO(johnlenz): try to tighten the types to these functions.
 /**
+<<<<<<< HEAD
+ * @const
+ * @type {number}
+ */
+goog.webgl.CONTEXT_LOST_WEBGL = 0x9242;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
+
+
+/**
+ * @const
+ * @type {number}
+ */
+goog.webgl.BROWSER_DEFAULT_WEBGL = 0x9244;
+
+
+/**
+ * From the OES_texture_half_float extension.
+ * http://www.khronos.org/registry/webgl/extensions/OES_texture_half_float/
+ * @const
+ * @type {number}
+ */
+goog.webgl.HALF_FLOAT_OES = 0x8D61;
+
+
+/**
+ * From the OES_standard_derivatives extension.
+ * http://www.khronos.org/registry/webgl/extensions/OES_standard_derivatives/
+ * @const
+ * @type {number}
+ */
+goog.webgl.FRAGMENT_SHADER_DERIVATIVE_HINT_OES = 0x8B8B;
+
+
+/**
+ * From the OES_vertex_array_object extension.
+ * http://www.khronos.org/registry/webgl/extensions/OES_vertex_array_object/
+ * @const
+ * @type {number}
+ */
+goog.webgl.VERTEX_ARRAY_BINDING_OES = 0x85B5;
+
+
+/**
+ * From the WEBGL_debug_renderer_info extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_debug_renderer_info/
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNMASKED_VENDOR_WEBGL = 0x9245;
+
+
+/**
+ * From the WEBGL_debug_renderer_info extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_debug_renderer_info/
+ * @const
+ * @type {number}
+ */
+goog.webgl.UNMASKED_RENDERER_WEBGL = 0x9246;
+
+
+/**
+ * From the WEBGL_compressed_texture_s3tc extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_s3tc/
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPRESSED_RGB_S3TC_DXT1_EXT = 0x83F0;
+
+
+/**
+ * From the WEBGL_compressed_texture_s3tc extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_s3tc/
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPRESSED_RGBA_S3TC_DXT1_EXT = 0x83F1;
+
+
+/**
+ * From the WEBGL_compressed_texture_s3tc extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_s3tc/
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPRESSED_RGBA_S3TC_DXT3_EXT = 0x83F2;
+
+
+/**
+ * From the WEBGL_compressed_texture_s3tc extension.
+ * http://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_s3tc/
+ * @const
+ * @type {number}
+ */
+goog.webgl.COMPRESSED_RGBA_S3TC_DXT5_EXT = 0x83F3;
+
+
+/**
+ * From the EXT_texture_filter_anisotropic extension.
+ * http://www.khronos.org/registry/webgl/extensions/EXT_texture_filter_anisotropic/
+ * @const
+ * @type {number}
+ */
+goog.webgl.TEXTURE_MAX_ANISOTROPY_EXT = 0x84FE;
+
+
+/**
+ * From the EXT_texture_filter_anisotropic extension.
+ * http://www.khronos.org/registry/webgl/extensions/EXT_texture_filter_anisotropic/
+ * @const
+ * @type {number}
+ */
+goog.webgl.MAX_TEXTURE_MAX_ANISOTROPY_EXT = 0x84FF;
+goog.provide('ol.webgl.shader');
+
+goog.require('goog.functions');
+goog.require('goog.webgl');
+goog.require('ol.webgl');
+
+
+
+/**
+ * @constructor
+ * @param {string} source Source.
+ * @struct
+ */
+ol.webgl.Shader = function(source) {
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.source_ = source;
+
+};
+
+
+/**
+ * @return {number} Type.
+ */
+ol.webgl.Shader.prototype.getType = goog.abstractMethod;
+
+
+/**
+ * @return {string} Source.
+ */
+ol.webgl.Shader.prototype.getSource = function() {
+  return this.source_;
+};
+
+
+/**
+ * @return {boolean} Is animated?
+ */
+ol.webgl.Shader.prototype.isAnimated = goog.functions.FALSE;
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.Shader}
+ * @param {string} source Source.
+ * @struct
+ */
+ol.webgl.shader.Fragment = function(source) {
+  goog.base(this, source);
+};
+goog.inherits(ol.webgl.shader.Fragment, ol.webgl.Shader);
+
+
+/**
+ * @inheritDoc
+ */
+ol.webgl.shader.Fragment.prototype.getType = function() {
+  return goog.webgl.FRAGMENT_SHADER;
+};
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.Shader}
+ * @param {string} source Source.
+ * @struct
+ */
+ol.webgl.shader.Vertex = function(source) {
+  goog.base(this, source);
+};
+goog.inherits(ol.webgl.shader.Vertex, ol.webgl.Shader);
+
+
+/**
+ * @inheritDoc
+ */
+ol.webgl.shader.Vertex.prototype.getType = function() {
+  return goog.webgl.VERTEX_SHADER;
+};
+// This file is automatically generated, do not edit
+goog.provide('ol.renderer.webgl.map.shader.Color');
+
+goog.require('ol.webgl.shader');
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.shader.Fragment}
+ * @struct
+ */
+ol.renderer.webgl.map.shader.ColorFragment = function() {
+  goog.base(this, ol.renderer.webgl.map.shader.ColorFragment.SOURCE);
+};
+goog.inherits(ol.renderer.webgl.map.shader.ColorFragment, ol.webgl.shader.Fragment);
+goog.addSingletonGetter(ol.renderer.webgl.map.shader.ColorFragment);
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorFragment.DEBUG_SOURCE = 'precision mediump float;\nvarying vec2 v_texCoord;\n\n\n// @see https://svn.webkit.org/repository/webkit/trunk/Source/WebCore/platform/graphics/filters/skia/SkiaImageFilterBuilder.cpp\nuniform mat4 u_colorMatrix;\nuniform float u_opacity;\nuniform sampler2D u_texture;\n\nvoid main(void) {\n  vec4 texColor = texture2D(u_texture, v_texCoord);\n  gl_FragColor.rgb = (u_colorMatrix * vec4(texColor.rgb, 1.)).rgb;\n  gl_FragColor.a = texColor.a * u_opacity;\n}\n';
+=======
  * Adds a handler to the logger. This doesn't use the event system because
  * we want to be able to add logging to the event system.
  * @param {goog.log.Logger} logger
@@ -56763,17 +73125,44 @@ goog.webgl.ONE = 1;
  * @type {number}
  */
 goog.webgl.SRC_COLOR = 0x0300;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorFragment.OPTIMIZED_SOURCE = 'precision mediump float;varying vec2 a;uniform mat4 f;uniform float g;uniform sampler2D h;void main(void){vec4 texColor=texture2D(h,a);gl_FragColor.rgb=(f*vec4(texColor.rgb,1.)).rgb;gl_FragColor.a=texColor.a*g;}';
+=======
  * @type {number}
  */
 goog.webgl.ONE_MINUS_SRC_COLOR = 0x0301;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorFragment.SOURCE = goog.DEBUG ?
+    ol.renderer.webgl.map.shader.ColorFragment.DEBUG_SOURCE :
+    ol.renderer.webgl.map.shader.ColorFragment.OPTIMIZED_SOURCE;
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.shader.Vertex}
+ * @struct
+ */
+ol.renderer.webgl.map.shader.ColorVertex = function() {
+  goog.base(this, ol.renderer.webgl.map.shader.ColorVertex.SOURCE);
+};
+goog.inherits(ol.renderer.webgl.map.shader.ColorVertex, ol.webgl.shader.Vertex);
+goog.addSingletonGetter(ol.renderer.webgl.map.shader.ColorVertex);
+=======
  * @type {number}
  */
 goog.webgl.SRC_ALPHA = 0x0302;
@@ -56784,24 +73173,114 @@ goog.webgl.SRC_ALPHA = 0x0302;
  * @type {number}
  */
 goog.webgl.ONE_MINUS_SRC_ALPHA = 0x0303;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorVertex.DEBUG_SOURCE = 'varying vec2 v_texCoord;\n\n\nattribute vec2 a_position;\nattribute vec2 a_texCoord;\n\nuniform mat4 u_texCoordMatrix;\nuniform mat4 u_projectionMatrix;\n\nvoid main(void) {\n  gl_Position = u_projectionMatrix * vec4(a_position, 0., 1.);\n  v_texCoord = (u_texCoordMatrix * vec4(a_texCoord, 0., 1.)).st;\n}\n\n\n';
+=======
  * @type {number}
  */
 goog.webgl.DST_ALPHA = 0x0304;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorVertex.OPTIMIZED_SOURCE = 'varying vec2 a;attribute vec2 b;attribute vec2 c;uniform mat4 d;uniform mat4 e;void main(void){gl_Position=e*vec4(b,0.,1.);a=(d*vec4(c,0.,1.)).st;}';
+=======
  * @type {number}
  */
 goog.webgl.ONE_MINUS_DST_ALPHA = 0x0305;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.ColorVertex.SOURCE = goog.DEBUG ?
+    ol.renderer.webgl.map.shader.ColorVertex.DEBUG_SOURCE :
+    ol.renderer.webgl.map.shader.ColorVertex.OPTIMIZED_SOURCE;
+
+
+
+/**
+ * @constructor
+ * @param {WebGLRenderingContext} gl GL.
+ * @param {WebGLProgram} program Program.
+ * @struct
+ */
+ol.renderer.webgl.map.shader.Color.Locations = function(gl, program) {
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_colorMatrix = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_colorMatrix' : 'f');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_opacity = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_opacity' : 'g');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_projectionMatrix = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_projectionMatrix' : 'e');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_texCoordMatrix = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_texCoordMatrix' : 'd');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_texture = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_texture' : 'h');
+
+  /**
+   * @type {number}
+   */
+  this.a_position = gl.getAttribLocation(
+      program, goog.DEBUG ? 'a_position' : 'b');
+
+  /**
+   * @type {number}
+   */
+  this.a_texCoord = gl.getAttribLocation(
+      program, goog.DEBUG ? 'a_texCoord' : 'c');
+};
+// This file is automatically generated, do not edit
+goog.provide('ol.renderer.webgl.map.shader.Default');
+
+goog.require('ol.webgl.shader');
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.shader.Fragment}
+ * @struct
+ */
+ol.renderer.webgl.map.shader.DefaultFragment = function() {
+  goog.base(this, ol.renderer.webgl.map.shader.DefaultFragment.SOURCE);
+};
+goog.inherits(ol.renderer.webgl.map.shader.DefaultFragment, ol.webgl.shader.Fragment);
+goog.addSingletonGetter(ol.renderer.webgl.map.shader.DefaultFragment);
+=======
  * @type {number}
  */
 goog.webgl.DST_COLOR = 0x0306;
@@ -56819,17 +73298,51 @@ goog.webgl.ONE_MINUS_DST_COLOR = 0x0307;
  * @type {number}
  */
 goog.webgl.SRC_ALPHA_SATURATE = 0x0308;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultFragment.DEBUG_SOURCE = 'precision mediump float;\nvarying vec2 v_texCoord;\n\n\nuniform float u_opacity;\nuniform sampler2D u_texture;\n\nvoid main(void) {\n  vec4 texColor = texture2D(u_texture, v_texCoord);\n  gl_FragColor.rgb = texColor.rgb;\n  gl_FragColor.a = texColor.a * u_opacity;\n}\n';
+=======
  * @type {number}
  */
 goog.webgl.FUNC_ADD = 0x8006;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultFragment.OPTIMIZED_SOURCE = 'precision mediump float;varying vec2 a;uniform float f;uniform sampler2D g;void main(void){vec4 texColor=texture2D(g,a);gl_FragColor.rgb=texColor.rgb;gl_FragColor.a=texColor.a*f;}';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultFragment.SOURCE = goog.DEBUG ?
+    ol.renderer.webgl.map.shader.DefaultFragment.DEBUG_SOURCE :
+    ol.renderer.webgl.map.shader.DefaultFragment.OPTIMIZED_SOURCE;
+
+
+
+/**
+ * @constructor
+ * @extends {ol.webgl.shader.Vertex}
+ * @struct
+ */
+ol.renderer.webgl.map.shader.DefaultVertex = function() {
+  goog.base(this, ol.renderer.webgl.map.shader.DefaultVertex.SOURCE);
+};
+goog.inherits(ol.renderer.webgl.map.shader.DefaultVertex, ol.webgl.shader.Vertex);
+goog.addSingletonGetter(ol.renderer.webgl.map.shader.DefaultVertex);
+=======
  * @type {number}
  */
 goog.webgl.BLEND_EQUATION = 0x8009;
@@ -56841,24 +73354,343 @@ goog.webgl.BLEND_EQUATION = 0x8009;
  * @type {number}
  */
 goog.webgl.BLEND_EQUATION_RGB = 0x8009;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultVertex.DEBUG_SOURCE = 'varying vec2 v_texCoord;\n\n\nattribute vec2 a_position;\nattribute vec2 a_texCoord;\n\nuniform mat4 u_texCoordMatrix;\nuniform mat4 u_projectionMatrix;\n\nvoid main(void) {\n  gl_Position = u_projectionMatrix * vec4(a_position, 0., 1.);\n  v_texCoord = (u_texCoordMatrix * vec4(a_texCoord, 0., 1.)).st;\n}\n\n\n';
+=======
  * @type {number}
  */
 goog.webgl.BLEND_EQUATION_ALPHA = 0x883D;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultVertex.OPTIMIZED_SOURCE = 'varying vec2 a;attribute vec2 b;attribute vec2 c;uniform mat4 d;uniform mat4 e;void main(void){gl_Position=e*vec4(b,0.,1.);a=(d*vec4(c,0.,1.)).st;}';
+=======
  * @type {number}
  */
 goog.webgl.FUNC_SUBTRACT = 0x800A;
+>>>>>>> ConectaDF
 
 
 /**
  * @const
+<<<<<<< HEAD
+ * @type {string}
+ */
+ol.renderer.webgl.map.shader.DefaultVertex.SOURCE = goog.DEBUG ?
+    ol.renderer.webgl.map.shader.DefaultVertex.DEBUG_SOURCE :
+    ol.renderer.webgl.map.shader.DefaultVertex.OPTIMIZED_SOURCE;
+
+
+
+/**
+ * @constructor
+ * @param {WebGLRenderingContext} gl GL.
+ * @param {WebGLProgram} program Program.
+ * @struct
+ */
+ol.renderer.webgl.map.shader.Default.Locations = function(gl, program) {
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_opacity = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_opacity' : 'f');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_projectionMatrix = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_projectionMatrix' : 'e');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_texCoordMatrix = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_texCoordMatrix' : 'd');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_texture = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_texture' : 'g');
+
+  /**
+   * @type {number}
+   */
+  this.a_position = gl.getAttribLocation(
+      program, goog.DEBUG ? 'a_position' : 'b');
+
+  /**
+   * @type {number}
+   */
+  this.a_texCoord = gl.getAttribLocation(
+      program, goog.DEBUG ? 'a_texCoord' : 'c');
+};
+goog.provide('ol.render.webgl.Immediate');
+
+
+
+/**
+ * @constructor
+ * @implements {ol.render.IVectorContext}
+ * @param {ol.webgl.Context} context Context.
+ * @param {number} pixelRatio Pixel ratio.
+ * @struct
+ */
+ol.render.webgl.Immediate = function(context, pixelRatio) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawAsync = function(zIndex, callback) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawCircleGeometry =
+    function(circleGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawFeature = function(feature, style) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawGeometryCollectionGeometry =
+    function(geometryCollectionGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawPointGeometry =
+    function(pointGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawLineStringGeometry =
+    function(lineStringGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawMultiLineStringGeometry =
+    function(multiLineStringGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawMultiPointGeometry =
+    function(multiPointGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawMultiPolygonGeometry =
+    function(multiPolygonGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawPolygonGeometry =
+    function(polygonGeometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.drawText =
+    function(flatCoordinates, offset, end, stride, geometry, data) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.setFillStrokeStyle =
+    function(fillStyle, strokeStyle) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.setImageStyle = function(imageStyle) {
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.render.webgl.Immediate.prototype.setTextStyle = function(textStyle) {
+};
+goog.provide('ol.structs.IntegerSet');
+
+goog.require('goog.asserts');
+
+
+
+/**
+ * A set of integers represented as a set of integer ranges.
+ * This implementation is designed for the case when the number of distinct
+ * integer ranges is small.
+ * @constructor
+ * @struct
+ * @param {Array.<number>=} opt_arr Array.
+ */
+ol.structs.IntegerSet = function(opt_arr) {
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.arr_ = goog.isDef(opt_arr) ? opt_arr : [];
+
+  if (goog.DEBUG) {
+    this.assertValid();
+  }
+
+};
+
+
+/**
+ * @param {number} addStart Start.
+ * @param {number} addStop Stop.
+ */
+ol.structs.IntegerSet.prototype.addRange = function(addStart, addStop) {
+  goog.asserts.assert(addStart <= addStop);
+  if (addStart == addStop) {
+    return;
+  }
+  var arr = this.arr_;
+  var n = arr.length;
+  var i;
+  for (i = 0; i < n; i += 2) {
+    if (addStart <= arr[i]) {
+      // FIXME check if splice is really needed
+      arr.splice(i, 0, addStart, addStop);
+      this.compactRanges_();
+      return;
+    }
+  }
+  arr.push(addStart, addStop);
+  this.compactRanges_();
+};
+
+
+/**
+ * FIXME empty description for jsdoc
+ */
+ol.structs.IntegerSet.prototype.assertValid = function() {
+  var arr = this.arr_;
+  var n = arr.length;
+  goog.asserts.assert(n % 2 === 0);
+  var i;
+  for (i = 1; i < n; ++i) {
+    goog.asserts.assert(arr[i] > arr[i - 1]);
+  }
+};
+
+
+/**
+ * FIXME empty description for jsdoc
+ */
+ol.structs.IntegerSet.prototype.clear = function() {
+  this.arr_.length = 0;
+};
+
+
+/**
+ * @private
+ */
+ol.structs.IntegerSet.prototype.compactRanges_ = function() {
+  var arr = this.arr_;
+  var n = arr.length;
+  var rangeIndex = 0;
+  var i;
+  for (i = 0; i < n; i += 2) {
+    if (arr[i] == arr[i + 1]) {
+      // pass
+    } else if (rangeIndex > 0 &&
+               arr[rangeIndex - 2] <= arr[i] &&
+               arr[i] <= arr[rangeIndex - 1]) {
+      arr[rangeIndex - 1] = Math.max(arr[rangeIndex - 1], arr[i + 1]);
+    } else {
+      arr[rangeIndex++] = arr[i];
+      arr[rangeIndex++] = arr[i + 1];
+    }
+  }
+  arr.length = rangeIndex;
+};
+
+
+/**
+ * Finds the start of smallest range that is at least of length minSize, or -1
+ * if no such range exists.
+ * @param {number} minSize Minimum size.
+ * @return {number} Index.
+ */
+ol.structs.IntegerSet.prototype.findRange = function(minSize) {
+  goog.asserts.assert(minSize > 0);
+  var arr = this.arr_;
+  var n = arr.length;
+  var bestIndex = -1;
+  var bestSize, i, size;
+  for (i = 0; i < n; i += 2) {
+    size = arr[i + 1] - arr[i];
+    if (size == minSize) {
+      return arr[i];
+    } else if (size > minSize && (bestIndex == -1 || size < bestSize)) {
+      bestIndex = arr[i];
+      bestSize = size;
+    }
+  }
+  return bestIndex;
+};
+
+
+/**
+ * Calls f with each integer range.
+ * @param {function(this: T, number, number)} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @template T
+ */
+=======
  * @type {number}
  */
 goog.webgl.FUNC_REVERSE_SUBTRACT = 0x800B;
@@ -59425,12 +76257,15 @@ ol.structs.IntegerSet.prototype.findRange = function(minSize) {
  * @param {T=} opt_this The object to use as `this` in `f`.
  * @template T
  */
+>>>>>>> ConectaDF
 ol.structs.IntegerSet.prototype.forEachRange = function(f, opt_this) {
   var arr = this.arr_;
   var n = arr.length;
   var i;
   for (i = 0; i < n; i += 2) {
     f.call(opt_this, arr[i], arr[i + 1]);
+<<<<<<< HEAD
+=======
   }
 };
 
@@ -59601,6 +76436,7 @@ ol.structs.IntegerSet.prototype.removeRange =
         arr[i + 1] = removeStart;
       }
     }
+>>>>>>> ConectaDF
   }
   this.compactRanges_();
 };
@@ -59645,6 +76481,33 @@ ol.structs.BufferUsage = {
 
 
 /**
+<<<<<<< HEAD
+ * Calls f with each integer range not in [start, stop) - 'this'.
+ * @param {number} start Start.
+ * @param {number} stop Stop.
+ * @param {function(this: T, number, number)} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @template T
+ */
+ol.structs.IntegerSet.prototype.forEachRangeInverted =
+    function(start, stop, f, opt_this) {
+  goog.asserts.assert(start < stop);
+  var arr = this.arr_;
+  var n = arr.length;
+  if (n === 0) {
+    f.call(opt_this, start, stop);
+  } else {
+    if (start < arr[0]) {
+      f.call(opt_this, start, arr[0]);
+    }
+    var i;
+    for (i = 1; i < n - 1; i += 2) {
+      f.call(opt_this, arr[i], arr[i + 1]);
+    }
+    if (arr[n - 1] < stop) {
+      f.call(opt_this, arr[n - 1], stop);
+    }
+=======
  * @constructor
  * @param {Array.<number>=} opt_arr Array.
  * @param {number=} opt_used Used.
@@ -59674,6 +76537,7 @@ ol.structs.Buffer = function(opt_arr, opt_used, opt_usage) {
   var used = goog.isDef(opt_used) ? opt_used : this.arr_.length;
   if (used < this.arr_.length) {
     this.freeSet_.addRange(used, this.arr_.length);
+>>>>>>> ConectaDF
   }
   if (ol.BUFFER_REPLACE_UNUSED_ENTRIES_WITH_NANS) {
     var arr = this.arr_;
@@ -59707,6 +76571,12 @@ ol.structs.Buffer = function(opt_arr, opt_used, opt_usage) {
 
 
 /**
+<<<<<<< HEAD
+ * @return {Array.<number>} Array.
+ */
+ol.structs.IntegerSet.prototype.getArray = function() {
+  return this.arr_;
+=======
  * @param {number} size Size.
  * @return {number} Offset.
  */
@@ -59716,10 +76586,20 @@ ol.structs.Buffer.prototype.allocate = function(size) {
   goog.asserts.assert(offset != -1);  // FIXME
   this.freeSet_.removeRange(offset, offset + size);
   return offset;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Returns the first element in the set, or -1 if the set is empty.
+ * @return {number} Start.
+ */
+ol.structs.IntegerSet.prototype.getFirst = function() {
+  return this.arr_.length === 0 ? -1 : this.arr_[0];
+};
+
+=======
  * @param {Array.<number>} values Values.
  * @return {number} Offset.
  */
@@ -59972,6 +76852,859 @@ ol.color.Matrix.makeContrast = function(matrix, value) {
       translateValue, translateValue, translateValue, 1);
   return matrix;
 };
+>>>>>>> ConectaDF
+
+/**
+ * Returns the first integer after the last element in the set, or -1 if the
+ * set is empty.
+ * @return {number} Last.
+ */
+ol.structs.IntegerSet.prototype.getLast = function() {
+  var n = this.arr_.length;
+  return n === 0 ? -1 : this.arr_[n - 1];
+};
+
+/**
+ * @param {!goog.vec.Mat4.Number} matrix Matrix.
+ * @param {number} value Hue value.
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.color.Matrix.makeHue = function(matrix, value) {
+  var cosHue = Math.cos(value);
+  var sinHue = Math.sin(value);
+  var v00 = 0.213 + cosHue * 0.787 - sinHue * 0.213;
+  var v01 = 0.715 - cosHue * 0.715 - sinHue * 0.715;
+  var v02 = 0.072 - cosHue * 0.072 + sinHue * 0.928;
+  var v03 = 0;
+  var v10 = 0.213 - cosHue * 0.213 + sinHue * 0.143;
+  var v11 = 0.715 + cosHue * 0.285 + sinHue * 0.140;
+  var v12 = 0.072 - cosHue * 0.072 - sinHue * 0.283;
+  var v13 = 0;
+  var v20 = 0.213 - cosHue * 0.213 - sinHue * 0.787;
+  var v21 = 0.715 - cosHue * 0.715 + sinHue * 0.715;
+  var v22 = 0.072 + cosHue * 0.928 + sinHue * 0.072;
+  var v23 = 0;
+  var v30 = 0;
+  var v31 = 0;
+  var v32 = 0;
+  var v33 = 1;
+  goog.vec.Mat4.setFromValues(matrix,
+      v00, v10, v20, v30,
+      v01, v11, v21, v31,
+      v02, v12, v22, v32,
+      v03, v13, v23, v33);
+  return matrix;
+};
+
+
+/**
+<<<<<<< HEAD
+ * Returns the number of integers in the set.
+ * @return {number} Size.
+ */
+ol.structs.IntegerSet.prototype.getSize = function() {
+  var arr = this.arr_;
+  var n = arr.length;
+  var size = 0;
+  var i;
+  for (i = 0; i < n; i += 2) {
+    size += arr[i + 1] - arr[i];
+  }
+  return size;
+};
+
+
+/**
+ * @param {number} start Start.
+ * @param {number} stop Stop.
+ * @return {boolean} Intersects range.
+ */
+ol.structs.IntegerSet.prototype.intersectsRange = function(start, stop) {
+  goog.asserts.assert(start <= stop);
+  if (start == stop) {
+    return false;
+  } else {
+    var arr = this.arr_;
+    var n = arr.length;
+    var i = 0;
+    for (i = 0; i < n; i += 2) {
+      if (arr[i] <= start && start < arr[i + 1] ||
+          arr[i] < stop && stop - 1 < arr[i + 1] ||
+          start < arr[i] && arr[i + 1] <= stop) {
+        return true;
+      }
+    }
+    return false;
+  }
+=======
+ * @param {!goog.vec.Mat4.Number} matrix Matrix.
+ * @param {number} value Saturation value.
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.color.Matrix.makeSaturation = function(matrix, value) {
+  var v00 = 0.213 + 0.787 * value;
+  var v01 = 0.715 - 0.715 * value;
+  var v02 = 0.072 - 0.072 * value;
+  var v03 = 0;
+  var v10 = 0.213 - 0.213 * value;
+  var v11 = 0.715 + 0.285 * value;
+  var v12 = 0.072 - 0.072 * value;
+  var v13 = 0;
+  var v20 = 0.213 - 0.213 * value;
+  var v21 = 0.715 - 0.715 * value;
+  var v22 = 0.072 + 0.928 * value;
+  var v23 = 0;
+  var v30 = 0;
+  var v31 = 0;
+  var v32 = 0;
+  var v33 = 1;
+  goog.vec.Mat4.setFromValues(matrix,
+      v00, v10, v20, v30,
+      v01, v11, v21, v31,
+      v02, v12, v22, v32,
+      v03, v13, v23, v33);
+  return matrix;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @return {boolean} Is empty.
+ */
+ol.structs.IntegerSet.prototype.isEmpty = function() {
+  return this.arr_.length === 0;
+};
+=======
+ * @param {number|undefined} brightness Brightness.
+ * @param {number|undefined} contrast Contrast.
+ * @param {number|undefined} hue Hue.
+ * @param {number|undefined} saturation Saturation.
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.color.Matrix.prototype.getMatrix = function(
+    brightness, contrast, hue, saturation) {
+  var colorMatrixDirty = false;
+  if (goog.isDef(brightness) && brightness !== this.brightness_) {
+    ol.color.Matrix.makeBrightness(this.brightnessMatrix_, brightness);
+    this.brightness_ = brightness;
+    colorMatrixDirty = true;
+  }
+  if (goog.isDef(contrast) && contrast !== this.contrast_) {
+    ol.color.Matrix.makeContrast(this.contrastMatrix_, contrast);
+    this.contrast_ = contrast;
+    colorMatrixDirty = true;
+  }
+  if (goog.isDef(hue) && hue !== this.hue_) {
+    ol.color.Matrix.makeHue(this.hueMatrix_, hue);
+    this.hue_ = hue;
+    colorMatrixDirty = true;
+  }
+  if (goog.isDef(saturation) && saturation !== this.saturation_) {
+    ol.color.Matrix.makeSaturation(this.saturationMatrix_, saturation);
+    this.saturation_ = saturation;
+    colorMatrixDirty = true;
+  }
+  if (colorMatrixDirty) {
+    var colorMatrix = this.colorMatrix_;
+    goog.vec.Mat4.makeIdentity(colorMatrix);
+    if (goog.isDef(contrast)) {
+      goog.vec.Mat4.multMat(colorMatrix, this.contrastMatrix_, colorMatrix);
+    }
+    if (goog.isDef(brightness)) {
+      goog.vec.Mat4.multMat(colorMatrix, this.brightnessMatrix_, colorMatrix);
+    }
+    if (goog.isDef(saturation)) {
+      goog.vec.Mat4.multMat(colorMatrix, this.saturationMatrix_, colorMatrix);
+    }
+    if (goog.isDef(hue)) {
+      goog.vec.Mat4.multMat(colorMatrix, this.hueMatrix_, colorMatrix);
+    }
+  }
+  return this.colorMatrix_;
+};
+goog.provide('ol.renderer.webgl.Layer');
+>>>>>>> ConectaDF
+
+goog.require('goog.vec.Mat4');
+goog.require('goog.webgl');
+goog.require('ol.color.Matrix');
+goog.require('ol.layer.Layer');
+goog.require('ol.render.Event');
+goog.require('ol.render.EventType');
+goog.require('ol.render.webgl.Immediate');
+goog.require('ol.renderer.Layer');
+goog.require('ol.renderer.webgl.map.shader.Color');
+goog.require('ol.renderer.webgl.map.shader.Default');
+goog.require('ol.structs.Buffer');
+
+<<<<<<< HEAD
+/**
+ * @return {Array.<number>} Array.
+ */
+ol.structs.IntegerSet.prototype.pack = function() {
+  return this.arr_;
+};
+
+
+/**
+ * @param {number} removeStart Start.
+ * @param {number} removeStop Stop.
+ */
+ol.structs.IntegerSet.prototype.removeRange =
+    function(removeStart, removeStop) {
+  // FIXME this could be more efficient
+  goog.asserts.assert(removeStart <= removeStop);
+  var arr = this.arr_;
+  var n = arr.length;
+  var i;
+  for (i = 0; i < n; i += 2) {
+    if (removeStop < arr[i] || arr[i + 1] < removeStart) {
+      continue;
+    } else if (arr[i] > removeStop) {
+      break;
+    }
+    if (removeStart < arr[i]) {
+      if (removeStop == arr[i]) {
+        break;
+      } else if (removeStop < arr[i + 1]) {
+        arr[i] = Math.max(arr[i], removeStop);
+        break;
+      } else {
+        arr.splice(i, 2);
+        i -= 2;
+        n -= 2;
+      }
+    } else if (removeStart == arr[i]) {
+      if (removeStop < arr[i + 1]) {
+        arr[i] = removeStop;
+        break;
+      } else if (removeStop == arr[i + 1]) {
+        arr.splice(i, 2);
+        break;
+      } else {
+        arr.splice(i, 2);
+        i -= 2;
+        n -= 2;
+      }
+    } else {
+      if (removeStop < arr[i + 1]) {
+        arr.splice(i, 2, arr[i], removeStart, removeStop, arr[i + 1]);
+        break;
+      } else if (removeStop == arr[i + 1]) {
+        arr[i + 1] = removeStart;
+        break;
+      } else {
+        arr[i + 1] = removeStart;
+      }
+    }
+  }
+  this.compactRanges_();
+};
+
+
+if (goog.DEBUG) {
+
+  /**
+   * @return {string} String.
+   */
+  ol.structs.IntegerSet.prototype.toString = function() {
+    var arr = this.arr_;
+    var n = arr.length;
+    var result = new Array(n / 2);
+    var resultIndex = 0;
+    var i;
+    for (i = 0; i < n; i += 2) {
+      result[resultIndex++] = arr[i] + '-' + arr[i + 1];
+    }
+    return result.join(', ');
+  };
+
+}
+goog.provide('ol.structs.Buffer');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.webgl');
+goog.require('ol');
+goog.require('ol.structs.IntegerSet');
+
+
+/**
+ * @enum {number}
+ */
+ol.structs.BufferUsage = {
+  STATIC_DRAW: goog.webgl.STATIC_DRAW,
+  STREAM_DRAW: goog.webgl.STREAM_DRAW,
+  DYNAMIC_DRAW: goog.webgl.DYNAMIC_DRAW
+};
+
+=======
+
+
+/**
+ * @constructor
+ * @extends {ol.renderer.Layer}
+ * @param {ol.renderer.Map} mapRenderer Map renderer.
+ * @param {ol.layer.Layer} layer Layer.
+ */
+ol.renderer.webgl.Layer = function(mapRenderer, layer) {
+
+  goog.base(this, mapRenderer, layer);
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.structs.Buffer}
+   */
+  this.arrayBuffer_ = new ol.structs.Buffer([
+    -1, -1, 0, 0,
+    1, -1, 1, 0,
+    -1, 1, 0, 1,
+    1, 1, 1, 1
+  ]);
+
+<<<<<<< HEAD
+/**
+ * @constructor
+ * @param {Array.<number>=} opt_arr Array.
+ * @param {number=} opt_used Used.
+ * @param {number=} opt_usage Usage.
+ * @struct
+ */
+ol.structs.Buffer = function(opt_arr, opt_used, opt_usage) {
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.arr_ = goog.isDef(opt_arr) ? opt_arr : [];
+
+  /**
+   * @private
+   * @type {Array.<ol.structs.IntegerSet>}
+   */
+  this.dirtySets_ = [];
+
+  /**
+   * @private
+   * @type {ol.structs.IntegerSet}
+   */
+  this.freeSet_ = new ol.structs.IntegerSet();
+
+  var used = goog.isDef(opt_used) ? opt_used : this.arr_.length;
+  if (used < this.arr_.length) {
+    this.freeSet_.addRange(used, this.arr_.length);
+  }
+  if (ol.BUFFER_REPLACE_UNUSED_ENTRIES_WITH_NANS) {
+    var arr = this.arr_;
+    var n = arr.length;
+    var i;
+    for (i = used; i < n; ++i) {
+      arr[i] = NaN;
+    }
+  }
+
+  /**
+   * @private
+   * @type {?Float32Array}
+   */
+  this.split32_ = null;
+
+  /**
+   * @private
+   * @type {ol.structs.IntegerSet}
+   */
+  this.split32DirtySet_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.usage_ = goog.isDef(opt_usage) ?
+      opt_usage : ol.structs.BufferUsage.STATIC_DRAW;
+
+};
+=======
+  /**
+   * @protected
+   * @type {WebGLTexture}
+   */
+  this.texture = null;
+>>>>>>> ConectaDF
+
+  /**
+   * @protected
+   * @type {WebGLFramebuffer}
+   */
+  this.framebuffer = null;
+
+<<<<<<< HEAD
+/**
+ * @param {number} size Size.
+ * @return {number} Offset.
+ */
+ol.structs.Buffer.prototype.allocate = function(size) {
+  goog.asserts.assert(size > 0);
+  var offset = this.freeSet_.findRange(size);
+  goog.asserts.assert(offset != -1);  // FIXME
+  this.freeSet_.removeRange(offset, offset + size);
+  return offset;
+};
+=======
+  /**
+   * @protected
+   * @type {number|undefined}
+   */
+  this.framebufferDimension = undefined;
+>>>>>>> ConectaDF
+
+  /**
+   * @protected
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.texCoordMatrix = goog.vec.Mat4.createNumber();
+
+<<<<<<< HEAD
+/**
+ * @param {Array.<number>} values Values.
+ * @return {number} Offset.
+ */
+ol.structs.Buffer.prototype.add = function(values) {
+  var size = values.length;
+  var offset = this.allocate(size);
+  var i;
+  for (i = 0; i < size; ++i) {
+    this.arr_[offset + i] = values[i];
+  }
+  this.markDirty(size, offset);
+  return offset;
+};
+=======
+  /**
+   * @protected
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.projectionMatrix = goog.vec.Mat4.createNumberIdentity();
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.color.Matrix}
+   */
+  this.colorMatrix_ = new ol.color.Matrix();
+
+<<<<<<< HEAD
+/**
+ * @param {ol.structs.IntegerSet} dirtySet Dirty set.
+ */
+ol.structs.Buffer.prototype.addDirtySet = function(dirtySet) {
+  goog.asserts.assert(!goog.array.contains(this.dirtySets_, dirtySet));
+  this.dirtySets_.push(dirtySet);
+};
+=======
+  /**
+   * @private
+   * @type {ol.renderer.webgl.map.shader.Color.Locations}
+   */
+  this.colorLocations_ = null;
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {ol.renderer.webgl.map.shader.Default.Locations}
+   */
+  this.defaultLocations_ = null;
+
+<<<<<<< HEAD
+/**
+ * @param {function(this: T, number, number)} f Callback.
+ * @param {T=} opt_this The object to use as `this` in `f`.
+ * @template T
+ */
+ol.structs.Buffer.prototype.forEachRange = function(f, opt_this) {
+  if (this.arr_.length !== 0) {
+    this.freeSet_.forEachRangeInverted(0, this.arr_.length, f, opt_this);
+  }
+=======
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.renderer.webgl.Layer, ol.renderer.Layer);
+
+
+/**
+<<<<<<< HEAD
+ * @return {Array.<number>} Array.
+ */
+ol.structs.Buffer.prototype.getArray = function() {
+  return this.arr_;
+};
+
+
+/**
+ * @return {number} Count.
+ */
+ol.structs.Buffer.prototype.getCount = function() {
+  return this.arr_.length - this.freeSet_.getSize();
+};
+=======
+ * @param {oli.FrameState} frameState Frame state.
+ * @param {number} framebufferDimension Framebuffer dimension.
+ * @protected
+ */
+ol.renderer.webgl.Layer.prototype.bindFramebuffer =
+    function(frameState, framebufferDimension) {
+
+  var mapRenderer = this.getWebGLMapRenderer();
+  var gl = mapRenderer.getGL();
+>>>>>>> ConectaDF
+
+  if (!goog.isDef(this.framebufferDimension) ||
+      this.framebufferDimension != framebufferDimension) {
+
+<<<<<<< HEAD
+/**
+ * @return {ol.structs.IntegerSet} Free set.
+ */
+ol.structs.Buffer.prototype.getFreeSet = function() {
+  return this.freeSet_;
+};
+=======
+    frameState.postRenderFunctions.push(
+        goog.partial(
+            /**
+             * @param {WebGLRenderingContext} gl GL.
+             * @param {WebGLFramebuffer} framebuffer Framebuffer.
+             * @param {WebGLTexture} texture Texture.
+             */
+            function(gl, framebuffer, texture) {
+              if (!gl.isContextLost()) {
+                gl.deleteFramebuffer(framebuffer);
+                gl.deleteTexture(texture);
+              }
+            }, gl, this.framebuffer, this.texture));
+>>>>>>> ConectaDF
+
+    var texture = gl.createTexture();
+    gl.bindTexture(goog.webgl.TEXTURE_2D, texture);
+    gl.texImage2D(goog.webgl.TEXTURE_2D, 0, goog.webgl.RGBA,
+        framebufferDimension, framebufferDimension, 0, goog.webgl.RGBA,
+        goog.webgl.UNSIGNED_BYTE, null);
+    gl.texParameteri(goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MAG_FILTER,
+        goog.webgl.LINEAR);
+    gl.texParameteri(goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MIN_FILTER,
+        goog.webgl.LINEAR);
+
+<<<<<<< HEAD
+/**
+ * Returns a Float32Array twice the length of the buffer containing each value
+ * split into two 32-bit floating point values that, when added together,
+ * approximate the original value. Even indicies contain the high bits, odd
+ * indicies contain the low bits.
+ * @see http://blogs.agi.com/insight3d/index.php/2008/09/03/precisions-precisions/
+ * @return {Float32Array} Split.
+ */
+ol.structs.Buffer.prototype.getSplit32 = function() {
+  var arr = this.arr_;
+  var n = arr.length;
+  if (goog.isNull(this.split32DirtySet_)) {
+    this.split32DirtySet_ = new ol.structs.IntegerSet([0, n]);
+    this.addDirtySet(this.split32DirtySet_);
+  }
+  if (goog.isNull(this.split32_)) {
+    this.split32_ = new Float32Array(2 * n);
+  }
+  var split32 = this.split32_;
+  this.split32DirtySet_.forEachRange(function(start, stop) {
+    var doubleHigh, i, j, value;
+    for (i = start, j = 2 * start; i < stop; ++i, j += 2) {
+      value = arr[i];
+      if (value < 0) {
+        doubleHigh = 65536 * Math.floor(-value / 65536);
+        split32[j] = -doubleHigh;
+        split32[j + 1] = value + doubleHigh;
+      } else {
+        doubleHigh = 65536 * Math.floor(value / 65536);
+        split32[j] = doubleHigh;
+        split32[j + 1] = value - doubleHigh;
+      }
+    }
+  });
+  this.split32DirtySet_.clear();
+  return this.split32_;
+};
+
+
+/**
+ * @return {number} Usage.
+ */
+ol.structs.Buffer.prototype.getUsage = function() {
+  return this.usage_;
+};
+
+
+/**
+ * @param {number} size Size.
+ * @param {number} offset Offset.
+ */
+ol.structs.Buffer.prototype.markDirty = function(size, offset) {
+  var i, ii;
+  for (i = 0, ii = this.dirtySets_.length; i < ii; ++i) {
+    this.dirtySets_[i].addRange(offset, offset + size);
+  }
+};
+
+
+/**
+ * @param {number} size Size.
+ * @param {number} offset Offset.
+ */
+ol.structs.Buffer.prototype.remove = function(size, offset) {
+  var i, ii;
+  this.freeSet_.addRange(offset, offset + size);
+  for (i = 0, ii = this.dirtySets_.length; i < ii; ++i) {
+    this.dirtySets_[i].removeRange(offset, offset + size);
+  }
+  if (ol.BUFFER_REPLACE_UNUSED_ENTRIES_WITH_NANS) {
+    var arr = this.arr_;
+    for (i = 0; i < size; ++i) {
+      arr[offset + i] = NaN;
+    }
+=======
+    var framebuffer = gl.createFramebuffer();
+    gl.bindFramebuffer(goog.webgl.FRAMEBUFFER, framebuffer);
+    gl.framebufferTexture2D(goog.webgl.FRAMEBUFFER,
+        goog.webgl.COLOR_ATTACHMENT0, goog.webgl.TEXTURE_2D, texture, 0);
+
+    this.texture = texture;
+    this.framebuffer = framebuffer;
+    this.framebufferDimension = framebufferDimension;
+
+  } else {
+    gl.bindFramebuffer(goog.webgl.FRAMEBUFFER, this.framebuffer);
+>>>>>>> ConectaDF
+  }
+
+<<<<<<< HEAD
+
+/**
+ * @param {ol.structs.IntegerSet} dirtySet Dirty set.
+ */
+ol.structs.Buffer.prototype.removeDirtySet = function(dirtySet) {
+  var removed = goog.array.remove(this.dirtySets_, dirtySet);
+  goog.asserts.assert(removed);
+=======
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {Array.<number>} values Values.
+ * @param {number} offset Offset.
+ */
+ol.structs.Buffer.prototype.set = function(values, offset) {
+  var arr = this.arr_;
+  var n = values.length;
+  goog.asserts.assert(0 <= offset && offset + n <= arr.length);
+  var i;
+  for (i = 0; i < n; ++i) {
+    arr[offset + i] = values[i];
+  }
+  this.markDirty(n, offset);
+};
+goog.provide('ol.color.Matrix');
+
+goog.require('goog.vec.Mat4');
+
+
+
+/**
+ * @constructor
+ */
+ol.color.Matrix = function() {
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.colorMatrix_ = goog.vec.Mat4.createNumber();
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.brightness_ = undefined;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.brightnessMatrix_ = goog.vec.Mat4.createNumber();
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.contrast_ = undefined;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.contrastMatrix_ = goog.vec.Mat4.createNumber();
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.hue_ = undefined;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.hueMatrix_ = goog.vec.Mat4.createNumber();
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.saturation_ = undefined;
+
+  /**
+   * @private
+   * @type {!goog.vec.Mat4.Number}
+   */
+  this.saturationMatrix_ = goog.vec.Mat4.createNumber();
+=======
+ * @param {oli.FrameState} frameState Frame state.
+ * @param {ol.layer.LayerState} layerState Layer state.
+ * @param {ol.webgl.Context} context Context.
+ */
+ol.renderer.webgl.Layer.prototype.composeFrame =
+    function(frameState, layerState, context) {
+
+  this.dispatchComposeEvent_(
+      ol.render.EventType.PRECOMPOSE, context, frameState);
+
+  context.bindBuffer(goog.webgl.ARRAY_BUFFER, this.arrayBuffer_);
+
+  var gl = context.getGL();
+
+  var useColor =
+      layerState.brightness ||
+      layerState.contrast != 1 ||
+      layerState.hue ||
+      layerState.saturation != 1;
+
+  var fragmentShader, vertexShader;
+  if (useColor) {
+    fragmentShader = ol.renderer.webgl.map.shader.ColorFragment.getInstance();
+    vertexShader = ol.renderer.webgl.map.shader.ColorVertex.getInstance();
+  } else {
+    fragmentShader =
+        ol.renderer.webgl.map.shader.DefaultFragment.getInstance();
+    vertexShader = ol.renderer.webgl.map.shader.DefaultVertex.getInstance();
+  }
+
+  var program = context.getProgram(fragmentShader, vertexShader);
+
+  // FIXME colorLocations_ and defaultLocations_ should be shared somehow
+  var locations;
+  if (useColor) {
+    if (goog.isNull(this.colorLocations_)) {
+      locations =
+          new ol.renderer.webgl.map.shader.Color.Locations(gl, program);
+      this.colorLocations_ = locations;
+    } else {
+      locations = this.colorLocations_;
+    }
+  } else {
+    if (goog.isNull(this.defaultLocations_)) {
+      locations =
+          new ol.renderer.webgl.map.shader.Default.Locations(gl, program);
+      this.defaultLocations_ = locations;
+    } else {
+      locations = this.defaultLocations_;
+    }
+  }
+
+  if (context.useProgram(program)) {
+    gl.enableVertexAttribArray(locations.a_position);
+    gl.vertexAttribPointer(
+        locations.a_position, 2, goog.webgl.FLOAT, false, 16, 0);
+    gl.enableVertexAttribArray(locations.a_texCoord);
+    gl.vertexAttribPointer(
+        locations.a_texCoord, 2, goog.webgl.FLOAT, false, 16, 8);
+    gl.uniform1i(locations.u_texture, 0);
+  }
+
+  gl.uniformMatrix4fv(
+      locations.u_texCoordMatrix, false, this.getTexCoordMatrix());
+  gl.uniformMatrix4fv(locations.u_projectionMatrix, false,
+      this.getProjectionMatrix());
+  if (useColor) {
+    gl.uniformMatrix4fv(locations.u_colorMatrix, false,
+        this.colorMatrix_.getMatrix(
+            layerState.brightness,
+            layerState.contrast,
+            layerState.hue,
+            layerState.saturation
+        ));
+  }
+  gl.uniform1f(locations.u_opacity, layerState.opacity);
+  gl.bindTexture(goog.webgl.TEXTURE_2D, this.getTexture());
+  gl.drawArrays(goog.webgl.TRIANGLE_STRIP, 0, 4);
+
+  this.dispatchComposeEvent_(
+      ol.render.EventType.POSTCOMPOSE, context, frameState);
+>>>>>>> ConectaDF
+
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {!goog.vec.Mat4.Number} matrix Matrix.
+ * @param {number} value Brightness value.
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.color.Matrix.makeBrightness = function(matrix, value) {
+  goog.vec.Mat4.makeTranslate(matrix, value, value, value);
+  return matrix;
+=======
+ * @param {ol.render.EventType} type Event type.
+ * @param {ol.webgl.Context} context WebGL context.
+ * @param {oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.renderer.webgl.Layer.prototype.dispatchComposeEvent_ =
+    function(type, context, frameState) {
+  var layer = this.getLayer();
+  if (layer.hasListener(type)) {
+    var render = new ol.render.webgl.Immediate(context, frameState.pixelRatio);
+    var composeEvent = new ol.render.Event(
+        type, layer, render, frameState, null, context);
+    layer.dispatchEvent(composeEvent);
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {!goog.vec.Mat4.Number} matrix Matrix.
+ * @param {number} value Contrast value.
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.color.Matrix.makeContrast = function(matrix, value) {
+  goog.vec.Mat4.makeScale(matrix, value, value, value);
+  var translateValue = (-0.5 * value + 0.5);
+  goog.vec.Mat4.setColumnValues(matrix, 3,
+      translateValue, translateValue, translateValue, 1);
+  return matrix;
+};
 
 
 /**
@@ -60035,10 +77768,18 @@ ol.color.Matrix.makeSaturation = function(matrix, value) {
       v02, v12, v22, v32,
       v03, v13, v23, v33);
   return matrix;
+=======
+ * @protected
+ * @return {ol.renderer.webgl.Map} MapRenderer.
+ */
+ol.renderer.webgl.Layer.prototype.getWebGLMapRenderer = function() {
+  return /** @type {ol.renderer.webgl.Map} */ (this.getMapRenderer());
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @param {number|undefined} brightness Brightness.
  * @param {number|undefined} contrast Contrast.
  * @param {number|undefined} hue Hue.
@@ -60085,9 +77826,16 @@ ol.color.Matrix.prototype.getMatrix = function(
     }
   }
   return this.colorMatrix_;
+=======
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.renderer.webgl.Layer.prototype.getTexCoordMatrix = function() {
+  return this.texCoordMatrix;
+>>>>>>> ConectaDF
 };
 goog.provide('ol.renderer.webgl.Layer');
 
+<<<<<<< HEAD
 goog.require('goog.vec.Mat4');
 goog.require('goog.webgl');
 goog.require('ol.color.Matrix');
@@ -60099,10 +77847,19 @@ goog.require('ol.renderer.Layer');
 goog.require('ol.renderer.webgl.map.shader.Color');
 goog.require('ol.renderer.webgl.map.shader.Default');
 goog.require('ol.structs.Buffer');
+=======
 
+/**
+ * @return {WebGLTexture} Texture.
+ */
+ol.renderer.webgl.Layer.prototype.getTexture = function() {
+  return this.texture;
+};
+>>>>>>> ConectaDF
 
 
 /**
+<<<<<<< HEAD
  * @constructor
  * @extends {ol.renderer.Layer}
  * @param {ol.renderer.Map} mapRenderer Map renderer.
@@ -60134,6 +77891,39 @@ ol.renderer.webgl.Layer = function(mapRenderer, layer) {
    * @type {WebGLFramebuffer}
    */
   this.framebuffer = null;
+=======
+ * @return {!goog.vec.Mat4.Number} Matrix.
+ */
+ol.renderer.webgl.Layer.prototype.getProjectionMatrix = function() {
+  return this.projectionMatrix;
+};
+
+
+/**
+ * Handle webglcontextlost.
+ */
+ol.renderer.webgl.Layer.prototype.handleWebGLContextLost = function() {
+  this.texture = null;
+  this.framebuffer = null;
+  this.framebufferDimension = undefined;
+};
+goog.provide('ol.renderer.webgl.ImageLayer');
+
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.vec.Mat4');
+goog.require('goog.webgl');
+goog.require('ol.Coordinate');
+goog.require('ol.Extent');
+goog.require('ol.ImageBase');
+goog.require('ol.ImageState');
+goog.require('ol.ViewHint');
+goog.require('ol.layer.Image');
+goog.require('ol.renderer.webgl.Layer');
+goog.require('ol.source.Image');
+
+>>>>>>> ConectaDF
 
   /**
    * @protected
@@ -60141,6 +77931,7 @@ ol.renderer.webgl.Layer = function(mapRenderer, layer) {
    */
   this.framebufferDimension = undefined;
 
+<<<<<<< HEAD
   /**
    * @protected
    * @type {!goog.vec.Mat4.Number}
@@ -60164,9 +77955,22 @@ ol.renderer.webgl.Layer = function(mapRenderer, layer) {
    * @type {ol.renderer.webgl.map.shader.Color.Locations}
    */
   this.colorLocations_ = null;
+=======
+/**
+ * @constructor
+ * @extends {ol.renderer.webgl.Layer}
+ * @param {ol.renderer.Map} mapRenderer Map renderer.
+ * @param {ol.layer.Image} imageLayer Tile layer.
+ */
+ol.renderer.webgl.ImageLayer = function(mapRenderer, imageLayer) {
+
+  goog.base(this, mapRenderer, imageLayer);
+>>>>>>> ConectaDF
 
   /**
+   * The last rendered image.
    * @private
+<<<<<<< HEAD
    * @type {ol.renderer.webgl.map.shader.Default.Locations}
    */
   this.defaultLocations_ = null;
@@ -60226,10 +78030,18 @@ ol.renderer.webgl.Layer.prototype.bindFramebuffer =
     gl.bindFramebuffer(goog.webgl.FRAMEBUFFER, this.framebuffer);
   }
 
+=======
+   * @type {?ol.ImageBase}
+   */
+  this.image_ = null;
+
+>>>>>>> ConectaDF
 };
+goog.inherits(ol.renderer.webgl.ImageLayer, ol.renderer.webgl.Layer);
 
 
 /**
+<<<<<<< HEAD
  * @param {oli.FrameState} frameState Frame state.
  * @param {ol.layer.LayerState} layerState Layer state.
  * @param {ol.webgl.Context} context Context.
@@ -60313,8 +78125,39 @@ ol.renderer.webgl.Layer.prototype.composeFrame =
       ol.render.EventType.POSTCOMPOSE, context, frameState);
 
 };
+=======
+ * @param {ol.ImageBase} image Image.
+ * @private
+ * @return {WebGLTexture} Texture.
+ */
+ol.renderer.webgl.ImageLayer.prototype.createTexture_ = function(image) {
 
+  // We meet the conditions to work with non-power of two textures.
+  // http://www.khronos.org/webgl/wiki/WebGL_and_OpenGL_Differences#Non-Power_of_Two_Texture_Support
+  // http://learningwebgl.com/blog/?p=2101
 
+  var imageElement = image.getImageElement();
+  var gl = this.getWebGLMapRenderer().getGL();
+
+  var texture = gl.createTexture();
+
+  gl.bindTexture(goog.webgl.TEXTURE_2D, texture);
+  gl.texImage2D(goog.webgl.TEXTURE_2D, 0, goog.webgl.RGBA,
+      goog.webgl.RGBA, goog.webgl.UNSIGNED_BYTE, imageElement);
+>>>>>>> ConectaDF
+
+  gl.texParameteri(
+      goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_WRAP_S,
+      goog.webgl.CLAMP_TO_EDGE);
+  gl.texParameteri(
+      goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_WRAP_T,
+      goog.webgl.CLAMP_TO_EDGE);
+  gl.texParameteri(
+      goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MIN_FILTER, goog.webgl.LINEAR);
+  gl.texParameteri(
+      goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MAG_FILTER, goog.webgl.LINEAR);
+
+<<<<<<< HEAD
 /**
  * @param {ol.render.EventType} type Event type.
  * @param {ol.webgl.Context} context WebGL context.
@@ -60330,42 +78173,123 @@ ol.renderer.webgl.Layer.prototype.dispatchComposeEvent_ =
         type, layer, render, frameState, null, context);
     layer.dispatchEvent(composeEvent);
   }
+=======
+  return texture;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @protected
  * @return {ol.renderer.webgl.Map} MapRenderer.
  */
 ol.renderer.webgl.Layer.prototype.getWebGLMapRenderer = function() {
   return /** @type {ol.renderer.webgl.Map} */ (this.getMapRenderer());
+=======
+ * @inheritDoc
+ */
+ol.renderer.webgl.ImageLayer.prototype.forEachFeatureAtPixel =
+    function(coordinate, frameState, callback, thisArg) {
+  var layer = this.getLayer();
+  var source = layer.getSource();
+  goog.asserts.assertInstanceof(source, ol.source.Image);
+  var extent = frameState.extent;
+  var resolution = frameState.view2DState.resolution;
+  var rotation = frameState.view2DState.rotation;
+  return source.forEachFeatureAtPixel(extent, resolution, rotation, coordinate,
+      /**
+       * @param {ol.Feature} feature Feature.
+       * @return {?} Callback result.
+       */
+      function(feature) {
+        return callback.call(thisArg, feature, layer);
+      });
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * @return {!goog.vec.Mat4.Number} Matrix.
  */
 ol.renderer.webgl.Layer.prototype.getTexCoordMatrix = function() {
   return this.texCoordMatrix;
 };
+=======
+ * @inheritDoc
+ */
+ol.renderer.webgl.ImageLayer.prototype.prepareFrame =
+    function(frameState, layerState) {
+>>>>>>> ConectaDF
 
+  var gl = this.getWebGLMapRenderer().getGL();
 
+<<<<<<< HEAD
 /**
  * @return {WebGLTexture} Texture.
  */
 ol.renderer.webgl.Layer.prototype.getTexture = function() {
   return this.texture;
 };
+=======
+  var view2DState = frameState.view2DState;
+  var viewCenter = view2DState.center;
+  var viewResolution = view2DState.resolution;
+  var viewRotation = view2DState.rotation;
 
+  var image = this.image_;
+  var texture = this.texture;
+  var imageLayer = this.getLayer();
+  goog.asserts.assertInstanceof(imageLayer, ol.layer.Image);
+  var imageSource = imageLayer.getSource();
+  goog.asserts.assertInstanceof(imageSource, ol.source.Image);
+>>>>>>> ConectaDF
 
+  var hints = frameState.viewHints;
+
+<<<<<<< HEAD
 /**
  * @return {!goog.vec.Mat4.Number} Matrix.
  */
 ol.renderer.webgl.Layer.prototype.getProjectionMatrix = function() {
   return this.projectionMatrix;
 };
+=======
+  if (!hints[ol.ViewHint.ANIMATING] && !hints[ol.ViewHint.INTERACTING]) {
+    var image_ = imageSource.getImage(frameState.extent, viewResolution,
+        frameState.pixelRatio, view2DState.projection);
+    if (!goog.isNull(image_)) {
+      var imageState = image_.getState();
+      if (imageState == ol.ImageState.IDLE) {
+        goog.events.listenOnce(image_, goog.events.EventType.CHANGE,
+            this.handleImageChange, false, this);
+        image_.load();
+      } else if (imageState == ol.ImageState.LOADED) {
+        image = image_;
+        texture = this.createTexture_(image_);
+        if (!goog.isNull(this.texture)) {
+          frameState.postRenderFunctions.push(
+              goog.partial(
+                  /**
+                   * @param {WebGLRenderingContext} gl GL.
+                   * @param {WebGLTexture} texture Texture.
+                   */
+                  function(gl, texture) {
+                    if (!gl.isContextLost()) {
+                      gl.deleteTexture(texture);
+                    }
+                  }, gl, this.texture));
+        }
+      }
+    }
+  }
+>>>>>>> ConectaDF
 
+  if (!goog.isNull(image)) {
+    goog.asserts.assert(!goog.isNull(texture));
 
+<<<<<<< HEAD
 /**
  * Handle webglcontextlost.
  */
@@ -60390,8 +78314,23 @@ goog.require('ol.layer.Image');
 goog.require('ol.renderer.webgl.Layer');
 goog.require('ol.source.Image');
 
+=======
+    var canvas = this.getWebGLMapRenderer().getContext().getCanvas();
 
+    this.updateProjectionMatrix_(canvas.width, canvas.height,
+        viewCenter, viewResolution, viewRotation, image.getExtent());
 
+    // Translate and scale to flip the Y coord.
+    var texCoordMatrix = this.texCoordMatrix;
+    goog.vec.Mat4.makeIdentity(texCoordMatrix);
+    goog.vec.Mat4.scale(texCoordMatrix, 1, -1, 1);
+    goog.vec.Mat4.translate(texCoordMatrix, 0, -1, 0);
+>>>>>>> ConectaDF
+
+    this.image_ = image;
+    this.texture = texture;
+
+<<<<<<< HEAD
 /**
  * @constructor
  * @extends {ol.renderer.webgl.Layer}
@@ -60409,11 +78348,17 @@ ol.renderer.webgl.ImageLayer = function(mapRenderer, imageLayer) {
    */
   this.image_ = null;
 
+=======
+    this.updateAttributions(frameState.attributions, image.getAttributions());
+    this.updateLogos(frameState, imageSource);
+  }
+>>>>>>> ConectaDF
 };
 goog.inherits(ol.renderer.webgl.ImageLayer, ol.renderer.webgl.Layer);
 
 
 /**
+<<<<<<< HEAD
  * @param {ol.ImageBase} image Image.
  * @private
  * @return {WebGLTexture} Texture.
@@ -60467,10 +78412,60 @@ ol.renderer.webgl.ImageLayer.prototype.forEachFeatureAtPixel =
       function(feature) {
         return callback.call(thisArg, feature, layer);
       });
+=======
+ * @param {number} canvasWidth Canvas width.
+ * @param {number} canvasHeight Canvas height.
+ * @param {ol.Coordinate} viewCenter View center.
+ * @param {number} viewResolution View resolution.
+ * @param {number} viewRotation View rotation.
+ * @param {ol.Extent} imageExtent Image extent.
+ * @private
+ */
+ol.renderer.webgl.ImageLayer.prototype.updateProjectionMatrix_ =
+    function(canvasWidth, canvasHeight, viewCenter,
+        viewResolution, viewRotation, imageExtent) {
+
+  var canvasExtentWidth = canvasWidth * viewResolution;
+  var canvasExtentHeight = canvasHeight * viewResolution;
+
+  var projectionMatrix = this.projectionMatrix;
+  goog.vec.Mat4.makeIdentity(projectionMatrix);
+  goog.vec.Mat4.scale(projectionMatrix,
+      2 / canvasExtentWidth, 2 / canvasExtentHeight, 1);
+  goog.vec.Mat4.rotateZ(projectionMatrix, -viewRotation);
+  goog.vec.Mat4.translate(projectionMatrix,
+      imageExtent[0] - viewCenter[0],
+      imageExtent[1] - viewCenter[1],
+      0);
+  goog.vec.Mat4.scale(projectionMatrix,
+      (imageExtent[2] - imageExtent[0]) / 2,
+      (imageExtent[3] - imageExtent[1]) / 2,
+      1);
+  goog.vec.Mat4.translate(projectionMatrix, 1, 1, 0);
+
 };
+// This file is automatically generated, do not edit
+goog.provide('ol.renderer.webgl.tilelayer.shader');
+
+goog.require('ol.webgl.shader');
+
 
 
 /**
+ * @constructor
+ * @extends {ol.webgl.shader.Fragment}
+ * @struct
+ */
+ol.renderer.webgl.tilelayer.shader.Fragment = function() {
+  goog.base(this, ol.renderer.webgl.tilelayer.shader.Fragment.SOURCE);
+>>>>>>> ConectaDF
+};
+goog.inherits(ol.renderer.webgl.tilelayer.shader.Fragment, ol.webgl.shader.Fragment);
+goog.addSingletonGetter(ol.renderer.webgl.tilelayer.shader.Fragment);
+
+
+/**
+<<<<<<< HEAD
  * @inheritDoc
  */
 ol.renderer.webgl.ImageLayer.prototype.prepareFrame =
@@ -60613,6 +78608,25 @@ ol.renderer.webgl.tilelayer.shader.Fragment.OPTIMIZED_SOURCE = 'precision medium
  * @const
  * @type {string}
  */
+=======
+ * @const
+ * @type {string}
+ */
+ol.renderer.webgl.tilelayer.shader.Fragment.DEBUG_SOURCE = 'precision mediump float;\nvarying vec2 v_texCoord;\n\n\nuniform sampler2D u_texture;\n\nvoid main(void) {\n  gl_FragColor = texture2D(u_texture, v_texCoord);\n}\n';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ol.renderer.webgl.tilelayer.shader.Fragment.OPTIMIZED_SOURCE = 'precision mediump float;varying vec2 a;uniform sampler2D e;void main(void){gl_FragColor=texture2D(e,a);}';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+>>>>>>> ConectaDF
 ol.renderer.webgl.tilelayer.shader.Fragment.SOURCE = goog.DEBUG ?
     ol.renderer.webgl.tilelayer.shader.Fragment.DEBUG_SOURCE :
     ol.renderer.webgl.tilelayer.shader.Fragment.OPTIMIZED_SOURCE;
@@ -60629,6 +78643,7 @@ ol.renderer.webgl.tilelayer.shader.Vertex = function() {
 };
 goog.inherits(ol.renderer.webgl.tilelayer.shader.Vertex, ol.webgl.shader.Vertex);
 goog.addSingletonGetter(ol.renderer.webgl.tilelayer.shader.Vertex);
+<<<<<<< HEAD
 
 
 /**
@@ -60637,11 +78652,56 @@ goog.addSingletonGetter(ol.renderer.webgl.tilelayer.shader.Vertex);
  */
 ol.renderer.webgl.tilelayer.shader.Vertex.DEBUG_SOURCE = 'varying vec2 v_texCoord;\n\n\nattribute vec2 a_position;\nattribute vec2 a_texCoord;\nuniform vec4 u_tileOffset;\n\nvoid main(void) {\n  gl_Position = vec4(a_position * u_tileOffset.xy + u_tileOffset.zw, 0., 1.);\n  v_texCoord = a_texCoord;\n}\n\n\n';
 
+=======
+
+>>>>>>> ConectaDF
 
 /**
  * @const
  * @type {string}
  */
+<<<<<<< HEAD
+ol.renderer.webgl.tilelayer.shader.Vertex.OPTIMIZED_SOURCE = 'varying vec2 a;attribute vec2 b;attribute vec2 c;uniform vec4 d;void main(void){gl_Position=vec4(b*d.xy+d.zw,0.,1.);a=c;}';
+=======
+ol.renderer.webgl.tilelayer.shader.Vertex.DEBUG_SOURCE = 'varying vec2 v_texCoord;\n\n\nattribute vec2 a_position;\nattribute vec2 a_texCoord;\nuniform vec4 u_tileOffset;\n\nvoid main(void) {\n  gl_Position = vec4(a_position * u_tileOffset.xy + u_tileOffset.zw, 0., 1.);\n  v_texCoord = a_texCoord;\n}\n\n\n';
+>>>>>>> ConectaDF
+
+
+/**
+ * @const
+ * @type {string}
+ */
+<<<<<<< HEAD
+ol.renderer.webgl.tilelayer.shader.Vertex.SOURCE = goog.DEBUG ?
+    ol.renderer.webgl.tilelayer.shader.Vertex.DEBUG_SOURCE :
+    ol.renderer.webgl.tilelayer.shader.Vertex.OPTIMIZED_SOURCE;
+
+
+
+/**
+ * @constructor
+ * @param {WebGLRenderingContext} gl GL.
+ * @param {WebGLProgram} program Program.
+ * @struct
+ */
+ol.renderer.webgl.tilelayer.shader.Locations = function(gl, program) {
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_texture = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_texture' : 'e');
+
+  /**
+   * @type {WebGLUniformLocation}
+   */
+  this.u_tileOffset = gl.getUniformLocation(
+      program, goog.DEBUG ? 'u_tileOffset' : 'd');
+
+  /**
+   * @type {number}
+   */
+=======
 ol.renderer.webgl.tilelayer.shader.Vertex.OPTIMIZED_SOURCE = 'varying vec2 a;attribute vec2 b;attribute vec2 c;uniform vec4 d;void main(void){gl_Position=vec4(b*d.xy+d.zw,0.,1.);a=c;}';
 
 
@@ -60678,6 +78738,7 @@ ol.renderer.webgl.tilelayer.shader.Locations = function(gl, program) {
   /**
    * @type {number}
    */
+>>>>>>> ConectaDF
   this.a_position = gl.getAttribLocation(
       program, goog.DEBUG ? 'a_position' : 'b');
 
@@ -60865,6 +78926,7 @@ ol.renderer.webgl.TileLayer.prototype.prepareFrame =
     if (goog.isNull(this.locations_)) {
       this.locations_ =
           new ol.renderer.webgl.tilelayer.shader.Locations(gl, program);
+<<<<<<< HEAD
     }
 
     context.bindBuffer(goog.webgl.ARRAY_BUFFER, this.renderArrayBuffer_);
@@ -60991,6 +79053,134 @@ ol.renderer.webgl.TileLayer.prototype.prepareFrame =
   this.scheduleExpireCache(frameState, tileSource);
   this.updateLogos(frameState, tileSource);
 
+=======
+    }
+
+    context.bindBuffer(goog.webgl.ARRAY_BUFFER, this.renderArrayBuffer_);
+    gl.enableVertexAttribArray(this.locations_.a_position);
+    gl.vertexAttribPointer(
+        this.locations_.a_position, 2, goog.webgl.FLOAT, false, 16, 0);
+    gl.enableVertexAttribArray(this.locations_.a_texCoord);
+    gl.vertexAttribPointer(
+        this.locations_.a_texCoord, 2, goog.webgl.FLOAT, false, 16, 8);
+    gl.uniform1i(this.locations_.u_texture, 0);
+
+    /**
+     * @type {Object.<number, Object.<string, ol.Tile>>}
+     */
+    var tilesToDrawByZ = {};
+    tilesToDrawByZ[z] = {};
+
+    var getTileIfLoaded = this.createGetTileIfLoadedFunction(function(tile) {
+      return !goog.isNull(tile) && tile.getState() == ol.TileState.LOADED &&
+          mapRenderer.isTileTextureLoaded(tile);
+    }, tileSource, pixelRatio, projection);
+    var findLoadedTiles = goog.bind(tileSource.findLoadedTiles, tileSource,
+        tilesToDrawByZ, getTileIfLoaded);
+
+    var useInterimTilesOnError = tileLayer.getUseInterimTilesOnError();
+    if (!goog.isDef(useInterimTilesOnError)) {
+      useInterimTilesOnError = true;
+    }
+
+    var allTilesLoaded = true;
+    var tmpExtent = ol.extent.createEmpty();
+    var tmpTileRange = new ol.TileRange(0, 0, 0, 0);
+    var childTileRange, fullyLoaded, tile, tileState, x, y;
+    for (x = tileRange.minX; x <= tileRange.maxX; ++x) {
+      for (y = tileRange.minY; y <= tileRange.maxY; ++y) {
+
+        tile = tileSource.getTile(z, x, y, pixelRatio, projection);
+        tileState = tile.getState();
+        if (tileState == ol.TileState.LOADED) {
+          if (mapRenderer.isTileTextureLoaded(tile)) {
+            tilesToDrawByZ[z][tile.tileCoord.toString()] = tile;
+            continue;
+          }
+        } else if (tileState == ol.TileState.EMPTY ||
+                   (tileState == ol.TileState.ERROR &&
+                    !useInterimTilesOnError)) {
+          continue;
+        }
+
+        allTilesLoaded = false;
+        fullyLoaded = tileGrid.forEachTileCoordParentTileRange(
+            tile.tileCoord, findLoadedTiles, null, tmpTileRange, tmpExtent);
+        if (!fullyLoaded) {
+          childTileRange = tileGrid.getTileCoordChildTileRange(
+              tile.tileCoord, tmpTileRange, tmpExtent);
+          if (!goog.isNull(childTileRange)) {
+            findLoadedTiles(z + 1, childTileRange);
+          }
+        }
+
+      }
+
+    }
+
+    /** @type {Array.<number>} */
+    var zs = goog.array.map(goog.object.getKeys(tilesToDrawByZ), Number);
+    goog.array.sort(zs);
+    var u_tileOffset = goog.vec.Vec4.createFloat32();
+    var i, ii, sx, sy, tileExtent, tileKey, tilesToDraw, tx, ty;
+    for (i = 0, ii = zs.length; i < ii; ++i) {
+      tilesToDraw = tilesToDrawByZ[zs[i]];
+      for (tileKey in tilesToDraw) {
+        tile = tilesToDraw[tileKey];
+        tileExtent = tileGrid.getTileCoordExtent(tile.tileCoord, tmpExtent);
+        sx = 2 * (tileExtent[2] - tileExtent[0]) /
+            framebufferExtentDimension;
+        sy = 2 * (tileExtent[3] - tileExtent[1]) /
+            framebufferExtentDimension;
+        tx = 2 * (tileExtent[0] - framebufferExtent[0]) /
+            framebufferExtentDimension - 1;
+        ty = 2 * (tileExtent[1] - framebufferExtent[1]) /
+            framebufferExtentDimension - 1;
+        goog.vec.Vec4.setFromValues(u_tileOffset, sx, sy, tx, ty);
+        gl.uniform4fv(this.locations_.u_tileOffset, u_tileOffset);
+        mapRenderer.bindTileTexture(tile, tilePixelSize,
+            tileGutter * pixelRatio, goog.webgl.LINEAR, goog.webgl.LINEAR);
+        gl.drawArrays(goog.webgl.TRIANGLE_STRIP, 0, 4);
+      }
+    }
+
+    if (allTilesLoaded) {
+      this.renderedTileRange_ = tileRange;
+      this.renderedFramebufferExtent_ = framebufferExtent;
+      this.renderedRevision_ = tileSource.getRevision();
+    } else {
+      this.renderedTileRange_ = null;
+      this.renderedFramebufferExtent_ = null;
+      this.renderedRevision_ = -1;
+      frameState.animate = true;
+    }
+
+  }
+
+  this.updateUsedTiles(frameState.usedTiles, tileSource, z, tileRange);
+  var tileTextureQueue = mapRenderer.getTileTextureQueue();
+  this.manageTilePyramid(
+      frameState, tileSource, tileGrid, pixelRatio, projection, extent, z,
+      tileLayer.getPreload(),
+      /**
+       * @param {ol.Tile} tile Tile.
+       */
+      function(tile) {
+        if (tile.getState() == ol.TileState.LOADED &&
+            !mapRenderer.isTileTextureLoaded(tile) &&
+            !tileTextureQueue.isKeyQueued(tile.getKey())) {
+          tileTextureQueue.enqueue([
+            tile,
+            tileGrid.getTileCoordCenter(tile.tileCoord),
+            tileGrid.getResolution(tile.tileCoord.z),
+            tilePixelSize, tileGutter * pixelRatio
+          ]);
+        }
+      }, this);
+  this.scheduleExpireCache(frameState, tileSource);
+  this.updateLogos(frameState, tileSource);
+
+>>>>>>> ConectaDF
   var texCoordMatrix = this.texCoordMatrix;
   goog.vec.Mat4.makeIdentity(texCoordMatrix);
   goog.vec.Mat4.translate(texCoordMatrix,
@@ -61015,6 +79205,7 @@ ol.renderer.webgl.TileLayer.prototype.prepareFrame =
 
 };
 goog.provide('ol.webgl.Context');
+<<<<<<< HEAD
 
 goog.require('goog.asserts');
 goog.require('goog.events');
@@ -61025,6 +79216,18 @@ goog.require('ol.structs.IntegerSet');
 goog.require('ol.webgl.WebGLContextEventType');
 
 
+=======
+
+goog.require('goog.asserts');
+goog.require('goog.events');
+goog.require('goog.log');
+goog.require('goog.object');
+goog.require('ol.structs.Buffer');
+goog.require('ol.structs.IntegerSet');
+goog.require('ol.webgl.WebGLContextEventType');
+
+
+>>>>>>> ConectaDF
 /**
  * @typedef {{buf: ol.structs.Buffer,
  *            buffer: WebGLBuffer,
@@ -61078,6 +79281,8 @@ ol.webgl.Context = function(canvas, gl) {
    * @type {WebGLProgram}
    */
   this.currentProgram_ = null;
+<<<<<<< HEAD
+=======
 
   goog.events.listen(this.canvas_, ol.webgl.WebGLContextEventType.LOST,
       this.handleWebGLContextLost, false, this);
@@ -61085,8 +79290,15 @@ ol.webgl.Context = function(canvas, gl) {
       this.handleWebGLContextRestored, false, this);
 
 };
+>>>>>>> ConectaDF
 
+  goog.events.listen(this.canvas_, ol.webgl.WebGLContextEventType.LOST,
+      this.handleWebGLContextLost, false, this);
+  goog.events.listen(this.canvas_, ol.webgl.WebGLContextEventType.RESTORED,
+      this.handleWebGLContextRestored, false, this);
 
+<<<<<<< HEAD
+=======
 /**
  * @param {number} target Target.
  * @param {ol.structs.Buffer} buf Buffer.
@@ -61125,10 +79337,50 @@ ol.webgl.Context.prototype.bindBuffer = function(target, buf) {
       dirtySet: dirtySet
     };
   }
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @param {number} target Target.
+ * @param {ol.structs.Buffer} buf Buffer.
+ */
+ol.webgl.Context.prototype.bindBuffer = function(target, buf) {
+  var gl = this.getGL();
+  var arr = buf.getArray();
+  var bufferKey = goog.getUid(buf);
+  if (bufferKey in this.bufferCache_) {
+    var bufferCacheEntry = this.bufferCache_[bufferKey];
+    gl.bindBuffer(target, bufferCacheEntry.buffer);
+    bufferCacheEntry.dirtySet.forEachRange(function(start, stop) {
+      // FIXME check if slice is really efficient here
+      var slice = arr.slice(start, stop);
+      gl.bufferSubData(
+          target,
+          start,
+          target == goog.webgl.ARRAY_BUFFER ?
+          new Float32Array(slice) :
+          new Uint16Array(slice));
+    });
+    bufferCacheEntry.dirtySet.clear();
+  } else {
+    var buffer = gl.createBuffer();
+    gl.bindBuffer(target, buffer);
+    gl.bufferData(
+        target,
+        target == goog.webgl.ARRAY_BUFFER ?
+        new Float32Array(arr) : new Uint16Array(arr),
+        buf.getUsage());
+    var dirtySet = new ol.structs.IntegerSet();
+    buf.addDirtySet(dirtySet);
+    this.bufferCache_[bufferKey] = {
+      buf: buf,
+      buffer: buffer,
+      dirtySet: dirtySet
+    };
+  }
+=======
  * @param {ol.structs.Buffer} buf Buffer.
  */
 ol.webgl.Context.prototype.deleteBuffer = function(buf) {
@@ -61180,10 +79432,23 @@ ol.webgl.Context.prototype.getCanvas = function() {
  */
 ol.webgl.Context.prototype.getGL = function() {
   return this.gl_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @param {ol.structs.Buffer} buf Buffer.
+ */
+ol.webgl.Context.prototype.deleteBuffer = function(buf) {
+  var gl = this.getGL();
+  var bufferKey = goog.getUid(buf);
+  goog.asserts.assert(bufferKey in this.bufferCache_);
+  var bufferCacheEntry = this.bufferCache_[bufferKey];
+  bufferCacheEntry.buf.removeDirtySet(bufferCacheEntry.dirtySet);
+  if (!gl.isContextLost()) {
+    gl.deleteBuffer(bufferCacheEntry.buffer);
+=======
  * @param {ol.webgl.Shader} shaderObject Shader object.
  * @return {WebGLShader} Shader.
  */
@@ -61207,11 +79472,32 @@ ol.webgl.Context.prototype.getShader = function(shaderObject) {
         gl.isContextLost());
     this.shaderCache_[shaderKey] = shader;
     return shader;
+>>>>>>> ConectaDF
   }
+  delete this.bufferCache_[bufferKey];
 };
 
 
 /**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.webgl.Context.prototype.disposeInternal = function() {
+  goog.object.forEach(this.bufferCache_, function(bufferCacheEntry) {
+    bufferCacheEntry.buf.removeDirtySet(bufferCacheEntry.dirtySet);
+  });
+  var gl = this.getGL();
+  if (!gl.isContextLost()) {
+    goog.object.forEach(this.bufferCache_, function(bufferCacheEntry) {
+      gl.deleteBuffer(bufferCacheEntry.buffer);
+    });
+    goog.object.forEach(this.programCache_, function(program) {
+      gl.deleteProgram(program);
+    });
+    goog.object.forEach(this.shaderCache_, function(shader) {
+      gl.deleteShader(shader);
+    });
+=======
  * @param {ol.webgl.shader.Fragment} fragmentShaderObject Fragment shader.
  * @param {ol.webgl.shader.Vertex} vertexShaderObject Vertex shader.
  * @return {WebGLProgram} Program.
@@ -61239,11 +79525,18 @@ ol.webgl.Context.prototype.getProgram = function(
         gl.isContextLost());
     this.programCache_[programKey] = program;
     return program;
+>>>>>>> ConectaDF
   }
 };
 
 
 /**
+<<<<<<< HEAD
+ * @return {HTMLCanvasElement} Canvas.
+ */
+ol.webgl.Context.prototype.getCanvas = function() {
+  return this.canvas_;
+=======
  * FIXME empy description for jsdoc
  */
 ol.webgl.Context.prototype.handleWebGLContextLost = function() {
@@ -61251,17 +79544,52 @@ ol.webgl.Context.prototype.handleWebGLContextLost = function() {
   goog.object.clear(this.shaderCache_);
   goog.object.clear(this.programCache_);
   this.currentProgram_ = null;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @return {WebGLRenderingContext} GL.
+ * @todo api
+ */
+ol.webgl.Context.prototype.getGL = function() {
+  return this.gl_;
+=======
  * FIXME empy description for jsdoc
  */
 ol.webgl.Context.prototype.handleWebGLContextRestored = function() {
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @param {ol.webgl.Shader} shaderObject Shader object.
+ * @return {WebGLShader} Shader.
+ */
+ol.webgl.Context.prototype.getShader = function(shaderObject) {
+  var shaderKey = goog.getUid(shaderObject);
+  if (shaderKey in this.shaderCache_) {
+    return this.shaderCache_[shaderKey];
+  } else {
+    var gl = this.getGL();
+    var shader = gl.createShader(shaderObject.getType());
+    gl.shaderSource(shader, shaderObject.getSource());
+    gl.compileShader(shader);
+    if (goog.DEBUG) {
+      if (!gl.getShaderParameter(shader, goog.webgl.COMPILE_STATUS) &&
+          !gl.isContextLost()) {
+        goog.log.error(this.logger_, gl.getShaderInfoLog(shader));
+      }
+    }
+    goog.asserts.assert(
+        gl.getShaderParameter(shader, goog.webgl.COMPILE_STATUS) ||
+        gl.isContextLost());
+    this.shaderCache_[shaderKey] = shader;
+    return shader;
+  }
+=======
  * @param {WebGLProgram} program Program.
  * @return {boolean} Changed.
  * @todo api
@@ -61578,10 +79906,40 @@ ol.renderer.webgl.Map.prototype.disposeInternal = function() {
   }
   goog.dispose(this.context_);
   goog.base(this, 'disposeInternal');
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @param {ol.webgl.shader.Fragment} fragmentShaderObject Fragment shader.
+ * @param {ol.webgl.shader.Vertex} vertexShaderObject Vertex shader.
+ * @return {WebGLProgram} Program.
+ */
+ol.webgl.Context.prototype.getProgram = function(
+    fragmentShaderObject, vertexShaderObject) {
+  var programKey =
+      goog.getUid(fragmentShaderObject) + '/' + goog.getUid(vertexShaderObject);
+  if (programKey in this.programCache_) {
+    return this.programCache_[programKey];
+  } else {
+    var gl = this.getGL();
+    var program = gl.createProgram();
+    gl.attachShader(program, this.getShader(fragmentShaderObject));
+    gl.attachShader(program, this.getShader(vertexShaderObject));
+    gl.linkProgram(program);
+    if (goog.DEBUG) {
+      if (!gl.getProgramParameter(program, goog.webgl.LINK_STATUS) &&
+          !gl.isContextLost()) {
+        goog.log.error(this.logger_, gl.getProgramInfoLog(program));
+      }
+    }
+    goog.asserts.assert(
+        gl.getProgramParameter(program, goog.webgl.LINK_STATUS) ||
+        gl.isContextLost());
+    this.programCache_[programKey] = program;
+    return program;
+=======
  * @param {ol.Map} map Map.
  * @param {oli.FrameState} frameState Frame state.
  * @private
@@ -61603,35 +79961,168 @@ ol.renderer.webgl.Map.prototype.expireCache_ = function(map, frameState) {
       gl.deleteTexture(textureCacheEntry.texture);
     }
     this.textureCache_.pop();
+>>>>>>> ConectaDF
   }
 };
 
 
 /**
+<<<<<<< HEAD
+ * FIXME empy description for jsdoc
+ */
+ol.webgl.Context.prototype.handleWebGLContextLost = function() {
+  goog.object.clear(this.bufferCache_);
+  goog.object.clear(this.shaderCache_);
+  goog.object.clear(this.programCache_);
+  this.currentProgram_ = null;
+=======
  * @return {ol.webgl.Context}
  */
 ol.renderer.webgl.Map.prototype.getContext = function() {
   return this.context_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * FIXME empy description for jsdoc
+ */
+ol.webgl.Context.prototype.handleWebGLContextRestored = function() {
+=======
  * @return {WebGLRenderingContext} GL.
  */
 ol.renderer.webgl.Map.prototype.getGL = function() {
   return this.gl_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @param {WebGLProgram} program Program.
+ * @return {boolean} Changed.
+ * @todo api
+ */
+ol.webgl.Context.prototype.useProgram = function(program) {
+  if (program == this.currentProgram_) {
+    return false;
+  } else {
+    var gl = this.getGL();
+    gl.useProgram(program);
+    this.currentProgram_ = program;
+    return true;
+  }
+=======
  * @return {ol.structs.PriorityQueue.<Array>} Tile texture queue.
  */
 ol.renderer.webgl.Map.prototype.getTileTextureQueue = function() {
   return this.tileTextureQueue_;
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * @private
+ * @type {goog.log.Logger}
+ */
+ol.webgl.Context.prototype.logger_ = goog.log.getLogger('ol.webgl.Context');
+// FIXME check against gl.getParameter(webgl.MAX_TEXTURE_SIZE)
+
+goog.provide('ol.renderer.webgl.Map');
+
+goog.require('goog.array');
+goog.require('goog.asserts');
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.events');
+goog.require('goog.events.Event');
+goog.require('goog.log');
+goog.require('goog.log.Logger');
+goog.require('goog.object');
+goog.require('goog.style');
+goog.require('goog.webgl');
+goog.require('ol');
+goog.require('ol.Tile');
+goog.require('ol.css');
+goog.require('ol.dom');
+goog.require('ol.layer.Image');
+goog.require('ol.layer.Tile');
+goog.require('ol.render.Event');
+goog.require('ol.render.EventType');
+goog.require('ol.render.webgl.Immediate');
+goog.require('ol.renderer.Map');
+goog.require('ol.renderer.webgl.ImageLayer');
+goog.require('ol.renderer.webgl.Layer');
+goog.require('ol.renderer.webgl.TileLayer');
+goog.require('ol.source.State');
+goog.require('ol.structs.LRUCache');
+goog.require('ol.structs.PriorityQueue');
+goog.require('ol.webgl');
+goog.require('ol.webgl.Context');
+goog.require('ol.webgl.WebGLContextEventType');
+
+
+/**
+ * @typedef {{magFilter: number, minFilter: number, texture: WebGLTexture}}
+ */
+ol.renderer.webgl.TextureCacheEntry;
+
+
+
+/**
+ * @constructor
+ * @extends {ol.renderer.Map}
+ * @param {Element} container Container.
+ * @param {ol.Map} map Map.
+ */
+ol.renderer.webgl.Map = function(container, map) {
+
+  goog.base(this, container, map);
+
+  /**
+   * @private
+   * @type {HTMLCanvasElement}
+   */
+  this.canvas_ = /** @type {HTMLCanvasElement} */
+      (goog.dom.createElement(goog.dom.TagName.CANVAS));
+  this.canvas_.style.width = '100%';
+  this.canvas_.style.height = '100%';
+  this.canvas_.className = ol.css.CLASS_UNSELECTABLE;
+  goog.dom.insertChildAt(container, this.canvas_, 0);
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.clipTileCanvasSize_ = 0;
+
+  /**
+   * @private
+   * @type {CanvasRenderingContext2D}
+   */
+  this.clipTileContext_ = ol.dom.createCanvasContext2D();
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+
+  /**
+   * @private
+   * @type {WebGLRenderingContext}
+   */
+  this.gl_ = ol.webgl.getContext(this.canvas_, {
+    antialias: true,
+    depth: false,
+    failIfMajorPerformanceCaveat: true,
+    preserveDrawingBuffer: false,
+    stencil: true
+  });
+  goog.asserts.assert(!goog.isNull(this.gl_));
+=======
  * @param {goog.events.Event} event Event.
  * @protected
  */
@@ -61694,11 +80185,939 @@ ol.renderer.webgl.Map.prototype.isTileTextureLoaded = function(tile) {
  */
 ol.renderer.webgl.Map.prototype.logger_ =
     goog.log.getLogger('ol.renderer.webgl.Map');
+>>>>>>> ConectaDF
 
+  /**
+   * @private
+   * @type {ol.webgl.Context}
+   */
+  this.context_ = new ol.webgl.Context(this.canvas_, this.gl_);
 
+<<<<<<< HEAD
+  goog.events.listen(this.canvas_, ol.webgl.WebGLContextEventType.LOST,
+      this.handleWebGLContextLost, false, this);
+  goog.events.listen(this.canvas_, ol.webgl.WebGLContextEventType.RESTORED,
+      this.handleWebGLContextRestored, false, this);
+
+  /**
+   * @private
+   * @type {ol.structs.LRUCache}
+   */
+  this.textureCache_ = new ol.structs.LRUCache();
+
+  /**
+   * @private
+   * @type {ol.Coordinate}
+   */
+  this.focus_ = null;
+
+  /**
+   * @private
+   * @type {ol.structs.PriorityQueue.<Array>}
+   */
+  this.tileTextureQueue_ = new ol.structs.PriorityQueue(
+      /**
+       * @param {Array.<*>} element Element.
+       * @return {number} Priority.
+       */
+      goog.bind(
+          /**
+           * @param {Array.<*>} element Element.
+           * @return {number} Priority.
+           * @this {ol.renderer.webgl.Map}
+           */
+          function(element) {
+            var tileCenter = /** @type {ol.Coordinate} */ (element[1]);
+            var tileResolution = /** @type {number} */ (element[2]);
+            var deltaX = tileCenter[0] - this.focus_[0];
+            var deltaY = tileCenter[1] - this.focus_[1];
+            return 65536 * Math.log(tileResolution) +
+                Math.sqrt(deltaX * deltaX + deltaY * deltaY) / tileResolution;
+          }, this),
+      /**
+       * @param {Array} element Element.
+       * @return {string} Key.
+       */
+      function(element) {
+        return /** @type {ol.Tile} */ (element[0]).getKey();
+      });
+
+  /**
+   * @private
+   * @type {ol.PostRenderFunction}
+   */
+  this.loadNextTileTexture_ = goog.bind(
+      function(map, frameState) {
+        if (!this.tileTextureQueue_.isEmpty()) {
+          this.tileTextureQueue_.reprioritize();
+          var element = this.tileTextureQueue_.dequeue();
+          var tile = /** @type {ol.Tile} */ (element[0]);
+          var tileSize = /** @type {number} */ (element[3]);
+          var tileGutter = /** @type {number} */ (element[4]);
+          this.bindTileTexture(
+              tile, tileSize, tileGutter, goog.webgl.LINEAR, goog.webgl.LINEAR);
+        }
+      }, this);
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.textureCacheFrameMarkerCount_ = 0;
+
+  this.initializeGL_();
+
+};
+goog.inherits(ol.renderer.webgl.Map, ol.renderer.Map);
+=======
 /**
  * @inheritDoc
  */
+ol.renderer.webgl.Map.prototype.renderFrame = function(frameState) {
+
+  var context = this.getContext();
+  var gl = this.getGL();
+
+  if (gl.isContextLost()) {
+    return false;
+  }
+
+  if (goog.isNull(frameState)) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.canvas_, false);
+      this.renderedVisible_ = false;
+    }
+    return false;
+  }
+
+  this.focus_ = frameState.focus;
+
+  this.textureCache_.set((-frameState.index).toString(), null);
+  ++this.textureCacheFrameMarkerCount_;
+
+  /** @type {Array.<ol.layer.LayerState>} */
+  var layerStatesToDraw = [];
+  var layerStatesArray = frameState.layerStatesArray;
+  var viewResolution = frameState.view2DState.resolution;
+  var i, ii, layerState;
+  for (i = 0, ii = layerStatesArray.length; i < ii; ++i) {
+    layerState = layerStatesArray[i];
+    if (layerState.visible &&
+        layerState.sourceState == ol.source.State.READY &&
+        viewResolution < layerState.maxResolution &&
+        viewResolution >= layerState.minResolution) {
+      layerStatesToDraw.push(layerState);
+    }
+  }
+
+  var layerRenderer;
+  for (i = 0, ii = layerStatesToDraw.length; i < ii; ++i) {
+    layerState = layerStatesToDraw[i];
+    layerRenderer = this.getLayerRenderer(layerState.layer);
+    goog.asserts.assertInstanceof(layerRenderer, ol.renderer.webgl.Layer);
+    layerRenderer.prepareFrame(frameState, layerState);
+  }
+
+  var width = frameState.size[0] * frameState.pixelRatio;
+  var height = frameState.size[1] * frameState.pixelRatio;
+  if (this.canvas_.width != width || this.canvas_.height != height) {
+    this.canvas_.width = width;
+    this.canvas_.height = height;
+  }
+
+  gl.bindFramebuffer(goog.webgl.FRAMEBUFFER, null);
+
+  gl.clearColor(0, 0, 0, 0);
+  gl.clear(goog.webgl.COLOR_BUFFER_BIT);
+  gl.enable(goog.webgl.BLEND);
+  gl.viewport(0, 0, this.canvas_.width, this.canvas_.height);
+
+  this.dispatchComposeEvent_(ol.render.EventType.PRECOMPOSE, frameState);
+>>>>>>> ConectaDF
+
+  for (i = 0, ii = layerStatesToDraw.length; i < ii; ++i) {
+    layerState = layerStatesToDraw[i];
+    layerRenderer = this.getLayerRenderer(layerState.layer);
+    goog.asserts.assertInstanceof(layerRenderer, ol.renderer.webgl.Layer);
+    layerRenderer.composeFrame(frameState, layerState, context);
+  }
+
+<<<<<<< HEAD
+/**
+ * @param {ol.Tile} tile Tile.
+ * @param {number} tileSize Tile size.
+ * @param {number} tileGutter Tile gutter.
+ * @param {number} magFilter Mag filter.
+ * @param {number} minFilter Min filter.
+ */
+ol.renderer.webgl.Map.prototype.bindTileTexture =
+    function(tile, tileSize, tileGutter, magFilter, minFilter) {
+  var gl = this.getGL();
+  var tileKey = tile.getKey();
+  if (this.textureCache_.containsKey(tileKey)) {
+    var textureCacheEntry = /** @type {ol.renderer.webgl.TextureCacheEntry} */
+        (this.textureCache_.get(tileKey));
+    gl.bindTexture(goog.webgl.TEXTURE_2D, textureCacheEntry.texture);
+    if (textureCacheEntry.magFilter != magFilter) {
+      gl.texParameteri(
+          goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MAG_FILTER, magFilter);
+      textureCacheEntry.magFilter = magFilter;
+    }
+    if (textureCacheEntry.minFilter != minFilter) {
+      gl.texParameteri(
+          goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MAG_FILTER, minFilter);
+      textureCacheEntry.minFilter = minFilter;
+    }
+  } else {
+    var texture = gl.createTexture();
+    gl.bindTexture(goog.webgl.TEXTURE_2D, texture);
+    if (tileGutter > 0) {
+      var clipTileCanvas = this.clipTileContext_.canvas;
+      var clipTileContext = this.clipTileContext_;
+      if (this.clipTileCanvasSize_ != tileSize) {
+        clipTileCanvas.width = tileSize;
+        clipTileCanvas.height = tileSize;
+        this.clipTileCanvasSize_ = tileSize;
+      } else {
+        clipTileContext.clearRect(0, 0, tileSize, tileSize);
+      }
+      clipTileContext.drawImage(tile.getImage(), tileGutter, tileGutter,
+          tileSize, tileSize, 0, 0, tileSize, tileSize);
+      gl.texImage2D(goog.webgl.TEXTURE_2D, 0,
+          goog.webgl.RGBA, goog.webgl.RGBA,
+          goog.webgl.UNSIGNED_BYTE, clipTileCanvas);
+    } else {
+      gl.texImage2D(goog.webgl.TEXTURE_2D, 0,
+          goog.webgl.RGBA, goog.webgl.RGBA,
+          goog.webgl.UNSIGNED_BYTE, tile.getImage());
+    }
+    gl.texParameteri(
+        goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MAG_FILTER, magFilter);
+    gl.texParameteri(
+        goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_MIN_FILTER, minFilter);
+    gl.texParameteri(goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_WRAP_S,
+        goog.webgl.CLAMP_TO_EDGE);
+    gl.texParameteri(goog.webgl.TEXTURE_2D, goog.webgl.TEXTURE_WRAP_T,
+        goog.webgl.CLAMP_TO_EDGE);
+    this.textureCache_.set(tileKey, {
+      texture: texture,
+      magFilter: magFilter,
+      minFilter: minFilter
+    });
+=======
+  if (!this.renderedVisible_) {
+    goog.style.setElementShown(this.canvas_, true);
+    this.renderedVisible_ = true;
+>>>>>>> ConectaDF
+  }
+
+  this.calculateMatrices2D(frameState);
+
+<<<<<<< HEAD
+/**
+ * @inheritDoc
+ */
+ol.renderer.webgl.Map.prototype.createLayerRenderer = function(layer) {
+  if (ol.ENABLE_IMAGE && layer instanceof ol.layer.Image) {
+    return new ol.renderer.webgl.ImageLayer(this, layer);
+  } else if (ol.ENABLE_TILE && layer instanceof ol.layer.Tile) {
+    return new ol.renderer.webgl.TileLayer(this, layer);
+  } else {
+    goog.asserts.fail();
+    return null;
+  }
+=======
+  if (this.textureCache_.getCount() - this.textureCacheFrameMarkerCount_ >
+      ol.WEBGL_TEXTURE_CACHE_HIGH_WATER_MARK) {
+    frameState.postRenderFunctions.push(goog.bind(this.expireCache_, this));
+  }
+
+  if (!this.tileTextureQueue_.isEmpty()) {
+    frameState.postRenderFunctions.push(this.loadNextTileTexture_);
+    frameState.animate = true;
+  }
+
+  this.dispatchComposeEvent_(ol.render.EventType.POSTCOMPOSE, frameState);
+
+  this.scheduleRemoveUnusedLayerRenderers(frameState);
+  this.scheduleExpireIconCache(frameState);
+
+};
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Constant declarations for common key codes.
+ *
+ * @author eae@google.com (Emil A Eklund)
+ * @see ../demos/keyhandler.html
+ */
+
+goog.provide('goog.events.KeyCodes');
+
+goog.require('goog.userAgent');
+
+
+/**
+ * Key codes for common characters.
+ *
+ * This list is not localized and therefore some of the key codes are not
+ * correct for non US keyboard layouts. See comments below.
+ *
+ * @enum {number}
+ */
+goog.events.KeyCodes = {
+  WIN_KEY_FF_LINUX: 0,
+  MAC_ENTER: 3,
+  BACKSPACE: 8,
+  TAB: 9,
+  NUM_CENTER: 12,  // NUMLOCK on FF/Safari Mac
+  ENTER: 13,
+  SHIFT: 16,
+  CTRL: 17,
+  ALT: 18,
+  PAUSE: 19,
+  CAPS_LOCK: 20,
+  ESC: 27,
+  SPACE: 32,
+  PAGE_UP: 33,     // also NUM_NORTH_EAST
+  PAGE_DOWN: 34,   // also NUM_SOUTH_EAST
+  END: 35,         // also NUM_SOUTH_WEST
+  HOME: 36,        // also NUM_NORTH_WEST
+  LEFT: 37,        // also NUM_WEST
+  UP: 38,          // also NUM_NORTH
+  RIGHT: 39,       // also NUM_EAST
+  DOWN: 40,        // also NUM_SOUTH
+  PRINT_SCREEN: 44,
+  INSERT: 45,      // also NUM_INSERT
+  DELETE: 46,      // also NUM_DELETE
+  ZERO: 48,
+  ONE: 49,
+  TWO: 50,
+  THREE: 51,
+  FOUR: 52,
+  FIVE: 53,
+  SIX: 54,
+  SEVEN: 55,
+  EIGHT: 56,
+  NINE: 57,
+  FF_SEMICOLON: 59, // Firefox (Gecko) fires this for semicolon instead of 186
+  FF_EQUALS: 61, // Firefox (Gecko) fires this for equals instead of 187
+  FF_DASH: 173, // Firefox (Gecko) fires this for dash instead of 189
+  QUESTION_MARK: 63, // needs localization
+  A: 65,
+  B: 66,
+  C: 67,
+  D: 68,
+  E: 69,
+  F: 70,
+  G: 71,
+  H: 72,
+  I: 73,
+  J: 74,
+  K: 75,
+  L: 76,
+  M: 77,
+  N: 78,
+  O: 79,
+  P: 80,
+  Q: 81,
+  R: 82,
+  S: 83,
+  T: 84,
+  U: 85,
+  V: 86,
+  W: 87,
+  X: 88,
+  Y: 89,
+  Z: 90,
+  META: 91, // WIN_KEY_LEFT
+  WIN_KEY_RIGHT: 92,
+  CONTEXT_MENU: 93,
+  NUM_ZERO: 96,
+  NUM_ONE: 97,
+  NUM_TWO: 98,
+  NUM_THREE: 99,
+  NUM_FOUR: 100,
+  NUM_FIVE: 101,
+  NUM_SIX: 102,
+  NUM_SEVEN: 103,
+  NUM_EIGHT: 104,
+  NUM_NINE: 105,
+  NUM_MULTIPLY: 106,
+  NUM_PLUS: 107,
+  NUM_MINUS: 109,
+  NUM_PERIOD: 110,
+  NUM_DIVISION: 111,
+  F1: 112,
+  F2: 113,
+  F3: 114,
+  F4: 115,
+  F5: 116,
+  F6: 117,
+  F7: 118,
+  F8: 119,
+  F9: 120,
+  F10: 121,
+  F11: 122,
+  F12: 123,
+  NUMLOCK: 144,
+  SCROLL_LOCK: 145,
+
+  // OS-specific media keys like volume controls and browser controls.
+  FIRST_MEDIA_KEY: 166,
+  LAST_MEDIA_KEY: 183,
+
+  SEMICOLON: 186,            // needs localization
+  DASH: 189,                 // needs localization
+  EQUALS: 187,               // needs localization
+  COMMA: 188,                // needs localization
+  PERIOD: 190,               // needs localization
+  SLASH: 191,                // needs localization
+  APOSTROPHE: 192,           // needs localization
+  TILDE: 192,                // needs localization
+  SINGLE_QUOTE: 222,         // needs localization
+  OPEN_SQUARE_BRACKET: 219,  // needs localization
+  BACKSLASH: 220,            // needs localization
+  CLOSE_SQUARE_BRACKET: 221, // needs localization
+  WIN_KEY: 224,
+  MAC_FF_META: 224, // Firefox (Gecko) fires this for the meta key instead of 91
+  MAC_WK_CMD_LEFT: 91,  // WebKit Left Command key fired, same as META
+  MAC_WK_CMD_RIGHT: 93, // WebKit Right Command key fired, different from META
+  WIN_IME: 229,
+
+  // We've seen users whose machines fire this keycode at regular one
+  // second intervals. The common thread among these users is that
+  // they're all using Dell Inspiron laptops, so we suspect that this
+  // indicates a hardware/bios problem.
+  // http://en.community.dell.com/support-forums/laptop/f/3518/p/19285957/19523128.aspx
+  PHANTOM: 255
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.render.EventType} type Event type.
+ * @param {oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.renderer.webgl.Map.prototype.dispatchComposeEvent_ =
+    function(type, frameState) {
+  var map = this.getMap();
+  if (map.hasListener(type)) {
+    var context = this.getContext();
+    var render = new ol.render.webgl.Immediate(context, frameState.pixelRatio);
+    var composeEvent = new ol.render.Event(
+        type, map, render, frameState, null, context);
+    map.dispatchEvent(composeEvent);
+=======
+ * Returns true if the event contains a text modifying key.
+ * @param {goog.events.BrowserEvent} e A key event.
+ * @return {boolean} Whether it's a text modifying key.
+ */
+goog.events.KeyCodes.isTextModifyingKeyEvent = function(e) {
+  if (e.altKey && !e.ctrlKey ||
+      e.metaKey ||
+      // Function keys don't generate text
+      e.keyCode >= goog.events.KeyCodes.F1 &&
+      e.keyCode <= goog.events.KeyCodes.F12) {
+    return false;
+  }
+
+  // The following keys are quite harmless, even in combination with
+  // CTRL, ALT or SHIFT.
+  switch (e.keyCode) {
+    case goog.events.KeyCodes.ALT:
+    case goog.events.KeyCodes.CAPS_LOCK:
+    case goog.events.KeyCodes.CONTEXT_MENU:
+    case goog.events.KeyCodes.CTRL:
+    case goog.events.KeyCodes.DOWN:
+    case goog.events.KeyCodes.END:
+    case goog.events.KeyCodes.ESC:
+    case goog.events.KeyCodes.HOME:
+    case goog.events.KeyCodes.INSERT:
+    case goog.events.KeyCodes.LEFT:
+    case goog.events.KeyCodes.MAC_FF_META:
+    case goog.events.KeyCodes.META:
+    case goog.events.KeyCodes.NUMLOCK:
+    case goog.events.KeyCodes.NUM_CENTER:
+    case goog.events.KeyCodes.PAGE_DOWN:
+    case goog.events.KeyCodes.PAGE_UP:
+    case goog.events.KeyCodes.PAUSE:
+    case goog.events.KeyCodes.PHANTOM:
+    case goog.events.KeyCodes.PRINT_SCREEN:
+    case goog.events.KeyCodes.RIGHT:
+    case goog.events.KeyCodes.SCROLL_LOCK:
+    case goog.events.KeyCodes.SHIFT:
+    case goog.events.KeyCodes.UP:
+    case goog.events.KeyCodes.WIN_KEY:
+    case goog.events.KeyCodes.WIN_KEY_RIGHT:
+      return false;
+    case goog.events.KeyCodes.WIN_KEY_FF_LINUX:
+      return !goog.userAgent.GECKO;
+    default:
+      return e.keyCode < goog.events.KeyCodes.FIRST_MEDIA_KEY ||
+          e.keyCode > goog.events.KeyCodes.LAST_MEDIA_KEY;
+>>>>>>> ConectaDF
+  }
+};
+
+
+/**
+<<<<<<< HEAD
+ * @inheritDoc
+ */
+ol.renderer.webgl.Map.prototype.disposeInternal = function() {
+  var gl = this.getGL();
+  if (!gl.isContextLost()) {
+    this.textureCache_.forEach(
+        /**
+         * @param {ol.renderer.webgl.TextureCacheEntry} textureCacheEntry
+         *     Texture cache entry.
+         */
+        function(textureCacheEntry) {
+          if (!goog.isNull(textureCacheEntry)) {
+            gl.deleteTexture(textureCacheEntry.texture);
+          }
+        });
+  }
+  goog.dispose(this.context_);
+  goog.base(this, 'disposeInternal');
+};
+=======
+ * Returns true if the key fires a keypress event in the current browser.
+ *
+ * Accoridng to MSDN [1] IE only fires keypress events for the following keys:
+ * - Letters: A - Z (uppercase and lowercase)
+ * - Numerals: 0 - 9
+ * - Symbols: ! @ # $ % ^ & * ( ) _ - + = < [ ] { } , . / ? \ | ' ` " ~
+ * - System: ESC, SPACEBAR, ENTER
+ *
+ * That's not entirely correct though, for instance there's no distinction
+ * between upper and lower case letters.
+ *
+ * [1] http://msdn2.microsoft.com/en-us/library/ms536939(VS.85).aspx)
+ *
+ * Safari is similar to IE, but does not fire keypress for ESC.
+ *
+ * Additionally, IE6 does not fire keydown or keypress events for letters when
+ * the control or alt keys are held down and the shift key is not. IE7 does
+ * fire keydown in these cases, though, but not keypress.
+ *
+ * @param {number} keyCode A key code.
+ * @param {number=} opt_heldKeyCode Key code of a currently-held key.
+ * @param {boolean=} opt_shiftKey Whether the shift key is held down.
+ * @param {boolean=} opt_ctrlKey Whether the control key is held down.
+ * @param {boolean=} opt_altKey Whether the alt key is held down.
+ * @return {boolean} Whether it's a key that fires a keypress event.
+ */
+goog.events.KeyCodes.firesKeyPressEvent = function(keyCode, opt_heldKeyCode,
+    opt_shiftKey, opt_ctrlKey, opt_altKey) {
+  if (!goog.userAgent.IE &&
+      !(goog.userAgent.WEBKIT && goog.userAgent.isVersionOrHigher('525'))) {
+    return true;
+  }
+>>>>>>> ConectaDF
+
+  if (goog.userAgent.MAC && opt_altKey) {
+    return goog.events.KeyCodes.isCharacterKey(keyCode);
+  }
+
+<<<<<<< HEAD
+/**
+ * @param {ol.Map} map Map.
+ * @param {oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.renderer.webgl.Map.prototype.expireCache_ = function(map, frameState) {
+  var gl = this.getGL();
+  var textureCacheEntry;
+  while (this.textureCache_.getCount() - this.textureCacheFrameMarkerCount_ >
+      ol.WEBGL_TEXTURE_CACHE_HIGH_WATER_MARK) {
+    textureCacheEntry = /** @type {?ol.renderer.webgl.TextureCacheEntry} */
+        (this.textureCache_.peekLast());
+    if (goog.isNull(textureCacheEntry)) {
+      if (+this.textureCache_.peekLastKey() == frameState.index) {
+        break;
+      } else {
+        --this.textureCacheFrameMarkerCount_;
+      }
+    } else {
+      gl.deleteTexture(textureCacheEntry.texture);
+    }
+    this.textureCache_.pop();
+  }
+};
+
+
+/**
+ * @return {ol.webgl.Context}
+ */
+ol.renderer.webgl.Map.prototype.getContext = function() {
+  return this.context_;
+=======
+  // Alt but not AltGr which is represented as Alt+Ctrl.
+  if (opt_altKey && !opt_ctrlKey) {
+    return false;
+  }
+
+  // Saves Ctrl or Alt + key for IE and WebKit 525+, which won't fire keypress.
+  // Non-IE browsers and WebKit prior to 525 won't get this far so no need to
+  // check the user agent.
+  if (goog.isNumber(opt_heldKeyCode)) {
+    opt_heldKeyCode = goog.events.KeyCodes.normalizeKeyCode(opt_heldKeyCode);
+  }
+  if (!opt_shiftKey &&
+      (opt_heldKeyCode == goog.events.KeyCodes.CTRL ||
+       opt_heldKeyCode == goog.events.KeyCodes.ALT ||
+       goog.userAgent.MAC &&
+       opt_heldKeyCode == goog.events.KeyCodes.META)) {
+    return false;
+  }
+
+  // Some keys with Ctrl/Shift do not issue keypress in WEBKIT.
+  if (goog.userAgent.WEBKIT && opt_ctrlKey && opt_shiftKey) {
+    switch (keyCode) {
+      case goog.events.KeyCodes.BACKSLASH:
+      case goog.events.KeyCodes.OPEN_SQUARE_BRACKET:
+      case goog.events.KeyCodes.CLOSE_SQUARE_BRACKET:
+      case goog.events.KeyCodes.TILDE:
+      case goog.events.KeyCodes.SEMICOLON:
+      case goog.events.KeyCodes.DASH:
+      case goog.events.KeyCodes.EQUALS:
+      case goog.events.KeyCodes.COMMA:
+      case goog.events.KeyCodes.PERIOD:
+      case goog.events.KeyCodes.SLASH:
+      case goog.events.KeyCodes.APOSTROPHE:
+      case goog.events.KeyCodes.SINGLE_QUOTE:
+        return false;
+    }
+  }
+
+  // When Ctrl+<somekey> is held in IE, it only fires a keypress once, but it
+  // continues to fire keydown events as the event repeats.
+  if (goog.userAgent.IE && opt_ctrlKey && opt_heldKeyCode == keyCode) {
+    return false;
+  }
+
+  switch (keyCode) {
+    case goog.events.KeyCodes.ENTER:
+      // IE9 does not fire KEYPRESS on ENTER.
+      return !(goog.userAgent.IE && goog.userAgent.isDocumentModeOrHigher(9));
+    case goog.events.KeyCodes.ESC:
+      return !goog.userAgent.WEBKIT;
+  }
+
+  return goog.events.KeyCodes.isCharacterKey(keyCode);
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @return {WebGLRenderingContext} GL.
+ */
+ol.renderer.webgl.Map.prototype.getGL = function() {
+  return this.gl_;
+};
+
+
+/**
+ * @return {ol.structs.PriorityQueue.<Array>} Tile texture queue.
+ */
+ol.renderer.webgl.Map.prototype.getTileTextureQueue = function() {
+  return this.tileTextureQueue_;
+};
+=======
+ * Returns true if the key produces a character.
+ * This does not cover characters on non-US keyboards (Russian, Hebrew, etc.).
+ *
+ * @param {number} keyCode A key code.
+ * @return {boolean} Whether it's a character key.
+ */
+goog.events.KeyCodes.isCharacterKey = function(keyCode) {
+  if (keyCode >= goog.events.KeyCodes.ZERO &&
+      keyCode <= goog.events.KeyCodes.NINE) {
+    return true;
+  }
+
+  if (keyCode >= goog.events.KeyCodes.NUM_ZERO &&
+      keyCode <= goog.events.KeyCodes.NUM_MULTIPLY) {
+    return true;
+  }
+
+  if (keyCode >= goog.events.KeyCodes.A &&
+      keyCode <= goog.events.KeyCodes.Z) {
+    return true;
+  }
+>>>>>>> ConectaDF
+
+  // Safari sends zero key code for non-latin characters.
+  if (goog.userAgent.WEBKIT && keyCode == 0) {
+    return true;
+  }
+
+<<<<<<< HEAD
+/**
+ * @param {goog.events.Event} event Event.
+ * @protected
+ */
+ol.renderer.webgl.Map.prototype.handleWebGLContextLost = function(event) {
+  event.preventDefault();
+  this.textureCache_.clear();
+  this.textureCacheFrameMarkerCount_ = 0;
+  goog.object.forEach(this.getLayerRenderers(),
+      /**
+       * @param {ol.renderer.Layer} layerRenderer Layer renderer.
+       * @param {string} key Key.
+       * @param {Object.<string, ol.renderer.Layer>} object Object.
+       */
+      function(layerRenderer, key, object) {
+        goog.asserts.assertInstanceof(layerRenderer, ol.renderer.webgl.Layer);
+        var webGLLayerRenderer = /** @type {ol.renderer.webgl.Layer} */
+            (layerRenderer);
+        webGLLayerRenderer.handleWebGLContextLost();
+      });
+=======
+  switch (keyCode) {
+    case goog.events.KeyCodes.SPACE:
+    case goog.events.KeyCodes.QUESTION_MARK:
+    case goog.events.KeyCodes.NUM_PLUS:
+    case goog.events.KeyCodes.NUM_MINUS:
+    case goog.events.KeyCodes.NUM_PERIOD:
+    case goog.events.KeyCodes.NUM_DIVISION:
+    case goog.events.KeyCodes.SEMICOLON:
+    case goog.events.KeyCodes.FF_SEMICOLON:
+    case goog.events.KeyCodes.DASH:
+    case goog.events.KeyCodes.EQUALS:
+    case goog.events.KeyCodes.FF_EQUALS:
+    case goog.events.KeyCodes.COMMA:
+    case goog.events.KeyCodes.PERIOD:
+    case goog.events.KeyCodes.SLASH:
+    case goog.events.KeyCodes.APOSTROPHE:
+    case goog.events.KeyCodes.SINGLE_QUOTE:
+    case goog.events.KeyCodes.OPEN_SQUARE_BRACKET:
+    case goog.events.KeyCodes.BACKSLASH:
+    case goog.events.KeyCodes.CLOSE_SQUARE_BRACKET:
+      return true;
+    default:
+      return false;
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @protected
+ */
+ol.renderer.webgl.Map.prototype.handleWebGLContextRestored = function() {
+  this.initializeGL_();
+  this.getMap().render();
+};
+
+
+/**
+ * @private
+ */
+ol.renderer.webgl.Map.prototype.initializeGL_ = function() {
+  var gl = this.gl_;
+  gl.activeTexture(goog.webgl.TEXTURE0);
+  gl.blendFuncSeparate(
+      goog.webgl.SRC_ALPHA, goog.webgl.ONE_MINUS_SRC_ALPHA,
+      goog.webgl.ONE, goog.webgl.ONE_MINUS_SRC_ALPHA);
+  gl.disable(goog.webgl.CULL_FACE);
+  gl.disable(goog.webgl.DEPTH_TEST);
+  gl.disable(goog.webgl.SCISSOR_TEST);
+  gl.disable(goog.webgl.STENCIL_TEST);
+=======
+ * Normalizes key codes from OS/Browser-specific value to the general one.
+ * @param {number} keyCode The native key code.
+ * @return {number} The normalized key code.
+ */
+goog.events.KeyCodes.normalizeKeyCode = function(keyCode) {
+  if (goog.userAgent.GECKO) {
+    return goog.events.KeyCodes.normalizeGeckoKeyCode(keyCode);
+  } else if (goog.userAgent.MAC && goog.userAgent.WEBKIT) {
+    return goog.events.KeyCodes.normalizeMacWebKitKeyCode(keyCode);
+  } else {
+    return keyCode;
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @param {ol.Tile} tile Tile.
+ * @return {boolean} Is tile texture loaded.
+ */
+ol.renderer.webgl.Map.prototype.isTileTextureLoaded = function(tile) {
+  return this.textureCache_.containsKey(tile.getKey());
+=======
+ * Normalizes key codes from their Gecko-specific value to the general one.
+ * @param {number} keyCode The native key code.
+ * @return {number} The normalized key code.
+ */
+goog.events.KeyCodes.normalizeGeckoKeyCode = function(keyCode) {
+  switch (keyCode) {
+    case goog.events.KeyCodes.FF_EQUALS:
+      return goog.events.KeyCodes.EQUALS;
+    case goog.events.KeyCodes.FF_SEMICOLON:
+      return goog.events.KeyCodes.SEMICOLON;
+    case goog.events.KeyCodes.FF_DASH:
+      return goog.events.KeyCodes.DASH;
+    case goog.events.KeyCodes.MAC_FF_META:
+      return goog.events.KeyCodes.META;
+    case goog.events.KeyCodes.WIN_KEY_FF_LINUX:
+      return goog.events.KeyCodes.WIN_KEY;
+    default:
+      return keyCode;
+  }
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * @private
+ * @type {goog.log.Logger}
+ */
+ol.renderer.webgl.Map.prototype.logger_ =
+    goog.log.getLogger('ol.renderer.webgl.Map');
+
+=======
+ * Normalizes key codes from their Mac WebKit-specific value to the general one.
+ * @param {number} keyCode The native key code.
+ * @return {number} The normalized key code.
+ */
+goog.events.KeyCodes.normalizeMacWebKitKeyCode = function(keyCode) {
+  switch (keyCode) {
+    case goog.events.KeyCodes.MAC_WK_CMD_RIGHT:  // 93
+      return goog.events.KeyCodes.META;          // 91
+    default:
+      return keyCode;
+  }
+};
+// Copyright 2007 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+>>>>>>> ConectaDF
+
+/**
+ * @fileoverview This file contains a class for working with keyboard events
+ * that repeat consistently across browsers and platforms. It also unifies the
+ * key code so that it is the same in all browsers and platforms.
+ *
+ * Different web browsers have very different keyboard event handling. Most
+ * importantly is that only certain browsers repeat keydown events:
+ * IE, Opera, FF/Win32, and Safari 3 repeat keydown events.
+ * FF/Mac and Safari 2 do not.
+ *
+ * For the purposes of this code, "Safari 3" means WebKit 525+, when WebKit
+ * decided that they should try to match IE's key handling behavior.
+ * Safari 3.0.4, which shipped with Leopard (WebKit 523), has the
+ * Safari 2 behavior.
+ *
+ * Firefox, Safari, Opera prevent on keypress
+ *
+ * IE prevents on keydown
+ *
+ * Firefox does not fire keypress for shift, ctrl, alt
+ * Firefox does fire keydown for shift, ctrl, alt, meta
+ * Firefox does not repeat keydown for shift, ctrl, alt, meta
+ *
+ * Firefox does not fire keypress for up and down in an input
+ *
+ * Opera fires keypress for shift, ctrl, alt, meta
+ * Opera does not repeat keypress for shift, ctrl, alt, meta
+ *
+ * Safari 2 and 3 do not fire keypress for shift, ctrl, alt
+ * Safari 2 does not fire keydown for shift, ctrl, alt
+ * Safari 3 *does* fire keydown for shift, ctrl, alt
+ *
+ * IE provides the keycode for keyup/down events and the charcode (in the
+ * keycode field) for keypress.
+ *
+ * Mozilla provides the keycode for keyup/down and the charcode for keypress
+ * unless it's a non text modifying key in which case the keycode is provided.
+ *
+ * Safari 3 provides the keycode and charcode for all events.
+ *
+ * Opera provides the keycode for keyup/down event and either the charcode or
+ * the keycode (in the keycode field) for keypress events.
+ *
+ * Firefox x11 doesn't fire keydown events if a another key is already held down
+ * until the first key is released. This can cause a key event to be fired with
+ * a keyCode for the first key and a charCode for the second key.
+ *
+ * Safari in keypress
+ *
+ *        charCode keyCode which
+ * ENTER:       13      13    13
+ * F1:       63236   63236 63236
+ * F8:       63243   63243 63243
+ * ...
+ * p:          112     112   112
+ * P:           80      80    80
+ *
+ * Firefox, keypress:
+ *
+ *        charCode keyCode which
+ * ENTER:        0      13    13
+ * F1:           0     112     0
+ * F8:           0     119     0
+ * ...
+ * p:          112       0   112
+ * P:           80       0    80
+ *
+ * Opera, Mac+Win32, keypress:
+ *
+ *         charCode keyCode which
+ * ENTER: undefined      13    13
+ * F1:    undefined     112     0
+ * F8:    undefined     119     0
+ * ...
+ * p:     undefined     112   112
+ * P:     undefined      80    80
+ *
+ * IE7, keydown
+ *
+ *         charCode keyCode     which
+ * ENTER: undefined      13 undefined
+ * F1:    undefined     112 undefined
+ * F8:    undefined     119 undefined
+ * ...
+ * p:     undefined      80 undefined
+ * P:     undefined      80 undefined
+ *
+ * @author arv@google.com (Erik Arvidsson)
+ * @author eae@google.com (Emil A Eklund)
+ * @see ../demos/keyhandler.html
+ */
+<<<<<<< HEAD
 ol.renderer.webgl.Map.prototype.renderFrame = function(frameState) {
 
   var context = this.getContext();
@@ -61785,6 +81204,19 @@ ol.renderer.webgl.Map.prototype.renderFrame = function(frameState) {
   }
 
   this.dispatchComposeEvent_(ol.render.EventType.POSTCOMPOSE, frameState);
+=======
+
+goog.provide('goog.events.KeyEvent');
+goog.provide('goog.events.KeyHandler');
+goog.provide('goog.events.KeyHandler.EventType');
+
+goog.require('goog.events');
+goog.require('goog.events.BrowserEvent');
+goog.require('goog.events.EventTarget');
+goog.require('goog.events.EventType');
+goog.require('goog.events.KeyCodes');
+goog.require('goog.userAgent');
+>>>>>>> ConectaDF
 
   this.scheduleRemoveUnusedLayerRenderers(frameState);
   this.scheduleExpireIconCache(frameState);
@@ -61805,6 +81237,7 @@ ol.renderer.webgl.Map.prototype.renderFrame = function(frameState) {
 // limitations under the License.
 
 /**
+<<<<<<< HEAD
  * @fileoverview Constant declarations for common key codes.
  *
  * @author eae@google.com (Emil A Eklund)
@@ -62111,22 +81544,91 @@ goog.events.KeyCodes.isCharacterKey = function(keyCode) {
       keyCode <= goog.events.KeyCodes.NINE) {
     return true;
   }
+=======
+ * A wrapper around an element that you want to listen to keyboard events on.
+ * @param {Element|Document=} opt_element The element or document to listen on.
+ * @param {boolean=} opt_capture Whether to listen for browser events in
+ *     capture phase (defaults to false).
+ * @constructor
+ * @extends {goog.events.EventTarget}
+ * @final
+ */
+goog.events.KeyHandler = function(opt_element, opt_capture) {
+  goog.events.EventTarget.call(this);
+
+  if (opt_element) {
+    this.attach(opt_element, opt_capture);
+  }
+};
+goog.inherits(goog.events.KeyHandler, goog.events.EventTarget);
+
+
+/**
+ * This is the element that we will listen to the real keyboard events on.
+ * @type {Element|Document|null}
+ * @private
+ */
+goog.events.KeyHandler.prototype.element_ = null;
+
+
+/**
+ * The key for the key press listener.
+ * @type {goog.events.Key}
+ * @private
+ */
+goog.events.KeyHandler.prototype.keyPressKey_ = null;
+
+
+/**
+ * The key for the key down listener.
+ * @type {goog.events.Key}
+ * @private
+ */
+goog.events.KeyHandler.prototype.keyDownKey_ = null;
+
+
+/**
+ * The key for the key up listener.
+ * @type {goog.events.Key}
+ * @private
+ */
+goog.events.KeyHandler.prototype.keyUpKey_ = null;
+
+
+/**
+ * Used to detect keyboard repeat events.
+ * @private
+ * @type {number}
+ */
+goog.events.KeyHandler.prototype.lastKey_ = -1;
+>>>>>>> ConectaDF
 
   if (keyCode >= goog.events.KeyCodes.NUM_ZERO &&
       keyCode <= goog.events.KeyCodes.NUM_MULTIPLY) {
     return true;
   }
 
+<<<<<<< HEAD
   if (keyCode >= goog.events.KeyCodes.A &&
       keyCode <= goog.events.KeyCodes.Z) {
     return true;
   }
+=======
+/**
+ * Keycode recorded for key down events. As most browsers don't report the
+ * keycode in the key press event we need to record it in the key down phase.
+ * @private
+ * @type {number}
+ */
+goog.events.KeyHandler.prototype.keyCode_ = -1;
+>>>>>>> ConectaDF
 
   // Safari sends zero key code for non-latin characters.
   if (goog.userAgent.WEBKIT && keyCode == 0) {
     return true;
   }
 
+<<<<<<< HEAD
   switch (keyCode) {
     case goog.events.KeyCodes.SPACE:
     case goog.events.KeyCodes.QUESTION_MARK:
@@ -62167,10 +81669,28 @@ goog.events.KeyCodes.normalizeKeyCode = function(keyCode) {
   } else {
     return keyCode;
   }
+=======
+/**
+ * Alt key recorded for key down events. FF on Mac does not report the alt key
+ * flag in the key press event, we need to record it in the key down phase.
+ * @type {boolean}
+ * @private
+ */
+goog.events.KeyHandler.prototype.altKey_ = false;
+
+
+/**
+ * Enum type for the events fired by the key handler
+ * @enum {string}
+ */
+goog.events.KeyHandler.EventType = {
+  KEY: 'key'
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Normalizes key codes from their Gecko-specific value to the general one.
  * @param {number} keyCode The native key code.
  * @return {number} The normalized key code.
@@ -62190,10 +81710,44 @@ goog.events.KeyCodes.normalizeGeckoKeyCode = function(keyCode) {
     default:
       return keyCode;
   }
+=======
+ * An enumeration of key codes that Safari 2 does incorrectly
+ * @type {Object}
+ * @private
+ */
+goog.events.KeyHandler.safariKey_ = {
+  '3': goog.events.KeyCodes.ENTER, // 13
+  '12': goog.events.KeyCodes.NUMLOCK, // 144
+  '63232': goog.events.KeyCodes.UP, // 38
+  '63233': goog.events.KeyCodes.DOWN, // 40
+  '63234': goog.events.KeyCodes.LEFT, // 37
+  '63235': goog.events.KeyCodes.RIGHT, // 39
+  '63236': goog.events.KeyCodes.F1, // 112
+  '63237': goog.events.KeyCodes.F2, // 113
+  '63238': goog.events.KeyCodes.F3, // 114
+  '63239': goog.events.KeyCodes.F4, // 115
+  '63240': goog.events.KeyCodes.F5, // 116
+  '63241': goog.events.KeyCodes.F6, // 117
+  '63242': goog.events.KeyCodes.F7, // 118
+  '63243': goog.events.KeyCodes.F8, // 119
+  '63244': goog.events.KeyCodes.F9, // 120
+  '63245': goog.events.KeyCodes.F10, // 121
+  '63246': goog.events.KeyCodes.F11, // 122
+  '63247': goog.events.KeyCodes.F12, // 123
+  '63248': goog.events.KeyCodes.PRINT_SCREEN, // 44
+  '63272': goog.events.KeyCodes.DELETE, // 46
+  '63273': goog.events.KeyCodes.HOME, // 36
+  '63275': goog.events.KeyCodes.END, // 35
+  '63276': goog.events.KeyCodes.PAGE_UP, // 33
+  '63277': goog.events.KeyCodes.PAGE_DOWN, // 34
+  '63289': goog.events.KeyCodes.NUMLOCK, // 144
+  '63302': goog.events.KeyCodes.INSERT // 45
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
  * Normalizes key codes from their Mac WebKit-specific value to the general one.
  * @param {number} keyCode The native key code.
  * @return {number} The normalized key code.
@@ -62311,11 +81865,56 @@ goog.events.KeyCodes.normalizeMacWebKitKeyCode = function(keyCode) {
  * @author eae@google.com (Emil A Eklund)
  * @see ../demos/keyhandler.html
  */
+=======
+ * An enumeration of key identifiers currently part of the W3C draft for DOM3
+ * and their mappings to keyCodes.
+ * http://www.w3.org/TR/DOM-Level-3-Events/keyset.html#KeySet-Set
+ * This is currently supported in Safari and should be platform independent.
+ * @type {Object}
+ * @private
+ */
+goog.events.KeyHandler.keyIdentifier_ = {
+  'Up': goog.events.KeyCodes.UP, // 38
+  'Down': goog.events.KeyCodes.DOWN, // 40
+  'Left': goog.events.KeyCodes.LEFT, // 37
+  'Right': goog.events.KeyCodes.RIGHT, // 39
+  'Enter': goog.events.KeyCodes.ENTER, // 13
+  'F1': goog.events.KeyCodes.F1, // 112
+  'F2': goog.events.KeyCodes.F2, // 113
+  'F3': goog.events.KeyCodes.F3, // 114
+  'F4': goog.events.KeyCodes.F4, // 115
+  'F5': goog.events.KeyCodes.F5, // 116
+  'F6': goog.events.KeyCodes.F6, // 117
+  'F7': goog.events.KeyCodes.F7, // 118
+  'F8': goog.events.KeyCodes.F8, // 119
+  'F9': goog.events.KeyCodes.F9, // 120
+  'F10': goog.events.KeyCodes.F10, // 121
+  'F11': goog.events.KeyCodes.F11, // 122
+  'F12': goog.events.KeyCodes.F12, // 123
+  'U+007F': goog.events.KeyCodes.DELETE, // 46
+  'Home': goog.events.KeyCodes.HOME, // 36
+  'End': goog.events.KeyCodes.END, // 35
+  'PageUp': goog.events.KeyCodes.PAGE_UP, // 33
+  'PageDown': goog.events.KeyCodes.PAGE_DOWN, // 34
+  'Insert': goog.events.KeyCodes.INSERT // 45
+};
+
+
+/**
+ * If true, the KeyEvent fires on keydown. Otherwise, it fires on keypress.
+ *
+ * @type {boolean}
+ * @private
+ */
+goog.events.KeyHandler.USES_KEYDOWN_ = goog.userAgent.IE ||
+    goog.userAgent.WEBKIT && goog.userAgent.isVersionOrHigher('525');
+>>>>>>> ConectaDF
 
 goog.provide('goog.events.KeyEvent');
 goog.provide('goog.events.KeyHandler');
 goog.provide('goog.events.KeyHandler.EventType');
 
+<<<<<<< HEAD
 goog.require('goog.events');
 goog.require('goog.events.BrowserEvent');
 goog.require('goog.events.EventTarget');
@@ -62350,16 +81949,174 @@ goog.inherits(goog.events.KeyHandler, goog.events.EventTarget);
  * @private
  */
 goog.events.KeyHandler.prototype.element_ = null;
+=======
+/**
+ * If true, the alt key flag is saved during the key down and reused when
+ * handling the key press. FF on Mac does not set the alt flag in the key press
+ * event.
+ * @type {boolean}
+ * @private
+ */
+goog.events.KeyHandler.SAVE_ALT_FOR_KEYPRESS_ = goog.userAgent.MAC &&
+    goog.userAgent.GECKO;
 
 
 /**
+ * Records the keycode for browsers that only returns the keycode for key up/
+ * down events. For browser/key combinations that doesn't trigger a key pressed
+ * event it also fires the patched key event.
+ * @param {goog.events.BrowserEvent} e The key down event.
+ * @private
+ */
+goog.events.KeyHandler.prototype.handleKeyDown_ = function(e) {
+  // Ctrl-Tab and Alt-Tab can cause the focus to be moved to another window
+  // before we've caught a key-up event.  If the last-key was one of these we
+  // reset the state.
+  if (goog.userAgent.WEBKIT) {
+    if (this.lastKey_ == goog.events.KeyCodes.CTRL && !e.ctrlKey ||
+        this.lastKey_ == goog.events.KeyCodes.ALT && !e.altKey ||
+        goog.userAgent.MAC &&
+        this.lastKey_ == goog.events.KeyCodes.META && !e.metaKey) {
+      this.lastKey_ = -1;
+      this.keyCode_ = -1;
+    }
+  }
+
+  if (this.lastKey_ == -1) {
+    if (e.ctrlKey && e.keyCode != goog.events.KeyCodes.CTRL) {
+      this.lastKey_ = goog.events.KeyCodes.CTRL;
+    } else if (e.altKey && e.keyCode != goog.events.KeyCodes.ALT) {
+      this.lastKey_ = goog.events.KeyCodes.ALT;
+    } else if (e.metaKey && e.keyCode != goog.events.KeyCodes.META) {
+      this.lastKey_ = goog.events.KeyCodes.META;
+    }
+  }
+
+  if (goog.events.KeyHandler.USES_KEYDOWN_ &&
+      !goog.events.KeyCodes.firesKeyPressEvent(e.keyCode,
+          this.lastKey_, e.shiftKey, e.ctrlKey, e.altKey)) {
+    this.handleEvent(e);
+  } else {
+    this.keyCode_ = goog.events.KeyCodes.normalizeKeyCode(e.keyCode);
+    if (goog.events.KeyHandler.SAVE_ALT_FOR_KEYPRESS_) {
+      this.altKey_ = e.altKey;
+    }
+  }
+};
+
+
+/**
+ * Resets the stored previous values. Needed to be called for webkit which will
+ * not generate a key up for meta key operations. This should only be called
+ * when having finished with repeat key possiblities.
+ */
+goog.events.KeyHandler.prototype.resetState = function() {
+  this.lastKey_ = -1;
+  this.keyCode_ = -1;
+};
+
+
+/**
+ * Clears the stored previous key value, resetting the key repeat status. Uses
+ * -1 because the Safari 3 Windows beta reports 0 for certain keys (like Home
+ * and End.)
+ * @param {goog.events.BrowserEvent} e The keyup event.
+ * @private
+ */
+goog.events.KeyHandler.prototype.handleKeyup_ = function(e) {
+  this.resetState();
+  this.altKey_ = e.altKey;
+};
+
+>>>>>>> ConectaDF
+
+/**
+<<<<<<< HEAD
  * The key for the key press listener.
  * @type {goog.events.Key}
  * @private
  */
 goog.events.KeyHandler.prototype.keyPressKey_ = null;
+=======
+ * Handles the events on the element.
+ * @param {goog.events.BrowserEvent} e  The keyboard event sent from the
+ *     browser.
+ */
+goog.events.KeyHandler.prototype.handleEvent = function(e) {
+  var be = e.getBrowserEvent();
+  var keyCode, charCode;
+  var altKey = be.altKey;
 
+  // IE reports the character code in the keyCode field for keypress events.
+  // There are two exceptions however, Enter and Escape.
+  if (goog.userAgent.IE && e.type == goog.events.EventType.KEYPRESS) {
+    keyCode = this.keyCode_;
+    charCode = keyCode != goog.events.KeyCodes.ENTER &&
+        keyCode != goog.events.KeyCodes.ESC ?
+            be.keyCode : 0;
 
+  // Safari reports the character code in the keyCode field for keypress
+  // events but also has a charCode field.
+  } else if (goog.userAgent.WEBKIT &&
+      e.type == goog.events.EventType.KEYPRESS) {
+    keyCode = this.keyCode_;
+    charCode = be.charCode >= 0 && be.charCode < 63232 &&
+        goog.events.KeyCodes.isCharacterKey(keyCode) ?
+            be.charCode : 0;
+
+  // Opera reports the keycode or the character code in the keyCode field.
+  } else if (goog.userAgent.OPERA) {
+    keyCode = this.keyCode_;
+    charCode = goog.events.KeyCodes.isCharacterKey(keyCode) ?
+        be.keyCode : 0;
+
+  // Mozilla reports the character code in the charCode field.
+  } else {
+    keyCode = be.keyCode || this.keyCode_;
+    charCode = be.charCode || 0;
+    if (goog.events.KeyHandler.SAVE_ALT_FOR_KEYPRESS_) {
+      altKey = this.altKey_;
+    }
+    // On the Mac, shift-/ triggers a question mark char code and no key code
+    // (normalized to WIN_KEY), so we synthesize the latter.
+    if (goog.userAgent.MAC &&
+        charCode == goog.events.KeyCodes.QUESTION_MARK &&
+        keyCode == goog.events.KeyCodes.WIN_KEY) {
+      keyCode = goog.events.KeyCodes.SLASH;
+    }
+  }
+
+  keyCode = goog.events.KeyCodes.normalizeKeyCode(keyCode);
+  var key = keyCode;
+  var keyIdentifier = be.keyIdentifier;
+
+  // Correct the key value for certain browser-specific quirks.
+  if (keyCode) {
+    if (keyCode >= 63232 && keyCode in goog.events.KeyHandler.safariKey_) {
+      // NOTE(nicksantos): Safari 3 has fixed this problem,
+      // this is only needed for Safari 2.
+      key = goog.events.KeyHandler.safariKey_[keyCode];
+    } else {
+
+      // Safari returns 25 for Shift+Tab instead of 9.
+      if (keyCode == 25 && e.shiftKey) {
+        key = 9;
+      }
+    }
+  } else if (keyIdentifier &&
+             keyIdentifier in goog.events.KeyHandler.keyIdentifier_) {
+    // This is needed for Safari Windows because it currently doesn't give a
+    // keyCode/which for non printable keys.
+    key = goog.events.KeyHandler.keyIdentifier_[keyIdentifier];
+  }
+>>>>>>> ConectaDF
+
+  // If we get the same keycode as a keydown/keypress without having seen a
+  // keyup event, then this event was caused by key repeat.
+  var repeat = key == this.lastKey_;
+  this.lastKey_ = key;
+
+<<<<<<< HEAD
 /**
  * The key for the key down listener.
  * @type {goog.events.Key}
@@ -62382,8 +82139,38 @@ goog.events.KeyHandler.prototype.keyUpKey_ = null;
  * @type {number}
  */
 goog.events.KeyHandler.prototype.lastKey_ = -1;
+=======
+  var event = new goog.events.KeyEvent(key, charCode, repeat, be);
+  event.altKey = altKey;
+  this.dispatchEvent(event);
+};
 
 
+/**
+ * Returns the element listened on for the real keyboard events.
+ * @return {Element|Document|null} The element listened on for the real
+ *     keyboard events.
+ */
+goog.events.KeyHandler.prototype.getElement = function() {
+  return this.element_;
+};
+
+
+/**
+ * Adds the proper key event listeners to the element.
+ * @param {Element|Document} element The element to listen on.
+ * @param {boolean=} opt_capture Whether to listen for browser events in
+ *     capture phase (defaults to false).
+ */
+goog.events.KeyHandler.prototype.attach = function(element, opt_capture) {
+  if (this.keyUpKey_) {
+    this.detach();
+  }
+>>>>>>> ConectaDF
+
+  this.element_ = element;
+
+<<<<<<< HEAD
 /**
  * Keycode recorded for key down events. As most browsers don't report the
  * keycode in the key press event we need to record it in the key down phase.
@@ -62444,8 +82231,86 @@ goog.events.KeyHandler.safariKey_ = {
   '63289': goog.events.KeyCodes.NUMLOCK, // 144
   '63302': goog.events.KeyCodes.INSERT // 45
 };
+=======
+  this.keyPressKey_ = goog.events.listen(this.element_,
+                                         goog.events.EventType.KEYPRESS,
+                                         this,
+                                         opt_capture);
+
+  // Most browsers (Safari 2 being the notable exception) doesn't include the
+  // keyCode in keypress events (IE has the char code in the keyCode field and
+  // Mozilla only included the keyCode if there's no charCode). Thus we have to
+  // listen for keydown to capture the keycode.
+  this.keyDownKey_ = goog.events.listen(this.element_,
+                                        goog.events.EventType.KEYDOWN,
+                                        this.handleKeyDown_,
+                                        opt_capture,
+                                        this);
 
 
+  this.keyUpKey_ = goog.events.listen(this.element_,
+                                      goog.events.EventType.KEYUP,
+                                      this.handleKeyup_,
+                                      opt_capture,
+                                      this);
+};
+
+
+/**
+ * Removes the listeners that may exist.
+ */
+goog.events.KeyHandler.prototype.detach = function() {
+  if (this.keyPressKey_) {
+    goog.events.unlistenByKey(this.keyPressKey_);
+    goog.events.unlistenByKey(this.keyDownKey_);
+    goog.events.unlistenByKey(this.keyUpKey_);
+    this.keyPressKey_ = null;
+    this.keyDownKey_ = null;
+    this.keyUpKey_ = null;
+  }
+  this.element_ = null;
+  this.lastKey_ = -1;
+  this.keyCode_ = -1;
+};
+
+
+/** @override */
+goog.events.KeyHandler.prototype.disposeInternal = function() {
+  goog.events.KeyHandler.superClass_.disposeInternal.call(this);
+  this.detach();
+};
+
+
+
+/**
+ * This class is used for the goog.events.KeyHandler.EventType.KEY event and
+ * it overrides the key code with the fixed key code.
+ * @param {number} keyCode The adjusted key code.
+ * @param {number} charCode The unicode character code.
+ * @param {boolean} repeat Whether this event was generated by keyboard repeat.
+ * @param {Event} browserEvent Browser event object.
+ * @constructor
+ * @extends {goog.events.BrowserEvent}
+ * @final
+ */
+goog.events.KeyEvent = function(keyCode, charCode, repeat, browserEvent) {
+  goog.events.BrowserEvent.call(this, browserEvent);
+  this.type = goog.events.KeyHandler.EventType.KEY;
+
+  /**
+   * Keycode of key press.
+   * @type {number}
+   */
+  this.keyCode = keyCode;
+>>>>>>> ConectaDF
+
+  /**
+   * Unicode character code.
+   * @type {number}
+   */
+  this.charCode = charCode;
+
+<<<<<<< HEAD
 /**
  * An enumeration of key identifiers currently part of the W3C draft for DOM3
  * and their mappings to keyCodes.
@@ -62541,10 +82406,108 @@ goog.events.KeyHandler.prototype.handleKeyDown_ = function(e) {
     this.keyCode_ = goog.events.KeyCodes.normalizeKeyCode(e.keyCode);
     if (goog.events.KeyHandler.SAVE_ALT_FOR_KEYPRESS_) {
       this.altKey_ = e.altKey;
-    }
-  }
+=======
+  /**
+   * True if this event was generated by keyboard auto-repeat (i.e., the user is
+   * holding the key down.)
+   * @type {boolean}
+   */
+  this.repeat = repeat;
+};
+goog.inherits(goog.events.KeyEvent, goog.events.BrowserEvent);
+goog.provide('ol.control.Logo');
+
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.object');
+goog.require('goog.style');
+goog.require('ol.control.Control');
+goog.require('ol.css');
+
+
+
+/**
+ * Shows a logo for all the layer sources in the map that have a logo
+ * associated with them, such as Bing. This control is part of a default map.
+ * By default it will show in the bottom-left portion of the map, but it can
+ * be styled by using a css selector for `.ol-logo`.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.LogoOptions=} opt_options Logo options.
+ * @todo api
+ */
+ol.control.Logo = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.ulElement_ = goog.dom.createElement(goog.dom.TagName.UL);
+
+  var className = goog.isDef(options.className) ? options.className : 'ol-logo';
+
+  var element = goog.dom.createDom(goog.dom.TagName.DIV, {
+    'class': className + ' ' + ol.css.CLASS_UNSELECTABLE
+  }, this.ulElement_);
+
+  goog.base(this, {
+    element: element,
+    target: options.target
+  });
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+
+  /**
+   * @private
+   * @type {Object.<string, Element>}
+   */
+  this.logoElements_ = {};
+
+};
+goog.inherits(ol.control.Logo, ol.control.Control);
+
+
+/**
+ * @param {ol.MapEvent} mapEvent Map event.
+ */
+ol.control.Logo.prototype.handleMapPostrender = function(mapEvent) {
+  this.updateElement_(mapEvent.frameState);
 };
 
+
+/**
+ * @param {?oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.control.Logo.prototype.updateElement_ = function(frameState) {
+
+  if (goog.isNull(frameState)) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.element, false);
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var logo;
+  var logos = frameState.logos;
+  var logoElements = this.logoElements_;
+
+  for (logo in logoElements) {
+    if (!(logo in logos)) {
+      goog.dom.removeNode(logoElements[logo]);
+      delete logoElements[logo];
+>>>>>>> ConectaDF
+    }
+  }
+
+<<<<<<< HEAD
 
 /**
  * Resets the stored previous values. Needed to be called for webkit which will
@@ -62651,208 +82614,7 @@ goog.events.KeyHandler.prototype.handleEvent = function(e) {
   var event = new goog.events.KeyEvent(key, charCode, repeat, be);
   event.altKey = altKey;
   this.dispatchEvent(event);
-};
-
-
-/**
- * Returns the element listened on for the real keyboard events.
- * @return {Element|Document|null} The element listened on for the real
- *     keyboard events.
- */
-goog.events.KeyHandler.prototype.getElement = function() {
-  return this.element_;
-};
-
-
-/**
- * Adds the proper key event listeners to the element.
- * @param {Element|Document} element The element to listen on.
- * @param {boolean=} opt_capture Whether to listen for browser events in
- *     capture phase (defaults to false).
- */
-goog.events.KeyHandler.prototype.attach = function(element, opt_capture) {
-  if (this.keyUpKey_) {
-    this.detach();
-  }
-
-  this.element_ = element;
-
-  this.keyPressKey_ = goog.events.listen(this.element_,
-                                         goog.events.EventType.KEYPRESS,
-                                         this,
-                                         opt_capture);
-
-  // Most browsers (Safari 2 being the notable exception) doesn't include the
-  // keyCode in keypress events (IE has the char code in the keyCode field and
-  // Mozilla only included the keyCode if there's no charCode). Thus we have to
-  // listen for keydown to capture the keycode.
-  this.keyDownKey_ = goog.events.listen(this.element_,
-                                        goog.events.EventType.KEYDOWN,
-                                        this.handleKeyDown_,
-                                        opt_capture,
-                                        this);
-
-
-  this.keyUpKey_ = goog.events.listen(this.element_,
-                                      goog.events.EventType.KEYUP,
-                                      this.handleKeyup_,
-                                      opt_capture,
-                                      this);
-};
-
-
-/**
- * Removes the listeners that may exist.
- */
-goog.events.KeyHandler.prototype.detach = function() {
-  if (this.keyPressKey_) {
-    goog.events.unlistenByKey(this.keyPressKey_);
-    goog.events.unlistenByKey(this.keyDownKey_);
-    goog.events.unlistenByKey(this.keyUpKey_);
-    this.keyPressKey_ = null;
-    this.keyDownKey_ = null;
-    this.keyUpKey_ = null;
-  }
-  this.element_ = null;
-  this.lastKey_ = -1;
-  this.keyCode_ = -1;
-};
-
-
-/** @override */
-goog.events.KeyHandler.prototype.disposeInternal = function() {
-  goog.events.KeyHandler.superClass_.disposeInternal.call(this);
-  this.detach();
-};
-
-
-
-/**
- * This class is used for the goog.events.KeyHandler.EventType.KEY event and
- * it overrides the key code with the fixed key code.
- * @param {number} keyCode The adjusted key code.
- * @param {number} charCode The unicode character code.
- * @param {boolean} repeat Whether this event was generated by keyboard repeat.
- * @param {Event} browserEvent Browser event object.
- * @constructor
- * @extends {goog.events.BrowserEvent}
- * @final
- */
-goog.events.KeyEvent = function(keyCode, charCode, repeat, browserEvent) {
-  goog.events.BrowserEvent.call(this, browserEvent);
-  this.type = goog.events.KeyHandler.EventType.KEY;
-
-  /**
-   * Keycode of key press.
-   * @type {number}
-   */
-  this.keyCode = keyCode;
-
-  /**
-   * Unicode character code.
-   * @type {number}
-   */
-  this.charCode = charCode;
-
-  /**
-   * True if this event was generated by keyboard auto-repeat (i.e., the user is
-   * holding the key down.)
-   * @type {boolean}
-   */
-  this.repeat = repeat;
-};
-goog.inherits(goog.events.KeyEvent, goog.events.BrowserEvent);
-goog.provide('ol.control.Logo');
-
-goog.require('goog.dom');
-goog.require('goog.dom.TagName');
-goog.require('goog.object');
-goog.require('goog.style');
-goog.require('ol.control.Control');
-goog.require('ol.css');
-
-
-
-/**
- * Shows a logo for all the layer sources in the map that have a logo
- * associated with them, such as Bing. This control is part of a default map.
- * By default it will show in the bottom-left portion of the map, but it can
- * be styled by using a css selector for `.ol-logo`.
- * @constructor
- * @extends {ol.control.Control}
- * @param {olx.control.LogoOptions=} opt_options Logo options.
- * @todo api
- */
-ol.control.Logo = function(opt_options) {
-
-  var options = goog.isDef(opt_options) ? opt_options : {};
-
-  /**
-   * @private
-   * @type {Element}
-   */
-  this.ulElement_ = goog.dom.createElement(goog.dom.TagName.UL);
-
-  var className = goog.isDef(options.className) ? options.className : 'ol-logo';
-
-  var element = goog.dom.createDom(goog.dom.TagName.DIV, {
-    'class': className + ' ' + ol.css.CLASS_UNSELECTABLE
-  }, this.ulElement_);
-
-  goog.base(this, {
-    element: element,
-    target: options.target
-  });
-
-  /**
-   * @private
-   * @type {boolean}
-   */
-  this.renderedVisible_ = true;
-
-  /**
-   * @private
-   * @type {Object.<string, Element>}
-   */
-  this.logoElements_ = {};
-
-};
-goog.inherits(ol.control.Logo, ol.control.Control);
-
-
-/**
- * @param {ol.MapEvent} mapEvent Map event.
- */
-ol.control.Logo.prototype.handleMapPostrender = function(mapEvent) {
-  this.updateElement_(mapEvent.frameState);
-};
-
-
-/**
- * @param {?oli.FrameState} frameState Frame state.
- * @private
- */
-ol.control.Logo.prototype.updateElement_ = function(frameState) {
-
-  if (goog.isNull(frameState)) {
-    if (this.renderedVisible_) {
-      goog.style.setElementShown(this.element, false);
-      this.renderedVisible_ = false;
-    }
-    return;
-  }
-
-  var logo;
-  var logos = frameState.logos;
-  var logoElements = this.logoElements_;
-
-  for (logo in logoElements) {
-    if (!(logo in logos)) {
-      goog.dom.removeNode(logoElements[logo]);
-      delete logoElements[logo];
-    }
-  }
-
+=======
   var image, logoElement, logoKey;
   for (logoKey in logos) {
     if (!(logoKey in logoElements)) {
@@ -62922,20 +82684,65 @@ goog.fx.easing.easeIn = function(t) {
  */
 goog.fx.easing.easeOut = function(t, opt_exponent) {
   return 1 - Math.pow(1 - t, goog.isDef(opt_exponent) ? opt_exponent : 3);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Returns the element listened on for the real keyboard events.
+ * @return {Element|Document|null} The element listened on for the real
+ *     keyboard events.
+ */
+goog.events.KeyHandler.prototype.getElement = function() {
+  return this.element_;
+=======
  * Ease out long - Start fastest and slows to a stop with a long ease.
  * @param {number} t Input between 0 and 1.
  * @return {number} Output between 0 and 1.
  */
 goog.fx.easing.easeOutLong = function(t) {
   return goog.fx.easing.easeOut(t, 4);
+>>>>>>> ConectaDF
 };
 
 
 /**
+<<<<<<< HEAD
+ * Adds the proper key event listeners to the element.
+ * @param {Element|Document} element The element to listen on.
+ * @param {boolean=} opt_capture Whether to listen for browser events in
+ *     capture phase (defaults to false).
+ */
+goog.events.KeyHandler.prototype.attach = function(element, opt_capture) {
+  if (this.keyUpKey_) {
+    this.detach();
+  }
+
+  this.element_ = element;
+
+  this.keyPressKey_ = goog.events.listen(this.element_,
+                                         goog.events.EventType.KEYPRESS,
+                                         this,
+                                         opt_capture);
+
+  // Most browsers (Safari 2 being the notable exception) doesn't include the
+  // keyCode in keypress events (IE has the char code in the keyCode field and
+  // Mozilla only included the keyCode if there's no charCode). Thus we have to
+  // listen for keydown to capture the keycode.
+  this.keyDownKey_ = goog.events.listen(this.element_,
+                                        goog.events.EventType.KEYDOWN,
+                                        this.handleKeyDown_,
+                                        opt_capture,
+                                        this);
+
+
+  this.keyUpKey_ = goog.events.listen(this.element_,
+                                      goog.events.EventType.KEYUP,
+                                      this.handleKeyup_,
+                                      opt_capture,
+                                      this);
+=======
  * Ease in and out - Start slow, speed up, then slow down.
  * @param {number} t Input between 0 and 1.
  * @return {number} Output between 0 and 1.
@@ -62973,7 +82780,594 @@ ol.easing.bounce = function(t) {
     }
   }
   return l;
+>>>>>>> ConectaDF
 };
+
+
+/**
+<<<<<<< HEAD
+ * Removes the listeners that may exist.
+ */
+goog.events.KeyHandler.prototype.detach = function() {
+  if (this.keyPressKey_) {
+    goog.events.unlistenByKey(this.keyPressKey_);
+    goog.events.unlistenByKey(this.keyDownKey_);
+    goog.events.unlistenByKey(this.keyUpKey_);
+    this.keyPressKey_ = null;
+    this.keyDownKey_ = null;
+    this.keyUpKey_ = null;
+  }
+  this.element_ = null;
+  this.lastKey_ = -1;
+  this.keyCode_ = -1;
+};
+
+
+/** @override */
+goog.events.KeyHandler.prototype.disposeInternal = function() {
+  goog.events.KeyHandler.superClass_.disposeInternal.call(this);
+  this.detach();
+};
+
+
+
+/**
+ * This class is used for the goog.events.KeyHandler.EventType.KEY event and
+ * it overrides the key code with the fixed key code.
+ * @param {number} keyCode The adjusted key code.
+ * @param {number} charCode The unicode character code.
+ * @param {boolean} repeat Whether this event was generated by keyboard repeat.
+ * @param {Event} browserEvent Browser event object.
+ * @constructor
+ * @extends {goog.events.BrowserEvent}
+ * @final
+ */
+goog.events.KeyEvent = function(keyCode, charCode, repeat, browserEvent) {
+  goog.events.BrowserEvent.call(this, browserEvent);
+  this.type = goog.events.KeyHandler.EventType.KEY;
+
+  /**
+   * Keycode of key press.
+   * @type {number}
+   */
+  this.keyCode = keyCode;
+
+  /**
+   * Unicode character code.
+   * @type {number}
+   */
+  this.charCode = charCode;
+
+  /**
+   * True if this event was generated by keyboard auto-repeat (i.e., the user is
+   * holding the key down.)
+   * @type {boolean}
+   */
+  this.repeat = repeat;
+=======
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.easeIn = goog.fx.easing.easeIn;
+
+
+/**
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.easeOut = goog.fx.easing.easeOut;
+
+
+/**
+ * from https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.elastic = function(t) {
+  return Math.pow(2, -10 * t) * Math.sin((t - 0.075) * (2 * Math.PI) / 0.3) + 1;
+};
+
+
+/**
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.inAndOut = goog.fx.easing.inAndOut;
+
+
+/**
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.linear = function(t) {
+  return t;
+};
+
+
+/**
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.upAndDown = function(t) {
+  if (t < 0.5) {
+    return ol.easing.inAndOut(2 * t);
+  } else {
+    return 1 - ol.easing.inAndOut(2 * (t - 0.5));
+  }
+>>>>>>> ConectaDF
+};
+goog.inherits(goog.events.KeyEvent, goog.events.BrowserEvent);
+goog.provide('ol.control.Logo');
+
+<<<<<<< HEAD
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.object');
+goog.require('goog.style');
+goog.require('ol.control.Control');
+goog.require('ol.css');
+
+
+
+/**
+ * Shows a logo for all the layer sources in the map that have a logo
+ * associated with them, such as Bing. This control is part of a default map.
+ * By default it will show in the bottom-left portion of the map, but it can
+ * be styled by using a css selector for `.ol-logo`.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.LogoOptions=} opt_options Logo options.
+ * @todo api
+ */
+ol.control.Logo = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+=======
+goog.provide('ol.animation');
+
+goog.require('ol.PreRenderFunction');
+goog.require('ol.ViewHint');
+goog.require('ol.coordinate');
+goog.require('ol.easing');
+
+
+/**
+ * @param {olx.animation.BounceOptions} options Bounce options.
+ * @return {ol.PreRenderFunction} Pre-render function.
+ * @todo api
+ */
+ol.animation.bounce = function(options) {
+  var resolution = options.resolution;
+  var start = goog.isDef(options.start) ? options.start : goog.now();
+  var duration = goog.isDef(options.duration) ? options.duration : 1000;
+  var easing = goog.isDef(options.easing) ?
+      options.easing : ol.easing.upAndDown;
+  return (
+      /**
+       * @param {ol.Map} map Map.
+       * @param {?oli.FrameState} frameState Frame state.
+       */
+      function(map, frameState) {
+        if (frameState.time < start) {
+          frameState.animate = true;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else if (frameState.time < start + duration) {
+          var delta = easing((frameState.time - start) / duration);
+          var deltaResolution = resolution - frameState.view2DState.resolution;
+          frameState.animate = true;
+          frameState.view2DState.resolution += delta * deltaResolution;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else {
+          return false;
+        }
+      });
+};
+>>>>>>> ConectaDF
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.ulElement_ = goog.dom.createElement(goog.dom.TagName.UL);
+
+<<<<<<< HEAD
+  var className = goog.isDef(options.className) ? options.className : 'ol-logo';
+
+  var element = goog.dom.createDom(goog.dom.TagName.DIV, {
+    'class': className + ' ' + ol.css.CLASS_UNSELECTABLE
+  }, this.ulElement_);
+
+  goog.base(this, {
+    element: element,
+    target: options.target
+  });
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+
+  /**
+   * @private
+   * @type {Object.<string, Element>}
+   */
+  this.logoElements_ = {};
+=======
+/**
+ * @param {olx.animation.PanOptions} options Pan options.
+ * @return {ol.PreRenderFunction} Pre-render function.
+ * @todo api
+ */
+ol.animation.pan = function(options) {
+  var source = options.source;
+  var start = goog.isDef(options.start) ? options.start : goog.now();
+  var sourceX = source[0];
+  var sourceY = source[1];
+  var duration = goog.isDef(options.duration) ? options.duration : 1000;
+  var easing = goog.isDef(options.easing) ?
+      options.easing : ol.easing.inAndOut;
+  return (
+      /**
+       * @param {ol.Map} map Map.
+       * @param {?oli.FrameState} frameState Frame state.
+       */
+      function(map, frameState) {
+        if (frameState.time < start) {
+          frameState.animate = true;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else if (frameState.time < start + duration) {
+          var delta = 1 - easing((frameState.time - start) / duration);
+          var deltaX = sourceX - frameState.view2DState.center[0];
+          var deltaY = sourceY - frameState.view2DState.center[1];
+          frameState.animate = true;
+          frameState.view2DState.center[0] += delta * deltaX;
+          frameState.view2DState.center[1] += delta * deltaY;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else {
+          return false;
+        }
+      });
+};
+
+
+/**
+ * @param {olx.animation.RotateOptions} options Rotate options.
+ * @return {ol.PreRenderFunction} Pre-render function.
+ * @todo api
+ */
+ol.animation.rotate = function(options) {
+  var sourceRotation = goog.isDef(options.rotation) ? options.rotation : 0;
+  var start = goog.isDef(options.start) ? options.start : goog.now();
+  var duration = goog.isDef(options.duration) ? options.duration : 1000;
+  var easing = goog.isDef(options.easing) ?
+      options.easing : ol.easing.inAndOut;
+  var anchor = goog.isDef(options.anchor) ?
+      options.anchor : null;
+>>>>>>> ConectaDF
+
+  return (
+      /**
+       * @param {ol.Map} map Map.
+       * @param {?oli.FrameState} frameState Frame state.
+       */
+      function(map, frameState) {
+        if (frameState.time < start) {
+          frameState.animate = true;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else if (frameState.time < start + duration) {
+          var delta = 1 - easing((frameState.time - start) / duration);
+          var deltaRotation =
+              (sourceRotation - frameState.view2DState.rotation) * delta;
+          frameState.animate = true;
+          frameState.view2DState.rotation += deltaRotation;
+          if (!goog.isNull(anchor)) {
+            var center = frameState.view2DState.center;
+            ol.coordinate.sub(center, anchor);
+            ol.coordinate.rotate(center, deltaRotation);
+            ol.coordinate.add(center, anchor);
+          }
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else {
+          return false;
+        }
+      });
+};
+<<<<<<< HEAD
+goog.inherits(ol.control.Logo, ol.control.Control);
+
+
+/**
+ * @param {ol.MapEvent} mapEvent Map event.
+ */
+ol.control.Logo.prototype.handleMapPostrender = function(mapEvent) {
+  this.updateElement_(mapEvent.frameState);
+};
+
+
+/**
+ * @param {?oli.FrameState} frameState Frame state.
+ * @private
+ */
+ol.control.Logo.prototype.updateElement_ = function(frameState) {
+
+  if (goog.isNull(frameState)) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.element, false);
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var logo;
+  var logos = frameState.logos;
+  var logoElements = this.logoElements_;
+
+  for (logo in logoElements) {
+    if (!(logo in logos)) {
+      goog.dom.removeNode(logoElements[logo]);
+      delete logoElements[logo];
+    }
+  }
+
+  var image, logoElement, logoKey;
+  for (logoKey in logos) {
+    if (!(logoKey in logoElements)) {
+      image = new Image();
+      image.src = logoKey;
+      var logoValue = logos[logoKey];
+      var child;
+      if (logoValue === '') {
+        child = image;
+      } else {
+        child = goog.dom.createDom(goog.dom.TagName.A, {
+          'href': logoValue,
+          'target': '_blank'
+        });
+        child.appendChild(image);
+      }
+      logoElement = goog.dom.createDom(goog.dom.TagName.LI, undefined, child);
+      goog.dom.appendChild(this.ulElement_, logoElement);
+      logoElements[logoKey] = logoElement;
+    }
+  }
+
+  var renderVisible = !goog.object.isEmpty(logos);
+  if (this.renderedVisible_ != renderVisible) {
+    goog.style.setElementShown(this.element, renderVisible);
+    this.renderedVisible_ = renderVisible;
+  }
+=======
+
+
+/**
+ * @param {olx.animation.ZoomOptions} options Zoom options.
+ * @return {ol.PreRenderFunction} Pre-render function.
+ * @todo api
+ */
+ol.animation.zoom = function(options) {
+  var sourceResolution = options.resolution;
+  var start = goog.isDef(options.start) ? options.start : goog.now();
+  var duration = goog.isDef(options.duration) ? options.duration : 1000;
+  var easing = goog.isDef(options.easing) ?
+      options.easing : ol.easing.inAndOut;
+  return (
+      /**
+       * @param {ol.Map} map Map.
+       * @param {?oli.FrameState} frameState Frame state.
+       */
+      function(map, frameState) {
+        if (frameState.time < start) {
+          frameState.animate = true;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else if (frameState.time < start + duration) {
+          var delta = 1 - easing((frameState.time - start) / duration);
+          var deltaResolution =
+              sourceResolution - frameState.view2DState.resolution;
+          frameState.animate = true;
+          frameState.view2DState.resolution += delta * deltaResolution;
+          frameState.viewHints[ol.ViewHint.ANIMATING] += 1;
+          return true;
+        } else {
+          return false;
+        }
+      });
+};
+// FIXME works for View2D only
+
+goog.provide('ol.control.Rotate');
+
+goog.require('goog.asserts');
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('ol.View2D');
+goog.require('ol.animation');
+goog.require('ol.control.Control');
+goog.require('ol.css');
+goog.require('ol.easing');
+goog.require('ol.pointer.PointerEventHandler');
+
+>>>>>>> ConectaDF
+
+};
+// Copyright 2006 The Closure Library Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+<<<<<<< HEAD
+ * @fileoverview Easing functions for animations.
+ *
+ */
+
+goog.provide('goog.fx.easing');
+=======
+ * Create a new control with a button, to reset rotation to 0.
+ * To style this control use css selector `.ol-rotate`.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.RotateOptions=} opt_options Rotate options.
+ * @todo api
+ */
+ol.control.Rotate = function(opt_options) {
+>>>>>>> ConectaDF
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+<<<<<<< HEAD
+/**
+ * Ease in - Start slow and speed up.
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ */
+goog.fx.easing.easeIn = function(t) {
+  return t * t * t;
+};
+=======
+  var className = goog.isDef(options.className) ?
+      options.className : 'ol-rotate';
+
+  var label = goog.dom.createDom(goog.dom.TagName.SPAN,
+      { 'class': 'ol-compass' },
+      goog.isDef(options.label) ? options.label : '\u21E7');
+  this.label_ = label;
+>>>>>>> ConectaDF
+
+  var tipLabel = goog.isDef(options.tipLabel) ?
+      options.tipLabel : 'Reset rotation';
+
+<<<<<<< HEAD
+/**
+ * Ease out - Start fastest and slows to a stop.
+ * @param {number} t Input between 0 and 1.
+ * @param {number=} opt_exponent Ease exponent.  If undefined, defaults to 3.
+ * @return {number} Output between 0 and 1.
+ */
+goog.fx.easing.easeOut = function(t, opt_exponent) {
+  return 1 - Math.pow(1 - t, goog.isDef(opt_exponent) ? opt_exponent : 3);
+};
+
+
+/**
+ * Ease out long - Start fastest and slows to a stop with a long ease.
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ */
+goog.fx.easing.easeOutLong = function(t) {
+  return goog.fx.easing.easeOut(t, 4);
+};
+
+
+/**
+ * Ease in and out - Start slow, speed up, then slow down.
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ */
+goog.fx.easing.inAndOut = function(t) {
+  return 3 * t * t - 2 * t * t * t;
+};
+goog.provide('ol.easing');
+
+goog.require('goog.fx.easing');
+
+=======
+  var tip = goog.dom.createDom(goog.dom.TagName.SPAN, {
+    'role' : 'tooltip'
+  }, tipLabel);
+  var button = goog.dom.createDom(goog.dom.TagName.BUTTON, {
+    'class': className + '-reset ol-has-tooltip',
+    'name' : 'ResetRotation',
+    'type' : 'button'
+  }, tip, label);
+
+  var handler = new ol.pointer.PointerEventHandler(button);
+  this.registerDisposable(handler);
+  goog.events.listen(handler, ol.pointer.EventType.POINTERUP,
+      ol.control.Rotate.prototype.resetNorth_, false, this);
+
+  goog.events.listen(button, [
+    goog.events.EventType.MOUSEOUT,
+    goog.events.EventType.FOCUSOUT
+  ], function() {
+    this.blur();
+  }, false);
+
+  var cssClasses = className + ' ' + ol.css.CLASS_UNSELECTABLE + ' ' +
+      ol.css.CLASS_CONTROL;
+  var element = goog.dom.createDom(goog.dom.TagName.DIV, cssClasses, button);
+
+  goog.base(this, {
+    element: element,
+    target: options.target
+  });
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.duration_ = goog.isDef(options.duration) ? options.duration : 250;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.autoHide_ = goog.isDef(options.autoHide) ? options.autoHide : true;
+
+  element.style.opacity = (this.autoHide_) ? 0 : 1;
+>>>>>>> ConectaDF
+
+/**
+ * from https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js
+ * @param {number} t Input between 0 and 1.
+ * @return {number} Output between 0 and 1.
+ * @todo api
+ */
+ol.easing.bounce = function(t) {
+  var s = 7.5625, p = 2.75, l;
+  if (t < (1 / p)) {
+    l = s * t * t;
+  } else {
+    if (t < (2 / p)) {
+      t -= (1.5 / p);
+      l = s * t * t + 0.75;
+    } else {
+      if (t < (2.5 / p)) {
+        t -= (2.25 / p);
+        l = s * t * t + 0.9375;
+      } else {
+        t -= (2.625 / p);
+        l = s * t * t + 0.984375;
+      }
+    }
+  }
+  return l;
+};
+<<<<<<< HEAD
 
 
 /**
@@ -63041,8 +83435,121 @@ goog.require('ol.PreRenderFunction');
 goog.require('ol.ViewHint');
 goog.require('ol.coordinate');
 goog.require('ol.easing');
+=======
+goog.inherits(ol.control.Rotate, ol.control.Control);
 
 
+/**
+ * @param {ol.pointer.PointerEvent} pointerEvent The pointer event to handle.
+ * @private
+ */
+ol.control.Rotate.prototype.resetNorth_ = function(pointerEvent) {
+  pointerEvent.browserEvent.preventDefault();
+  // prevent the anchor from getting appended to the url
+  var map = this.getMap();
+  // FIXME works for View2D only
+  var view = map.getView();
+  goog.asserts.assert(goog.isDef(view));
+  var view2D = view.getView2D();
+  goog.asserts.assertInstanceof(view2D, ol.View2D);
+  var currentRotation = view2D.getRotation();
+  while (currentRotation < -Math.PI) {
+    currentRotation += 2 * Math.PI;
+  }
+  while (currentRotation > Math.PI) {
+    currentRotation -= 2 * Math.PI;
+  }
+  if (goog.isDef(currentRotation)) {
+    if (this.duration_ > 0) {
+      map.beforeRender(ol.animation.rotate({
+        rotation: currentRotation,
+        duration: this.duration_,
+        easing: ol.easing.easeOut
+      }));
+    }
+    view2D.setRotation(0);
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+ol.control.Rotate.prototype.handleMapPostrender = function(mapEvent) {
+  var frameState = mapEvent.frameState;
+  if (goog.isNull(frameState)) {
+    return;
+  }
+  var rotation = frameState.view2DState.rotation;
+  var transform = 'rotate(' + rotation * 360 / (Math.PI * 2) + 'deg)';
+  if (this.autoHide_) {
+    this.element.style.opacity = (rotation === 0) ? 0 : 1;
+  }
+  this.label_.style.msTransform = transform;
+  this.label_.style.webkitTransform = transform;
+  this.label_.style.transform = transform;
+};
+// FIXME works for View2D only
+
+goog.provide('ol.control.Zoom');
+
+goog.require('goog.asserts');
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('ol.View2D');
+goog.require('ol.animation');
+goog.require('ol.control.Control');
+goog.require('ol.css');
+goog.require('ol.easing');
+goog.require('ol.pointer.PointerEventHandler');
+
+
+
+/**
+ * Create a new control with 2 buttons, one for zoom in and one for zoom out.
+ * This control is part of the default controls of a map. To style this control
+ * use css selectors `.ol-zoom-in` and `.ol-zoom-out`.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.ZoomOptions=} opt_options Zoom options.
+ * @todo api
+ */
+ol.control.Zoom = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  var className = goog.isDef(options.className) ? options.className : 'ol-zoom';
+
+  var delta = goog.isDef(options.delta) ? options.delta : 1;
+
+  var zoomInLabel = goog.isDef(options.zoomInLabel) ?
+      options.zoomInLabel : '+';
+  var zoomOutLabel = goog.isDef(options.zoomOutLabel) ?
+      options.zoomOutLabel : '\u2212';
+
+  var zoomInTipLabel = goog.isDef(options.zoomInTipLabel) ?
+      options.zoomInTipLabel : 'Zoom in';
+  var zoomOutTipLabel = goog.isDef(options.zoomOutTipLabel) ?
+      options.zoomOutTipLabel : 'Zoom out';
+
+  var tTipZoomIn = goog.dom.createDom(goog.dom.TagName.SPAN, {
+    'role' : 'tooltip'
+  }, zoomInTipLabel);
+  var inElement = goog.dom.createDom(goog.dom.TagName.BUTTON, {
+    'class': className + '-in ol-has-tooltip',
+    'type' : 'button'
+  }, tTipZoomIn, zoomInLabel);
+>>>>>>> ConectaDF
+
+  var inElementHandler = new ol.pointer.PointerEventHandler(inElement);
+  this.registerDisposable(inElementHandler);
+  goog.events.listen(inElementHandler,
+      ol.pointer.EventType.POINTERUP, goog.partial(
+          ol.control.Zoom.prototype.zoomByDelta_, delta), false, this);
+
+<<<<<<< HEAD
 /**
  * @param {olx.animation.BounceOptions} options Bounce options.
  * @return {ol.PreRenderFunction} Pre-render function.
@@ -63130,6 +83637,51 @@ ol.animation.rotate = function(options) {
       options.easing : ol.easing.inAndOut;
   var anchor = goog.isDef(options.anchor) ?
       options.anchor : null;
+=======
+  goog.events.listen(inElement, [
+    goog.events.EventType.MOUSEOUT,
+    goog.events.EventType.FOCUSOUT
+  ], function() {
+    this.blur();
+  }, false);
+
+  var tTipsZoomOut = goog.dom.createDom(goog.dom.TagName.SPAN, {
+    'role' : 'tooltip'
+  }, zoomOutTipLabel);
+  var outElement = goog.dom.createDom(goog.dom.TagName.BUTTON, {
+    'class': className + '-out  ol-has-tooltip',
+    'type' : 'button'
+  }, tTipsZoomOut, zoomOutLabel);
+
+  var outElementHandler = new ol.pointer.PointerEventHandler(outElement);
+  this.registerDisposable(outElementHandler);
+  goog.events.listen(outElementHandler,
+      ol.pointer.EventType.POINTERUP, goog.partial(
+          ol.control.Zoom.prototype.zoomByDelta_, -delta), false, this);
+
+  goog.events.listen(outElement, [
+    goog.events.EventType.MOUSEOUT,
+    goog.events.EventType.FOCUSOUT
+  ], function() {
+    this.blur();
+  }, false);
+
+  var cssClasses = className + ' ' + ol.css.CLASS_UNSELECTABLE + ' ' +
+      ol.css.CLASS_CONTROL;
+  var element = goog.dom.createDom(goog.dom.TagName.DIV, cssClasses, inElement,
+      outElement);
+
+  goog.base(this, {
+    element: element,
+    target: options.target
+  });
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.duration_ = goog.isDef(options.duration) ? options.duration : 250;
+>>>>>>> ConectaDF
 
   return (
       /**
@@ -63160,6 +83712,7 @@ ol.animation.rotate = function(options) {
         }
       });
 };
+<<<<<<< HEAD
 
 
 /**
@@ -63211,10 +83764,55 @@ goog.require('ol.control.Control');
 goog.require('ol.css');
 goog.require('ol.easing');
 goog.require('ol.pointer.PointerEventHandler');
+=======
+goog.inherits(ol.control.Zoom, ol.control.Control);
+
+
+/**
+ * @param {number} delta Zoom delta.
+ * @param {ol.pointer.PointerEvent} pointerEvent The pointer event to handle.
+ * @private
+ */
+ol.control.Zoom.prototype.zoomByDelta_ = function(delta, pointerEvent) {
+  pointerEvent.browserEvent.preventDefault();
+  // prevent the anchor from getting appended to the url
+  var map = this.getMap();
+  // FIXME works for View2D only
+  var view = map.getView();
+  goog.asserts.assert(goog.isDef(view));
+  var view2D = view.getView2D();
+  goog.asserts.assertInstanceof(view2D, ol.View2D);
+  var currentResolution = view2D.getResolution();
+  if (goog.isDef(currentResolution)) {
+    if (this.duration_ > 0) {
+      map.beforeRender(ol.animation.zoom({
+        resolution: currentResolution,
+        duration: this.duration_,
+        easing: ol.easing.easeOut
+      }));
+    }
+    var newResolution = view2D.constrainResolution(currentResolution, delta);
+    view2D.setResolution(newResolution);
+  }
+};
+// FIXME handle date line wrap
+
+goog.provide('ol.control.Attribution');
+
+goog.require('goog.array');
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.object');
+goog.require('goog.style');
+goog.require('ol.Attribution');
+goog.require('ol.control.Control');
+goog.require('ol.css');
+>>>>>>> ConectaDF
 
 
 
 /**
+<<<<<<< HEAD
  * Create a new control with a button, to reset rotation to 0.
  * To style this control use css selector `.ol-rotate`.
  * @constructor
@@ -63261,6 +83859,32 @@ ol.control.Rotate = function(opt_options) {
   var cssClasses = className + ' ' + ol.css.CLASS_UNSELECTABLE + ' ' +
       ol.css.CLASS_CONTROL;
   var element = goog.dom.createDom(goog.dom.TagName.DIV, cssClasses, button);
+=======
+ * Create a new attribution control to show all the attributions associated
+ * with the layer sources in the map. A default map has this control included.
+ * By default it will show in the bottom right portion of the map, but it can
+ * be changed by using a css selector for `.ol-attribution`.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.AttributionOptions=} opt_options Attribution options.
+ * @todo api
+ */
+ol.control.Attribution = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.ulElement_ = goog.dom.createElement(goog.dom.TagName.UL);
+
+  var className = goog.isDef(options.className) ?
+      options.className : 'ol-attribution';
+  var element = goog.dom.createDom(goog.dom.TagName.DIV, {
+    'class': className + ' ' + ol.css.CLASS_UNSELECTABLE
+  }, this.ulElement_);
+>>>>>>> ConectaDF
 
   goog.base(this, {
     element: element,
@@ -63270,17 +83894,81 @@ ol.control.Rotate = function(opt_options) {
   /**
    * @type {number}
    * @private
+<<<<<<< HEAD
    */
   this.duration_ = goog.isDef(options.duration) ? options.duration : 250;
+=======
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+>>>>>>> ConectaDF
 
   /**
    * @type {boolean}
    * @private
+<<<<<<< HEAD
    */
   this.autoHide_ = goog.isDef(options.autoHide) ? options.autoHide : true;
+=======
+   * @type {Object.<string, Element>}
+   */
+  this.attributionElements_ = {};
+
+  /**
+   * @private
+   * @type {Object.<string, boolean>}
+   */
+  this.attributionElementRenderedVisible_ = {};
+
+};
+goog.inherits(ol.control.Attribution, ol.control.Control);
+>>>>>>> ConectaDF
 
   element.style.opacity = (this.autoHide_) ? 0 : 1;
 
+<<<<<<< HEAD
+=======
+/**
+ * @param {?oli.FrameState} frameState Frame state.
+ * @return {Array.<Object.<string, ol.Attribution>>} Attributions.
+ */
+ol.control.Attribution.prototype.getSourceAttributions =
+    function(frameState) {
+  var i, ii, j, jj, tileRanges, source, sourceAttribution,
+      sourceAttributionKey, sourceAttributions, sourceKey;
+  var layerStatesArray = frameState.layerStatesArray;
+  /** @type {Object.<string, ol.Attribution>} */
+  var attributions = goog.object.clone(frameState.attributions);
+  /** @type {Object.<string, ol.Attribution>} */
+  var hiddenAttributions = {};
+  for (i = 0, ii = layerStatesArray.length; i < ii; i++) {
+    source = layerStatesArray[i].layer.getSource();
+    sourceKey = goog.getUid(source).toString();
+    sourceAttributions = source.getAttributions();
+    if (goog.isNull(sourceAttributions)) {
+      continue;
+    }
+    for (j = 0, jj = sourceAttributions.length; j < jj; j++) {
+      sourceAttribution = sourceAttributions[j];
+      sourceAttributionKey = goog.getUid(sourceAttribution).toString();
+      if (sourceAttributionKey in attributions) {
+        continue;
+      }
+      tileRanges = frameState.usedTiles[sourceKey];
+      if (goog.isDef(tileRanges) &&
+          sourceAttribution.intersectsAnyTileRange(tileRanges)) {
+        if (sourceAttributionKey in hiddenAttributions) {
+          delete hiddenAttributions[sourceAttributionKey];
+        }
+        attributions[sourceAttributionKey] = sourceAttribution;
+      }
+      else {
+        hiddenAttributions[sourceAttributionKey] = sourceAttribution;
+      }
+    }
+  }
+  return [attributions, hiddenAttributions];
+>>>>>>> ConectaDF
 };
 goog.inherits(ol.control.Rotate, ol.control.Control);
 
@@ -63289,6 +83977,7 @@ goog.inherits(ol.control.Rotate, ol.control.Control);
  * @param {ol.pointer.PointerEvent} pointerEvent The pointer event to handle.
  * @private
  */
+<<<<<<< HEAD
 ol.control.Rotate.prototype.resetNorth_ = function(pointerEvent) {
   pointerEvent.browserEvent.preventDefault();
   // prevent the anchor from getting appended to the url
@@ -63315,12 +84004,18 @@ ol.control.Rotate.prototype.resetNorth_ = function(pointerEvent) {
     }
     view2D.setRotation(0);
   }
+=======
+ol.control.Attribution.prototype.handleMapPostrender = function(mapEvent) {
+  this.updateElement_(mapEvent.frameState);
+>>>>>>> ConectaDF
 };
 
 
 /**
- * @inheritDoc
+ * @private
+ * @param {?oli.FrameState} frameState Frame state.
  */
+<<<<<<< HEAD
 ol.control.Rotate.prototype.handleMapPostrender = function(mapEvent) {
   var frameState = mapEvent.frameState;
   if (goog.isNull(frameState)) {
@@ -63481,10 +84176,130 @@ goog.require('goog.style');
 goog.require('ol.Attribution');
 goog.require('ol.control.Control');
 goog.require('ol.css');
+=======
+ol.control.Attribution.prototype.updateElement_ = function(frameState) {
+
+  if (goog.isNull(frameState)) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.element, false);
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var attributions = this.getSourceAttributions(frameState);
+  /** @type {Object.<string, ol.Attribution>} */
+  var visibleAttributions = attributions[0];
+  /** @type {Object.<string, ol.Attribution>} */
+  var hiddenAttributions = attributions[1];
+
+  var attributionElement, attributionKey;
+  for (attributionKey in this.attributionElements_) {
+    if (attributionKey in visibleAttributions) {
+      if (!this.attributionElementRenderedVisible_[attributionKey]) {
+        goog.style.setElementShown(
+            this.attributionElements_[attributionKey], true);
+        this.attributionElementRenderedVisible_[attributionKey] = true;
+      }
+      delete visibleAttributions[attributionKey];
+    }
+    else if (attributionKey in hiddenAttributions) {
+      if (this.attributionElementRenderedVisible_[attributionKey]) {
+        goog.style.setElementShown(
+            this.attributionElements_[attributionKey], false);
+        delete this.attributionElementRenderedVisible_[attributionKey];
+      }
+      delete hiddenAttributions[attributionKey];
+    }
+    else {
+      goog.dom.removeNode(this.attributionElements_[attributionKey]);
+      delete this.attributionElements_[attributionKey];
+      delete this.attributionElementRenderedVisible_[attributionKey];
+    }
+  }
+  for (attributionKey in visibleAttributions) {
+    attributionElement = goog.dom.createElement(goog.dom.TagName.LI);
+    attributionElement.innerHTML =
+        visibleAttributions[attributionKey].getHTML();
+    goog.dom.appendChild(this.ulElement_, attributionElement);
+    this.attributionElements_[attributionKey] = attributionElement;
+    this.attributionElementRenderedVisible_[attributionKey] = true;
+  }
+  for (attributionKey in hiddenAttributions) {
+    attributionElement = goog.dom.createElement(goog.dom.TagName.LI);
+    attributionElement.innerHTML =
+        hiddenAttributions[attributionKey].getHTML();
+    goog.style.setElementShown(attributionElement, false);
+    goog.dom.appendChild(this.ulElement_, attributionElement);
+    this.attributionElements_[attributionKey] = attributionElement;
+  }
+
+  var renderVisible =
+      !goog.object.isEmpty(this.attributionElementRenderedVisible_);
+  if (this.renderedVisible_ != renderVisible) {
+    goog.style.setElementShown(this.element, renderVisible);
+    this.renderedVisible_ = renderVisible;
+  }
+
+};
+goog.provide('ol.control');
+
+goog.require('ol.Collection');
+goog.require('ol.control.Attribution');
+goog.require('ol.control.Logo');
+goog.require('ol.control.Rotate');
+goog.require('ol.control.Zoom');
+
+
+/**
+ * @param {olx.control.DefaultsOptions=} opt_options Defaults options.
+ * @return {ol.Collection} Controls.
+ * @todo api
+ */
+ol.control.defaults = function(opt_options) {
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+  var controls = new ol.Collection();
+
+  var zoomControl = goog.isDef(options.zoom) ?
+      options.zoom : true;
+  if (zoomControl) {
+    controls.push(new ol.control.Zoom(options.zoomOptions));
+  }
+
+  var rotateControl = goog.isDef(options.rotate) ?
+      options.rotate : true;
+  if (rotateControl) {
+    controls.push(new ol.control.Rotate(options.rotateOptions));
+  }
+
+  var attributionControl = goog.isDef(options.attribution) ?
+      options.attribution : true;
+  if (attributionControl) {
+    controls.push(new ol.control.Attribution(options.attributionOptions));
+  }
+
+  var logoControl = goog.isDef(options.logo) ?
+      options.logo : true;
+  if (logoControl) {
+    controls.push(new ol.control.Logo(options.logoOptions));
+  }
+
+  return controls;
+
+};
+goog.provide('ol.Kinetic');
+
+goog.require('ol.Coordinate');
+goog.require('ol.PreRenderFunction');
+goog.require('ol.animation');
+>>>>>>> ConectaDF
 
 
 
 /**
+<<<<<<< HEAD
  * Create a new attribution control to show all the attributions associated
  * with the layer sources in the map. A default map has this control included.
  * By default it will show in the bottom right portion of the map, but it can
@@ -63757,6 +84572,52 @@ ol.Kinetic = function(decay, minVelocity, delay) {
    * @private
    * @type {number}
    */
+=======
+ * @constructor
+ * @param {number} decay Rate of decay (must be negative).
+ * @param {number} minVelocity Minimum velocity (pixels/millisecond).
+ * @param {number} delay Delay to consider to calculate the kinetic
+ *     initial values (milliseconds).
+ * @struct
+ * @todo api
+ */
+ol.Kinetic = function(decay, minVelocity, delay) {
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.decay_ = decay;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.minVelocity_ = minVelocity;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.delay_ = delay;
+
+  /**
+   * @private
+   * @type {Array.<number>}
+   */
+  this.points_ = [];
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.angle_ = 0;
+
+  /**
+   * @private
+   * @type {number}
+   */
+>>>>>>> ConectaDF
   this.initialVelocity_ = 0;
 };
 
@@ -63789,6 +84650,7 @@ ol.Kinetic.prototype.end = function() {
   if (this.points_[lastIndex + 2] < delay) {
     // the user stopped panning before releasing the map
     return false;
+<<<<<<< HEAD
   }
   var firstIndex = lastIndex - 3;
   while (firstIndex >= 0 && this.points_[firstIndex + 2] > delay) {
@@ -63802,6 +84664,21 @@ ol.Kinetic.prototype.end = function() {
     this.initialVelocity_ = Math.sqrt(dx * dx + dy * dy) / duration;
     return this.initialVelocity_ > this.minVelocity_;
   }
+=======
+  }
+  var firstIndex = lastIndex - 3;
+  while (firstIndex >= 0 && this.points_[firstIndex + 2] > delay) {
+    firstIndex -= 3;
+  }
+  if (firstIndex >= 0) {
+    var duration = this.points_[lastIndex + 2] - this.points_[firstIndex + 2];
+    var dx = this.points_[lastIndex] - this.points_[firstIndex];
+    var dy = this.points_[lastIndex + 1] - this.points_[firstIndex + 1];
+    this.angle_ = Math.atan2(dy, dx);
+    this.initialVelocity_ = Math.sqrt(dx * dx + dy * dy) / duration;
+    return this.initialVelocity_ > this.minVelocity_;
+  }
+>>>>>>> ConectaDF
   return false;
 };
 
@@ -64377,8 +85254,13 @@ ol.events.condition.noModifierKeys = function(mapBrowserEvent) {
       !browserEvent.platformModifierKey &&
       !browserEvent.shiftKey);
 };
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> ConectaDF
 /**
  * @param {ol.MapBrowserEvent} mapBrowserEvent Map browser event.
  * @return {boolean} True if only the platform modifier key is pressed.
@@ -65030,11 +85912,19 @@ goog.require('ol.interaction.Pointer');
  * @todo api
  */
 ol.interaction.PinchRotate = function(opt_options) {
+<<<<<<< HEAD
 
   goog.base(this);
 
   var options = goog.isDef(opt_options) ? opt_options : {};
 
+=======
+
+  goog.base(this);
+
+  var options = goog.isDef(opt_options) ? opt_options : {};
+
+>>>>>>> ConectaDF
   /**
    * @private
    * @type {ol.Coordinate}
@@ -65627,6 +86517,7 @@ goog.require('ol.interaction.Pointer');
 ol.interaction.DragRotate = function(opt_options) {
 
   var options = goog.isDef(opt_options) ? opt_options : {};
+<<<<<<< HEAD
 
   goog.base(this);
 
@@ -65639,6 +86530,20 @@ ol.interaction.DragRotate = function(opt_options) {
 
   /**
    * @private
+=======
+
+  goog.base(this);
+
+  /**
+   * @private
+   * @type {ol.events.ConditionType}
+   */
+  this.condition_ = goog.isDef(options.condition) ?
+      options.condition : ol.events.condition.altShiftKeysOnly;
+
+  /**
+   * @private
+>>>>>>> ConectaDF
    * @type {number|undefined}
    */
   this.lastAngle_ = undefined;
@@ -65812,9 +86717,15 @@ ol.interaction.defaults = function(opt_options) {
   if (shiftDragZoom) {
     interactions.push(new ol.interaction.DragZoom());
   }
+<<<<<<< HEAD
 
   return interactions;
 
+=======
+
+  return interactions;
+
+>>>>>>> ConectaDF
 };
 // Copyright 2012 The Closure Library Authors. All Rights Reserved.
 //
@@ -65874,6 +86785,7 @@ goog.require('goog.functions');
  */
 goog.async.AnimationDelay = function(listener, opt_window, opt_handler) {
   goog.base(this);
+<<<<<<< HEAD
 
   /**
    * The function that will be invoked after a delay.
@@ -65890,6 +86802,24 @@ goog.async.AnimationDelay = function(listener, opt_window, opt_handler) {
   this.handler_ = opt_handler;
 
   /**
+=======
+
+  /**
+   * The function that will be invoked after a delay.
+   * @type {function(number)}
+   * @private
+   */
+  this.listener_ = listener;
+
+  /**
+   * The object context to invoke the callback in.
+   * @type {Object|undefined}
+   * @private
+   */
+  this.handler_ = opt_handler;
+
+  /**
+>>>>>>> ConectaDF
    * @type {Window}
    * @private
    */
@@ -66311,6 +87241,8 @@ ol.renderer.dom.TileLayer = function(mapRenderer, tileLayer) {
     target.style.width = '100%';
     target.style.height = '100%';
   }
+<<<<<<< HEAD
+=======
 
   goog.base(this, mapRenderer, tileLayer, target);
 
@@ -66340,8 +87272,38 @@ ol.renderer.dom.TileLayer = function(mapRenderer, tileLayer) {
 
 };
 goog.inherits(ol.renderer.dom.TileLayer, ol.renderer.dom.Layer);
+>>>>>>> ConectaDF
 
+  goog.base(this, mapRenderer, tileLayer, target);
 
+<<<<<<< HEAD
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = true;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.renderedOpacity_ = 1;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.renderedRevision_ = 0;
+
+  /**
+   * @private
+   * @type {Object.<number, ol.renderer.dom.TileLayerZ_>}
+   */
+  this.tileLayerZs_ = {};
+
+};
+goog.inherits(ol.renderer.dom.TileLayer, ol.renderer.dom.Layer);
+=======
 /**
  * @inheritDoc
  */
@@ -66380,6 +87342,93 @@ ol.renderer.dom.TileLayer.prototype.prepareFrame =
   var tileRange = tileGrid.getTileRangeForExtentAndResolution(
       extent, tileResolution);
 
+  /** @type {Object.<number, Object.<string, ol.Tile>>} */
+  var tilesToDrawByZ = {};
+  tilesToDrawByZ[z] = {};
+>>>>>>> ConectaDF
+
+  var getTileIfLoaded = this.createGetTileIfLoadedFunction(function(tile) {
+    return !goog.isNull(tile) && tile.getState() == ol.TileState.LOADED;
+  }, tileSource, pixelRatio, projection);
+  var findLoadedTiles = goog.bind(tileSource.findLoadedTiles, tileSource,
+      tilesToDrawByZ, getTileIfLoaded);
+
+<<<<<<< HEAD
+/**
+ * @inheritDoc
+ */
+ol.renderer.dom.TileLayer.prototype.prepareFrame =
+    function(frameState, layerState) {
+
+  if (!layerState.visible) {
+    if (this.renderedVisible_) {
+      goog.style.setElementShown(this.target, false);
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var pixelRatio = frameState.pixelRatio;
+  var view2DState = frameState.view2DState;
+  var projection = view2DState.projection;
+
+  var tileLayer = this.getLayer();
+  goog.asserts.assertInstanceof(tileLayer, ol.layer.Tile);
+  var tileSource = tileLayer.getSource();
+  goog.asserts.assertInstanceof(tileSource, ol.source.Tile);
+  var tileGrid = tileSource.getTileGridForProjection(projection);
+  var tileGutter = tileSource.getGutter();
+  var z = tileGrid.getZForResolution(view2DState.resolution);
+  var tileResolution = tileGrid.getResolution(z);
+  var center = view2DState.center;
+  var extent;
+  if (tileResolution == view2DState.resolution) {
+    center = this.snapCenterToPixel(center, tileResolution, frameState.size);
+    extent = ol.extent.getForView2DAndSize(
+        center, tileResolution, view2DState.rotation, frameState.size);
+  } else {
+    extent = frameState.extent;
+=======
+  var useInterimTilesOnError = tileLayer.getUseInterimTilesOnError();
+  if (!goog.isDef(useInterimTilesOnError)) {
+    useInterimTilesOnError = true;
+  }
+
+  var tmpExtent = ol.extent.createEmpty();
+  var tmpTileRange = new ol.TileRange(0, 0, 0, 0);
+  var childTileRange, fullyLoaded, tile, tileState, x, y;
+  for (x = tileRange.minX; x <= tileRange.maxX; ++x) {
+    for (y = tileRange.minY; y <= tileRange.maxY; ++y) {
+
+      tile = tileSource.getTile(z, x, y, pixelRatio, projection);
+      tileState = tile.getState();
+      if (tileState == ol.TileState.LOADED) {
+        tilesToDrawByZ[z][tile.tileCoord.toString()] = tile;
+        continue;
+      } else if (tileState == ol.TileState.EMPTY ||
+                 (tileState == ol.TileState.ERROR &&
+                  !useInterimTilesOnError)) {
+        continue;
+      }
+
+      fullyLoaded = tileGrid.forEachTileCoordParentTileRange(
+          tile.tileCoord, findLoadedTiles, null, tmpTileRange, tmpExtent);
+      if (!fullyLoaded) {
+        childTileRange = tileGrid.getTileCoordChildTileRange(
+            tile.tileCoord, tmpTileRange, tmpExtent);
+        if (!goog.isNull(childTileRange)) {
+          findLoadedTiles(z + 1, childTileRange);
+        }
+      }
+
+    }
+
+>>>>>>> ConectaDF
+  }
+  var tileRange = tileGrid.getTileRangeForExtentAndResolution(
+      extent, tileResolution);
+
+<<<<<<< HEAD
   /** @type {Object.<number, Object.<string, ol.Tile>>} */
   var tilesToDrawByZ = {};
   tilesToDrawByZ[z] = {};
@@ -66525,6 +87574,107 @@ ol.renderer.dom.TileLayer.prototype.prepareFrame =
   this.scheduleExpireCache(frameState, tileSource);
   this.updateLogos(frameState, tileSource);
 
+=======
+  // If the tile source revision changes, we destroy the existing DOM structure
+  // so that a new one will be created.  It would be more efficient to modify
+  // the existing structure.
+  var tileLayerZ, tileLayerZKey;
+  if (this.renderedRevision_ != tileSource.getRevision()) {
+    for (tileLayerZKey in this.tileLayerZs_) {
+      tileLayerZ = this.tileLayerZs_[+tileLayerZKey];
+      goog.dom.removeNode(tileLayerZ.target);
+    }
+    this.tileLayerZs_ = {};
+    this.renderedRevision_ = tileSource.getRevision();
+  }
+
+  /** @type {Array.<number>} */
+  var zs = goog.array.map(goog.object.getKeys(tilesToDrawByZ), Number);
+  goog.array.sort(zs);
+
+  /** @type {Object.<number, boolean>} */
+  var newTileLayerZKeys = {};
+
+  var iz, iziz, tileCoordKey, tileCoordOrigin, tilesToDraw;
+  for (iz = 0, iziz = zs.length; iz < iziz; ++iz) {
+    tileLayerZKey = zs[iz];
+    if (tileLayerZKey in this.tileLayerZs_) {
+      tileLayerZ = this.tileLayerZs_[tileLayerZKey];
+    } else {
+      tileCoordOrigin =
+          tileGrid.getTileCoordForCoordAndZ(center, tileLayerZKey);
+      tileLayerZ = new ol.renderer.dom.TileLayerZ_(tileGrid, tileCoordOrigin);
+      newTileLayerZKeys[tileLayerZKey] = true;
+      this.tileLayerZs_[tileLayerZKey] = tileLayerZ;
+    }
+    tilesToDraw = tilesToDrawByZ[tileLayerZKey];
+    for (tileCoordKey in tilesToDraw) {
+      tileLayerZ.addTile(tilesToDraw[tileCoordKey], tileGutter);
+    }
+    tileLayerZ.finalizeAddTiles();
+  }
+
+  /** @type {Array.<number>} */
+  var tileLayerZKeys =
+      goog.array.map(goog.object.getKeys(this.tileLayerZs_), Number);
+  goog.array.sort(tileLayerZKeys);
+
+  var i, ii, j, origin, resolution;
+  var transform = goog.vec.Mat4.createNumber();
+  for (i = 0, ii = tileLayerZKeys.length; i < ii; ++i) {
+    tileLayerZKey = tileLayerZKeys[i];
+    tileLayerZ = this.tileLayerZs_[tileLayerZKey];
+    if (!(tileLayerZKey in tilesToDrawByZ)) {
+      goog.dom.removeNode(tileLayerZ.target);
+      delete this.tileLayerZs_[tileLayerZKey];
+      continue;
+    }
+    resolution = tileLayerZ.getResolution();
+    origin = tileLayerZ.getOrigin();
+    ol.vec.Mat4.makeTransform2D(transform,
+        frameState.size[0] / 2, frameState.size[1] / 2,
+        resolution / view2DState.resolution,
+        resolution / view2DState.resolution,
+        view2DState.rotation,
+        (origin[0] - center[0]) / resolution,
+        (center[1] - origin[1]) / resolution);
+    tileLayerZ.setTransform(transform);
+    if (tileLayerZKey in newTileLayerZKeys) {
+      for (j = tileLayerZKey - 1; j >= 0; --j) {
+        if (j in this.tileLayerZs_) {
+          goog.dom.insertSiblingAfter(
+              tileLayerZ.target, this.tileLayerZs_[j].target);
+          break;
+        }
+      }
+      if (j < 0) {
+        goog.dom.insertChildAt(this.target, tileLayerZ.target, 0);
+      }
+    } else {
+      if (!frameState.viewHints[ol.ViewHint.ANIMATING] &&
+          !frameState.viewHints[ol.ViewHint.INTERACTING]) {
+        tileLayerZ.removeTilesOutsideExtent(extent, tmpTileRange);
+      }
+    }
+  }
+
+  if (layerState.opacity != this.renderedOpacity_) {
+    ol.dom.setOpacity(this.target, layerState.opacity);
+    this.renderedOpacity_ = layerState.opacity;
+  }
+
+  if (layerState.visible && !this.renderedVisible_) {
+    goog.style.setElementShown(this.target, true);
+    this.renderedVisible_ = true;
+  }
+
+  this.updateUsedTiles(frameState.usedTiles, tileSource, z, tileRange);
+  this.manageTilePyramid(frameState, tileSource, tileGrid, pixelRatio,
+      projection, extent, z, tileLayer.getPreload());
+  this.scheduleExpireCache(frameState, tileSource);
+  this.updateLogos(frameState, tileSource);
+
+>>>>>>> ConectaDF
 };
 
 
@@ -67524,9 +88674,15 @@ goog.debug.Console.logToConsole_ = function(console, fnName, record) {
  * @author attila@google.com (Attila Bodis)
  * @see ../demos/viewportsizemonitor.html
  */
+<<<<<<< HEAD
 
 goog.provide('goog.dom.ViewportSizeMonitor');
 
+=======
+
+goog.provide('goog.dom.ViewportSizeMonitor');
+
+>>>>>>> ConectaDF
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.events.EventTarget');
@@ -68341,6 +89497,7 @@ ol.Map.prototype.getControls = function() {
 /**
  * @return {ol.Collection} Overlays.
  * @todo api
+<<<<<<< HEAD
  */
 ol.Map.prototype.getOverlays = function() {
   return this.overlays_;
@@ -68348,6 +89505,62 @@ ol.Map.prototype.getOverlays = function() {
 
 
 /**
+ * Gets the collection of
+ * {@link ol.interaction|ol.interaction.Interaction} instances
+ * associated with this map.  Modifying this collection
+ * changes the interactions associated with the map.
+ *
+ * Interactions are used for e.g. pan, zoom and rotate.
+ * @return {ol.Collection} Interactions.
+ * @todo api
+ */
+ol.Map.prototype.getInteractions = function() {
+  return this.interactions_;
+=======
+ */
+ol.Map.prototype.getOverlays = function() {
+  return this.overlays_;
+>>>>>>> ConectaDF
+};
+
+
+/**
+<<<<<<< HEAD
+ * Get the layergroup associated with this map.
+ * @return {ol.layer.Group} LayerGroup.
+ * @todo api
+ */
+ol.Map.prototype.getLayerGroup = function() {
+  return /** @type {ol.layer.Group} */ (
+      this.get(ol.MapProperty.LAYERGROUP));
+};
+goog.exportProperty(
+    ol.Map.prototype,
+    'getLayerGroup',
+    ol.Map.prototype.getLayerGroup);
+
+
+/**
+ * Get the collection of layers associated with this map.
+ * @return {ol.Collection|undefined} Layers.
+ * @todo api
+ */
+ol.Map.prototype.getLayers = function() {
+  var layerGroup = this.getLayerGroup();
+  if (goog.isDef(layerGroup)) {
+    return layerGroup.getLayers();
+  } else {
+    return undefined;
+  }
+};
+
+
+/**
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @return {ol.Pixel} Pixel.
+ * @todo api
+ */
+=======
  * Gets the collection of
  * {@link ol.interaction|ol.interaction.Interaction} instances
  * associated with this map.  Modifying this collection
@@ -68397,6 +89610,7 @@ ol.Map.prototype.getLayers = function() {
  * @return {ol.Pixel} Pixel.
  * @todo api
  */
+>>>>>>> ConectaDF
 ol.Map.prototype.getPixelFromCoordinate = function(coordinate) {
   var frameState = this.frameState_;
   if (goog.isNull(frameState)) {
@@ -69156,6 +90370,7 @@ ol.Map.createOptionsInternal = function(options) {
   } else {
     interactions = ol.interaction.defaults();
   }
+<<<<<<< HEAD
 
   var overlays;
   if (goog.isDef(options.overlays)) {
@@ -69169,6 +90384,21 @@ ol.Map.createOptionsInternal = function(options) {
     overlays = new ol.Collection();
   }
 
+=======
+
+  var overlays;
+  if (goog.isDef(options.overlays)) {
+    if (goog.isArray(options.overlays)) {
+      overlays = new ol.Collection(goog.array.clone(options.overlays));
+    } else {
+      goog.asserts.assertInstanceof(options.overlays, ol.Collection);
+      overlays = options.overlays;
+    }
+  } else {
+    overlays = new ol.Collection();
+  }
+
+>>>>>>> ConectaDF
   return {
     controls: controls,
     deviceOptions: deviceOptions,
@@ -69181,8 +90411,13 @@ ol.Map.createOptionsInternal = function(options) {
   };
 
 };
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> ConectaDF
 ol.proj.common.add();
 
 
@@ -69846,8 +91081,13 @@ ol.FeatureOverlay.prototype.setMap = function(map) {
     map.render();
   }
 };
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> ConectaDF
 /**
  * Set the style for features.  This can be a single style object, an array
  * of styles, or a function that takes a feature and resolution and returns
@@ -69988,6 +91228,7 @@ ol.interaction.Draw = function(options) {
    */
   this.snapTolerance_ = goog.isDef(options.snapTolerance) ?
       options.snapTolerance : 12;
+<<<<<<< HEAD
 
   /**
    * The number of points that must be drawn before a polygon ring can be
@@ -70035,6 +91276,55 @@ ol.interaction.Draw = function(options) {
   this.sketchPoint_ = null;
 
   /**
+=======
+
+  /**
+   * The number of points that must be drawn before a polygon ring can be
+   * finished.  The default is 3.
+   * @type {number}
+   * @private
+   */
+  this.minPointsPerRing_ = goog.isDef(options.minPointsPerRing) ?
+      options.minPointsPerRing : 3;
+
+  /**
+   * Geometry type.
+   * @type {ol.geom.GeometryType}
+   * @private
+   */
+  this.type_ = options.type;
+
+  /**
+   * Drawing mode (derived from geometry type.
+   * @type {ol.interaction.DrawMode}
+   * @private
+   */
+  this.mode_ = ol.interaction.Draw.getMode_(this.type_);
+
+  /**
+   * Finish coordinate for the feature (first point for polygons, last point for
+   * linestrings).
+   * @type {ol.Coordinate}
+   * @private
+   */
+  this.finishCoordinate_ = null;
+
+  /**
+   * Sketch feature.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.sketchFeature_ = null;
+
+  /**
+   * Sketch point.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.sketchPoint_ = null;
+
+  /**
+>>>>>>> ConectaDF
    * Sketch line. Used when drawing polygon.
    * @type {ol.Feature}
    * @private
@@ -70453,11 +91743,19 @@ goog.require('ol.style.Fill');
 goog.require('ol.style.Stroke');
 goog.require('ol.style.Style');
 goog.require('ol.DrawEvent');
+<<<<<<< HEAD
 
 var draw;
 var transectOn = false; //boolean for transect tool if the netcdf has the option or not
 var oldSingleClickListeners = new Array;
 
+=======
+
+var draw;
+var transectOn = false; //boolean for transect tool if the netcdf has the option or not
+var oldSingleClickListeners = new Array;
+
+>>>>>>> ConectaDF
 // Initilizes a vector layer that will contain the 'drawing' for the transects
 if(netcdf){
 	
