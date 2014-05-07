@@ -6,7 +6,7 @@ var urlPaletteImg;//this variable is used to get the first original url
  * This function updates the min
  * and max text fields and reloads the 
  * main layer with the appropiate color range
- * @params minMaxTxt - value of minimim and maximium colors
+ * @paramminMaxTxt - value of minimim and maximium colors
  */
 function updateMinMaxFromJson(minMaxTxt){
     //    alert(minMaxTxt);
@@ -134,7 +134,7 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        owgis.layers.main.getLayer().setOptions({
+        owgis.layers.getMainLayer().setOptions({
             styles: lay_style+"/"+newPal, 
             colorscalerange: minPal+ ',' + maxPal
         });
@@ -143,7 +143,7 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPal+ ',' + maxPal);
     }else{
-        owgis.layers.main.getLayer().setOptions({
+        owgis.layers.getMainLayer().setOptions({
             styles: lay_style+"/"+newPal
         });
 
@@ -179,7 +179,7 @@ function DefaultPalette()
 
 /**
  * Displays or hides the div that contains all the palettes.
- * @params force_visib Forces an specific visibility of optional palettes.
+ * @paramforce_visib Forces an specific visibility of optional palettes.
  */
 function displayOptionalPalettes(){
 
@@ -210,7 +210,7 @@ function showPalettes()
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @params amount - amount to change or update to 
+ * @paramamount - amount to change or update to 
  */
 function increaseMaxColorRange(amount){
     $('#maxPal').val( eval(parseFloat($('#maxPal').val()).toPrecision(4)) + parseFloat(amount));
@@ -219,7 +219,7 @@ function increaseMaxColorRange(amount){
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @params amount - amount to change or update to 
+ * @paramamount - amount to change or update to 
  */
 function decreaseMinColorRange(amount){
     $('#minPal').val( eval(parseFloat($('#minPal').val()).toPrecision(4)) - parseFloat(amount));

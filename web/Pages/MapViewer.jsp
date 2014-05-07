@@ -21,6 +21,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <%@include file="Header/Header.jsp" %> <%-- contains all the css links and javascript links --%>
 		<script type="text/javascript" src="common/JS/compiled/script.js"></script> 
         <%@include file="Header/InitJSVariables.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
     </head>
 
     <body id="bodyClass" >
@@ -148,6 +149,9 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		<script>
 			function addLayers(){
 				${openLayerConfig}
+				if(netcdf){
+					map.addLayer(transectLayer);
+				}
 			};
 		</script>
 		<script>

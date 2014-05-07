@@ -31,8 +31,8 @@ function applyFilterOnEnter(){
 function applyCqlFilter(){
 
 	//Obtain OL main layer
-	currMainLayer = owgis.layers.main.getLayer();
-    layerParams= owgis.layers.main.getLayer().getSource().getParams();
+	currMainLayer = owgis.layers.getMainLayer();
+    layerParams= owgis.layers.getMainLayer().getSource().getParams();
 
 	// It initializes the defaultCQLfilter variable (only the firt time
 	// the user applies a filter)
