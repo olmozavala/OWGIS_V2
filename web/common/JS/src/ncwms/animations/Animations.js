@@ -10,7 +10,7 @@ var currentBBOX;
 /**
  * Modifies the visibility of different html elements involved on 
  * the displaying of the animations.
- * @params status - the status of the animation 
+ * @paramstatus - the status of the animation 
  * ['SelectingDates','loading', 'displaying', 'noanimation']
  */
 function updateMenusDisplayVisibility(status){
@@ -95,7 +95,7 @@ function stopAnimation(){
 	killTimeouts();//destroy all the timers that update the loading % ...
 	updateMenusDisplayVisibility("SelectingDates");
 
-	owgis.layers.main.getLayer().setVisibility(true);
+	owgis.layers.getMainLayer().setVisibility(true);
 	if(animation_layer != undefined)//If animation has been called. 
 	{             
 		animation_layer.setVisibility(false);
@@ -131,7 +131,7 @@ function Loaded() {
 		//console.log("enters when map arrives");
 		updateMenusDisplayVisibility('displaying');
 		   
-		owgis.layers.main.getLayer().setVisibility(true);
+		owgis.layers.getMainLayer().setVisibility(true);
 		map.setLayerZIndex(animation_layer,parseInt(idx_main_layer)+1);
 
 		anim_loaded = true;
@@ -190,7 +190,7 @@ function dispAnimation(){
 /**
  * This function gets called when the gif animation is received from the 
  * map server. 
- * @params responseText - url with animation gif. 
+ * @paramresponseText - url with animation gif. 
  */
 function animationLoaded(responseText){
     if(animation_layer != undefined){//If its not the first time we add an animation

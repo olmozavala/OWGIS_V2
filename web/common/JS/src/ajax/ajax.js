@@ -68,7 +68,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 
                     updateMenusDisplayVisibility('displaying');
 
-                    owgis.layers.main.getLayer().setVisibility(true);
+                    owgis.layers.getMainLayer().setVisibility(true);
                     //map.setLayerZIndex(animation_layer, idx_main_layer + 1);
                     stoppedAnimation = false;
                     updateTitleAndKmlLink();//change title resolution
@@ -123,7 +123,7 @@ function getWCSV1Ajax(path) {
         "&esWcs=True" + //Indicamos que es una solicitud de WCS
         "&mainLayer=" + mainLayer;
 
-    if (owgis.layers.main.getLayer().params.CQL_FILTER != undefined) {
+    if (owgis.layers.getMainLayer().params.CQL_FILTER != undefined) {
         url2 += "&cqlfilter=" + applyCqlFilter();
     }
 

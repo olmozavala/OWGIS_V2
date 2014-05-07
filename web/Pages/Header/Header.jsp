@@ -13,13 +13,17 @@
         <meta name="Keywords" content="OWGIS " />
 
         <!-- Jquery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
+		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
         <!-- End Jquery -->
 
         <!-- Bootstrap -->
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+		<link href="${basepath}/common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<script src="${basepath}/common/JS/vendor/bootstrap.min.js"></script>
         <!-- End Bootstrap -->
 
 		<link href="${basepath}/common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
@@ -50,18 +54,27 @@
         <script type="text/javascript" src="${basepath}/common/JS/calendar/lang/en.js"></script>
 
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
-        <script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/HelpInstructions.js"> </script>
-          
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Calendars.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Elevation.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/OpenLayersRelated.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/MenuPositions.js"> </script>
-        <script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/animation.js"> </script>
+
+		<!--OpenLayers 3 Management -->
+		<script type="text/javascript" src="${basepath}/common/JS/src/ol3/OpenLayersRelated.js"> </script>
+		<!--OpenLayers 3 Management -->
+
+		<!--NcWMS related-->
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/animations/Calendars.js"> </script>
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/animations/Animations.js"> </script>
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/Elevation.js"> </script>
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
+		<!--NcWMS related-->
+
+		<!--Menus related-->
+		<script type="text/javascript" src="${basepath}/common/JS/src/menus/MenuPositions.js"> </script>
+		<script type="text/javascript" src="${basepath}/common/JS/src/menus/OptionalLayersMenu.js"> </script>
+        <script type="text/javascript" src="${basepath}/common/JS/src/menus/HelpInstructions.js"> </script>
+		<!--Menus related-->
+		
         <script type="text/javascript" src="${basepath}/common/JS/src/utilities/validation.js"> </script>
         <script type="text/javascript" src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Palettes.js"> </script>
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/CQL.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/OptionalLayersMenu.js"> </script>
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
 

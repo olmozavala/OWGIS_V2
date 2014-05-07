@@ -220,8 +220,8 @@ function getCurrentlySelectedDate(format, formatEnd){
  * the maximum possible date. Depending on the property ahead
  * it returns the suggested date for a time 'ahead' the currDate or
  * 'back' in time 
- * @params actualDate - current date
- * @params ahead - true or false, true means ahead of time, false means back in time
+ * @paramactualDate - current date
+ * @paramahead - true or false, true means ahead of time, false means back in time
  * @return final suggested date 
  */
 function getSuggestedDate(actualDate,ahead){
@@ -258,7 +258,7 @@ function getSuggestedDate(actualDate,ahead){
 
 /*
  * Updates the current layer ant map title with the selected date 
- * @params newDate - selected date object passed in
+ * @paramnewDate - selected date object passed in
  */ 
 function updateMainLayerDate(newDate){
 

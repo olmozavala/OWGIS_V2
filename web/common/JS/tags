@@ -2859,10 +2859,10 @@ opacity	old/mapDisplay/mapDisplay.js	/^var opacity = 1;\/\/Default opacity$/;"	v
 opacity	src/mapDisplay/mapDisplay.js	/^var opacity = 1;\/\/Default opacity$/;"	v
 optionalArray	old/mapDisplay/mapDisplay.js	/^var optionalArray = [];\/\/this is the array to control the opacity of the different optional layers. $/;"	v
 optionalArray	src/mapDisplay/mapDisplay.js	/^var optionalArray = [];\/\/this is the array to control the opacity of the different optional layers. $/;"	v
-owgis.layers.main.getLayer	compiled/script.js	/^}$/;"	f
-owgis.layers.main.getLayer	src/layers/main.js	/^}$/;"	f
-owgis.layers.main.initLayer	compiled/script.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
-owgis.layers.main.initLayer	src/layers/main.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
+owgis.layers.getMainLayer	compiled/script.js	/^}$/;"	f
+owgis.layers.getMainLayer	src/layers/main.js	/^}$/;"	f
+owgis.layers.initMainLayer	compiled/script.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
+owgis.layers.initMainLayer	src/layers/main.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
 owgis.utils.IsNumeric	src/utilities/utilities.js	/^}$/;"	f
 owgis.utils.changeShadow	src/utilities/utilities.js	/^}$/;"	f
 owgis.utils.getDate	src/utilities/utilities.js	/^}$/;"	f

@@ -31,13 +31,13 @@ function getwidth(x) {
 /**
   this function handles the instruction messages that apears when the user hovers over a button. 
   pass in id of element and pass in option 1 to make it apear and 2 to disapear
-  @params id_name - Id of the container with the hover text
-  @params option - 1 for apear and 2 for disappear. 
-  @params container - Is the container where the help text should be displayed. It 
+  @paramid_name - Id of the container with the hover text
+  @paramoption - 1 for apear and 2 for disappear. 
+  @paramcontainer - Is the container where the help text should be displayed. It 
   is used to set the position of it. 
-  @params pos - The position of the text can be 'above','below','right' or 'left'
-  @params width - Specific width used for offseting the position of the text
-  @params height - Specific height used for offseting the position of the text
+  @parampos - The position of the text can be 'above','below','right' or 'left'
+  @paramwidth - Specific width used for offseting the position of the text
+  @paramheight - Specific height used for offseting the position of the text
   */
 function hoverInstructions(id_name, option, container, pos, width, height)
 {
@@ -81,8 +81,8 @@ function hoverInstructions(id_name, option, container, pos, width, height)
   this function handles the instruction messages that apears when the user hovers over a button. 
   pass in id of element and pass in option 1 to make it apear and 2 to disapear
   This function is used when the text hover has a fixed position.
-  @params id_name - could be any named passed in as long as it matches an if statment inside this function. 
-  @params option - 1 for apear and 2 for disappear. 
+  @paramid_name - could be any named passed in as long as it matches an if statment inside this function. 
+  @paramoption - 1 for apear and 2 for disappear. 
   */
 function hoverInstructionsFixedPos(id_name,option){
     if (option == "2")  
