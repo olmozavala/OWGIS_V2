@@ -70545,8 +70545,8 @@ function cleanPreviousTransect(event){
 function getVerticalTransect(event){   
 	var features = transectSource.getFeatures();
 	var geom = features[0].getGeometry();
-	console.log(geom.getFlatCoordinates());
-	console.log(geom.getCoordinates());
+//	console.log(geom.getFlatCoordinates());
+//	console.log(geom.getCoordinates());
 	var coords = geom.getCoordinates();
 	var coordsTxt = "";
 
