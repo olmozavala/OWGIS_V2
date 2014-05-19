@@ -162,5 +162,5 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
     </body>
 </html>
 <%-- 
-This is a comment to test Git from Harshul's workstation 
+This is a comment to test Git from Harshul's workstation. 
 --%>
