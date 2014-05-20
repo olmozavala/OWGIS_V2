@@ -62,8 +62,9 @@
         <!-- Stop animation button --> 
         <div class="row" id="s-animation" > 
             <div class="col-xs-2">
-                <button  class="buttonStyle" onclick="stopAnimation();" >
-                    <fmt:message key="ncwms.stopanim" /></button>
+				<div class="buttonStyle " onclick="stopAnimation()" > 
+                    <fmt:message key="ncwms.stopanim" />
+				</div>
             </div>
         </div> 
     </div>

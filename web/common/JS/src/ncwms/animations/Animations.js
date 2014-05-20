@@ -17,13 +17,8 @@ var animSpeed = 200;
 
 var animLayer = null;
 var animSource = null;
-var intervalHandler;
+var intervalHandler;// This is the handler of the 'interval' function
 
-var originalExtent; // This is the original extent loaded from the animation canvas
-var originalResolution; // This the original resolution loaded by the animation canvas
-var originalPixelsCenter;
-var originalCenter;
-var scaleRatio; // Scale ration that needs to be applied to the images
 
 /**
  * Modifies the visibility of different html elements involved on 
@@ -45,7 +40,6 @@ function updateMenusDisplayVisibility(status){
                 $('#maxPal').disabled = true;
                 $('#palettes-div').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
-                displayingAnimation = true;//I believe it is used to control the async calls to obtain the animation
                 break;
             case "playing":
                 $('#CalendarParent').hide("fade");
@@ -56,14 +50,12 @@ function updateMenusDisplayVisibility(status){
                 $('#palettes-div').hide("fade");
                 $('#elevationParent').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
-                finishedLoading = true;
-                killTimeouts();
                 break;
             case "none":
             default:
                 $("#palettesMenuParent").show();
                 $("#lineToggle").show();
-                $("#downloadDataParent").hide();
+//                $("#downloadDataParent").hide();
 
                 if(_mainlayer_zaxisCoord){
                     $('#elevationParent').show("fade");
@@ -94,41 +86,24 @@ function updateMenusDisplayVisibility(status){
 
 }
 
-/** this function clears all timeouts that are executed in ajax.js in CalculateTime() 
- */
-function killTimeouts()
-{
-	for(var i = 0; i<=10; i++) {
-		eval("clearTimeout(timeout"+i+")");//cancel the call to setimeout of lading percentage
-	}
-}
-
-
 /**
  * This function hides the 'stop animation' option and shows the
  * calendar and 'display animation' option
  */ 
 function stopAnimation(){
+	animStatus = "none";
+	updateMenusDisplayVisibility(animStatus);
 
-	killTimeouts();//destroy all the timers that update the loading % ...
-	updateMenusDisplayVisibility("SelectingDates");
-
-	owgis.layers.getMainLayer().setVisibility(true);
-	if(owgis.ncwms.animation.animLayer !== undefined)//If animation has been called. 
-	{             
-		owgis.ncwms.animation.animLayer.setVisibility(false);
-        
-		owgis.ncwms.animation.animLayer.events.un({
-			loadend: Loaded
-		});
+	if(typeof intervalHandler !== 'undefined'){
+		clearInterval(intervalHandler);
 	}
-        
-	//change the global for stop so that we know it has been called.
-	stoppedAnimation = true;  
-	anim_loaded = false;
-   
+
+	if(animLayer !== null){//If the layer already existed, we remove it
+		map.removeLayer(animLayer);
+	}
+
 	updateTitleAndKmlLink();
-}
+};
 
 /**
  *This function is executed as soon as an event concerning the animation layer changes
@@ -180,7 +155,7 @@ function obtainSelectedDates(){
 		currYear = currDate.getUTCFullYear();
 		currMonth = currDate.getUTCMonth();
 		currDay = currDate.getUTCDate();
-//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
+		//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
 		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay);
 		currDate.setDate( currDate.getDate() + 1);
 	}
@@ -209,10 +184,6 @@ function usingCanvas(){
 		}
 	}
 
-	if(animLayer !== null){
-		map.removeLayer(animLayer);
-	}
-	
 	animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationFunction,
 		projection: _map_projection 
@@ -225,6 +196,26 @@ function usingCanvas(){
 	map.addLayer(animLayer)
 }
 
+/**
+ * The resolution of the animation depends on the size of the screen. Assuming
+ * that if you have a larger screen then you will have a better internet 
+ * @returns {Number}
+ */
+function getResolutionRatio(){
+	var selectedRes = $("[name=video_res]:checked").val(); 
+	switch(selectedRes){
+		case "high":
+			return .55;
+			break;
+		case "normal":
+			return .4;
+			break;
+		case "low":
+			return .3;
+			break;
+	}
+}
+
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
@@ -235,122 +226,76 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
     ctx = canvas.getContext('2d');
 
+	/*
 	console.log("-----------------------");
 	console.log("Extent:" + extent);
 	console.log("Resolution: " + resolution);
 	console.log("PixelRatio: " + pixelRatio);
 	console.log("Size: " + size);
-
-	if(originalResolution){
-		scaleRatio = (originalResolution/resolution);
-		console.log("Difference of resolution = " + scaleRatio); 
-
-		
-		var newLong = extent[0] - extent[2];
-		var origLong = originalExtent[0] - originalExtent[2];
-		var longRatio = origLong/newLong;
-		console.log("Original longitude extent" + origLong);
-
-		var newLat = extent[1] - extent[3];
-		var origLat = originalExtent[1] - originalExtent[3];
-		var latRatio = origLat/newLat;
-		console.log("Original lattitude extent" + origLat);
-
-		console.log("long ratio: "+longRatio);
-		console.log("lat ratio: "+latRatio);
-
-		ctx.restore();
-		ctx.save();
-		var longTranslate = (canvasWidth/origLong)*longRatio*(extent[0]-originalExtent[0]);
-		var latTranslate = (canvasHeight/origLat)*latRatio*(extent[1]-originalExtent[1]);
-		console.log(longTranslate);
-		console.log(latTranslate);
-		ctx.scale(scaleRatio, scaleRatio);
-
-		var currentCenter = map.getPixelFromCoordinate(originalCenter);
-		var centerDiffX = currentCenter[0] - originalPixelsCenter[0];
-		var centerDiffY = currentCenter[1] - originalPixelsCenter[1];
-
-		console.log("X increase: " + centerDiffX);
-		console.log("Y increase: " + centerDiffY);
-		var transX = canvasWidth*(1-scaleRatio) + centerDiffX;
-		var transY = canvasHeight*(1-scaleRatio) + centerDiffY;
-		console.log("X:"+transX+ " Y:"+transY);
-		if(scaleRatio > 1){
-			ctx.translate( -transX, -transY);
-		}else{
-			ctx.translate( transX, transY);
-		}
-	}
-
-
-	if(animStatus === "none"){
-		
-		console.log("Updating animation...");
-		originalResolution = resolution;
-		originalExtent = extent;
-		originalCenter = map.getView().getCenter();
-		originalPixelsCenter = map.getPixelFromCoordinate(originalCenter);
-
-		var bbox = extent;
-		var imgWidth = Math.ceil(canvasWidth);
-		var imgHeight = Math.ceil(canvasHeight);
-		
-		//Check status of previous animation and deletes it if exists
-		var mainLayer = owgis.layers.getMainLayer();
-		var mainSource = mainLayer.getSource();
-		var mainParams = mainSource.getParams();
-		var layerName = mainParams.LAYERS;
-		
-		var currUrl = mainSource.getUrls()[0];//Get url for 
-		
-		var animParams = { 
-			TIME: allFrames[0],
-			LAYERS: layerName,
-			BBOX: bbox.toString(),
-			REQUEST: "GetMap",
-			VERSION: "1.3.0",
-			STYLES: lay_style,
-			FORMAT: "image/png",
-			TRANSPARENT: "TRUE",
-			PALETTE: mappalette,
-			CRS:"CRS:84",
-			WIDTH: imgWidth,
-			HEIGHT: imgHeight,
-			NUMCOLORBANDS: 250,
-			COLORSCALERANGE:  minPalVal + ',' + maxPalVal};
-		
-		if (layerDetails.zaxis !== undefined) {
-			animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
-		}
-		
-		var imgSrc;
-		
-		for(i = 0; i < allFrames.length; i++){
-			animParams.TIME = allFrames[i];
-			imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
-			eval('imageNumber'+i+'.src = imgSrc;');
-		}
-		
-		imageNumber0.addEventListener('load', function handler(e){
-			
-			if(typeof intervalHandler !== 'undefined'){
-				clearInterval(intervalHandler);
-			}
-			
-			intervalHandler = setInterval(loopAnimation,animSpeed);
-			e.target.removeEventListener('load', handler, false);
-		}, false);	
+	 */
+	
+	originalResolution = resolution;
+	originalExtent = extent;
+	originalCenter = map.getView().getCenter();
+	originalPixelsCenter = map.getPixelFromCoordinate(originalCenter);
+	
+	var bbox = extent;
+	var animResolution = getResolutionRatio();
+	var imgWidth = Math.ceil(canvasWidth*animResolution);
+	var imgHeight = Math.ceil(canvasHeight*animResolution);
+	
+	//Check status of previous animation and deletes it if exists
+	var mainLayer = owgis.layers.getMainLayer();
+	var mainSource = mainLayer.getSource();
+	var mainParams = mainSource.getParams();
+	var layerName = mainParams.LAYERS;
+	
+	var currUrl = mainSource.getUrls()[0];//Get url for 
+	
+	var animParams = { 
+		TIME: allFrames[0],
+		LAYERS: layerName,
+		BBOX: bbox.toString(),
+		REQUEST: "GetMap",
+		VERSION: "1.3.0",
+		STYLES: lay_style,
+		FORMAT: "image/png",
+		TRANSPARENT: "TRUE",
+		PALETTE: mappalette,
+		CRS:"CRS:84",
+		WIDTH: imgWidth,
+		HEIGHT: imgHeight,
+		NUMCOLORBANDS: 250,
+		COLORSCALERANGE:  minPalVal + ',' + maxPalVal};
+	
+	if (layerDetails.zaxis !== undefined) {
+		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
 	}
 	
+	var imgSrc;
+	
+	for(i = 0; i < allFrames.length; i++){
+		animParams.TIME = allFrames[i];
+		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+		eval('imageNumber'+i+'.src = imgSrc;');
+	}
+	
+	imageNumber0.addEventListener('load', function handler(e){
+		if(typeof intervalHandler !== 'undefined'){
+			clearInterval(intervalHandler);
+		}
+		
+		intervalHandler = setInterval(loopAnimation,animSpeed);
+		e.target.removeEventListener('load', handler, false); }, false);	
+	
 	animStatus = "loading"; 
+	updateMenusDisplayVisibility(animStatus);
     return canvas;
 } 
 
 function loopAnimation(){
     var canvas = document.getElementById('animationCanvas');    
 	
-//	ctx.scale(scaleRatio, scaleRatio);
 	currentFrame = currentFrame < allFrames.length? ++currentFrame: 0;
 	
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
