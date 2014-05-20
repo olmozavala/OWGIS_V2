@@ -48,6 +48,7 @@
             </div>
             <div class="row defRowSpace">
                 <div class="col-xs-6 text-center" id="p-animation">
+                    <!--<div class="buttonStyle " onclick="animationLoaded();" >--> 
                     <div class="buttonStyle " onclick="dispAnimation();" > 
                        <fmt:message key="ncwms.dispanim" />
                     </div> 
@@ -66,4 +67,5 @@
             </div>
         </div> 
     </div>
+	<canvas id="animationCanvas"></canvas>
 </c:if>

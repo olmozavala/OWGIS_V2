@@ -1,5 +1,6 @@
 goog.provide('owgis.utils');
 
+
 /**
  * This function receives a 'map' of key values 
  * that represent url parameters and returns

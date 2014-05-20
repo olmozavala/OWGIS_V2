@@ -219,7 +219,7 @@ public class NetCDFRequestManager {
 				+ "&COLORBARONLY=true"
 				+ "&PALETTE=" + palette
 				+ "&WIDTH=20&HEIGHT=120"
-				+ "&NUMCOLORBANDS=254";
+				+ "&NUMCOLORBANDS=250";
 		
 		return paletteUrl;
 	}

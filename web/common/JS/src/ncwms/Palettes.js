@@ -185,7 +185,7 @@ function displayOptionalPalettes(){
 
     //If the animation is being displayed we do not show optional palettes
     // and display and alert explaining why.
-    if( anim_loaded && !stoppedAnimation ){
+    if( anim_loaded && !owgis.ncwms.animation.stoppedAnimation ){
         $(palettes-div).hidde();
         alert("The color palette can't be changed while loading or displaying an animation");
     }

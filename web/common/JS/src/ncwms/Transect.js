@@ -19,7 +19,6 @@ goog.require('ol.style.Circle');
 goog.require('ol.style.Fill');
 goog.require('ol.style.Stroke');
 goog.require('ol.style.Style');
-goog.require('ol.DrawEvent');
 
 var draw;
 var transectOn = false; //boolean for transect tool if the netcdf has the option or not

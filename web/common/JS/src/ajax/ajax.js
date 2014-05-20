@@ -59,7 +59,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 			{
 				console.log("Loading same animation as before");
 				//if its the same date as previous then load right away and not make the ajax call again. 
-				if (stoppedAnimation == true && anim_loaded == false)
+				if (owgis.ncwms.animation.stoppedAnimation == true && anim_loaded == false)
 				{
 					date_frame = document.getElementById('timeSelect').value;
 
@@ -70,7 +70,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 
                     owgis.layers.getMainLayer().setVisibility(true);
                     //map.setLayerZIndex(animation_layer, idx_main_layer + 1);
-                    stoppedAnimation = false;
+                    owgis.ncwms.animation.stoppedAnimation = false;
                     updateTitleAndKmlLink();//change title resolution
                 }
             }

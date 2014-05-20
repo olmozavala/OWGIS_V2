@@ -1,17 +1,35 @@
-var animation_layer; 
-var anim_loaded = false;//Indicates if the animation has already been loaded
-var stoppedAnimation = true;//Indicates if the request of the animation has been stopped (before arriving)
-var previous_url; //compares the url requested for the animations. It is used in the ajax.js file
-var finishedLoading = false; //this is used for when an animation is being made and the user changes the zoom, so it makes the loading text not disapear. 
+goog.provide('owgis.ncwms.animation');
 
-var currentBBOX;
+goog.require('ol.source.ImageStatic');
+goog.require('ol.source.ImageWMS');
+goog.require('goog.events');
 
-        
+var previousUrl; //compares the url requested for the animations. It is used in the ajax.js file
+var currentFrame; // Current frame that is being displayed
+var allFrames; // Will contain the 'dates' for each frame
+var animStatus = "none"; 
+var animSpeed = 200;
+// Is the animation status it can be:
+// 		none -> There is not animation or is being stopped
+// 		loading -> The animation is being requested but not all of the frames have loaded
+//		playing -> Animation is being played at current speed
+//		pause   -> Animation paused
+
+var animLayer = null;
+var animSource = null;
+var intervalHandler;
+
+var originalExtent; // This is the original extent loaded from the animation canvas
+var originalResolution; // This the original resolution loaded by the animation canvas
+var originalPixelsCenter;
+var originalCenter;
+var scaleRatio; // Scale ration that needs to be applied to the images
+
 /**
  * Modifies the visibility of different html elements involved on 
  * the displaying of the animations.
- * @paramstatus - the status of the animation 
- * ['SelectingDates','loading', 'displaying', 'noanimation']
+ * @param status - the status of the animation 
+ * ['loading', 'playing', 'none','paused']
  */
 function updateMenusDisplayVisibility(status){
 
@@ -29,7 +47,7 @@ function updateMenusDisplayVisibility(status){
                 $('#hideCalendarButtonParent').hide("fade");
                 displayingAnimation = true;//I believe it is used to control the async calls to obtain the animation
                 break;
-            case "displaying":
+            case "playing":
                 $('#CalendarParent').hide("fade");
                 $('#s-animation').show("fade");
                 $('#l-animation').hide("fade");
@@ -41,7 +59,7 @@ function updateMenusDisplayVisibility(status){
                 finishedLoading = true;
                 killTimeouts();
                 break;
-            case "SelectingDates":
+            case "none":
             default:
                 $("#palettesMenuParent").show();
                 $("#lineToggle").show();
@@ -96,25 +114,20 @@ function stopAnimation(){
 	updateMenusDisplayVisibility("SelectingDates");
 
 	owgis.layers.getMainLayer().setVisibility(true);
-	if(animation_layer != undefined)//If animation has been called. 
+	if(owgis.ncwms.animation.animLayer !== undefined)//If animation has been called. 
 	{             
-		animation_layer.setVisibility(false);
+		owgis.ncwms.animation.animLayer.setVisibility(false);
         
-		animation_layer.events.un({
+		owgis.ncwms.animation.animLayer.events.un({
 			loadend: Loaded
 		});
 	}
-    
-  
         
 	//change the global for stop so that we know it has been called.
 	stoppedAnimation = true;  
 	anim_loaded = false;
-    
-    
    
 	updateTitleAndKmlLink();
-    
 }
 
 /**
@@ -126,152 +139,221 @@ function Loaded() {
       
     updateTitleAndKmlLink();//change title resolution
 	//check if the boundry box is still the same, should only enter this if the animation arrived. 
-	if(currentBBOX == map.getExtent().toBBOX()){ 
+	if(currentBBOX === map.getExtent().toBBOX()){ 
            
-		//console.log("enters when map arrives");
 		updateMenusDisplayVisibility('displaying');
 		   
 		owgis.layers.getMainLayer().setVisibility(true);
-		map.setLayerZIndex(animation_layer,parseInt(idx_main_layer)+1);
+		map.setLayerZIndex(owgis.ncwms.animation.animLayer,parseInt(idx_main_layer)+1);
 
 		anim_loaded = true;
 		finishedLoading = true;
-      
                
 	}else{//this means the function was called becuase a change in zoom of the map while animation was loading or user put screen to full screen. 
-		//console.log("else del current box ");
-		if(finishedLoading == false)
+		if(finishedLoading === false)
 		{
-			// console.log("entro en el if raro del unevent");
-			animation_layer.events.un({
+			owgis.ncwms.animation.animLayer.events.un({
 				loadend: Loaded
 			});
                 
-			animationLoaded(animation_layer.getURL());
+			animationLoaded(owgis.ncwms.animation.animLayer.getURL());
 		}
 	}
 }
 
+/**
+ * This function analyses the selected dates by the user and creates all
+ * the string dates corresponding for each one 
+ * @returns {undefined}
+ */
+function obtainSelectedDates(){
+	// Obtains the selected dates 
+	allFrames = new Array();
+
+	var startDate = Calendar.intToDate(calStart.selection.get());
+	var endDate = Calendar.intToDate(calEnd.selection.get());
+	
+	var currYear, currMonth, currDay;
+	currDate= startDate;
+
+	while(currDate <= endDate){
+		currYear = currDate.getUTCFullYear();
+		currMonth = currDate.getUTCMonth();
+		currDay = currDate.getUTCDate();
+//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
+		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay);
+		currDate.setDate( currDate.getDate() + 1);
+	}
+
+}
 
 /**
  * This function gets the selected dates from the user and starts
  * the ajax request to generate the animation of the NetCDF files.
  */
 function dispAnimation(){
-        
-    var loadperc = $('#loadperc');
-
-    if(loadperc != null)
-        loadperc.innerHTML = 0;   
-
-    var startSel = calStart.selection.get();
-    var endSel = calEnd.selection.get();
-
-    if( (startSel != undefined)&&(endSel != undefined)){
-
-        startDate = Calendar.intToDate(startSel);
-        endDate = Calendar.intToDate(calEnd.selection.get());
-
-        startDate = Calendar.printDate(startDate, '%Y-%m-%dT00:00:00.000Z');
-        endDate = Calendar.printDate(endDate, '%Y-%m-%dT00:00:00.000Z');
-
-        //While the animation is loading we don't show the  calendars
-        updateMenusDisplayVisibility("loading");
-
-        dispAnimationAjax(startDate, endDate, mainLayer,"dispAnimation");
-    }else{
-        alert('Select dates for the animation from the calendars. ');
-    }
-
-    //make global for stop button true
-    stoppedAnimation = false;
+	usingCanvas();
 }
 
-/**
- * This function gets called when the gif animation is received from the 
- * map server. 
- * @paramresponseText - url with animation gif. 
- */
-function animationLoaded(responseText){
-    if(animation_layer != undefined){//If its not the first time we add an animation
-        map.removeLayer(animation_layer);
-    }
+function usingCanvas(){
+	obtainSelectedDates();
 
-    //Used to keep track of when the animation has already
-    // been loaded.
-    anim_loaded = true;
+	//Create the required global variables if they don't exist
+	for(i = 0; i <= allFrames.length; i++){
+		try{// Hack to test if the variable already exists
+			eval('imageNumber'+i);
+		}
+		catch(e){
+			eval('window.imageNumber'+i+';');
+			eval("imageNumber"+i+" = document.createElement('img');");
+		}
+	}
 
-    bbox =[layerDetails.bbox[0],layerDetails.bbox[1],
-         layerDetails.bbox[2],layerDetails.bbox[3] ];
+	if(animLayer !== null){
+		map.removeLayer(animLayer);
+	}
+	
+	animSource= new ol.source.ImageCanvas({
+		canvasFunction: canvasAnimationFunction,
+		projection: _map_projection 
+	});
+	
+	animLayer = new ol.layer.Image({
+		source: animSource});
+	
+	currentFrame = 0; //Set to use the first frame
+	map.addLayer(animLayer)
+}
 
-    //TODO verify width and height
-    anim_width = 512;
-    anim_height = 512;
+function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
+    var canvasWidth = size[0];
+    var canvasHeight = size[1];        
+	
+    var canvas = document.getElementById('animationCanvas');    
+	canvas.width = canvasWidth;
+	canvas.height = canvasHeight;
+	
+    ctx = canvas.getContext('2d');
 
-    /*
-    animation_layer = new ol.layer.Image({
-            source: new ol.source.ImageWMS({
-                      url: responseText,
-                      //params: {'LAYERS': 'topp:states'},
-                      extent: bbox })
-                      });*/
+	console.log("-----------------------");
+	console.log("Extent:" + extent);
+	console.log("Resolution: " + resolution);
+	console.log("PixelRatio: " + pixelRatio);
+	console.log("Size: " + size);
 
-    /*
-    animation_layer = new ol.layer.Image({
-            source: new ol.source.ImageWMS({
-                      url: 'http://viewer.coaps.fsu.edu/ncWMS/wms',
-                      params: { layers: 'hycom2013/temperature', 
-                      //url: 'http://viewer.coaps.fsu.edu/geoserver/wms',
-                      //params: { layers: 'comm:states', 
-                                styles: 'boxfill/rainbow',
-                                //width: 256,
-                                //height: 256,
-                                elevation: 0,
-                                time:'2013-02-24/2013-03-26',
-                                colorscalerange:'10.0,34.0',
-                                },
-                      extent: [-98.0,18.09164810180664,-76.400024,31.960647583007812]})
-                      //extent: [-179.1473399999999,-14.378799999999956, 179.77848000000003,71.38961197300004 ]})
-                        //extent: ol3view.calculateExtent(map.getSize())})
-                      });
+	if(originalResolution){
+		scaleRatio = (originalResolution/resolution);
+		console.log("Difference of resolution = " + scaleRatio); 
 
-    layerParams= animation_layer.getSource().getParams();
-    layerParams.FORMAT='image/gif';//Modify the time parameter
-    animation_layer.getSource().updateParams(layerParams);//Updates the layer
-    /* // Old version
-        new OpenLayers.Layer.Image(
-            "ncWMS", // Name for the layer
-            responseText,
-            layerBounds,
-            new OpenLayers.Size(anim_width, anim_height), // Size of image
-            { // Other options
-                isBaseLayer : false,
-                    maxResolution: map.baseLayer.maxResolution,
-                    minResolution: map.baseLayer.minResolution,
-                    resolutions: map.baseLayer.resolutions
-            }
-            );*/
-    
-    staticSource = new ol.source.ImageStatic({
-                              imageSize: [256,256],
-                              extent: ol3view.calculateExtent(map.getSize()),
-                              imageExtent: [-98.0,18.09164810180664,-76.400024,31.960647583007812],
-                              projection: 'EPSG:4326',
-                              url: responseText
-                        });
-   animation_layer = new ol.layer.Image({
-                        source:staticSource  });
+		
+		var newLong = extent[0] - extent[2];
+		var origLong = originalExtent[0] - originalExtent[2];
+		var longRatio = origLong/newLong;
+		console.log("Original longitude extent" + origLong);
+
+		var newLat = extent[1] - extent[3];
+		var origLat = originalExtent[1] - originalExtent[3];
+		var latRatio = origLat/newLat;
+		console.log("Original lattitude extent" + origLat);
+
+		console.log("long ratio: "+longRatio);
+		console.log("lat ratio: "+latRatio);
+
+		ctx.restore();
+		ctx.save();
+		var longTranslate = (canvasWidth/origLong)*longRatio*(extent[0]-originalExtent[0]);
+		var latTranslate = (canvasHeight/origLat)*latRatio*(extent[1]-originalExtent[1]);
+		console.log(longTranslate);
+		console.log(latTranslate);
+		ctx.scale(scaleRatio, scaleRatio);
+
+		var currentCenter = map.getPixelFromCoordinate(originalCenter);
+		var centerDiffX = currentCenter[0] - originalPixelsCenter[0];
+		var centerDiffY = currentCenter[1] - originalPixelsCenter[1];
+
+		console.log("X increase: " + centerDiffX);
+		console.log("Y increase: " + centerDiffY);
+		var transX = canvasWidth*(1-scaleRatio) + centerDiffX;
+		var transY = canvasHeight*(1-scaleRatio) + centerDiffY;
+		console.log("X:"+transX+ " Y:"+transY);
+		if(scaleRatio > 1){
+			ctx.translate( -transX, -transY);
+		}else{
+			ctx.translate( transX, transY);
+		}
+	}
 
 
-    map.addLayer(animation_layer);
+	if(animStatus === "none"){
+		
+		console.log("Updating animation...");
+		originalResolution = resolution;
+		originalExtent = extent;
+		originalCenter = map.getView().getCenter();
+		originalPixelsCenter = map.getPixelFromCoordinate(originalCenter);
 
-    //currentBBOX = map.getExtent().toBBOX();//Stores the current boundry box. 
+		var bbox = extent;
+		var imgWidth = Math.ceil(canvasWidth);
+		var imgHeight = Math.ceil(canvasHeight);
+		
+		//Check status of previous animation and deletes it if exists
+		var mainLayer = owgis.layers.getMainLayer();
+		var mainSource = mainLayer.getSource();
+		var mainParams = mainSource.getParams();
+		var layerName = mainParams.LAYERS;
+		
+		var currUrl = mainSource.getUrls()[0];//Get url for 
+		
+		var animParams = { 
+			TIME: allFrames[0],
+			LAYERS: layerName,
+			BBOX: bbox.toString(),
+			REQUEST: "GetMap",
+			VERSION: "1.3.0",
+			STYLES: lay_style,
+			FORMAT: "image/png",
+			TRANSPARENT: "TRUE",
+			PALETTE: mappalette,
+			CRS:"CRS:84",
+			WIDTH: imgWidth,
+			HEIGHT: imgHeight,
+			NUMCOLORBANDS: 250,
+			COLORSCALERANGE:  minPalVal + ',' + maxPalVal};
+		
+		if (layerDetails.zaxis !== undefined) {
+			animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
+		}
+		
+		var imgSrc;
+		
+		for(i = 0; i < allFrames.length; i++){
+			animParams.TIME = allFrames[i];
+			imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+			eval('imageNumber'+i+'.src = imgSrc;');
+		}
+		
+		imageNumber0.addEventListener('load', function handler(e){
+			
+			if(typeof intervalHandler !== 'undefined'){
+				clearInterval(intervalHandler);
+			}
+			
+			intervalHandler = setInterval(loopAnimation,animSpeed);
+			e.target.removeEventListener('load', handler, false);
+		}, false);	
+	}
+	
+	animStatus = "loading"; 
+    return canvas;
+} 
 
-    //This is the function that gets called when
-    // the animation is finally loaded.
-    /*
-    animation_layer.events.on({
-        loadend: Loaded
-    });*/
-    updateMenusDisplayVisibility('displaying');
+function loopAnimation(){
+    var canvas = document.getElementById('animationCanvas');    
+	
+//	ctx.scale(scaleRatio, scaleRatio);
+	currentFrame = currentFrame < allFrames.length? ++currentFrame: 0;
+	
+	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
+	ctx.stroke();
+	map.render();
 }

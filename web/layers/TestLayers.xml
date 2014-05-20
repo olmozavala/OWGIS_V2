@@ -85,11 +85,21 @@
 
 	<!-- ncWMS all -->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
+				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
 				ncWMS="true" >  
-		<layer Menu="ncwms,ncwmsMultDateMultDepth" 
+				<!--format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"-->
+		<layer Menu="ncwms,ncwms" 
 			   EN="Demo of an ncWMS layer with different times and depths. Gulf of Mexico temperature "
-			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="gulf_temp/temperature"  />
+			   ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="ocn/zeta"  />
+			   <!--ES="Ejemplo de una capa ncWMS con diferentes fechas y profundidades. Temperatura del Golfo de Mexico" name="gulf_temp/temperature"  />-->
 	</MainLayers>
+
+<!--
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+                server="http://viewer.coaps.fsu.edu/ncWMS/wms"
+                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+        <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Temperature 2014"
+               ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Temperatura 2014" name="hycom2014/temperature"  />
+    </MainLayers> -->
 </MenuConf>
 

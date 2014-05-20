@@ -124,8 +124,11 @@ public class NetCDFAnimationServlet extends HttpServlet {
 				finalRequest+= "STYLES="+layer.getStyle()+"/"+palette+"&";
 			}
 
-			finalRequest+= "WIDTH="+animRes+"&";//width and height of the image
-			finalRequest+= "HEIGHT="+animRes+"&";
+//			finalRequest+= "WIDTH="+animRes+"&";//width and height of the image
+//			finalRequest+= "HEIGHT="+animRes+"&";
+
+			finalRequest+= "WIDTH=123&";//width and height of the image
+			finalRequest+= "HEIGHT=79&";
 
 			finalRequest+= "ELEVATION="+elevation+"&";
 

@@ -19,6 +19,7 @@ goog.require('owgis.ol3');
 goog.require('owgis.utils');
 goog.require('owgis.layers');
 goog.require('owgis.ncwms.transect');
+goog.require('owgis.ncwms.animation');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
@@ -129,7 +130,7 @@ function disableEnterButton()
  */
 function KMZDownAlert()
 {
-    if (netcdf && anim_loaded && !stoppedAnimation)
+    if (netcdf && anim_loaded && !owgis.ncwms.animation.stoppedAnimation)
         alert("Your download will beggin shortly.");
 }
 
@@ -172,7 +173,7 @@ function updateTitle(dateText, elevText) {
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
 
-        if (resolutionAnim !== "" && !stoppedAnimation)//falta hacer lo de resolution langauge y end date
+        if (resolutionAnim !== "" && !owgis.ncwms.animation.stoppedAnimation)//falta hacer lo de resolution langauge y end date
         {
             if (resolutionAnim === "high")
             {

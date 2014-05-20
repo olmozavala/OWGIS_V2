@@ -304,7 +304,7 @@ public class OpenLayersManager {
 
 		if (actualLayer.isNetCDF()) {
 			if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
-				layersScript += ", colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
+				layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 			}
 		} else {
 			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
