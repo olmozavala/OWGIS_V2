@@ -157,4 +157,3 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		</script> 
     </body>
 </html>
-
