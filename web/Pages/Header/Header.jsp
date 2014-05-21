@@ -63,7 +63,6 @@
 		<!--NcWMS related-->
 		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/animations/Calendars.js"> </script>
 		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/Elevation.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
 		<!--NcWMS related-->
 
 		<!--Menus related-->
@@ -87,6 +86,7 @@
 		<script src="${basepath}/common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="${basepath}/common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="${basepath}/common/JS/src/main/mapDisplay.js"> </script>
+		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->

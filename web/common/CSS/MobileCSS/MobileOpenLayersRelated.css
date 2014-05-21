@@ -32,16 +32,6 @@ div.olPopupContent{
     width: 190px;
 }
 
-/* This is the div used to put the netCDF animation */
-#mapOverlayDiv{
-    position: absolute;
-    visibility: hidden;
-    width: 10%;
-    height: 10%;
-    top: 0%;
-    left: 1%;
-}
-
 /* Defines the style for the PanPanel control */
 div.olControlPanPanel{
     position:absolute;

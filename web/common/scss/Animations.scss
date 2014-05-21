@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 14, 2014, 2:52:33 PM
+    Author     : olmozavala
+*/
+
+@import "base";
+
+#animContainer{
+	position: absolute;
+	width:100px;
+	height:100px;
+	z-index: 10030;
+}
+
+// It has the style for the 
+#animControls{
+	top: 40%;
+	left: 50%;
+	width: 24em;
+}

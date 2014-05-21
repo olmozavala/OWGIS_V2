@@ -4,19 +4,8 @@
  * req can be: "dispAnimation" or "getAnimTimes"
  * dispAnimaton: Makes the request for displaying the animation
  * getAnimTimes: Gets and sets the options for the animation
- */
-
-
-/**
- *this is the variable assigned the function that changes the loading percentage
- the reason it is global is becuase whenever the animation is loaded we have to cancel the timeout functions that 
- havent finished executing. Also the stop animation button needs to cancel this variables. 
- */
-for (var i = 0; i <= 20; i++) {
-	eval("var timeout" + i + ";");
-}
-
-/**
+ *
+**
  *This function creates an asynchronous object to request for the animation
  *it basically constructs a url to request the server. 
  *@param {js_var} startDate - calendar start date
@@ -26,7 +15,6 @@ for (var i = 0; i <= 20; i++) {
  */
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
-	var asynchronous6 = new Asynchronous();
 
 	var currUrl = window.location.href;//get server location
 	lastSlash = currUrl.lastIndexOf("/");
@@ -38,62 +26,6 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 	url3 += '&request=' + req;
 
 	switch (req) {
-		//In this case it loads and displays the animation
-		case "dispAnimation":
-			// Makes the request to call NetCDFAannimationServlet
-			// This request obtains the animation
-			url3 += '&style=' + lay_style;
-			url3 += '&palette=' + mappalette;
-			selcIndx = $('timeSelect').selectedIndex;
-			url3 += '&dates=' + $('#timeSelect :selected').val();
-			url3 += '&colorscalerange=' + minPalVal + ',' + maxPalVal;
-			url3 += '&videores=' + $('input[name=video_res]:radio:checked').val();
-			if (layerDetails.zaxis != undefined) {
-
-				url3 += '&elevation=' + layerDetails.zaxis.values[elev_glob_counter];
-			}
-
-			//check to see if it is the same call as previous so we don't load it again'
-			//this variable is defined in animation.js
-			if (previous_url == url3 && finishedLoading == true)
-			{
-				console.log("Loading same animation as before");
-				//if its the same date as previous then load right away and not make the ajax call again. 
-				if (owgis.ncwms.animation.stoppedAnimation == true && anim_loaded == false)
-				{
-					date_frame = document.getElementById('timeSelect').value;
-
-					// CalculateTime(date_frame);	
-					animation_layer.setVisible(true);
-
-                    updateMenusDisplayVisibility('displaying');
-
-                    owgis.layers.getMainLayer().setVisibility(true);
-                    //map.setLayerZIndex(animation_layer, idx_main_layer + 1);
-                    owgis.ncwms.animation.stoppedAnimation = false;
-                    updateTitleAndKmlLink();//change title resolution
-                }
-            }
-            else
-            {
-                asynchronous5.complete = animationLoaded; //fucntion called in the animation.js
-                asynchronous5.call(url3);
-            }
-
-            //only copy the previous url if the requet is for display animation
-            if (req == "dispAnimation")
-            {
-                previous_url = url3;
-            }
-            // This section is only used to update the kmz link (for google earth display)
-            urlForKmz = url3;
-            urlForKmz = urlForKmz.replace("dispAnimation", "generateKMZlink");
-            asynchronous6.complete = updateKmzLink;
-            asynchronous6.call(urlForKmz);
-            // console.log('updatio kml');
-            break;
-            //In this case it only loads the animation times to fill
-            //the dropdown menu (daily, weekly, etc)
         case "getAnimTimes":
             url3 += '&startDate=' + startDate;
             url3 += '&endDate=' + endDate;
@@ -184,89 +116,6 @@ function Asynchronous_call(url) {
     this._xmlhttp.send(null);
 
 }
-
-/**
- *This function calculates the loading % time of the animation based on the date frame passed in
- *@param date_frame - used to calculate time. Weekly, monthly, etc. 
- *
- */
-function CalculateTime(date_frame)
-{
-    var geo_var = document.getElementById('dropDownLevels1').value;
-    var long_date = date_frame.search("/");//if it contains the slash then its long date
-    var fraction = 0;//It is being used 
-    var diff = 0; //difference of dates represented as a decimal fraction
-    $('#l-animation').css("visibility", 'visible');
-    //if the frame rate is either weekly, monthly (NOT DAILY OR FULL)
-    if (long_date == -1)
-    {
-        var commas_array = date_frame.split(",");
-
-        if (commas_array.length <= 20)
-            diff = commas_array.length * 2.5;
-        else
-            diff = commas_array.length * 3.0;
-    }
-    else
-    {
-        var dates = date_frame.split("/");//dates[0] will contain starting date,dates[1] is ending date
-        var start = new Date(dates[0]);
-        var end = new Date(dates[1]);
-        diff = (end - start) / 100000000;//make it into a decimal (around 5(one day aproximately) to ~300(like a year))
-    }
-    //default for salinity layer
-    var geo_var_const = 1.3;//this constant changes depending on the vairables chosen:temp, salinity, etc..                            
-    animation_res = $('input[name=video_res]:radio:checked').val();
-    switch (animation_res) {
-        case "high":
-            geo_var_const = 1.3;
-            break;
-        case "normal":
-            geo_var_const = 1.0;
-            break;
-        case "low":
-            geo_var_const = .5;
-            break;
-        default:
-            break;
-    }
-
-    if (geo_var == "SeaVel")
-        geo_var_const = 3.0;//velocity          
-
-    if (diff < 5)//one day
-        fraction = 2.5 * geo_var_const;
-    else if (diff < 10)//one week
-        fraction = 3.5 * geo_var_const;
-    else if (diff < 20)//two weeks
-        fraction = 3.8 * geo_var_const;
-    else if (diff < 40)//month
-        fraction = 4.1 * geo_var_const;
-    else if (diff < 80) //2 months - 3months
-        fraction = 4.6 * geo_var_const;
-    else if (diff < 150)//4 months - 5months
-        fraction = 5.0 * geo_var_const;
-    else if (diff < 225)//6months
-        fraction = 5.4 * geo_var_const;
-    else if (diff < 250)
-        fraction = 5.9 * geo_var_const;
-    else
-        fraction = 6.3 * geo_var_const;
-
-    //this functions run independently, like in a seperate process different from the main javascript process executing in the browser
-    count = 0;
-    anim_perc = document.getElementById('loadperc');
-    for (var i = 10; i <= 90; i += 10) {
-        eval("timeout" + count + "=setTimeout(function(){ anim_perc.innerHTML = " + i + "; }, fraction*diff*" + i + ");");
-        count++;
-    }
-    for (var i = 91; i < 100; i += 1) {
-        eval("timeout" + count + "=setTimeout(function(){ anim_perc.innerHTML = " + i + "; }, fraction*diff*" + i + ((count - 10) * 10) + ");");
-        count++;
-    }
-}
-
-
 
 function Asynchronous_loading() {
 }//(No seria necesario modificar)

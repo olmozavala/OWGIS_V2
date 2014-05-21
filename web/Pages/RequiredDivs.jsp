@@ -4,7 +4,7 @@
     Author     : olmozavala
 --%>
 <!-- Map title -->
-<div class="mapTitle" id="layerTitle"> 
+<div class="mapTitle defShadow" id="layerTitle"> 
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 ">
             <p id="pTitleText"> ${layerTitle} </p> 

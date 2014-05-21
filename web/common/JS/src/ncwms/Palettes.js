@@ -1,3 +1,8 @@
+goog.provide('owgis.ncwms.palettes');
+
+goog.require('owgis.utils');
+goog.require('owgis.ncwms.animation');
+
 var initialMaxPal;//default maxPalVal
 var initialMinPal;//default minPalVal
 var urlPaletteImg;//this variable is used to get the first original url
@@ -15,7 +20,7 @@ function updateMinMaxFromJson(minMaxTxt){
     $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
     UpdatePalette(mappalette);
     //Show the Loading message
-    $('#l-animation').css("visibility","hidden");
+    $('#l-animation').hide("fade");
 }
 /**
  * This function request the min and max value for the
@@ -54,7 +59,7 @@ function setColorRangeFromMinMax(){
     var path_image = basepath+"/common/images/load.gif";//loading ...
     //Show the Loading message
     document.getElementById('loadperc').innerHTML = "0";   
-    $('#l-animation').css("visibility",'visible');
+    $('#l-animation').hide("fade");
     asyncMinMax.complete = updateMinMaxFromJson;
     asyncMinMax.call(url);
 
@@ -107,24 +112,25 @@ function UpdatePalette(newPal){
     $('#imgPalette').attr("src", $('#imgPalette').attr("src").replace(mappalette,newPal));
     mappalette = newPal;//Change the current palette to the one just selected
 
-
     if(validatePaletteRange()){
-        updateMainLayerParam('STYLES',lay_style+"/"+newPal);
         updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
-
         //Update the KMLlink to visualize on google earth
-        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPalVal+ ',' + maxPalVal);
-    }else{
-        updateMainLayerParam('STYLES',lay_style+"/"+newPal);
-
-        //Update the KMLlink to visualize on google earth
-        owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
     }
+
+	//Changes the palette
+	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
+	owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
+
+	//If an animation is being displayed it reloads it with the new palette.
+	if(owgis.ncwms.animation.animStatus !== "none"){
+		clearLoopHandler();
+		owgis.ncwms.animation.dispAnimation();
+	}
 }
 
 /**
- * Replaces the image of the palette used to the defualt and original one, this functions is essentially the same
+ * Replaces the image of the palette used to the default and original one, this functions is essentially the same
  * as the above but it uses the maxPal and minPalVal of the origin defualt image. 
  */
 function UpdatePaletteDefault(newPal, maxPal, minPal){
@@ -182,14 +188,7 @@ function DefaultPalette()
  * @paramforce_visib Forces an specific visibility of optional palettes.
  */
 function displayOptionalPalettes(){
-
-    //If the animation is being displayed we do not show optional palettes
-    // and display and alert explaining why.
-    if( anim_loaded && !owgis.ncwms.animation.stoppedAnimation ){
-        $(palettes-div).hidde();
-        alert("The color palette can't be changed while loading or displaying an animation");
-    }
-    else{ $('#palettes-div').toggle("fade"); }
+	 $('#palettes-div').toggle("fade"); 
 }
 
 

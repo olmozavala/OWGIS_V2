@@ -104,13 +104,11 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                 <div class="draggableWindow menuHidden" id="zaxis_selector"></div>
 
                 <!-- Current palette and color range -->
-                <!--<div id="palettesParent">-->
                 <%@include file="Options/Palettes.jsp" %> 
-                <!--</div>-->
-                <!--<span id="loadingAnimContainer" class="loadingAnimContainer" style="display:block;visibility:visible">-->
 
-                <div id="l-animation">
-                    <p class="bigFontSize"> <fmt:message key="ncwms.loading" /> <span id="loadperc">0</span> % <img src="${basepath}/common/images/load.gif" height="12" border="0" alt="loading" />	</p>
+                <div id="l-animation" class="menuHidden">
+                    <p class="bigFontSize invShadow"> <fmt:message key="ncwms.loading" /> 
+						<span id="loadperc" class="invShadow">0</span> % <img src="${basepath}/common/images/load.gif" height="12" border="0" alt="loading" />	</p>
                 </div>
             </c:if>
 				
@@ -138,7 +136,6 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				</div>
         </form>
 			
-		<img id="animContainer" src=""></img>
         <!-- minimizable windows file -->
         <%@include file="Options/MinimizeWindows.jsp" %>
 			

@@ -7,7 +7,7 @@ goog.require('goog.events');
 var previousUrl; //compares the url requested for the animations. It is used in the ajax.js file
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
-var animStatus = "none"; 
+owgis.ncwms.animation.animStatus = "none"; 
 var animSpeed = 200;
 // Is the animation status it can be:
 // 		none -> There is not animation or is being stopped
@@ -18,7 +18,8 @@ var animSpeed = 200;
 var animLayer = null;
 var animSource = null;
 var intervalHandler;// This is the handler of the 'interval' function
-
+var loadedFrames = 0;//Indicates how many frames have been loaded. 
+var totalNumOfFrames = 0;//Total number of frames
 
 /**
  * Modifies the visibility of different html elements involved on 
@@ -33,21 +34,19 @@ function updateMenusDisplayVisibility(status){
 		// When we are selecting dates. 
 		switch( status ){
             case "loading":
-                $('#CalendarParent').hide("fade");
-                $('#s-animation').show("fade");
+                $('#CalendarsAndStopContainer').hide("fade");
+                $('#animControls').hide("fade");
                 $('#l-animation').show("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
-                $('#palettes-div').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
                 break;
             case "playing":
-                $('#CalendarParent').hide("fade");
-                $('#s-animation').show("fade");
+                $('#CalendarsAndStopContainer').hide("fade");
+                $('#animControls').show("fade");
                 $('#l-animation').hide("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
-                $('#palettes-div').hide("fade");
                 $('#elevationParent').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
                 break;
@@ -63,15 +62,14 @@ function updateMenusDisplayVisibility(status){
                     $('#elevationParent').hide();
                 }
                 if(_mainlayer_multipleDates){
-                    $('#CalendarsAndStopContainer').show();
-                    $('#CalendarParent').show("fade");
-                    $('#s-animation').hide("fade");
+                    $('#CalendarsAndStopContainer').show("fade");
+                    $('#animControls').hide("fade");
                     $('#minPal').disabled = false;
                     $('#maxPal').disabled = false;
                     $('#hideCalendarButtonParent').show("fade");
                     $('#l-animation').hide("fade");
                 }else{
-                    $('#CalendarsAndStopContainer').hide();
+                    $('#CalendarsAndStopContainer').hide("fade");
                 }
                 break;
 		}
@@ -87,53 +85,78 @@ function updateMenusDisplayVisibility(status){
 }
 
 /**
- * This function hides the 'stop animation' option and shows the
- * calendar and 'display animation' option
- */ 
-function stopAnimation(){
-	animStatus = "none";
-	updateMenusDisplayVisibility(animStatus);
-
-	if(typeof intervalHandler !== 'undefined'){
-		clearInterval(intervalHandler);
+ * Moves the animation to the first and last frame 
+ * @returns {undefined}
+ */
+function animFirstFrame(){ currentFrame = 0; }
+function animLastFrame(){ currentFrame = totalNumOfFrames - 1; }
+/**
+ * Decreases the frame of the animation, if it is on the first frame
+ * it goes to the last one 
+ * @returns {undefined}
+ */
+function animDecreaseFrame(){
+	if(currentFrame > 0){
+		currentFrame--;
+	}else{
+		currentFrame = totalNumOfFrames - 1;
 	}
-
-	if(animLayer !== null){//If the layer already existed, we remove it
-		map.removeLayer(animLayer);
-	}
-
-	updateTitleAndKmlLink();
-};
+}
 
 /**
- *This function is executed as soon as an event concerning the animation layer changes
- *for example if the animation is ready to be displayed or the user zooms the map when the animation is playing. 
- * it is called by animationLoaded(), or when the user puts full screen. 
+ * Makes the animation 10% faster. 
+ * @returns {undefined}
  */
-function Loaded() {
-      
-    updateTitleAndKmlLink();//change title resolution
-	//check if the boundry box is still the same, should only enter this if the animation arrived. 
-	if(currentBBOX === map.getExtent().toBBOX()){ 
-           
-		updateMenusDisplayVisibility('displaying');
-		   
-		owgis.layers.getMainLayer().setVisibility(true);
-		map.setLayerZIndex(owgis.ncwms.animation.animLayer,parseInt(idx_main_layer)+1);
+function animFaster(){
+	animSpeed = animSpeed*.90;
+	startAnimationLoop();
+}
+/**
+ * Makes the animation 10% slower. 
+ * @returns {undefined}
+ */
+function animSlower(){
+	animSpeed = animSpeed*1.10;
+	startAnimationLoop();
+}
 
-		anim_loaded = true;
-		finishedLoading = true;
-               
-	}else{//this means the function was called becuase a change in zoom of the map while animation was loading or user put screen to full screen. 
-		if(finishedLoading === false)
-		{
-			owgis.ncwms.animation.animLayer.events.un({
-				loadend: Loaded
-			});
-                
-			animationLoaded(owgis.ncwms.animation.animLayer.getURL());
-		}
+/**
+ * Increases the frame of the animation, if it is on the last frame
+ * it goes to the first one 
+ * @returns {undefined}
+ */
+function animIncreaseFrame(){
+	if(currentFrame < totalNumOfFrames ){
+		currentFrame++;
+	}else{
+		currentFrame = 0;
 	}
+}
+
+/**
+ * This function updates the status of the animation, it can be 
+ * "paused", "none" or "playing"
+ * @param {type} newStatus
+ * @returns {undefined}
+ */
+function updateAnimationStatus(newStatus){
+	owgis.ncwms.animation.animStatus = newStatus;
+	switch(owgis.ncwms.animation.animStatus){
+		case "none":
+			updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+			
+			clearLoopHandler();
+			
+			if(animLayer !== null){//If the layer already existed, we remove it
+				map.removeLayer(animLayer);
+			}
+			
+			updateTitleAndKmlLink();
+			break;
+		case "pause": break;
+		case "playing": break;
+	}
+
 }
 
 /**
@@ -144,13 +167,14 @@ function Loaded() {
 function obtainSelectedDates(){
 	// Obtains the selected dates 
 	allFrames = new Array();
-
+	totalNumOfFrames = 0;
+	
 	var startDate = Calendar.intToDate(calStart.selection.get());
 	var endDate = Calendar.intToDate(calEnd.selection.get());
 	
 	var currYear, currMonth, currDay;
 	currDate= startDate;
-
+	
 	while(currDate <= endDate){
 		currYear = currDate.getUTCFullYear();
 		currMonth = currDate.getUTCMonth();
@@ -159,22 +183,19 @@ function obtainSelectedDates(){
 		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay);
 		currDate.setDate( currDate.getDate() + 1);
 	}
-
+	
+	totalNumOfFrames = allFrames.length;
 }
 
 /**
  * This function gets the selected dates from the user and starts
  * the ajax request to generate the animation of the NetCDF files.
  */
-function dispAnimation(){
-	usingCanvas();
-}
-
-function usingCanvas(){
+owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	obtainSelectedDates();
-
+	
 	//Create the required global variables if they don't exist
-	for(i = 0; i <= allFrames.length; i++){
+	for(i = 0; i <= totalNumOfFrames; i++){
 		try{// Hack to test if the variable already exists
 			eval('imageNumber'+i);
 		}
@@ -183,7 +204,7 @@ function usingCanvas(){
 			eval("imageNumber"+i+" = document.createElement('img');");
 		}
 	}
-
+	
 	animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationFunction,
 		projection: _map_projection 
@@ -193,7 +214,7 @@ function usingCanvas(){
 		source: animSource});
 	
 	currentFrame = 0; //Set to use the first frame
-	map.addLayer(animLayer)
+	map.addLayer(animLayer);
 }
 
 /**
@@ -217,6 +238,12 @@ function getResolutionRatio(){
 }
 
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
+
+	owgis.ncwms.animation.animStatus = "loading"; 
+	loadedFrames = 0;// Reset the total number of images loaded
+	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
+	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
 	
@@ -225,7 +252,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	canvas.height = canvasHeight;
 	
     ctx = canvas.getContext('2d');
-
+	
 	/*
 	console.log("-----------------------");
 	console.log("Extent:" + extent);
@@ -258,10 +285,9 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		BBOX: bbox.toString(),
 		REQUEST: "GetMap",
 		VERSION: "1.3.0",
-		STYLES: lay_style,
+		STYLES: lay_style+"/"+mappalette,
 		FORMAT: "image/png",
 		TRANSPARENT: "TRUE",
-		PALETTE: mappalette,
 		CRS:"CRS:84",
 		WIDTH: imgWidth,
 		HEIGHT: imgHeight,
@@ -274,30 +300,52 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 	var imgSrc;
 	
-	for(i = 0; i < allFrames.length; i++){
+	currentFrame = 0;// Reset to first frame
+	for(i = 0; i < totalNumOfFrames; i++){
 		animParams.TIME = allFrames[i];
 		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 		eval('imageNumber'+i+'.src = imgSrc;');
+		eval("imageNumber"+i+".addEventListener('load', imageHasBeenLoaded);");
 	}
 	
-	imageNumber0.addEventListener('load', function handler(e){
-		if(typeof intervalHandler !== 'undefined'){
-			clearInterval(intervalHandler);
-		}
-		
-		intervalHandler = setInterval(loopAnimation,animSpeed);
-		e.target.removeEventListener('load', handler, false); }, false);	
-	
-	animStatus = "loading"; 
-	updateMenusDisplayVisibility(animStatus);
+	startAnimationLoop();
+
     return canvas;
 } 
 
+function clearLoopHandler(){
+	if(typeof intervalHandler !== 'undefined'){
+		clearInterval(intervalHandler);
+	}
+}
+
+function startAnimationLoop(){
+	clearLoopHandler();
+	intervalHandler = setInterval(loopAnimation,animSpeed);
+}
+/**
+ * This function is called for every image when they have been loaded. 
+ */
+function imageHasBeenLoaded(e){
+	e.target.removeEventListener('load', imageHasBeenLoaded, false); 
+	loadedFrames++; 
+	if(loadedFrames === totalNumOfFrames ){
+		owgis.ncwms.animation.animStatus = "playing";
+		updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+	}
+	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
+//	console.log('Loaded images:'+loadedFrames);
+}
+
+
 function loopAnimation(){
-    var canvas = document.getElementById('animationCanvas');    
+	var canvas = document.getElementById('animationCanvas');    
 	
-	currentFrame = currentFrame < allFrames.length? ++currentFrame: 0;
+	if( (owgis.ncwms.animation.animStatus === "playing") || (owgis.ncwms.animation.animStatus === "loading")){
+		currentFrame = currentFrame < totalNumOfFrames? ++currentFrame: 0;
+	}
 	
+//	console.log("Displaying Frame: "+ currentFrame);
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
 	ctx.stroke();
 	map.render();
