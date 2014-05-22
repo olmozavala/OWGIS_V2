@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<MenuConf
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='file:/home/olmozavala/Dropbox/OWGISV1_Projects/OWGIS_Takis/web/layers/schema.xsd'>
+	<MenuEntries>
+		<MenuEntry ID="ocn" EN="Ocean" ES="Oceano"/>
+		<MenuEntry ID="zeta" EN="Sea Surface Temp" ES="Temperatura Superficial"/>
+		<MenuEntry ID="salt" EN="Salinity" ES="Salinidad"/>
+		<MenuEntry ID="rain" EN="Rain" ES="Lluvia"/>
+		<MenuEntry ID="temp" EN="Temperature" ES="Temperatura"/>
+		<MenuEntry ID="bathy" EN="Bathymetry" ES="Batimetria"/>
+		<MenuEntry ID="vel" EN="Velocity" ES="Velocidad"/>
+		<MenuEntry ID="barvel" EN="Barotropic Vel" ES="Velocidad"/>
+		<MenuEntry ID="lonu" EN="Long-u" ES="lon-u"/>
+		<MenvEntry ID="lonv" EN="Long-v" ES="lon-v"/>
+		<MenvEntry ID="uvbar" EN="Vertically integrated" ES="Integrado vertical "/>
+		<MenvEntry ID="latent" EN="Latent" ES="Lat"/>
+		<MenvEntry ID="sensible" EN="Sensible" ES="Lat"/>
+		<MenvEntry ID="evaporation" EN="Evaporation" ES="Evaporacion"/>
+		<MenvEntry ID="rho" EN="Density anomaly" ES="TODO"/>
+		<MenvEntry ID="tke" EN="Kinetic energy" ES="TODO"/>
+		<MenvEntry ID="lwrad" EN="Radiation flux" ES="TODO"/>
+		<MenvEntry ID="u" EN="U-momentum" ES="Componente u"/>
+		<MenvEntry ID="v" EN="V-momentvm" ES="Componente v"/>
+	</MenuEntries>
+
+	<!--
+	<VectorLayers BBOX="" vectorLayer="" format="" proj="" server="" trans_effect="" tiled="" style="">
+		<layer name="" Menu="" featureInfo="" title="" BBOX="" vectorLayer="" format="" proj="" server="" trans_effect="" tiled="" selected="" style=""></layer>
+	</VectorLayers> -->
+
+	<!--2D Ocean layers-->
+	<MainLayers BBOX="-90.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
+				ncWMS="true"  proj="EPSG:4052" >  
+		<layer Menu="ocn,d2,bathy" EN="Bathymetry at RHO-Points"
+			   ES="Batimetria en puntos Rho" name="ocn/h"  />
+		<layer Menu="ocn,d2,zeta" EN="Sea surface temperature"
+			   ES="Temperatura superficial del mar" name="ocn/zeta"  />
+		<layer Menu="ocn,d2,barvel" EN="Barotropic sea water velocity"
+			   ES="TODO" name="ocn/barotropic_sea_water_velocity"  />
+		<layer Menu="ocn,d2,rain" EN="Rain"
+			   ES="Lluvia" name="ocn/rain"  />
+		<layer Menu="ocn,d2,evaporation" EN="Evaporation"
+			   ES="Evaporacion" name="ocn/evaporation"  />
+		<layer Menu="ocn,d2,lwrad" EN="Net longwave radiation flux"
+			   ES="TODO" name="ocn/lwrad"  />
+		<layer Menu="ocn,d2,latent" EN="Latent"
+			   ES="lat" name="ocn/latent"  />
+		<layer Menu="ocn,d2,sensible" EN="Sensible"
+			   ES="lat" name="ocn/sensible"  />
+	</MainLayers>
+	<!--3D Ocean layers-->
+	<MainLayers BBOX="-90.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
+				ncWMS="true"  proj="EPSG:4052" >  
+		<layer Menu="ocn,d2,vel" EN="Sea water velocity"
+			   ES="TODO" name="ocn/sea_water_velocity"  />
+		<layer Menu="ocn,d3,temp" EN="Gulf of Mexico Temperature"
+			   ES="Temperatura" name="ocn/temp"  />
+		<layer Menu="ocn,d3,salt" EN="Gulf of Mexico salinity"
+			   ES="Salinidad" name="ocn/salt"  />
+		<layer Menu="ocn,d3,rho" EN="Density anomaly"
+			   ES="TODO" name="ocn/rho"  />
+		<layer Menu="ocn,d3,tke" EN="Turbulent kinetic energy"
+			   ES="TODO" name="ocn/tke"  />
+	</MainLayers>
+	
+</MenuConf>

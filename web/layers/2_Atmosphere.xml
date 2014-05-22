@@ -1,0 +1,59 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<MenuEntries>
+		<MenuEntry ID="atm" EN="Atmosphere" ES="Atmosfera"/>
+		<MenvEntry ID="t2" EN="T2" ES="T2"/>
+		<MenvEntry ID="wind" EN="Wind" ES="Viento"/>
+		<MenvEntry ID="d2" EN="2D" ES="2D"/>
+		<MenvEntry ID="d3" EN="3D" ES="3D"/>
+		<MenvEntry ID="sst" EN="Sea Surface" ES="Temperatura superfical"/>
+		<MenvEntry ID="cld" EN="Cloud fraction" ES="Nubes"/>
+		<MenvEntry ID="psfc" EN="Pressure" ES="Presion"/>
+		<MenvEntry ID="glw" EN="Downwelling Long" ES="Down"/>
+		<MenvEntry ID="hfx" EN="Upward heat" ES="TODO"/>
+		<MenvEntry ID="lh" EN="Latent heat" ES="TODO"/>
+		<MenvEntry ID="swdown" EN="Downwelling Short" ES="TODO"/>
+		<MenvEntry ID="rain" EN="Rain" ES="Precipitacion"/>
+		<MenuEntry ID="states" EN="US states" ES="Estados"/>
+		<MenuEntry ID="shores" EN="Shore lines" ES="Linea de costa"/>
+	</MenuEntries>
+
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+
+	
+	<!-- Atmosphere layers -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
+				ncWMS="true" >  
+		<layer Menu="atm,wind" EN="Wind velocities at 10m above sea level"
+			   ES="Velocidad de viento a 10m " name="atm/wind"  />
+		<layer Menu="atm,psfc" EN="SFC Pressure"
+			   ES="Presion" name="atm/PSFC" />
+		<layer Menu="atm,t2" EN="Temperature at 2m"
+			   ES="Temperatura a 2mts" name="atm/T2" />
+		<layer Menu="atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
+			   name="atm/SST" />
+		<layer Menu="atm,cld" EN="Cloud Fraction" ES="Nubes"
+			   name="atm/CLDFRA" />
+		<layer Menu="atm,glw" EN="Surface downwelling longwave flux" ES="TODO"
+			   name="atm/GLW" />
+		<layer Menu="atm,swdown" EN="Surface downwelling shortwave flux" ES="TODO"
+			   name="atm/SWDOWN" />
+		<layer Menu="atm,hfx" EN="Surface upward sensible heat flux" ES="TODO"
+			   name="atm/HFX" />
+		<layer Menu="atm,lh" EN="Latent heat" ES="TODO"
+			   name="atm/LH" />
+		<layer Menu="atm,rain" EN="Convective precipitation amount" ES="TODO"
+			   name="atm/RAINC" />
+	</MainLayers>
+	
+	<!-- Optional layers -->
+	<OptionalLayers BBOX="-180, -59.487167, 180, 83.633389"
+				  server="http://142.201.212.175:8080/geoserver/wms"
+				  vectorLayer="true"> 
+		<layer Menu="shores" name="comm:shorelines" selected="true"/>
+	</OptionalLayers>
+
+</MenuConf>
