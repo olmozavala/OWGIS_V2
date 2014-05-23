@@ -143,14 +143,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <%@include file="Help/HelpTexts.jsp" %>
 
 		<script>
-			function addLayers(){
-				${openLayerConfig}
-				if(netcdf){
-					map.addLayer(transectLayer);
-				}
-			};
-		</script>
-		<script>
+			${openLayerConfig}
 			jQuery(document).ready(function() {
 				owgisMain();
 			});

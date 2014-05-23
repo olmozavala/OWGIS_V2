@@ -35,8 +35,7 @@ if (window.location.protocol !== "http:") {
 }
 
 /**
- * Instructions executed when the page
- * is ready
+ * Instructions executed when the page is ready
  */
 function owgisMain(){
 	initOl3();
@@ -81,6 +80,7 @@ function initMenus() {
         }else{
             createElevationSelectorMobile(); //initialize depth selector
         }
+		owgis.ncwms.animation.initAnimationControls();
     } 
 	
     updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
@@ -124,7 +124,6 @@ function disableEnterButton()
 }
 
 
-
 /** Displays an alert when oppening an animation in GoogleEarth.
  * The reason is that it takes some time to generate the file
  */
@@ -149,11 +148,8 @@ function updateTitle(dateText, elevText) {
 	
     currTitleLC = currTitle.toLowerCase();
 	
-	
-	
     //Removing date and elevation (search and remove -- )
     startSymbol = currTitleLC.indexOf(separationSymbol);
-	
 	
     // Remove everything until second br
     if (startSymbol !== -1) {
@@ -163,8 +159,6 @@ function updateTitle(dateText, elevText) {
 	
     if ((dateText !== "") || (elevText !== "")) {
 		
-        var resolutionAnim = $('input[name=video_res]:radio:checked').val();
-		
         var endDate = " ";
 		
         if (typeof calEnd !== 'undefined') {
@@ -172,27 +166,11 @@ function updateTitle(dateText, elevText) {
             locendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
-		
-        if (resolutionAnim !== "" && !owgis.ncwms.animation.stoppedAnimation)//falta hacer lo de resolution langauge y end date
+
+        if(!(owgis.ncwms.animation.animStatus === "none") )//falta hacer lo de resolution langauge y end date
         {
-            if (resolutionAnim === "high")
-            {
-                resolutionAnim = resolutionHigh;
-				
-            }
-            else if (resolutionAnim === "normal")
-            {
-                resolutionAnim = resolutionMiddle;
-				
-            }
-            else if (resolutionAnim === "low")
-            {
-                resolutionAnim = resolutionLow;
-				
-            }
-			
-            var resolutiontext = " " + resolutionGlob + " " + resolutionAnim;
-            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + resolutiontext + elevText + separationSymbol);
+          			
+            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + elevText + separationSymbol);
         }
         else {
             $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
@@ -447,8 +425,6 @@ function findPageHeight() {
     }
     return (null);
 }
-
-
 
 /**
  * 
