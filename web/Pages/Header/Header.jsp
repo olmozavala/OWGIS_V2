@@ -79,7 +79,7 @@
 
 		<!--Debug mode-->
 		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
-		<script src="${basepath}/common/JS/vendor/closure/goog/base.js"> </script>
+		<!--<script src="${basepath}/common/JS/vendor/closure/goog/base.js"> </script>-->
 		<script src="${basepath}/common/JS/vendor/ol.js"></script>
 		<script src="${basepath}/common/JS/src/ncwms/Transect.js"> </script>
 		<script src="${basepath}/common/JS/src/utilities/utilities.js"> </script>

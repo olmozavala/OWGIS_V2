@@ -126,7 +126,12 @@ public class OpenLayersManager {
 			idsBaseLayers = new int[0];
 		}
 		String result = "";//Esta variable contiene toda la configuracion de OpenLayers
+
+		result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
+		result += "\nfunction addLayers(){\n";
 		result += this.createInitFunction(idsBaseLayers, extraLayers) + "\n";//Esta funcion crea la configuracion central de OpenLayers
+		result += "\t if(netcdf){ map.addLayer(transectLayer); } \n\n";
+		result += "} ";
 		return result;//Regresamos la configuracion
 	}
 
@@ -149,7 +154,7 @@ public class OpenLayersManager {
 		//Dependiendo de los controles que se definan en el objeto de OpenLayerConfig
 		//se agregan controles a OpenLayers. Estos controles pueden ser, barra de zoom, mini map, etc.
 
-		initFunction += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
+		initFunction += "\t singleClickKey = map.on('singleclick', punctualData);";
 
 		return initFunction;
 	}
@@ -172,7 +177,7 @@ public class OpenLayersManager {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
-		layersScript = "\n\tmap.on('singleclick', function (evt) {\n";//Se agrega al evento click del div map la siguiente funcion
+		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
 				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
@@ -205,7 +210,7 @@ public class OpenLayersManager {
 		}
 
 		layersScript += //"\t\tMapViewersubmitForm();\n" +
-				"\t});\n";
+				"\t}\n";
 		return layersScript;
 	}
 

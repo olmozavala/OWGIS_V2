@@ -100,16 +100,7 @@ function Asynchronous_call(url) {
 
                 break;
             case 4:
-
                 instance.complete(instance._xmlhttp.responseText);
-
-                if (url.search("request=dispAnimation") != -1)
-                {
-                    // console.log("entro en el complete instance calculate time");
-                    date_frame = document.getElementById('timeSelect').value;
-                    CalculateTime(date_frame);
-                }
-
                 break;
         }
     }

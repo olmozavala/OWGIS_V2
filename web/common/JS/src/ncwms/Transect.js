@@ -22,7 +22,6 @@ goog.require('ol.style.Style');
 
 var draw;
 var transectOn = false; //boolean for transect tool if the netcdf has the option or not
-var oldSingleClickListeners = new Array;
 
 // Initilizes a vector layer that will contain the 'drawing' for the transects
 if(netcdf){
@@ -65,32 +64,23 @@ function toggleControl()
 			style: transectStyle });
 
         document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
-        document.getElementById('lineToggle').innerHTML= transect.toString();
 		draw = new ol.interaction.Draw({
 			source: transectSource,
 			type: "LineString"
 		});
 		draw.on("drawend",getVerticalTransect);
 		draw.on("drawstart",cleanPreviousTransect);
-		//Save original behaviour of single click
-		var tempListeners = map.eventTargetListeners_.listeners.singleclick;
-		oldSingleClickListeners = new Array;
-		for(var i=0; i < tempListeners.length; i++){
-			oldSingleClickListeners[i] = (tempListeners[i].listener);
-		}
 		// Do nothing with single click
-		map.removeAllListeners('singleclick');
+		map.unByKey(singleClickKey);
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
+        document.getElementById('lineToggle').innerHTML= transect.toString();
 		map.removeInteraction(draw);
 		map.removeLayer(transectLayer);
 		draw.un("drawend",getVerticalTransect);
 		//Recover the original behaviour of single click
-		for(var i=0; i < oldSingleClickListeners.length; i++){
-			map.on('singleclick',oldSingleClickListeners[i]);
-		}
-
+		singleClickKey = map.on('singleclick',punctualData);
     }
     transectOn = !transectOn;        
 }
