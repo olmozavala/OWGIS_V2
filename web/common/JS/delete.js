@@ -19,7 +19,6 @@ function test3() {
 	return x + 10;
 }
 
-
-function test4(){
+function test4() {
 	return 13;
 }
