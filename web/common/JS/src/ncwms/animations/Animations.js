@@ -230,8 +230,6 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	currentFrame = 0; //Set to use the first frame
 	map.addLayer(animLayer);
 
-//	owgis.ncwms.animation.animStatus = "loading"; 
-	updateTitleAndKmlLink();
 }
 
 /**
@@ -270,8 +268,9 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	console.log("----------- Canvas reload -----------");
 
 	currentAnimation++;//Increments the animation counter;
-
 	owgis.ncwms.animation.animStatus = "loading"; 
+	updateTitleAndKmlLink();
+
 	loadedFrames = 0;// Reset the total number of images loaded
 	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
