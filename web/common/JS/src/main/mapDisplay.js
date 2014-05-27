@@ -17,7 +17,9 @@ goog.require('ol.proj.Projection');
 
 goog.require('owgis.ol3');
 goog.require('owgis.utils');
-goog.require('owgis.layers.main');
+goog.require('owgis.layers');
+goog.require('owgis.ncwms.transect');
+goog.require('owgis.ncwms.animation');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
@@ -28,13 +30,12 @@ var optionalArray = [];//this is the array to control the opacity of the differe
 var hoverDisabled = false; //Used to disable showing the hover texts
 
 //Redirect any https request to http
-if (window.location.protocol != "http:") {
+if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
 /**
- * Instructions executed when the page
- * is ready
+ * Instructions executed when the page is ready
  */
 function owgisMain(){
 	initOl3();
@@ -44,47 +45,48 @@ function owgisMain(){
 	initHelpTxtPos();
 }
 
+/**
+ * This function is in charge of making draggable all the divs and spans
+ * with the correct classes, in this case: draggableWindow or transDraggableWindow 
+ * @returns {undefined}
+ */
 function addDraggableWindows(){
+
     //Only make windows draggable for 'topMenu' design
     if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
-        $("#mainMenuParent").draggable({ containment: "#draggable-container",scroll:false });//Make dropdows draggable
-        $('#optionalMenuParent').draggable({ containment: "#draggable-container" ,scroll:false}); }
-    if (netcdf) {
-        if (mobile == false) {
-            $("#zaxis_selector").draggable({ containment: "#draggable-container",scroll:false });
-            $("#palettes-div").draggable({ containment: "#draggable-container",scroll:false });
-            $('#paletteWindowColorRange').draggable({ containment: "#draggable-container",scroll:false });
-            $('#CalendarsAndStopContainer').draggable({ containment: "#draggable-container",scroll:false });
-            if (cqlFilter ) {
-                $('#ocqlFilterInputTextParent').draggable({ containment: "#draggable-container",scroll:false });
-            }
-        }
-    }
+		$(".draggableWindow").each( function(index) {
+			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
+		})
+		$(".transDraggableWindow").each( function(index) {
+			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
+		})
+	}
 }
 
 /**
  * Initializes the calendars with the details of the active layer
  */
 function initMenus() {
-
+	
     disableEnterButton(); //disable enter button
     addDraggableWindows(); // Make the proper windows draggable.
-
+	
     if (netcdf) {
         //Show the palettes
         loadPalettes();
         initCalendars();
-        if (mobile == false) {
+        if (mobile === false) {
             createElevationSelector(); //initialize depth selector
         }else{
             createElevationSelectorMobile(); //initialize depth selector
         }
+		owgis.ncwms.animation.initAnimationControls();
     } 
-
+	
     updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
     draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-
+	
     //if user changes the window size
     $(window).resize(function() {
         repositionDraggablesByScreenSize();
@@ -94,17 +96,16 @@ function initMenus() {
 /**
  *This function is used to minimize the windows and also to maximize it. 
  *@param appearId - id of window to make appear as minimized on the bottom of page
- *@param disapereId - id of window to minimize or disapear. 
+ *@param disapearId - id of window to minimize or disapear. 
  */
 function minimizeWindow(appearId, disapearId)
 {
     $(eval(disapearId)).toggle("drop",{direction:"down"});
     $(eval(appearId)).toggle("drop",{direction:"down"});
-
+	
     //Check if they fit on the screen
     //(after 1 second) to be sure it is visible
-    setTimeout( function (){repositionDraggablesByScreenSize()},
-                1000);
+    setTimeout( function (){repositionDraggablesByScreenSize();}, 1000);
 }
 
 /**
@@ -116,12 +117,11 @@ function minimizeWindow(appearId, disapearId)
 function disableEnterButton()
 {
     $('html').on('keypress', function(e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             return false;
         }
     });
 }
-
 
 
 /** Displays an alert when oppening an animation in GoogleEarth.
@@ -129,98 +129,74 @@ function disableEnterButton()
  */
 function KMZDownAlert()
 {
-    if (netcdf && anim_loaded && !stoppedAnimation)
+    if (netcdf && anim_loaded && !owgis.ncwms.animation.stoppedAnimation)
         alert("Your download will beggin shortly.");
 }
 
 /**
  * Updates the time and elevation of the map title
- *@params dateText - date string
- *@params elevText - current depth of the displayed layer
+ *@param dateText - date string
+ *@param elevText - current depth of the displayed layer
  *
  */
 function updateTitle(dateText, elevText) {
-
+	
     //This symbol indicates when does the date and elevation text start
     separationSymbol = "--";
-
+	
     var currTitle = $('#pTitleText').text();
-
+	
     currTitleLC = currTitle.toLowerCase();
-
-
-
+	
     //Removing date and elevation (search and remove -- )
     startSymbol = currTitleLC.indexOf(separationSymbol);
-
-
-
+	
     // Remove everything until second br
-    if (startSymbol != -1) {
+    if (startSymbol !== -1) {
         // The -4 is because we need to delete also the <br> part.
         currTitle = currTitle.substring(0, startSymbol);
     }
-
-    if ((dateText != "") || (elevText != "")) {
-
-        var resolutionAnim = $('input[name=video_res]:radio:checked').val();
-
+	
+    if ((dateText !== "") || (elevText !== "")) {
+		
         var endDate = " ";
-
-        if (typeof calEnd != 'undefined') {
+		
+        if (typeof calEnd !== 'undefined') {
             locendSel = calEnd.selection.get();
             locendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
 
-
-
-        if (resolutionAnim !== "" && !stoppedAnimation)//falta hacer lo de resolution langauge y end date
+        if(!(owgis.ncwms.animation.animStatus === "none") )//falta hacer lo de resolution langauge y end date
         {
-            if (resolutionAnim === "high")
-            {
-                resolutionAnim = resolutionHigh;
-
-            }
-            else if (resolutionAnim === "normal")
-            {
-                resolutionAnim = resolutionMiddle;
-
-            }
-            else if (resolutionAnim === "low")
-            {
-                resolutionAnim = resolutionLow;
-
-            }
-
-            var resolutiontext = " " + resolutionGlob + " " + resolutionAnim;
-            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + resolutiontext + elevText + separationSymbol);
+          			
+            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + elevText + separationSymbol);
         }
         else {
             $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
         }
     }
-
-
-
+	
+	
+	
 }
 
 /**
- * Updates the time and elevation
- * of the kml link
- * @params newDate - updated date
- * @params newElev - updated elevation
+ * Updates the time, elevation and CQL filter of the kml link
+ * @param newDate - updated date
+ * @param newElev - updated elevation
+ * @param {type} cql_filter Updated CQL filter
  */
 function updateKmlLink(newDate, newElev, cql_filter) {
-    if (newDate != '')
+    if (newDate !== '')
         owgis.utils.replaceGetParamInLink("#kmlLink", "TIME", newDate);
-
-    if (newElev != '')
+	
+    if (newElev !== '')
         owgis.utils.replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
-
-    if (cql_filter != '')
+	
+    if (cql_filter !== '')
         owgis.utils.replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
-
+	
 }
 
 /** This function obtain the proper values
@@ -229,22 +205,22 @@ function updateKmlLink(newDate, newElev, cql_filter) {
  */
 function updateTitleAndKmlLink() {
     if (netcdf) {
-
+		
         dateForCal = '';
         dateText = '';
-
+		
         currElevation = '';
         currElevationTxt = '';
-
+		
         //Building elevation text.
-        if (layerDetails.zaxis != undefined)
+        if (layerDetails.zaxis !== undefined)
         {
             currElevation = layerDetails.zaxis.values[elev_glob_counter];
             units = layerDetails.zaxis.units;
             currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
         }
-
-        if (typeof calStart != 'undefined') {
+		
+        if (typeof calStart !== 'undefined') {
             locstartSel = calStart.selection.get();
             locstartDate = Calendar.intToDate(locstartSel);
             dateText = Calendar.printDate(locstartDate, '%d-%B-%Y');
@@ -258,22 +234,22 @@ function updateTitleAndKmlLink() {
 /**
  * Manages the transparency of the main layer and the animation (if loading)
  * the version parameter is either topMenu or master
- * @params val - new value of transparency
- * @params version - which version it is, it is passed to changeTransp() function
+ * @param val - new value of transparency
+ * @param version - which version it is, it is passed to changeTransp() function
  */
 function changeTranspManager(val, version) {
-    layer = owgis.layers.main.getLayer();
+    layer = owgis.layers.getMainLayer();
     changeTransp(val, layer, version);
-
+	
     if (netcdf) {
-        if (animation_layer != undefined) {
+        if (animation_layer !== undefined) {
             changeTransp(val, animation_layer, version);
         }
     }
 }
 
 /**this function initializes the gloabl optionalArray
- *@params checkboxNum - 0 for us states, 1 for all cruises , and 2 for all sites. 
+ *@param checkboxNum - 0 for us states, 1 for all cruises , and 2 for all sites. 
  */
 function CreateArraysOptional(checkboxNum)
 {
@@ -282,22 +258,23 @@ function CreateArraysOptional(checkboxNum)
 
 /**
  *this function changes the transparency of the optional layers if the layer is selected, otherwise ignore
- *@params selectedLayer - currently displayed layer
- *@params val - transparency value
- *@params id_minus - css id of minus button 
- *@params id_plus - css id of plus button 
- *@params checkboxId - option checkbox id
+ *@param selectedLayer - currently displayed layer
+ *@param val - transparency value
+ *@param {type} index Index of the optional layer
+ *@param id_minus - css id of minus button 
+ *@param id_plus - css id of plus button 
+ *@param checkboxId - option checkbox id
  */
 function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus, checkboxId)
 {
     var checkid = document.getElementById(checkboxId);
-
-    if (checkid.checked == true)//check if the layer is selected
+	
+    if (checkid.checked === true)//check if the layer is selected
     {
         optionalArray[index] = optionalArray[index] + val;
-
+		
         var optionOpacity = optionalArray[index];//locate which global opacity layer it is
-
+		
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
@@ -306,7 +283,7 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
             document.getElementById(id_minus).disabled = true;
             changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
-
+		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
             changeColor(document.getElementById(id_plus), 0);//Change color to enabled
@@ -314,7 +291,7 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
             document.getElementById(id_plus).disabled = true;
             changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
         }
-
+		
         if (optionOpacity < .00001) {
             optionOpacity = 0;
         }
@@ -324,21 +301,21 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
 
 /*
  *Disables the + or - buttons if the layer is not selected
- *@params index - index of select object
- *@params id_minus - css id of minus button of index object
- *@params id_plus - css id of plus button of index object
- *@params checkboxId - css id of checkbox
+ *@param index - index of select object
+ *@param id_minus - css id of minus button of index object
+ *@param id_plus - css id of plus button of index object
+ *@param checkboxId - css id of checkbox
  */
 function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
 {
-
+	
     var checkid = document.getElementById(checkboxId);
-
-
-    if (checkid.checked == true)//check if the layer is selected
+	
+	
+    if (checkid.checked === true)//check if the layer is selected
     {
         var optionOpacity = optionalArray[index];//localte which global opacity layer it is
-
+		
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
@@ -347,7 +324,7 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
             document.getElementById(id_minus).disabled = true;
             changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
-
+		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
             changeColor(document.getElementById(id_plus), 0);//Change color to enabled
@@ -361,17 +338,17 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
         //Disables the buttons.
         document.getElementById(id_minus).disabled = true;
         changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-
+		
         document.getElementById(id_plus).disabled = true;
         changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-
+		
     }
-
+	
 }
 
 /**
  * Changes the transparencya of the inputed layer.
- * @params val - value of transparency
+ * @param val - value of transparency
  * @layer layer - currently viewing layer
  * @version - topMenu or master version, the reason is becuase the topMenu version 
  * uses buttons that are disabled, while the master version uses images that can not be disabled
@@ -381,42 +358,42 @@ function changeTransp(val, layer, version) {
     opacity = opacity + val;
     //Checks we are not in the limits of transparency
     // This is only used for images, it should not display it for buttons
-
-    if (version == "master")
+	
+    if (version === "master")
     {
         if (opacity > maxOpacity) {
             opacity = maxOpacity;
             alert('You are at minimum transparency.');
             return;
         }
-
+		
         if (opacity < minOpacity) {
             opacity = minOpacity;
             alert('You are at maximum transparency.');
             return;
         }
-
+		
     }
-
+	
     //Disables the buttons.
     if (opacity <= maxOpacity) {
         $(minusButtonTrans).css('visibility','visible');
     } else {
         $(minusButtonTrans).css('visibility','hidden');
     }
-
+	
     if (opacity >= minOpacity) {
         $(plusButtonTrans).css('visibility','visible');
     } else {
         $(plusButtonTrans).css('visibility','hidden');
     }
-
+	
     layer.setOpacity(opacity);
 }
 
 /** This function is called when the Browser gets resized,
   it should keep all the user selections.
-  */
+ */
 function refreshWindow() {
     resizeMap();
     initHelpTxtPos();
@@ -435,21 +412,19 @@ function resizeMap() {
  * This functions returns a valid browser height for IE or null
  */
 function findPageHeight() {
-    if (typeof window.innerHeight != 'undefined') {
+    if (typeof window.innerHeight !== 'undefined') {
         return window.innerHeight;
     }
     if (document.documentElement && typeof
-            document.documentElement.clientWidth != 'undefined' &&
-            document.documentElement.clientHeight != 0) {
-                return document.documentElement.clientHeight;
-            }
-    if (document.body && typeof document.body.clientWidth != 'undefined') {
+	document.documentElement.clientWidth !== 'undefined' &&
+            document.documentElement.clientHeight !== 0) {
+		return document.documentElement.clientHeight;
+	}
+    if (document.body && typeof document.body.clientWidth !== 'undefined') {
         return document.body.clientHeight;
     }
     return (null);
 }
-
-
 
 /**
  * 
@@ -459,7 +434,7 @@ function findPageHeight() {
  * 
  */
 function MapViewersubmitForm() {
-    if (map != null) {
+    if (map !== null) {
         saveAllWindowPositionsAndVisualizationStatus();
         submitForm();
     }
@@ -471,7 +446,7 @@ function MapViewersubmitForm() {
 function smallMonitors()
 {
     var height = screen.height;
-
+	
     if (height <= 800)
     {
         $('.buttonStyle').css("font-size", '11px');
@@ -481,8 +456,8 @@ function smallMonitors()
 
 /**
  * Change optionallayers + and - button colors
- * @params btn -   button id
- * @params pos - which color. 
+ * @param btn -   button id
+ * @param pos - which color. 
  */
 function changeText(btn, pos) {
     switch (pos) {
@@ -490,19 +465,19 @@ function changeText(btn, pos) {
         case 0:
             btn.style.color = "white";
             break;
-            // When the mouse is over
+		// When the mouse is over
         case 1:
             btn.style.color = "#36DC2C";
             break;
-            // When the button is being clicked
+		// When the button is being clicked
         case 2:
             btn.style.color = "#33982D";
             break;
-            // When the button is disabled
+		// When the button is disabled
         case 3:
             btn.style.color = "gray";
             break;
-
+		
     }
 }
 

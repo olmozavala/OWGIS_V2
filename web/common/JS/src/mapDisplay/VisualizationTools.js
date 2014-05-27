@@ -1,5 +1,7 @@
 /**
  * Changes the color of links.
+ * @param {type} btn Dom element of a button
+ * @param {type} pos Position from 0 to 4 defining the status of the button
  */
 function changeColor(btn,pos){
 	switch(pos){

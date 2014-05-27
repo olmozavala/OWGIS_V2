@@ -6,6 +6,10 @@
 <script type="text/javascript"  >
 	function initVariables(){
 		var idx_main_layer = '${idx_main_layer}';// What is the index of the main layer (depending on the number of background layers)
+<<<<<<< HEAD
 		owgis.layers.main.initLayer(eval('layer'+idx_main_layer));
+=======
+		owgis.layers.initMainLayer(eval('layer'+idx_main_layer));
+>>>>>>> ba3d41e0cf9cedd0a79dda64d4ac37ebcadf63ff
 	}
 </script>

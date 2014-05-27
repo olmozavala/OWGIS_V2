@@ -53,16 +53,6 @@ div.halfHeightWindow{
     z-index:1020;
 }
 
-/* This is the div used to put the netCDF animation */
-#mapOverlayDiv{
-    position: absolute;
-    visibility: hidden;
-    width: 10%;
-    height: 10%;
-    top: 0%;
-    left: 1%;
-}
-
 /* Defines to not display anything if the layer was not found*/
 .olImageLoadError{
 	display: none !important;

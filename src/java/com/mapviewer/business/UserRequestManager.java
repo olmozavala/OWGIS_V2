@@ -212,6 +212,7 @@ public class UserRequestManager {
 						+ "&BBOX=" + layer.getBbox().toString()
 						+ "&WIDTH=" + layer.getWidth()
 						+ "&HEIGHT=" + layer.getHeight()
+						+ "&NUMCOLORBANDS=250"
 						+ "&TRANSPARENT=true"
 						+ "&COLORSCALERANGE=" + layer.getMinColor() + "," + layer.getMaxColor()
 						+ "&STYLES=" + layer.getStyle() + "/" + palette

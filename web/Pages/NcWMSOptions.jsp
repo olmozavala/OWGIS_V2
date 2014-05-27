@@ -3,67 +3,122 @@
     Created on : Aug 3, 2012, 5:53:19 PM
     Author     : olmozavala
 --%>
-<!-- Hold the gif of the animation, it is called by OpenLayers -->
-<div id="mapOverlayDiv" ><img id="mapOverlay" alt="map overlay" onload="javascript:animationLoaded();" /></div>
+	
+<!-- Divs that hold the start and end calendar plus the related texts -->
+<div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
+	<div id="CalendarParent container" >
+		<div class="row">
+			<div class="col-xs-6 text-center title " id="hideOneDay"> 
+				<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>
+			</div>
+			<div class="col-xs-4 text-center title " id="hideOneDayEnd">
+				<span class="invShadow"> <fmt:message key="ncwms.cal.end" /></span><br>
+			</div>
+			<div class="col-xs-2 text-right ">
+				<a class="btn btn-default btn-xs " href="#" 
+				   onclick="minimizeWindow('calendarsMinimize', 'CalendarsAndStopContainer')" >
+					<span class="glyphicon glyphicon-resize-small"></span>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6" id="hideOneDay"> 
+				<div id="cal-start"> </div>
+			</div>
+			<div class="col-xs-6" id="hideOneDay"> 
+				<div  id="cal-end"> </div>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-xs-6 col-xs-offset-3 invShadow text-center">
+				<fmt:message key='ncwms.resolution'/>:
+			</div>
+			<div class="col-xs-12 invShadow text-center">
+				<label class="radio-inline">
+					<input type="radio" value="high" name="video_res" ><fmt:message key='ncwms.resolutionHigh'/>
+				</label>
+				<label class="radio-inline">
+					<input type="radio" value="normal" name="video_res" checked><fmt:message key='ncwms.resolutionMiddle'/>
+				</label>
+				<label class="radio-inline">
+					<input type="radio" value="low" name="video_res" ><fmt:message key='ncwms.resolutionLow'/>
+				</label>
+			</div>
+		</div>
+		<div class="row defRowSpace">
+			<div class="col-xs-6 text-center" id="p-animation">
+				<div class="buttonStyle " onclick="owgis.ncwms.animation.dispAnimation();" > 
+					<fmt:message key="ncwms.dispanim" />
+				</div> 
+			</div>
+			 <div class="col-xs-6 ">
+				<select class="form-control" id="timeSelect" name="timeSelect">
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+<canvas id="animationCanvas"></canvas>
+<img id="animContainer" src=""></img>
 
-<c:if test='${netcdf}' >
-    <!-- Divs that hold the start and end calendar plus the related texts -->
-    <div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
-        <div id="CalendarParent" >
-            <div class="row">
-                <div class="col-xs-6 text-center title " id="hideOneDay"> 
-                    <span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>
-                </div>
-                <div class="col-xs-4 text-center title " id="hideOneDayEnd">
-                    <span class="invShadow"> <fmt:message key="ncwms.cal.end" /></span><br>
-                </div>
-                <div class="col-xs-2 text-right ">
-                    <a class="btn btn-default btn-xs " href="#" 
-                        onclick="minimizeWindow('calendarsMinimize', 'CalendarsAndStopContainer')" >
-                        <span class="glyphicon glyphicon-resize-small"></span>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6" id="hideOneDay"> 
-                    <div id="cal-start"> </div>
-                </div>
-                <div class="col-xs-6" id="hideOneDay"> 
-                    <div  id="cal-end"> </div>
-                </div>
-            </div>
-            <div class="row defRowSpace">
-                <div class="col-xs-12 invShadow text-center">
-                      <fmt:message key='ncwms.resolution'/>:
-                      <label class="radio-inline">
-                          <input type="radio" value="high" name="video_res" ><fmt:message key='ncwms.resolutionHigh'/>
-                      </label>
-                      <label class="radio-inline">
-                          <input type="radio" value="normal" name="video_res" checked><fmt:message key='ncwms.resolutionMiddle'/>
-                      </label>
-                      <label class="radio-inline">
-                      <input type="radio" value="low" name="video_res" ><fmt:message key='ncwms.resolutionLow'/>
-                      </label>
-                 </div>
-            </div>
-            <div class="row defRowSpace">
-                <div class="col-xs-6 text-center" id="p-animation">
-                    <div class="buttonStyle " onclick="dispAnimation();" > 
-                       <fmt:message key="ncwms.dispanim" />
-                    </div> 
-                </div>
-                <div class="col-xs-6">
-                    <select class="form-control" id="timeSelect" name="timeSelect">
-                    </select>
-                </div>
-            </div>
-        </div>
-        <!-- Stop animation button --> 
-        <div class="row" id="s-animation" > 
-            <div class="col-xs-2">
-                <button  class="buttonStyle" onclick="stopAnimation();" >
-                    <fmt:message key="ncwms.stopanim" /></button>
-            </div>
-        </div> 
-    </div>
-</c:if>
+<!--This div contains all the animation controls (play, stop, pause, etc.--> 
+<div id="animControls" class="container-fluid transDraggableWindow menuHidden">
+	<div class="row">
+		<div class="col-xs-12 invShadow title "> 
+			<fmt:message key="ncwms.animcontrol" />
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-xs-12 "> 
+			<a class="btn btn-default btn-xs " href="#" onclick="animFirstFrame()"
+			   title="<fmt:message key='ncwms.anim.help.fastback'/>" >
+				<span class="glyphicon glyphicon-fast-backward"></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="animDecreaseFrame()" 
+			   title="<fmt:message key='ncwms.anim.help.stepback'/>" >
+				<span class="glyphicon glyphicon-step-backward"></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="animSlower()" 
+			   title="<fmt:message key='ncwms.anim.help.slower'/>" >
+				<span class="glyphicon glyphicon-backward"></span>
+			</a>
+			<span class="invShadow title menuHidden" id="stopAnimText"> 
+				<fmt:message key="ncwms.anim.stop" />
+			</span >
+			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('none')" 
+			   title="<fmt:message key='ncwms.anim.help.stop'/>" >
+				<span class="glyphicon glyphicon-stop"></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('playing')"
+			   title="Play" >
+				<span class="glyphicon glyphicon-play" ></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('pause')"
+			   title="<fmt:message key='ncwms.anim.help.pause'/>" >
+				<span class="glyphicon glyphicon-pause"></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="animFaster()" 
+			   title="<fmt:message key='ncwms.anim.help.faster'/>" >
+				<span class="glyphicon glyphicon-forward"></span>
+			</a>
+			<a class="btn btn-default btn-xs " href="#" onclick="animIncreaseFrame()" 
+			   title="<fmt:message key='ncwms.anim.help.stepforw'/>" >
+				<span class="glyphicon glyphicon-step-forward"></span>
+			</a>	
+
+			<a class="btn btn-default btn-xs " href="#" onclick="animLastFrame()" 
+			   title="<fmt:message key='ncwms.anim.help.fastforw'/>" >
+				<span class="glyphicon glyphicon-fast-forward"></span>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 defShadow title"> 
+			<span>
+				<fmt:message key="ncwms.anim.currdate" />
+			</span>
+			<span id="animDate"></span>
+		</div>
+	</div>
+</div>

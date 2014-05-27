@@ -13,13 +13,17 @@
         <meta name="Keywords" content="OWGIS " />
 
         <!-- Jquery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
+		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
         <!-- End Jquery -->
 
         <!-- Bootstrap -->
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+		<link href="${basepath}/common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<script src="${basepath}/common/JS/vendor/bootstrap.min.js"></script>
         <!-- End Bootstrap -->
 
 		<link href="${basepath}/common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
@@ -34,6 +38,7 @@
 		<link href="${basepath}/common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
+		<link href="${basepath}/common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
               
         <link href="${basepath}/common/CSS/calendar/jscal2.css" rel="stylesheet" type="text/css"/>
         <link href="${basepath}/common/CSS/calendar/border-radius.css" rel="stylesheet" type="text/css"/>
@@ -50,6 +55,7 @@
         <script type="text/javascript" src="${basepath}/common/JS/calendar/lang/en.js"></script>
 
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
+<<<<<<< HEAD
         <script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/HelpInstructions.js"> </script>
           
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Calendars.js"> </script>
@@ -65,4 +71,44 @@
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
 
+=======
+
+		<!--OpenLayers 3 Management -->
+		<script type="text/javascript" src="${basepath}/common/JS/src/ol3/OpenLayersRelated.js"> </script>
+		<!--OpenLayers 3 Management -->
+
+		<!--NcWMS related-->
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/animations/Calendars.js"> </script>
+		<script type="text/javascript" src="${basepath}/common/JS/src/ncwms/Elevation.js"> </script>
+		<!--NcWMS related-->
+
+		<!--Menus related-->
+		<script src="${basepath}/common/JS/src/menus/MenuPositions.js"> </script>
+		<script src="${basepath}/common/JS/src/menus/OptionalLayersMenu.js"> </script>
+        <script src="${basepath}/common/JS/src/menus/HelpInstructions.js"> </script>
+		<!--Menus related-->
+		
+        <script src="${basepath}/common/JS/src/utilities/validation.js"> </script>
+        <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
+		<script src="${basepath}/common/JS/src/mapDisplay/CQL.js"> </script>
+		<script src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
+		<script src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
+
+		<!--Debug mode-->
+		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
+		<!--<script src="${basepath}/common/JS/vendor/closure/goog/base.js"> </script>-->
+		<script src="${basepath}/common/JS/vendor/ol.js"></script>
+		<script src="${basepath}/common/JS/src/ncwms/Transect.js"> </script>
+		<script src="${basepath}/common/JS/src/utilities/utilities.js"> </script>
+		<script src="${basepath}/common/JS/src/ncwms/animations/Animations.js"> </script>
+		<script src="${basepath}/common/JS/src/ol3/mainLayers.js"> </script>
+		<script src="${basepath}/common/JS/src/ol3/MainOl3.js"> </script>
+		<script src="${basepath}/common/JS/src/main/mapDisplay.js"> </script>
+		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
+		<!--Debug mode-->
+
+		<!-- Production mode -->
+		<!--<script type="text/javascript" src="common/JS/compiled/script.js"></script>--> 
+		<!-- Production mode -->
+>>>>>>> ba3d41e0cf9cedd0a79dda64d4ac37ebcadf63ff
         <title><fmt:message key="header.title" /></title>
