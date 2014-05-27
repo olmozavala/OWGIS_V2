@@ -137,13 +137,8 @@ ol3view	globals/gobals.js	/^var ol3view;\/\/View that contains the map$/;"	v
 ol_popup	globals/gobals.js	/^var ol_popup = null;$/;"	v
 opacity	mapDisplay/mapDisplay.js	/^var opacity = 1;\/\/Default opacity$/;"	v
 optionalArray	mapDisplay/mapDisplay.js	/^var optionalArray = [];\/\/this is the array to control the opacity of the different optional layers. $/;"	v
-<<<<<<< HEAD
-owgis.layers.main.getLayer	layers/main.js	/^}$/;"	f
-owgis.layers.main.initLayer	layers/main.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
-=======
 owgis.layers.getMainLayer	layers/main.js	/^}$/;"	f
 owgis.layers.initMainLayer	layers/main.js	/^var layer = undefined;\/\/ It will have the Ol3 object storing the main layer$/;"	f
->>>>>>> ba3d41e0cf9cedd0a79dda64d4ac37ebcadf63ff
 owgis.utils.IsNumeric	utilities/utilities.js	/^}$/;"	f
 owgis.utils.changeShadow	utilities/utilities.js	/^}$/;"	f
 owgis.utils.getDate	utilities/utilities.js	/^}$/;"	f

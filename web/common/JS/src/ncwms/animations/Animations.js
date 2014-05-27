@@ -383,6 +383,7 @@ function imageHasBeenLoadedParallel(e){
 		var currentImage = parseInt(e.target.id);
 		var currentBelongs = parseInt(e.target.belongs);//Reads the image animation belonging
 //		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
+		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
 		if( currentBelongs === currentAnimation ){
