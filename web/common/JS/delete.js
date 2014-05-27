@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 
-function test(){
+function test() {
 	var x = 3;
 	return x + 10;
 }
 
-function mytest(){
+function mytest() {
 	var x = 3;
 	return x + 10;
 }
 
-function test3(){
+function test3() {
 	var x = 3;
 	return x + 10;
 }
