@@ -55,23 +55,6 @@
         <script type="text/javascript" src="${basepath}/common/JS/calendar/lang/en.js"></script>
 
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
-<<<<<<< HEAD
-        <script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/HelpInstructions.js"> </script>
-          
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Calendars.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Elevation.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/OpenLayersRelated.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/MenuPositions.js"> </script>
-        <script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/animation.js"> </script>
-        <script type="text/javascript" src="${basepath}/common/JS/src/utilities/validation.js"> </script>
-        <script type="text/javascript" src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/Palettes.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/CQL.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/OptionalLayersMenu.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
-		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
-
-=======
 
 		<!--OpenLayers 3 Management -->
 		<script type="text/javascript" src="${basepath}/common/JS/src/ol3/OpenLayersRelated.js"> </script>
@@ -110,5 +93,4 @@
 		<!-- Production mode -->
 		<!--<script type="text/javascript" src="common/JS/compiled/script.js"></script>--> 
 		<!-- Production mode -->
->>>>>>> ba3d41e0cf9cedd0a79dda64d4ac37ebcadf63ff
         <title><fmt:message key="header.title" /></title>
