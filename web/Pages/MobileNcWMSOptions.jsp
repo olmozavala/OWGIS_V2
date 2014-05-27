@@ -8,8 +8,6 @@
 <div id="mapOverlayDiv" ><img id="mapOverlay" alt="map overlay" onload="javascript:animationLoaded();" /></div>
 
 <c:if test='${netcdf}' >
-
-
     <!-- Divs that hold the start and end calendar plus the related texts -->
     <div id="CalendarsAndStopContainer">
         <table id="CalendarParent" border="0">
@@ -45,4 +43,5 @@
                     class="mobileButton" ><fmt:message key="ncwms.stopanim" /></button>
         </div> 
     </div>
+	<canvas id="animationCanvas"></canvas>
 </c:if>

@@ -1,4 +1,4 @@
-cp /home/olmozavala/Dropbox/OpenLayers3/ol3/css/ol.css /home/olmozavala/Dropbox/OWGISV2_Projects/OWGISV2_Template/web/common/CSS/
+cp /home/olmozavala/Dropbox/OpenLayers3/ol3/css/ol.css /home/olmozavala/Dropbox/OWGISV2_Projects/DeepCProjectV2/web/common/CSS/
 
 python /home/olmozavala/Dropbox/TutorialsByMe/JavaScriptAndMore/ClosureLibrary/closure-library/closure/bin/build/depswriter.py  \
     --root=/home/olmozavala/Dropbox/OpenLayers3/ol3/src/ \
