@@ -18,3 +18,8 @@ function test3() {
 	var x = 3;
 	return x + 10;
 }
+
+
+function test4(){
+	return 13;
+}
