@@ -40,12 +40,12 @@ for the help text, the optional layers, the depth etc.*/
 for the main layers, the color palettes, the calendars etc.*/ 
 .transDraggableWindow{
 	@include floatingWindow;
-	background-color: transparent;
+	background-color: rgba(white,.2);
 }
 
 // Default style for a title
 .title{ 
-	font-size: $defFontSize + 2;
+	font-size: $f_larger;
     font-weight: bold;
 	text-align: center;
     padding: 5px 0px;//Put some space above and below title
@@ -82,7 +82,7 @@ p{ color: $fontColor; }
 
 /* Main title */
 .mapTitle{
-    font-size:$defFontSize+7;
+    font-size:$f_huge;
     position:absolute;
     width: 100%;
     top:50px;
@@ -142,7 +142,7 @@ but the size of the font is larger */
 /*Style for the 'contact' text. At the bottom of the page*/
 #emailText{
     @include textHalo($fontColor);
-    font-size: $defFontSize - 2;
+    font-size: $f_tiny;
     color:blue;
 }
 

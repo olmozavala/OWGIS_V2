@@ -39,7 +39,7 @@ $containerSize: 200px;
 
 /*A title in the optional menu layers tree */
 .opt_lay_title{
-    font-size: $defFontSize + 1;
+    font-size: $f_large;
     margin: 5px 0px 0px 0px;//Some margin on top
     cursor: pointer;//Clickable title
     color: $butShadowColor;
@@ -48,5 +48,5 @@ $containerSize: 200px;
 /*Default format for each menu as paragraph*/
 .opt_lay_par{
     margin: 0px; //No space between paragraphs
-    font-size: $defFontSize;
+    font-size: $f_normal;
 }

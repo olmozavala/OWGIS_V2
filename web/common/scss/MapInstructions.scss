@@ -35,14 +35,14 @@ and open the template in the editor.
     position:absolute;
 	border:1px solid;
     padding: $defPadding;
-    font-size: $defFontSize - 1;
+    font-size: $f_small;
 	color:$invColor;
     background-color: $backHelpHoverColor;
     z-index:1009;
 	top: $helpDefTop;
 	left: $helpDefLeft;
 	@include opacity($defOpacity - .02);
-	@include border-radius(5px,5px);
+	@include border-radius(5px,5px)
 	text-align: left;
 
 	min-width:150px;

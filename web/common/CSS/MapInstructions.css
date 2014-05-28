@@ -1,74 +1,44 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Sep 20, 2013, 9:23:40 PM
-    Author     : olmozavala
-*/
-/*
-* Base configuration, mixings and global variables
-*/
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : olmozavala
-*/
-/* Help Instructions display container */
-/* line 20, ../scss/MapInstructions.scss */
-#helpInstrContainer {
-  width: 70%;
-  left: 20%;
-  top: 80px;
-  max-height: 70%;
-  overflow-x: hidden;
-  z-index: 1010;
-  overflow-y: auto;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
-  opacity: 0.85;
-  display: none;
-}
+Syntax error: Invalid CSS after "...radius(5px,5px)": expected "}", was "text-align: left;"
+        on line 46 of C:/Users/harshulpandav/git/OWGIS_V2/web/common/scss/MapInstructions.scss
 
-/* line 34, ../scss/MapInstructions.scss */
-.commonHover {
-  position: absolute;
-  border: 1px solid;
-  padding: 5px;
-  font-size: 12px;
-  color: black;
-  background-color: darkkhaki;
-  z-index: 1009;
-  top: 1px;
-  left: 1px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=88);
-  opacity: 0.88;
-  -webkit-border-radius: 5px 5px;
-  -moz-border-radius: 5px / 5px;
-  border-radius: 5px / 5px;
-  text-align: left;
-  min-width: 150px;
-  display: none;
-}
-
-/* CQL filter parent of all the instructions*/
-/* line 53, ../scss/MapInstructions.scss */
-#ocqlFilterText {
-  top: 120px;
-  left: 40px;
-  display: none;
-}
-
-/* line 60, ../scss/MapInstructions.scss */
-#helpHoverSpan {
-  position: absolute;
-  top: 4px;
-  right: 0px;
-  display: inline;
-  z-index: 1019;
-}
-
-/* line 69, ../scss/MapInstructions.scss */
-#helpIconHover {
-  right: 10px;
-  width: 150px;
-}
+Backtrace:
+C:/Users/harshulpandav/git/OWGIS_V2/web/common/scss/MapInstructions.scss:46
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1147:in `expected'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1085:in `expected'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1080:in `tok!'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:536:in `block'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:529:in `ruleset'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:553:in `block_child'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:546:in `block_contents'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:82:in `stylesheet'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:27:in `parse'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:342:in `_to_tree'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:139:in `block (2 levels) in compile'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:126:in `timed'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:138:in `block in compile'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/logger.rb:45:in `red'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:137:in `compile'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:118:in `compile_if_required'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:103:in `block (2 levels) in run'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:101:in `each'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:101:in `block in run'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:126:in `timed'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/compiler.rb:100:in `run'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/commands/update_project.rb:45:in `perform'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/commands/base.rb:18:in `execute'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/commands/project_base.rb:19:in `execute'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/bin/compass:30:in `block in <top (required)>'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/bin/compass:44:in `call'
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/bin/compass:44:in `<top (required)>'
+C:/Ruby200-x64/bin/compass:23:in `load'
+C:/Ruby200-x64/bin/compass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"...radius(5px,5px)\": expected \"}\", was \"text-align: left;\"\A         on line 46 of C:/Users/harshulpandav/git/OWGIS_V2/web/common/scss/MapInstructions.scss"; }

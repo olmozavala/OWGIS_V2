@@ -7,6 +7,9 @@
 */
 
 @import "compass";
+@import "fonts";
+@import "colors";
+
 
 $defFontSize: 13px; 
 $defOpacity: 0.9;//Def opacity for floating windows
@@ -21,7 +24,7 @@ $invBackColor: $fontColor;
 
 // Buttons 
 $butBackColor:#555555;
-$butBackColorHover: $butBackColor - 30;
+$butBackColorHover: darken($butBackColor,10%);
 $butShadowColor: #80CCDC;
 $butSecondShadowColor: #DCC380;
 $butBoxShadowSize: 6px;//How big the box shadow is on the buttons
@@ -40,7 +43,7 @@ $topMenuHeight: 44px;
 	padding: $defPadding+2 $defPadding+2;
 	cursor: move;
     color: $invColor;
-    font-size: $defFontSize;
+    font-size: $f_normal;
 	@include opacity($defOpacity);
 	@include border-radius();
 }

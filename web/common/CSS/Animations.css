@@ -14,6 +14,45 @@ and open the template in the editor.
     Created on : Sep 20, 2013, 8:27:12 PM
     Author     : olmozavala
 */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
 /* line 13, ../scss/Animations.scss */
 #animContainer {
   position: absolute;
@@ -26,5 +65,5 @@ and open the template in the editor.
 #animControls {
   top: 40%;
   left: 50%;
-  min-width: 14em;
+  width: 24em;
 }

@@ -23,7 +23,7 @@ look like a button */
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
 	@include box-sizing(content-box);
 	margin:  5px 5px; 
-	height: $defFontSize + 10;
+	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
 	vertical-align: middle;
 }
@@ -60,6 +60,6 @@ for transparency in the optional layers. */
 .minusButtonSmall, .plusButtonSmall
 {
 	@include onlyTextButton;
-    font-size: $defFontSize+2;
+    font-size: $f_larger;
     font-weight: bolder;
 }
