@@ -73,3 +73,8 @@
 #timeSelect {
   width: 170px;
 }
+
+/* line 38, ../scss/Calendars.scss */
+.ui-widget {
+  /*font-size: $f_tiny;*/
+}

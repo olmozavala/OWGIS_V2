@@ -6,7 +6,7 @@
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
 <div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
-	<div id="CalendarParent container" >
+	<div id="CalendarParent container-fluid" >
 		<div class="row">
 			<div class="col-xs-6 text-center title " id="hideOneDay"> 
 				<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>

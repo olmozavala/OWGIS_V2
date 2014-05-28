@@ -198,8 +198,8 @@ function obtainSelectedDates(){
 		allFrames = new Array();
 		totalNumOfFrames = 0;
 		
-		var startDate = Calendar.intToDate(calStart.selection.get());
-		var endDate = Calendar.intToDate(calEnd.selection.get());
+		var startDate = new Date($("#cal-start").val());
+		var endDate = new Date($("#cal-end").val());
 		
 		var currYear, currMonth, currDay;
 		currDate= startDate;

@@ -56,7 +56,7 @@ function setColorRangeFromMinMax(){
 
     url += owgis.utils.paramsToUrl(urlParams);
 
-    var path_image = basepath+"/common/images/load.gif";//loading ...
+    var path_image = basepath+"/common/images/loading/load.gif";//loading ...
     //Show the Loading message
     document.getElementById('loadperc').innerHTML = "0";   
     $('#l-animation').hide("fade");

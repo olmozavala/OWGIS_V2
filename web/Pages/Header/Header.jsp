@@ -15,6 +15,7 @@
         <!-- Jquery -->
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
 		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
         <!-- End Jquery -->
@@ -39,20 +40,12 @@
 		<link href="${basepath}/common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
-              
-        <link href="${basepath}/common/CSS/calendar/jscal2.css" rel="stylesheet" type="text/css"/>
-        <link href="${basepath}/common/CSS/calendar/border-radius.css" rel="stylesheet" type="text/css"/>
-        <link href="${basepath}/common/CSS/calendar/reduce-spacing.css" rel="stylesheet" type="text/css"/>
-        <link href="${basepath}/common/CSS/calendar/steel/steel.css" rel="stylesheet" type="text/css"/>
 
 		<!--Specific for OpenLayers3 -->
 		<!--<link rel="stylesheet" href="http://ol3js.org/en/master/css/ol.css" />-->
 		<link rel="stylesheet" href="./common/CSS/ol.css" />
 		<link href="${basepath}/common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 		<!--Specific for OpenLayers3 -->
-
-        <script type="text/javascript" src="${basepath}/common/JS/calendar/jscal2.js"></script>
-        <script type="text/javascript" src="${basepath}/common/JS/calendar/lang/en.js"></script>
 
 		<script type="text/javascript" src="${basepath}/common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 
