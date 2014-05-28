@@ -42,9 +42,8 @@ and open the template in the editor.
 	top: $helpDefTop;
 	left: $helpDefLeft;
 	@include opacity($defOpacity - .02);
-	@include border-radius(5px,5px)
+	@include border-radius(5px,5px);
 	text-align: left;
-
 	min-width:150px;
     display:none;
 }
