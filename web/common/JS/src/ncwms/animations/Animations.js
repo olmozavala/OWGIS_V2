@@ -8,7 +8,7 @@ owgis.ncwms.animation.animStatus = "none";
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
-var animSpeed = 200;
+var animSpeed = 150;
 // Is the animation status it can be:
 // 		none -> There is not animation or is being stopped
 // 		loading -> The animation is being requested but not all of the frames have loaded
@@ -42,10 +42,10 @@ function updateMenusDisplayVisibility(status){
 		switch( status ){
             case "loading":
                 $('#CalendarsAndStopContainer').hide("fade");
-				$('#animControls a').hide();// Hidde the rest of the buttons
+				$('#animControls a').hide();// Hidde all the animation controls 
                 $('#animControls').show("fade");//Show the stop button
 				$('#stopAnimText').show("fade");
-				$('#animControls [class*=stop]').parent().show("fade");
+				$('#animControls [class*=stop]').parent().show();
                 $('#l-animation').show("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
@@ -54,13 +54,30 @@ function updateMenusDisplayVisibility(status){
             case "playing":
                 $('#CalendarsAndStopContainer').hide("fade");
 				$('#stopAnimText').hide();
-				$('#animControls a').show("fade");// Show all the buttons
+				$('#animControls a').show();// Show all the buttons
                 $('#l-animation').hide("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
                 $('#elevationParent').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
+				// Animation controls
+				$('#animControls [class*=step]').parent().hide();
+				$('#animControls [class*=fast-back]').parent().hide();
+				$('#animControls [class*=fast-forw]').parent().hide();
+				$('#animControls [class*=play]').parent().hide();
+				$('#animControls [class=glyphicon-backward]').parent().show();
+				$('#animControls [class*=glyphicon-forward]').parent().show();
+				$('#animControls [class*=pause]').parent().show();
                 break;
+            case "paused":
+				$('#animControls [class*=pause]').parent().hide();
+				$('#animControls [class*=glyphicon-backward]').parent().hide();
+				$('#animControls [class*=glyphicon-forward]').parent().hide();
+				$('#animControls [class*=step]').parent().show();
+				$('#animControls [class*=fast-back]').parent().show();
+				$('#animControls [class*=fast-forw]').parent().show();
+				$('#animControls [class*=play]').parent().show();
+				break;
             case "none":
             default:
                 $("#palettesMenuParent").show();
@@ -130,7 +147,7 @@ function animIncreaseFrame(){
  * @returns {undefined}
  */
 function animFaster(){
-	animSpeed = animSpeed*.90;
+	animSpeed = animSpeed*.80;
 	startAnimationLoop();
 }
 /**
@@ -138,7 +155,7 @@ function animFaster(){
  * @returns {undefined}
  */
 function animSlower(){
-	animSpeed = animSpeed*1.10;
+	animSpeed = animSpeed*1.20;
 	startAnimationLoop();
 }
 
@@ -153,7 +170,6 @@ function updateAnimationStatus(newStatus){
 	switch(owgis.ncwms.animation.animStatus){
 		case "none"://When the animation has been stoped
 			currentAnimation++;//It is used to stop any previous images
-			updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
 			
 			clearLoopHandler();
 			
@@ -163,9 +179,10 @@ function updateAnimationStatus(newStatus){
 			
 			updateTitleAndKmlLink();
 			break;
-		case "pause": break;
+		case "paused": break;
 		case "playing": break;
 	}
+	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
 	
 }
 /**
