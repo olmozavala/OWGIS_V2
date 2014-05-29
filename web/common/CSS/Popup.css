@@ -84,7 +84,7 @@ and open the template in the editor.
 
 /* line 38, ../scss/Popup.scss */
 .ol-popup:after {
-  border-top-color: white;
+  border-top-color: #cccccc;
   border-width: 10px;
   left: 48px;
   margin-left: -10px;

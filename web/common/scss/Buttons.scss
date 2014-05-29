@@ -28,17 +28,17 @@ look like a button */
 	vertical-align: middle;
 }
 
-/* Buttons style, default style for buttons (used in transparency and xasis),
+/* Buttons style, default style for buttons (used in transparency and xaxis),
 and also the mainMenu dropdown options*/
 .buttonStyle{
     @extend .buttonLook;
 	&:hover{
 		background-color:$butBackColorHover;
-        @include box-shadow($butSecondShadowColor 2px 2px $butBoxShadowSize*2);
+        @include box-shadow($butShadowColorHover 2px 2px $butBoxShadowSize*2);
 	}
     &:active{
-        @include box-shadow($butSecondShadowActiveColor 2px 2px $butBoxShadowSize*2);
-		background-color:$butActiveBackColor;
+        @include box-shadow($butShadowColorActive 2px 2px $butBoxShadowSize*2);
+		background-color:$butBackColorActive;
     }
     cursor: pointer;
 }

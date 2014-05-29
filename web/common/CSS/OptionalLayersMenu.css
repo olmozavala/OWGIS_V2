@@ -90,8 +90,18 @@
   color: #80ccdc;
 }
 
+/* line 47, ../scss/OptionalLayersMenu.scss */
+.opt_lay_title:hover {
+  color: #35a9c1;
+}
+
+/* line 48, ../scss/OptionalLayersMenu.scss */
+.opt_lay_title:active {
+  color: #1f6371;
+}
+
 /*Default format for each menu as paragraph*/
-/* line 49, ../scss/OptionalLayersMenu.scss */
+/* line 51, ../scss/OptionalLayersMenu.scss */
 .opt_lay_par {
   margin: 0px;
   font-size: 13px;

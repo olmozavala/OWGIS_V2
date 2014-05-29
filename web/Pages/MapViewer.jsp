@@ -114,6 +114,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				
 				<!-- Foot page --> 
 				<div id="pieDePaginaIzq" class="leftFoot">
+					testing
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>

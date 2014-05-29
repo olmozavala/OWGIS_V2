@@ -44,6 +44,8 @@ $containerSize: 200px;
     cursor: pointer;//Clickable title
     color: $optLayerTitleColor;
 }
+.opt_lay_title:hover{ color: $optLayerTitleColorHover }
+.opt_lay_title:active{ color: $optLayerTitleColorActive}
 
 /*Default format for each menu as paragraph*/
 .opt_lay_par{
