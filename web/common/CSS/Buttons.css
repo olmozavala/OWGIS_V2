@@ -94,10 +94,10 @@ and also the mainMenu dropdown options*/
 }
 /* line 39, ../scss/Buttons.scss */
 .buttonStyle:active {
-  -webkit-box-shadow: #f0d794 2px 2px 12px;
-  -moz-box-shadow: #f0d794 2px 2px 12px;
-  box-shadow: #f0d794 2px 2px 12px;
-  background-color: #4f4f4f;
+  -webkit-box-shadow: #efe3c4 2px 2px 12px;
+  -moz-box-shadow: #efe3c4 2px 2px 12px;
+  box-shadow: #efe3c4 2px 2px 12px;
+  background-color: #4d4d4d;
 }
 
 /* This is just a container of buttons in the top menu, specifically
@@ -117,7 +117,7 @@ for transparency in the optional layers. */
   vertical-align: top;
   margin: 0px;
   padding: 0px;
-  background-color: transParent;
+  background-color: transparent;
   border: 0px;
   cursor: pointer;
   font-size: 15px;

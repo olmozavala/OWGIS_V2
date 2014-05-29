@@ -15,18 +15,11 @@ $defFontSize: 13px;
 $defOpacity: 0.9;//Def opacity for floating windows
 $default-border-radius: 10px;// Default border for all windows and buttons
 
-$fontColor: #ECF2F8;
-$backColor: black;
-$backHelpHoverColor: darkkhaki;
 
-$invColor: $backColor;
-$invBackColor: $fontColor;
+
 
 // Buttons 
-$butBackColor:#555555;
-$butBackColorHover: darken($butBackColor,10%);
-$butShadowColor: #80CCDC;
-$butSecondShadowColor: #DCC380;
+
 $butBoxShadowSize: 6px;//How big the box shadow is on the buttons
 
 //Default padding for windows
@@ -67,7 +60,7 @@ $topMenuHeight: 44px;
     vertical-align: top;
     margin: 0px;
     padding: 0px;
-    background-color: transParent;
+    background-color: transparent;
     border: 0px;
     cursor: pointer;
 }

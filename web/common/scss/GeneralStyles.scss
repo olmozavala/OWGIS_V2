@@ -33,14 +33,14 @@ for the help text, the optional layers, the depth etc.*/
 .draggableWindow{
 	@include floatingWindow;
 	color: $fontColor;
-	background-color: $backColor; 
+	background-color: $dwBackColor; 
 }
 
 /* This is the CSS for a default transparent floating window. It should be used
 for the main layers, the color palettes, the calendars etc.*/ 
 .transDraggableWindow{
 	@include floatingWindow;
-	background-color: rgba(white,.2);
+	background-color: $transDWBackColor;
 }
 
 // Default style for a title
@@ -99,7 +99,7 @@ html,body {
     font-family:Tahoma, Verdana, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #06122C;
+    background-color: $htmlBodyBackColor;
     overflow:hidden;
 	width: 100%;
 	height: 100%;
@@ -121,7 +121,7 @@ div.leftFoot{
     right:1%;
     z-index:1000;
     display:inline;
-    color:black;
+    color:$leftFooterColor;
     @include opacity($defOpacity - .1);
 }
 
@@ -143,7 +143,7 @@ but the size of the font is larger */
 #emailText{
     @include textHalo($fontColor);
     font-size: $f_tiny;
-    color:blue;
+    color:$emailTextColor;
 }
 
 

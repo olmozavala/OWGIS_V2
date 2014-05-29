@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Sep 23, 2013, 5:57:54 PM
     Author     : olmozavala
 */
-
+@import "colors";
 /* CQL custom filter parent  */
 #ocqlFilterInputTextParent{
     display: none;
@@ -45,7 +45,7 @@ table.cqlFilterExampleTable th{
 	border-width: 1px;
 	border-style: solid;
 	text-align: center;
-	background-color: #CBC361;
+	background-color: $cqlFilterExampleTableBackColor;
 	padding: 2px 4px;
 }
 table.cqlFilterExampleTable td{

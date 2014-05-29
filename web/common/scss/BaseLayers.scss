@@ -15,11 +15,11 @@ $border-select: 6px;
 .mainMenu {
     font-size: $f_larger;
     width: $containerSize - 15;
-    color: $invColor;
-	background-color: $butBackColor + 60;
+    color: $dropDownColor;
+	background-color: $dropDownBackColor;
 	@include border-radius($border-select, $border-select);
 	&:hover{
-		background-color: $butBackColorHover+ 60;
+		background-color: $dropDownHover;
 	}
     //padding: 2px 11px;
     margin: 1px 0px;

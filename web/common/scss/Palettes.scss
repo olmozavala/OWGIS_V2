@@ -50,7 +50,7 @@ $sizeOptionalPalettes: 270px;
 
 // Style for the optional layers (the images)
 .optPaletteImg{
-    border-color: $backColor;
+    border-color: $paletteImgBorder;
 	@include border-radius(1px);
 	@include box-shadow(black 2px 2px $butBoxShadowSize - 2);
 	@include box-sizing(content-box);
@@ -58,7 +58,7 @@ $sizeOptionalPalettes: 270px;
 	margin: 0px 1px;
 
     &:hover{
-		background-color:$butBackColorHover;
-        @include box-shadow($butSecondShadowColor 2px 2px $butBoxShadowSize);
+		background-color:$optPaletteImgHoverColor;
+        @include box-shadow($optPalImgHoverBoxShadowColor 2px 2px $butBoxShadowSize);
     }
 }

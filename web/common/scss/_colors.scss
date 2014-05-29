@@ -5,3 +5,66 @@
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
+
+//htmlBody
+$htmlBodyBackColor: #06122C;
+
+//left Footer
+$leftFooterColor: black;
+
+//emailText
+$emailTextColor: blue;
+
+//font
+$fontColor: #ECF2F8;
+
+//background
+$backColor: black;
+
+//MapInstructions --tooltip
+$backHelpHoverColor: darkkhaki;
+
+//buttons
+$butBackColor:#555555;
+$butBackColorHover: darken($butBackColor,10); //3b3b3b
+$butShadowColor: #80CCDC;
+$butSecondShadowColor: #DCC380;
+$butSecondShadowActiveColor: lighten($butSecondShadowColor, 17);
+$butActiveBackColor: lighten($butBackColorHover, 7); //4d4d4d
+$butBorderColor: $backColor;
+
+//popup
+$popupBorderTopColorBefore: #cccccc;
+$popupBorderTopColorAfter: white;
+
+//cqlFilterExampleTable
+$cqlFilterExampleTableBackColor: #CBC361;
+
+
+//BaseLayers
+$invColor: $backColor;
+$invBackColor: $fontColor;
+
+//dropDown hover
+$dropDownColor: $backColor;
+$dropDownBackColor: lighten($butBackColor, 23);
+$dropDownHover: lighten($butBackColorHover, 23.5);
+
+//draggableWindow
+$dwBackColor: $backColor;
+
+//transDraggableWindow
+$transDWBackColor: rgba(white,.2);
+
+//palette
+$paletteImgBorder: $backColor;
+$optPaletteImgHoverColor: $butBackColorHover;
+$optPalImgHoverBoxShadowColor: $butSecondShadowColor;
+
+
+//minimizedWindows
+$minimizedWindowBackColor: $backColor;
+
+//optionalLayers
+$optLayerTitleColor: $butShadowColor;
+

@@ -36,14 +36,14 @@ and open the template in the editor.
 }
 //Used for the small triangle below the popup
 .ol-popup:after {
-	border-top-color: white;
+	border-top-color: $popupBorderTopColorAfter;
 	border-width: 10px;
 	left: 48px;
 	margin-left: -10px;
 }
 //Used for the small triangle below the popup
 .ol-popup:before {
-	border-top-color: #cccccc;
+	border-top-color: $popupBorderTopColorBefore;
 	border-width: 11px;
 	left: 48px;
 	margin-left: -11px;
