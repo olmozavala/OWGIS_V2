@@ -157,10 +157,7 @@ public class HtmlMenuBuilder {
 			ArrayList<TreeNode> subMenus = currentNode.getChilds();
 			if (!currentNode.isRoot()) {
 				MenuEntry menu = currentNode.getNode();
-				//TODO missing onclick for showing or hidding the menu
 				finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-//				finalHtml += tabs + "      onmouseover =\"changeColor(this,1);\" onmouseout =\"changeColor(this,0);\" \n";
-//				finalHtml += tabs + "      onmouseup =\"changeColor(this,1);\" onmousedown =\"changeColor(this,2);\" \n";
 				finalHtml += tabs + " 	   onclick=\"toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
 				if (currMenuStr == null) {
 					currMenuStr = menu.getId();
