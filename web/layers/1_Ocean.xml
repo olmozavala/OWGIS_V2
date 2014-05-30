@@ -45,7 +45,7 @@ and open the template in the editor.
 		<layer Menu="ocn,d2,zeta" EN="Sea surface temperature"
 			   ES="Temperatura superficial del mar" name="ocn/zeta"  />
 		<layer Menu="ocn,d2,barvel" EN="Barotropic sea water velocity"
-			   ES="TODO" name="ocn/barotropic_sea_water_velocity"  />
+				style="vector" ES="TODO" name="ocn/barotropic_sea_water_velocity"  />
 		<layer Menu="ocn,d2,rain" EN="Rain"
 			   ES="Lluvia" name="ocn/rain"  />
 		<layer Menu="ocn,d2,evaporation" EN="Evaporation"
@@ -62,7 +62,7 @@ and open the template in the editor.
 				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
 		<layer Menu="ocn,d2,vel" EN="Sea water velocity"
-			   ES="TODO" name="ocn/sea_water_velocity"  />
+				style="vector" ES="TODO" name="ocn/sea_water_velocity"  />
 		<layer Menu="ocn,d3,temp" EN="Gulf of Mexico Temperature"
 			   ES="Temperatura" name="ocn/temp"  />
 		<layer Menu="ocn,d3,salt" EN="Gulf of Mexico salinity"
