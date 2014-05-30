@@ -14,6 +14,45 @@ and open the template in the editor.
     Created on : Sep 20, 2013, 8:27:12 PM
     Author     : olmozavala
 */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
 /* Help Instructions display container */
 /* line 20, ../scss/MapInstructions.scss */
 #helpInstrContainer {
@@ -51,14 +90,14 @@ and open the template in the editor.
 }
 
 /* CQL filter parent of all the instructions*/
-/* line 53, ../scss/MapInstructions.scss */
+/* line 52, ../scss/MapInstructions.scss */
 #ocqlFilterText {
   top: 120px;
   left: 40px;
   display: none;
 }
 
-/* line 60, ../scss/MapInstructions.scss */
+/* line 59, ../scss/MapInstructions.scss */
 #helpHoverSpan {
   position: absolute;
   top: 4px;
@@ -67,7 +106,7 @@ and open the template in the editor.
   z-index: 1019;
 }
 
-/* line 69, ../scss/MapInstructions.scss */
+/* line 68, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

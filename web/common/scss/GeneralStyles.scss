@@ -33,19 +33,19 @@ for the help text, the optional layers, the depth etc.*/
 .draggableWindow{
 	@include floatingWindow;
 	color: $fontColor;
-	background-color: $backColor; 
+	background-color: $dwBackColor; 
 }
 
 /* This is the CSS for a default transparent floating window. It should be used
 for the main layers, the color palettes, the calendars etc.*/ 
 .transDraggableWindow{
 	@include floatingWindow;
-	background-color: transparent;
+	background-color: $transDWBackColor;
 }
 
 // Default style for a title
 .title{ 
-	font-size: $defFontSize + 2;
+	font-size: $f_larger;
     font-weight: bold;
 	text-align: center;
     padding: 5px 0px;//Put some space above and below title
@@ -82,7 +82,7 @@ p{ color: $fontColor; }
 
 /* Main title */
 .mapTitle{
-    font-size:$defFontSize+7;
+    font-size:$f_huge;
     position:absolute;
     width: 100%;
     top:50px;
@@ -99,7 +99,7 @@ html,body {
     font-family:Tahoma, Verdana, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #06122C;
+    background-color: $htmlBodyBackColor;
     overflow:hidden;
 	width: 100%;
 	height: 100%;
@@ -121,7 +121,7 @@ div.leftFoot{
     right:1%;
     z-index:1000;
     display:inline;
-    color:black;
+    color:$leftFooterColor;
     @include opacity($defOpacity - .1);
 }
 
@@ -142,8 +142,8 @@ but the size of the font is larger */
 /*Style for the 'contact' text. At the bottom of the page*/
 #emailText{
     @include textHalo($fontColor);
-    font-size: $defFontSize - 2;
-    color:blue;
+    font-size: $f_tiny;
+    color:$emailTextColor;
 }
 
 

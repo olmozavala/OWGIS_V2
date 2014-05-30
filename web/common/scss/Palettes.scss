@@ -45,20 +45,18 @@ $sizeOptionalPalettes: 270px;
 // Define the size of the input to store color ranges
 .inputSizePalettes{
     width:5em;//TODO Is not working, it is hardcoded on file Palettes.jsp
-    height: $defFontSize+5;
+    height: $f_largest;
 }
 
 // Style for the optional layers (the images)
 .optPaletteImg{
-    border-color: $backColor;
 	@include border-radius(1px);
-	@include box-shadow(black 2px 2px $butBoxShadowSize - 2);
+	@include box-shadow($optPaletteImgShadow 2px 2px $butBoxShadowSize - 2);
 	@include box-sizing(content-box);
     cursor: pointer; 
 	margin: 0px 1px;
 
     &:hover{
-		background-color:$butBackColorHover;
-        @include box-shadow($butSecondShadowColor 2px 2px $butBoxShadowSize);
+        @include box-shadow($optPaletteImgShadowHover 2px 2px $butBoxShadowSize);
     }
 }

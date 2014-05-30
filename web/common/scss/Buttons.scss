@@ -16,29 +16,29 @@ look like a button */
     border-style: solid;
     border-width: 1px;
     background-color:$butBackColor;
-    border-color: $backColor;
+    border-color: $butBorderColor;
 	padding: $defPadding 2*$defPadding;
 	color: $fontColor;
 	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
 	@include box-sizing(content-box);
 	margin:  5px 5px; 
-	height: $defFontSize + 10;
+	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
 	vertical-align: middle;
 }
 
-/* Buttons style, default style for buttons (used in transparency and xasis),
+/* Buttons style, default style for buttons (used in transparency and xaxis),
 and also the mainMenu dropdown options*/
 .buttonStyle{
     @extend .buttonLook;
 	&:hover{
 		background-color:$butBackColorHover;
-        @include box-shadow($butSecondShadowColor 2px 2px $butBoxShadowSize*2);
+        @include box-shadow($butShadowColorHover 2px 2px $butBoxShadowSize*2);
 	}
     &:active{
-        @include box-shadow($butSecondShadowColor + 20 2px 2px $butBoxShadowSize*2);
-		background-color:$butBackColorHover + 20;
+        @include box-shadow($butShadowColorActive 2px 2px $butBoxShadowSize*2);
+		background-color:$butBackColorActive;
     }
     cursor: pointer;
 }
@@ -60,6 +60,6 @@ for transparency in the optional layers. */
 .minusButtonSmall, .plusButtonSmall
 {
 	@include onlyTextButton;
-    font-size: $defFontSize+2;
+    font-size: $f_larger;
     font-weight: bolder;
 }

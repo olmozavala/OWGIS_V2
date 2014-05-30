@@ -6,7 +6,7 @@
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
 <div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
-	<div id="CalendarParent container" >
+	<div id="CalendarParent container-fluid" >
 		<div class="row">
 			<div class="col-xs-6 text-center title " id="hideOneDay"> 
 				<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>
@@ -69,7 +69,7 @@
 		</div>
 
 	</div>
-	<div class="row">
+	<div class="row  text-center ">
 		<div class="col-xs-12 "> 
 			<a class="btn btn-default btn-xs " href="#" onclick="animFirstFrame()"
 			   title="<fmt:message key='ncwms.anim.help.fastback'/>" >
@@ -94,7 +94,7 @@
 			   title="Play" >
 				<span class="glyphicon glyphicon-play" ></span>
 			</a>
-			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('pause')"
+			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('paused')"
 			   title="<fmt:message key='ncwms.anim.help.pause'/>" >
 				<span class="glyphicon glyphicon-pause"></span>
 			</a>

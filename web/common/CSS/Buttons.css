@@ -13,6 +13,45 @@ Currently the buttons for the menu and the +,- buttons
     Created on : Sep 20, 2013, 8:27:12 PM
     Author     : olmozavala
 */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
 /* This class has some general properties that make a span
 look like a button */
 /* line 15, ../scss/Buttons.scss */
@@ -40,7 +79,7 @@ look like a button */
   vertical-align: middle;
 }
 
-/* Buttons style, default style for buttons (used in transparency and xasis),
+/* Buttons style, default style for buttons (used in transparency and xaxis),
 and also the mainMenu dropdown options*/
 /* line 33, ../scss/Buttons.scss */
 .buttonStyle {
@@ -48,17 +87,17 @@ and also the mainMenu dropdown options*/
 }
 /* line 35, ../scss/Buttons.scss */
 .buttonStyle:hover {
-  background-color: #373737;
+  background-color: #3b3b3b;
   -webkit-box-shadow: #dcc380 2px 2px 12px;
   -moz-box-shadow: #dcc380 2px 2px 12px;
   box-shadow: #dcc380 2px 2px 12px;
 }
 /* line 39, ../scss/Buttons.scss */
 .buttonStyle:active {
-  -webkit-box-shadow: #f0d794 2px 2px 12px;
-  -moz-box-shadow: #f0d794 2px 2px 12px;
-  box-shadow: #f0d794 2px 2px 12px;
-  background-color: #4b4b4b;
+  -webkit-box-shadow: #efe3c4 2px 2px 12px;
+  -moz-box-shadow: #efe3c4 2px 2px 12px;
+  box-shadow: #efe3c4 2px 2px 12px;
+  background-color: #4d4d4d;
 }
 
 /* This is just a container of buttons in the top menu, specifically
@@ -78,7 +117,7 @@ for transparency in the optional layers. */
   vertical-align: top;
   margin: 0px;
   padding: 0px;
-  background-color: transParent;
+  background-color: transparent;
   border: 0px;
   cursor: pointer;
   font-size: 15px;

@@ -108,12 +108,13 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 
                 <div id="l-animation" class="menuHidden">
                     <p class="bigFontSize invShadow"> <fmt:message key="ncwms.loading" /> 
-						<span id="loadperc" class="invShadow">0</span> % <img src="${basepath}/common/images/load.gif" height="12" border="0" alt="loading" />	</p>
+						<span id="loadperc" class="invShadow">0</span> % <img src="${basepath}/common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
                 </div>
             </c:if>
 				
 				<!-- Foot page --> 
 				<div id="pieDePaginaIzq" class="leftFoot">
+					testing
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
