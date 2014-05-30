@@ -225,11 +225,21 @@ div.leftFoot {
 }
 
 /* line 128, ../scss/GeneralStyles.scss */
+.rigthFooter {
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  z-index: 1000;
+  display: inline;
+  color: black;
+}
+
+/* line 137, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 130, ../scss/GeneralStyles.scss */
+/* line 139, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -238,13 +248,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 138, ../scss/GeneralStyles.scss */
+/* line 147, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 143, ../scss/GeneralStyles.scss */
+/* line 152, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
@@ -252,7 +262,7 @@ but the size of the font is larger */
   color: blue;
 }
 
-/* line 151, ../scss/GeneralStyles.scss */
+/* line 160, ../scss/GeneralStyles.scss */
 #owgislogocont {
   position: absolute;
   display: inline;
@@ -261,7 +271,7 @@ but the size of the font is larger */
   z-index: 1009;
 }
 
-/* line 161, ../scss/GeneralStyles.scss */
+/* line 170, ../scss/GeneralStyles.scss */
 #draggable-container {
   position: absolute;
   width: 96%;

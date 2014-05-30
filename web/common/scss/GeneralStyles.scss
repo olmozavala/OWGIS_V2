@@ -125,6 +125,15 @@ div.leftFoot{
     @include opacity($defOpacity - .1);
 }
 
+.rigthFooter{
+    position:absolute;
+    bottom:1%;
+    left:1%;
+    z-index:1000;
+    display:inline;
+    color:$leftFooterColor;
+}
+
 a{ text-decoration: none; }
 
 .footNote{

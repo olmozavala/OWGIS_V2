@@ -113,27 +113,30 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
             </c:if>
 				
 				<!-- Foot page --> 
-				<div id="pieDePaginaIzq" class="leftFoot">
-					testing
+
+				<div class="rigthFooter">
 					&nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="${basepath}/common/images/Logos/gom-fs-logo-2.png" alt="Logo" width="60" height="60" /></a>
+				</div>
+				<div id="pieDePaginaIzq" class="leftFoot">
+					&nbsp;
+                    <a  href="#">
+                        <img border="0" src="${basepath}/common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
                     &nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="${basepath}/common/images/Logos/Deep-C_logo.png" alt="Logo" width="51" height="30" /></a>
                     &nbsp 
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
-                    &nbsp 
-                    <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
-							
+                        <img border="0" src="${basepath}/common/images/Logos/coaps_logo.png" alt="Logo" width="30" height="30" /></a>
+
                     <a  href="#">
 						<p class="footNote" align="left">
 							&nbsp 
 							&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
 						</p></a>
-                    <a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
+							<a id="emailText" href="MAILTO:pvelissariou@coaps.fsu.edu"> <fmt:message key="main.contact" /></a>
+
 				</div>
         </form>
 			

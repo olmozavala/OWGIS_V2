@@ -191,15 +191,36 @@ function updateAnimationStatus(newStatus){
  * @returns {undefined}
  */
 function obtainSelectedDates(){
-	// Obtains the selected dates 
+
 	if(getUserSelectedTimeFrame().indexOf("/") === -1){
 		allFrames = getUserSelectedTimeFrame().split(",");
 	}else{
+		//In this case the user has selected full
+		// we haven't find a proper way to find all the requests when is full.
+		// We obtain the number of frames, divided by the number of days and assume
+		// the hours all start at 0. Example. Full frames are 24, and is one day, then 
+		// we assume there is one frame each hour, from hr 0 to 23
 		allFrames = new Array();
 		totalNumOfFrames = 0;
 		
 		var startDate = new Date($("#cal-start").val());
 		var endDate = new Date($("#cal-end").val());
+
+		var totalFramesTxt = $("#timeSelect :selected").text();
+		var firstIndx = totalFramesTxt.indexOf("(");
+		totalFramesTxt = totalFramesTxt.substr(firstIndx,totalFramesTxt.length);
+		var secondIndx = totalFramesTxt.indexOf(" ");
+		totalFramesTxt = totalFramesTxt.substr(1,secondIndx);
+
+		var hrsIncrement = 24;
+		try{
+			var totFrames = parseInt(totalFramesTxt);
+			var totDays = owgis.utils.days_between(startDate,endDate);
+			var hrsPerDay = (totFrames - 1)/totDays;
+			hrsIncrement = 24/hrsPerDay;
+		}catch(e){
+
+		}
 		
 		var currYear, currMonth, currDay;
 		currDate= startDate;
@@ -209,7 +230,9 @@ function obtainSelectedDates(){
 			currMonth = currDate.getUTCMonth();
 			currDay = currDate.getUTCDate();
 			//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
-			allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay);
+			for(var hr = 0; hr < hrsPerDay; hr++){
+				allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T"+hr*hrsIncrement+":00:00.000Z");
+			}
 			currDate.setDate( currDate.getDate() + 1);
 		}
 	}
@@ -451,7 +474,13 @@ function loopAnimation(){
 	//	console.log("Displaying Frame: "+ currentFrame);
 	
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
-	$("#animDate").text(allFrames[currentFrame]);
+
+	// Removing the T00:00:00.000Z from the text
+	var finalText = allFrames[currentFrame];
+	finalText = finalText.replace("T00:00:00.000Z",'');
+
+	$("#animDate").text(finalText);
+
 	ctx.stroke();
 	map.render();
 }

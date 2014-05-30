@@ -25,33 +25,33 @@
 	
 	<!-- Atmosphere layers -->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://146.201.212.175:8080/ncWMS/wms"
+				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true" >  
 		<layer Menu="atm,wind" EN="Wind velocities at 10m above sea level"
-			   ES="Velocidad de viento a 10m " name="atm/wind"  />
+			   ES="Velocidad de viento a 10m " name="atm_forecast/wind"  />
 		<layer Menu="atm,psfc" EN="SFC Pressure"
-			   ES="Presion" name="atm/PSFC" />
+			   ES="Presion" name="atm_forecast/PSFC" />
 		<layer Menu="atm,t2" EN="Temperature at 2m"
-			   ES="Temperatura a 2mts" name="atm/T2" />
+			   ES="Temperatura a 2mts" name="atm_forecast/T2" />
 		<layer Menu="atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
-			   name="atm/SST" />
+			   name="atm_forecast/SST" />
 		<layer Menu="atm,cld" EN="Cloud Fraction" ES="Nubes"
-			   name="atm/CLDFRA" />
+			   name="atm_forecast/CLDFRA" />
 		<layer Menu="atm,glw" EN="Surface downwelling longwave flux" ES="TODO"
-			   name="atm/GLW" />
+			   name="atm_forecast/GLW" />
 		<layer Menu="atm,swdown" EN="Surface downwelling shortwave flux" ES="TODO"
-			   name="atm/SWDOWN" />
+			   name="atm_forecast/SWDOWN" />
 		<layer Menu="atm,hfx" EN="Surface upward sensible heat flux" ES="TODO"
-			   name="atm/HFX" />
+			   name="atm_forecast/HFX" />
 		<layer Menu="atm,lh" EN="Latent heat" ES="TODO"
-			   name="atm/LH" />
+			   name="atm_forecast/LH" />
 		<layer Menu="atm,rain" EN="Convective precipitation amount" ES="TODO"
-			   name="atm/RAINC" />
+			   name="atm_forecast/RAINC" />
 	</MainLayers>
 	
 	<!-- Optional layers -->
 	<OptionalLayers BBOX="-180, -59.487167, 180, 83.633389"
-				  server="http://142.201.212.175:8080/geoserver/wms"
+				  server="http://viewer.coaps.fsu.edu/geoserver/wms"
 				  vectorLayer="true"> 
 		<layer Menu="shores" name="comm:shorelines" selected="true"/>
 	</OptionalLayers>
