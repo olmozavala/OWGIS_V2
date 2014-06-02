@@ -1,0 +1,29 @@
+To add the column:
+-- Example for adding a geography column
+ALTER TABLE table ADD column geog geography('POINT','4326')
+ALTER TABLE sites ADD column geog geography('POINT','4326')
+
+-- Example for adding a geometry column
+ALTER TABLE table ADD column geom geography('POINT','4326')
+ALTER TABLE sites ADD column geom geography('POINT','4326')
+
+To Update or insert use ST_GeogFromText('POINT(lat , lon)',4326) Examples:
+UPDATE sites SET geog = ST_GeogFromText('POINT(29.0 -86.9)') WHERE site_id = 123
+UPDATE sites SET geom = ST_GeomFromText('POINT(29.0 -86.9)') WHERE site_id = 123
+
+======= If the table already have the columns lat and lon filled then:
+
+UPDATE sites SET geog = ST_GeogFromText('SRID=4326;POINT('|| lon ||' '|| lat ||')')
+UPDATE sites SET geom = ST_GeomFromText('SRID=4326;POINT('|| lon ||' '|| lat ||')')
+
+
+Extras
+======== To delete drop a table with a Geometry column =====
+DropGeometryTable
+
+
+IMPORTANT!!!!
+=============== How to update the geometry or geography columns in the DB =========
+After adding a new geom or geog column, we should run:
+
+SELECT Probe_Geometry_Columns()
