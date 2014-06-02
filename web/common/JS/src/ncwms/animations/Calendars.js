@@ -30,7 +30,7 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-  
+	
 	var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
@@ -38,12 +38,15 @@ function initCalendars(){
 	var maxMonth = -1;
 	var minDay = 32;
 	var maxDay = -1;
-
-	for (var year in datesWithData) {
-		if (typeof datesWithData[year] != 'function') { // avoid built-in functions
-			if (year < minYear) minYear = year;
-			if (year > maxYear) maxYear = year;
+	
+	if(typeof datesWithData !== "undefined"){
+		for (var year in datesWithData) {
+			if (typeof datesWithData[year] !== 'function') { // avoid built-in functions
+				if (year < minYear) minYear = year;
+				if (year > maxYear) maxYear = year;
+			}
 		}
+<<<<<<< HEAD:web/common/JS/src/ncwms/animations/Calendars.js
 	}
 
 	for (var month in datesWithData[minYear]) {
@@ -61,58 +64,69 @@ function initCalendars(){
 				maxMonth = parseInt(month2);
 				//Assumes it has at least one day
 				maxDay =datesWithData[maxYear][month2][datesWithData[maxYear][month2].length - 1];
+=======
+		
+		for (var month in datesWithData[minYear]) {
+			if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
+				if(month < minMonth){
+					minMonth = parseInt(month);
+					minDay =datesWithData[minYear][month][0];//Assumes it has at least one day
+				}
 			}
 		}
-	}
-
-	minValidDate = new Date(minYear,minMonth, minDay);
-	maxValidDate = new Date(maxYear,maxMonth, maxDay);
+		
+		for (var month2 in datesWithData[maxYear]) {
+			if(owgis.utils.IsNumeric(month2)){
+				if(parseInt(month2) > maxMonth){
+					maxMonth = parseInt(month2);
+					//Assumes it has at least one day
+					maxDay =datesWithData[maxYear][month2][datesWithData[maxYear][month2].length - 1];
+				}
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a:web/common/JS/src/ncwms/animations/Calendars.js
+			}
+		}
+		
+		var minValidDate = new Date(minYear,minMonth, minDay);
+		var maxValidDate = new Date(maxYear,maxMonth, maxDay);
         
-	//We verify that we have more than one day
-	if( minValidDate < maxValidDate){
-		//I don't know why but for the selection the month needs to be increased by one
-		minMonth = minMonth + 1;
-		startDate = minYear + (minMonth < 10? '0' + minMonth: minMonth) + (minDay < 10? '0' + minDay: minDay);
-               
-		calStart = Calendar.setup({
-			cont    : "cal-start",
-			min        : minValidDate,
-			max        : maxValidDate,
-			onSelect: updateCalendarStart,
-			selection: [startDate],
-			bottomBar: false
-		});
-
-		calEnd = Calendar.setup({
-			cont    : "cal-end",
-			min        : minValidDate,
-			max        : maxValidDate,
-			onSelect: updateCalendarEnd,
-			bottomBar: false
-		});
-
-		startDate = getSuggestedDate(maxValidDate, false);
-		calStart.selection.set(startDate);
-		calStart.moveTo(startDate);
-
-		startSel = calStart.selection.get();
-       
-		calEnd.selection.set(maxValidDate);
-		calEnd.moveTo(maxValidDate, "true");
-
-		calStart.redraw();
-		calEnd.redraw();
-
-		displayCalendars(true);
-
-		calInitialized = true;
-        _mainlayer_multipleDates= true;
-		updateCalendarOpts("startCal");
+		//We verify that we have more than one day
+		if( minValidDate < maxValidDate){
+			//I don't know why but for the selection the month needs to be increased by one
+			minMonth = minMonth + 1;
+			startDate = minYear + (minMonth < 10? '0' + minMonth: minMonth) + (minDay < 10? '0' + minDay: minDay);
+			
+			$("#cal-start").datepicker({
+				minDate: minValidDate,
+				maxDate: maxValidDate,
+				defaultDate: minValidDate,
+				dateFormat: "yy-mm-dd",
+				onSelect: updateCalendarStart
+			});
+			$("#cal-end").datepicker({
+				minDate: minValidDate,
+				maxDate: maxValidDate,
+				defaultDate: maxValidDate,
+				dateFormat: "yy-mm-dd",
+				onSelect: updateCalendarEnd
+			});
+			
+			startDate = getSuggestedDate(maxValidDate, false);
+			$("#cal-start").datepicker("setDate",startDate);
+			
+			displayCalendars(true);
+			
+			calInitialized = true;
+			_mainlayer_multipleDates= true;
+			updateCalendarOpts("startCal");
+		}
+		else{//If we only have one day then we hide all the calendar options
+			_mainlayer_multipleDates= false;
+		}
+		
 	}
 	else{//If we only have one day then we hide all the calendar options
         _mainlayer_multipleDates= false;
 	}
-
 }
 
 /**
@@ -128,7 +142,7 @@ function updateCalendarEnd(){
 function updateCalendarStart(){
 	//alert(max_time_range);
 	updateCalendarOpts("startCal");
-
+	
 	// When updateing the 'current' layer by changing the start cal, we should
 	// close the popup
 	closePopUp();
@@ -140,37 +154,34 @@ function updateCalendarStart(){
  * @param {string} calUpdated ['startCal'|'endCal'] Indicates which calendar was updated
  */
 function updateCalendarOpts(calUpdated){
-
+	
 	//Only do it if the calendars have already beeing initialized
 	if(calInitialized){
-		var startSel = calStart.selection.get();
-		var endSel = calEnd.selection.get();
-
-		var startDate = Calendar.intToDate(startSel);
-		var endDate = Calendar.intToDate(endSel);                     
-
-		startDateTxt = Calendar.printDate(startDate, '%Y-%m-%d');
-		endDateTxt = Calendar.printDate(endDate, '%Y-%m-%d');                  
-
+		var startDateTxt = $("#cal-start").val();
+		var endDateTxt = $("#cal-end").val();
+		
+		var startDate = new Date(startDateTxt);
+		var endDate = new Date(endDateTxt);
+		
 		if(calUpdated ===  "startCal"){
 			updateMainLayerDate(startDateTxt);
-
+			
 			if(  endDate <=  startDate){
 				ahead = true;//Looking suggested time forward in time
 				endDate = getSuggestedDate(startDate,ahead);
-				calEnd.selection.set(endDate);
-				calEnd.moveTo(endDate, "true");
+				$("#cal-end").datepicker("setDate",endDate);
 			}
-
+			
 		}else if(calUpdated ===  "endCal"){
 			if(  endDate <=  startDate ){
 				ahead = false;// Suggested time backward in time
 				startDate = getSuggestedDate(endDate,ahead);
-				calStart.selection.set(startDate);
-				calStart.moveTo(startDate, "true");
+				$("#cal-start").datepicker("setDate",startDate);
 			}
 		}
-
+		
+		startDateTxt = $("#cal-start").val();
+		endDateTxt = $("#cal-end").val();
 		dispAnimationAjax(startDateTxt, endDateTxt, mainLayer,"getAnimTimes");
 	}
 }
@@ -180,7 +191,7 @@ function updateCalendarOpts(calUpdated){
  * For example if the user has selected only to display weekly or monthly
  */
 function getUserSelectedTimeFrame(){
-	if( $('#timeSelect :selected').val() != null ){
+	if( $('#timeSelect :selected').val() !== null ){
 		return $('#timeSelect :selected').val();
 	}else{
 		//Don't change the following text, it is hardcoded in different places
@@ -198,17 +209,13 @@ function getUserSelectedTimeFrame(){
  */
 function getCurrentlySelectedDate(format, formatEnd){
 	if(calInitialized){
-		var startSel = calStart.selection.get();
-		var startDate = Calendar.intToDate(startSel);
-		startDateTxt = Calendar.printDate(startDate, format);
-
+		startDateTxt = $("#cal-start").val();
+		
 		if(formatEnd!=null){
-			var endSel = calEnd.selection.get();
-			var endDate = Calendar.intToDate(endSel);
-			endDateTxt = Calendar.printDate(endDate, formatEnd);
+			endDateTxt = $("#cal-end").val();
 			startDateTxt = startDateTxt+"/"+endDateTxt;
 		}
-
+		
 		return startDateTxt;
 	}
 	//Don't change the following text, it is hardcoded in different places
@@ -225,14 +232,14 @@ function getCurrentlySelectedDate(format, formatEnd){
  * @return final suggested date 
  */
 function getSuggestedDate(actualDate,ahead){
-
+	
 	//	actualDate = new Date(actualDateTxt);
 	var end_final = new Date();
-
+	
 	sign = "+";
 	if(!ahead)
 		sign = "-";
-
+	
 	if(max_time_range ==="week")
 		end_final = new Date(actualDate.getFullYear(), actualDate.getMonth(), eval(actualDate.getDate()+sign+ "7")); 
 	else if (max_time_range ==="month")
@@ -241,7 +248,7 @@ function getSuggestedDate(actualDate,ahead){
 		end_final = new Date(actualDate.getFullYear(), eval(actualDate.getMonth() + sign + "2"), actualDate.getDate()); 
 	else 
 		end_final = getYearEnd(startSel);
-
+	
 	//Validate that we are not pass the limits
 	if(ahead){
 		if(end_final > maxValidDate)
@@ -250,18 +257,17 @@ function getSuggestedDate(actualDate,ahead){
 		if(end_final < minValidDate)
 			return minValidDate;
 	}
-
+	
 	// If we are within the limits return the computed date. 
 	return end_final;
 }
-
 
 /*
  * Updates the current layer ant map title with the selected date 
  * @paramnewDate - selected date object passed in
  */ 
 function updateMainLayerDate(newDate){
-
+	
     updateMainLayerParam('TIME',newDate);
 	updateTitleAndKmlLink();
 }
@@ -269,15 +275,14 @@ function updateMainLayerDate(newDate){
 /**
  *this function is to hide the calendars and also show the back the calendar. for the button
  */
-function hideCalendarFunc()
-{
+function hideCalendarFunc() {
 	var button = $('#hideCalendar');    
 	var inner_text = button.html();  
-      
+	
 	//this if handles when the calendar is hiden and we should show it
 	if(inner_text === hideCal)
 	{
-            
+		
 		button.html(showCal.toString());
 		$('#CalendarsAndStopContainer').css("display","none");
 	}

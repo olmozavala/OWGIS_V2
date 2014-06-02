@@ -13,7 +13,7 @@ and open the template in the editor.
 .ol-popup {
 	position: absolute;
 	background-color: $fontColor;
-    font-size: $defFontSize - 2;
+    font-size: $f_tiny; 
 	@include box-shadow(black 2px 2px 3px);
 	padding: 14px;
 	border-radius: $default-border-radius;
@@ -36,14 +36,14 @@ and open the template in the editor.
 }
 //Used for the small triangle below the popup
 .ol-popup:after {
-	border-top-color: white;
+	border-top-color: $popupBorderTopColorAfter;
 	border-width: 10px;
 	left: 48px;
 	margin-left: -10px;
 }
 //Used for the small triangle below the popup
 .ol-popup:before {
-	border-top-color: #cccccc;
+	border-top-color: $popupBorderTopColorBefore;
 	border-width: 11px;
 	left: 48px;
 	margin-left: -11px;

@@ -18,7 +18,7 @@
 // Used when minimizing one of the options (small tab that appears below)
 .minimizedWindow {
     padding: 5px 10px 20px 10px;
-    background-color: $invColor;
+    background-color: $minimizedWindowBackColor;
     opacity: $defOpacity - .2;
     display:none;
     position: relative;

@@ -8,7 +8,11 @@ owgis.ncwms.animation.animStatus = "none";
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
+<<<<<<< HEAD
 var animSpeed = 200;
+=======
+var animSpeed = 150;
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 // Is the animation status it can be:
 // 		none -> There is not animation or is being stopped
 // 		loading -> The animation is being requested but not all of the frames have loaded
@@ -42,10 +46,17 @@ function updateMenusDisplayVisibility(status){
 		switch( status ){
             case "loading":
                 $('#CalendarsAndStopContainer').hide("fade");
+<<<<<<< HEAD
 				$('#animControls a').hide();// Hidde the rest of the buttons
                 $('#animControls').show("fade");//Show the stop button
 				$('#stopAnimText').show("fade");
 				$('#animControls [class*=stop]').parent().show("fade");
+=======
+				$('#animControls a').hide();// Hidde all the animation controls 
+                $('#animControls').show("fade");//Show the stop button
+				$('#stopAnimText').show("fade");
+				$('#animControls [class*=stop]').parent().show();
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
                 $('#l-animation').show("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
@@ -54,13 +65,38 @@ function updateMenusDisplayVisibility(status){
             case "playing":
                 $('#CalendarsAndStopContainer').hide("fade");
 				$('#stopAnimText').hide();
+<<<<<<< HEAD
 				$('#animControls a').show("fade");// Show all the buttons
+=======
+				$('#animControls a').show();// Show all the buttons
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
                 $('#l-animation').hide("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
                 $('#elevationParent').hide("fade");
                 $('#hideCalendarButtonParent').hide("fade");
+<<<<<<< HEAD
                 break;
+=======
+				// Animation controls
+				$('#animControls [class*=step]').parent().hide();
+				$('#animControls [class*=fast-back]').parent().hide();
+				$('#animControls [class*=fast-forw]').parent().hide();
+				$('#animControls [class*=play]').parent().hide();
+				$('#animControls [class=glyphicon-backward]').parent().show();
+				$('#animControls [class*=glyphicon-forward]').parent().show();
+				$('#animControls [class*=pause]').parent().show();
+                break;
+            case "paused":
+				$('#animControls [class*=pause]').parent().hide();
+				$('#animControls [class*=glyphicon-backward]').parent().hide();
+				$('#animControls [class*=glyphicon-forward]').parent().hide();
+				$('#animControls [class*=step]').parent().show();
+				$('#animControls [class*=fast-back]').parent().show();
+				$('#animControls [class*=fast-forw]').parent().show();
+				$('#animControls [class*=play]').parent().show();
+				break;
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
             case "none":
             default:
                 $("#palettesMenuParent").show();
@@ -130,7 +166,11 @@ function animIncreaseFrame(){
  * @returns {undefined}
  */
 function animFaster(){
+<<<<<<< HEAD
 	animSpeed = animSpeed*.90;
+=======
+	animSpeed = animSpeed*.80;
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 	startAnimationLoop();
 }
 /**
@@ -138,7 +178,11 @@ function animFaster(){
  * @returns {undefined}
  */
 function animSlower(){
+<<<<<<< HEAD
 	animSpeed = animSpeed*1.10;
+=======
+	animSpeed = animSpeed*1.20;
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 	startAnimationLoop();
 }
 
@@ -153,7 +197,10 @@ function updateAnimationStatus(newStatus){
 	switch(owgis.ncwms.animation.animStatus){
 		case "none"://When the animation has been stoped
 			currentAnimation++;//It is used to stop any previous images
+<<<<<<< HEAD
 			updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+=======
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 			
 			clearLoopHandler();
 			
@@ -163,9 +210,16 @@ function updateAnimationStatus(newStatus){
 			
 			updateTitleAndKmlLink();
 			break;
+<<<<<<< HEAD
 		case "pause": break;
 		case "playing": break;
 	}
+=======
+		case "paused": break;
+		case "playing": break;
+	}
+	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 	
 }
 /**
@@ -174,6 +228,7 @@ function updateAnimationStatus(newStatus){
  * @returns {undefined}
  */
 function obtainSelectedDates(){
+<<<<<<< HEAD
 	// Obtains the selected dates 
 	if(getUserSelectedTimeFrame().indexOf("/") === -1){
 		allFrames = getUserSelectedTimeFrame().split(",");
@@ -183,6 +238,38 @@ function obtainSelectedDates(){
 		
 		var startDate = Calendar.intToDate(calStart.selection.get());
 		var endDate = Calendar.intToDate(calEnd.selection.get());
+=======
+
+	if(getUserSelectedTimeFrame().indexOf("/") === -1){
+		allFrames = getUserSelectedTimeFrame().split(",");
+	}else{
+		//In this case the user has selected full
+		// we haven't find a proper way to find all the requests when is full.
+		// We obtain the number of frames, divided by the number of days and assume
+		// the hours all start at 0. Example. Full frames are 24, and is one day, then 
+		// we assume there is one frame each hour, from hr 0 to 23
+		allFrames = new Array();
+		totalNumOfFrames = 0;
+		
+		var startDate = new Date($("#cal-start").val());
+		var endDate = new Date($("#cal-end").val());
+
+		var totalFramesTxt = $("#timeSelect :selected").text();
+		var firstIndx = totalFramesTxt.indexOf("(");
+		totalFramesTxt = totalFramesTxt.substr(firstIndx,totalFramesTxt.length);
+		var secondIndx = totalFramesTxt.indexOf(" ");
+		totalFramesTxt = totalFramesTxt.substr(1,secondIndx);
+
+		var hrsIncrement = 24;
+		try{
+			var totFrames = parseInt(totalFramesTxt);
+			var totDays = owgis.utils.days_between(startDate,endDate);
+			var hrsPerDay = (totFrames - 1)/totDays;
+			hrsIncrement = 24/hrsPerDay;
+		}catch(e){
+
+		}
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 		
 		var currYear, currMonth, currDay;
 		currDate= startDate;
@@ -192,7 +279,13 @@ function obtainSelectedDates(){
 			currMonth = currDate.getUTCMonth();
 			currDay = currDate.getUTCDate();
 			//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
+<<<<<<< HEAD
 			allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay);
+=======
+			for(var hr = 0; hr < hrsPerDay; hr++){
+				allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T"+hr*hrsIncrement+":00:00.000Z");
+			}
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 			currDate.setDate( currDate.getDate() + 1);
 		}
 	}
@@ -230,8 +323,11 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	currentFrame = 0; //Set to use the first frame
 	map.addLayer(animLayer);
 
+<<<<<<< HEAD
 //	owgis.ncwms.animation.animStatus = "loading"; 
 	updateTitleAndKmlLink();
+=======
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 }
 
 /**
@@ -270,8 +366,14 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	console.log("----------- Canvas reload -----------");
 
 	currentAnimation++;//Increments the animation counter;
+<<<<<<< HEAD
 
 	owgis.ncwms.animation.animStatus = "loading"; 
+=======
+	owgis.ncwms.animation.animStatus = "loading"; 
+	updateTitleAndKmlLink();
+
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 	loadedFrames = 0;// Reset the total number of images loaded
 	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
@@ -382,7 +484,10 @@ function imageHasBeenLoadedParallel(e){
 	if( owgis.ncwms.animation.animStatus === "loading"){
 		var currentImage = parseInt(e.target.id);
 		var currentBelongs = parseInt(e.target.belongs);//Reads the image animation belonging
+<<<<<<< HEAD
 //		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
+=======
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
@@ -436,7 +541,17 @@ function loopAnimation(){
 	//	console.log("Displaying Frame: "+ currentFrame);
 	
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
+<<<<<<< HEAD
 	$("#animDate").text(allFrames[currentFrame]);
+=======
+
+	// Removing the T00:00:00.000Z from the text
+	var finalText = allFrames[currentFrame];
+	finalText = finalText.replace("T0:00:00.000Z",'');
+
+	$("#animDate").text(finalText);
+
+>>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a
 	ctx.stroke();
 	map.render();
 }

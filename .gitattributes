@@ -1,0 +1,11 @@
+# Explicitly declare eof=lf files you want to always be normalized and converted
+# to native line endings on checkout.
+*.js eof=lf
+*.java eof=lf
+*.jsp eof=lf
+*.css eof=lf
+*.scss eof=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
