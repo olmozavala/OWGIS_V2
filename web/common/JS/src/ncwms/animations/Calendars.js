@@ -46,25 +46,6 @@ function initCalendars(){
 				if (year > maxYear) maxYear = year;
 			}
 		}
-<<<<<<< HEAD:web/common/JS/src/ncwms/animations/Calendars.js
-	}
-
-	for (var month in datesWithData[minYear]) {
-		if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
-			if(month < minMonth){
-				minMonth = parseInt(month);
-				minDay =datesWithData[minYear][month][0];//Assumes it has at least one day
-			}
-		}
-	}
-
-	for (var month2 in datesWithData[maxYear]) {
-		if(owgis.utils.IsNumeric(month2)){
-			if(parseInt(month2) > maxMonth){
-				maxMonth = parseInt(month2);
-				//Assumes it has at least one day
-				maxDay =datesWithData[maxYear][month2][datesWithData[maxYear][month2].length - 1];
-=======
 		
 		for (var month in datesWithData[minYear]) {
 			if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
@@ -82,7 +63,6 @@ function initCalendars(){
 					//Assumes it has at least one day
 					maxDay =datesWithData[maxYear][month2][datesWithData[maxYear][month2].length - 1];
 				}
->>>>>>> d2965d2334ba066b061166fc4b1ad6f1ded9362a:web/common/JS/src/ncwms/animations/Calendars.js
 			}
 		}
 		
@@ -135,7 +115,6 @@ function initCalendars(){
 function updateCalendarEnd(){
 	updateCalendarOpts("endCal");
 }
-
 /**
  * Function called when the start calendar gets updated
  */
