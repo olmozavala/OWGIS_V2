@@ -99,7 +99,8 @@ public class HtmlTools {
 					}
 				}
 				if (!found) {
-					throw new Exception("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree");
+//					throw new Exception("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree");
+					System.out.println("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree");
 				}
 			}
 		}

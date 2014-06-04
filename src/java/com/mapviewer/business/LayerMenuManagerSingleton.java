@@ -277,9 +277,9 @@ public class LayerMenuManagerSingleton {
 			LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
 			updated = true;
 		} else {
-			for (int i = 0; i < xmlFiles.length; i++) {
-				currLastUpdate = FileManager.lastModification(xmlFiles[i]);
-				//If is the first time we generate the tree or the file has been updated we 
+			for (String xmlFile : xmlFiles) {
+				currLastUpdate = FileManager.lastModification(xmlFile);
+				//If is the first time we generate the tree or the file has been updated we
 				// regenerate the tree menu and update the layers. 
 				synchronized (this) {
 					if ((lastUpdate == null) || (lastUpdate.getTime() < currLastUpdate.getTime())) {
@@ -322,9 +322,9 @@ public class LayerMenuManagerSingleton {
 	 */
 	private void createMenuFromXMLfiles() throws XMLFilesException {
 		try {
-			//First search for MenuEntries in all the files
-			for (int i = 0; i < xmlFiles.length; i++) {
-				String fileName = xmlFiles[i];
+			// Iterates over all the XML files finding MenuEntries and adding into the 
+			// menuEntries array
+			for (String fileName : xmlFiles) {
 				SAXBuilder builder = new SAXBuilder(); //used to read XML
 				Document doc = builder.build(fileName);
 
@@ -340,10 +340,10 @@ public class LayerMenuManagerSingleton {
 					}
 				}
 			}
-			for (int i = 0; i < xmlFiles.length; i++) {
-				String fileName = xmlFiles[i];
+			for (String fileName : xmlFiles) {
 				SAXBuilder builder = new SAXBuilder();
-				Document doc = builder.build(fileName);
+				Document doc;
+				doc = builder.build(fileName);
 
 				// Obtains the root element of the current XML file
 				Element root = doc.getRootElement();

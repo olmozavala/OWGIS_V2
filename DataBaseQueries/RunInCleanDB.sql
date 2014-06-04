@@ -12,6 +12,10 @@ SELECT AddGeometryColumn('cruises','geom','4326','LINESTRING','2')
 -- Add the Geometry column into the sailbuoy table 
 SELECT AddGeometryColumn('sailbuoy','geom','4326','POINT','2')
 
+--------------- Shoresamples table -----------------------
+-- Add the Geometry column into the shoresamples table 
+SELECT AddGeometryColumn('shoresamples','geom','4326','POINT','2')
+
 -- This function receives a 'cruise_id' and searchs for
 -- the sites of that cruise and updates its 'path'
 CREATE OR REPLACE FUNCTION createCruisePath(text) RETURNS void AS $$
@@ -30,8 +34,6 @@ CREATE OR REPLACE FUNCTION createCruisePath(text) RETURNS void AS $$
 	WHERE cruise_id = $1
 
 $$ LANGUAGE SQL;
-
-
 
 ------------------------ VIEWS ------------------
 -- This view has all the cruises
@@ -135,4 +137,14 @@ SELECT m.mooring_id as name, md.device_type as mtype,
     WHERE s.geom <> ''
     ORDER BY m.mooring_id
 
+-- This view has all shoresamples grouped by shore mission
+CREATE OR REPLACE VIEW shoresamples_view AS 
+SELECT  shore.sample_id as sample_id,
+	shore.date as date,
+	shore.location_name as location,
+	miss.name as mission, 
+	shore.geom as geom
 
+FROM shoresamples as shore
+	JOIN shoremissions as miss on shore.shore_mission_id = miss.shore_mission_id
+	ORDER BY miss.name
