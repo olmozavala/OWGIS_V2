@@ -30,7 +30,7 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-  
+	
 	var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
@@ -38,9 +38,8 @@ function initCalendars(){
 	var maxMonth = -1;
 	var minDay = 32;
 	var maxDay = -1;
-
+	
 	if(typeof datesWithData !== "undefined"){
-		
 		for (var year in datesWithData) {
 			if (typeof datesWithData[year] !== 'function') { // avoid built-in functions
 				if (year < minYear) minYear = year;
@@ -103,11 +102,11 @@ function initCalendars(){
 		else{//If we only have one day then we hide all the calendar options
 			_mainlayer_multipleDates= false;
 		}
+		
 	}
 	else{//If we only have one day then we hide all the calendar options
         _mainlayer_multipleDates= false;
 	}
-	
 }
 
 /**

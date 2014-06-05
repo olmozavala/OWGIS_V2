@@ -120,6 +120,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                         <img border="0" src="${basepath}/common/images/Logos/gom-fs-logo-2.png" alt="Logo" width="60" height="60" /></a>
 				</div>
 				<div id="pieDePaginaIzq" class="leftFoot">
+					testing
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="${basepath}/common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
