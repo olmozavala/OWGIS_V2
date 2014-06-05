@@ -1,0 +1,15 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+
+	<MenuEntries>
+		<MenuEntry ID="shorem" EN="Shore missions" ES="Misiones"/>
+		<MenuEntry ID="shorem" EN="Shore missions" ES="Misiones"/>
+	</MenuEntries>
+
+    <MainLayers BBOX="-96.36875,29.1038333,-29.10666667,37.281888889"
+        format="image/jpeg"  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+        tiled="true" trans_effect="none" vectorLayer="true" > 
+        <layer Menu="shorem,all" EN="Drifters" name="postgis:shoresamples" 
+                featureInfo="postgis:shoresamples"/>
+    </MainLayers>
+
+</MenuConf>
