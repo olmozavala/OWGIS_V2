@@ -498,9 +498,10 @@ function loopAnimation(){
 	clearCanvas();
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
 	
-	// Removing the T00:00:00.000Z from the text
+	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-	finalText = finalText.replace("T0:00:00.000Z",'');
+	finalText = finalText.replace(":00:00.000Z",'');
+	finalText = finalText.replace("T",' Hr ');
 	
 	$("#animDate").text(finalText);
 	
