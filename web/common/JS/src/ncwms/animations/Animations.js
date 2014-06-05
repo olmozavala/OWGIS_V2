@@ -306,6 +306,13 @@ function getResolutionRatio(){
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	
 	console.log("----------- Canvas reload -----------");
+    var canvasWidth = size[0];
+    var canvasHeight = size[1];        
+
+ 	var canvas = document.getElementById('animationCanvas');    
+	canvas.width = canvasWidth;
+	canvas.height = canvasHeight;   	
+	clearCanvas();
 
 	currentAnimation++;//Increments the animation counter;
 	owgis.ncwms.animation.animStatus = "loading"; 
@@ -315,34 +322,12 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
 	
-    var canvasWidth = size[0];
-    var canvasHeight = size[1];        
-	
-    var canvas = document.getElementById('animationCanvas');    
-	canvas.width = canvasWidth;
-	canvas.height = canvasHeight;
-	
-    ctx = canvas.getContext('2d');
-	
-	/*
-	console.log("-----------------------");
-	console.log("Extent:" + extent);
-	console.log("Resolution: " + resolution);
-	console.log("PixelRatio: " + pixelRatio);
-	console.log("Size: " + size);
-	 */
-	
-	originalResolution = resolution;
-	originalExtent = extent;
-	originalCenter = map.getView().getCenter();
-	originalPixelsCenter = map.getPixelFromCoordinate(originalCenter);
-	
 	var bbox = extent;
 	var animResolution = getResolutionRatio();
 	var imgWidth = Math.ceil(canvasWidth*animResolution);
 	var imgHeight = Math.ceil(canvasHeight*animResolution);
 	
-	//Check status of previous animation and deletes it if exists
+	//Generates the images urls based on the main layer
 	var mainLayer = owgis.layers.getMainLayer();
 	var mainSource = mainLayer.getSource();
 	var mainParams = mainSource.getParams();
@@ -375,7 +360,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 	// This loops starts 'n' number of parallel requests for animation
 	// images.
-	for(i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
+	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
 		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 		eval('imageNumber'+i+'.src = imgSrc;');
@@ -388,8 +373,22 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 
 	startAnimationLoop();
 	
+	console.log("----------- Out of Canvas reload -----------");
     return canvas;
 } 
+
+/**
+ * Clears the canvas by drawing an empty rectangle 
+ * @returns {undefined}
+ */
+function clearCanvas(){
+	var canvas = document.getElementById('animationCanvas');    
+	
+	//Clears any previous display in the canvas
+    var ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+}
 
 /**
  * Log the error and try to load the image again 
@@ -418,9 +417,14 @@ function errorFunction(e){
 function imageHasBeenLoadedParallel(e){
 	e.target.removeEventListener('load', imageHasBeenLoadedParallel, false); 
 
+	// This force to clear the canvas is to avoid bug in
+	// firefox that displays previous imagesj
+	clearCanvas();
+
 	if( owgis.ncwms.animation.animStatus === "loading"){
 		var currentImage = parseInt(e.target.id);
 		var currentBelongs = parseInt(e.target.belongs);//Reads the image animation belonging
+
 		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
@@ -448,43 +452,62 @@ function imageHasBeenLoadedParallel(e){
 	}
 }
 
-
+/**
+ * Removes previously defined animation callback functions 
+ * @returns {undefined}
+ */
 function clearLoopHandler(){
 	if(typeof intervalHandler !== 'undefined'){
 		clearInterval(intervalHandler);
 	}
 }
 
+/**
+ * Initilizes the callback function to start the animation loop 
+ * @returns {undefined}
+ */
 function startAnimationLoop(){
 	clearLoopHandler();
 	intervalHandler = setInterval(loopAnimation,animSpeed);
 }
 
 
+/**
+ * This is the callback function in charge of displaying
+ * the proper frames of the animations 
+ * @returns {undefined}
+ */
 function loopAnimation(){
 	var canvas = document.getElementById('animationCanvas');    
+    var ctx = canvas.getContext('2d');
 	
+	//When the animation is 'playing' it loops on all the frames
 	if(owgis.ncwms.animation.animStatus === "playing"){ 
 		currentFrame = currentFrame < (totalNumOfFrames-1)? ++currentFrame: 0;
 	}
+	// When the animatino is being loaded it loops between the 
+	// images that have already been loaded
 	if(owgis.ncwms.animation.animStatus === "loading"){
 		currentFrame = currentFrame < (loadedFrames)? ++currentFrame: 0;
 	}
 	
-	//	console.log("Displaying Frame: "+ currentFrame);
-	
+	clearCanvas();
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
-
+	
 	// Removing the T00:00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
 	finalText = finalText.replace("T0:00:00.000Z",'');
-
+	
 	$("#animDate").text(finalText);
-
-	ctx.stroke();
+	
 	map.render();
 }
 
+/**
+ * Public function used to initilize the control buttons
+ * of the animation 
+ * @returns {undefined}
+ */
 owgis.ncwms.animation.initAnimationControls = function(){
 	$('#animControls a').tooltip({ position: "bottom left", opacity: 0.7});
-}
+};
