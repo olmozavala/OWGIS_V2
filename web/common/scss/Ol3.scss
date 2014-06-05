@@ -9,16 +9,16 @@
 @import "base";
 
 div.fullWindow {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 div.halfWidthWindow{
-    width: 50%;
-    height: 100%;
+	width: 50%;
+	height: 100%;
 }
 div.halfHeightWindow{
-    width: 100%;
-    height: 50%;
+	width: 100%;
+	height: 50%;
 }
 
 //Defines the position of the +,- zoom buttons
@@ -45,8 +45,8 @@ div.halfHeightWindow{
 /* container of map image of openlayers */
 #map
 {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
     cursor:crosshair;
     margin-left: auto ;
     margin-right: auto ;
@@ -55,7 +55,7 @@ div.halfHeightWindow{
 
 /* Defines to not display anything if the layer was not found*/
 .olImageLoadError{
-    display: none !important;
+	display: none !important;
 }
 
 /* This is the class that the FTL from geoserver uses 
@@ -71,17 +71,17 @@ div.layersLonLat{
     right:5%;
     width: 14em;
     height:4em;
-    cursor: auto;
+	cursor: auto;
     pointer-events: none;
     background-image:url('../images/transBack.png');
-    font-weight: bold;
+	font-weight: bold;
 }
 /* Used by open layers to display longitude and latitude */
 .ol-lat-lon{
     color: $invColor;
     font-size: $f_normal;
     text-align: center;
-    font-weight: normal;
+	font-weight: normal;
 }
 
 
