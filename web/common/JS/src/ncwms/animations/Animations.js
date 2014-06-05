@@ -305,6 +305,10 @@ function getResolutionRatio(){
  */
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	
+	for(var i = 0; i < totalNumOfFrames; i++){
+		eval("imageNumber"+i+".src = '';");
+	}
+
 	console.log("----------- Canvas reload -----------");
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
