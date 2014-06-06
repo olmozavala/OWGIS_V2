@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -39,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet obtains the 'punctual' data of the layers by generating a WMS
- * 'GetFeatureInfo' request. In order to avoid the AJAX restriction of the 'same domain'
+ * 'GetFeatureInfo' request. In order to avoid the AJAX restriction of the 'same domain
  * request this servlet makes the request on its own and stores all the result in a
  * string, then it returns the string to the page. Fills in the ${server} variable
  *
@@ -140,6 +141,8 @@ public class RedirectServersServlet extends HttpServlet {
 			}
 		}
 
+		DecimalFormat myFormatter = new DecimalFormat("###,###.###");
+
 		//we keep trying until server answers or numberOfRetries is reached. 
 		while (!finish && retry < numberOfRetries) {
 			try {
@@ -162,6 +165,8 @@ public class RedirectServersServlet extends HttpServlet {
 				float lon = 0;
 				float lat = 0;
 
+				boolean ncWMS_HeaderAdded = false;//Keeps track of adding a header of main layer
+
 				//sometimes the server return wierd characters so we filter them.  (caracteres ,??,*, etc.) 
 				while ((inputLine = in.readLine()) != null) {
 					//In version 1.7.5 of the geoserver, we otain an error when we ask for data outside the the correspoinding layer
@@ -181,6 +186,16 @@ public class RedirectServersServlet extends HttpServlet {
 						// If using ncWMS the responses are very different so we need to 'patch' 
 						// the answer in order to make it look nice. 
 						if (isNetCDF) {
+							if(!ncWMS_HeaderAdded){
+								result += " <hr style='border: 0;" +
+"											height: 1px;" +
+"											background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); " +
+"											background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); " +
+"											background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); " +
+"											background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));" +
+"											margin: 5px; '>";
+								ncWMS_HeaderAdded = true;
+							}
 							// We are interested in 3 lines. The one that contains the 'value'
 							// at the specific point. The ones that contains 'lon' and 'lat'
 							// to create the vertical profile link
@@ -198,10 +213,14 @@ public class RedirectServersServlet extends HttpServlet {
 
 							if (inputLine.contains("value")) {
 								if (!inputLine.contains("none")) {
+									inputLine = inputLine.replace("<value>", "");
+									inputLine = inputLine.replace("</value>", "");
+									float value = Float.parseFloat(inputLine);
+
 									if (layers.toLowerCase().contains("Temp") || layers.toLowerCase().contains("temp")) {
-										result += "<b>Temp: </b>" + inputLine + " &degC <br>";//if no random characters then we save the result. 
+										result += "<b>Temp: </b>" + myFormatter.format(value) + " &degC <br>";//if no random characters then we save the result. 
 									} else {
-										result += "<b>Value: </b>" + inputLine + "<br>";
+										result += "<b>Value: </b>" + myFormatter.format(value) + "<br>";
 									}
 								} else {
 									result = "";
@@ -238,7 +257,7 @@ public class RedirectServersServlet extends HttpServlet {
 						time = request.getParameter("BOTHTIMES");
 
 						//We only add the link if we receive the TIME information
-						if (!time.equals("No current date")) {
+						if (!time.equals("No current date") && !time.equals("undefined")) {
 							timeSeriesUrl += "&TIME=" + time;
 							result += "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popItUp('" + timeSeriesUrl + "',520,420)\" > show </a><br>";
 						}//

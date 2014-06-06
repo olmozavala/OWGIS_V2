@@ -133,6 +133,8 @@ Asynchronous.prototype.call = Asynchronous_call;
  */
 function AsyncPunctualData(responseText) {
 
+	$("#map").removeClass("loadingCursor");
+	$("#map").addClass(".defaultCursor");
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();

@@ -10,6 +10,7 @@ and open the template in the editor.
 */
 @import "base";
 
+//Defined the properties of the popup
 .ol-popup {
 	position: absolute;
 	background-color: $fontColor;
@@ -17,7 +18,7 @@ and open the template in the editor.
 	@include box-shadow(black 2px 2px 3px);
 	padding: 14px;
 	border-radius: $default-border-radius;
-	border: 1px solid #cccccc;
+	border: 1px solid $popupBorderTopColorAfter; 
 	bottom: 12px;
 	left: -50px;
 	z-index: 1006;
