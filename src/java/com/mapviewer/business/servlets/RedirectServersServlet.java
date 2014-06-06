@@ -218,9 +218,9 @@ public class RedirectServersServlet extends HttpServlet {
 									float value = Float.parseFloat(inputLine);
 
 									if (layers.toLowerCase().contains("Temp") || layers.toLowerCase().contains("temp")) {
-										result += "<b>Temp: </b>" + myFormatter.format(value) + " &degC <br>";//if no random characters then we save the result. 
+										result += "<b >Temp: </b>" + myFormatter.format(value) + " &degC <br>";//if no random characters then we save the result. 
 									} else {
-										result += "<b>Value: </b>" + myFormatter.format(value) + "<br>";
+										result += "<b >Value: </b>" + myFormatter.format(value) + " ADD_UNITS <br>";
 									}
 								} else {
 									result = "";
