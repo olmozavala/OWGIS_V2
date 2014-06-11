@@ -68,6 +68,7 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class=glyphicon-backward]').parent().show();
 				$('#animControls [class*=glyphicon-forward]').parent().show();
 				$('#animControls [class*=pause]').parent().show();
+				$('#animControls [class*=save]').parent().show();
                 break;
             case "paused":
 				$('#animControls [class*=pause]').parent().hide();
@@ -77,6 +78,7 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class*=fast-back]').parent().show();
 				$('#animControls [class*=fast-forw]').parent().show();
 				$('#animControls [class*=play]').parent().show();
+				$('#animControls [class*=save]').parent().show();
 				break;
             case "none":
             default:
@@ -367,6 +369,8 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
 		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+
+//		console.log(imgSrc);
 		eval('imageNumber'+i+'.src = imgSrc;');
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
@@ -374,6 +378,11 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		eval("imageNumber"+i+".addEventListener('load', imageHasBeenLoadedParallel);");
 		eval("imageNumber"+i+".addEventListener('error', errorFunction);");
 	}
+	//For the link to download the GIF
+	animParams.FORMAT = "image/gif";
+	animParams.TIME = allFrames.join(",");
+	var gifLink = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+	$('#animControls [class*=save]').parent().attr("href",gifLink);
 
 	startAnimationLoop();
 	

@@ -111,6 +111,11 @@
 			   title="<fmt:message key='ncwms.anim.help.fastforw'/>" >
 				<span class="glyphicon glyphicon-fast-forward"></span>
 			</a>
+
+			<a class="btn btn-default btn-xs " href="#" target="_blank"
+			   title="<fmt:message key='ncwms.anim.help.save'/>" >
+				<span class="glyphicon glyphicon-floppy-save"></span>
+			</a>
 		</div>
 	</div>
 	<div class="row">
