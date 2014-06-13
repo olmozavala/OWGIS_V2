@@ -34,26 +34,13 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <form id="baseForm" class="form-inline" name="baseForm" action="${basepath}${names.acdmServlet}" method="post">
 
             <!-- List of optional layers -->
-            <div class="draggableWindow" id="optionalMenuParent" 
-                  onmouseover="hoverInstructionsFixedPos('optionalLayersParentHover', '1')" 
-                  onmouseout="hoverInstructionsFixedPos('optionalLayersParentHover', '2')" >
+            <div class="draggableWindow toolTipWithImage" id="optionalMenuParent" title="optionalLayersParentHover">
                 <%@include file="Options/OptionalLayers.jsp" %>
-				<span id="optionalLayersParentHover" class="commonHover">
-					<fmt:message key="help.optional.layers1" />
-					<img src="${basepath}/common/images/kmz/kmz.png"/> 
-					<fmt:message key="help.optional.layers2" />
-					<img src="${basepath}/common/images/Download/LayerDownload.png"/> 
-					<fmt:message key="help.optional.layers3" />
-				</span>
 			</div>
 
             <!-- These are the dropdowns for the base layer-->
-            <div class="transDraggableWindow" id="mainMenuParent" 
-                onmouseover="hoverInstructionsFixedPos('mainMenuParentHover', '1')" 
-                onmouseout="hoverInstructionsFixedPos('mainMenuParentHover', '2')" >
-                    <span id="mainMenuParentHover" class="commonHover">
-						<fmt:message key="help.mainlayers" />
-                    </span>
+            <div class="transDraggableWindow toolTip" id="mainMenuParent" 
+                title = "<fmt:message key="help.mainlayers" />"   >
                     <div class="row ">
                         <div  class="col-xs-9 text-center invShadow title"> 
                             <fmt:message key="main.base" />
@@ -148,6 +135,13 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			jQuery(document).ready(function() {
 				owgisMain();
 			});
-		</script> 
+		</script>
+		<div id="optionalLayersParentHover" class="commonHover" >
+					<fmt:message key="help.optional.layers1" />
+					<img src="${basepath}/common/images/kmz/kmz.png"/> 
+					<fmt:message key="help.optional.layers2" />
+					<img src="${basepath}/common/images/Download/LayerDownload.png"/> 
+					<fmt:message key="help.optional.layers3" />
+				</div> 
     </body>
 </html>

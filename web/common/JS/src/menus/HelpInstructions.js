@@ -118,8 +118,12 @@ function displayHoverHelp() {
     hoverInstructions('helpIconHover', '2');//Hides the text of the helpIcon
     hoverDisabled = !hoverDisabled;
     if (hoverDisabled) {
+    	$('.toolTip').uitooltip('disable');
+    	$('.toolTipWithImage').uitooltip('disable');
         $("#helpHoverImg").attr("src","./common/images/Help/Help1Disabled.png");
     } else {
+    	$('.toolTip').uitooltip('enable');
+    	$('.toolTipWithImage').uitooltip('enable');
         $("#helpHoverImg").attr("src","./common/images/Help/Help1.png");
     }
 }

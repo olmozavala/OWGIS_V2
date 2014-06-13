@@ -43,6 +43,7 @@ function owgisMain(){
     initVariables();
 	initMenus();
 	initHelpTxtPos();
+	owgis.tooltips.initHelpTexts();
 }
 
 /**

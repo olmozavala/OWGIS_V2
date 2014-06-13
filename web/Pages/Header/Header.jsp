@@ -19,7 +19,9 @@
 		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
 		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
         <!-- End Jquery -->
-
+        <script>
+		$.widget.bridge('uitooltip', $.ui.tooltip);
+		</script>
         <!-- Bootstrap -->
 		<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
 		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
@@ -80,6 +82,7 @@
 		<script src="${basepath}/common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="${basepath}/common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="${basepath}/common/JS/src/main/mapDisplay.js"> </script>
+		<script src="${basepath}/common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
 		<!--Debug mode-->
 
