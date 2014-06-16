@@ -254,7 +254,7 @@ public class HtmlMenuBuilder {
 				format = "image/geotiff";
 			}
 
-			String[][] solicitudWCS = GeneraSolicitudesWCS.wcsManager(0, selectedLayer, format, null);
+			String[][] solicitudWCS = GeneraSolicitudesWCS.wcsManager(selectedLayer, format, null);
 			String finalHtml = tabs + "<A href=\"" + solicitudWCS[0][0] + "\">\n";
 			tabs += "\t";
 			finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png\" \n";

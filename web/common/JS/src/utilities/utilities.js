@@ -148,7 +148,7 @@ owgis.utils.changeShadow = function(id, mode){
 	}
 };
 
-/**this functions opens up the url passed in
+/**this functions opens up the url passed in with the desired width and height
  *@param url - link to new page
  *@param width - width of new window
  *@param height - height of new window
@@ -254,3 +254,4 @@ owgis.utils.days_between = function (date1, date2) {
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY);
 }
+
