@@ -221,6 +221,15 @@ public class Layer {
 			layerDetails.accumulate("server", server);
 			layerDetails.accumulate("name", name);
 			layerDetails.accumulate("srs", this.getProjection());
+			layerDetails.accumulate("bbox", this.getBbox().toString());
+			
+			String layerType = "raster"; //By default all layer are  raster
+
+			if(this.isVectorLayer()){ layerType =  "vector"; }
+			if(this.isNetCDF()){ layerType = "ncwms"; }
+
+			layerDetails.accumulate("layerType", layerType); 
+
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
 		}

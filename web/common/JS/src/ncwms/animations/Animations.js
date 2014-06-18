@@ -3,6 +3,7 @@ goog.provide('owgis.ncwms.animation');
 goog.require('ol.source.ImageStatic');
 goog.require('ol.source.ImageWMS');
 goog.require('goog.events');
+goog.require('owgis.ogc');
 
 owgis.ncwms.animation.animStatus = "none"; 
 
@@ -85,6 +86,11 @@ function updateMenusDisplayVisibility(status){
                 $("#palettesMenuParent").show();
                 $("#lineToggle").show();
 //                $("#downloadDataParent").hide();
+				if(netcdf){
+					$("#downloadDataParent").hide();
+				}else{
+					$("#downloadDataParent").show();
+				}
 
                 if(_mainlayer_zaxisCoord){
                     $('#elevationParent').show("fade");
@@ -346,7 +352,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		LAYERS: layerName,
 		BBOX: bbox.toString(),
 		REQUEST: "GetMap",
-		VERSION: "1.3.0",
+		VERSION: owgis.ogc.wmsversion,
 		STYLES: lay_style+"/"+mappalette,
 		FORMAT: "image/png",
 		TRANSPARENT: "TRUE",

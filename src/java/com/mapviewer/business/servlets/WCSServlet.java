@@ -65,7 +65,6 @@ public class WCSServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		try {
-			int zoomLevel = Integer.parseInt((String) request.getParameter("zoom"));
 			String mainLayer = (String) request.getParameter("mainLayer");
 
 
@@ -75,12 +74,12 @@ public class WCSServlet extends HttpServlet {
 			String cqlfilter = "";
 			if (selectedLayer.isVectorLayer()) {
 				format = "SHAPE-ZIP";
-				cqlfilter = (String) request.getParameter("cqlfilter");
+				cqlfilter = (String) request.getParameter("CQLFILTER");
 			} else {
 				format = "image/geotiff";
 			}
 
-			String[][] solicitudWCS = GeneraSolicitudesWCS.wcsManager(zoomLevel, selectedLayer, format, cqlfilter);
+			String[][] solicitudWCS = GeneraSolicitudesWCS.wcsManager(selectedLayer, format, cqlfilter);
 			out.println(solicitudWCS[0][0]);
 //			out.println("<a href="+solicitudWCS[i][0]+" target='_blank' >"+solicitudWCS[i][2]+".<br>Capa GeoTiff <br> Resoluci&oacute;n  "+solicitudWCS[i][1]+" m</a><br><br>");
 		}catch(XMLFilesException ex){

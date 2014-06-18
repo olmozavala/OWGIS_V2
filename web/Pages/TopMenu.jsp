@@ -42,7 +42,7 @@
     <!-- Download data-->
     <div class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
         title="<fmt:message key='help.tooltip.download'/>"
-        onclick="getWCSV1Ajax('${basepath}');"  >
+        onclick="downloadData('${basepath}');"  >
         <fmt:message key="main.download" />
     </div>
     <!-- Export map as PNG image -->

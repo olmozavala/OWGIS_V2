@@ -41,6 +41,7 @@
 	<!-- Vector CQL layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
 				server="http://owgis.servehttp.com:8080/geoserver/wms"
+				vectorLayer="true"
 				cqlcols="NAME" >
 		<layer Menu="vector,veccqltest" name="demo:world_cities" 
 			   EN="Demo CQL filtering. Estimated population in 2010 more 2 million" 

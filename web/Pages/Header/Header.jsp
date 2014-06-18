@@ -76,7 +76,6 @@
 		<!--Menus related-->
 		
         <script src="${basepath}/common/JS/src/utilities/validation.js"> </script>
-        <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/CQL.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
@@ -93,6 +92,8 @@
 		<script src="${basepath}/common/JS/src/main/mapDisplay.js"> </script>
 		<script src="${basepath}/common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
+		<script src="${basepath}/common/JS/src/ogcstandards/ogcstandards.js"> </script>
+        <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->
