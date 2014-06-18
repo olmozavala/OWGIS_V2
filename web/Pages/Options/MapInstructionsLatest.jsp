@@ -30,7 +30,7 @@
         <div class="col-sm-9"> <fmt:message key="help.optional" /></div>
     </div>
     <div class="row defRowSpace">
-        <div class="col-sm-3 title">Google Earth</div>
+        <div class="col-sm-3 title"><fmt:message key="main.googleE" /></div>
         <div class="col-sm-9"> <fmt:message key="help.googleEarth" /></div>
     </div>
     <div class="row defRowSpace">

@@ -2,7 +2,8 @@
 This is the main jsp file that forms the html webpage. It contains the skeleton of the html application. 
 --%>
 
-<%@page pageEncoding="iso-8859-1"%>
+<%-- <%@page pageEncoding="iso-8859-1"%> --%>
+<%@page pageEncoding="UTF-8"%>
 <%@page errorPage="Error/ErrorPage.jsp" %>
 <%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,7 +12,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 <jsp:useBean id="globals" class="com.mapviewer.model.Globals" scope="page"> </jsp:useBean>
 
 <!--This part is used to change the texts depending on the language of the user browser-->
-<fmt:setLocale value="${language}" />
+<fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="com.mapviewer.messages.text" />
 
 <!DOCTYPE HTML>
@@ -122,13 +123,15 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 						</p></a>
                     <a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
 				</div>
+					<input type="hidden" id="_locale" name="_locale" value="" />
+				
         </form>
 			
         <!-- minimizable windows file -->
         <%@include file="Options/MinimizeWindows.jsp" %>
 			
-        <!-- Help texts file -->
-        <%@include file="Help/HelpTexts.jsp" %>
+<!--         Help texts file -->
+<%--         <%@include file="Help/HelpTexts.jsp" %> --%>
 
 		<script>
 			${openLayerConfig}
@@ -143,5 +146,8 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 					<img src="${basepath}/common/images/Download/LayerDownload.png"/> 
 					<fmt:message key="help.optional.layers3" />
 				</div> 
+	<input type="hidden" id="_locale" value="" />
+	
+	
     </body>
 </html>

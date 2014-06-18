@@ -2,45 +2,48 @@ goog.provide('owgis.tooltips');
 
 owgis.tooltips.initHelpTexts = function initHelpTexts() {
 	
+	$('.transDraggableWindow, .draggableWindow').on("mousemove",function(){
+		var disabled = $('.toolTip').uitooltip( "option", "disabled" );
+		if(!disabled){
+			$(this).uitooltip('close'); 
+			$(this).uitooltip('open');
+		}
+	});
+	
+	
 	$('.toolTip').uitooltip({
 		show: null, 
 		hide: null, 
 		tooltipClass: 'commonHover',
-		
+		position: { my: "left top+15", at: "left bottom" , collision: "flipfit"},
 			});
 	
-	
-	$('.toolTipWithImage').uitooltip({
+	$('.toolTip.transDraggableWindow, .toolTip.draggableWindow' ).uitooltip({
 		show: null, 
 		hide: null, 
 		tooltipClass: 'commonHover',
-		
+		position: { my: "left+15 center", at: "right center", collision: "flipfit" },
+			});
+//	
+	$('.toolTipWithImage.transDraggableWindow, .toolTipWithImage.draggableWindow').uitooltip({
+		show: null, 
+		hide: null, 
+		tooltipClass: 'commonHover',
+		position: { my: "left+15 center", at: "right center", collision: "flipfit" },
 		content: function() {
 		 var tooltip_div = "#" + $(this).attr('title');
 		 return $(tooltip_div).html();
 			}
 		});
-//		var tooltip_div;
-//	 $('.toolTipWithImage').mouseover(function(e){
-//		 		if($(this).attr('data-tip-source') == null) return false;
-//		 		tooltip_div = "#" + $(this).attr('data-tip-source');
-//		 		$(tooltip_div).css('display','block');
-//	        }).mousemove(function(e){
-//	        	if($(this).attr('data-tip-source') == null) return false;
-//	        	tooltip_div = "#" + $(this).attr('data-tip-source');
-//	            var toolTipWidth = $(tooltip_div).outerWidth();
-////	            var toolTipHeight = $(tooltip_div).outerHeight();
-//	            var pageWidth = $(document).width();
-//	             if( e.pageX > pageWidth/2 ) {
-//	            	 $(tooltip_div).css('left', (e.pageX-toolTipWidth+20)+'px');
-//	             }
-//	             else {
-//	            	 $(tooltip_div).css('left', (e.pageX-20)+'px');
-//	             }
-//	               $(tooltip_div).css('top', (e.pageY+20)+'px');        
-//	        }).mouseout(function(e){
-//	        	if($(this).attr('data-tip-source') == null) return false;
-//	        	tooltip_div = "#" + $(this).attr('data-tip-source');
-//	        	$(tooltip_div).css('display','none');
-//	        });
 }
+
+
+
+
+//function updateToolTipPos(){
+//	alert('tooltip moved');
+////	$('.toolTip').uitooltip('disable');
+////	$('.toolTipWithImage').uitooltip('disable');
+////	$('.toolTip').uitooltip('enable');
+////	$('.toolTipWithImage').uitooltip('enable');
+//}

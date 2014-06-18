@@ -434,9 +434,9 @@ public class LayerMenuManagerSingleton {
 		HashMap<String, String> displayNames = new HashMap<>();
 		for (Iterator atribs = layer.getAttributes().iterator(); atribs.hasNext();) {
 			Attribute atrib = (Attribute) atribs.next();
-			// Important. We have the restriction that ALL the atributes relating
-			// to languages has to be 2 characters, and NONE other atribute should have this size
-			if (atrib.getName().length() == 2) {
+			// Important. We have the restriction that ALL the attributes relating
+			// to languages has to be 2 characters, or 2 characters followed by _ followed by 2 characters e.g. HI_EN
+			if (atrib.getName().length() == 2 || atrib.getName().matches("[A-X]{2}_[A-Z]{2}")) {
 				displayNames.put(atrib.getName(), atrib.getValue());
 			}
 		}

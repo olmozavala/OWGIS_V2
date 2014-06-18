@@ -8,7 +8,7 @@
     This page contains all the links to the CSS, and the javascript 
 --%>
 		<link rel="icon" href="${basepath}/common/images/icon/PageIcon.ico" type="image/x-icon" />
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta charset="utf-8"  />
         <meta name="Description" content="OWGIS Template" />
         <meta name="Keywords" content="OWGIS " />
 
@@ -18,6 +18,10 @@
 		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
 		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
+		
+		<!--Specific for Images in Dropdown for locale-->		
+		<script src="${basepath}/common/JS/vendor/jquery.dd.min.js"></script>
+
         <!-- End Jquery -->
         <script>
 		$.widget.bridge('uitooltip', $.ui.tooltip);
@@ -42,6 +46,11 @@
 		<link href="${basepath}/common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
+		<link href="${basepath}/common/CSS/Locale.css" rel="stylesheet" type="text/css"/>
+
+		<!--Specific for Images in Dropdown for locale-->
+		<link href="${basepath}/common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
+
 
 		<!--Specific for OpenLayers3 -->
 		<!--<link rel="stylesheet" href="http://ol3js.org/en/master/css/ol.css" />-->

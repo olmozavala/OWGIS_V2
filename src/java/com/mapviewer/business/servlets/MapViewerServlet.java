@@ -133,16 +133,29 @@ public class MapViewerServlet extends HttpServlet {
 
 			//Obtains the selection of the vector layers of the user. 
 
+			
+			String defaultLang=mapConfig.getProperty("defaultLanguage");
+			String availableLanguages=mapConfig.getProperty("availableLanguages");
+			
+			request.setAttribute("defaultLanguage", defaultLang);
+			request.setAttribute("availableLanguages", availableLanguages);
+			
 			String[] selectedVectorLayers = UserRequestManager.manageVectorLayersOptions(request, session);
 			int[] vectorLayers = opManager.obtainIndexForOptionalLayers(selectedVectorLayers);
-
-			//Obtains the language from the browser
-			String language = HtmlTools.getLanguage(request.getHeader("Accept-Language"));
-
+			
+			//Setting the locale gotten from the one seleted by the user on the website
+			String language=request.getParameter("_locale");
+			
+			//setting Default locale from the properties file on first time page load
+			if(language==null || "".equals(language)){
+				language=defaultLang;
+			}
+			
 			//openlayers configuration of javascript. 
 			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language);
 
 			//This is for the configuration of the page, this are read by the javascript throuhg jsp. 
+			
 			request.setAttribute("openLayerConfig", openLayerConfig);
 			request.setAttribute("language", language);
 			//add the link of the vactor layers the one with the checkboxes.            

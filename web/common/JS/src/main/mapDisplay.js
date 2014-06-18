@@ -44,6 +44,7 @@ function owgisMain(){
 	initMenus();
 	initHelpTxtPos();
 	owgis.tooltips.initHelpTexts();
+	initLocaleDropDown();
 }
 
 /**
@@ -437,6 +438,7 @@ function findPageHeight() {
 function MapViewersubmitForm() {
     if (map !== null) {
         saveAllWindowPositionsAndVisualizationStatus();
+        setSelectedLocale();
         submitForm();
     }
 }
@@ -490,6 +492,23 @@ function changeText(btn, pos) {
 function resetView(){
     localStorage.clear();
     submitForm();
+}
+
+/**
+ * This function is used to modify the locale dropdown
+ * to display flag icons in it.
+ */
+function initLocaleDropDown(){
+	$("#langDropDown").msDropDown();
+}
+
+/**
+ * This function is used to set the selected locale to a parameter _locale
+ * to use it in the MapViewerServlet
+ */
+function setSelectedLocale(){
+	var selectedLocale= $("#langDropDown").find('option:selected').val();
+	document.getElementById("_locale").value = selectedLocale;
 }
 
 goog.exportSymbol('owgis',owgis);

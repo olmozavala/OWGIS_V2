@@ -5,7 +5,9 @@
 --%>
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
-<div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
+<div class="transDraggableWindow menuHidden toolTip" id="CalendarsAndStopContainer"
+	title="<fmt:message key='help.tooltip.calender'/>"
+	>
 	<div id="CalendarParent container-fluid" >
 		<div class="row">
 			<div class="col-xs-6 text-center title " id="hideOneDay"> 

@@ -22,7 +22,7 @@
 									<xs:attribute name="BN" type="xs:string" ></xs:attribute>
 									<xs:attribute name="AR" type="xs:string" ></xs:attribute>
 									<xs:attribute name="RU" type="xs:string" ></xs:attribute>
-									<xs:attribute name="HI" type="xs:string" ></xs:attribute>
+									<xs:attribute name="HI_IN" type="xs:string" ></xs:attribute>
                                     <!-- For validating other languages is necessary to add them here -->
 								</xs:complexType>                 
 							</xs:element>       
@@ -179,7 +179,7 @@
 									<xs:attribute name="BN" type="xs:string" ></xs:attribute>
 									<xs:attribute name="AR" type="xs:string" ></xs:attribute>
 									<xs:attribute name="RU" type="xs:string" ></xs:attribute>
-									<xs:attribute name="HI" type="xs:string" ></xs:attribute>
+									<xs:attribute name="HI_IN" type="xs:string" ></xs:attribute>
 									<xs:attribute name="BBOX" type="xs:string"/>
 									<xs:attribute name="vectorLayer">
 										<xs:simpleType>

@@ -1,4 +1,5 @@
 <!-- Menu for Users -->
+<%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
 <div id="layersMenu" class="layersMenu">
 
     <!--
@@ -72,7 +73,9 @@
     </div>
 
 </div>
-
+                        <div id="languageDropDown">
+                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language)}
+                        </div>
 <div id="helpHoverSpan" >
     <img title="<fmt:message key='help.helpicon'/>" class="toolTip"
     onclick="displayHoverHelp();" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
