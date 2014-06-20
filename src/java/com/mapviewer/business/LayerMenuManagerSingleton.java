@@ -119,14 +119,13 @@ public class LayerMenuManagerSingleton {
 				//in the case it it offline and exception is raised and it skips until the catch
 				String layerDetails = NetCDFRequestManager.getLayerDetails(newLayer);
 
-				newLayer.setLayerDetails(layerDetails);//calling the function in Layer.java
-
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 					case "mainlayers":
 						//Updates the Root Tree menu with this new entry
 						updateMenu(layerMenu, this.rootMenu, 0, newLayer.isSelected());
 						//Assigns the 'Tree' of this menu to the layer
 						newLayer.setIdLayer(searchMenuEntries(layerMenu));
+						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
 						this.mainLayers.add(newLayer);
 						break;
 					case "backgroundlayers":
@@ -138,6 +137,7 @@ public class LayerMenuManagerSingleton {
 							OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance(); 
 							mapConfig.updateProperty("mapProjection", newLayer.getProjection());
 						}
+						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
 						this.backgroundLayers.add(newLayer);
 						break;
 					case "optionallayers":
@@ -146,6 +146,7 @@ public class LayerMenuManagerSingleton {
 
 						//Assigns the 'Tree' of this menu to the layer
 						newLayer.setIdLayer(searchMenuEntries(layerMenu));
+						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
 						this.vectorLayers.add(newLayer);
 						break;
 				}
@@ -434,9 +435,9 @@ public class LayerMenuManagerSingleton {
 		HashMap<String, String> displayNames = new HashMap<>();
 		for (Iterator atribs = layer.getAttributes().iterator(); atribs.hasNext();) {
 			Attribute atrib = (Attribute) atribs.next();
-			// Important. We have the restriction that ALL the atributes relating
-			// to languages has to be 2 characters, and NONE other atribute should have this size
-			if (atrib.getName().length() == 2) {
+			// Important. We have the restriction that ALL the attributes relating
+			// to languages has to be 2 characters, or 2 characters followed by _ followed by 2 characters e.g. HI_EN
+			if (atrib.getName().length() == 2 || atrib.getName().matches("[A-X]{2}_[A-Z]{2}")) {
 				displayNames.put(atrib.getName(), atrib.getValue());
 			}
 		}
@@ -483,8 +484,8 @@ public class LayerMenuManagerSingleton {
 		float maxColor = layerConf.getAttributeValue("maxcolor") != null
 				? Float.parseFloat(layerConf.getAttributeValue("maxcolor")) : layer.getMaxColor();
 
-		// Defines if a layer is a vector layer. It is only ('currently') used
-		// to modify the way KML links are created
+		// Defines if a layer is a vector layer. It is used 
+		// to modify the way KML links are created and for the 'Download data' feature
 		String tempVectorLayer = layerConf.getAttributeValue("vectorLayer");
 		boolean vectorLayer = false;
 		if (tempVectorLayer != null) {

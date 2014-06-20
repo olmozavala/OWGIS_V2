@@ -1,4 +1,5 @@
 <!-- Menu for Users -->
+<%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
 <div id="layersMenu" class="layersMenu">
 
     <!--
@@ -12,42 +13,36 @@
     </c:choose>
     -->
     <!-- Link to download kml files-->
-    <div class="buttonStyle" id="kmlLinkParent" 
-        onmouseover="hoverInstructions('mainKmlParentHover', '1',this,'below')" 
-        onmouseout="hoverInstructions('mainKmlParentHover', '2',this,'below')"  > 
+    <div class="buttonStyle toolTip" id="kmlLinkParent" 
+    title="<fmt:message key='help.tooltip.googleE'/>"> 
         <%@include file="Options/KmlLink.jsp" %>
     </div>
     <!-- Transparency -->
-    <div class="buttonLook" id="transParent" 
-        onmouseover="hoverInstructions('transParentHover', '1',this,'below')" 
-        onmouseout="hoverInstructions('transParentHover', '2',this,'below')" >
+    <div class="buttonLook toolTip" id="transParent" 
+    title="<fmt:message key='help.tooltip.transparency'/>">
         <%@include file="Options/Transparency.jsp" %>
     </div>
     <!-- Depth or elevation-->
-    <div class="buttonContainer menuHidden" id="elevationParent"
-        onmouseover="hoverInstructions('elevationParentHover', '1',this,'below')" 
-        onmouseout="hoverInstructions('elevationParentHover', '2',this,'below')"  >
+    <div class="buttonContainer menuHidden toolTip" id="elevationParent" 
+    title="<fmt:message key='help.tooltip.depthElevation'/>" >
         <%@include file="Options/Elevation.jsp" %>
     </div>
     <!-- Palettes -->
-    <div class="buttonStyle menuHidden" id="palettesMenuParent" 
-        onmouseover="hoverInstructions('palettesHover', '1',this,'below')"
-        onmouseout="hoverInstructions('palettesHover', '2',this,'below')"
+    <div class="buttonStyle menuHidden toolTip" id="palettesMenuParent" 
+    title="<fmt:message key='help.tooltip.palettes'/>"
          onclick="showPalettes()" id="dynamicFont_color"  >
             <fmt:message key="ncwms.pal" />
     </div>
     <!-- Transect tool-->
-    <div class="buttonStyle menuHidden" id="lineToggle" 
-        onmouseover="hoverInstructions('transectParentHover', '1',this,'below')"
-        onmouseout="hoverInstructions('transectParentHover', '2',this,'below')"
+    <div class="buttonStyle menuHidden toolTip" id="lineToggle" 
+         title="<fmt:message key='help.tooltip.transect'/>"
          name="type" value="line" onclick="toggleControl(this,'below');" >
             <fmt:message key="ncwms.transect" />
     </div>
     <!-- Download data-->
-    <div class="buttonStyle menuHidden" id="downloadDataParent" 
-        onmouseover="hoverInstructions('downloadDataParentHover', '1',this,'below')"
-        onmouseout="hoverInstructions('downloadDataParentHover', '2',this,'below')"
-        onclick="getWCSV1Ajax('${basepath}');"  >
+    <div class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
+        title="<fmt:message key='help.tooltip.download'/>"
+        onclick="downloadData('${basepath}');"  >
         <fmt:message key="main.download" />
     </div>
     <!-- Export map as PNG image -->
@@ -61,16 +56,16 @@
         </span>
     </div>-->
     <!-- Map Instructions-->
-    <div class="buttonStyle" id="helpParent" valign="middle">
-        <span id="helpText"
-            onmouseover="hoverInstructions('mapInstrucParentHover', '1',this,'below');"
-            onmouseout="hoverInstructions('mapInstrucParentHover', '2',this,'below')"
-            onclick="displayHelp();" atl="Help" />
+    <div class="buttonStyle toolTip" id="helpParent" valign="middle"  
+    title="<fmt:message key='help.tooltip.help'/>">
+        <span id="helpText"  onclick="displayHelp();" atl="Help" />
             <fmt:message key="main.help" />
         </span>
     </div>
     <!-- Reset view -->
-    <div class="buttonStyle" id="resetParent" valign="middle">
+    <div class="buttonStyle toolTip" id="resetParent" 
+     title="<fmt:message key='help.tooltip.resetview'/>"
+     valign="middle">
         <span id="resetText"
             onclick="resetView();" />
             <fmt:message key="main.resetView" />
@@ -78,8 +73,10 @@
     </div>
 
 </div>
-
+                        <div id="languageDropDown">
+                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language)}
+                        </div>
 <div id="helpHoverSpan" >
-    <img onmouseover="hoverInstructions('helpIconHover', '1',this,'belowleft',150,50)" onmouseout="hoverInstructions('helpIconHover', '2',this,'belowleft',150,0)"
+    <img title="<fmt:message key='help.helpicon'/>" class="toolTip"
     onclick="displayHoverHelp();" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
 </div>

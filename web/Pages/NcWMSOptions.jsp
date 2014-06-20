@@ -5,7 +5,9 @@
 --%>
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
-<div class="transDraggableWindow menuHidden" id="CalendarsAndStopContainer">
+<div class="transDraggableWindow menuHidden toolTip" id="CalendarsAndStopContainer"
+	title="<fmt:message key='help.tooltip.calender'/>"
+	>
 	<div id="CalendarParent container-fluid" >
 		<div class="row">
 			<div class="col-xs-6 text-center title " id="hideOneDay"> 
@@ -111,6 +113,19 @@
 			   title="<fmt:message key='ncwms.anim.help.fastforw'/>" >
 				<span class="glyphicon glyphicon-fast-forward"></span>
 			</a>
+
+			<a class="btn btn-default btn-xs " href="#" target="_blank"
+			   title="<fmt:message key='ncwms.anim.help.save'/>" >
+				<span class="glyphicon glyphicon-floppy-save"></span>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 defShadow title"> 
+			<span>
+				<fmt:message key="ncwms.anim.currdate" />
+			</span>
+			<span id="animDate"></span>
 		</div>
 	</div>
 	<div class="row">

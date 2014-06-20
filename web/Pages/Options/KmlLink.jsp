@@ -11,5 +11,5 @@ Download the link to view in Google Earth
 
 <a class="maplink" id="kmlLink" href="${linkKML}" style="text-align:center;" onclick="KMZDownAlert()">
     <img  border="0" src="${basepath}/common/images/kmz/google_earth_logo_topMenu.png" alt="Descargar en KML" />
-    Google Earth
+    <fmt:message key="main.googleE" />
 </a>

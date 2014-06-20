@@ -8,7 +8,7 @@
     This page contains all the links to the CSS, and the javascript 
 --%>
 		<link rel="icon" href="${basepath}/common/images/icon/PageIcon.ico" type="image/x-icon" />
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta charset="utf-8"  />
         <meta name="Description" content="OWGIS Template" />
         <meta name="Keywords" content="OWGIS " />
 
@@ -18,8 +18,14 @@
 		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
 		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
-        <!-- End Jquery -->
+		
+		<!--Specific for Images in Dropdown for locale-->		
+		<script src="${basepath}/common/JS/vendor/jquery.dd.min.js"></script>
 
+        <!-- End Jquery -->
+        <script>
+		$.widget.bridge('uitooltip', $.ui.tooltip);
+		</script>
         <!-- Bootstrap -->
 		<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
 		<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
@@ -40,6 +46,11 @@
 		<link href="${basepath}/common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
+		<link href="${basepath}/common/CSS/Locale.css" rel="stylesheet" type="text/css"/>
+
+		<!--Specific for Images in Dropdown for locale-->
+		<link href="${basepath}/common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
+
 
 		<!--Specific for OpenLayers3 -->
 		<!--<link rel="stylesheet" href="http://ol3js.org/en/master/css/ol.css" />-->
@@ -65,7 +76,6 @@
 		<!--Menus related-->
 		
         <script src="${basepath}/common/JS/src/utilities/validation.js"> </script>
-        <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/CQL.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/VisualizationTools.js"> </script>
 		<script src="${basepath}/common/JS/src/mapDisplay/ExportPng.js"> </script>
@@ -80,7 +90,10 @@
 		<script src="${basepath}/common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="${basepath}/common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="${basepath}/common/JS/src/main/mapDisplay.js"> </script>
+		<script src="${basepath}/common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
+		<script src="${basepath}/common/JS/src/ogcstandards/ogcstandards.js"> </script>
+        <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->

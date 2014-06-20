@@ -13,6 +13,9 @@
  *@param {js_var} layerName - the layername of the animation
  *@param {js_var} req - (request)displayanimation or getanimation times
  */
+
+goog.require('owgis.ogc');
+
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
 
@@ -44,28 +47,75 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
  *@param {js_var} path - base path /DeepCProject
  *
  */
-function getWCSV1Ajax(path) {
+function downloadData(path) {
+
+	var mainLayerServer = owgis.layers.getMainLayerServer();
+
+	var requestParams = { 
+		SERVICE: "WMS",
+		VERSION: owgis.ogc.wfsversion,
+		REQUEST: "GetMap",
+		};
+
+	switch(layerDetails.layerType){
+		case "vector":
+
+			requestParams.OUTPUTFORMAT = "SHAPE-ZIP";
+			requestParams.SERVICE = "WFS";
+//			requestParams.VERSION = owgis.ogc.wfsversion;
+			requestParams.REQUEST = "GetFeature";
+			requestParams.TYPENAME = layerDetails.name;
+			requestParams.CRS= layerDetails.srs;
+
+			var cqlfilter = owgis.layers.getCQLFilter();
+			if (cqlfilter !== undefined) {
+				requestParams.CQL_FILTER = applyCqlFilter();
+			}
+			break;
+		case "raster":
+			requestParams.FORMAT = "image/geotiff";
+			requestParams.LAYERS = layerDetails.name;
+			requestParams.STYLES = '';
+			requestParams.SRS= layerDetails.srs;
+			requestParams.WIDTH = $(window).width();
+			requestParams.HEIGHT = $(window).height();
+			requestParams.BBOX= layerDetails.bbox;
+
+			break;
+		case "ncwms"://No possible right now
+			if (layerDetails.zaxis !== undefined) {
+				animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
+			}
+			break;
+	}
+	var url = mainLayerServer +"?"+owgis.utils.paramsToUrl(requestParams);
+	console.log(url);
+	window.open(url,'_self');
+
+	/*
     var asynchronous3 = new Asynchronous();
 
+	var currPath = path + "/WCSServlet?";
+			
     //Generamos el URL que se manda llamar de manera asincrona
-    var url2 = path + '/WCSServlet?wcs=True&height=' + height +
-        "&width=" + width +
-        //"&bbox=" + map.getExtent().toBBOX() +
-        "&zoom=" + map.getZoom().toString() +
-        "&esWcs=True" + //Indicamos que es una solicitud de WCS
-        "&mainLayer=" + mainLayer;
+    var requestParams= {
+		WCS: true,
+		HEIGHT: height, 
+		WIDTH: width,
+		isWCS: true,
+		CENTER: map.getView().getCenter().toString(),
+		mainLayer: mainLayer}
 
-    if (owgis.layers.getMainLayer().params.CQL_FILTER != undefined) {
-        url2 += "&cqlfilter=" + applyCqlFilter();
+	var cqlfilter = owgis.layers.getCQLFilter();
+    if (cqlfilter !== undefined) {
+        requestParams.CQLFILTER = applyCqlFilter();
     }
 
-    url2 += "&center=" + map.getCenter().toString();
+	var url = currPath + owgis.utils.paramsToUrl(requestParams);
     //Aqui se asigna la funcion de un parametro que es la encargada de hacer algo con la respuesta
     asynchronous3.complete = AsyncCompleteEventWCS;
-
-    asynchronous3.call(url2);
-
-    //alert(url2);
+    asynchronous3.call(url);
+	*/
 }
 
 
@@ -133,6 +183,9 @@ Asynchronous.prototype.call = Asynchronous_call;
  */
 function AsyncPunctualData(responseText) {
 
+	responseText = responseText.replace("ADD_UNITS",layerDetails.units);
+	$("#map").removeClass("loadingCursor");
+	$("#map").addClass(".defaultCursor");
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();

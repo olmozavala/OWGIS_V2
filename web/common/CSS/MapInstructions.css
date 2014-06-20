@@ -75,6 +75,7 @@ and open the template in the editor.
   padding: 5px;
   font-size: 12px;
   color: black;
+  background-image: none;
   background-color: darkkhaki;
   z-index: 1009;
   top: 1px;

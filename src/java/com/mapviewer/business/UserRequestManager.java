@@ -48,7 +48,7 @@ public class UserRequestManager {
 	 * @return Treenode
 	 */
 	public static TreeNode createNewRootMenu(HttpServletRequest request, HttpSession session) throws XMLFilesException {
-		String solicitudWCS = request.getParameter("esWcs");//Indicates if the request is WCS or normal WMS
+		String solicitudWCS = request.getParameter("isWCS");//Indicates if the request is WCS or normal WMS
 		String[] levelsSelected = null;
 		if (Boolean.valueOf(solicitudWCS)) {
 			//if it is wcs then we look for the parameter valoresDropDown
@@ -99,7 +99,7 @@ public class UserRequestManager {
 	 * @return
 	 */
 	public static String[] manageVectorLayersOptions(HttpServletRequest request, HttpSession session) throws XMLFilesException, Exception {
-		String solicitudWCS = request.getParameter("esWcs");//indicates if the request is wcs or not. 
+		String solicitudWCS = request.getParameter("isWCS");//indicates if the request is wcs or not. 
 		String[] layersSelected = null;
 		if (Boolean.valueOf(solicitudWCS)) {
 			//if it is a wcs then we look for the parameter of the dropdown menu
