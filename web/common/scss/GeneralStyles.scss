@@ -9,15 +9,6 @@ buttons, etc.
 
 @import "base";
 
-.delTestBorder{
-    border-style:solid;
-    border-color:yellow;
-}
-.delTestBorder2{
-    border-style:solid;
-    border-color:red;
-}
-
 // Increases the default row space used on bootstrap
 .defRowSpace{
     margin: 5px 0px;
@@ -92,7 +83,6 @@ p{ color: $fontColor; }
     pointer-events: none;
 }
 
-
 //---------------  From map style --------------
 /* Default style for the page */
 html,body {
@@ -155,7 +145,6 @@ but the size of the font is larger */
     color:$emailTextColor;
 }
 
-
 // Gives style to the OWGIS logo
 #owgislogocont{
     position:absolute;
@@ -174,4 +163,17 @@ but the size of the font is larger */
     top:50px;
     left:40px;
     pointer-events:none;
+}
+
+// It changes the cursor to 'loading' while something is happening on the map
+.loadingCursor{
+	cursor: progress;
+}
+
+.defaultCursor{
+	cursor:crosshair;
+}
+
+hr{
+	@include background-image(linear-gradient($fontColor, $backColor, $fontColor));
 }

@@ -43,7 +43,7 @@ and open the template in the editor.
 	</VectorLayers> -->
 
 	<!--2D Ocean layers-->
-	<MainLayers BBOX="-90.0,18.09164810180664,-76.400024,31.960647583007812" 
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
 		<layer Menu="ocn,d2,bathy" EN="Bathymetry at RHO-Points"
@@ -73,7 +73,7 @@ and open the template in the editor.
 	</MainLayers>
 
 	<!--3D Ocean layers-->
-	<MainLayers BBOX="-90.0,18.09164810180664,-76.400024,31.960647583007812" 
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
 		<layer Menu="ocn,d3,temp" EN="Gulf of Mexico Temperature"

@@ -52,31 +52,19 @@ buttons, etc.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 12, ../scss/GeneralStyles.scss */
-.delTestBorder {
-  border-style: solid;
-  border-color: yellow;
-}
-
-/* line 16, ../scss/GeneralStyles.scss */
-.delTestBorder2 {
-  border-style: solid;
-  border-color: red;
-}
-
-/* line 22, ../scss/GeneralStyles.scss */
+/* line 13, ../scss/GeneralStyles.scss */
 .defRowSpace {
   margin: 5px 0px;
 }
 
-/* line 27, ../scss/GeneralStyles.scss */
+/* line 18, ../scss/GeneralStyles.scss */
 .menuHidden {
   display: none;
 }
 
 /* This is the CSS for a default floating window. It should be used
 for the help text, the optional layers, the depth etc.*/
-/* line 33, ../scss/GeneralStyles.scss */
+/* line 24, ../scss/GeneralStyles.scss */
 .draggableWindow {
   z-index: 1008;
   position: absolute;
@@ -98,7 +86,7 @@ for the help text, the optional layers, the depth etc.*/
 
 /* This is the CSS for a default transparent floating window. It should be used
 for the main layers, the color palettes, the calendars etc.*/
-/* line 41, ../scss/GeneralStyles.scss */
+/* line 32, ../scss/GeneralStyles.scss */
 .transDraggableWindow {
   z-index: 1008;
   position: absolute;
@@ -117,7 +105,7 @@ for the main layers, the color palettes, the calendars etc.*/
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* line 47, ../scss/GeneralStyles.scss */
+/* line 38, ../scss/GeneralStyles.scss */
 .title {
   font-size: 15px;
   font-weight: bold;
@@ -125,37 +113,37 @@ for the main layers, the color palettes, the calendars etc.*/
   padding: 5px 0px;
 }
 
-/* line 55, ../scss/GeneralStyles.scss */
+/* line 46, ../scss/GeneralStyles.scss */
 .defShadow {
   color: #ecf2f8;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
 }
 
-/* line 57, ../scss/GeneralStyles.scss */
+/* line 48, ../scss/GeneralStyles.scss */
 .invShadow {
   color: black;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
 }
 
-/* line 60, ../scss/GeneralStyles.scss */
+/* line 51, ../scss/GeneralStyles.scss */
 .noShadow {
   color: #ecf2f8;
 }
 
-/* line 62, ../scss/GeneralStyles.scss */
+/* line 53, ../scss/GeneralStyles.scss */
 .noShadowInv {
   color: black;
 }
 
-/* line 65, ../scss/GeneralStyles.scss */
+/* line 56, ../scss/GeneralStyles.scss */
 .closeButton {
   float: right;
 }
 
 /* Main div for user menu options. topmenu */
-/* line 68, ../scss/GeneralStyles.scss */
+/* line 59, ../scss/GeneralStyles.scss */
 .layersMenu {
   background-image: url("../images/transBack.png");
   top: 0px;
@@ -169,13 +157,13 @@ for the main layers, the color palettes, the calendars etc.*/
 }
 
 /* This is the default font type for the letters in the page */
-/* line 81, ../scss/GeneralStyles.scss */
+/* line 72, ../scss/GeneralStyles.scss */
 p {
   color: #ecf2f8;
 }
 
 /* Main title */
-/* line 84, ../scss/GeneralStyles.scss */
+/* line 75, ../scss/GeneralStyles.scss */
 .mapTitle {
   font-size: 20px;
   position: absolute;
@@ -188,7 +176,7 @@ p {
 }
 
 /* Default style for the page */
-/* line 98, ../scss/GeneralStyles.scss */
+/* line 88, ../scss/GeneralStyles.scss */
 html, body {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
@@ -200,19 +188,19 @@ html, body {
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 109, ../scss/GeneralStyles.scss */
+/* line 99, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 113, ../scss/GeneralStyles.scss */
+/* line 103, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
 /* Left fotter */
-/* line 118, ../scss/GeneralStyles.scss */
+/* line 108, ../scss/GeneralStyles.scss */
 div.leftFoot {
   position: absolute;
   bottom: 1%;
@@ -224,22 +212,12 @@ div.leftFoot {
   opacity: 0.8;
 }
 
-/* line 128, ../scss/GeneralStyles.scss */
-.rigthFooter {
-  position: absolute;
-  bottom: 1%;
-  left: 1%;
-  z-index: 1000;
-  display: inline;
-  color: black;
-}
-
-/* line 137, ../scss/GeneralStyles.scss */
+/* line 118, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 139, ../scss/GeneralStyles.scss */
+/* line 120, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -248,13 +226,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 147, ../scss/GeneralStyles.scss */
+/* line 128, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 152, ../scss/GeneralStyles.scss */
+/* line 133, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
@@ -262,7 +240,7 @@ but the size of the font is larger */
   color: blue;
 }
 
-/* line 160, ../scss/GeneralStyles.scss */
+/* line 140, ../scss/GeneralStyles.scss */
 #owgislogocont {
   position: absolute;
   display: inline;
@@ -271,7 +249,7 @@ but the size of the font is larger */
   z-index: 1009;
 }
 
-/* line 170, ../scss/GeneralStyles.scss */
+/* line 150, ../scss/GeneralStyles.scss */
 #draggable-container {
   position: absolute;
   width: 96%;
@@ -279,4 +257,23 @@ but the size of the font is larger */
   top: 50px;
   left: 40px;
   pointer-events: none;
+}
+
+/* line 160, ../scss/GeneralStyles.scss */
+.loadingCursor {
+  cursor: progress;
+}
+
+/* line 164, ../scss/GeneralStyles.scss */
+.defaultCursor {
+  cursor: crosshair;
+}
+
+/* line 168, ../scss/GeneralStyles.scss */
+hr {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ecf2f8), color-stop(50%, #000000), color-stop(100%, #ecf2f8));
+  background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);
+  background-image: -moz-linear-gradient(#ecf2f8, #000000, #ecf2f8);
+  background-image: -o-linear-gradient(#ecf2f8, #000000, #ecf2f8);
+  background-image: linear-gradient(#ecf2f8, #000000, #ecf2f8);
 }

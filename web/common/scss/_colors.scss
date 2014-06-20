@@ -37,8 +37,8 @@ $butShadowColorActive: lighten($butShadowColorHover, 17); // Shadow when a butto
 $butBorderColor: $backColor; 
 
 //popup Border of the small triangle in the popup
-$popupBorderTopColorBefore: #cccccc;
-$popupBorderTopColorAfter: #cccccc;
+$popupBorderTopColorBefore: $fontColor;
+$popupBorderTopColorAfter: $fontColor;
 
 //cqlFilterExampleTable
 $cqlFilterExampleTableBackHeaderColor: darken($backHelpHoverColor,10);
