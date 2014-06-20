@@ -35,7 +35,7 @@
 				server="http://owgis.servehttp.com:8080/geoserver/wms"
 				vectorLayer="true">
 		<layer Menu='vector,vectest' EN='Vector layer demo. World big cities. ' 
-			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundO' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' />
+			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' />
 	</MainLayers>
 
 	<!-- Vector CQL layer -->
