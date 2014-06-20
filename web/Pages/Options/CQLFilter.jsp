@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-xs-10 text-center defRowSpace">
-            <span class="title invShadow"> Custom filter </span>
+            <span class="title invShadow"> <fmt:message key="cql.custom" /></span>
         </div>
         <div class="col-xs-2 ">
             <a class="btn btn-default btn-xs" href="#" onclick="toggleCustomFilterTextBox();">
@@ -20,7 +20,7 @@
     <div class="row defRowSpace">
         <div class="col-xs-12">
             <span id="availableFiltersText" class="defShadow"> 
-                    Available filters: <b>${cqlcols}</b> </span>	
+					<fmt:message key="cql.avai" />: <b>${cqlcols}</b> </span>	
         </div>
     </div>
     <div class="row">
