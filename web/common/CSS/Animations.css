@@ -56,7 +56,7 @@ and open the template in the editor.
 /* line 13, ../scss/Animations.scss */
 #animContainer {
   position: absolute;
-  width: 100px;
+  min-width: 100px;
   height: 100px;
   z-index: 10030;
 }
@@ -66,4 +66,5 @@ and open the template in the editor.
   top: 40%;
   left: 50%;
   min-width: 13em;
+  padding: 0px 20px;
 }
