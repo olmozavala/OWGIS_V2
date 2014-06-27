@@ -27,7 +27,7 @@ featureInfo = name
 
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
       <!--<MainLayers BBOX="-125.02083333333,24.062499999999996,-66.47916666198,49.937500002069996" 
-                    format="image/jpeg" proj="EPSG:4326" server="http://viewer.coaps.fsu.edu/geoserver/wms"
+                    format="image/jpeg" proj="EPSG:4326" server="http://146.201.212.61/geoserver/wms"
                     width="764" height="330" tiled="true" 
                     ncWMS="false">  
     

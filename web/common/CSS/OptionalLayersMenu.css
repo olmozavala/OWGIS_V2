@@ -53,15 +53,15 @@
 */
 /* line 13, ../scss/OptionalLayersMenu.scss */
 #optionalMenuParent {
-  width: 200px;
+  width: 230px;
   top: 70px;
   left: 73%;
 }
 
 /* line 16, ../scss/OptionalLayersMenu.scss */
 #optionalLayersParentHover {
-  width: 200px;
-  left: -230px;
+  width: 230px;
+  left: -260px;
 }
 
 /*Root list of optional layers*/
