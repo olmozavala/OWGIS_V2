@@ -26,8 +26,8 @@
 	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
 				  server="http://owgis.servehttp.com:8080/geoserver/wms"
 				  vectorLayer="true"> 
-		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises"/>
-		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US" />
+		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
+		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
 	</OptionalLayers>
 
 	<!-- Vector layer -->
@@ -96,12 +96,9 @@
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
                 ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
-				<!--format="image/gif"  server="http://146.201.212.61/ncWMS/wms"-->
         <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
                ES="Golfo de M&#233;xico Temperatura 2014" name="gulf_temp/temperature" 
-               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान"
-                />
-               <!--ES="Golfo de M&#233;xico Temperatura 2014" name="hycom2013/temperature"  />-->
+               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
     </MainLayers> 
 </MenuConf>
 

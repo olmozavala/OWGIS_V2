@@ -70,6 +70,7 @@ public class Layer {
 	//------- CQL
 	private String cql;
 	private String cql_cols;
+	private boolean jsonp;//Itentifies if the layer is a json layer (dynamic vector layer)
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -136,6 +137,8 @@ public class Layer {
 	 * temporal data)
 	 * @param {String} maxTimeLayer string that defines the maximum time range the user
 	 * can select (week, month, year)
+	 * @param {boolan} jsonp Boolean value that indicates if the layer is a dynamic
+	 * vector layer served using jsonp
 	 */
 	public Layer(BoundaryBox bbox,
 			String style,
@@ -154,7 +157,7 @@ public class Layer {
 			String layout,
 			boolean vectorLayer,
 			String palette,
-			boolean netCDF, String maxTimeLayer) {
+			boolean netCDF, String maxTimeLayer, boolean jsonp) {
 
 		this.bbox = bbox;
 		this.style = style;
@@ -177,6 +180,7 @@ public class Layer {
 		this.palette = palette;
 		this.selected = false;//By default none of the optional layers is selected
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming 
+		this.jsonp = jsonp;
 
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter. 
@@ -496,4 +500,14 @@ public class Layer {
 	public void setCql_cols(String cql_cols) {
 		this.cql_cols = cql_cols;
 	}
+
+	public boolean isJsonp() {
+		return jsonp;
+	}
+
+	public void setJsonp(boolean jsonp) {
+		this.jsonp = jsonp;
+	}
+
+	
 }

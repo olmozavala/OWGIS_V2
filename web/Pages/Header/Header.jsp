@@ -94,6 +94,8 @@
 		<script src="${basepath}/common/JS/src/ncwms/Palettes.js"> </script>
 		<script src="${basepath}/common/JS/src/ogcstandards/ogcstandards.js"> </script>
         <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
+		<script src="${basepath}/common/JS/src/dynamicVector/VectorStyles.js"> </script>
+		<script src="${basepath}/common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->
