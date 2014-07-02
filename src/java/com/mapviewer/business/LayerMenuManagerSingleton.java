@@ -546,6 +546,10 @@ public class LayerMenuManagerSingleton {
 		String cql_cols = layerConf.getAttributeValue("cqlcols") != null
 				? layerConf.getAttributeValue("cqlcols") : layer.getCql_cols();
 
+
+		String jsonp = layerConf.getAttributeValue("jsonp");
+		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
+
 		/*
 		 String[] cql_cols = null;
 		 if(cql_cols_str!=null){
@@ -555,7 +559,7 @@ public class LayerMenuManagerSingleton {
 
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, tilesOrigin, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range);
+				tiled, tilesOrigin, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
 
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
@@ -596,10 +600,11 @@ public class LayerMenuManagerSingleton {
 		boolean isVectorLayer = false;
 		Map<String, String> displayNames = null;
 		String max_time_range = "week";
+		boolean jsonp = false;//By default we assume the layer is not "Dynamic vector"
 
 		Layer defLayer = new Layer(bbox, style, format, name, displayNames,
 				proj, menuLayer, server, width, height, featureInfo,
-				tiled, tilesOrigin, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range);
+				tiled, tilesOrigin, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
 
 		return defLayer;
 	}

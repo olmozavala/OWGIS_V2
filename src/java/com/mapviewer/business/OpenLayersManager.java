@@ -148,22 +148,12 @@ public class OpenLayersManager {
 	private String createInitFunction(int[] idsBaseLayers, int[] extraLayers) {
 		String initFunction = "\n";
 
-		//Configura las capas que va a ver el usuario en el formato necesario para OpenLayers
+		//Configures each layer using OpenLayers 3
 		initFunction += this.createSeparateLayerScript(idsBaseLayers, extraLayers);
-		initFunction += this.createMapAddLayers(idsBaseLayers, extraLayers);//Agrega las capas anteriores a un mapa compuesto
-		//Dependiendo de los controles que se definan en el objeto de OpenLayerConfig
-		//se agregan controles a OpenLayers. Estos controles pueden ser, barra de zoom, mini map, etc.
-
+		// Relates the singleClick event with the request of punctualData ("identify feature")
 		initFunction += "\t singleClickKey = map.on('singleclick', punctualData);";
 
 		return initFunction;
-	}
-
-	private String setCenterToMap(String centerValue, String zoom) {
-		String reCenterZoom = "//The zoom needs to be updated first, otherwhise the center doesn't get updated\n";
-		reCenterZoom += "\tmap.zoomTo(" + zoom + ");\n";
-		reCenterZoom += "\tmap.setCenter(new OpenLayers.LonLat(" + centerValue + "));\n";
-		return reCenterZoom;
 	}
 
 	/**
@@ -228,8 +218,9 @@ public class OpenLayersManager {
 
 		String URLscript = "";
 
-		URLscript += "\t\tif(layer" + layerNumber + ".getVisible()){\n";
-		URLscript += "\t\t\tvar url" + layerNumber + " =\"" + basepath + "/redirect?server=" + actualLayer.getServer() + "&";
+		URLscript += "\t\tif(typeof(layer" + layerNumber + ") !== 'undefined'){\n";
+		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
+		URLscript += "\t\t\t\tvar url" + layerNumber + " =\"" + basepath + "/redirect?server=" + actualLayer.getServer() + "&";
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "STYLES=&"
 				+ "WIDTH=\"+ map.getSize()[0] +\"&"
@@ -263,32 +254,15 @@ public class OpenLayersManager {
 					+ "NETCDF=false&";
 		}
 
-
 		URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "FEATURE_COUNT=50\";\n";
 		URLscript +=  "\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
 				+ "\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
 //				+ "\t\t\t alert(url" + layerNumber + ");\n"
 				+ "\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
-				+ "\t\t}\n";
+				+ "\t\t}\n"
+				+ "\t}\n";
 		return URLscript;
-	}
-
-	/**
-	 * Genera el script para agregar las capas base al mapa de OL
-	 *
-	 * @param idsBaseLayers
-	 * @return String texto de javascript que agrega las capas existentes al mapa de
-	 * openlayers
-	 */
-	private String createMapAddLayers(int[] idsBaseLayers, int[] idsExtraLayers) {
-		String layerName = "";
-		String addLayers = "";
-		//for(int i=0;i<(idsBaseLayers.length+idsExtraLayers.length+layersManager.getBackgroundLayers().size()-1);i++){
-		for (int i = 0; i < (idsBaseLayers.length + layersManager.getVectorLayers().size() + layersManager.getBackgroundLayers().size()); i++) {
-			addLayers += "\tmap.addLayer(layer" + i + ");\n";
-		}
-		return addLayers;
 	}
 
 	/**
@@ -301,195 +275,196 @@ public class OpenLayersManager {
 	 */
 	private String layerHelper(Layer actualLayer, int layerCount, boolean visible) {
 		String layersScript = "";
-		layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n"
-				+ "\t\t source: new ol.source.TileWMS({\n"
-				+ "\t\t url: '"+ actualLayer.getServer() + "',\n"
+		//If they layer is a jsonp (dynamic vector) layer, we do not add it to the map
+		if(!actualLayer.isJsonp()){
+			layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n"
+					+ "\t\t source: new ol.source.TileWMS({\n"
+					+ "\t\t url: '"+ actualLayer.getServer() + "',\n"
 //				+ "\t\t crossOrigin: 'null',\n"
-				+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "', TILED: true";
-
-		if (actualLayer.isNetCDF()) {
-			if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
-				layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
+					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "', TILED: true";
+			
+			if (actualLayer.isNetCDF()) {
+				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
+					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
+				}
+			} else {
+				layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			}
-		} else {
-			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
-		}
-
-		layersScript += ", SRS: '\"+_map_projection+\"'";
-
-		layersScript += "}\n\t\t\t})\n";
-		layersScript += "\t\t});\n";
-
-		//In this case the layer has some CQL that we need to add in its configuration
-		if (!actualLayer.getCql().equals("")) {
-			layersScript += "\tlayer" + layerCount + ".getSource().getParams().CQL_FILTER = \"" + actualLayer.getCql() + "\";\n";
-		}
-
-		if (!visible) {
-			layersScript += "\tlayer" + layerCount + ".setVisible(false);\n";//we make the layer not visible. 
+			
+			layersScript += ", SRS: '\"+_map_projection+\"'";
+			
+			layersScript += "}\n\t\t\t})\n";
+			layersScript += "\t\t});\n";
+			
+			//In this case the layer has some CQL that we need to add in its configuration
+			if (!actualLayer.getCql().equals("")) {
+				layersScript += "\tlayer" + layerCount + ".getSource().getParams().CQL_FILTER = \"" + actualLayer.getCql() + "\";\n";
+			}
+			
+			if (!visible) {
+				layersScript += "\tlayer" + layerCount + ".setVisible(false);\n";//we make the layer not visible.
+			}
+			layersScript += "\tmap.addLayer(layer" + layerCount + ");\n";
+		}else{
+			layersScript += "\t requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+");\n";
 		}
 		return layersScript;
 	}
+	
+	/**
+	 * Creates an OpenStreetMapLayer
+	 * @param currentConf String Is the current configuration of OpenLayers
+	 * @param actualLayer int Is the number of the current layer
+	 */
+	private String addOpenStreetMapLayer(String currentConf, int actualLayer){
+		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+				" \t\t source: new ol.source.OSM()});\n";
+		return currentConf;
+	}
+	
+	/**
+	 * Creates a MapQuest OSM map
+	 * @param currentConf String Is the current configuration of OpenLayers
+	 * @param actualLayer int Is the number of the current layer
+	 */
+	private String addMapQuest(String currentConf, int actualLayer){
+		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+				" \t\t source: new ol.source.MapQuestOSM()});\n";
+		return currentConf;
+	}
+	
+	/**
+	 * Creates an BingMap layer
+	 * @param currentConf String Is the current configuration of OpenLayers
+	 * @param actualLayer int Is the number of the current layer
+	 */
+	private String addBingLayer(String currentConf, int actualLayer,String style){
+		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+				" \t\t preload: Infinity,\n"+
+				" \t\t source: new ol.source.BingMaps({\n"+
+				" \t\t\t key: 'Ar33pRUvQOdESG8m_T15MUmNz__E1twPo42bFx9jvdDePhX0PNgAcEm44OVTS7tt',\n"+
+				" \t\t\t style: '"+style+"'})\n \t\t});\n";
+		
+		return currentConf;
+		
+	}
+	/**
+	 * Creates the javascript of the layers that are going to be shown separatly. Each
+	 * layer is an object first is the raster layers then the vector layers.
+	 *
+	 * @param idsBaseLayers
+	 * @param idsExtraLayers
+	 * @return
+	 */
+	private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers) {
+		String layersScript = "";
+		Layer actualLayer = null;
+		int layerCount = 0;
+		
+		String backgroundLayer = mapConfig.getProperty("backgroundLayer");
+		
+		switch (backgroundLayer){
+			case "wms"://Read the background layer from xml file
+				//add the layers that are the background.
+				for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
+					actualLayer = layersManager.getBackgroundLayers().get(i);
+					if (actualLayer.getName() != null) {
+						layersScript += layerHelper(actualLayer, layerCount, true);
+						layerCount++;
+					}//If layer not null
+				}
+				break;
+			case "osm": //Add OpenStreetMap as the background layer
+				layersScript += addOpenStreetMapLayer(layersScript, layerCount);
+				layerCount++;
+				break;
+			case "binga": //Add Aerial Bing layer as the background layer
+				layersScript += addBingLayer(layersScript, layerCount,"Aerial");
+				layerCount++;
+				break;
+			case "bingr": //Add Road Bing layer as the background layer
+				layersScript += addBingLayer(layersScript, layerCount,"Road");
+				layerCount++;
+				break;
+			case "bingh": //Add Hybrid Bing layer as the background layer
+				layersScript += addBingLayer(layersScript, layerCount,"AerialWithLabels");
+				layerCount++;
+				break;
+			case "mapquest": //Add MapQuest as the background layer
+				layersScript += addMapQuest(layersScript, layerCount);
+				layerCount++;
+				break;
+		}
+		
+		//Generates the layer configuration for OpenLayers
+		// The name of the layer variable inside OpenLayers is of the form layer'number of layer'
+		for (int i = 0; i < idsBaseLayers.length; i++) {
+			actualLayer = layersManager.getMainLayers().get(idsBaseLayers[i]);
+			if (actualLayer.getName() != null) {
+				layersScript += layerHelper(actualLayer, layerCount, true);
+				layerCount++;
+			}//If layer not null
+		}
 
-    /**
-     * Creates an OpenStreetMapLayer
-     * @param currentConf String Is the current configuration of OpenLayers
-     * @param actualLayer int Is the number of the current layer
-     */
-    private String addOpenStreetMapLayer(String currentConf, int actualLayer){
-        currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-                  " \t\t source: new ol.source.OSM()});\n";
-        return currentConf;
-    }
-    
-    /**
-     * Creates a MapQuest OSM map
-     * @param currentConf String Is the current configuration of OpenLayers
-     * @param actualLayer int Is the number of the current layer
-     */
-    private String addMapQuest(String currentConf, int actualLayer){
-        currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-                  " \t\t source: new ol.source.MapQuestOSM()});\n";
-        return currentConf;
-    }
-
-    /**
-     * Creates an BingMap layer
-     * @param currentConf String Is the current configuration of OpenLayers
-     * @param actualLayer int Is the number of the current layer
-     */
-    private String addBingLayer(String currentConf, int actualLayer,String style){
-        currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-                  " \t\t preload: Infinity,\n"+
-                  " \t\t source: new ol.source.BingMaps({\n"+
-                  " \t\t\t key: 'Ar33pRUvQOdESG8m_T15MUmNz__E1twPo42bFx9jvdDePhX0PNgAcEm44OVTS7tt',\n"+
-                  " \t\t\t style: '"+style+"'})\n \t\t});\n";
-
-        return currentConf;
-
-    }
-    /**
-     * Creates the javascript of the layers that are going to be shown separatly. Each
-     * layer is an object first is the raster layers then the vector layers.
-     *
-     * @param idsBaseLayers
-     * @param idsExtraLayers
-     * @return
-     */
-    private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers) {
-        String layersScript = "";
-        Layer actualLayer = null;
-        int layerCount = 0;
-
-        String backgroundLayer = mapConfig.getProperty("backgroundLayer");
-
-        switch (backgroundLayer){
-            case "wms"://Read the background layer from xml file
-                //add the layers that are the background. 
-                for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-                    actualLayer = layersManager.getBackgroundLayers().get(i);
-                    if (actualLayer.getName() != null) {
-                        layersScript += layerHelper(actualLayer, layerCount, true);
-                        layerCount++;
-                    }//If layer not null            
-                }
-                break;
-            case "osm": //Add OpenStreetMap as the background layer
-                layersScript += addOpenStreetMapLayer(layersScript, layerCount);
-                layerCount++;
-                break;
-            case "binga": //Add Aerial Bing layer as the background layer
-                layersScript += addBingLayer(layersScript, layerCount,"Aerial");
-                layerCount++;
-                break;
-            case "bingr": //Add Road Bing layer as the background layer
-                layersScript += addBingLayer(layersScript, layerCount,"Road");
-                layerCount++;
-                break;
-            case "bingh": //Add Hybrid Bing layer as the background layer
-                layersScript += addBingLayer(layersScript, layerCount,"AerialWithLabels");
-                layerCount++;
-                break;
-            case "mapquest": //Add MapQuest as the background layer
-                layersScript += addMapQuest(layersScript, layerCount);
-                layerCount++;
-                break;
-
-        }
-
-        //Generates the layer configuration for OpenLayers
-        // The name of the layer variable inside OpenLayers is of the form layer'number of layer'
-        for (int i = 0; i < idsBaseLayers.length; i++) {
-            actualLayer = layersManager.getMainLayers().get(idsBaseLayers[i]);
-            if (actualLayer.getName() != null) {
-                layersScript += layerHelper(actualLayer, layerCount, true);
-                layerCount++;
-            }//If layer not null
-        }
-        //        for(int i =0;i<idsExtraLayers.length;i++){
-        //            actualLayer = layersManager.getVectorLayers().get(idsExtraLayers[i]);
-        //            layersScript+=layerHelper(actualLayer, layerCount);
-        //            layerCount++;
-        //        }
-        for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
-            actualLayer = layersManager.getVectorLayers().get(i);
-            if (StringAndNumbers.intArrayContains(idsExtraLayers, i)) {//Si esta en los seleccionados lo mostramos
-                //Si no no
-                layersScript += layerHelper(actualLayer, layerCount, true);
-            } else {
-                layersScript += layerHelper(actualLayer, layerCount, false);
-            }
-            layerCount++;
-        }
-        return layersScript;
-    }
-
-    /**
-     * Gets the list of Background layers
-     *
-     * @return ArrayList<Layer>
-     */
-    public ArrayList<Layer> getBackgroundLayers() {
-        return layersManager.getBackgroundLayers();
-    }
-
-    /**
-     * Obtains e list of raster layers
-     *
-     * @return ArrayList<Layer>
-     */
-    public ArrayList<Layer> getRasterLayers() {
-        return layersManager.getMainLayers();
-    }
-
-    /**
-     * Obtains a list of vector layers.
-     *
-     * @return ArrayList<Layer>
-     */
-    public ArrayList<Layer> getVectorLayers() {
-        return layersManager.getVectorLayers();
-    }
-
-    public int getTotalLayers() {
-        return layersManager.getBackgroundLayers().size() + layersManager.getMainLayers().size() + layersManager.getVectorLayers().size();
-
-    }
-
-    public int getTotalVisibleLayers() {
-        int layerCount = 0;
-        //loop incharge of the layers that are background. 
-        for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-            if (layersManager.getBackgroundLayers().get(i).getName() != null) {
-                layerCount++;
-            }
-        }
-        layerCount += 1;//represents the base layer. 
-        for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
-            if (layersManager.getVectorLayers().get(i).getName() != null) {
-                layerCount++;
-            }//If layer not null
-        }
-        return layerCount;
-    }
-    }
+		for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
+			actualLayer = layersManager.getVectorLayers().get(i);
+			if (StringAndNumbers.intArrayContains(idsExtraLayers, i)) {//Si esta en los seleccionados lo mostramos
+				//Si no no
+				layersScript += layerHelper(actualLayer, layerCount, true);
+			} else {
+				layersScript += layerHelper(actualLayer, layerCount, false);
+			}
+			layerCount++;
+		}
+		return layersScript;
+	}
+	
+	/**
+	 * Gets the list of Background layers
+	 *
+	 * @return ArrayList<Layer>
+	 */
+	public ArrayList<Layer> getBackgroundLayers() {
+		return layersManager.getBackgroundLayers();
+	}
+	
+	/**
+	 * Obtains e list of raster layers
+	 *
+	 * @return ArrayList<Layer>
+	 */
+	public ArrayList<Layer> getRasterLayers() {
+		return layersManager.getMainLayers();
+	}
+	
+	/**
+	 * Obtains a list of vector layers.
+	 *
+	 * @return ArrayList<Layer>
+	 */
+	public ArrayList<Layer> getVectorLayers() {
+		return layersManager.getVectorLayers();
+	}
+	
+	public int getTotalLayers() {
+		return layersManager.getBackgroundLayers().size() + layersManager.getMainLayers().size() + layersManager.getVectorLayers().size();
+		
+	}
+	
+	public int getTotalVisibleLayers() {
+		int layerCount = 0;
+		//loop incharge of the layers that are background.
+		for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
+			if (layersManager.getBackgroundLayers().get(i).getName() != null) {
+				layerCount++;
+			}
+		}
+		layerCount += 1;//represents the base layer.
+		for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
+			if (layersManager.getVectorLayers().get(i).getName() != null) {
+				layerCount++;
+			}//If layer not null
+		}
+		return layerCount;
+	}
+}

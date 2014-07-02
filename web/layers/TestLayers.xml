@@ -1,0 +1,104 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<MenuEntries>
+		<MenuEntry ID="lev1" EN="Level 1" ES="Nivel 1" HI_IN="स्तर १"/>
+		<MenuEntry ID="vectest" EN="Vector layer" ES="Ejemplo Vectorial" HI_IN="वेक्टर परत"/>
+		<MenuEntry ID="veccqltest" EN="Vector CQL demo" ES="Ejemplo CQL" HI_IN="वेक्टर CQL"/>
+		<MenuEntry ID="geotifftest" EN="Raster (GeoTIFF)" ES="Ejemplo capa raster " HI_IN="रेस्टर (geotiff)"/>
+		<MenuEntry ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
+		<MenuEntry ID="ncwmsMultDateOneZ" EN="ncWMS OneZ MultDate" ES="ESP ncWMS OneZ MultDate"/>
+		<MenuEntry ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
+		<MenuEntry ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
+		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" ES="ESP ncWMS velocity field"/>
+
+		<MenuEntry ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
+		<MenuEntry ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
+		<MenuEntry ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
+		<MenuEntry ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
+		<MenuEntry ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/>
+	</MenuEntries>
+
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+
+	<!-- Optional layers -->
+	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
+				  server="http://server.owgis.org/geoserver/wms"
+				  vectorLayer="true"> 
+		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
+		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
+	</OptionalLayers>
+
+	<!-- Vector layer -->
+	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
+				server="http://server.owgis.org/geoserver/wms"
+				vectorLayer="true">
+		<layer Menu='vector,vectest' EN='Vector layer demo. World big cities. ' 
+			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' />
+	</MainLayers>
+
+	<!-- Vector CQL layer -->
+	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
+				server="http://server.owgis.org/geoserver/wms"
+				vectorLayer="true"
+				cqlcols="NAME" >
+		<layer Menu="vector,veccqltest" name="demo:world_cities" 
+			   EN="Demo CQL filtering. Estimated population in 2010 more 2 million" 
+			   ES="Ejemplo de filtrado con CQL. Grandes ciudades con mas de 2 millones de personas en 2010"
+			   HI_IN="CQL फ़िल्टरिंग का प्रदर्शन. अनुमानित जनसंख्या वर्ष २०१०  में २०  लाख से अधिक"
+			   CQL="MAX_POP10 > 2000000" />
+	</MainLayers>
+
+	<!-- GeotiffLayer -->
+	<MainLayers BBOX="-125.0,4.999999999999975,-75.00000000000003,35.0"
+				server="http://server.owgis.org/geoserver/wms">
+		<layer Menu="raster,geotifftest" 
+			   EN="Demo of a raster (GeoTIFF) layer. Maximum average temperature of July month." 
+			   ES="Ejemplo de capa raster (GeoTIFF). Temperatura maxima promedio del mes de julio." 
+			   HI_IN="रेस्टर (geotiff) परत का प्रदर्शन. जुलाई माह का अधिकतम औसत तापमान"
+			   name="demo:temp_max_mex"/>
+	</MainLayers>
+
+	<!-- ncWMS with one date-->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
+				ncWMS="true">  
+		<layer Menu="ncwms,ncwmsOneDateMultZ" 
+			   EN="Demo of an ncWMS layer with only one day. World eastward wind."
+			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." 
+			   HI_IN="केवल एक दिन का ncWMS परत प्रदर्शन. दुनिया के पूर्व की ओर हवा"
+			   name="world_temp/ua"  />
+	</MainLayers>
+
+	<!-- ncWMS velocity-->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
+				ncWMS="true">  
+		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
+			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
+			   HI_IN="ncWMS गति परत का प्रदर्शन. मैक्सिको की खाड़ी के समुद्र धाराओं"
+			   name="gulf_vel/sea_water_velocity" style="vector" />
+	</MainLayers>
+
+	<!-- ncWMS with one depth-->
+	<MainLayers BBOX="-180.0, -88.927734375, 180.0, 88.927734375"
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
+				ncWMS="true" >
+		<layer Menu="ncwms,ncwmsOneDepthOneZ" 
+			   EN="Demo of an ncWMS layer with only one depth. World precipitation flux."
+			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." 
+			   HI_IN="केवल एक ही गहराई के साथ ncWMS परत का प्रदर्शन. दुनिया की तेज़ी प्रवाह"
+			   name="world_temp/pr"  />
+	</MainLayers>
+
+	<!-- ncWMS all -->
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
+                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+        <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
+               ES="Golfo de M&#233;xico Temperatura 2014" name="gulf_temp/temperature" 
+               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+    </MainLayers> 
+</MenuConf>
+

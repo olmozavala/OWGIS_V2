@@ -34,8 +34,11 @@ function setMouseClickOnMap(){
 	.on('mousemove', function() { isOnlyClick = false; })
 	.on('mouseup', function(){
 		if(isOnlyClick){
-			$("#map").addClass("loadingCursor");
-			$("#map").removeClass("defaultCursor");
+			//Verify that the transect tools is not turned on
+			if(!transectOn){
+				$("#map").addClass("loadingCursor");
+				$("#map").removeClass("defaultCursor");
+			}
 		}
 	});
 
