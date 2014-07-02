@@ -1,4 +1,7 @@
-// Default colors for links
+// This JS file is used to modify the look of the site. All the modifications
+// to the default template should be made at the function modifyInterface
+// which is called insisde mapDisplay. 
+
 var colorLink;
 var colorLinkOver;
 var colorLinkClick;
@@ -14,4 +17,13 @@ if(mapConfig['menuDesign']=='sideMenu'){
 	colorLinkOver = "#91B6FF"; // When the mouse is over
 	colorLinkClick = "#1B2DFF";	// When the button is being clicked
 	colorLinkDisabled = "gray";	// When the button is disabled
+}
+
+/**
+ * This is the main function that should encompass all the specific code for the site,
+ * for example all the modifications to the interface depending on some layers 
+ * @returns {undefined}
+ */
+function modifyInterface(){
+
 }

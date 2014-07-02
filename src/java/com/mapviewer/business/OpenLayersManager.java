@@ -218,8 +218,9 @@ public class OpenLayersManager {
 
 		String URLscript = "";
 
-		URLscript += "\t\tif(layer" + layerNumber + ".getVisible()){\n";
-		URLscript += "\t\t\tvar url" + layerNumber + " =\"" + basepath + "/redirect?server=" + actualLayer.getServer() + "&";
+		URLscript += "\t\tif(typeof(layer" + layerNumber + ") !== 'undefined'){\n";
+		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
+		URLscript += "\t\t\t\tvar url" + layerNumber + " =\"" + basepath + "/redirect?server=" + actualLayer.getServer() + "&";
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "STYLES=&"
 				+ "WIDTH=\"+ map.getSize()[0] +\"&"
@@ -253,14 +254,14 @@ public class OpenLayersManager {
 					+ "NETCDF=false&";
 		}
 
-
 		URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "FEATURE_COUNT=50\";\n";
 		URLscript +=  "\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
 				+ "\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
 //				+ "\t\t\t alert(url" + layerNumber + ");\n"
 				+ "\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
-				+ "\t\t}\n";
+				+ "\t\t}\n"
+				+ "\t}\n";
 		return URLscript;
 	}
 

@@ -24,7 +24,7 @@
 
 	<!-- Optional layers -->
 	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
-				  server="http://owgis.servehttp.com:8080/geoserver/wms"
+				  server="http://server.owgis.org/geoserver/wms"
 				  vectorLayer="true"> 
 		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
 		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
@@ -32,7 +32,7 @@
 
 	<!-- Vector layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
-				server="http://owgis.servehttp.com:8080/geoserver/wms"
+				server="http://server.owgis.org/geoserver/wms"
 				vectorLayer="true">
 		<layer Menu='vector,vectest' EN='Vector layer demo. World big cities. ' 
 			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' />
@@ -40,7 +40,7 @@
 
 	<!-- Vector CQL layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
-				server="http://owgis.servehttp.com:8080/geoserver/wms"
+				server="http://server.owgis.org/geoserver/wms"
 				vectorLayer="true"
 				cqlcols="NAME" >
 		<layer Menu="vector,veccqltest" name="demo:world_cities" 
@@ -52,7 +52,7 @@
 
 	<!-- GeotiffLayer -->
 	<MainLayers BBOX="-125.0,4.999999999999975,-75.00000000000003,35.0"
-				server="http://owgis.servehttp.com:8080/geoserver/wms">
+				server="http://server.owgis.org/geoserver/wms">
 		<layer Menu="raster,geotifftest" 
 			   EN="Demo of a raster (GeoTIFF) layer. Maximum average temperature of July month." 
 			   ES="Ejemplo de capa raster (GeoTIFF). Temperatura maxima promedio del mes de julio." 
@@ -62,7 +62,7 @@
 
 	<!-- ncWMS with one date-->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
 				ncWMS="true">  
 		<layer Menu="ncwms,ncwmsOneDateMultZ" 
 			   EN="Demo of an ncWMS layer with only one day. World eastward wind."
@@ -73,7 +73,7 @@
 
 	<!-- ncWMS velocity-->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
 				ncWMS="true">  
 		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
 			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
@@ -83,7 +83,7 @@
 
 	<!-- ncWMS with one depth-->
 	<MainLayers BBOX="-180.0, -88.927734375, 180.0, 88.927734375"
-				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
 				ncWMS="true" >
 		<layer Menu="ncwms,ncwmsOneDepthOneZ" 
 			   EN="Demo of an ncWMS layer with only one depth. World precipitation flux."
@@ -94,7 +94,7 @@
 
 	<!-- ncWMS all -->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://owgis.servehttp.com:8080/ncWMS-1.1.1/wms"
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
                 ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
         <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
                ES="Golfo de M&#233;xico Temperatura 2014" name="gulf_temp/temperature" 
