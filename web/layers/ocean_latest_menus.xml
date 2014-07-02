@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-
 <MenuConf
 	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
 	xsi:noNamespaceSchemaLocation='file:/home/olmozavala/Dropbox/OWGISV1_Projects/OWGIS_Takis/web/layers/schema.xsd'>
@@ -46,46 +39,46 @@ and open the template in the editor.
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
-		<layer Menu="ocn,d2,bathy" EN="Bathymetry at RHO-Points"
-			   ES="Batimetria en puntos Rho" name="ocn_forecast/h"  />
-		<layer Menu="ocn,d2,zeta" EN="Sea surface Height"
-			   ES="Temperatura superficial del mar" name="ocn_forecast/zeta"  />
-		<layer Menu="ocn,d2,barvel" EN="Vertically Integrated Currents"
-				style="vector" ES="TODO" name="ocn_forecast/barotropic_sea_water_velocity"  />
-		<layer Menu="ocn,d2,sustr" EN="Surface U-Momentum Stress"
-				ES="TODO" name="ocn_forecast/sustr"  />
-		<layer Menu="ocn,d2,svstr" EN="Surface V-Momentum Stress"
-				ES="TODO" name="ocn_forecast/svstr"  />
-		<layer Menu="ocn,d2,rain" EN="Precipitacion"
-			   ES="Lluvia" name="ocn_forecast/rain"  />
-		<layer Menu="ocn,d2,shflux" EN="Net Surface Heat Flux"
-			   ES="Flujo neto de calor en la superficie" name="ocn_forecast/shflux"  />
-		<layer Menu="ocn,d2,swrad" EN="Solar Shortwave Radiation Flux"
-			   ES="Flujo de onda corta" name="ocn_forecast/swrad"  />
-		<layer Menu="ocn,d2,lwrad" EN="Net Longwave Radiation Flux"
-			   ES="Flujo neto de onda larga" name="ocn_forecast/lwrad"  />
-		<layer Menu="ocn,d2,latent" EN="Latent"
-			   ES="lat" name="ocn_forecast/latent"  />
-		<layer Menu="ocn,d2,sensible" EN="Sensible"
-			   ES="lat" name="ocn_forecast/sensible"  />
-		<!--<layer Menu="ocn,d2,evaporation" EN="Evaporation"
-			   ES="Evaporacion" name="ocn_forecast/evaporation"  /> -->
+		<layer Menu="latest,ocn,d2,bathy" EN="Bathymetry at RHO-Points"
+			   ES="Batimetria en puntos Rho" name="ocn_forecast_latest/h"  />
+		<layer Menu="latest,ocn,d2,zeta" EN="Sea surface Height"
+			   ES="Temperatura superficial del mar" name="ocn_forecast_latest/zeta"  />
+		<layer Menu="latest,ocn,d2,barvel" EN="Vertically Integrated Currents"
+				style="vector" ES="TODO" name="ocn_forecast_latest/barotropic_sea_water_velocity"  />
+		<layer Menu="latest,ocn,d2,sustr" EN="Surface U-Momentum Stress"
+				ES="TODO" name="ocn_forecast_latest/sustr"  />
+		<layer Menu="latest,ocn,d2,svstr" EN="Surface V-Momentum Stress"
+				ES="TODO" name="ocn_forecast_latest/svstr"  />
+		<layer Menu="latest,ocn,d2,rain" EN="Precipitacion"
+			   ES="Lluvia" name="ocn_forecast_latest/rain"  />
+		<layer Menu="latest,ocn,d2,shflux" EN="Net Surface Heat Flux"
+			   ES="Flujo neto de calor en la superficie" name="ocn_forecast_latest/shflux"  />
+		<layer Menu="latest,ocn,d2,swrad" EN="Solar Shortwave Radiation Flux"
+			   ES="Flujo de onda corta" name="ocn_forecast_latest/swrad"  />
+		<layer Menu="latest,ocn,d2,lwrad" EN="Net Longwave Radiation Flux"
+			   ES="Flujo neto de onda larga" name="ocn_forecast_latest/lwrad"  />
+		<layer Menu="latest,ocn,d2,latent" EN="Latent"
+			   ES="lat" name="ocn_forecast_latest/latent"  />
+		<layer Menu="latest,ocn,d2,sensible" EN="Sensible"
+			   ES="lat" name="ocn_forecast_latest/sensible"  />
+		<!--<layer Menu="latest,ocn,d2,evaporation" EN="Evaporation"
+			   ES="Evaporacion" name="ocn_forecast_latest/evaporation"  /> -->
 	</MainLayers>
 
 	<!--3D Ocean layers-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
-		<layer Menu="ocn,d3,temp" EN="Gulf of Mexico Temperature"
-			   ES="Temperatura" name="ocn_forecast/temp"  />
-		<layer Menu="ocn,d3,salt" EN="Gulf of Mexico salinity"
-			   ES="Salinidad" name="ocn_forecast/salt"  />
-		<layer Menu="ocn,d2,vel" EN="Currents"
-				style="vector" ES="" name="ocn_forecast/sea_water_velocity"  />
-		<layer Menu="ocn,d3,rho" EN="Water Density Anomaly"
-			   ES="Anomalia en la densidad del agua" name="ocn_forecast/rho"  />
-		<!--<layer Menu="ocn,d3,tke" EN="Turbulent kinetic energy"
-			   ES="TODO" name="ocn_forecast/tke"  />-->
+		<layer Menu="latest,ocn,d3,temp" EN="Gulf of Mexico Temperature"
+			   ES="Temperatura" name="ocn_forecast_latest/temp"  />
+		<layer Menu="latest,ocn,d3,salt" EN="Gulf of Mexico salinity"
+			   ES="Salinidad" name="ocn_forecast_latest/salt"  />
+		<layer Menu="latest,ocn,d2,vel" EN="Currents"
+				style="vector" ES="" name="ocn_forecast_latest/sea_water_velocity"  />
+		<layer Menu="latest,ocn,d3,rho" EN="Water Density Anomaly"
+			   ES="Anomalia en la densidad del agua" name="ocn_forecast_latest/rho"  />
+		<!--<layer Menu="latest,ocn,d3,tke" EN="Turbulent kinetic energy"
+			   ES="TODO" name="ocn_forecast_latest/tke"  />-->
 	</MainLayers>
 	
 </MenuConf>

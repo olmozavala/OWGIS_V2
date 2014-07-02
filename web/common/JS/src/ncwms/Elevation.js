@@ -352,7 +352,7 @@ function getZaxisText(){
 		return presText;
 
     }
-    else if(units === 'm')
+    else if( (units === 'm') || (units === 'meter'))
     {
 		return  depthText; 
     }
