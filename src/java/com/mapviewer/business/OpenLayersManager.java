@@ -277,11 +277,17 @@ public class OpenLayersManager {
 		String layersScript = "";
 		//If they layer is a jsonp (dynamic vector) layer, we do not add it to the map
 		if(!actualLayer.isJsonp()){
-			layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n"
-					+ "\t\t source: new ol.source.TileWMS({\n"
-					+ "\t\t url: '"+ actualLayer.getServer() + "',\n"
+			if(actualLayer.isTiled()){
+				layersScript += "\tlayer" + layerCount + " = new ol.layer.Tile({\n";
+				layersScript += "\t\t source: new ol.source.TileWMS({\n";
+			}else{
+				layersScript += "\tlayer" + layerCount + " = new ol.layer.Image({\n";
+				layersScript += "\t\t source: new ol.source.ImageWMS({\n";
+				layersScript += "\t\t extent: [\n" + actualLayer.getBbox().toString() +"],";
+			}
+			layersScript += "\t\t url: '"+ actualLayer.getServer() + "',\n"
 //				+ "\t\t crossOrigin: 'null',\n"
-					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "', TILED: true";
+					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "'";
 			
 			if (actualLayer.isNetCDF()) {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
