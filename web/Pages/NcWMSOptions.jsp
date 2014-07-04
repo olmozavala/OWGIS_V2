@@ -123,9 +123,9 @@
 	<div class="row">
 		<div class="col-xs-12 defShadow title"> 
 			<span>
-				<fmt:message key="ncwms.anim.currdate" />
+				<fmt:message key="ncwms.anim.currspeed" />
 			</span>
-			<span id="animDate"></span>
+			<span id="animSpeed"></span>
 		</div>
 	</div>
 	<div class="row">

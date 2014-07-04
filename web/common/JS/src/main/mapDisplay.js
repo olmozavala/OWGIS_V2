@@ -1,7 +1,7 @@
 goog.provide('owgis');
 
 goog.require('ol.Map');
-goog.require('ol.View2D');
+goog.require('ol.View');
 goog.require('ol.coordinate');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.TileJSON');
@@ -245,7 +245,7 @@ function changeTranspManager(val, version) {
     changeTransp(val, layer, version);
 	
     if (netcdf) {
-        if (animation_layer !== undefined) {
+        if ( typeof(animation_layer) !== "undefined") {
             changeTransp(val, animation_layer, version);
         }
     }

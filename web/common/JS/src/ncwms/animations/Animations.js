@@ -9,7 +9,7 @@ owgis.ncwms.animation.animStatus = "none";
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
-var animSpeed = 150;
+var animSpeed = 300;
 // Is the animation status it can be:
 // 		none -> There is not animation or is being stopped
 // 		loading -> The animation is being requested but not all of the frames have loaded
@@ -38,21 +38,42 @@ var errorRetryNumber = 5; //How many times try to reload an image before conside
 function updateMenusDisplayVisibility(status){
 
     // ------- Visibility of top menus (general menus) -------
+	console.log("Status: " + status);
 	if(netcdf){
 		// When we are selecting dates. 
 		switch( status ){
+            case "loading_playing":
+				$('#stopAnimText').hide();
+				$('#animControls a').show();// Show all the buttons
+                $('#elevationParent').hide("fade");
+                $('#hideCalendarButtonParent').hide("fade");
+				// Animation controls
+				$('#animControls [class*=step]').parent().hide();
+				$('#animControls [class*=fast-back]').parent().hide();
+				$('#animControls [class*=fast-forw]').parent().hide();
+				$('#animControls [class*=play]').parent().hide();
+				$('#animControls [class=glyphicon-backward]').parent().show();
+				$('#animControls [class*=glyphicon-forward]').parent().show();
+				$('#animControls [class*=pause]').parent().show();
+				$('#animControls [class*=save]').parent().show();
+				$('#animSpeed').parent().show("fade");
+                break;
             case "loading":
                 $('#CalendarsAndStopContainer').hide("fade");
 				$('#animControls a').hide();// Hidde all the animation controls 
                 $('#animControls').show("fade");//Show the stop button
 				$('#stopAnimText').show("fade");
+				$('#animControls [class*=play]').parent().show();
 				$('#animControls [class*=stop]').parent().show();
                 $('#l-animation').show("fade");
                 $('#minPal').disabled = true;
                 $('#maxPal').disabled = true;
                 $('#hideCalendarButtonParent').hide("fade");
+				$('#animSpeed').parent().hide();
+				owgis.layers.getMainLayer().setVisible(false);//Hide main layer when the animation is being loaded
                 break;
             case "playing":
+				$('#animSpeed').parent().show("fade");
                 $('#CalendarsAndStopContainer').hide("fade");
 				$('#stopAnimText').hide();
 				$('#animControls a').show();// Show all the buttons
@@ -72,6 +93,7 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class*=save]').parent().show();
                 break;
             case "paused":
+				$('#animSpeed').parent().hide();
 				$('#animControls [class*=pause]').parent().hide();
 				$('#animControls [class*=glyphicon-backward]').parent().hide();
 				$('#animControls [class*=glyphicon-forward]').parent().hide();
@@ -83,6 +105,7 @@ function updateMenusDisplayVisibility(status){
 				break;
             case "none":
             default:
+				owgis.layers.getMainLayer().setVisible(true);//Show main layer
                 $("#palettesMenuParent").show();
                 $("#lineToggle").show();
 //                $("#downloadDataParent").hide();
@@ -174,7 +197,18 @@ function animSlower(){
  * @returns {undefined}
  */
 function updateAnimationStatus(newStatus){
-	owgis.ncwms.animation.animStatus = newStatus;
+
+	//If the user starts playing the animation when it is 
+	// still loading, then we set the "loading_playing" status
+	if( owgis.ncwms.animation.animStatus === "loading" && newStatus === "playing"){
+		owgis.ncwms.animation.animStatus = "loading_playing";
+	}else{
+		if( owgis.ncwms.animation.animStatus === "loading_playing" && newStatus === "paused"){
+			owgis.ncwms.animation.animStatus = "loading";
+		}else{
+			owgis.ncwms.animation.animStatus = newStatus;
+		}
+	}
 	switch(owgis.ncwms.animation.animStatus){
 		case "none"://When the animation has been stoped
 			currentAnimation++;//It is used to stop any previous images
@@ -256,7 +290,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	obtainSelectedDates();
 	
 	//Create the required global variables if they don't exist
-	console.log("TotalNumber of frames: "+ totalNumOfFrames);
+//	console.log("TotalNumber of frames: "+ totalNumOfFrames);
 	for(var i = 0; i < totalNumOfFrames; i++){
 		try{// Hack to test if the variable already exists
 			eval('imageNumber'+i);
@@ -292,10 +326,10 @@ function getResolutionRatio(){
 			return .55;
 			break;
 		case "normal":
-			return .4;
+			return .3;
 			break;
 		case "low":
-			return .3;
+			return .2;
 			break;
 	}
 }
@@ -317,7 +351,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		eval("imageNumber"+i+".src = '';");
 	}
 
-	console.log("----------- Canvas reload -----------");
+//	console.log("----------- Canvas reload -----------");
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
 
@@ -396,7 +430,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 
 	startAnimationLoop();
 	
-	console.log("----------- Out of Canvas reload -----------");
+//	console.log("----------- Out of Canvas reload -----------");
     return canvas;
 } 
 
@@ -444,11 +478,12 @@ function imageHasBeenLoadedParallel(e){
 	// firefox that displays previous imagesj
 	clearCanvas();
 
-	if( owgis.ncwms.animation.animStatus === "loading"){
+	if( owgis.ncwms.animation.animStatus === "loading" ||
+		owgis.ncwms.animation.animStatus === "loading_playing"){
 		var currentImage = parseInt(e.target.id);
 		var currentBelongs = parseInt(e.target.belongs);//Reads the image animation belonging
 
-		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
+//		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
 		if( currentBelongs === currentAnimation ){
@@ -492,8 +527,8 @@ function clearLoopHandler(){
 function startAnimationLoop(){
 	clearLoopHandler();
 	intervalHandler = setInterval(loopAnimation,animSpeed);
+	$('#animSpeed').text( (1000/animSpeed).toFixed(1) +" fps");
 }
-
 
 /**
  * This is the callback function in charge of displaying
@@ -510,7 +545,7 @@ function loopAnimation(){
 	}
 	// When the animatino is being loaded it loops between the 
 	// images that have already been loaded
-	if(owgis.ncwms.animation.animStatus === "loading"){
+	if(owgis.ncwms.animation.animStatus === "loading_playing"){
 		currentFrame = currentFrame < (loadedFrames)? ++currentFrame: 0;
 	}
 	

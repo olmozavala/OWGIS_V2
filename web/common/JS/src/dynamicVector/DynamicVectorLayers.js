@@ -17,7 +17,7 @@ var highlightStyleFunction = function(feature, resolution) {
 
 function getFeature(feature, layer){
 	var delLayer = layer;
-	console.log(feature.getId());
+//	console.log(feature.getId());
 	return feature;
 }
 
@@ -38,7 +38,7 @@ var displayFeatureInfo = function(pixel) {
 
 
 function requestJSONLayer( layer, layerId ){
-	console.log(layer);
+//	console.log(layer);
 	
 	//TODO the original server should not have the wms in it
 	var server = layer.server.substring(0,layer.server.length-3)+"ows?";//Change the server from wms to ows
@@ -57,7 +57,7 @@ function requestJSONLayer( layer, layerId ){
 	};
 	
 	var url= server+owgis.utils.paramsToUrl(layerParams);
-	console.log(url);
+//	console.log(url);
 	
 	// This is required to avoid the cross origin problem
 	$.ajax({
@@ -67,7 +67,7 @@ function requestJSONLayer( layer, layerId ){
 			//console.log(err);
 		},
 		success: function () {
-			console.log("success");
+//			console.log("success");
 		}
 	});
 	
@@ -90,7 +90,7 @@ function requestJSONLayer( layer, layerId ){
 
 function processJSON(geoJSONdata, layerId) {
 	
-	console.log(geoJSONdata);
+//	console.log(geoJSONdata);
 	var data = geoJSONdata;
 	
 	var projection = geoJSONdata.crs.type+":"+geoJSONdata.crs.properties.code;
