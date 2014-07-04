@@ -183,12 +183,11 @@ owgis.utils.pad = function(number) {
  * @param formato - format of date. %Y for just year. 
  * @return date string depeinding on format passed in. 
  */ 
-owgis.utils.getDate = function(formato)
+owgis.utils.getDate = function(currDate, formato)
 {   
-	var hoy = new Date();
-	var numDia = hoy.getDate();
-	var numMes = hoy.getMonth() + 1;
-	var anio = hoy.getFullYear();       
+	var numDia = currDate.getDate();
+	var numMes = currDate.getMonth() + 1;
+	var anio = currDate.getFullYear();       
 	var meses = new Array (
 		'',
 		'Enero', 

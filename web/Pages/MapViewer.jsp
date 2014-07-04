@@ -102,13 +102,12 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				
 				<!-- Foot page --> 
 
-				<div class="rigthFooter">
+				<div class="rightFoot">
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="${basepath}/common/images/Logos/gom-fs-logo-2.png" alt="Logo" width="60" height="60" /></a>
 				</div>
 				<div id="pieDePaginaIzq" class="leftFoot">
-					testing
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="${basepath}/common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
@@ -122,7 +121,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                     <a  href="#">
 						<p class="footNote" align="left">
 							&nbsp 
-							&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
+							&copy; <script language="javascript">document.write(owgis.utils.getDate(new Date(),"%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
 						</p></a>
 							<a id="emailText" href="MAILTO:pvelissariou@coaps.fsu.edu"> <fmt:message key="main.contact" /></a>
 

@@ -212,12 +212,25 @@ div.leftFoot {
   opacity: 0.8;
 }
 
-/* line 118, ../scss/GeneralStyles.scss */
+/* Left fotter */
+/* line 119, ../scss/GeneralStyles.scss */
+.rightFoot {
+  position: absolute;
+  bottom: 1%;
+  left: 3%;
+  z-index: 1000;
+  display: inline;
+  color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+
+/* line 129, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 120, ../scss/GeneralStyles.scss */
+/* line 131, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -226,13 +239,13 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 128, ../scss/GeneralStyles.scss */
+/* line 139, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
 /*Style for the 'contact' text. At the bottom of the page*/
-/* line 133, ../scss/GeneralStyles.scss */
+/* line 144, ../scss/GeneralStyles.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
@@ -240,7 +253,7 @@ but the size of the font is larger */
   color: blue;
 }
 
-/* line 140, ../scss/GeneralStyles.scss */
+/* line 151, ../scss/GeneralStyles.scss */
 #owgislogocont {
   position: absolute;
   display: inline;
@@ -249,7 +262,7 @@ but the size of the font is larger */
   z-index: 1009;
 }
 
-/* line 150, ../scss/GeneralStyles.scss */
+/* line 161, ../scss/GeneralStyles.scss */
 #draggable-container {
   position: absolute;
   width: 96%;
@@ -259,17 +272,17 @@ but the size of the font is larger */
   pointer-events: none;
 }
 
-/* line 160, ../scss/GeneralStyles.scss */
+/* line 171, ../scss/GeneralStyles.scss */
 .loadingCursor {
   cursor: progress;
 }
 
-/* line 164, ../scss/GeneralStyles.scss */
+/* line 175, ../scss/GeneralStyles.scss */
 .defaultCursor {
   cursor: crosshair;
 }
 
-/* line 168, ../scss/GeneralStyles.scss */
+/* line 179, ../scss/GeneralStyles.scss */
 hr {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ecf2f8), color-stop(50%, #000000), color-stop(100%, #ecf2f8));
   background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);

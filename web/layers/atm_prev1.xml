@@ -3,7 +3,7 @@
     <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true" >  
-		<layer Menu="prev1,atm,d2,wind" EN="Wind speed at 10m"
+		<layer Menu="prev1,atm,d2,wind" EN="Wind speed at 10m" 
 			   ES="Velocidad de viento a 10m " name="atm_forecast_prev1/wind"  />
 		<layer Menu="prev1,atm,d2,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_prev1/PSFC" />

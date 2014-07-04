@@ -55,7 +55,7 @@ This file defines the styles for the Base layers
 /* line 15, ../scss/BaseLayers.scss */
 .mainMenu {
   font-size: 15px;
-  width: 165px;
+  width: 175px;
   color: black;
   background-color: #909090;
   -webkit-border-radius: 6px 6px;
@@ -73,7 +73,7 @@ This file defines the styles for the Base layers
 #mainMenuParent {
   top: 60px;
   left: 50px;
-  width: 180px;
+  width: 190px;
 }
 
 /* Table that contains the menu for the base layers*/
@@ -85,5 +85,5 @@ This file defines the styles for the Base layers
 
 /* line 42, ../scss/BaseLayers.scss */
 #mainMenuParentHover {
-  left: 200px;
+  left: 210px;
 }

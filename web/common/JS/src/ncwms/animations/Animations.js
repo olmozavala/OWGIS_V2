@@ -345,7 +345,11 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	var mainParams = mainSource.getParams();
 	var layerName = mainParams.LAYERS;
 	
-	currUrl = mainSource.getUrls()[0];//Get url for 
+	if(mainSource.getUrls){
+		currUrl = mainSource.getUrls()[0];//Get url for 
+	}else{
+		currUrl = mainSource.getUrl();//Get url for 
+	}
 	
 	animParams = { 
 		TIME: allFrames[0],

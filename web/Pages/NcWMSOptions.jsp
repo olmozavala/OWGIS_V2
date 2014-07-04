@@ -128,12 +128,4 @@
 			<span id="animDate"></span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12 defShadow title"> 
-			<span>
-				<fmt:message key="ncwms.anim.currdate" />
-			</span>
-			<span id="animDate"></span>
-		</div>
-	</div>
 </div>

@@ -22,11 +22,11 @@
 		<MenuEntry ID="shores" EN="Shore lines" ES="Linea de costa"/>
 
 		<MenuEntry ID="latest" EN="Latest" ES="Actual"/>
-		<MenuEntry ID="prev1" EN="PREV1"/>
-		<MenuEntry ID="prev2" EN="PREV2"/>
-		<MenuEntry ID="prev3" EN="PREV3"/>
-		<MenuEntry ID="prev4" EN="PREV4"/>
-		<MenuEntry ID="prev5" EN="PREV5"/>
+		<MenuEntry ID="prev1" EN="Prev 1"/>
+		<MenuEntry ID="prev2" EN="Prev 2"/>
+		<MenuEntry ID="prev3" EN="Prev 3"/>
+		<MenuEntry ID="prev4" EN="Prev 4"/>
+		<MenuEntry ID="prev5" EN="Prev 5"/>
 	</MenuEntries>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
@@ -39,7 +39,7 @@
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true" >  
 		<layer Menu="latest,atm,d2,wind" EN="Wind speed at 10m"
-			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind"  />
+			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind"  style="vector"/>
 		<layer Menu="latest,atm,d2,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_latest/PSFC" />
 		<layer Menu="latest,atm,d2,t2" EN="Air Temperature at 2m"

@@ -25,5 +25,6 @@ if(mapConfig['menuDesign']=='sideMenu'){
  * @returns {undefined}
  */
 function modifyInterface(){
-
+	var firstDate = owgis.utils.getDate(($("#cal-start").datepicker("option","minDate")),"%m/%d/%Y");
+	$("#dropDownLevels1 .mainMenuOption:selected").append(firstDate);
 }
