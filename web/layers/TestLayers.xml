@@ -93,12 +93,17 @@
 	</MainLayers>
 
 	<!-- ncWMS all -->
+				<!--format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
-                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
+                ncWMS="true" max_time_range="month">  
+                <!--ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">-->  
         <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
-               ES="Golfo de M&#233;xico Temperatura 2014" name="gulf_temp/temperature" 
+               ES="Golfo de M&#233;xico Temperatura 2014" 
+			   name="atm_forecast_latest/T2" 
                HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+			   <!--name="gulf_temp/temperature"--> 
+
     </MainLayers> 
 </MenuConf>
 

@@ -130,7 +130,9 @@ public class OpenLayersManager {
 		result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
 		result += "\nfunction addLayers(){\n";
 		result += this.createInitFunction(idsBaseLayers, extraLayers) + "\n";//Esta funcion crea la configuracion central de OpenLayers
-		result += "\t if(netcdf){ map.addLayer(transectLayer); } \n\n";
+		result += "\t if(netcdf){ \n\t map.addLayer(transectLayer); \n "
+				+ ""
+				+ "} \n\n";
 		result += "} ";
 		return result;//Regresamos la configuracion
 	}
@@ -256,12 +258,12 @@ public class OpenLayersManager {
 
 		URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "FEATURE_COUNT=50\";\n";
-		URLscript +=  "\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
-				+ "\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
+		URLscript +=  "\t\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
+				+ "\t\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
 //				+ "\t\t\t alert(url" + layerNumber + ");\n"
-				+ "\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
-				+ "\t\t}\n"
-				+ "\t}\n";
+				+ "\t\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
+				+ "\t\t\t}\n"
+				+ "\t\t}\n";
 		return URLscript;
 	}
 
@@ -297,7 +299,7 @@ public class OpenLayersManager {
 				layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			}
 			
-			layersScript += ", SRS: '\"+_map_projection+\"'";
+			layersScript += ", SRS: _map_projection";
 			
 			layersScript += "}\n\t\t\t})\n";
 			layersScript += "\t\t});\n";

@@ -71,6 +71,7 @@
 		</div>
 
 	</div>
+
 	<div class="row  text-center ">
 		<div class="col-xs-12 "> 
 			<a class="btn btn-default btn-xs " href="#" onclick="animFirstFrame()"
@@ -126,6 +127,14 @@
 				<fmt:message key="ncwms.anim.currdate" />
 			</span>
 			<span id="animDate"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 defShadow title"> 
+			<span>
+				<fmt:message key="ncwms.anim.currspeed" />
+			</span>
+			<span id="animSpeed"></span>
 		</div>
 	</div>
 </div>

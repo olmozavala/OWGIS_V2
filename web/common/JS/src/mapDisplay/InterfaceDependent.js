@@ -25,5 +25,4 @@ if(mapConfig['menuDesign']=='sideMenu'){
  * @returns {undefined}
  */
 function modifyInterface(){
-
 }
