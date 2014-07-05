@@ -45,6 +45,7 @@ function owgisMain(){
 	initHelpTxtPos();
 	owgis.tooltips.initHelpTexts();
 	initLocaleDropDown();
+	
 }
 
 /**

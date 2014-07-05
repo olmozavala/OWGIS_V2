@@ -96,6 +96,11 @@
         <script src="${basepath}/common/JS/src/ajax/ajax.js"> </script>
 		<!--Debug mode-->
 
+<!-- Testing putpose .. to be removed later -->
+<%-- 		<script src="${basepath}/common/JS/script.js"></script> --%>
+<!-- Testing putpose .. to be removed later -->
+		
+
 		<!-- Production mode -->
 		<!--<script type="text/javascript" src="common/JS/compiled/script.js"></script>--> 
 		<!-- Production mode -->
