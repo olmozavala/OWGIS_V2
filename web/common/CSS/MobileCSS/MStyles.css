@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+/*
+ #ulBaseLayers, #optionalLayersWindow{
+ display: none;
+ } */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#header {
+    /*display: none;*/
+    height: 45px;
+    width: 100%;
+    position: absolute;
+    z-index: 10000;
+    background: #293041;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #293041), color-stop(1, #6d6d6d));
+    background: -webkit-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+    background: -moz-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+    background: -ms-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+    background: -o-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+    background: linear-gradient(to top, #293041 0%, #6d6d6d 100%);
+}
+
+.ui-panel-inner {
+    padding: 0px;
+}
+.ui-controlgroup {
+    margin: 0;
+}
+
+#bars-button_left, #bars-button_right {
+    margin-top: 1px;
+}
+.languageDropDownSel {
+    padding-right: 5px;
+}
+/*     ul ul { display: none; } */
+html {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
