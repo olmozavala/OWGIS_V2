@@ -81,14 +81,18 @@ function initCalendars(){
 				defaultDate: minValidDate,
 				dateFormat: "yy-mm-dd",
 				onSelect: updateCalendarStart
-			});
+			}).click(function(e) {
+			       e.stopPropagation(); // <--- here
+		    });
 			$("#cal-end").datepicker({
 				minDate: minValidDate,
 				maxDate: maxValidDate,
 				defaultDate: maxValidDate,
 				dateFormat: "yy-mm-dd",
 				onSelect: updateCalendarEnd
-			});
+			}).click(function(e) {
+			       e.stopPropagation(); // <--- here
+		    });
 			
 			startDate = getSuggestedDate(maxValidDate, false);
 			$("#cal-start").datepicker("setDate",startDate);

@@ -1,7 +1,7 @@
 goog.provide('owgis');
 
 goog.require('ol.Map');
-goog.require('ol.View2D');
+goog.require('ol.View');
 goog.require('ol.coordinate');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.TileJSON');
@@ -38,6 +38,7 @@ if (window.location.protocol !== "http:") {
  * Instructions executed when the page is ready
  */
 function owgisMain(){
+	
 	initOl3();
     addLayers();
     initVariables();
@@ -45,6 +46,10 @@ function owgisMain(){
 	initHelpTxtPos();
 	owgis.tooltips.initHelpTexts();
 	initLocaleDropDown();
+	modifyInterface();
+	if(mobile){
+		initMobile();
+	}
 }
 
 /**
@@ -244,7 +249,7 @@ function changeTranspManager(val, version) {
     changeTransp(val, layer, version);
 	
     if (netcdf) {
-        if (animation_layer !== undefined) {
+        if ( typeof(animation_layer) !== "undefined") {
             changeTransp(val, animation_layer, version);
         }
     }
@@ -280,18 +285,26 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            $("#"+id_minus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
         } else {
             document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            $("#"+id_minus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            $("#"+id_plus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
         } else {
             document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            $("#"+id_plus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity < .00001) {
@@ -321,28 +334,40 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            $("#"+id_minus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
         } else {
             document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            $("#"+id_minus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            $("#"+id_plus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
         } else {
             document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            $("#"+id_plus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
         }
     }
     else
     {
         //Disables the buttons.
         document.getElementById(id_minus).disabled = true;
-        changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        $("#"+id_minus).attr('disabled', true);
+        if(!mobile)
+        	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
 		
         document.getElementById(id_plus).disabled = true;
-        changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        $("#"+id_plus).attr('disabled', true);
+        if(!mobile)
+        	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
 		
     }
 	
@@ -437,8 +462,10 @@ function findPageHeight() {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-        saveAllWindowPositionsAndVisualizationStatus();
-        setSelectedLocale();
+    	if(!mobile){
+	        saveAllWindowPositionsAndVisualizationStatus();
+	        setSelectedLocale();
+    	}
         submitForm();
     }
 }
@@ -511,5 +538,64 @@ function setSelectedLocale(){
 	document.getElementById("_locale").value = selectedLocale;
 }
 
+function initMobile(){
+
+	  $("#leftList > li").each(function(){
+		  		if(!$(this).children().is(':visible')){
+		  			$(this).remove();
+		  		}
+	  });
+
+	var header = $('[data-role=header]').outerHeight();
+	var panel = $('.ui-panel').height();
+	var leftList =  $('#ui-panel').height();
+	var panelheight = panel;
+	$('.ui-panel').css({
+	    'top': header,
+	    'min-height': '20px'
+	});
+
+	var isDrawerOpen=false;
+	$("div#drawer-pull").bind('click', function(e){
+		if (!isDrawerOpen){
+			$("#drawer").animate({
+	            bottom: 0
+	        }, 200);
+	    $("#drawer-pull").attr('class', 'flipped');
+	    isDrawerOpen =true;
+		}
+		else{
+			$("#drawer").animate({
+	            bottom: -133
+	        }, 200);
+		    $("#drawer-pull").attr('class', '');
+		    isDrawerOpen =false;
+
+		}
+	});
+
+	$('#panel3').slidePanel({
+		triggerName: '#trigger3',
+		triggerTopPos: '55px',
+		panelTopPos: '50px'
+	});
+
+	$('#panel2').slidePanel({
+		triggerName: '#trigger2',
+		triggerTopPos: '450px',
+		panelTopPos: '90px'
+	});
+
+	//$('html').click(function() {
+//		$("#drawer").css("bottom", "-203px");
+//	    $("#drawer-pull").attr('class', '');
+//	    isDrawerOpen =false;
+	//});
+	//
+//		$("div#drawer-pull").click(function(event){
+//		    event.stopPropagation();
+//		});
+
+}
 goog.exportSymbol('owgis',owgis);
 

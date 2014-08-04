@@ -20,7 +20,24 @@
  */
 package com.mapviewer.business.servlets;
 
-import com.mapviewer.business.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mapviewer.business.AccessControls;
+import com.mapviewer.business.LayerMenuManagerSingleton;
+import com.mapviewer.business.NetCDFRequestManager;
+import com.mapviewer.business.OpenLayersManager;
+import com.mapviewer.business.UserRequestManager;
 import com.mapviewer.conf.OpenLayerMapConfig;
 import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.Layer;
@@ -29,18 +46,6 @@ import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.model.menu.TreeMenuUtils;
 import com.mapviewer.model.menu.TreeNode;
 import com.mapviewer.tools.HtmlMenuBuilder;
-import com.mapviewer.tools.HtmlTools;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servelet to process all the request of the user and incharge of presenting the client

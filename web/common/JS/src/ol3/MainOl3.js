@@ -34,8 +34,11 @@ function setMouseClickOnMap(){
 	.on('mousemove', function() { isOnlyClick = false; })
 	.on('mouseup', function(){
 		if(isOnlyClick){
-			$("#map").addClass("loadingCursor");
-			$("#map").removeClass("defaultCursor");
+			//Verify that the transect tools is not turned on
+			if(!transectOn){
+				$("#map").addClass("loadingCursor");
+				$("#map").removeClass("defaultCursor");
+			}
 		}
 	});
 
@@ -115,7 +118,7 @@ function initOl3(){
 	var scaleLineControl = new ol.control.ScaleLine();
 	var fullScreen = new ol.control.FullScreen();
 	
-	ol3view = new ol.View2D({
+	ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
 		zoom: mapConfig.zoom,
@@ -131,3 +134,21 @@ function initOl3(){
 	
 }
 
+
+function detectMapLayersStatus(){
+	var mapLayers = map.getLayers().getArray();
+	var mapDoneRendering = true;
+	console.log("change in a layer");
+	for(var i=0; i < mapLayers.length; i++){
+		if( mapLayers[i].getSource().getState() !== "ready"){
+			mapDoneRendering = false;
+			break;
+		}
+	}
+
+	if(mapDoneRendering){
+		console.log("MAP IS READY!");
+	}else{
+		console.log("MAP IS NOT ready!");
+	}
+}

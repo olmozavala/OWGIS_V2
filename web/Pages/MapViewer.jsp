@@ -41,7 +41,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 
             <!-- These are the dropdowns for the base layer-->
             <div class="transDraggableWindow toolTip" id="mainMenuParent" 
-                title = "<fmt:message key="help.mainlayers" />"   >
+                title = "<fmt:message key="help.tooltip.mainlayers" />"   >
                     <div class="row ">
                         <div  class="col-xs-9 text-center invShadow title"> 
                             <fmt:message key="main.base" />

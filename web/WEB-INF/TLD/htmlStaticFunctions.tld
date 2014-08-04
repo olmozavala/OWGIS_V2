@@ -20,6 +20,6 @@
     <function>
     <name>createLanguageComboBox</name>
     <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String createLanguageComboBox(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    <function-signature>String createLanguageComboBox(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
   </function>
 </taglib>

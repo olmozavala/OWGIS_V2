@@ -74,7 +74,7 @@
 
 </div>
                         <div id="languageDropDown">
-                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language)}
+                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language,basePath)}
                         </div>
 <div id="helpHoverSpan" >
     <img title="<fmt:message key='help.helpicon'/>" class="toolTip"

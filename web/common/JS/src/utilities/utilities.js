@@ -227,7 +227,7 @@ owgis.utils.getDate = function(formato)
  * @param {type} name Name of the variable
  */
 owgis.utils.isNotUndefined = function(variable, name){
-    if(variable === undefined){
+    if(typeof(variable) === undefined){
         throw "Variable: "+ name +" is undefined";
     }
     return variable;
