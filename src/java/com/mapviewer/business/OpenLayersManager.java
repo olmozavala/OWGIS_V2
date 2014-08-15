@@ -37,16 +37,12 @@ public class OpenLayersManager {
 	OpenLayerMapConfig mapConfig;
 	LayerMenuManagerSingleton layersManager;
 	String language;
-	String basepath;
 
 	/**
 	 * Class constructor, it defines the file that will store the layers info
-	 *
-	 * @params {String} basepath - The base path of the site (DeepCProject, ACDM, etc.)
 	 */
-	public OpenLayersManager(String basePath) throws XMLFilesException {
+	public OpenLayersManager() throws XMLFilesException {
 		this.layersManager = LayerMenuManagerSingleton.getInstance();
-		this.basepath = basePath;
 		mapConfig = OpenLayerMapConfig.getInstance();
 	}
 
@@ -222,7 +218,8 @@ public class OpenLayersManager {
 
 		URLscript += "\t\tif(typeof(layer" + layerNumber + ") !== 'undefined'){\n";
 		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
-		URLscript += "\t\t\t\tvar url" + layerNumber + " =\"" + basepath + "/redirect?server=" + actualLayer.getServer() + "&";
+		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
+
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "STYLES=&"
 				+ "WIDTH=\"+ map.getSize()[0] +\"&"

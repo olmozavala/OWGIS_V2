@@ -44,10 +44,9 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 /**
  *This function generates the properties needed to request the data of the base layer the user is 
  *currently viewing. It is used by the DownloadData.jsp to be able to download the Geotiff file
- *@param {js_var} path - base path /DeepCProject
  *
  */
-function downloadData(path) {
+function downloadData() {
 
 	var mainLayerServer = owgis.layers.getMainLayerServer();
 
@@ -91,31 +90,6 @@ function downloadData(path) {
 	var url = mainLayerServer +"?"+owgis.utils.paramsToUrl(requestParams);
 	console.log(url);
 	window.open(url,'_self');
-
-	/*
-    var asynchronous3 = new Asynchronous();
-
-	var currPath = path + "/WCSServlet?";
-			
-    //Generamos el URL que se manda llamar de manera asincrona
-    var requestParams= {
-		WCS: true,
-		HEIGHT: height, 
-		WIDTH: width,
-		isWCS: true,
-		CENTER: map.getView().getCenter().toString(),
-		mainLayer: mainLayer}
-
-	var cqlfilter = owgis.layers.getCQLFilter();
-    if (cqlfilter !== undefined) {
-        requestParams.CQLFILTER = applyCqlFilter();
-    }
-
-	var url = currPath + owgis.utils.paramsToUrl(requestParams);
-    //Aqui se asigna la funcion de un parametro que es la encargada de hacer algo con la respuesta
-    asynchronous3.complete = AsyncCompleteEventWCS;
-    asynchronous3.call(url);
-	*/
 }
 
 

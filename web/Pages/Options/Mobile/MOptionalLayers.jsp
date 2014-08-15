@@ -15,7 +15,7 @@
 </div>
 <div class="row" id="optionalLayersData" >
 	<div class="col-xs-12">
-		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, basepath, mobile)}
+		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, ".", mobile)}
 <!-- 		<ul class='opt_lay_list_root' id='optUl0'> -->
 <!-- 			<li class="opt_lay_title" id="optMenu1" -->
 <!-- 				onclick="toogleList('#optUl1')">Level 1</li> -->

@@ -42,7 +42,7 @@
     <!-- Download data-->
     <div class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
         title="<fmt:message key='help.tooltip.download'/>"
-        onclick="downloadData('${basepath}');"  >
+        onclick="downloadData();"  >
         <fmt:message key="main.download" />
     </div>
     <!-- Export map as PNG image -->
@@ -78,5 +78,5 @@
                         </div>
 <div id="helpHoverSpan" >
     <img title="<fmt:message key='help.helpicon'/>" class="toolTip"
-    onclick="displayHoverHelp();" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
+    onclick="displayHoverHelp();" id="helpHoverImg" src="./common/images/Help/Help1.png">
 </div>

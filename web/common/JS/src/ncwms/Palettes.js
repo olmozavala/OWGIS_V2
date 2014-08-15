@@ -14,7 +14,7 @@ var urlPaletteImg;//this variable is used to get the first original url
  * @paramminMaxTxt - value of minimim and maximium colors
  */
 function updateMinMaxFromJson(minMaxTxt){
-    //    alert(minMaxTxt);
+        alert(minMaxTxt);
     var jsonMinMax = eval("("+minMaxTxt+")");
     $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
     $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
@@ -56,7 +56,7 @@ function setColorRangeFromMinMax(){
 
     url += owgis.utils.paramsToUrl(urlParams);
 
-    var path_image = basepath+"/common/images/loading/load.gif";//loading ...
+    var path_image = "./common/images/loading/load.gif";//loading ...
     //Show the Loading message
     document.getElementById('loadperc').innerHTML = "0";   
     $('#l-animation').hide("fade");

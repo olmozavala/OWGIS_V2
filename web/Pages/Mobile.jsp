@@ -30,8 +30,7 @@
 			<div id="popup-content"></div>
 		</div>
 		<%-- Contains the title of the layer and the div that hold the whole map --%>
-		<form id="baseForm" class="form-inline" name="baseForm"
-			  action="${basepath}${names.acdmServlet}" method="post">
+		<form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 			<!-- <input type="hidden" id="device_source" value="mobile"> -->
 			<div data-role="page" id="home" data-theme="a">
 				
@@ -103,7 +102,7 @@
 						</li>
 						<li><div id="downloadDataParent"
 								 title="<fmt:message key='help.tooltip.download'/>"
-								 onclick="downloadData('${basepath}');">
+								 onclick="downloadData();">
 								<fmt:message key="main.download" />
 							</div></li>
 						<!-- 					<li data-icon="gear" id="baseLayers"><a href="#navpanelright">Base -->

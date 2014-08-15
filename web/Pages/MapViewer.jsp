@@ -32,7 +32,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
 
         <%-- Main form of the application (main menu), it executes a new page everytime a new menu item is chosen --%>
-        <form id="baseForm" class="form-inline" name="baseForm" action="${basepath}${names.acdmServlet}" method="post">
+        <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 
             <!-- List of optional layers -->
             <div class="draggableWindow toolTipWithImage" id="optionalMenuParent" title="optionalLayersParentHover">
@@ -79,7 +79,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
             <!-- OWGIS logo -->
             <div id="owgislogocont">
                 <a href="http://owgis.org" target="_blank">
-                    <img border="0" src="${basepath}/common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />
+                    <img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />
                 </a>
             </div>
 
@@ -96,7 +96,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 
                 <div id="l-animation" class="menuHidden">
                     <p class="bigFontSize invShadow"> <fmt:message key="ncwms.loading" /> 
-						<span id="loadperc" class="invShadow">0</span> % <img src="${basepath}/common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
+						<span id="loadperc" class="invShadow">0</span> % <img src="./common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
                 </div>
             </c:if>
 				
@@ -105,16 +105,16 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 					testing
 					&nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
                     &nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
                     &nbsp 
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
                     &nbsp 
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
 							
                     <a  href="#">
 						<p class="footNote" align="left">
@@ -141,9 +141,9 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		</script>
 		<div id="optionalLayersParentHover" class="commonHover" >
 					<fmt:message key="help.optional.layers1" />
-					<img src="${basepath}/common/images/kmz/kmz.png"/> 
+					<img src="./common/images/kmz/kmz.png"/> 
 					<fmt:message key="help.optional.layers2" />
-					<img src="${basepath}/common/images/Download/LayerDownload.png"/> 
+					<img src="./common/images/Download/LayerDownload.png"/> 
 					<fmt:message key="help.optional.layers3" />
 				</div> 
 	<input type="hidden" id="_locale" value="" />
