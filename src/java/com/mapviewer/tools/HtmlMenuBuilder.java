@@ -110,7 +110,7 @@ public class HtmlMenuBuilder {
 	 */
 	public static String createOptionalLayersMenu(TreeNode rootNode, String language, String basePath) {
 		try {
-			boolean mob =false;
+			boolean mob =true;
 			LayerMenuManagerSingleton menuSing = LayerMenuManagerSingleton.getInstance();
 			//Updates the number of main layers and the base path of the website
 			HtmlMenuBuilder.numMainLayers = menuSing.getBackgroundLayers().size();

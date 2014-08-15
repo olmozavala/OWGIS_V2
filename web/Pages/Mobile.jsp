@@ -23,10 +23,7 @@
 <head>
 
 
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
 
 
 <%@include file="Header/GlobalJavaScript.jsp"%>
@@ -37,6 +34,11 @@
 <%-- Sets all the javascript global variables that are initiated by the java application --%>
 </head>
 <body>
+<div class="loader"></div>
+<div id="popup" class="ol-popup">
+	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+	<div id="popup-content"></div>
+</div>
 	<%-- Contains the title of the layer and the div that hold the whole map --%>
 	<form id="baseForm" class="form-inline" name="baseForm"
 		action="${basepath}${names.acdmServlet}" method="post">
@@ -125,6 +127,7 @@
 				data-fullscreen="true">
 				<a id="bars-button_left" data-icon="bars" class="ui-btn-left"
 					data-inline="true" href="#navpanelleft">Tools</a>
+					<h1>OWGIS</h1>
 				<div data-type="horizontal" data-role="controlgroup"
 					class="ui-btn-right">
 					<%--      	  ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language,basePath)} --%>
@@ -214,7 +217,7 @@
 				</div>
 			</div>
 
-			<a href="#" id="trigger2" class="trigger left">Date Range</a>
+			<a href="#" id="trigger2" class="trigger left" style="display:none">Date Range</a>
 			<div id="panel2" class="panel left">
 
 				<div id="CalendarParent container-fluid">
@@ -265,6 +268,7 @@
 									key='ncwms.resolutionLow' />
 							</label>
 						</div>
+						</div>
 						<div class="row" style="margin-bottom: 20px">
 						<div class="col-xs-6 col-xs-offset-3 text-center">
 							<select class="form-control" id="timeSelect" name="timeSelect" style="color: black">
@@ -281,12 +285,13 @@
 
 					</div>
 
-				</div>
+				
 			</div>
 </div>
 <%-- <canvas id="animationCanvas"></canvas> --%>
 <!-- <img id="animContainer" src=""></img> -->
-
+<canvas id="animationCanvas"></canvas>
+<img id="animContainer" src=""></img>
 		<div id="drawer">
 			<div id="drawer-pull" class=""></div>
 			<div id="drawer-content">
@@ -363,6 +368,9 @@
 		jQuery(document).ready(function() {
 			owgisMain();
 		});
+		$(window).load(function() {
+			$(".loader").fadeOut("slow");
+		})
 	</script>
 </body>
 </html>

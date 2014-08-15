@@ -539,7 +539,10 @@ function setSelectedLocale(){
 }
 
 function initMobile(){
-
+	$(function() {
+	    $( "#radio" ).buttonset();
+	  });
+	window.scrollTo(0, 0);
 	  $("#leftList > li").each(function(){
 		  		if(!$(this).children().is(':visible')){
 		  			$(this).remove();
@@ -552,7 +555,10 @@ function initMobile(){
 	var panelheight = panel;
 	$('.ui-panel').css({
 	    'top': header,
-	    'min-height': '20px'
+	    'min-height': '20px',
+	'border-radius': '10px',
+	'opacity':'0.9',
+	'min-width':'20px'
 	});
 
 	var isDrawerOpen=false;
@@ -577,13 +583,15 @@ function initMobile(){
 	$('#panel3').slidePanel({
 		triggerName: '#trigger3',
 		triggerTopPos: '55px',
-		panelTopPos: '50px'
+		panelTopPos: '50px',
+		clickOutsideToClose: false
 	});
 
 	$('#panel2').slidePanel({
 		triggerName: '#trigger2',
 		triggerTopPos: '450px',
-		panelTopPos: '90px'
+		panelTopPos: '90px',
+		clickOutsideToClose: false
 	});
 
 	//$('html').click(function() {
