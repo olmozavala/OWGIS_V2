@@ -16,7 +16,7 @@ var calendarPosTop = null;
  */
 function displayCalendars(disp){
 	var visib = disp ? "visible" : "hidden";
-        
+	$("#trigger2").css("display",disp?"block":"none");
 	$("#cal-start").css("visibility",visib);
 	$("#cal-end").css("visibility",  visib);
 	$("#hideOneDay").css("visibility",  visib);
@@ -81,18 +81,20 @@ function initCalendars(){
 				defaultDate: minValidDate,
 				dateFormat: "yy-mm-dd",
 				onSelect: updateCalendarStart
-			}).click(function(e) {
-			       e.stopPropagation(); // <--- here
-		    });
+			});
+			
 			$("#cal-end").datepicker({
 				minDate: minValidDate,
 				maxDate: maxValidDate,
 				defaultDate: maxValidDate,
 				dateFormat: "yy-mm-dd",
 				onSelect: updateCalendarEnd
-			}).click(function(e) {
-			       e.stopPropagation(); // <--- here
-		    });
+			});
+			if(mobile){
+			$("#ui-datepicker-div").click( function(event) {
+                event.stopPropagation();
+            });
+			}
 			
 			startDate = getSuggestedDate(maxValidDate, false);
 			$("#cal-start").datepicker("setDate",startDate);
@@ -262,7 +264,7 @@ function updateMainLayerDate(newDate){
 function hideCalendarFunc() {
 	var button = $('#hideCalendar');    
 	var inner_text = button.html();  
-	
+	if(!mobile){
 	//this if handles when the calendar is hiden and we should show it
 	if(inner_text === hideCal)
 	{
@@ -274,6 +276,7 @@ function hideCalendarFunc() {
 	{           
 		button.html(hideCal.toString());
 		$('#CalendarsAndStopContainer').css("display","block");
+	}
 	}
 }
 

@@ -17,6 +17,10 @@
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 
         <!-- Jquery -->
+        <link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
 		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
