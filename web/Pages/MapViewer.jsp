@@ -148,6 +148,5 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				</div> 
 	<input type="hidden" id="_locale" value="" />
 	
-	
     </body>
 </html>

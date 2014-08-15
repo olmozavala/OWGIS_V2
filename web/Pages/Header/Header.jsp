@@ -13,11 +13,9 @@
         <meta name="Keywords" content="OWGIS " />
 
         <!-- Jquery -->
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
-		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
-		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
+		<script src="${basepath}/common/JS/vendor/jquery-2.1.1.min.js"></script>
+		<script src="${basepath}/common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+		<link href="${basepath}/common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		
 		<!--Specific for Images in Dropdown for locale-->		
 		<script src="${basepath}/common/JS/vendor/jquery.dd.min.js"></script>
@@ -97,11 +95,6 @@
 		<script src="${basepath}/common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="${basepath}/common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
 		<!--Debug mode-->
-
-<!-- Testing putpose .. to be removed later -->
-<%-- 		<script src="${basepath}/common/JS/script.js"></script> --%>
-<!-- Testing putpose .. to be removed later -->
-		
 
 		<!-- Production mode -->
 		<!--<script type="text/javascript" src="common/JS/compiled/script.js"></script>--> 

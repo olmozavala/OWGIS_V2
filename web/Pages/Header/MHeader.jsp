@@ -12,28 +12,26 @@
         <meta name="Description" content="OWGIS Template" />
         <meta name="Keywords" content="OWGIS " />
 
+        <!-- jQuery -->
+		<script src="${basepath}/common/JS/vendor/jquery-2.1.1.min.js"></script>
+		<script src="${basepath}/common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+		<link href="${basepath}/common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <!-- End jQuery -->
+
 		<!-- Leaflet -->
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css">
 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+		<!-- End Leaflet -->
 
-        <!-- Jquery -->
-        <link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
-		<link href="${basepath}/common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-		<script src="${basepath}/common/JS/vendor/jquery.min.js"></script>
-		<script src="${basepath}/common/JS/vendor/jquery-ui.min.js"></script>
-		
+        <!-- jQuery Mobile -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <!-- End jQuery Mobile -->
+				
 		<!--Specific for Images in Dropdown for locale-->		
 		<script src="${basepath}/common/JS/vendor/jquery.dd.min.js"></script>
-		
 		<script src="${basepath}/common/JS/vendor/jquery.slidePanel.js"></script>
-		
 
-        <!-- End Jquery -->
         <script>
 		$.widget.bridge('uitooltip', $.ui.tooltip);
 		</script>
@@ -50,7 +48,7 @@
 		<link href="${basepath}/common/CSS/MobileCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MobileCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/MobileCSS/MPanels.css" rel="stylesheet" type="text/css"/>
-				<link href="${basepath}/common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>		
+		<link href="${basepath}/common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>		
 		<link href="${basepath}/common/CSS/MapInstructions.css" rel="stylesheet" type="text/css"/>
 		<link href="${basepath}/common/CSS/GeneralStyles.css" rel="stylesheet" type="text/css"/>
         <link href="${basepath}/common/CSS/Buttons.css" rel="stylesheet" type="text/css"/>

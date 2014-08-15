@@ -217,8 +217,6 @@ public class MapViewerServlet extends HttpServlet {
 			} else {
 				request.setAttribute("mobile", "false");
 			}
-			nextPage = PagesNames.MOBILE_PAGE.replaceFirst(basePath, "");
-			request.setAttribute("mobile", "true");//get get variable to true
 
 			//Detect Mobile Browser
 //			String mobileGet = request.getParameter("mobile");
