@@ -10,7 +10,7 @@
   <function>
     <name>createOptionalLayersMenu</name>
     <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String createOptionalLayersMenu(com.mapviewer.model.menu.TreeNode, java.lang.String, java.lang.String)</function-signature>
+    <function-signature>String createOptionalLayersMenu(com.mapviewer.model.menu.TreeNode, java.lang.String, java.lang.String, boolean)</function-signature>
   </function>
   <function>
     <name>transName</name>

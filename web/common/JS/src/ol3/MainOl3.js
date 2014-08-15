@@ -129,6 +129,7 @@ function initOl3(){
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
         renderer: 'canvas', // ['canvas','dom','webgl']
+		logo: false,
 		view: ol3view
 	});
 	

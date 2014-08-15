@@ -10,7 +10,6 @@ Author     : olmozavala
 <div class="row">
 	<div class="col-xs-9 title noShadow text-center">
 		<fmt:message key="main.optional" />
-
 	</div>
 	<div class="col-xs-3 text-right">
 		<a class="btn btn-default btn-xs " href="#"
@@ -21,7 +20,7 @@ Author     : olmozavala
 </div>
 <div class="row">
 	<div class="col-xs-12">
-		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, basepath)}
+		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, basepath, false)}
 <!-- 		<ul class='opt_lay_list_root' id='optUl0'> -->
 <!-- 			<li class="opt_lay_title" id="optMenu1" -->
 <!-- 				onclick="toogleList('#optUl1')">Level 1</li> -->

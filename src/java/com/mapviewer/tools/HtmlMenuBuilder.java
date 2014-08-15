@@ -103,14 +103,15 @@ public class HtmlMenuBuilder {
 	/**
 	 * It creates the html code for the optional layers recursively.
 	 *
-	 * @param {TreeNode} rootNode rootNode of the optional layers
-	 * @param {String} language Language to be used on the menus Ex. {EN, SP, ...}
-	 * @param {String} basePath Base path of the web page to link for images.
-	 * @return {String} Html code of the optional menu.
+	 * @param rootNode rootNode of the optional layers
+	 * @param language Language to be used on the menus Ex. {EN, SP, ...}
+	 * @param basePath Base path of the web page to link for images.
+	 * @param mob Boolean that indicates if the style should be for mobile interface
+	 * @return Html code of the optional menu.
 	 */
-	public static String createOptionalLayersMenu(TreeNode rootNode, String language, String basePath) {
+	public static String createOptionalLayersMenu(TreeNode rootNode, String language, String basePath, boolean mob) {
 		try {
-			boolean mob =false;
+//			boolean mob =false;
 			LayerMenuManagerSingleton menuSing = LayerMenuManagerSingleton.getInstance();
 			//Updates the number of main layers and the base path of the website
 			HtmlMenuBuilder.numMainLayers = menuSing.getBackgroundLayers().size();

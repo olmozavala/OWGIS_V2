@@ -2,7 +2,6 @@
 This is the main jsp file that forms the html webpage. It contains the skeleton of the html application. 
 --%>
 
-<%-- <%@page pageEncoding="iso-8859-1"%> --%>
 <%@page pageEncoding="UTF-8"%>
 <%@page errorPage="Error/ErrorPage.jsp" %>
 <%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
@@ -22,6 +21,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <%@include file="Header/Header.jsp" %> <%-- contains all the css links and javascript links --%>
         <%@include file="Header/InitJSVariables.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<title>OWGIS Template</title>
     </head>
 
     <body id="bodyClass" >
