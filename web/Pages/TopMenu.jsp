@@ -58,7 +58,7 @@
     <!-- Map Instructions-->
     <div class="buttonStyle toolTip" id="helpParent" valign="middle"  
     title="<fmt:message key='help.tooltip.help'/>">
-        <span id="helpText"  onclick="displayHelp();" atl="Help" />
+        <span id="helpText"  onclick="displayHelp();" alt="Help" />
             <fmt:message key="main.help" />
         </span>
     </div>

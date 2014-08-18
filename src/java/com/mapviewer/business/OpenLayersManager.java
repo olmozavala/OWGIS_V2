@@ -311,7 +311,7 @@ public class OpenLayersManager {
 			}
 			layersScript += "\tmap.addLayer(layer" + layerCount + ");\n";
 		}else{
-			layersScript += "\t requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+");\n";
+			layersScript += "\t requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+","+visible+");\n";
 		}
 		return layersScript;
 	}

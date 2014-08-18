@@ -209,7 +209,7 @@
 				<a href="#" id="trigger2" class="trigger left" style="display:none">Date Range</a>
 				<div id="panel2" class="panel left">
 					
-					<div id="CalendarParent container-fluid">
+					<div id="CalendarParent">
 						<div class="row" >
 							<div class="col-xs-6 text-center title " id="hideOneDay">
 								<span class="invShadow"> <fmt:message
@@ -222,14 +222,14 @@
 						</div>
 						<div class="row" style="margin-bottom: 10px">
 							<div class="col-xs-5" id="hideOneDay">
-								<input type="text" data-role="date" id="cal-start" readonly='true' style="width: 120px; color:black">
+								<input type="text" data-role="date" id="cal-start" style="width: 120px; color:black" readonly>
 							</div>
 							<div class="col-xs-2"></div>
 							<div class="col-xs-5" id="hideOneDay">
-								<input type="text" data-role="date" id="cal-end" readonly='true' style="width: 120px; color:black">							
+								<input type="text" data-role="date" id="cal-end" style="width: 120px; color:black" readonly>
 							</div>
 						</div>
-						<div class="row "style="margin-bottom: 5px">
+						<div class="row" style="margin-bottom: 5px">
 							<div class="col-xs-6 col-xs-offset-3 invShadow text-center">
 								<fmt:message key='ncwms.resolution' />
 								:
@@ -280,7 +280,7 @@
 				<%-- <canvas id="animationCanvas"></canvas> --%>
 				<!-- <img id="animContainer" src=""></img> -->
 				<canvas id="animationCanvas"></canvas>
-				<img id="animContainer" src=""></img>
+				<img id="animContainer" src=""/>
 				<div id="drawer">
 					<div id="drawer-pull" class=""></div>
 					<div id="drawer-content">
