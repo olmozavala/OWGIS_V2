@@ -354,6 +354,8 @@
 						<span id="loadperc" class="invShadow">0</span> % <img src="./common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
                 </div>
 			</c:if>
+								<input type="hidden" id="mobile" name="mobile" value="" />
+			
 		</form>
 		<script>
 			${openLayerConfig}

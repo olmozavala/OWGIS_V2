@@ -465,6 +465,9 @@ function MapViewersubmitForm() {
 	        saveAllWindowPositionsAndVisualizationStatus();
 	        setSelectedLocale();
     	}
+    	else{
+    		document.getElementById("mobile").value = mobile;
+    	}
         submitForm();
     }
 }

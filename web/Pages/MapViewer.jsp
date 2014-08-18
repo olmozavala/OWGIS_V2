@@ -124,7 +124,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                     <a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
 				</div>
 					<input type="hidden" id="_locale" name="_locale" value="" />
-				
+					<input type="hidden" id="mobile" name="mobile" value="" />
         </form>
 			
         <!-- minimizable windows file -->
