@@ -85,6 +85,41 @@ function toggleControl()
     transectOn = !transectOn;        
 }
 
+function toggleControlMob() {
+//	alert("Called");
+//	var sliderVal = $('#lineToggle').slider("option", "value");
+	var sliderVal=$("#lineToggle").val();
+	transectOn=sliderVal=="off"?false:true;
+    if(transectOn){
+		//Initializes source and 
+		transectSource = new ol.source.Vector();
+		transectLayer = new ol.layer.Vector({
+			source: transectSource,
+			style: transectStyle });
+
+//        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+		draw = new ol.interaction.Draw({
+			source: transectSource,
+			type: "LineString"
+		});
+		draw.on("drawend",getVerticalTransect);
+		draw.on("drawstart",cleanPreviousTransect);
+		// Do nothing with single click
+		map.unByKey(singleClickKey);
+		map.addLayer(transectLayer);
+		map.addInteraction(draw);
+    } else {
+//        document.getElementById('lineToggle').innerHTML= transect.toString();
+		map.removeInteraction(draw);
+		map.removeLayer(transectLayer);
+		draw.un("drawend",getVerticalTransect);
+		//Recover the original behaviour of single click
+		singleClickKey = map.on('singleclick',punctualData);
+    }
+//    transectOn = !transectOn; 
+}
+
+
 /*
  * When we start creating a new transect we first clear all the previous geoms
  * @param {type} event

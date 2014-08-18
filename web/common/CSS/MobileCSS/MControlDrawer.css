@@ -1,7 +1,7 @@
 #drawer {
             position: absolute;
             height: 160px;
-            width: 250px;
+            min-width: 250px;
             bottom: -133px;
             left: 50%;
             margin-left: -124px;
@@ -40,7 +40,7 @@
             position: absolute;
             top: 30px;
             bottom: 0px;
-            width: 250px;
+            min-width: 250px;
             font-size: 13px;
             line-height: 14px;
             font-family: Helvetica, Arial, sans-serif;

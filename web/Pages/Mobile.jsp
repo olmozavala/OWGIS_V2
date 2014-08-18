@@ -38,7 +38,7 @@
 					 data-display="overlay" data-position="right">
 					<div data-role="fieldcontain" id="ulBaseLayers">
 						<div class="row " onClick="toogleList('#baseLayersData')">
-							<div class="col-xs-9 text-center invShadow title">
+							<div class="col-xs-9 text-center noShadow title">
 								<fmt:message key="main.base" />
 							</div>
 							<div class="col-xs-3 text-center">
@@ -88,17 +88,24 @@
 								 title="<fmt:message key='help.tooltip.depthElevation'/>">
 								<%@include file="Options/Elevation.jsp"%>
 							</div></li>
-						<li><div id="palettesMenuParent"
-								 title="<fmt:message key='help.tooltip.palettes'/>"
-								 onclick="showPalettes()" id="dynamicFont_color">
-								<fmt:message key="ncwms.pal" />
-							</div></li>
+<!-- 						<li><div id="palettesMenuParent" -->
+<%-- 								 title="<fmt:message key='help.tooltip.palettes'/>" --%>
+<!-- 								 onclick="showPalettes()" id="dynamicFont_color"> -->
+<%-- 								<fmt:message key="ncwms.pal" /> --%>
+<!-- 							</div></li> -->
 						<li>
-							<div id="lineToggle"
-								 title="<fmt:message key='help.tooltip.transect'/>" name="type"
-								 value="line" onclick="toggleControl(this,'below');">
-								<fmt:message key="ncwms.transect" />
-							</div>
+<!-- 							<div id="lineToggle" -->
+<%-- 								 title="<fmt:message key='help.tooltip.transect'/>" name="type" --%>
+<!-- 								 value="line" onclick="toggleControl(this,'below');"> -->
+<%-- 								<fmt:message key="ncwms.transect" /> --%>
+								
+<!-- 							</div> -->
+<div class="transect-slider">
+							<select name="flip-1" id="lineToggle" data-role="slider" onChange="toggleControlMob();">
+	<option value="off">Transect Off</option>
+	<option value="on">Transect On</option>
+</select> 
+</div>
 						</li>
 						<li><div id="downloadDataParent"
 								 title="<fmt:message key='help.tooltip.download'/>"
@@ -116,7 +123,7 @@
 					 data-fullscreen="true">
 					<a id="bars-button_left" data-icon="bars" class="ui-btn-left"
 					   data-inline="true" href="#navpanelleft">Tools</a>
-					<h1>OWGIS</h1>
+<!-- 					<h1>OWGIS</h1> -->
 					<div data-type="horizontal" data-role="controlgroup"
 						 class="ui-btn-right">
 						<%--      	  ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language,basePath)} --%>
@@ -205,11 +212,12 @@
 						</div>
 					</div>
 				</div>
-				
+				<canvas id="animationCanvas"></canvas>
+				<img id="animContainer" src="" class="menuHidden"></img>
 				<a href="#" id="trigger2" class="trigger left" style="display:none">Date Range</a>
 				<div id="panel2" class="panel left">
 					
-					<div id="CalendarParent">
+					<div id="CalendarParent container-fluid">
 						<div class="row" >
 							<div class="col-xs-6 text-center title " id="hideOneDay">
 								<span class="invShadow"> <fmt:message
@@ -222,14 +230,14 @@
 						</div>
 						<div class="row" style="margin-bottom: 10px">
 							<div class="col-xs-5" id="hideOneDay">
-								<input type="text" data-role="date" id="cal-start" style="width: 120px; color:black" readonly>
+								<input type="text" data-role="date" id="cal-start" readonly='true' style="width: 120px; color:black">
 							</div>
 							<div class="col-xs-2"></div>
 							<div class="col-xs-5" id="hideOneDay">
-								<input type="text" data-role="date" id="cal-end" style="width: 120px; color:black" readonly>
+								<input type="text" data-role="date" id="cal-end" readonly='true' style="width: 120px; color:black">							
 							</div>
 						</div>
-						<div class="row" style="margin-bottom: 5px">
+						<div class="row "style="margin-bottom: 5px">
 							<div class="col-xs-6 col-xs-offset-3 invShadow text-center">
 								<fmt:message key='ncwms.resolution' />
 								:
@@ -279,9 +287,8 @@
 				</div>
 				<%-- <canvas id="animationCanvas"></canvas> --%>
 				<!-- <img id="animContainer" src=""></img> -->
-				<canvas id="animationCanvas"></canvas>
-				<img id="animContainer" src=""/>
-				<div id="drawer">
+				
+				<div id="drawer" style="display:none">
 					<div id="drawer-pull" class=""></div>
 					<div id="drawer-content">
 						<div id="animControls">
@@ -294,43 +301,35 @@
 								<div class="col-xs-12 ">
 									<a class="btn btn-default btn-xs " href="#"
 									   onclick="animFirstFrame()"
-									   title="<fmt:message key='ncwms.anim.help.fastback'/>"> <span
+									  > <span
 											class="glyphicon glyphicon-fast-backward"></span>
-									</a> <a class="btn bult btn-xs " href="#"
-											onclick="animDecreaseFrame()"
-											title="<fmt:message key='ncwms.anim.help.stepback'/>"> <span
+									</a> <a class="btn btn-default btn-xs " href="#"
+											onclick="animDecreaseFrame()"> <span
 											class="glyphicon glyphicon-step-backward"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animSlower()"
-											title="<fmt:message key='ncwms.anim.help.slower'/>"> <span
+											onclick="animSlower()"> <span
 											class="glyphicon glyphicon-backward"></span>
 									</a> <span class="invShadow title menuHidden" id="stopAnimText">
-										<fmt:message key="ncwms.anim.stop" />
+										
 									</span> <a class="btn btn-default btn-xs " href="#"
-											   onclick="updateAnimationStatus('none')"
-											   title="<fmt:message key='ncwms.anim.help.stop'/>"> <span
+											   onclick="updateAnimationStatus('none')"> <span
 											class="glyphicon glyphicon-stop"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="updateAnimationStatus('playing')" title="Play"> <span
+											onclick="updateAnimationStatus('playing')" > <span
 											class="glyphicon glyphicon-play"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="updateAnimationStatus('paused')"
-											title="<fmt:message key='ncwms.anim.help.pause'/>"> <span
+											onclick="updateAnimationStatus('paused')"> <span
 											class="glyphicon glyphicon-pause"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animFaster()"
-											title="<fmt:message key='ncwms.anim.help.faster'/>"> <span
+											onclick="animFaster()"> <span
 											class="glyphicon glyphicon-forward"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animIncreaseFrame()"
-											title="<fmt:message key='ncwms.anim.help.stepforw'/>"> <span
+											onclick="animIncreaseFrame()"> <span
 											class="glyphicon glyphicon-step-forward"></span>
 									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animLastFrame()"
-											title="<fmt:message key='ncwms.anim.help.fastforw'/>"> <span
+											onclick="animLastFrame()"> <span
 											class="glyphicon glyphicon-fast-forward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#" target="_blank"
-											title="<fmt:message key='ncwms.anim.help.save'/>"> <span
+									</a> <a class="btn btn-default btn-xs " href="#" target="_blank"> <span
 											class="glyphicon glyphicon-floppy-save"></span>
 									</a>
 								</div>
@@ -350,7 +349,13 @@
 						</div>
 					</div>
 				</div>
+				                <div id="l-animation" class="menuHidden">
+                    <p class="invShadow"> <fmt:message key="ncwms.loading" /> 
+						<span id="loadperc" class="invShadow">0</span> % <img src="./common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
+                </div>
 			</c:if>
+								<input type="hidden" id="mobile" name="mobile" value="" />
+			
 		</form>
 		<script>
 			${openLayerConfig}
@@ -359,6 +364,7 @@
 				});
 				$(window).load(function() {
 					$(".loader").fadeOut("slow");
+					
 				})
 		</script>
 	</body>
