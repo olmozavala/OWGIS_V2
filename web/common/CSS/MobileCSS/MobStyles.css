@@ -6,8 +6,6 @@
 html, body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
-    position: relative;
 }
 .loader {
     position: fixed;
@@ -62,3 +60,23 @@ html {
 margin: 0.4em;
 width: 170px;
 }
+
+#l-animation {
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  left: 30%;
+  z-index: 1009;
+  pointer-events: none;
+  font-size: 18px;
+}
+
+#timeSelect {
+  width: 170px;
+}
+
+.transect-slider  .ui-slider-label {
+    font-size: 13px;
+}
+
+.transect-slider .ui-slider-switch { width: 10em }

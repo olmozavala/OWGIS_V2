@@ -122,6 +122,9 @@ function updateMenusDisplayVisibility(status){
                 }
                 if(_mainlayer_multipleDates){
                     $('#CalendarsAndStopContainer').show("fade");
+                    if(mobile){
+                        $('#drawer').hide("fade");
+                    }
                     $('#animControls').hide("fade");
                     $('#minPal').disabled = false;
                     $('#maxPal').disabled = false;
@@ -288,7 +291,12 @@ function obtainSelectedDates(){
  */
 owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	obtainSelectedDates();
-	
+	if(mobile) {
+		$("#animContainer").css("display","block");
+		$("#panel2").css("display","none");
+		$("#drawer").css("display","block");
+
+	}
 	//Create the required global variables if they don't exist
 //	console.log("TotalNumber of frames: "+ totalNumOfFrames);
 	for(var i = 0; i < totalNumOfFrames; i++){

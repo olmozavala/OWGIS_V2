@@ -16,7 +16,9 @@ var calendarPosTop = null;
  */
 function displayCalendars(disp){
 	var visib = disp ? "visible" : "hidden";
-	$("#trigger2").css("display",disp?"block":"none");
+	if(mobile){
+		$("#trigger2").css("display",disp?"block":"none");
+	}
 	$("#cal-start").css("visibility",visib);
 	$("#cal-end").css("visibility",  visib);
 	$("#hideOneDay").css("visibility",  visib);

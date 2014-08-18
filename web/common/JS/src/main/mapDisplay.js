@@ -38,7 +38,6 @@ if (window.location.protocol !== "http:") {
  * Instructions executed when the page is ready
  */
 function owgisMain(){
-	
 	initOl3();
     addLayers();
     initVariables();
@@ -539,10 +538,10 @@ function setSelectedLocale(){
 }
 
 function initMobile(){
+	
 	$(function() {
 	    $( "#radio" ).buttonset();
 	  });
-	window.scrollTo(0, 0);
 	  $("#leftList > li").each(function(){
 		  		if(!$(this).children().is(':visible')){
 		  			$(this).remove();
@@ -593,7 +592,42 @@ function initMobile(){
 		panelTopPos: '90px',
 		clickOutsideToClose: false
 	});
-
+	
+	toogleList('#baseLayersData');
+	toogleList('#optionalLayersData');
+//	$( "#lineToggle" ).change(function() {
+////		  alert( "Handler for .change() called." );
+//		var sliderVal = $('#lineToggle').slider("option", "value");
+//		transectOn=sliderVal=="off"?false:true;
+//	    if(!transectOn){
+//			//Initializes source and 
+//			transectSource = new ol.source.Vector();
+//			transectLayer = new ol.layer.Vector({
+//				source: transectSource,
+//				style: transectStyle });
+//
+////	        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+//			draw = new ol.interaction.Draw({
+//				source: transectSource,
+//				type: "LineString"
+//			});
+//			draw.on("drawend",getVerticalTransect);
+//			draw.on("drawstart",cleanPreviousTransect);
+//			// Do nothing with single click
+//			map.unByKey(singleClickKey);
+//			map.addLayer(transectLayer);
+//			map.addInteraction(draw);
+//	    } else {
+////	        document.getElementById('lineToggle').innerHTML= transect.toString();
+//			map.removeInteraction(draw);
+//			map.removeLayer(transectLayer);
+//			draw.un("drawend",getVerticalTransect);
+//			//Recover the original behaviour of single click
+//			singleClickKey = map.on('singleclick',punctualData);
+//	    }
+////	    transectOn = !transectOn;        
+//
+//		});
 	//$('html').click(function() {
 //		$("#drawer").css("bottom", "-203px");
 //	    $("#drawer-pull").attr('class', '');

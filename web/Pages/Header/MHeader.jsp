@@ -18,10 +18,7 @@
 		<link href="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <!-- End jQuery -->
 
-		<!-- Leaflet -->
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css">
-		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-		<!-- End Leaflet -->
+
 
         <!-- jQuery Mobile -->
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -42,13 +39,13 @@
 		<script src="./common/JS/vendor/bootstrap.min.js"></script>
         <!-- End Bootstrap -->
 
-		<link href="./common/CSS/MobileCSS/MStyles.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
 
 		<link href="./common/CSS/MobileCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileCSS/MPanels.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>		
+<!-- 		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>		 -->
 		<link href="./common/CSS/MapInstructions.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/GeneralStyles.css" rel="stylesheet" type="text/css"/>
         <link href="./common/CSS/Buttons.css" rel="stylesheet" type="text/css"/>
