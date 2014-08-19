@@ -1,3 +1,7 @@
+goog.provide('owgis.ncwms.calendars');
+
+goog.require('owgis.const');
+
 var calStart; //calendar start date
 var calEnd;  //calendar end date
 var minValidDate; //earliest possible day in data range
@@ -195,19 +199,18 @@ function getUserSelectedTimeFrame(){
  * @param formatEnd - Format for the end date (if null then it doesn't display it) Example of format: '%Y-%m-%d'
  * @return selected date
  */
-function getCurrentlySelectedDate(format, formatEnd){
+owgis.ncwms.calendars.getCurrentlySelectedDate = function(format, formatEnd){
 	if(calInitialized){
 		startDateTxt = $("#cal-start").val();
 		
-		if(formatEnd!=null){
+		if(formatEnd !== null){
 			endDateTxt = $("#cal-end").val();
 			startDateTxt = startDateTxt+"/"+endDateTxt;
 		}
 		
 		return startDateTxt;
 	}
-	//Don't change the following text, it is hardcoded in different places
-	return 'No current date';
+	return owgis.const.notimedim;
 }
 /**
  * This function returns the suggested day from the layer properties.
@@ -215,8 +218,8 @@ function getCurrentlySelectedDate(format, formatEnd){
  * the maximum possible date. Depending on the property ahead
  * it returns the suggested date for a time 'ahead' the currDate or
  * 'back' in time 
- * @paramactualDate - current date
- * @paramahead - true or false, true means ahead of time, false means back in time
+ * @param actualDate - current date
+ * @param ahead - true or false, true means ahead of time, false means back in time
  * @return final suggested date 
  */
 function getSuggestedDate(actualDate,ahead){

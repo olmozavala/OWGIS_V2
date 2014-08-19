@@ -244,7 +244,7 @@ public class OpenLayersManager {
 			// javascript variable names. 
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[elev_glob_counter]+\"&" 
 			URLscript += "\"+addElevationText()+\""
-					+ "TIME=\"+getCurrentlySelectedDate(\"%Y-%m-%d\")+\"&"
+					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"%Y-%m-%d\")+\"&"
 					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
 					+ "NETCDF=true&";

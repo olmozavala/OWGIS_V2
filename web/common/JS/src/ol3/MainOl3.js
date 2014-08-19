@@ -28,20 +28,16 @@ for (var i = 0; i < 100; i++) {
  */
 function setMouseClickOnMap(){
 
-	$("#map").addClass("defaultCursor");
-
 	$("#map").on('mousedown', function() { isOnlyClick = true; })
 	.on('mousemove', function() { isOnlyClick = false; })
 	.on('mouseup', function(){
 		if(isOnlyClick){
 			//Verify that the transect tools is not turned on
 			if(!transectOn){
-				$("#map").addClass("loadingCursor");
-				$("#map").removeClass("defaultCursor");
+				owgis.interface.loadingatmouse(true);
 			}
 		}
 	});
-
 }
 
 function initOl3(){

@@ -15,7 +15,9 @@
 		<MenuEntry ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
 		<MenuEntry ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
 		<MenuEntry ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
+		<MenuEntry ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/>
 		<MenuEntry ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/>
+		<MenuEntry ID="test" EN="Testing" />
 	</MenuEntries>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
@@ -26,7 +28,8 @@
 	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
 				  server="http://server.owgis.org/geoserver/wms"
 				  vectorLayer="true"> 
-		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
+		<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
+		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  />
 		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
 	</OptionalLayers>
 
@@ -93,16 +96,20 @@
 	</MainLayers>
 
 	<!-- ncWMS all -->
-				<!--format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"-->
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://server.owgis.org/ncWMS-1.1.1/wms"
+                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+        <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
+               ES="Golfo de M&#233;xico Temperatura 2014" 
+			   name="gulf_temp/temperature" 
+               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+
+    </MainLayers> 
+
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
                 ncWMS="true" max_time_range="month">  
-                <!--ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">-->  
-        <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
-               ES="Golfo de M&#233;xico Temperatura 2014" 
-			   name="atm_forecast_latest/T2" 
-               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
-			   <!--name="gulf_temp/temperature"--> 
-
+        <layer Menu="ncwms,test" EN="Gulf of Mexico Temperature 2014"
+			   name="atm_forecast_latest/T2" />
     </MainLayers> 
 </MenuConf>

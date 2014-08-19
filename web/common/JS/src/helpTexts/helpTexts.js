@@ -10,9 +10,7 @@ owgis.tooltips.initHelpTexts = function initHelpTexts() {
 				$(this).uitooltip('close'); 
 				$(this).uitooltip('open');
 			}
-		
 	});
-	
 	
 	$('.toolTip').uitooltip({
 		show: null, 

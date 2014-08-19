@@ -7,24 +7,57 @@ var viewportInitialized = false;//Indicates if 'mousemove' function has already 
 var highlight;
 var featureOverlay;
 
+
+/**
+ * Reads the default style of a geometry depending of its type. The
+ * styles are defined at VectorStyles.js   
+ * @param {type} feature Is the feature to be draw
+ * @param {type} resolution Is the resolution of the map 
+ * @returns  A style for the specified feature
+ */
 var defaultStyleFunction = function(feature, resolution) {
 	return owgis.vector.styles.default[feature.getGeometry().getType()];
 };	
 
+/**
+ * Reads the heighlighted style of a geometry depending of its type. The
+ * styles are defined at VectorStyles.js   
+ * @param {type} feature Is the feature to be draw
+ * @param {type} resolution Is the resolution of the map 
+ * @returns  A style for the specified feature
+ */
 var highlightStyleFunction = function(feature, resolution) {
 	return owgis.vector.styles.highlight[feature.getGeometry().getType()];
 };	
 
-function getFeature(feature, layer){
-	var delLayer = layer;
-//	console.log(feature.getId());
+/**
+ * Function called for every feature that is displayed at the mouse position 
+ * @param {type} feature
+ * @param {type} layer
+ * @returns {unresolved}
+ */
+function getFeature(feature, currLayer, pixel){
+	//TODO this function is the one we can manipulate to do something
+	// to the 'feature' been hover by the mouse
+
+	$("#jsonpdata").html(feature.getProperties().name)
+	$("#jsonpdata").show();
+	
 	return feature;
 }
 
+/**
+ * Draws an specific feature into the map, depending of the pixel received.  
+ * @param {type} pixel Position of the mouse
+ * @returns {undefined}
+ */
 var displayFeatureInfo = function(pixel) {
-	
+	//If there is any feature at 'pixel' then the function getFeatures
+	// is called
+
+	$("#jsonpdata").hide();
 	var feature = map.forEachFeatureAtPixel(pixel, getFeature);
-	
+
 	if (feature !== highlight) {
 		if (highlight) {
 			featureOverlay.removeFeature(highlight);
@@ -62,6 +95,7 @@ function requestJSONLayer( layer, layerId, visible ){
 		FORMAT_OPTIONS: "callback:globalCallback"+layerId
 	};
 	
+	//Converts all the parameters to a URL
 	var url= server+owgis.utils.paramsToUrl(layerParams);
 	
 	// This is required to avoid the cross origin problem
@@ -75,6 +109,7 @@ function requestJSONLayer( layer, layerId, visible ){
 	});
 	
 	
+	// Adds the 'mousemove' event into the map
 	if(!viewportInitialized){
 		
 		featureOverlay = new ol.FeatureOverlay({
@@ -82,6 +117,8 @@ function requestJSONLayer( layer, layerId, visible ){
 			style: highlightStyleFunction
 		});
 
+		//For each 'mousemove' event it calls displayFeatureInfo, to
+		// draw features on map
 		$(map.getViewport()).on('mousemove', function(evt) {
 			var pixel = map.getEventPixel(evt.originalEvent);
 			displayFeatureInfo(pixel);

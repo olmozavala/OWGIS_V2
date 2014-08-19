@@ -45,6 +45,7 @@
 		<link href="./common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Locale.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/HomePage.css" rel="stylesheet" type="text/css"/>
 
 		<!--Specific for Images in Dropdown for locale-->
 		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
@@ -56,14 +57,12 @@
 		<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 		<!--Specific for OpenLayers3 -->
 
-		<script type="text/javascript" src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 
 		<!--OpenLayers 3 Management -->
 		<script type="text/javascript" src="./common/JS/src/ol3/OpenLayersRelated.js"> </script>
 		<!--OpenLayers 3 Management -->
 
 		<!--NcWMS related-->
-		<script type="text/javascript" src="./common/JS/src/ncwms/animations/Calendars.js"> </script>
 		<script type="text/javascript" src="./common/JS/src/ncwms/Elevation.js"> </script>
 		<!--NcWMS related-->
 
@@ -82,9 +81,12 @@
 		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
 		<!--<script src="./common/JS/vendor/closure/goog/base.js"> </script>-->
 		<script src="./common/JS/vendor/ol.js"></script>
+		<script src="./common/JS/src/ncwms/animations/Calendars.js" > </script>
 		<script src="./common/JS/src/ncwms/Transect.js"> </script>
 		<script src="./common/JS/src/utilities/utilities.js"> </script>
+		<script src="./common/JS/src/utilities/constants.js"> </script>
 		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
+		<script src="./common/JS/src/ncwms/animations/AnimationStatus.js"> </script>
 		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>
@@ -94,6 +96,7 @@
         <script src="./common/JS/src/ajax/ajax.js"> </script>
 		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
+		<script src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->

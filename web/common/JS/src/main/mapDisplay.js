@@ -133,9 +133,8 @@ function disableEnterButton()
 /** Displays an alert when oppening an animation in GoogleEarth.
  * The reason is that it takes some time to generate the file
  */
-function KMZDownAlert()
-{
-    if (netcdf && anim_loaded && !owgis.ncwms.animation.stoppedAnimation)
+function KMZDownAlert() {
+    if (netcdf && (owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.playing))
         alert("Your download will beggin shortly.");
 }
 

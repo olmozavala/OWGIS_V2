@@ -14,7 +14,29 @@
  *@param {js_var} req - (request)displayanimation or getanimation times
  */
 
+goog.provide('owgis.ajax');
+
 goog.require('owgis.ogc');
+
+/**
+ * This function is used to call a url without the crossorigin problems.
+ * Internally is using the SimpleAjaxRedirectServlet to make the call
+ * @param {type} url String containing the desired url
+ * @param {type} callback Function to call after the call is made
+ * @returns {undefined}
+ */
+owgis.ajax.crossorigin = function(url, callback){
+
+    var hostUrl = window.location.href;
+    lastSlash = hostUrl.lastIndexOf("/");
+    hostUrl = hostUrl.substr(0,lastSlash);
+
+    hostUrl += '/simpleAjaxRedirect?url='+encodeURIComponent(url);
+
+	$.ajax({ 
+		url: hostUrl
+		}).done(callback);
+};
 
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
@@ -58,7 +80,6 @@ function downloadData() {
 
 	switch(layerDetails.layerType){
 		case "vector":
-
 			requestParams.OUTPUTFORMAT = "SHAPE-ZIP";
 			requestParams.SERVICE = "WFS";
 //			requestParams.VERSION = owgis.ogc.wfsversion;
@@ -79,7 +100,6 @@ function downloadData() {
 			requestParams.WIDTH = $(window).width();
 			requestParams.HEIGHT = $(window).height();
 			requestParams.BBOX= layerDetails.bbox;
-
 			break;
 		case "ncwms"://No possible right now
 			if (layerDetails.zaxis !== undefined) {
@@ -158,11 +178,10 @@ Asynchronous.prototype.call = Asynchronous_call;
 function AsyncPunctualData(responseText) {
 
 	responseText = responseText.replace("ADD_UNITS",layerDetails.units);
-	$("#map").removeClass("loadingCursor");
-	$("#map").addClass(".defaultCursor");
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();
+	owgis.interface.loadingatmouse(false);//Stop showing the loading icon
 }
 
 /**

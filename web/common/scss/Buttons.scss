@@ -43,8 +43,6 @@ and also the mainMenu dropdown options*/
     cursor: pointer;
 }
 
-
-
 /* This is just a container of buttons in the top menu, specifically
 for transparency and depth*/
 .buttonContainer{
@@ -63,3 +61,7 @@ for transparency in the optional layers. */
     font-size: $f_larger;
     font-weight: bolder;
 }
+
+
+//Close button
+.closeButton{ float:right; }

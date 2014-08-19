@@ -34,8 +34,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author olmozavala
+ * This servlet is used to avoid the 'cross origin' problem. It makes the call
+ * of the received url and returns the result as a string. 
+ * @author Olmo Zavala
  */
 public class SimpleAjaxRedirectServlet extends HttpServlet {
 
@@ -56,7 +57,8 @@ public class SimpleAjaxRedirectServlet extends HttpServlet {
         synchronized (this) {
             String reqResult = "";
             try {
-                reqResult = obtainRedirectText(request);
+				String url = request.getParameter("url");
+                reqResult = obtainRedirectText(url);
                 //Sends the final request back
                 out.println(reqResult);
             } catch (Exception e) {
@@ -109,35 +111,18 @@ public class SimpleAjaxRedirectServlet extends HttpServlet {
             return "Short description";
         }// </editor-fold>
 
-    private String obtainRedirectText(HttpServletRequest request) {
+    private String obtainRedirectText(String url) {
         String result = "";
         boolean finish = false; //boolean to check if the request is done. 
         int numberOfRetries = 10; //This is the number of tries the class will try to make the HTML request
         int retry = 0;
-        String server = request.getParameter("server");
-        String possibleOptions[] = {"layers", "styles", "width", "height",
-               "srs", "format", "service", "version", "bbox",
-               "request", "x", "y", "item", "elevation", "time"};
-
-        String finalRequest = server + "?";
-        for(int i = 0; i < possibleOptions.length; i++){
-            if(request.getParameter(possibleOptions[i]) != null) {
-                finalRequest += possibleOptions[i] + "=" + request.getParameter(possibleOptions[i]) +"&";
-            }
-        }
-
-		// If there is no time data we remove it. TODO this is hard coded there
-		// is a need to fix it
-		if(finalRequest.contains("time=No current date")){
-			finalRequest = finalRequest.replaceFirst("time=No current date", "");
-		}
 
         //while the server doesnt answer we keep trying until numberOfRetries
         while (!finish && retry < numberOfRetries) {
             try {
-                URL acdm = new URL(finalRequest);//reques to server
+                URL owgis = new URL(url);//reques to server
                 try {
-                    acdm.openConnection(); //connect to server
+                    owgis.openConnection(); //connect to server
                 } catch (MalformedURLException e) {
                     System.out.println("Error on SimpleAjaxRedirectServlet" + e.getMessage());
                 }
@@ -145,10 +130,9 @@ public class SimpleAjaxRedirectServlet extends HttpServlet {
                 retry++;
                 finish = true; 
                 result = "";
-                InputStreamReader input = new InputStreamReader(acdm.openStream());
+                InputStreamReader input = new InputStreamReader(owgis.openStream());
                 BufferedReader in = new BufferedReader(input); 
                 String inputLine;
-
                
                 while ((inputLine = in.readLine()) != null) {
                        //In version 1.7.5 of the geoserver, we otain an error when we ask for data outside the the correspoinding layer
@@ -164,10 +148,9 @@ public class SimpleAjaxRedirectServlet extends HttpServlet {
                         finish = false;//dont end if invalid character is present. 
                         break;
                     } else {
-                            result += inputLine;//save input if no wierd characters appear. 
+						result += inputLine;//save input if no wierd characters appear. 
                     }
                 }
-
 
                 in.close();//close connection to server. 
                 input.close();
@@ -177,7 +160,7 @@ public class SimpleAjaxRedirectServlet extends HttpServlet {
             }
         }
         if (retry == numberOfRetries) {//if max number of tryies return empty string. 
-            result = "";
+            result = "Failed to call: " + url;
         }
 
         return result;

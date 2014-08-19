@@ -1,6 +1,5 @@
 goog.provide('owgis.utils');
 
-
 /**
  * This function receives a 'map' of key values 
  * that represent url parameters and returns
@@ -254,4 +253,3 @@ owgis.utils.days_between = function (date1, date2) {
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY);
 }
-

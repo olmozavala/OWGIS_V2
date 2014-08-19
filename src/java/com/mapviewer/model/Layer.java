@@ -214,6 +214,8 @@ public class Layer {
 			JSONObject layDet;
 			if (layerDetailsStr.equals("")) {
 				this.layerDetails = new JSONObject();
+				//The boundary box only gets added if none layer's details were received
+				layerDetails.accumulate("bbox", this.getBbox().toString());
 			} else {
 				this.layerDetails = new JSONObject(layerDetailsStr);
 				if ((this.minColor == -1) && (this.maxColor == -1)) {
@@ -224,8 +226,7 @@ public class Layer {
 
 			layerDetails.accumulate("server", server);
 			layerDetails.accumulate("name", name);
-			layerDetails.accumulate("srs", this.getProjection());
-			layerDetails.accumulate("bbox", this.getBbox().toString());
+			layerDetails.accumulate("srs", this.getProjection());			
 			
 			String layerType = "raster"; //By default all layer are  raster
 

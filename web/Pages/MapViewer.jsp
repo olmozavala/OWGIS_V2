@@ -89,20 +89,21 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                 <%@include file="NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 
                 <!-- Elevation -->
-                <div class="draggableWindow menuHidden" id="zaxis_selector"></div>
+                <div class="draggableWindow menuHidden" id="zaxis_selector"> </div>
 
                 <!-- Current palette and color range -->
                 <%@include file="Options/Palettes.jsp" %> 
 
                 <div id="l-animation" class="menuHidden">
-                    <p class="bigFontSize invShadow"> <fmt:message key="ncwms.loading" /> 
-						<span id="loadperc" class="invShadow">0</span> % <img src="./common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
+                    <p class="bigFontSize invShadow"> 
+						<span id="loadperc" class="invShadow"></span> 
+						<img src="./common/images/loading/009.gif" height="40" border="0" alt="loading" />	
+					</p>
                 </div>
             </c:if>
 				
 				<!-- Foot page --> 
 				<div id="pieDePaginaIzq" class="leftFoot">
-					testing
 					&nbsp;
                     <a  href="#">
                         <img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>

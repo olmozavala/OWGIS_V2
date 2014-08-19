@@ -8,7 +8,7 @@
 <div class="transDraggableWindow menuHidden toolTip" id="CalendarsAndStopContainer"
 	title="<fmt:message key='help.tooltip.calender'/>"
 	>
-	<div id="CalendarParent container-fluid" >
+	<div id="CalendarParent" class="container-fluid" >
 		<div class="row">
 			<div class="col-xs-6 text-center title " id="hideOneDay"> 
 				<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>
@@ -61,7 +61,7 @@
 	</div>
 </div>
 <canvas id="animationCanvas"></canvas>
-<img id="animContainer" src=""></img>
+<img id="animContainer" src=""/>
 
 <!--This div contains all the animation controls (play, stop, pause, etc.--> 
 <div id="animControls" class="container-fluid transDraggableWindow menuHidden">
@@ -89,7 +89,7 @@
 			<span class="invShadow title menuHidden" id="stopAnimText"> 
 				<fmt:message key="ncwms.anim.stop" />
 			</span >
-			<a class="btn btn-default btn-xs " href="#" onclick="updateAnimationStatus('none')" 
+			<a class="btn btn-default btn-xs warning" href="#" onclick="updateAnimationStatus('none')" 
 			   title="<fmt:message key='ncwms.anim.help.stop'/>" >
 				<span class="glyphicon glyphicon-stop"></span>
 			</a>
@@ -118,6 +118,11 @@
 			<a class="btn btn-default btn-xs " href="#" target="_blank"
 			   title="<fmt:message key='ncwms.anim.help.save'/>" >
 				<span class="glyphicon glyphicon-floppy-save"></span>
+			</a>
+
+			<a class="btn btn-default btn-xs " href="#" target="_blank" id="animSaveAsKml"
+			   title="<fmt:message key='main.googleE'/>" >
+				<span class="glyphicon glyphicon-globe"></span>
 			</a>
 		</div>
 	</div>

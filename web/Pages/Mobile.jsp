@@ -90,7 +90,7 @@
 							</div></li>
 <!-- 						<li><div id="palettesMenuParent" -->
 <%-- 								 title="<fmt:message key='help.tooltip.palettes'/>" --%>
-<!-- 								 onclick="showPalettes()" id="dynamicFont_color"> -->
+<!-- 								 onclick="showPalettes()" > -->
 <%-- 								<fmt:message key="ncwms.pal" /> --%>
 <!-- 							</div></li> -->
 						<li>
