@@ -117,11 +117,14 @@ function initOl3(){
 	ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
+		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
+		zoomFactor: mapConfig.zoomFactor,
+		maxResolution: mapConfig.maxResolution
 	});
 
  	map = new ol.Map({
-		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl]),
+		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl, fullScreen]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
         renderer: 'canvas', // ['canvas','dom','webgl']

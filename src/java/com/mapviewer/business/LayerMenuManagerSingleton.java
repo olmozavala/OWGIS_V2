@@ -81,7 +81,6 @@ public class LayerMenuManagerSingleton {
 		//Compute the group values for these layers, fill in all values that are in layerConf object
 		Layer groupLayer = updateFields(layerConf, deflayer);//Updates
 
-
 		List layers = layerConf.getChildren();
 
 		//we iterate through this loop which is going through each child of a layer

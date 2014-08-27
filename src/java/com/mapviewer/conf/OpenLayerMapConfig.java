@@ -16,11 +16,18 @@
 */
 package com.mapviewer.conf;
 
+import com.mapviewer.tools.FileManager;
 import com.mapviewer.tools.StringAndNumbers;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  * This SINGLETON class represent the OpenLayer configuration of the map. For
@@ -33,10 +40,13 @@ public class OpenLayerMapConfig {
 	
 	private String center = null;
 	private String zoom = null;
-	private double maxResolution = 0.05;//Controls the maximum resolution of the map
-	private double minResolution = 0.01;//Controls the minimum resolution of the map
+	private int zoomLevels;
+	private double zoomFactor;
+	private double maxResolution;//Controls the maximum resolution of the map
 	private String restrictedExtent = "-180.0,-90.0,180.0,90.0";//Restricts the extent of the map
 	private String mapBounds="-180.0,-90.0,180.0,90.0";
+	Date lastUpdate;//Indicates when was the last update of the properties file
+
 	//This contains the properties used on JavaScript, which are not the same
 	//as the attributes. 
 	private Properties prop;
@@ -96,21 +106,35 @@ public class OpenLayerMapConfig {
 	}
 	
 	/**
-	 *Read the property file.
-	 *@param{InputStream} stream
+	 * Reads the configuration parameters from the properties file 
+	 * @param stream 
 	 */
-	public void updateProperties(InputStream stream) {
+	public void updateProperties(String filePath) throws FileNotFoundException {
 		
-		if (prop == null) {//It will only reload the properties file if is the first time
-			try {
-				prop = new Properties();
-				prop.load(stream);//Loads all the properties from the Properties file
-				//This property gets initialized when reading the XML files or 
-				// by directly in JavaScript
-				prop.setProperty("mapProjection", "");
-				initializeVariables();
-			} catch (IOException ex) {
-				System.out.println("EXCEPTION can't load the properties file" + ex.getMessage());
+		Date currLastUpdate = FileManager.lastModification(filePath);
+
+		//If the properties file has been modified we update the configuration properties
+		synchronized (this) {
+			if ((lastUpdate == null) || (lastUpdate.getTime() < currLastUpdate.getTime())) {
+				
+				FileInputStream stream = new FileInputStream(new File(filePath));
+				
+				lastUpdate = currLastUpdate;
+				try {
+					//If we are updating the file then we save the previous map projection
+					String mapProjection = "";
+					if(prop != null){
+						mapProjection = prop.getProperty("mapProjection");
+					}
+					prop = new Properties();
+					prop.load(stream);//Loads all the properties from the Properties file
+					//This property gets initialized when reading the XML files or
+					// by directly in JavaScript
+					prop.setProperty("mapProjection", mapProjection);
+					initializeVariables();
+				} catch (IOException ex) {
+					System.out.println("EXCEPTION can't load the properties file" + ex.getMessage());
+				}
 			}
 		}
 	}
@@ -132,7 +156,8 @@ public class OpenLayerMapConfig {
 		
 		center = getProperty("mapcenter");
 		zoom = getProperty("zoom");
-		minResolution = Float.parseFloat(getProperty("minResolution"));
+		zoomLevels = Integer.parseInt(getProperty("zoomLevels"));
+		zoomFactor = Float.parseFloat(getProperty("zoomFactor"));
 		maxResolution = Float.parseFloat(getProperty("maxResolution"));
 		restrictedExtent = getProperty("maxExtent");
 		mapBounds=getProperty("mapBounds");
@@ -163,14 +188,6 @@ public class OpenLayerMapConfig {
 		this.maxResolution = maxResolution;
 	}
 	
-	public double getMinResolution() {
-		return minResolution;
-	}
-	
-	public void setMinResolution(double minResolution) {
-		this.minResolution = minResolution;
-	}
-	
 	public String getRestrictedExtent() {
 		return restrictedExtent;
 	}
@@ -191,4 +208,23 @@ public class OpenLayerMapConfig {
 	public void setMapProjection(String mapProj) {
 		this.mapProj = mapProj;
 	}
+	
+	public int getZoomLevels() {
+		return zoomLevels;
+	}
+	
+	public void setZoomLevels(int zoomLevels) {
+		this.zoomLevels = zoomLevels;
+	}
+	
+	public double getZoomFactor() {
+		return zoomFactor;
+	}
+	
+	public void setZoomFactor(double zoomFactor) {
+		this.zoomFactor = zoomFactor;
+	}
+	
+	
+	
 }

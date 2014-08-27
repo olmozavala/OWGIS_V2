@@ -46,6 +46,7 @@ import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.model.menu.TreeMenuUtils;
 import com.mapviewer.model.menu.TreeNode;
 import com.mapviewer.tools.HtmlMenuBuilder;
+import java.io.FileNotFoundException;
 
 /**
  * Servelet to process all the request of the user and incharge of presenting the client
@@ -62,6 +63,7 @@ public class MapViewerServlet extends HttpServlet {
 	AccessControls accessControl;
 	String[] linksVectorialesKmz;
 	XMLFilesException errorOnInit;//Its a flag that indicates there was an error on 
+	String configFilePath;
 
 	/**
 	 * Initializes the object that controls the access to the server
@@ -72,7 +74,10 @@ public class MapViewerServlet extends HttpServlet {
 
 		try {
 			mapConfig = OpenLayerMapConfig.getInstance();
-			mapConfig.updateProperties(getServletContext().getResourceAsStream("/WEB-INF/conf/MapViewConfig.properties"));
+
+			configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
+
+			mapConfig.updateProperties(configFilePath);
 
 			//Obtains the folder where XML layers file is stored.
 			String layersFolder = getServletContext().getRealPath("/layers/");
@@ -88,6 +93,8 @@ public class MapViewerServlet extends HttpServlet {
 			HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
 		} catch (XMLFilesException ex) {
 			errorOnInit = ex;//Saving the Exception for later display on error page
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		super.init();
@@ -107,6 +114,7 @@ public class MapViewerServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextPage = PagesNames.ERROR_PAGE;//error page, this gets modified if everything is fine. 
+		mapConfig.updateProperties(configFilePath);
 		//its important to erase the basePath becuase it get appended again. 
 		try {
 
