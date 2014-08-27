@@ -37,7 +37,6 @@ public class OpenLayerMapConfig {
 	private double minResolution = 0.01;//Controls the minimum resolution of the map
 	private String restrictedExtent = "-180.0,-90.0,180.0,90.0";//Restricts the extent of the map
 	private String mapBounds="-180.0,-90.0,180.0,90.0";
-	String[] tilesOrigin;
 	//This contains the properties used on JavaScript, which are not the same
 	//as the attributes. 
 	private Properties prop;
@@ -131,7 +130,6 @@ public class OpenLayerMapConfig {
 	 */
 	public void initializeVariables() {
 		
-		this.setTilesOriginFromStr(getProperty("tilesOrigin"));
 		center = getProperty("mapcenter");
 		zoom = getProperty("zoom");
 		minResolution = Float.parseFloat(getProperty("minResolution"));
@@ -155,19 +153,6 @@ public class OpenLayerMapConfig {
 	
 	public void setZoom(String zoom) {
 		this.zoom = zoom;
-	}
-	
-	public String[] getTilesOrigin() {
-		return tilesOrigin;
-	}
-	
-	public void setTilesOrigin(String[] tilesOrigin) {
-		this.tilesOrigin = tilesOrigin;
-	}
-	
-	public void setTilesOriginFromStr(String tilesOriginStr) {
-		String[] localTilesOrigin = tilesOriginStr.split(",");
-		setTilesOrigin(localTilesOrigin);
 	}
 	
 	public double getMaxResolution() {
