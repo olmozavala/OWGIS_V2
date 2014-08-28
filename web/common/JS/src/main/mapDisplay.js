@@ -59,7 +59,7 @@ function owgisMain(){
 function addDraggableWindows(){
 
     //Only make windows draggable for 'topMenu' design
-    if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
+    if ( mobile === false) {
 		$(".draggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
 		})
@@ -91,7 +91,13 @@ function initMenus() {
 	
     updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-    draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	try{
+		draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}catch(err){
+		console.log("Error initializing the menus... clearing local storage");
+		localStorage.clear();
+		draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}
 	
     //if user changes the window size
     $(window).resize(function() {

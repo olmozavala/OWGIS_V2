@@ -311,7 +311,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	//This is the source of the new map layer
 	animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationFunction,
-		projection: _map_projection 
+		projection: layerDetails.srs
 	});
 	
 	animLayer = new ol.layer.Image({
@@ -385,8 +385,15 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	loadedFrames = 0;// Reset the total number of images loaded
 	owgis.interface.loadingatmap(true,0);
 	updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
-	
-	var bbox = extent;
+
+	//TODO depending on the WMS version that we are using the position
+	//of the coordinates need to be swapped
+	if(_map_projection === "EPSG:4326"){
+		var tempExtent = [extent[1],extent[0],extent[3],extent[2]];
+		extent = tempExtent;
+	}
+
+	bbox = extent;
 	var animResolution = getResolutionRatio();
 	var imgWidth = Math.ceil(canvasWidth*animResolution);
 	var imgHeight = Math.ceil(canvasHeight*animResolution);
@@ -412,11 +419,12 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		STYLES: lay_style+"/"+mappalette,
 		FORMAT: "image/png",
 		TRANSPARENT: "TRUE",
-		CRS:"CRS:84",
 		WIDTH: imgWidth,
 		HEIGHT: imgHeight,
 		NUMCOLORBANDS: 250,
-		COLORSCALERANGE:  minPalVal + ',' + maxPalVal};
+		COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+		CRS: _map_projection
+	};
 	
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];

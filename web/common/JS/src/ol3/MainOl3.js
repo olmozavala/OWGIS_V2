@@ -93,8 +93,10 @@ function initOl3(){
 			defCenter= [lon,lat];
 		}
 	}else{
-		if(_map_bk_layer === "osm"){
-			_map_projection = 'EPSG:3857';//Force projection for osm background layer
+		if( (_map_bk_layer === "osm") || 
+			(_map_bk_layer.indexOf("bing") !== -1) ||  
+			(_map_bk_layer.indexOf("mapquest") !== -1)){
+			_map_projection = 'EPSG:3857';//Force projection 
 			defCenter= ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
 		}
 	}
@@ -112,7 +114,7 @@ function initOl3(){
 	
 	//This is the control for the scale line at the bottom of the map
 	var scaleLineControl = new ol.control.ScaleLine();
-	var fullScreen = new ol.control.FullScreen();
+	var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows
 	
 	ol3view = new ol.View({
 		projection: _map_projection,
@@ -124,7 +126,7 @@ function initOl3(){
 	});
 
  	map = new ol.Map({
-		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl, fullScreen]),
+		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
         renderer: 'canvas', // ['canvas','dom','webgl']

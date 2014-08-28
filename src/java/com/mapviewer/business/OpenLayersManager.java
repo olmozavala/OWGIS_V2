@@ -324,6 +324,7 @@ public class OpenLayersManager {
 	private String addOpenStreetMapLayer(String currentConf, int actualLayer){
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
 				" \t\t source: new ol.source.OSM()});\n";
+		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
 		return currentConf;
 	}
 	
@@ -332,9 +333,31 @@ public class OpenLayersManager {
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
 	 */
-	private String addMapQuest(String currentConf, int actualLayer){
-		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-				" \t\t source: new ol.source.MapQuestOSM()});\n";
+	private String addMapQuest(String currentConf, int actualLayer, String layerType){
+		String layerMapQuest = "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+				" \t\t source: new ol.source.MapQuest({\n";
+		switch(layerType){
+			case "mapquesta":
+				layerMapQuest += "\t\t\tlayer: 'sat' })});\n";
+				break;
+			case "mapquestr":
+				layerMapQuest += "\t\t\tlayer: 'osm' })});\n";
+				break;
+			case "mapquesth":
+				layerMapQuest = "\t layer"+actualLayer+" = new ol.layer.Group({\n "+
+								"\t\t style: 'AerialWithLabels',\n "+
+								"\t\t layers: [\n "+
+								"\t\t 	new ol.layer.Tile({\n "+
+								"\t\t		source: new ol.source.MapQuest({\n "+
+								"\t\t		layer: 'sat'}) }),\n "+
+								"\t\t	new ol.layer.Tile({\n "+
+								"\t\t		source: new ol.source.MapQuest({\n "+
+								"\t\t		layer: 'hyb' }) }) \n " +
+								"\t\t ] });\n ";
+						break;
+		}
+		layerMapQuest += "\tmap.addLayer(layer" + actualLayer + ");\n";
+		currentConf += layerMapQuest;
 		return currentConf;
 	}
 	
@@ -345,11 +368,12 @@ public class OpenLayersManager {
 	 */
 	private String addBingLayer(String currentConf, int actualLayer,String style){
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-				" \t\t preload: Infinity,\n"+
+				" \t\t preload: Infinity,	\n"+
 				" \t\t source: new ol.source.BingMaps({\n"+
-				" \t\t\t key: 'Ar33pRUvQOdESG8m_T15MUmNz__E1twPo42bFx9jvdDePhX0PNgAcEm44OVTS7tt',\n"+
-				" \t\t\t style: '"+style+"'})\n \t\t});\n";
+				" \t\t\t key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',\n"+
+				" \t\t\t imagerySet: '"+style+"'})\n \t\t});\n";
 		
+		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
 		return currentConf;
 		
 	}
@@ -395,8 +419,10 @@ public class OpenLayersManager {
 				layersScript += addBingLayer(layersScript, layerCount,"AerialWithLabels");
 				layerCount++;
 				break;
-			case "mapquest": //Add MapQuest as the background layer
-				layersScript += addMapQuest(layersScript, layerCount);
+			case "mapquesta": //Add MapQuest as the background layer
+			case "mapquestr": //Add MapQuest as the background layer
+			case "mapquesth": //Add MapQuest as the background layer
+				layersScript += addMapQuest(layersScript, layerCount, backgroundLayer);
 				layerCount++;
 				break;
 		}
