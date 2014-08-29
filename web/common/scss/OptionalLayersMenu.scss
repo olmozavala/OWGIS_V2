@@ -10,7 +10,7 @@
 
 $containerSize: 200px;
 
-#optionalMenuParent { width:$containerSize;top:70px; left:73%; }
+#optionalMenuParent { min-width:$containerSize;top:70px; left:73%; }
 
 // Specific style of the hover window of the optional layers
 #optionalLayersParentHover{ 
