@@ -90,7 +90,7 @@ function requestJSONLayer( layer, layerId, visible ){
 		REQUEST: "GetFeature",
 		TYPENAME: layer.name, 
 		MAXFEATURES: 50,
-		SRSNAME: layer.srs,
+		SRSNAME: _map_projection,
 		OUTPUTFORMAT: "text/javascript",
 		FORMAT_OPTIONS: "callback:globalCallback"+layerId
 	};
