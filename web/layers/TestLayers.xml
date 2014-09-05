@@ -1,24 +1,24 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
-	<MenuEntries>
-		<MenuEntry ID="lev1" EN="Level 1" ES="Nivel 1" HI_IN="स्तर १"/>
-		<MenuEntry ID="vectest" EN="Vector layer" ES="Ejemplo Vectorial" HI_IN="वेक्टर परत"/>
-		<MenuEntry ID="veccqltest" EN="Vector CQL demo" ES="Ejemplo CQL" HI_IN="वेक्टर CQL"/>
-		<MenuEntry ID="geotifftest" EN="Raster (GeoTIFF)" ES="Ejemplo capa raster " HI_IN="रेस्टर (geotiff)"/>
-		<MenuEntry ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
-		<MenuEntry ID="ncwmsMultDateOneZ" EN="ncWMS OneZ MultDate" ES="ESP ncWMS OneZ MultDate"/>
-		<MenuEntry ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
-		<MenuEntry ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
-		<MenuEntry ID="ncwmvelocity" EN="ncWMS velocity field" ES="ESP ncWMS velocity field"/>
+	<Menus>
+		<Menu ID="lev1" EN="Level 1" ES="Nivel 1" HI_IN="स्तर १"/>
+		<Menu ID="vectest" EN="Vector layer" ES="Ejemplo Vectorial" HI_IN="वेक्टर परत"/>
+		<Menu ID="veccqltest" EN="Vector CQL demo" ES="Ejemplo CQL" HI_IN="वेक्टर CQL"/>
+		<Menu ID="geotifftest" EN="Raster (GeoTIFF)" ES="Ejemplo capa raster " HI_IN="रेस्टर (geotiff)"/>
+		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
+		<Menu ID="ncwmsMultDateOneZ" EN="ncWMS OneZ MultDate" ES="ESP ncWMS OneZ MultDate"/>
+		<Menu ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
+		<Menu ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
+		<Menu ID="ncwmvelocity" EN="ncWMS velocity field" ES="ESP ncWMS velocity field"/>
 =
-		<MenuEntry ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
-		<MenuEntry ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
-		<MenuEntry ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
-		<MenuEntry ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
-		<MenuEntry ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/>
-		<MenuEntry ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/>
-		<MenuEntry ID="test" EN="Testing" />
-	</MenuEntries>
+		<Menu ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
+		<Menu ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
+		<Menu ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
+		<Menu ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
+		<Menu ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/>
+		<Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/>
+		<Menu ID="test" EN="Testing" />
+	</Menus>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 

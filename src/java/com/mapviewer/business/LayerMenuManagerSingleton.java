@@ -335,7 +335,7 @@ public class LayerMenuManagerSingleton {
 				//Obtains the menu entries or the layers
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
-					if (curr.getName().equals("MenuEntries")) {
+					if (curr.getName().equals("Menus")) {
 						addMenuEntries(curr.getChildren());
 					}
 				}

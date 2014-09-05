@@ -6,12 +6,12 @@
 		<xs:complexType mixed="true">
 			<xs:sequence maxOccurs="unbounded"><!--childs of root, limited to 3 for now -->    
    
-				<xs:element name="MenuEntries" minOccurs="0" ><!--MenuEntries(root's child) level -->
+				<xs:element name="Menus" minOccurs="0" ><!--MenuEntries(root's child) level -->
 					<xs:complexType mixed="true">
   
-						<xs:sequence maxOccurs="unbounded"><!--infinite limit of MenuEntry numbers -->
+						<xs:sequence maxOccurs="unbounded"><!--infinite limit of Menu numbers -->
       
-							<xs:element name="MenuEntry" minOccurs="1"> <!--MenuEntry level -->
+							<xs:element name="Menu" minOccurs="1"> <!--Menu level -->
 								<xs:complexType mixed="true">          
 									<xs:attribute name="ID" type="xs:string" use="required"></xs:attribute>
 									<xs:attribute name="EN" type="xs:string" use="required"></xs:attribute>

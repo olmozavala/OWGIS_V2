@@ -199,11 +199,11 @@ function getUserSelectedTimeFrame(){
  * @param formatEnd - Format for the end date (if null then it doesn't display it) Example of format: '%Y-%m-%d'
  * @return selected date
  */
-owgis.ncwms.calendars.getCurrentlySelectedDate = function(format, formatEnd){
+owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd){
 	if(calInitialized){
 		startDateTxt = $("#cal-start").val();
 		
-		if(formatEnd !== null){
+		if(typeof datesWithData !== "undefined" && formatEnd !== null){
 			endDateTxt = $("#cal-end").val();
 			startDateTxt = startDateTxt+"/"+endDateTxt;
 		}
@@ -211,6 +211,7 @@ owgis.ncwms.calendars.getCurrentlySelectedDate = function(format, formatEnd){
 		return startDateTxt;
 	}
 	return owgis.const.notimedim;
+	
 }
 /**
  * This function returns the suggested day from the layer properties.

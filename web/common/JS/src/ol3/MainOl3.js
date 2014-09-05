@@ -96,7 +96,7 @@ function initOl3(){
 		if( (_map_bk_layer === "osm") || 
 			(_map_bk_layer.indexOf("bing") !== -1) ||  
 			(_map_bk_layer.indexOf("mapquest") !== -1)){
-			_map_projection = 'EPSG:3857';//Force projection 
+			_map_projection = 'EPSG:3857';//Force projection for osm background layer
 			defCenter= ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
 		}
 	}
@@ -135,7 +135,6 @@ function initOl3(){
 	});
 	
 }
-
 
 function detectMapLayersStatus(){
 	var mapLayers = map.getLayers().getArray();
