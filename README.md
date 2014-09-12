@@ -95,16 +95,22 @@ To use the Mobile Interface as an installable Mobile App, refer the following pr
 Step 1: Install the latest Android SDK onto your machine (http://developer.android.com/sdk/index.html)
 
 Step 2: Download and install Titanium Studio (http://www.appcelerator.com/titanium/download-titanium/) (Sign-up for Free)
-	You will be prompted to select the location of Android SDK
+
+    You will be prompted to select the location of Android SDK
+	
 	
 Step 3: Download the project OWGIS_Mob and import it in Titanium Studio
 
-Step 4: Configure the URL on which your OWGIS_V2 is running
-	Press Ctrl+Shift+R and type "app.js"
-	Change the URL within Titanium.UI.createWebView({ .. }) 
+    Download link: https://github.com/harshulpandav/OWGIS_Mob
 
-Step 5: Connect your Android device in debug mode to the computer 
-	Run the project by Right click > Run As	> (Select your device if connected)	
+Step 4: Configure the URL on which your OWGIS_V2 is running
+
+    Press Ctrl+Shift+R and type "app.js"
+    Change the URL within Titanium.UI.createWebView({ .. }) 
+
+Step 5: Connect your Android device in debug mode to the computer
+
+    Run the project by Right click > Run As	> (Select your device if connected)	
 	
 	
 ## Community 
