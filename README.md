@@ -86,6 +86,27 @@ Once OWGIS template is working, you can modify the layers shown
 in the map as well as the look of the website by following the
 documentation at [owgis.org](http://owgis.org).
 
+## Mobile Interface
+The mobile interface for OWGIS_V2 can be triggered by deploying the project and accessing 
+the above mentioned URL through the web browser of your Mobile Phone.
+
+To use the Mobile Interface as an installable Mobile App, refer the following process:
+
+Step 1: Install the latest Android SDK onto your machine (http://developer.android.com/sdk/index.html)
+
+Step 2: Download and install Titanium Studio (http://www.appcelerator.com/titanium/download-titanium/) (Sign-up for Free)
+	You will be prompted to select the location of Android SDK
+	
+Step 3: Download the project OWGIS_Mob and import it in Titanium Studio
+
+Step 4: Configure the URL on which your OWGIS_V2 is running
+	Press Ctrl+Shift+R and type "app.js"
+	Change the URL within Titanium.UI.createWebView({ .. }) 
+
+Step 5: Connect your Android device in debug mode to the computer 
+	Run the project by Right click > Run As	> (Select your device if connected)	
+	
+	
 ## Community 
 ## Authors
 
