@@ -136,18 +136,21 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        owgis.layers.getMainLayer().setOptions({
-            styles: lay_style+"/"+newPal, 
-            colorscalerange: minPal+ ',' + maxPal
-        });
+//        owgis.layers.getMainLayer().setOptions({
+//            styles: lay_style+"/"+newPal, 
+//            colorscalerange: minPal+ ',' + maxPal
+//        });
+        updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
+    	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPal+ ',' + maxPal);
     }else{
-        owgis.layers.getMainLayer().setOptions({
-            styles: lay_style+"/"+newPal
-        });
+//        owgis.layers.getMainLayer().setOptions({
+//            styles: lay_style+"/"+newPal
+//        });
+    	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);

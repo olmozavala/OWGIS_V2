@@ -148,23 +148,23 @@ html, body {
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 64, ../scss/GeneralStyles.scss */
+/* line 65, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 68, ../scss/GeneralStyles.scss */
+/* line 69, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
-/* line 73, ../scss/GeneralStyles.scss */
+/* line 74, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 75, ../scss/GeneralStyles.scss */
+/* line 76, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -173,22 +173,22 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 83, ../scss/GeneralStyles.scss */
+/* line 84, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
-/* line 88, ../scss/GeneralStyles.scss */
+/* line 89, ../scss/GeneralStyles.scss */
 .loadingCursor {
   cursor: progress;
 }
 
-/* line 92, ../scss/GeneralStyles.scss */
+/* line 93, ../scss/GeneralStyles.scss */
 .defaultCursor {
   cursor: crosshair;
 }
 
-/* line 96, ../scss/GeneralStyles.scss */
+/* line 97, ../scss/GeneralStyles.scss */
 hr {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ecf2f8), color-stop(50%, #000000), color-stop(100%, #ecf2f8));
   background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);
