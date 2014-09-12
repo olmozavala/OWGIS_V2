@@ -35,11 +35,19 @@ html, body {
 #navpanelleft {
     width: auto;
 }
+#navpanelright {
+    width: 259px;
+}
 .ui-panel-inner {
     padding: 0px;
 }
 .ui-controlgroup {
     margin: 0;
+}
+
+.ui-panel-inner {
+    overflow-x: hidden;
+    max-height: 500px;
 }
 
 #bars-button_left, #bars-button_right {
@@ -60,6 +68,11 @@ html {
 margin: 0.4em;
 width: 170px;
 }
+
+.ui-field-contain .ui-controlgroup-controls {
+    width: 100%;
+}
+
 
 #l-animation {
   position: absolute;

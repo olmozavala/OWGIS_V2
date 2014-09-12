@@ -51,7 +51,8 @@ p{ color: $fontColor; }
 //---------------  From map style --------------
 /* Default style for the page */
 html,body {
-    font-family:Tahoma, Verdana, Arial, sans-serif;
+    // font-family:Tahoma, Verdana, Arial, sans-serif;
+    font-family: $font_type_1;
     margin: 0;
     padding: 0;
     background-color: $htmlBodyBackColor;
