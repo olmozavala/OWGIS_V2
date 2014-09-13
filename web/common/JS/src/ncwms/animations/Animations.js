@@ -317,11 +317,14 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	animLayer = new ol.layer.Image({
 		source: animSource});
 
-	//Creates a link to download the animation as kml for google earth
-	// Copies original link from start date
-	$("#animSaveAsKml").attr("href",$("#kmlLink").attr("href"));
-	// Replaces time with whole the times being displayed
-	owgis.utils.replaceGetParamInLink("#animSaveAsKml", "TIME", allFrames.join(","));
+	// On the mobile interface we can't download from a link
+	if(!mobile){
+		//Creates a link to download the animation as kml for google earth
+		// Copies original link from start date
+		$("#animSaveAsKml").attr("href",$("#kmlLink").attr("href"));
+		// Replaces time with whole the times being displayed
+		owgis.utils.replaceGetParamInLink("#animSaveAsKml", "TIME", allFrames.join(","));
+	}
 
 	currentFrame = 0; //Set to use the first frame
 //	map.addLayer(animLayer);

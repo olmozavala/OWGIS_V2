@@ -86,8 +86,8 @@
 		<script src="./common/JS/src/ncwms/Transect.js"> </script>
 		<script src="./common/JS/src/utilities/utilities.js"> </script>
 		<script src="./common/JS/src/utilities/constants.js"> </script>
-		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
 		<script src="./common/JS/src/ncwms/animations/AnimationStatus.js"> </script>
+		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
 		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>

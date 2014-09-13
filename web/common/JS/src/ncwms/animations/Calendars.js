@@ -102,6 +102,7 @@ function initCalendars(){
 			
 			startDate = getSuggestedDate(maxValidDate, false);
 			$("#cal-start").datepicker("setDate",startDate);
+			$("#cal-end").datepicker("setDate",maxValidDate);
 			
 			displayCalendars(true);
 			

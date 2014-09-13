@@ -92,7 +92,9 @@ function initMenus() {
     updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
 	try{
-		draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+		if(mobile === false){
+			draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+		}
 	}catch(err){
 		console.log("Error initializing the menus... clearing local storage");
 		localStorage.clear();

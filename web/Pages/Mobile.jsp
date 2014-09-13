@@ -273,7 +273,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3 text-center" id="p-animation">
+							<div class="col-xs-8 col-xs-offset-2 text-center" id="p-animation">
 								<div class="buttonStyle "
 									 onclick="owgis.ncwms.animation.dispAnimation();">
 									<fmt:message key="ncwms.dispanim" />

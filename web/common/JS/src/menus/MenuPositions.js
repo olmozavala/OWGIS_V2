@@ -133,7 +133,7 @@ function repositionWindows(localStorageVariable, localStorage_minimized,
             if ( localStorage_minimized === "true") {
                 minimizeWindow( minimizedElement, windowToMove );
             } else {
-                if( localStorageVariable!== undefined ){
+                if( localStorageVariable!== undefined && localStorageVariable!== null){
                     var prevPosition = localStorageVariable.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
                     document.getElementById(windowToMove).style.left = prevPosition[0] + "px";//move it from the left
                     document.getElementById(windowToMove).style.top = prevPosition[1] + "px";//move it from the top

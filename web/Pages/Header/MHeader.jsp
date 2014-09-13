@@ -70,14 +70,12 @@
 		<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 		<!--Specific for OpenLayers3 -->
 
-		<script type="text/javascript" src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 
 		<!--OpenLayers 3 Management -->
 		<script type="text/javascript" src="./common/JS/src/ol3/OpenLayersRelated.js"> </script>
 		<!--OpenLayers 3 Management -->
 
 		<!--NcWMS related-->
-		<script type="text/javascript" src="./common/JS/src/ncwms/animations/Calendars.js"> </script>
 		<script type="text/javascript" src="./common/JS/src/ncwms/Elevation.js"> </script>
 		<!--NcWMS related-->
 
@@ -98,16 +96,19 @@
 		<script src="./common/JS/vendor/ol.js"></script>
 		<script src="./common/JS/src/ncwms/Transect.js"> </script>
 		<script src="./common/JS/src/utilities/utilities.js"> </script>
-		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
 		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>
 		<script src="./common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="./common/JS/src/ncwms/Palettes.js"> </script>
+		<script src="./common/JS/src/ncwms/animations/Calendars.js"> </script>
+		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
+		<script src="./common/JS/src/ncwms/animations/AnimationStatus.js"> </script>
 		<script src="./common/JS/src/ogcstandards/ogcstandards.js"> </script>
         <script src="./common/JS/src/ajax/ajax.js"> </script>
 		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
+		<script src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 		<!--Debug mode-->
 
 <!-- Testing putpose .. to be removed later -->
