@@ -52,44 +52,24 @@ buttons, etc.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 12, ../scss/GeneralStyles.scss */
-.red {
-  background-color: red;
-}
-
 /* line 13, ../scss/GeneralStyles.scss */
-.green {
-  background-color: green;
-}
-
-/* line 14, ../scss/GeneralStyles.scss */
-.yellow {
-  background-color: yellow;
-}
-
-/* line 17, ../scss/GeneralStyles.scss */
 .defRowSpace {
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0px;
 }
 
-/* line 22, ../scss/GeneralStyles.scss */
-.doubleRowSpace {
-  margin: 10px 0px 10px 0px;
-}
-
-/* line 27, ../scss/GeneralStyles.scss */
+/* line 18, ../scss/GeneralStyles.scss */
 .menuHidden {
   display: none;
 }
 
 /* This is the CSS for a default floating window. It should be used
 for the help text, the optional layers, the depth etc.*/
-/* line 33, ../scss/GeneralStyles.scss */
+/* line 24, ../scss/GeneralStyles.scss */
 .draggableWindow {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 5px 5px 5px 5px;
+  padding: 7px 7px;
   cursor: move;
   color: black;
   font-size: 13px;
@@ -106,12 +86,12 @@ for the help text, the optional layers, the depth etc.*/
 
 /* This is the CSS for a default transparent floating window. It should be used
 for the main layers, the color palettes, the calendars etc.*/
-/* line 41, ../scss/GeneralStyles.scss */
+/* line 32, ../scss/GeneralStyles.scss */
 .transDraggableWindow {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 5px 5px 5px 5px;
+  padding: 7px 7px;
   cursor: move;
   color: black;
   font-size: 13px;
@@ -125,38 +105,38 @@ for the main layers, the color palettes, the calendars etc.*/
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* line 48, ../scss/GeneralStyles.scss */
+/* line 39, ../scss/GeneralStyles.scss */
 .defShadow {
   color: #ecf2f8;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
 }
 
-/* line 50, ../scss/GeneralStyles.scss */
+/* line 41, ../scss/GeneralStyles.scss */
 .invShadow {
   color: black;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
 }
 
-/* line 53, ../scss/GeneralStyles.scss */
+/* line 44, ../scss/GeneralStyles.scss */
 .noShadow {
   color: #ecf2f8;
 }
 
-/* line 55, ../scss/GeneralStyles.scss */
+/* line 46, ../scss/GeneralStyles.scss */
 .noShadowInv {
   color: black;
 }
 
 /* This is the default font type for the letters in the page */
-/* line 58, ../scss/GeneralStyles.scss */
+/* line 49, ../scss/GeneralStyles.scss */
 p {
   color: #ecf2f8;
 }
 
 /* Default style for the page */
-/* line 62, ../scss/GeneralStyles.scss */
+/* line 53, ../scss/GeneralStyles.scss */
 html, body {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
@@ -168,23 +148,23 @@ html, body {
 }
 
 /* Used to avoid selecting text (Chrome)*/
-/* line 73, ../scss/GeneralStyles.scss */
+/* line 65, ../scss/GeneralStyles.scss */
 ::selection {
   background: transparent;
 }
 
 /* Used to avoid selecting text (Firefox)*/
-/* line 77, ../scss/GeneralStyles.scss */
+/* line 69, ../scss/GeneralStyles.scss */
 ::-moz-selection {
   background: transparent;
 }
 
-/* line 82, ../scss/GeneralStyles.scss */
+/* line 74, ../scss/GeneralStyles.scss */
 a {
   text-decoration: none;
 }
 
-/* line 84, ../scss/GeneralStyles.scss */
+/* line 76, ../scss/GeneralStyles.scss */
 .footNote {
   font-size: 12px;
   display: inline;
@@ -193,22 +173,22 @@ a {
 
 /*It is used for normal text or paragraph (with shadows)
 but the size of the font is larger */
-/* line 92, ../scss/GeneralStyles.scss */
+/* line 84, ../scss/GeneralStyles.scss */
 .bigFontSize {
   font-size: 30px;
 }
 
-/* line 97, ../scss/GeneralStyles.scss */
+/* line 89, ../scss/GeneralStyles.scss */
 .loadingCursor {
   cursor: progress;
 }
 
-/* line 101, ../scss/GeneralStyles.scss */
+/* line 93, ../scss/GeneralStyles.scss */
 .defaultCursor {
   cursor: crosshair;
 }
 
-/* line 105, ../scss/GeneralStyles.scss */
+/* line 97, ../scss/GeneralStyles.scss */
 hr {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ecf2f8), color-stop(50%, #000000), color-stop(100%, #ecf2f8));
   background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);

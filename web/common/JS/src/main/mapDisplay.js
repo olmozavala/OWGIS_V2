@@ -564,8 +564,7 @@ function initMobile(){
 	    'top': header,
 	    'min-height': '20px',
 	'border-radius': '10px',
-	'opacity':'0.9',
-	'min-width':'20px'
+	'opacity':'0.9'
 	});
 
 	var isDrawerOpen=false;
@@ -603,6 +602,10 @@ function initMobile(){
 	
 	toogleList('#baseLayersData');
 	toogleList('#optionalLayersData');
+	$('html, body').css({
+	    'overflow': 'hidden',
+	    'height': '100%'
+	});
 //	$( "#lineToggle" ).change(function() {
 ////		  alert( "Handler for .change() called." );
 //		var sliderVal = $('#lineToggle').slider("option", "value");

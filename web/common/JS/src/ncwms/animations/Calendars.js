@@ -83,7 +83,7 @@ function initCalendars(){
 				minDate: minValidDate,
 				maxDate: maxValidDate,
 				defaultDate: minValidDate,
-				dateFormat: "yy-mm-dd",
+				dateFormat: dateFormat,
 				onSelect: updateCalendarStart
 			});
 			
@@ -91,7 +91,7 @@ function initCalendars(){
 				minDate: minValidDate,
 				maxDate: maxValidDate,
 				defaultDate: maxValidDate,
-				dateFormat: "yy-mm-dd",
+				dateFormat: dateFormat,
 				onSelect: updateCalendarEnd
 			});
 			if(mobile){
@@ -199,10 +199,14 @@ function getUserSelectedTimeFrame(){
  */
 owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd){
 	if(calInitialized){
-		startDateTxt = $("#cal-start").val();
+		
+		if(formatStart!==null)
+			startDateTxt = $.datepicker.formatDate(formatStart, $("#cal-start").val());
+		else
+			startDateTxt = $("#cal-start").val();
 		
 		if(typeof datesWithData !== "undefined" && formatEnd !== null){
-			endDateTxt = $("#cal-end").val();
+			endDateTxt = $.datepicker.formatDate(formatEnd,  $("#cal-end").val());
 			startDateTxt = startDateTxt+"/"+endDateTxt;
 		}
 		

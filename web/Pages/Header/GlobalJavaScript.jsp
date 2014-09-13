@@ -49,4 +49,7 @@
 	var resolutionHigh = "<fmt:message key='ncwms.resolutionHigh'/>";
 	var resolutionMiddle = "<fmt:message key='ncwms.resolutionMiddle'/>";
 	var resolutionLow = "<fmt:message key='ncwms.resolutionLow'/>";
+	
+	//calender date format
+	var dateFormat = "yy-mm-dd"; 
 </script>
