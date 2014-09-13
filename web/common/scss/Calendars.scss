@@ -6,7 +6,7 @@
 @import "base";
 
 //This is the size of the main Celendars container
-$containerSize:380px;
+/*$containerSize:380px;*/
 
 /* This is the Loading text */
 #l-animation{ 
@@ -25,13 +25,12 @@ $containerSize:380px;
     left: 50px;
     //This is necessary because the calendar doesn't fit
     // on a normal span of 2
-    padding-right: 12px;
-    width:$containerSize;
+    /*width:$containerSize;*/
 }
 
 // Dropdown to select the time frame (day, week, month)
 #timeSelect{
-    width: $containerSize/2 - 20;
+    /*width: $containerSize/2 - 20;*/
 }
 
 

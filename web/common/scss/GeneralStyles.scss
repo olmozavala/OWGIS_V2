@@ -9,9 +9,18 @@ buttons, etc.
 
 @import "base";
 
+.red{ background-color: red}
+.green{ background-color: green}
+.yellow{ background-color: yellow}
+
 // Increases the default row space used on bootstrap
 .defRowSpace{
-    margin: 5px 0px;
+    margin: $defPadding 0px $defPadding 0px;//TRBL
+}
+
+// Increases the default row space used on bootstrap
+.doubleRowSpace{
+    margin: 2*$defPadding 0px 2*$defPadding 0px;//TRBL
 }
 
 // Used by any menu that starts as a hidden menu

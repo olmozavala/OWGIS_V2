@@ -25,8 +25,6 @@ function displayCalendars(disp){
 	}
 	$("#cal-start").css("visibility",visib);
 	$("#cal-end").css("visibility",  visib);
-	$("#hideOneDay").css("visibility",  visib);
-	$("#hideOneDayEnd").css("visibility",  visib);
 }
 
 /* 

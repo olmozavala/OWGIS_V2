@@ -133,7 +133,7 @@ div.leftFoot {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 7px 7px;
+  padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;
   font-size: 13px;
@@ -160,7 +160,7 @@ div.leftFoot {
   z-index: 1008;
   position: absolute;
   border: solid 1px white;
-  padding: 7px 7px;
+  padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;
   font-size: 13px;

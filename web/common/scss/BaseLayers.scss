@@ -14,7 +14,6 @@ $border-select: 6px;
 /* Extra styling for the mainlayer dropdowns */
 .mainMenu {
     font-size: $f_larger;
-    width: $containerSize - 15;
     color: $dropDownColor;
 	background-color: $dropDownBackColor;
 	@include border-radius($border-select, $border-select);
@@ -29,7 +28,6 @@ $border-select: 6px;
 #mainMenuParent{
     top: 60px;
     left: 50px;
-    width: $containerSize;
 }
 
 /* Table that contains the menu for the base layers*/

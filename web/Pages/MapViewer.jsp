@@ -35,12 +35,12 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 
             <!-- List of optional layers -->
-            <div class="draggableWindow toolTipWithImage" id="optionalMenuParent" title="optionalLayersParentHover">
+            <div class="draggableWindow toolTipWithImage container-fluid" id="optionalMenuParent" title="optionalLayersParentHover">
                 <%@include file="Options/OptionalLayers.jsp" %>
 			</div>
 
             <!-- These are the dropdowns for the base layer-->
-            <div class="transDraggableWindow toolTip" id="mainMenuParent" 
+            <div class="transDraggableWindow toolTip  container-fluid" id="mainMenuParent" 
                 title = "<fmt:message key="help.tooltip.mainlayers" />"   >
                     <div class="row ">
                         <div  class="col-xs-9 text-center invShadow title"> 

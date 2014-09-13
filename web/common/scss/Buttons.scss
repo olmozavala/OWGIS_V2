@@ -17,12 +17,12 @@ look like a button */
     border-width: 1px;
     background-color:$butBackColor;
     border-color: $butBorderColor;
-	padding: $defPadding 2*$defPadding;
+	padding: $defPadding 2*$defPadding;//TB and RL
 	color: $fontColor;
 	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
 	@include box-sizing(content-box);
-	margin:  5px 5px; 
+	margin:  $defPadding $defPadding;
 	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
 	vertical-align: middle;
