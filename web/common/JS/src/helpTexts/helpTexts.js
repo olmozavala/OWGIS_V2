@@ -2,14 +2,15 @@ goog.provide('owgis.tooltips');
 
 owgis.tooltips.initHelpTexts = function initHelpTexts() {
 	
-	$('.transDraggableWindow, .draggableWindow').on("mousemove",function(){
-		var disabled = $('.toolTip').uitooltip( "option", "disabled" );
-		if(!disabled){
-			$(this).uitooltip('close'); 
-			$(this).uitooltip('open');
-		}
+	$('.toolTip, .toolTipWithImage').on("mousemove",function(){
+//		if(!$(this).attr('title')){return true;}
+//		alert($(this).html);
+			var disabled = $('.toolTip').uitooltip( "option", "disabled" );
+			if(!disabled){
+				$(this).uitooltip('close'); 
+				$(this).uitooltip('open');
+			}
 	});
-	
 	
 	$('.toolTip').uitooltip({
 		show: null, 

@@ -28,20 +28,16 @@ for (var i = 0; i < 100; i++) {
  */
 function setMouseClickOnMap(){
 
-	$("#map").addClass("defaultCursor");
-
 	$("#map").on('mousedown', function() { isOnlyClick = true; })
 	.on('mousemove', function() { isOnlyClick = false; })
 	.on('mouseup', function(){
 		if(isOnlyClick){
 			//Verify that the transect tools is not turned on
 			if(!transectOn){
-				$("#map").addClass("loadingCursor");
-				$("#map").removeClass("defaultCursor");
+				owgis.interface.loadingatmouse(true);
 			}
 		}
 	});
-
 }
 
 function initOl3(){
@@ -97,7 +93,9 @@ function initOl3(){
 			defCenter= [lon,lat];
 		}
 	}else{
-		if(_map_bk_layer === "osm"){
+		if( (_map_bk_layer === "osm") || 
+			(_map_bk_layer.indexOf("bing") !== -1) ||  
+			(_map_bk_layer.indexOf("mapquest") !== -1)){
 			_map_projection = 'EPSG:3857';//Force projection for osm background layer
 			defCenter= ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
 		}
@@ -116,12 +114,15 @@ function initOl3(){
 	
 	//This is the control for the scale line at the bottom of the map
 	var scaleLineControl = new ol.control.ScaleLine();
-	var fullScreen = new ol.control.FullScreen();
+	var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows
 	
 	ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
+		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
+		zoomFactor: mapConfig.zoomFactor,
+		maxResolution: mapConfig.maxResolution
 	});
 
  	map = new ol.Map({
@@ -129,11 +130,11 @@ function initOl3(){
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
         renderer: 'canvas', // ['canvas','dom','webgl']
+		logo: false,
 		view: ol3view
 	});
 	
 }
-
 
 function detectMapLayersStatus(){
 	var mapLayers = map.getLayers().getArray();

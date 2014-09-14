@@ -2,8 +2,7 @@ var elev_glob_counter = 0; //index of layerDetails.zaxis.values[elev_glob_counte
 var zAxis_span_visible = false; // Indicates if the span of the 'elevations' is being displayed
 
 /**
- * This function adds the elevation 'text'
- * to a normal url
+ * This function adds the elevation 'text'to a normal url
  */
 function addElevationText(){
     if(netcdf){
@@ -22,7 +21,7 @@ function addElevationText(){
 function createElevationSelector(){
 	
     //Verify we have at least one z-axis
-    if(layerDetails.zaxis != undefined){
+    if(layerDetails.zaxis !== undefined){
         elev_counter = layerDetails.zaxis.values.length;
         _mainlayer_zaxisCoord = true;
     } else{ 
@@ -59,14 +58,14 @@ function createElevationSelector(){
             if(i === elev_glob_counter)
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" 
-                + layerDetails.zaxis.values[i] + "' checked>" + layerDetails.zaxis.values[i] + 
+                + layerDetails.zaxis.values[i] + "' checked> " + layerDetails.zaxis.values[i] + 
                 "&nbsp;&nbsp; " + layerDetails.zaxis.units + "<BR/>";
                 selectedLink = page;
             }
             else//all other are just printed without being checked. 
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" + 
-                layerDetails.zaxis.values[i] + "'>" + layerDetails.zaxis.values[i] + 
+                layerDetails.zaxis.values[i] + "'> " + layerDetails.zaxis.values[i] + 
                 "&nbsp;&nbsp;" + layerDetails.zaxis.units +"<BR/>";
             }
             i++;

@@ -1,33 +1,33 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
-	<MenuEntries>
-		<MenvEntry ID="d2" EN="2D" ES="2D"/>
-		<MenvEntry ID="d3" EN="3D" ES="3D"/>
-		<MenuEntry ID="atm" EN="Atmosphere" ES="Atmosfera"/>
+	<Menus>
+		<Menu ID="d2" EN="2D" ES="2D"/>
+		<Menu ID="d3" EN="3D" ES="3D"/>
+		<Menu ID="atm" EN="Atmosphere" ES="Atmosfera"/>
 
-		<MenvEntry ID="wind" EN="Wind Speed 10m" ES="Viento"/>
-		<MenvEntry ID="psfc" EN="Surface Pressure" ES="Presion"/>
-		<MenvEntry ID="t2" EN="Temp. at 2m" ES="Temp. a 2m"/>
-		<MenvEntry ID="sst" EN="Sea Surface Temp" ES="Temperatura superfical"/>
-		<MenvEntry ID="tsk" EN="Skin Temperature" ES="Temperatura borde"/>
-		<MenvEntry ID="rainc" EN="Convective Precipitation" ES="Precipitacion"/>
-		<MenvEntry ID="cld" EN="Cloud fraction" ES="Nubes"/>
-		<MenvEntry ID="glw" EN="Downward Long Rad. Flux" ES="Down"/>
-		<MenvEntry ID="swdown" EN="Downward Short Rad. Flux" ES="TODO"/>
-		<MenvEntry ID="lh" EN="Latent Heat Flux" ES="Flujo de calor latente"/>
-		<MenvEntry ID="hfx" EN="Sensible Heat Flux" ES="Flujo sensible de calor"/>
-		<MenuEntry ID="pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"/>
+		<Menu ID="wind" EN="Wind Speed 10m" ES="Viento"/>
+		<Menu ID="psfc" EN="Surface Pressure" ES="Presion"/>
+		<Menu ID="t2" EN="Temp. at 2m" ES="Temp. a 2m"/>
+		<Menu ID="sst" EN="Sea Surface Temp" ES="Temperatura superfical"/>
+		<Menu ID="tsk" EN="Skin Temperature" ES="Temperatura borde"/>
+		<Menu ID="rainc" EN="Convective Precipitation" ES="Precipitacion"/>
+		<Menu ID="cld" EN="Cloud fraction" ES="Nubes"/>
+		<Menu ID="glw" EN="Downward Long Rad. Flux" ES="Down"/>
+		<Menu ID="swdown" EN="Downward Short Rad. Flux" ES="TODO"/>
+		<Menu ID="lh" EN="Latent Heat Flux" ES="Flujo de calor latente"/>
+		<Menu ID="hfx" EN="Sensible Heat Flux" ES="Flujo sensible de calor"/>
+		<Menu ID="pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"/>
 
-		<MenuEntry ID="states" EN="US states" ES="Estados"/>
-		<MenuEntry ID="shores" EN="Shore lines" ES="Linea de costa"/>
+		<Menu ID="states" EN="US states" ES="Estados"/>
+		<Menu ID="shores" EN="Shore lines" ES="Linea de costa"/>
 
-		<MenuEntry ID="latest" EN="Latest" ES="Actual"/>
-		<MenuEntry ID="prev1" EN="Prev 1"/>
-		<MenuEntry ID="prev2" EN="Prev 2"/>
-		<MenuEntry ID="prev3" EN="Prev 3"/>
-		<MenuEntry ID="prev4" EN="Prev 4"/>
-		<MenuEntry ID="prev5" EN="Prev 5"/>
-	</MenuEntries>
+		<Menu ID="latest" EN="Latest" ES="Actual"/>
+		<Menu ID="prev1" EN="Prev 1"/>
+		<Menu ID="prev2" EN="Prev 2"/>
+		<Menu ID="prev3" EN="Prev 3"/>
+		<Menu ID="prev4" EN="Prev 4"/>
+		<Menu ID="prev5" EN="Prev 5"/>
+	</Menus>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
@@ -38,12 +38,12 @@
     <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true" >  
+		<layer Menu="latest,atm,d2,t2" EN="Air Temperature at 2m"
+			   ES="Temperatura a 2mts" name="atm_forecast_latest/T2" />
 		<layer Menu="latest,atm,d2,wind" EN="Wind speed at 10m"
 			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind"  style="vector"/>
 		<layer Menu="latest,atm,d2,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_latest/PSFC" />
-		<layer Menu="latest,atm,d2,t2" EN="Air Temperature at 2m"
-			   ES="Temperatura a 2mts" name="atm_forecast_latest/T2" />
 		<layer Menu="latest,atm,d2,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
 			   name="atm_forecast_latest/SST" />
 		<layer Menu="latest,atm,d2,tsk" EN="Surface Skin Temperature" ES="Temperatura en la piel de la superficie"

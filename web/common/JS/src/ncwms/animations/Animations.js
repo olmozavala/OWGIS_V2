@@ -4,17 +4,15 @@ goog.require('ol.source.ImageStatic');
 goog.require('ol.source.ImageWMS');
 goog.require('goog.events');
 goog.require('owgis.ogc');
+goog.require('owgis.ncwms.animation.status');
+goog.require('owgis.interface');
 
-owgis.ncwms.animation.animStatus = "none"; 
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
 var animSpeed = 300;
-// Is the animation status it can be:
-// 		none -> There is not animation or is being stopped
-// 		loading -> The animation is being requested but not all of the frames have loaded
-//		playing -> Animation is being played at current speed
-//		pause   -> Animation paused
+var imagesReady = new Array();//A bit array that indicates which layer are already loaded
+
 
 var animLayer;
 var animSource;
@@ -42,70 +40,60 @@ function updateMenusDisplayVisibility(status){
 	if(netcdf){
 		// When we are selecting dates. 
 		switch( status ){
-            case "loading_playing":
-				$('#stopAnimText').hide();
-				$('#animControls a').show();// Show all the buttons
-                $('#elevationParent').hide("fade");
-                $('#hideCalendarButtonParent').hide("fade");
-				// Animation controls
-				$('#animControls [class*=step]').parent().hide();
-				$('#animControls [class*=fast-back]').parent().hide();
-				$('#animControls [class*=fast-forw]').parent().hide();
-				$('#animControls [class*=play]').parent().hide();
-				$('#animControls [class=glyphicon-backward]').parent().show();
+            case owgis.ncwms.animation.status.loadingplaying:
+				$('#stopAnimText').hide();//Hides the stop animation text
+				$('#animControls a').hide();// Hidde all the animation controls 
+				$('#animControls [class*=glyphicon-backward]').parent().show();
 				$('#animControls [class*=glyphicon-forward]').parent().show();
 				$('#animControls [class*=pause]').parent().show();
-				$('#animControls [class*=save]').parent().show();
+				$('#animControls [class*=stop]').parent().show();
 				$('#animSpeed').parent().show("fade");
                 break;
-            case "loading":
+            case owgis.ncwms.animation.status.loading:
                 $('#CalendarsAndStopContainer').hide("fade");
 				$('#animControls a').hide();// Hidde all the animation controls 
                 $('#animControls').show("fade");//Show the stop button
-				$('#stopAnimText').show("fade");
-				$('#animControls [class*=play]').parent().show();
 				$('#animControls [class*=stop]').parent().show();
-                $('#l-animation').show("fade");
-                $('#minPal').disabled = true;
-                $('#maxPal').disabled = true;
-                $('#hideCalendarButtonParent').hide("fade");
-				$('#animSpeed').parent().hide();
-				owgis.layers.getMainLayer().setVisible(false);//Hide main layer when the animation is being loaded
+				//Only if we have at least one frame loaded we show the 'play'
+				//button and the individual frame controls
+				if(loadedFrames > 0){
+					$('#animControls [class*=play]').parent().show();
+					$('#animControls [class*=step]').parent().show();
+				}else{
+					$('#stopAnimText').show("fade");
+				}
+				//Show the 'loading' animation
+				owgis.interface.loadingatmap(true);
+                $('#hideCalendarButtonParent').hide("fade");//Hide the calendars
+//				$('#animSpeed').parent().hide();
                 break;
-            case "playing":
+            case owgis.ncwms.animation.status.playing:
+				owgis.interface.loadingatmap(false);// Stop showing the "loading"
+				$('#animControls a').hide();// Hidde all the animation controls 
 				$('#animSpeed').parent().show("fade");
-                $('#CalendarsAndStopContainer').hide("fade");
-				$('#stopAnimText').hide();
-				$('#animControls a').show();// Show all the buttons
-                $('#l-animation').hide("fade");
-                $('#minPal').disabled = true;
-                $('#maxPal').disabled = true;
-                $('#elevationParent').hide("fade");
-                $('#hideCalendarButtonParent').hide("fade");
 				// Animation controls
-				$('#animControls [class*=step]').parent().hide();
-				$('#animControls [class*=fast-back]').parent().hide();
-				$('#animControls [class*=fast-forw]').parent().hide();
-				$('#animControls [class*=play]').parent().hide();
-				$('#animControls [class=glyphicon-backward]').parent().show();
+				$('#animControls [class*=glyphicon-backward]').parent().show();
 				$('#animControls [class*=glyphicon-forward]').parent().show();
 				$('#animControls [class*=pause]').parent().show();
+				$('#animControls [class*=stop]').parent().show();
 				$('#animControls [class*=save]').parent().show();
+				$('#animControls [class*=globe]').parent().show();
                 break;
-            case "paused":
-				$('#animSpeed').parent().hide();
-				$('#animControls [class*=pause]').parent().hide();
-				$('#animControls [class*=glyphicon-backward]').parent().hide();
-				$('#animControls [class*=glyphicon-forward]').parent().hide();
+            case owgis.ncwms.animation.status.paused:
+				$('#animSpeed').parent().hide("fade");
+				$('#animControls a').hide();// Hidde all the animation controls 
 				$('#animControls [class*=step]').parent().show();
 				$('#animControls [class*=fast-back]').parent().show();
 				$('#animControls [class*=fast-forw]').parent().show();
 				$('#animControls [class*=play]').parent().show();
-				$('#animControls [class*=save]').parent().show();
+				$('#animControls [class*=stop]').parent().show();
+				if(loadedFrames > 0){
+					$('#animControls [class*=save]').parent().show();
+					$('#animControls [class*=globe]').parent().show();
+				}
 				break;
-            case "none":
+            case owgis.ncwms.animation.status.none:
             default:
-				owgis.layers.getMainLayer().setVisible(true);//Show main layer
                 $("#palettesMenuParent").show();
                 $("#lineToggle").show();
 //                $("#downloadDataParent").hide();
@@ -122,11 +110,14 @@ function updateMenusDisplayVisibility(status){
                 }
                 if(_mainlayer_multipleDates){
                     $('#CalendarsAndStopContainer').show("fade");
+                    if(mobile){
+                        $('#drawer').hide("fade");
+                    }
                     $('#animControls').hide("fade");
                     $('#minPal').disabled = false;
                     $('#maxPal').disabled = false;
                     $('#hideCalendarButtonParent').show("fade");
-                    $('#l-animation').hide("fade");
+					owgis.interface.loadingatmap(false);
                 }else{
                     $('#CalendarsAndStopContainer').hide("fade");
                 }
@@ -155,11 +146,13 @@ function animLastFrame(){ currentFrame = totalNumOfFrames - 1; }
  * @returns {undefined}
  */
 function animDecreaseFrame(){
-	if(currentFrame > 0){
-		currentFrame--;
-	}else{
-		currentFrame = totalNumOfFrames - 1;
-	}
+	do{
+		if(currentFrame > 0){
+			currentFrame--;
+		}else{
+			currentFrame = totalNumOfFrames - 1;
+		}
+	}while(imagesReady[currentFrame] === 0)
 }
 /**
  * Increases the frame of the animation, if it is on the last frame
@@ -167,11 +160,13 @@ function animDecreaseFrame(){
  * @returns {undefined}
  */
 function animIncreaseFrame(){
-	if(currentFrame < (totalNumOfFrames - 1) ){
-		currentFrame++;
-	}else{
-		currentFrame = 0;
-	}
+	do{
+		if(currentFrame < (totalNumOfFrames - 1) ){
+			currentFrame++;
+		}else{
+			currentFrame = 0;
+		}
+	}while(imagesReady[currentFrame] === 0)
 }
 /**
  * Makes the animation 10% faster. 
@@ -200,17 +195,21 @@ function updateAnimationStatus(newStatus){
 
 	//If the user starts playing the animation when it is 
 	// still loading, then we set the "loading_playing" status
-	if( owgis.ncwms.animation.animStatus === "loading" && newStatus === "playing"){
-		owgis.ncwms.animation.animStatus = "loading_playing";
+	if( owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loading 
+			&& newStatus === owgis.ncwms.animation.status.playing){
+		owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loadingplaying;
 	}else{
-		if( owgis.ncwms.animation.animStatus === "loading_playing" && newStatus === "paused"){
-			owgis.ncwms.animation.animStatus = "loading";
+		//If the user paused when the animation haven't finish loading
+		if( owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loadingplaying 
+				&& newStatus === owgis.ncwms.animation.status.paused){
+			owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loading;
 		}else{
-			owgis.ncwms.animation.animStatus = newStatus;
+			owgis.ncwms.animation.status.current = newStatus;
 		}
 	}
-	switch(owgis.ncwms.animation.animStatus){
-		case "none"://When the animation has been stoped
+
+	switch(owgis.ncwms.animation.status.current){
+		case owgis.ncwms.animation.status.none://When the animation has been stoped
 			currentAnimation++;//It is used to stop any previous images
 			
 			clearLoopHandler();
@@ -221,10 +220,10 @@ function updateAnimationStatus(newStatus){
 			
 			updateTitleAndKmlLink();
 			break;
-		case "paused": break;
-		case "playing": break;
+		case owgis.ncwms.animation.status.paused: break;
+		case owgis.ncwms.animation.status.playing: break;
 	}
-	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+	updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 	
 }
 /**
@@ -287,8 +286,17 @@ function obtainSelectedDates(){
  * the ajax request to generate the animation of the NetCDF files.
  */
 owgis.ncwms.animation.dispAnimation = function dispAnimation(){
+
+	//This check is necessary to avoid keep adding layers to the map
+	if(animLayer !== null){//If the layer already existed, we remove it
+		map.removeLayer(animLayer);
+	}
 	obtainSelectedDates();
-	
+	if(mobile) {
+		$("#animContainer").css("display","block");
+		$("#panel2").css("display","none");
+		$("#drawer").css("display","block");
+	}
 	//Create the required global variables if they don't exist
 //	console.log("TotalNumber of frames: "+ totalNumOfFrames);
 	for(var i = 0; i < totalNumOfFrames; i++){
@@ -301,16 +309,28 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 		}
 	}
 	
+	//This is the source of the new map layer
 	animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationFunction,
-		projection: _map_projection 
+		projection: layerDetails.srs
 	});
 	
 	animLayer = new ol.layer.Image({
 		source: animSource});
-	
+
+	// On the mobile interface we can't download from a link
+	if(!mobile){
+		//Creates a link to download the animation as kml for google earth
+		// Copies original link from start date
+		$("#animSaveAsKml").attr("href",$("#kmlLink").attr("href"));
+		// Replaces time with whole the times being displayed
+		owgis.utils.replaceGetParamInLink("#animSaveAsKml", "TIME", allFrames.join(","));
+	}
+
 	currentFrame = 0; //Set to use the first frame
-	map.addLayer(animLayer);
+//	map.addLayer(animLayer);
+	var layersCollection = map.getLayers();
+	layersCollection.insertAt(parseInt(idx_main_layer)+1,animLayer);//Adds the animation layer just above the main layer
 
 }
 
@@ -347,8 +367,10 @@ function getResolutionRatio(){
  */
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	
+	imagesReady = new Array();
 	for(var i = 0; i < totalNumOfFrames; i++){
 		eval("imageNumber"+i+".src = '';");
+		imagesReady[i] = 0;//None of the image is ready
 	}
 
 //	console.log("----------- Canvas reload -----------");
@@ -361,14 +383,21 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	clearCanvas();
 
 	currentAnimation++;//Increments the animation counter;
-	owgis.ncwms.animation.animStatus = "loading"; 
+	owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loading;
 	updateTitleAndKmlLink();
 
 	loadedFrames = 0;// Reset the total number of images loaded
-	$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
-	updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
-	
-	var bbox = extent;
+	owgis.interface.loadingatmap(true,0);
+	updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
+
+	//TODO depending on the WMS version that we are using the position
+	//of the coordinates need to be swapped
+	if(_map_projection === "EPSG:4326"){
+		var tempExtent = [extent[1],extent[0],extent[3],extent[2]];
+		extent = tempExtent;
+	}
+
+	bbox = extent;
 	var animResolution = getResolutionRatio();
 	var imgWidth = Math.ceil(canvasWidth*animResolution);
 	var imgHeight = Math.ceil(canvasHeight*animResolution);
@@ -394,11 +423,12 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		STYLES: lay_style+"/"+mappalette,
 		FORMAT: "image/png",
 		TRANSPARENT: "TRUE",
-		CRS:"CRS:84",
 		WIDTH: imgWidth,
 		HEIGHT: imgHeight,
 		NUMCOLORBANDS: 250,
-		COLORSCALERANGE:  minPalVal + ',' + maxPalVal};
+		COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+		CRS: _map_projection
+	};
 	
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
@@ -466,8 +496,7 @@ function errorFunction(e){
 		animParams.TIME = allFrames[currentImage];
 		var imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 
-		eval('imageNumber'+currentImage+'.src = imgSrc;');
-		eval("imageNumber"+currentImage+".errorCount = "+(errorCount+1)+";");
+		eval('imageNumber'+currentImage+'.src = imgSrc;'); eval("imageNumber"+currentImage+".errorCount = "+(errorCount+1)+";");
 	}
 }
 
@@ -478,10 +507,20 @@ function imageHasBeenLoadedParallel(e){
 	// firefox that displays previous imagesj
 	clearCanvas();
 
-	if( owgis.ncwms.animation.animStatus === "loading" ||
-		owgis.ncwms.animation.animStatus === "loading_playing"){
+	if( owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loading ||
+		owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loadingplaying){
+
 		var currentImage = parseInt(e.target.id);
 		var currentBelongs = parseInt(e.target.belongs);//Reads the image animation belonging
+
+		imagesReady[currentImage] = 1;//This image is ready
+
+		//When the first frame is loaded we start looping the animation
+		if(loadedFrames === 1){
+			owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loadingplaying;
+			updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
+			currentFrame = currentImage;
+		}
 
 //		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
@@ -490,9 +529,10 @@ function imageHasBeenLoadedParallel(e){
 			loadedFrames++; 
 			
 			if(loadedFrames >= totalNumOfFrames ){
-				owgis.ncwms.animation.animStatus = "playing";
-				updateMenusDisplayVisibility(owgis.ncwms.animation.animStatus);
+				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
+				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 			}else{//then we still need to load more
+				owgis.interface.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 				if( (currentImage + numberOfParallelRquests) < totalNumOfFrames ){
 					var nextImage = currentImage + numberOfParallelRquests;
 					animParams.TIME = allFrames[nextImage];
@@ -505,7 +545,6 @@ function imageHasBeenLoadedParallel(e){
 				}
 			}
 			
-			$("#loadperc").text( Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 		}
 	}
 }
@@ -540,13 +579,16 @@ function loopAnimation(){
     var ctx = canvas.getContext('2d');
 	
 	//When the animation is 'playing' it loops on all the frames
-	if(owgis.ncwms.animation.animStatus === "playing"){ 
-		currentFrame = currentFrame < (totalNumOfFrames-1)? ++currentFrame: 0;
+	if(owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.playing){
+			currentFrame = currentFrame < (totalNumOfFrames-1)? ++currentFrame: 0;
 	}
 	// When the animatino is being loaded it loops between the 
 	// images that have already been loaded
-	if(owgis.ncwms.animation.animStatus === "loading_playing"){
-		currentFrame = currentFrame < (loadedFrames)? ++currentFrame: 0;
+	if(owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loadingplaying){
+		//In this case we display only the frames that have already been loaded
+		do{
+			currentFrame = currentFrame < (totalNumOfFrames-1)? ++currentFrame: 0;
+		}while(imagesReady[currentFrame] === 0)
 	}
 	
 	clearCanvas();

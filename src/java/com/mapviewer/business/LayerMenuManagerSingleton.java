@@ -81,7 +81,6 @@ public class LayerMenuManagerSingleton {
 		//Compute the group values for these layers, fill in all values that are in layerConf object
 		Layer groupLayer = updateFields(layerConf, deflayer);//Updates
 
-
 		List layers = layerConf.getChildren();
 
 		//we iterate through this loop which is going through each child of a layer
@@ -336,7 +335,7 @@ public class LayerMenuManagerSingleton {
 				//Obtains the menu entries or the layers
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
-					if (curr.getName().equals("MenuEntries")) {
+					if (curr.getName().equals("Menus")) {
 						addMenuEntries(curr.getChildren());
 					}
 				}
@@ -398,29 +397,6 @@ public class LayerMenuManagerSingleton {
 			return new BoundaryBox(bbox_str);
 		} else {
 			return null;
-		}
-	}
-
-	/**
-	 * Obtains the tiles origin from a layer configuration node.
-	 *
-	 * @param {Element} layerConf Element XML node with the layer configuration
-	 * @param {Layer} defLayer - default layer incase no BBOX found
-	 * @return String[2] Contains the origins of the tiles [0] longitude and [1] latitude
-	 */
-	private String[] getTilesOrigin(Element layerConf, Layer defLayer) {
-
-		String bboxstr = layerConf.getAttributeValue("BBOX");
-
-		if (bboxstr != null) {
-
-			BoundaryBox bbox = new BoundaryBox(bboxstr);
-			String[] tilesOrigin = {Double.toString(bbox.getMinLong()), Double.toString(bbox.getMinLat())};
-			return tilesOrigin;
-
-		} else {
-
-			return defLayer.getTilesOriginArr();
 		}
 	}
 
@@ -520,8 +496,6 @@ public class LayerMenuManagerSingleton {
 			style = style.equals("") ? "boxfill" : style;
 		}
 
-		String[] tilesOrigin = getTilesOrigin(layerConf, layer);
-
 		String name = layerConf.getAttributeValue("name");
 		name = name != null ? name : layer.getName();
 
@@ -559,7 +533,7 @@ public class LayerMenuManagerSingleton {
 
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, tilesOrigin, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
+				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
 
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
@@ -592,7 +566,6 @@ public class LayerMenuManagerSingleton {
 		String featureInfo = null;
 		boolean tiled = true;
 		boolean netCDF = false;
-		String[] tilesOrigin = {"-180", "-90"};
 		MenuEntry[] menuLayer = null;
 		String layout = "";
 		String palette = "default";
@@ -604,7 +577,7 @@ public class LayerMenuManagerSingleton {
 
 		Layer defLayer = new Layer(bbox, style, format, name, displayNames,
 				proj, menuLayer, server, width, height, featureInfo,
-				tiled, tilesOrigin, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
+				tiled, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
 
 		return defLayer;
 	}

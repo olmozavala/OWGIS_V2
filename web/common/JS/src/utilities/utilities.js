@@ -1,5 +1,5 @@
-goog.provide('owgis.utils');
 
+goog.provide('owgis.utils');
 
 /**
  * This function receives a 'map' of key values 
@@ -181,13 +181,18 @@ owgis.utils.pad = function(number) {
  * Gets the day on a specified format like:
  * format = %Y-m-d
  * @param formato - format of date. %Y for just year. 
+ * @param fromDate - It is used rather than today
  * @return date string depeinding on format passed in. 
  */ 
-owgis.utils.getDate = function(currDate, formato)
+owgis.utils.getDate = function(formato, fromDate)
 {   
-	var numDia = currDate.getDate();
-	var numMes = currDate.getMonth() + 1;
-	var anio = currDate.getFullYear();       
+	var usedDate = new Date();
+	if(fromDate !== undefined){
+		usedDate = fromDate;
+	}
+	var numDia = usedDate.getDate();
+	var numMes = usedDate.getMonth() + 1;
+	var anio = usedDate.getFullYear();       
 	var meses = new Array (
 		'',
 		'Enero', 
@@ -253,4 +258,3 @@ owgis.utils.days_between = function (date1, date2) {
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY);
 }
-

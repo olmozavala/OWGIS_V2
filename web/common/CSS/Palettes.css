@@ -53,20 +53,14 @@
     Author     : harshulpandav
 */
 /* Id of the div that contains both Palettes windows */
-/* line 16, ../scss/Palettes.scss */
+/* line 14, ../scss/Palettes.scss */
 #palettesParent {
   position: absolute;
 }
 
-/* line 21, ../scss/Palettes.scss */
-#palettesTable {
-  margin: 5px 0px;
-}
-
 /* Div of the optional palettes div */
-/* line 26, ../scss/Palettes.scss */
+/* line 22, ../scss/Palettes.scss */
 #palettes-div {
-  width: 270px;
   top: 245px;
   left: 40%;
   position: absolute;
@@ -74,22 +68,21 @@
 }
 
 /* table that contains current palette and the color range*/
-/* line 37, ../scss/Palettes.scss */
+/* line 32, ../scss/Palettes.scss */
 #paletteWindowColorRange {
-  width: 210px;
   top: 245px;
   left: 60%;
   position: absolute;
   display: none;
 }
 
-/* line 46, ../scss/Palettes.scss */
+/* line 40, ../scss/Palettes.scss */
 .inputSizePalettes {
-  width: 5em;
-  height: 18px;
+  height: 24px;
+  padding: 5px 5px;
 }
 
-/* line 52, ../scss/Palettes.scss */
+/* line 46, ../scss/Palettes.scss */
 .optPaletteImg {
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
@@ -105,7 +98,7 @@
   cursor: pointer;
   margin: 0px 1px;
 }
-/* line 59, ../scss/Palettes.scss */
+/* line 53, ../scss/Palettes.scss */
 .optPaletteImg:hover {
   -webkit-box-shadow: #dcc380 2px 2px 6px;
   -moz-box-shadow: #dcc380 2px 2px 6px;

@@ -30,7 +30,7 @@
     <!-- Palettes -->
     <div class="buttonStyle menuHidden toolTip" id="palettesMenuParent" 
     title="<fmt:message key='help.tooltip.palettes'/>"
-         onclick="showPalettes()" id="dynamicFont_color"  >
+         onclick="showPalettes()">
             <fmt:message key="ncwms.pal" />
     </div>
     <!-- Transect tool-->
@@ -42,7 +42,7 @@
     <!-- Download data-->
     <div class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
         title="<fmt:message key='help.tooltip.download'/>"
-        onclick="downloadData('${basepath}');"  >
+        onclick="downloadData();"  >
         <fmt:message key="main.download" />
     </div>
     <!-- Export map as PNG image -->
@@ -58,7 +58,7 @@
     <!-- Map Instructions-->
     <div class="buttonStyle toolTip" id="helpParent" valign="middle"  
     title="<fmt:message key='help.tooltip.help'/>">
-        <span id="helpText"  onclick="displayHelp();" atl="Help" />
+        <span id="helpText"  onclick="displayHelp();" alt="Help" />
             <fmt:message key="main.help" />
         </span>
     </div>
@@ -74,9 +74,9 @@
 
 </div>
                         <div id="languageDropDown">
-                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language)}
+                            ${menuHelper:createLanguageComboBox(availableLanguages,defaultLanguage,language,basePath)}
                         </div>
 <div id="helpHoverSpan" >
     <img title="<fmt:message key='help.helpicon'/>" class="toolTip"
-    onclick="displayHoverHelp();" id="helpHoverImg" src="${basepath}/common/images/Help/Help1.png">
+    onclick="displayHoverHelp();" id="helpHoverImg" src="./common/images/Help/Help1.png">
 </div>

@@ -1,13 +1,14 @@
 // This JS file is used to modify the look of the site. All the modifications
 // to the default template should be made at the function modifyInterface
 // which is called insisde mapDisplay. 
+goog.provide('owgis.interface');
 
 var colorLink;
 var colorLinkOver;
 var colorLinkClick;
 var colorLinkDisabled;
 
-if(mapConfig['menuDesign']=='sideMenu'){
+if(mapConfig['menuDesign']==='sideMenu'){
 	colorLink = "#0D3D52"; // When the mouse is not over and is not being clicked
 	colorLinkOver = "#467387"; // When the mouse is over
 	colorLinkClick = "#72919E";	// When the button is being clicked
@@ -20,11 +21,37 @@ if(mapConfig['menuDesign']=='sideMenu'){
 }
 
 /**
+ * Defines how are we displaying a 'loading' behaviour at the mouse 
+ * @param {type} loading
+ * @returns {undefined}
+ */
+owgis.interface.loadingatmouse= function(loading){
+	if(loading){
+		$("#map").removeClass("defaultCursor");
+		$("#map").addClass("loadingCursor");
+	}else{
+		$("#map").removeClass("loadingCursor");
+		$("#map").addClass("defaultCursor");
+	}
+}
+
+owgis.interface.loadingatmap = function(loading,percentage){
+	if(loading){
+		if(percentage !== undefined){
+			$("#loadperc").html(percentage +"<small> %</small>");
+		}
+		$('#l-animation').show("fade");
+	}else{
+		$('#l-animation').hide("fade");
+	}
+}
+
+/**
  * This is the main function that should encompass all the specific code for the site,
  * for example all the modifications to the interface depending on some layers 
  * @returns {undefined}
  */
 function modifyInterface(){
-	var firstDate = owgis.utils.getDate(($("#cal-start").datepicker("option","minDate")),"%m/%d/%Y");
+	var firstDate = owgis.utils.getDate("%m/%d/%Y", ($("#cal-start").datepicker("option","minDate")));
 	$("#dropDownLevels1 .mainMenuOption:selected").append(firstDate);
 }

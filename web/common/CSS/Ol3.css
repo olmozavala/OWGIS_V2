@@ -3,7 +3,7 @@
     Created on : Jun 24, 2013, 1:12:08 PM
     Author     : olmozavala
     Description:
-        Purpose of the stylesheet follows.
+		This styles are mostly overrrides for OpenLayers 3
 */
 /*
 * Base configuration, mixings and global variables
@@ -81,69 +81,42 @@ div.halfHeightWindow {
 
 /* This is the class that the FTL from geoserver uses 
 in most of their text */
-/* line 37, ../scss/Ol3.scss */
+/* line 36, ../scss/Ol3.scss */
 .map_content {
   pointer-events: none;
 }
 
-/* Div to display latitude and longitude*/
-/* line 43, ../scss/Ol3.scss */
-div.layersLonLat {
-  z-index: 1008;
-  position: absolute;
-  border: solid 1px white;
-  padding: 7px 7px;
-  cursor: move;
-  color: black;
-  font-size: 13px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-  opacity: 0.9;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
-  bottom: 50px;
-  right: 5%;
-  width: 14em;
-  height: 4em;
-  cursor: auto;
-  pointer-events: none;
-  background-image: url("../images/transBack.png");
-  font-weight: bold;
-}
-
-/* line 56, ../scss/Ol3.scss */
+/* line 42, ../scss/Ol3.scss */
 .ol-zoom {
   top: 54px;
 }
 
-/* line 61, ../scss/Ol3.scss */
+/* line 47, ../scss/Ol3.scss */
 .ol-zoomslider {
   top: 114px;
 }
 
 /* This is the Scale line in the bottom of the map */
-/* line 66, ../scss/Ol3.scss */
+/* line 52, ../scss/Ol3.scss */
 .ol-scale-line {
   bottom: 40px;
   left: 40%;
 }
 
 /* This is the position of the button to go fullscreen */
-/* line 72, ../scss/Ol3.scss */
+/* line 58, ../scss/Ol3.scss */
 .ol-full-screen {
   top: 49px;
 }
 
 /* Defines to not display anything if the layer was not found*/
-/* line 77, ../scss/Ol3.scss */
+/* line 63, ../scss/Ol3.scss */
 .olImageLoadError {
   display: none !important;
 }
 
 /* Used by open layers to display longitude and latitude */
-/* line 82, ../scss/Ol3.scss */
+/* line 68, ../scss/Ol3.scss */
 .ol-lat-lon {
   color: black;
   font-size: 13px;

@@ -15,8 +15,9 @@
 <!-- This div contains all the map --> 
 <div id="map"> </div>      
 <div class="layersLonLat">
-	<!-- This div displays the specific data of the map -->
-	<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;</b>
+	<span>
+		<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;
+	</span>
 	<div id="location" ></div>
 </div>    
 	
@@ -28,3 +29,6 @@
 <!-- This div is only used to contain the movement of the
 draggable windows -->
 <div id="draggable-container"></div>
+
+<!-- This div displays the specific data of the map -->
+<div id="jsonpdata" ></div>

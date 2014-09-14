@@ -2,7 +2,6 @@
 This is the main jsp file that forms the html webpage. It contains the skeleton of the html application. 
 --%>
 
-<%-- <%@page pageEncoding="iso-8859-1"%> --%>
 <%@page pageEncoding="UTF-8"%>
 <%@page errorPage="Error/ErrorPage.jsp" %>
 <%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
@@ -22,6 +21,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
         <%@include file="Header/Header.jsp" %> <%-- contains all the css links and javascript links --%>
         <%@include file="Header/InitJSVariables.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<title>OWGIS Template</title>
     </head>
 
     <body id="bodyClass" >
@@ -32,15 +32,15 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
 
         <%-- Main form of the application (main menu), it executes a new page everytime a new menu item is chosen --%>
-        <form id="baseForm" class="form-inline" name="baseForm" action="${basepath}${names.acdmServlet}" method="post">
+        <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 
             <!-- List of optional layers -->
-            <div class="draggableWindow toolTipWithImage" id="optionalMenuParent" title="optionalLayersParentHover">
+            <div class="draggableWindow toolTipWithImage container-fluid" id="optionalMenuParent" title="optionalLayersParentHover">
                 <%@include file="Options/OptionalLayers.jsp" %>
 			</div>
 
             <!-- These are the dropdowns for the base layer-->
-            <div class="transDraggableWindow toolTip" id="mainMenuParent" 
+            <div class="transDraggableWindow toolTip  container-fluid" id="mainMenuParent" 
                 title = "<fmt:message key="help.tooltip.mainlayers" />"   >
                     <div class="row ">
                         <div  class="col-xs-9 text-center invShadow title"> 
@@ -77,10 +77,10 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 
 
             <!-- OWGIS logo -->
-            <div id="owgislogocont">
-                <a href="http://owgis.org" target="_blank">
-                    <img border="0" src="${basepath}/common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />
-                </a>
+            <!--<div id="owgislogocont">-->
+                <!--<a href="http://owgis.org" target="_blank">-->
+                    <!--<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />-->
+                <!--</a>-->
             </div>
 
             <!-- User Menu -->
@@ -89,14 +89,16 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
                 <%@include file="NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 
                 <!-- Elevation -->
-                <div class="draggableWindow menuHidden" id="zaxis_selector"></div>
+                <div class="draggableWindow menuHidden" id="zaxis_selector"> </div>
 
                 <!-- Current palette and color range -->
                 <%@include file="Options/Palettes.jsp" %> 
 
                 <div id="l-animation" class="menuHidden">
-                    <p class="bigFontSize invShadow"> <fmt:message key="ncwms.loading" /> 
-						<span id="loadperc" class="invShadow">0</span> % <img src="${basepath}/common/images/loading/load.gif" height="12" border="0" alt="loading" />	</p>
+                    <p class="bigFontSize invShadow"> 
+						<span id="loadperc" class="invShadow"></span> 
+						<img src="./common/images/loading/009.gif" height="40" border="0" alt="loading" />	
+					</p>
                 </div>
             </c:if>
 				
@@ -105,30 +107,30 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				<div class="rightFoot">
 					&nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/gom-fs-logo-2.png" alt="Logo" width="60" height="60" /></a>
+                        <img border="0" src="./common/images/Logos/gom-fs-logo-2.png" alt="Logo" width="60" height="60" /></a>
 				</div>
 				<div id="pieDePaginaIzq" class="leftFoot">
 					testing
 					&nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
                     &nbsp;
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/Deep-C_logo.png" alt="Logo" width="51" height="30" /></a>
+                        <img border="0" src="./common/images/Logos/Deep-C_logo.png" alt="Logo" width="51" height="30" /></a>
                     &nbsp 
                     <a  href="#">
-                        <img border="0" src="${basepath}/common/images/Logos/coaps_logo.png" alt="Logo" width="30" height="30" /></a>
-
+                        <img border="0" src="./common/images/Logos/coaps_logo.png" alt="Logo" width="30" height="30" /></a>
                     <a  href="#">
 						<p class="footNote" align="left">
 							&nbsp 
-							&copy; <script language="javascript">document.write(owgis.utils.getDate(new Date(),"%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
+							&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  
+							Deep-C Consortium. All Rights Reserved &nbsp;
 						</p></a>
 							<a id="emailText" href="MAILTO:pvelissariou@coaps.fsu.edu"> <fmt:message key="main.contact" /></a>
 
 				</div>
 					<input type="hidden" id="_locale" name="_locale" value="" />
-				
+					<input type="hidden" id="mobile" name="mobile" value="" />
         </form>
 			
         <!-- minimizable windows file -->
@@ -145,13 +147,11 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		</script>
 		<div id="optionalLayersParentHover" class="commonHover" >
 					<fmt:message key="help.optional.layers1" />
-					<img src="${basepath}/common/images/kmz/kmz.png"/> 
+					<img src="./common/images/kmz/kmz.png"/> 
 					<fmt:message key="help.optional.layers2" />
-					<img src="${basepath}/common/images/Download/LayerDownload.png"/> 
+					<img src="./common/images/Download/LayerDownload.png"/> 
 					<fmt:message key="help.optional.layers3" />
 				</div> 
 	<input type="hidden" id="_locale" value="" />
-	
-	
     </body>
 </html>

@@ -8,7 +8,7 @@
 	var mainLayer = '${mainLayer}'; //main layer title
 	var mappalette = '${palette}'; // palette color
 	var paletteUrl = '${paletteUrl}'; //palette server url
-	var basepath = '${basepath}'; //url base path ex:/DeepCProject
+	var basepath = "/"+window.location.pathname.split("/")[1]; //url base path
 	var lay_style = '${style}'; //layer color style, part of the url to request the pallete.
 	var map = 'empty map'; //map variable that contains the OpenLayers map
 	var ol3view;//View that contains the map
@@ -49,4 +49,7 @@
 	var resolutionHigh = "<fmt:message key='ncwms.resolutionHigh'/>";
 	var resolutionMiddle = "<fmt:message key='ncwms.resolutionMiddle'/>";
 	var resolutionLow = "<fmt:message key='ncwms.resolutionLow'/>";
+	
+	//calender date format
+	var dateFormat = "yy-mm-dd"; 
 </script>

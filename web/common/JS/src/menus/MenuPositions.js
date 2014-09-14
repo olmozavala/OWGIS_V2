@@ -11,8 +11,8 @@ function saveAllWindowPositionsAndVisualizationStatus(){
     localStorage.zoom = ol3view.getResolution();// Zoom of map
     localStorage.map_center =  ol3view.getCenter();// Center of the map
 
-    localStorage.opt_menu_minimized =  $("#optionalsMinimize").css("display") == "none"? false: true;
-    localStorage.main_menu_minimized = $("#mainMenuMinimize").css("display") == "none"? false: true;
+    localStorage.opt_menu_minimized =  $("#optionalsMinimize").css("display") === "none"? false: true;
+    localStorage.main_menu_minimized = $("#mainMenuMinimize").css("display") === "none"? false: true;
 
     saveIndividualWindowPosition("pos_main_menu", "#mainMenuParent");
     saveIndividualWindowPosition("pos_opt_menu", "#optionalMenuParent");
@@ -22,16 +22,16 @@ function saveAllWindowPositionsAndVisualizationStatus(){
         saveIndividualWindowPosition("pos_palettes", "#palettes-div");
         saveIndividualWindowPosition("pos_color_range", "#paletteWindowColorRange");
 
-        localStorage.palette_visible = $("#palettes-div").css("display") == "none"? false: true;
-        localStorage.color_range_visible= $("#paletteWindowColorRange").css("display") == "none"? false: true;
+        localStorage.palette_visible = $("#palettes-div").css("display") === "none"? false: true;
+        localStorage.color_range_visible= $("#paletteWindowColorRange").css("display") === "none"? false: true;
 
         //Only if the main layer has multiple dates we save the calendars position
         if(_mainlayer_multipleDates){
-            localStorage.calendars_minimized =  $("#calendarsMinimize").css("display") == "none"? false: true;
+            localStorage.calendars_minimized =  $("#calendarsMinimize").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_calendars", "#CalendarsAndStopContainer");
         }
         if(_mainlayer_zaxisCoord){
-            localStorage.elev_selector_visible= $("#zaxis_selector").css("display") == "none"? false: true;
+            localStorage.elev_selector_visible= $("#zaxis_selector").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector");
         }
     }
@@ -133,7 +133,7 @@ function repositionWindows(localStorageVariable, localStorage_minimized,
             if ( localStorage_minimized === "true") {
                 minimizeWindow( minimizedElement, windowToMove );
             } else {
-                if( localStorageVariable!== undefined ){
+                if( localStorageVariable!== undefined && localStorageVariable!== null){
                     var prevPosition = localStorageVariable.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
                     document.getElementById(windowToMove).style.left = prevPosition[0] + "px";//move it from the left
                     document.getElementById(windowToMove).style.top = prevPosition[1] + "px";//move it from the top
@@ -182,10 +182,8 @@ function moveOneWindowToFitOnScreen(id)
 function repositionDraggablesByScreenSize()
 {
 
-    if (mapConfig['menuDesign'] == "topMenu") {
-        moveOneWindowToFitOnScreen("mainMenuParent");
-        moveOneWindowToFitOnScreen("optionalMenuParent");
-    }
+	moveOneWindowToFitOnScreen("mainMenuParent");
+	moveOneWindowToFitOnScreen("optionalMenuParent");
 
     if (cqlFilter) {
         moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");

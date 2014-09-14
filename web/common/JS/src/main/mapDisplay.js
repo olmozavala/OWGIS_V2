@@ -46,6 +46,9 @@ function owgisMain(){
 	owgis.tooltips.initHelpTexts();
 	initLocaleDropDown();
 	modifyInterface();
+	if(mobile){
+		initMobile();
+	}
 }
 
 /**
@@ -56,7 +59,7 @@ function owgisMain(){
 function addDraggableWindows(){
 
     //Only make windows draggable for 'topMenu' design
-    if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
+    if ( mobile === false) {
 		$(".draggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
 		})
@@ -88,7 +91,15 @@ function initMenus() {
 	
     updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-    draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	try{
+		if(mobile === false){
+			draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+		}
+	}catch(err){
+		console.log("Error initializing the menus... clearing local storage");
+		localStorage.clear();
+		draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}
 	
     //if user changes the window size
     $(window).resize(function() {
@@ -130,9 +141,8 @@ function disableEnterButton()
 /** Displays an alert when oppening an animation in GoogleEarth.
  * The reason is that it takes some time to generate the file
  */
-function KMZDownAlert()
-{
-    if (netcdf && anim_loaded && !owgis.ncwms.animation.stoppedAnimation)
+function KMZDownAlert() {
+    if (netcdf && (owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.playing))
         alert("Your download will beggin shortly.");
 }
 
@@ -281,18 +291,26 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            $("#"+id_minus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
         } else {
             document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            $("#"+id_minus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            $("#"+id_plus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
         } else {
             document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            $("#"+id_plus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity < .00001) {
@@ -322,28 +340,40 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
             document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            $("#"+id_minus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
         } else {
             document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            $("#"+id_minus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
             document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            $("#"+id_plus).attr('disabled', false);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
         } else {
             document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            $("#"+id_plus).attr('disabled', true);
+            if(!mobile)
+            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
         }
     }
     else
     {
         //Disables the buttons.
         document.getElementById(id_minus).disabled = true;
-        changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        $("#"+id_minus).attr('disabled', true);
+        if(!mobile)
+        	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
 		
         document.getElementById(id_plus).disabled = true;
-        changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        $("#"+id_plus).attr('disabled', true);
+        if(!mobile)
+        	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
 		
     }
 	
@@ -438,8 +468,13 @@ function findPageHeight() {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-        saveAllWindowPositionsAndVisualizationStatus();
-        setSelectedLocale();
+    	if(!mobile){
+	        saveAllWindowPositionsAndVisualizationStatus();
+	        setSelectedLocale();
+    	}
+    	else{
+    		document.getElementById("mobile").value = mobile;
+    	}
         submitForm();
     }
 }
@@ -512,5 +547,110 @@ function setSelectedLocale(){
 	document.getElementById("_locale").value = selectedLocale;
 }
 
+function initMobile(){
+	
+	$(function() {
+	    $( "#radio" ).buttonset();
+	  });
+	  $("#leftList > li").each(function(){
+		  		if(!$(this).children().is(':visible')){
+		  			$(this).remove();
+		  		}
+	  });
+
+	var header = $('[data-role=header]').outerHeight();
+	var panel = $('.ui-panel').height();
+	var leftList =  $('#ui-panel').height();
+	var panelheight = panel;
+	$('.ui-panel').css({
+	    'top': header,
+	    'min-height': '20px',
+	'border-radius': '10px',
+	'opacity':'0.9'
+	});
+
+	var isDrawerOpen=false;
+	$("div#drawer-pull").bind('click', function(e){
+		if (!isDrawerOpen){
+			$("#drawer").animate({
+	            bottom: 0
+	        }, 200);
+	    $("#drawer-pull").attr('class', 'flipped');
+	    isDrawerOpen =true;
+		}
+		else{
+			$("#drawer").animate({
+	            bottom: -133
+	        }, 200);
+		    $("#drawer-pull").attr('class', '');
+		    isDrawerOpen =false;
+
+		}
+	});
+
+	$('#panel3').slidePanel({
+		triggerName: '#trigger3',
+		triggerTopPos: '55px',
+		panelTopPos: '50px',
+		clickOutsideToClose: false
+	});
+
+	$('#panel2').slidePanel({
+		triggerName: '#trigger2',
+		triggerTopPos: '450px',
+		panelTopPos: '90px',
+		clickOutsideToClose: false
+	});
+	
+	toogleList('#baseLayersData');
+	toogleList('#optionalLayersData');
+	$('html, body').css({
+	    'overflow': 'hidden',
+	    'height': '100%'
+	});
+//	$( "#lineToggle" ).change(function() {
+////		  alert( "Handler for .change() called." );
+//		var sliderVal = $('#lineToggle').slider("option", "value");
+//		transectOn=sliderVal=="off"?false:true;
+//	    if(!transectOn){
+//			//Initializes source and 
+//			transectSource = new ol.source.Vector();
+//			transectLayer = new ol.layer.Vector({
+//				source: transectSource,
+//				style: transectStyle });
+//
+////	        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+//			draw = new ol.interaction.Draw({
+//				source: transectSource,
+//				type: "LineString"
+//			});
+//			draw.on("drawend",getVerticalTransect);
+//			draw.on("drawstart",cleanPreviousTransect);
+//			// Do nothing with single click
+//			map.unByKey(singleClickKey);
+//			map.addLayer(transectLayer);
+//			map.addInteraction(draw);
+//	    } else {
+////	        document.getElementById('lineToggle').innerHTML= transect.toString();
+//			map.removeInteraction(draw);
+//			map.removeLayer(transectLayer);
+//			draw.un("drawend",getVerticalTransect);
+//			//Recover the original behaviour of single click
+//			singleClickKey = map.on('singleclick',punctualData);
+//	    }
+////	    transectOn = !transectOn;        
+//
+//		});
+	//$('html').click(function() {
+//		$("#drawer").css("bottom", "-203px");
+//	    $("#drawer-pull").attr('class', '');
+//	    isDrawerOpen =false;
+	//});
+	//
+//		$("div#drawer-pull").click(function(event){
+//		    event.stopPropagation();
+//		});
+
+}
 goog.exportSymbol('owgis',owgis);
 

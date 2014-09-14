@@ -48,6 +48,7 @@
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
+/*$containerSize:380px;*/
 /* This is the Loading text */
 /* line 12, ../scss/Calendars.scss */
 #l-animation {
@@ -65,16 +66,15 @@
 #CalendarsAndStopContainer {
   top: 209px;
   left: 50px;
-  padding-right: 12px;
-  width: 380px;
+  /*width:$containerSize;*/
 }
 
-/* line 33, ../scss/Calendars.scss */
+/* line 32, ../scss/Calendars.scss */
 #timeSelect {
-  width: 170px;
+  /*width: $containerSize/2 - 20;*/
 }
 
-/* line 38, ../scss/Calendars.scss */
+/* line 37, ../scss/Calendars.scss */
 .ui-widget {
   /*font-size: $f_tiny;*/
 }
