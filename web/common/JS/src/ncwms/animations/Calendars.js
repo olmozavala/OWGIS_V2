@@ -202,12 +202,12 @@ owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd
 	if(calInitialized){
 		
 		if(formatStart!==null)
-			startDateTxt = $.datepicker.formatDate(formatStart, $("#cal-start").val());
+			startDateTxt = $.datepicker.formatDate(formatStart, $("#cal-start").datepicker("getDate"));
 		else
 			startDateTxt = $("#cal-start").val();
 		
 		if(typeof datesWithData !== "undefined" && formatEnd !== null){
-			endDateTxt = $.datepicker.formatDate(formatEnd,  $("#cal-end").val());
+			endDateTxt = $.datepicker.formatDate(formatEnd, $("#cal-end").datepicker("getDate"));
 			startDateTxt = startDateTxt+"/"+endDateTxt;
 		}
 		

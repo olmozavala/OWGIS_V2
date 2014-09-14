@@ -46,7 +46,7 @@ function setColorRangeFromMinMax(){
         srs: layerDetails['srs']
     };
 
-	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('%Y-%m-%d');
+	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('yy-mm-dd');
 	if( currTime !== owgis.const.notimedim ){
         urlParams.time = currTime;
 	}

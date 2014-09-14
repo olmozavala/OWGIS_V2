@@ -44,7 +44,6 @@
 	<div class="row defRowSpace">
 		<div class="col-xs-6 text-center " id="p-animation">
 			<div class="buttonStyle " onclick="owgis.ncwms.animation.dispAnimation();" > 
-				Sopas
 				<fmt:message key="ncwms.dispanim" />
 			</div> 
 		</div>
