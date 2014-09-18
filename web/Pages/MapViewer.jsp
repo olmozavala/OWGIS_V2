@@ -41,23 +41,22 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				<%@include file="Layouts/DraggableWindows/NcWMS/Palettes.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			</c:if>
 
-			<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="mobile" name="mobile" value="" />
 			<input type="hidden" id="_locale" value="" />
-        </form>
-		
-		<%@include file="Footer/BottomFooter.jsp" %>
-        <!-- minimizable windows file -->
-        <%@include file="Options/MinimizeWindows.jsp" %>
+				
+			<%@include file="Footer/BottomFooter.jsp" %>
+			<!-- minimizable windows file -->
+			<%@include file="Options/MinimizeWindows.jsp" %>
 		</form>
-
+		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
+			
 		<script>
 			${openLayerConfig}
 				jQuery(document).ready(function() {
 					owgisMain();
 				});
 		</script>
-		
+			
     </body>
 </html>

@@ -12,6 +12,11 @@ and open the template in the editor.
 
 /* Main div for user menu options. topmenu */
 .topMenu{
+	position:absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	z-index:1008;
     background-image:url('../images/transBack.png');
     border-bottom:$fontColor + 20 1px solid;
     padding: $defPadding*2 0px;

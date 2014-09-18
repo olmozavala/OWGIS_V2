@@ -15,12 +15,11 @@
 <!-- This div contains all the map --> 
 <div id="map"> </div>      
 <div class="layersLonLat">
-	<span>
-		<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;
-	</span>
+	<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;
 	<div id="location" ></div>
 </div>    
 	
+<!--It is used as the popup of the punctual data feature-->
 <div id="popup" class="ol-popup">
 	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
 	<div id="popup-content"></div>
