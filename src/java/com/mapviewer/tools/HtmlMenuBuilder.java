@@ -449,30 +449,4 @@ public class HtmlMenuBuilder {
 		}
 		return txt;
 	}
-	
-	/**
-	 * Creates and fills a combobox (dropdown) for selection of locale on the viewer
-	 *
-	 * @param {String} availableLanguages The list of available locales specified in the properties
-	 * @param {String} defaultLanguage The default locale specified in the properties file
-	 * @param {String} language String locale currently used in the viewer
-	 * @return 
-	 */
-	public static String createLanguageComboBox(String availableLanguages, String defaultLanguage, String language, String basePath){
-//		HtmlMenuBuilder.basePath = basePath;
-
-		String 	htmlCode = "<select class='languageDropDownSel' id='langDropDown' onchange='MapViewersubmitForm();'>";
-
-		String[] avLangs = availableLanguages.split(";");
-				for (String lang: avLangs) {
-					htmlCode += "<option class='mainMenuOption' value='" + lang + "' ";
-					if (lang.equals(language)) {
-//						currRoot = subMenus.get(i);
-						htmlCode += "selected";
-					}
-					htmlCode += " title='"+ HtmlMenuBuilder.basePath + "/common/images/locale/" +lang +".png' >" + lang+ " </option>\n";
-				}
-				htmlCode += "</select>";
-		return htmlCode;
-	}
 }

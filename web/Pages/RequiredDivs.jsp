@@ -30,5 +30,13 @@
 draggable windows -->
 <div id="draggable-container"></div>
 
-<!-- This div displays the specific data of the map -->
+<!-- This div displays the specific data of the dynamic maps-->
 <div id="jsonpdata" ></div>
+	
+<!--Loading gif to display on the map -->
+<div id="l-animation" class="menuHidden">
+	<p class="bigFontSize invShadow"> 
+		<span id="loadperc" class="invShadow"></span> 
+		<img src="./common/images/loading/009.gif" height="40" border="0" alt="loading" />	
+	</p>
+</div>

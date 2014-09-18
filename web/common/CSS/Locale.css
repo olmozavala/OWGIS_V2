@@ -53,28 +53,12 @@ and open the template in the editor.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 13, ../scss/Locale.scss */
-#languageDropDown {
-  position: absolute;
-  top: 4px;
-  right: 30px;
-  display: inline;
-  padding-top: 3px;
+/* line 14, ../scss/Locale.scss */
+#languageContainer {
   z-index: 1019;
 }
 
-/* line 23, ../scss/Locale.scss */
-.languageDropDownSel {
-  font-size: 15px;
-  width: 110px;
-  color: black;
-  background-color: #909090;
-  -webkit-border-radius: 6px 6px;
-  -moz-border-radius: 6px / 6px;
-  border-radius: 6px / 6px;
-  margin: 1px 0px;
-}
-/* line 29, ../scss/Locale.scss */
-.languageDropDownSel:hover {
-  background-color: #777777;
+/* line 19, ../scss/Locale.scss */
+#langDropDown {
+  min-width: 105px;
 }

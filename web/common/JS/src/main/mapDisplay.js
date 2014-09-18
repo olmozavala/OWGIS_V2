@@ -20,6 +20,7 @@ goog.require('owgis.utils');
 goog.require('owgis.layers');
 goog.require('owgis.ncwms.transect');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.languages');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
@@ -44,7 +45,6 @@ function owgisMain(){
 	initMenus();
 	initHelpTxtPos();
 	owgis.tooltips.initHelpTexts();
-	initLocaleDropDown();
 	modifyInterface();
 	if(mobile){
 		initMobile();
@@ -73,6 +73,8 @@ function addDraggableWindows(){
  * Initializes the calendars with the details of the active layer
  */
 function initMenus() {
+	
+	owgis.languages.buildselection();//Initializes the dropdown of languages
 	
     disableEnterButton(); //disable enter button
     addDraggableWindows(); // Make the proper windows draggable.
@@ -528,14 +530,6 @@ function changeText(btn, pos) {
 function resetView(){
     localStorage.clear();
     submitForm();
-}
-
-/**
- * This function is used to modify the locale dropdown
- * to display flag icons in it.
- */
-function initLocaleDropDown(){
-	$("#langDropDown").msDropDown();
 }
 
 /**

@@ -100,14 +100,10 @@ and open the template in the editor.
 
 /* line 60, ../scss/MapInstructions.scss */
 #helpHoverSpan {
-  position: absolute;
-  top: 4px;
-  right: 0px;
-  display: inline;
   z-index: 1019;
 }
 
-/* line 69, ../scss/MapInstructions.scss */
+/* line 65, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

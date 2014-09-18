@@ -46,6 +46,7 @@
 		<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Locale.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/HomePage.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/TopMenu.css" rel="stylesheet" type="text/css"/>
 
 		<!--Specific for Images in Dropdown for locale-->
 		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
@@ -98,6 +99,7 @@
 		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
 		<script src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
+		<script src="./common/JS/src/languages/Languages.js"> </script>
 		<!--Debug mode-->
 
 		<!-- Production mode -->

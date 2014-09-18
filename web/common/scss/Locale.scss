@@ -10,25 +10,12 @@ and open the template in the editor.
 @import "base";
 $border-select: 6px;
 
-#languageDropDown{
-position: absolute;
-top: 4px;
-right: 30px;
-display: inline;
-padding-top: 3px;
-z-index: 1019;
+//Is the container of the language select 
+#languageContainer{
+	z-index: 1019;
 }
 
-
-.languageDropDownSel {
-    font-size: $f_larger;
-    width: 110px; 
-    color: $dropDownColor;
-  background-color: $dropDownBackColor;
-  @include border-radius($border-select, $border-select);
-  &:hover{
-    background-color: $dropDownHover;
-  }
-    //padding: 2px 11px;
-    margin: 1px 0px;
+//Is the language selection dropdown
+#langDropDown{
+	min-width:105px;
 }

@@ -109,6 +109,7 @@
 		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
 		<script src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
+		<script src="./common/JS/src/languages/Languages.js"> </script>
 		<!--Debug mode-->
 
 <!-- Testing putpose .. to be removed later -->

@@ -292,60 +292,7 @@
 					<div id="drawer-pull" class=""></div>
 					<div id="drawer-content">
 						<div id="animControls">
-							<div class="row">
-								<div class="col-xs-12 invShadow title ">
-									<fmt:message key="ncwms.animcontrol" />
-								</div>
-							</div>
-							<div class="row  text-center ">
-								<div class="col-xs-12 ">
-									<a class="btn btn-default btn-xs " href="#"
-									   onclick="animFirstFrame()"
-									  > <span
-											class="glyphicon glyphicon-fast-backward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animDecreaseFrame()"> <span
-											class="glyphicon glyphicon-step-backward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animSlower()"> <span
-											class="glyphicon glyphicon-backward"></span>
-									</a> <span class="invShadow title menuHidden" id="stopAnimText">
-										
-									</span> <a class="btn btn-default btn-xs " href="#"
-											   onclick="updateAnimationStatus('none')"> <span
-											class="glyphicon glyphicon-stop"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="updateAnimationStatus('playing')" > <span
-											class="glyphicon glyphicon-play"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="updateAnimationStatus('paused')"> <span
-											class="glyphicon glyphicon-pause"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animFaster()"> <span
-											class="glyphicon glyphicon-forward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animIncreaseFrame()"> <span
-											class="glyphicon glyphicon-step-forward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#"
-											onclick="animLastFrame()"> <span
-											class="glyphicon glyphicon-fast-forward"></span>
-									</a> <a class="btn btn-default btn-xs " href="#" target="_blank"> <span
-											class="glyphicon glyphicon-floppy-save"></span>
-									</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 defShadow title">
-									<span> <fmt:message key="ncwms.anim.currdate" />
-									</span> <span id="animDate"></span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 defShadow title">
-									<span> <fmt:message key="ncwms.anim.currspeed" />
-									</span> <span id="animSpeed"></span>
-								</div>
-							</div>
+							<%@include file="Options/AnimationControls.jsp" %>
 						</div>
 					</div>
 				</div>

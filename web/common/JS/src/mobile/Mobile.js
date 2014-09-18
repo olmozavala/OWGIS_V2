@@ -13,7 +13,7 @@ var userChoice3 = 'undefined';
 
 function mobileInit()
 {
-    $("#pieDePaginaIzq").css("display", "none");
+    $("#leftFooter").css("display", "none");
 }
 
 /**
