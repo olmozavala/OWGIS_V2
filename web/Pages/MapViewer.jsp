@@ -26,6 +26,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 	
     <body id="bodyClass" >
 		
+		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
         <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 			<!--Features menu-->
 			<%@include file="Layouts/Tools/TopMenu/NavBar.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
@@ -49,7 +50,6 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<!-- minimizable windows file -->
 			<%@include file="Options/MinimizeWindows.jsp" %>
 		</form>
-		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
 			
 		<script>
 			${openLayerConfig}

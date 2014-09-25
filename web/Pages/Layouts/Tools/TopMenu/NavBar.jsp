@@ -1,14 +1,14 @@
 <section class="container-fluid topMenu">
 	<div class="row">
 		<!--Logo OWGIS-->
-		<div class="col-lg-1 " >
+		<div class="col-lg-1 visible-lg" >
 			<a href="http://owgis.org" target="_blank">
 				<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20"  />
 			</a>
 		</div>
 
 		<!--All feature buttons-->
-		<section class="col-lg-9 text-center" >
+		<section class="col-lg-9 col-md-12 text-center" >
 			<!-- Link to download kml files-->
 			<div class="buttonStyle toolTip" id="kmlLinkParent" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
@@ -56,16 +56,16 @@
 		</section >
 
 		<!--Languages and tooltip help button-->
-		<div class="col-lg-2" >
-			<div id="languageContainer" class="col-lg-10 ">
+		<div class="col-lg-2 visible-lg" >
+			<span id="languageContainer" class="col-lg-7 col-lg-offset-3">
 				<select id='langDropDown' onchange='MapViewersubmitForm();'>
 					<!--It gets initialized by languages.js-->
 				</select>
-			</div>
-			<div id="helpHoverSpan" class="col-lg-2 ">
+			</span>
+			<span id="helpHoverSpan" class="col-lg-2 text-left">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"
 					 onclick="displayHoverHelp();" id="helpHoverImg" src="./common/images/Help/Help1.png">
-			</div>
+			</span>
 		</div>
 	</div>
 </section>

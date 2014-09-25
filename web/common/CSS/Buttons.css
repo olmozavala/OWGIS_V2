@@ -73,8 +73,8 @@ look like a button */
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  margin: 13px 5px;
-  height: 69px;
+  margin: 5px 5px;
+  height: 23px;
   display: inline;
   vertical-align: middle;
 }
