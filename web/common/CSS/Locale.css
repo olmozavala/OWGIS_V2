@@ -58,7 +58,13 @@ and open the template in the editor.
   z-index: 1019;
 }
 
-/* line 19, ../scss/Locale.scss */
-#langDropDown {
-  min-width: 105px;
+/* line 20, ../scss/Locale.scss */
+#langDropDown li {
+  min-width: 0px;
+}
+
+/* line 25, ../scss/Locale.scss */
+#selectedLanguage {
+  padding-bottom: 0px;
+  padding-top: 0px;
 }
