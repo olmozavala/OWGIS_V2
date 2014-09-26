@@ -16,6 +16,13 @@ $border-select: 6px;
 }
 
 //Is the language selection dropdown
-#langDropDown{
-	min-width:105px;
+#langDropDown{ }
+#langDropDown li{
+	min-width: 0px;
+}
+
+// Defines the button to select Languages
+#selectedLanguage{
+	padding-bottom: 0px;
+	padding-top: 0px;
 }

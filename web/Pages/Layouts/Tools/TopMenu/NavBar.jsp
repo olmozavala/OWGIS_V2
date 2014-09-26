@@ -1,71 +1,75 @@
 <section class="container-fluid topMenu">
 	<div class="row">
 		<!--Logo OWGIS-->
-		<div class="col-lg-1 " >
+		<span class="col-lg-1 visible-lg" >
 			<a href="http://owgis.org" target="_blank">
 				<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20"  />
 			</a>
-		</div>
-
-		<!--All feature buttons-->
-		<section class="col-lg-9 text-center" >
-			<!-- Link to download kml files-->
-			<div class="buttonStyle toolTip" id="kmlLinkParent" title="<fmt:message key='help.tooltip.googleE'/>"> 
+		</span>
+		<!--TODO Changing the margin at css didn't work -->
+		<ul class="horizontal col-lg-9 col-md-10 text-center" style="margin-bottom: 0px">
+			<li class="buttonStyle toolTip" id="kmlLinkParent" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
-			</div>
+			</li>
 			<!-- Transparency -->
-			<div class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>">
+			<li class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>">
 				<%@include file="../../../Options/Transparency.jsp" %>
-			</div>
+			</li>
 			<!-- Depth or elevation-->
-			<div class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
+			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
 				<%@include file="../../../Options/Elevation.jsp" %>
-			</div>
+			</li>
 			<!-- Palettes -->
-			<div class="buttonStyle menuHidden toolTip" id="palettesMenuParent" 
-				 title="<fmt:message key='help.tooltip.palettes'/>"
-				 onclick="showPalettes()">
-				<fmt:message key="ncwms.pal" />
-			</div>
+			<li class="buttonStyle menuHidden toolTip" id="palettesMenuParent" 
+				title="<fmt:message key='help.tooltip.palettes'/>"
+				onclick="showPalettes()">
+			<fmt:message key="ncwms.pal" />
+			</li>
 			<!-- Transect tool-->
-			<div class="buttonStyle menuHidden toolTip" id="lineToggle" 
-				 title="<fmt:message key='help.tooltip.transect'/>"
-				 onclick="toggleControl(this,'below');" >
-				<fmt:message key="ncwms.transect" />
-			</div>
+			<li class="buttonStyle menuHidden toolTip" id="lineToggle" 
+				title="<fmt:message key='help.tooltip.transect'/>"
+				onclick="toggleControl(this,'below');" >
+			<fmt:message key="ncwms.transect" />
+			</li>
 			<!-- Download data-->
-			<div class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
-				 title="<fmt:message key='help.tooltip.download'/>"
-				 onclick="downloadData();"  >
-				<fmt:message key="main.download" />
-			</div>
+			<li class="buttonStyle menuHidden toolTip" id="downloadDataParent" 
+				title="<fmt:message key='help.tooltip.download'/>"
+				onclick="downloadData();"  >
+			<fmt:message key="main.download" />
+			</li>
 			<!-- Map Instructions-->
-			<div class="buttonStyle toolTip" id="helpParent" 
-				 title="<fmt:message key='help.tooltip.help'/>">
+			<li class="buttonStyle toolTip" id="helpParent" 
+				title="<fmt:message key='help.tooltip.help'/>">
 				<span id="helpText"  onclick="displayHelp();" />
-				<fmt:message key="main.help" />
-				</span>
-			</div>
+			<fmt:message key="main.help" />
+			</span>
+			</li>
 			<!-- Reset view -->
-			<div class="buttonStyle toolTip" id="resetParent" 
-				 title="<fmt:message key='help.tooltip.resetview'/>" >
+			<li class="buttonStyle toolTip" id="resetParent" 
+				title="<fmt:message key='help.tooltip.resetview'/>" >
 				<span id="resetText" onclick="resetView();" />
-				<fmt:message key="main.resetView" />
-				</span>
-			</div>
-		</section >
-
+			<fmt:message key="main.resetView" />
+			</span>
+			</li>
+		</ul>
+		
 		<!--Languages and tooltip help button-->
-		<div class="col-lg-2" >
-			<div id="languageContainer" class="col-lg-10 ">
-				<select id='langDropDown' onchange='MapViewersubmitForm();'>
+		<div class="col-lg-2 col-md-2 " >
+			<div class="btn-group col-lg-5 col-lg-offset-4 col-md-7 col-md-offset-1
+				 hidden-sm hidden-xs ">
+				<button id="selectedLanguage" type="button" 
+						class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<!--It gets initialized by languages.js-->
-				</select>
+				</button>
+				<ul id="langDropDown" class="dropdown-menu" role="menu">
+					<!--It gets initialized by languages.js-->
+				</ul>
 			</div>
-			<div id="helpHoverSpan" class="col-lg-2 ">
+			<span id="helpHoverSpan" class="col-lg-3 col-md-4 hidden-sm hidden-xs ">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"
 					 onclick="displayHoverHelp();" id="helpHoverImg" src="./common/images/Help/Help1.png">
-			</div>
+			</span>
 		</div>
 	</div>
+	
 </section>

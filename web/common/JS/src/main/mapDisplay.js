@@ -472,7 +472,6 @@ function MapViewersubmitForm() {
     if (map !== null) {
     	if(!mobile){
 	        saveAllWindowPositionsAndVisualizationStatus();
-	        setSelectedLocale();
     	}
     	else{
     		document.getElementById("mobile").value = mobile;
@@ -532,14 +531,6 @@ function resetView(){
     submitForm();
 }
 
-/**
- * This function is used to set the selected locale to a parameter _locale
- * to use it in the MapViewerServlet
- */
-function setSelectedLocale(){
-	var selectedLocale= $("#langDropDown").find('option:selected').val();
-	document.getElementById("_locale").value = selectedLocale;
-}
 
 function initMobile(){
 	

@@ -17,12 +17,10 @@
 		<script src="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.js"></script>
 		<link href="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		
-		<!--Specific for Images in Dropdown for locale-->		
-		<script src="./common/JS/vendor/jquery.dd.min.js"></script>
-
         <!-- End Jquery -->
         <script>
-		$.widget.bridge('uitooltip', $.ui.tooltip);
+//			It is used to avoid conflicts with Bootstrap Tooltip
+			$.widget.bridge('uitooltip', $.ui.tooltip);
 		</script>
         <!-- Bootstrap -->
 		<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
