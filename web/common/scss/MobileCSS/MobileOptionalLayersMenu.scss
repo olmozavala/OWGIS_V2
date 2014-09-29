@@ -1,0 +1,77 @@
+
+
+/* optional layers such as us state, DeepC, etc*/
+#optionalMenuParent
+{
+    top:-20px;
+    min-width:185px;
+    left:78%;
+    text-align:left;
+    background-color: black;
+    width:700px;
+    font-size:20px;
+    padding:0px;
+}
+
+.optionalTitle{    
+    font-size:35px;   
+    font-weight:bold;
+}
+
+/* Subtable that contains the optional layers */
+table.vectorLayer{
+    /*  background-image:url('../images/transBack.png');*/
+    font-size: 30px;
+
+    font-weight: bold;
+    width:700px;
+}
+
+/*List of optional layers*/
+.opt_lay_list_root{
+    padding-left: 0px;
+    list-style-type: none;
+
+}
+
+.opt_lay_list{
+    list-style-type: none;
+    padding-left: 10px;
+    display: none;
+
+}
+
+/*Single menu on the optional layers menu*/
+.opt_lay_menu{
+    border:solid black;
+    padding-left:20px;
+}
+
+/*A title in the optional menu layers*/
+.opt_lay_title{
+    font-size:30px;
+    font-weight: bold;
+    margin: 5px 0px 0px 0px;
+    cursor: pointer;
+    color: #CDF1FA;
+
+}
+
+/*Default format for each menu as paragraph*/
+.opt_lay_par{
+
+    height: 110px;
+    margin: 0px;
+    color: white;
+    font-size:30px;
+    text-shadow: none;
+
+}
+
+.optionalImg
+{
+    
+    width:75px;
+    height:75px;
+    
+}

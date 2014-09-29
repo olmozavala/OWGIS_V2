@@ -1,0 +1,54 @@
+#drawer {
+            position: absolute;
+            height: 160px;
+            min-width: 250px;
+            bottom: -133px;
+            left: 50%;
+            margin-left: -124px;
+            border: 1px solid rgba(209,209,210, 0.75);
+            /*box-shadow: 0 1px 7px rgba(0,0,0,0.4);*/
+            border-bottom-style: none;
+            -webkit-border-radius: 8px 8px 0 0;
+            border-radius: 8px 8px 0 0;
+            background: #362f2d;
+            background: rgba(54, 47, 45, 0.9);
+            pointer-events: auto;
+            z-index: 1001;
+        }
+        #drawer-pull {
+            position: absolute;
+            top: 7px;
+            width: 20px;
+            height: 13px;
+            background-image: url(http://webapps.flightstats.com/flick/img/drawer-pull@x2.png);
+            /*-webkit-background-size: 35px  15px;*/
+            /*-moz-background-size: 35px  15px;*/
+            background-size: 20px 13px;
+            background-repeat: no-repeat;
+            margin: auto 115px;
+            cursor: n-resize;
+            -webkit-transition: -webkit-transform 0.55s;
+            transition: transform 0.55s;
+        }
+        #drawer-pull.flipped {
+            -webkit-transform:rotateX(180deg);
+            -moz-transform:rotateX(180deg);
+            -ms-transform:rotateX(180deg);
+            transform:rotateX(180deg);
+        }
+        #drawer-content {
+            position: absolute;
+            top: 30px;
+            bottom: 0px;
+            min-width: 250px;
+            font-size: 13px;
+            line-height: 14px;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #EBEBEB;
+            padding: 0 25px;
+        }
+        #drawer-status {
+            text-align: center;
+            width: 100%;
+            line-height: 16px;
+        }

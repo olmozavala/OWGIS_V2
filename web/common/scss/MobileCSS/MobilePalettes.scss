@@ -1,0 +1,89 @@
+
+
+/* table that contains current palette and the color range*/
+/* IMPORTANT we can't use ''right' because the windows doesn't drag properly*/
+#palette{
+	top: 5px;
+	display:none;
+        right:0px;
+}
+#palette.th{
+	padding: 0;
+}
+
+/* Div of the optional palettes div */
+/* Color palettes that pops with all the optional palettes */ 
+/* IMPORTANT we can't use ''right' because the windows doesn't drag properly*/
+#palettes-div{
+	top: 5px;
+        display:none;
+        left:0px;
+        
+	
+}
+
+/* Id of the div that contains both Palettes windows */
+#palettesParent
+{
+	position:absolute;
+	top:0px;
+	right:10px;
+	width:200px;
+	z-index:1008;
+	
+       
+}
+
+#imgPalette{
+    height:300px;
+    width:20px;
+  
+}
+
+#palettesHover{
+	display:none;
+}
+
+/*
+Table that contains all the optional palettes
+*/
+#palettesTable{
+    cursor: pointer;
+  
+}
+
+#palettesTable img{
+height:150px;
+}
+
+/* Reduces the default padding for the button style. This 
+style is being used by the buttons inside the colorPaleteRangeOptions*/
+.reducedPadding{
+    padding: 3px 5px 3px;
+}
+/* This is a table that contains the header text and buttons
+of the optional palettes table*/
+#optionalPalettesHeader{	
+	width: 100%;
+}
+
+/* '+' and '-' Paragraph inside the color range palettes window */
+.palMinMax{
+	padding: 0;
+	margin: 0;
+    font-size:25px;
+}
+
+img.minusButton, img.plusButton{
+    
+    width:40px;
+    height:40px;
+    
+}
+
+
+
+#palettesTable img:active{
+   position:relative;
+    top:2px;
+}

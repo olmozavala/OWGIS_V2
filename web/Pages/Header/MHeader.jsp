@@ -98,6 +98,7 @@
 		<script src="./common/JS/src/utilities/utilities.js"> </script>
 		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
+		<script src="./common/JS/src/mobile/Mobile.js"> </script>
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>
 		<script src="./common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="./common/JS/src/ncwms/Palettes.js"> </script>
