@@ -51,7 +51,7 @@ function owgisMain(){
 	owgis.tooltips.initHelpTexts();
 	modifyInterface();
 	if(mobile){
-		initMobile();
+		owgis.mobile.initMobile();
 	}
 }
 

@@ -1,4 +1,6 @@
-function initMobile(){
+goog.provide('owgis.mobile');
+
+owgis.mobile.initMobile = function initMobile(){
 	
 	$('html, body').css({
 	    'overflow': 'hidden',
