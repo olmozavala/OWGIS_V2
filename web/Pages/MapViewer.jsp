@@ -41,6 +41,10 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				<!-- Current palette and color range -->
 				<%@include file="Layouts/DraggableWindows/NcWMS/Palettes.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			</c:if>
+			<c:if test='${cqlfilter}'>
+				<!-- Floating CQL filter window -->
+				<%@include file="Layouts/DraggableWindows/CQL/CQLFilter.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
+			</c:if>
 
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="mobile" name="mobile" value="" />

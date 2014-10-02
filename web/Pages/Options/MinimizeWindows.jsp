@@ -8,20 +8,20 @@
         <span id="mainMenuMinimize" class="draggableWindow minimizedWindow">
             <fmt:message key="main.base" />
             <a class="btn btn-default btn-xs " href="#" 
-               onclick="minimizeWindow('mainMenuParent','mainMenuMinimize')"> 
+               onclick="owgis.layouts.draggable.minimizeWindow('mainMenuParent','mainMenuMinimize')"> 
                 <i class="glyphicon glyphicon-resize-full "></i></a>
 
         </span>                
         <span id="calendarsMinimize" class="draggableWindow minimizedWindow">
             <fmt:message key="ncwms.cal.title" />
             <a class="btn btn-default btn-xs " href="#" 
-                onclick="minimizeWindow('CalendarsAndStopContainer','calendarsMinimize')"> 
+                onclick="owgis.layouts.draggable.minimizeWindow('CalendarsAndStopContainer','calendarsMinimize')"> 
                 <i class="glyphicon glyphicon-resize-full "></i></a>
         </span>                
         <span id="optionalsMinimize" class="draggableWindow minimizedWindow">
             <fmt:message key="main.optional" />
             <a class="btn btn-default btn-xs " href="#" 
-                onclick="minimizeWindow('optionalMenuParent','optionalsMinimize')" >
+                onclick="owgis.layouts.draggable.minimizeWindow('optionalMenuParent','optionalsMinimize')" >
                 <i class="glyphicon glyphicon-resize-full "></i></a>
         </span>                
     </div>

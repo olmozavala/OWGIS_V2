@@ -1,6 +1,7 @@
 goog.provide('owgis.ncwms.calendars');
 
 goog.require('owgis.const');
+goog.require('owgis.ol3.popup');
 
 var calStart; //calendar start date
 var calEnd;  //calendar end date
@@ -136,7 +137,7 @@ function updateCalendarStart(){
 	
 	// When updateing the 'current' layer by changing the start cal, we should
 	// close the popup
-	closePopUp();
+	owgis.ol3.popup.closePopUp();
 }
 
 /**
@@ -263,8 +264,8 @@ function getSuggestedDate(actualDate,ahead){
  */ 
 function updateMainLayerDate(newDate){
 	
-    updateMainLayerParam('TIME',newDate);
-	updateTitleAndKmlLink();
+    owgis.layers.updateMainLayerParam('TIME',newDate);
+	owgis.kml.updateTitleAndKmlLink();
 }
 
 /**

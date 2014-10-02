@@ -2,7 +2,7 @@
 <%-- 
     Document   : DefaultErrorPage
     Created on : Apr 3, 2013, 12:01:34 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

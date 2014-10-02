@@ -1,7 +1,7 @@
 <%-- 
     Document   : Palettes
     Created on : Aug 3, 2012, 6:26:56 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <!-- Window with the color ranges -->
@@ -14,18 +14,6 @@
 	</div>
 	<!--Contains the title of the window and the min max values--> 
 	<div class="col-xs-10  ">
-		<!--First row is the title and the close button-->
-		<div class="row"> 
-			<div class="col-xs-8 invShadow title ">
-				<fmt:message key="ncwms.colorrange" />
-			</div>
-			<div class="col-xs-4">
-				<div class="pull-right">
-					<a class="btn btn-default btn-xs" href="#" onclick="showPalettes();">
-						<span class="glyphicon glyphicon-remove"> </span> </a>
-				</div>
-			</div>
-		</div>
 		<!--Second row is the Max options-->
 		<div class="row defRowSpace">
 			<div class="col-xs-12 ">

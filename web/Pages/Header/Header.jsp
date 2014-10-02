@@ -1,7 +1,7 @@
 <%-- 
     Document   : Header
     Created on : Aug 3, 2012, 5:45:27 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <%-- 
@@ -56,25 +56,11 @@
 		<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 		<!--Specific for OpenLayers3 -->
 
-
-		<!--OpenLayers 3 Management -->
-		<script type="text/javascript" src="./common/JS/src/ol3/OpenLayersRelated.js"> </script>
-		<!--OpenLayers 3 Management -->
-
 		<!--NcWMS related-->
 		<script type="text/javascript" src="./common/JS/src/ncwms/Elevation.js"> </script>
 		<!--NcWMS related-->
 
-		<!--Menus related-->
-		<script src="./common/JS/src/menus/MenuPositions.js"> </script>
-		<script src="./common/JS/src/menus/OptionalLayersMenu.js"> </script>
-        <script src="./common/JS/src/menus/HelpInstructions.js"> </script>
-		<!--Menus related-->
-		
         <script src="./common/JS/src/utilities/validation.js"> </script>
-		<script src="./common/JS/src/mapDisplay/CQL.js"> </script>
-		<script src="./common/JS/src/mapDisplay/VisualizationTools.js"> </script>
-		<script src="./common/JS/src/mapDisplay/ExportPng.js"> </script>
 
 		<!--Debug mode-->
 		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
@@ -89,15 +75,30 @@
 		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
 		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
 		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
+		<script src="./common/JS/src/ol3/PopUp.js"> </script>
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>
-		<script src="./common/JS/src/helpTexts/helpTexts.js"> </script>
 		<script src="./common/JS/src/ncwms/Palettes.js"> </script>
 		<script src="./common/JS/src/ogcstandards/ogcstandards.js"> </script>
         <script src="./common/JS/src/ajax/ajax.js"> </script>
 		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
-		<script src="./common/JS/src/mapDisplay/InterfaceDependent.js"> </script>
 		<script src="./common/JS/src/languages/Languages.js"> </script>
+
+		<script src="./common/JS/src/helpTexts/Tooltips.js"> </script>
+        <script src="./common/JS/src/helpTexts/MainHelp.js"> </script>
+
+		<!-- Features -->
+			<script src="./common/JS/src/features/InterfaceDependent.js"> </script>
+			<script src="./common/JS/src/features/CQL.js"> </script>
+			<script src="./common/JS/src/features/VisualizationTools.js"> </script>
+			<script src="./common/JS/src/features/ExportPng.js"> </script>
+			<script src="./common/JS/src/features/OptionalLayers.js"> </script>
+			<script src="./common/JS/src/features/KML.js"> </script>
+			<script src="./common/JS/src/features/Transparency.js"> </script>
+		<!-- Features -->
+		<!--Layout Used-->
+			<script src="./common/JS/src/layouts/draggableWindows/WindowPositions.js"> </script>
+		<!--Layout Used-->
 		<!--Debug mode-->
 
 		<!-- Production mode -->

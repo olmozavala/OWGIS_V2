@@ -76,6 +76,6 @@ owgis.mobile.initMobile = function initMobile(){
 	/**
 	 * Forcing the Main and Optional Layers to be collapsed on load
 	 */
-	toogleList('#baseLayersData');
-	toogleList('#optionalLayersData');
+	owgis.optionalLayers.toogleList('#baseLayersData');
+	owgis.optionalLayers.toogleList('#optionalLayersData');
 }

@@ -1,18 +1,9 @@
 <%-- 
     Document   : Palettes
     Created on : Aug 3, 2012, 6:26:56 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 <!-- Holds the optional palettes -->
-<div class="row defRowSpace">
-	<div class="col-xs-10 invShadow title" > <fmt:message key="ncwms.newpal" /></div>
-		
-	<div class="col-xs-2 pull-right">
-		<a class="btn btn-default btn-xs" href="#" onclick="displayOptionalPalettes();">
-			<span class="glyphicon glyphicon-remove"> </span> 
-		</a>
-	</div>
-</div>
 <div class="row defRowSpace">
 	<div class="col-xs-12">
 		<table id="palettesTable"></table>

@@ -1,6 +1,9 @@
-goog.provide('owgis.tooltips');
+goog.provide('owgis.help.tooltips');
 
-owgis.tooltips.initHelpTexts = function initHelpTexts() {
+/**
+ * This function initializes the tooltips that are displayed on the interface 
+ */
+owgis.help.tooltips.initHelpTexts = function () {
 	
 	// When any of the windows move, it repositions the tooltip by reloading it.
 	// "toolTipWithImage are used when the text of the tooltip requires images
@@ -46,4 +49,31 @@ owgis.tooltips.initHelpTexts = function initHelpTexts() {
 	// Remove all attributes 'title' from the childrens of the calendar containers
 	// If we don't do it, there are problems with the tooltips inside the datepickers
 	$("#CalendarsAndStopContainer [title]").removeAttr("title")
+}
+
+/**
+ * This function enables or disables displaying the hover txts 
+ */
+owgis.help.tooltips.toogleTooltips = function() {
+
+    hoverDisabled = !hoverDisabled;
+    if (hoverDisabled) {
+    	try{
+    	$('.toolTip').uitooltip( "option", "disabled", true );
+    	$('.toolTipWithImage').uitooltip( "option", "disabled", true );
+    }
+    catch(e){
+       	$('.toolTip').uitooltip();
+    	$('.toolTipWithImage').uitooltip();
+    	$('.toolTip').uitooltip( "option", "disabled", true );
+    	$('.toolTipWithImage').uitooltip( "option", "disabled", true );
+    }
+finally {
+        $("#helpHoverImg").attr("src","./common/images/Help/Help1Disabled.png");
+}
+    } else {
+     	$('.toolTip').uitooltip('enable');
+    	$('.toolTipWithImage').uitooltip('enable');
+        $("#helpHoverImg").attr("src","./common/images/Help/Help1.png");
+    }
 }

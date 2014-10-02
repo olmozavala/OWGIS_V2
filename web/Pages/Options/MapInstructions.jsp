@@ -12,7 +12,7 @@
 			<span class="titleWOhalo"> <fmt:message key="main.help" /> </span> 
         </div>
         <div class="col-xs-1 text-right">
-            <a class="btn btn-default btn-xs" href="#" onclick="displayHelp();">
+            <a class="btn btn-default btn-xs" href="#" onclick="owgis.help.main.displayHelp();">
                 <span class="glyphicon glyphicon-remove"> </span> </a>
         </div>
     </div>

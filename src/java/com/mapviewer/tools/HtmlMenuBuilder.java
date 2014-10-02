@@ -160,7 +160,7 @@ public class HtmlMenuBuilder {
 				if (!currentNode.isRoot()) {
 					MenuEntry menu = currentNode.getNode();
 					finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-					finalHtml += tabs + " 	   onclick=\"toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+					finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
 					if (currMenuStr == null) {
 						currMenuStr = menu.getId();
 					} else {
@@ -229,7 +229,7 @@ public class HtmlMenuBuilder {
 					if (!currentNode.isRoot()) {
 						MenuEntry menu = currentNode.getNode();
 						finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-						finalHtml += tabs + " 	   onclick=\"toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+						finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
 						if (currMenuStr == null) {
 							currMenuStr = menu.getId();
 						} else {
@@ -308,8 +308,8 @@ public class HtmlMenuBuilder {
 		if(mobile){
 			finalHtml += " style= 'margin-top:0px' ";
 		}
-		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"manageOptionalLayers(layer" + OPLayerNum + ",this.checked); "
-				+ "DisableTranspOptionalLayers(" + layerNum + ",'minusButtonOptional" + layerNum + "',"
+		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"owgis.optionalLayers.showOptionalLayer(layer" + OPLayerNum + ",this.checked); "
+				+ "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',"
 				+ "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"";
 
 		if (selected) {
@@ -366,8 +366,8 @@ public class HtmlMenuBuilder {
 		finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over_click.png' )\" \n";
 //		finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
 		}
-		finalHtml += tabs + "     border=\"0\" alt=\"Descargar KMZ\" onload=\"CreateArraysOptional(" + layerNum + "); ";
-		finalHtml += "DisableTranspOptionalLayers(" + layerNum + ",'minusButtonOptional" + layerNum + "',";
+		finalHtml += tabs + "     border=\"0\" alt=\"Descargar KMZ\" onload=\"owgis.optionalLayers.initTransp(" + layerNum + "); ";
+		finalHtml += "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',";
 		finalHtml += "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"></A> \n";
 
 		return finalHtml;
@@ -388,14 +388,14 @@ public class HtmlMenuBuilder {
 		finalHtml += tabs + "<button id=\"minusButtonOptional" + layerNum + "\" class=\"minusButtonSmall\" type=\"button\" disabled=\"disabled\" \n";
 		finalHtml += tabs + "      onmouseover =\"changeColor(this,1);\" onmouseout =\"changeColor(this,0);\" \n";
 		finalHtml += tabs + "      onmouseup =\"changeColor(this,1);\" onmousedown =\"changeColor(this,2);\" \n";
-		finalHtml += tabs + "		onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", .20, " + layerNum + ",";
+		finalHtml += tabs + "		onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", .20, " + layerNum + ",";
 		finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">-</button>";
 		//the reason it is a - (minus) and not html decimal encoding is becuase the mobile phone don't
 		//understand some html encodings. 
 		}
 		else{
 			finalHtml += tabs + "<a class='btn btn-default btn-xs' href='#' id='minusButtonOptional"+ layerNum + "' \n" ;
-			finalHtml += tabs + "		disabled='disabled' onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", .20, " + layerNum + ",";
+			finalHtml += tabs + "		disabled='disabled' onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", .20, " + layerNum + ",";
 			finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">";
 			finalHtml += tabs + "<span class='glyphicon glyphicon-minus '></span></a>";
 		}
@@ -417,12 +417,12 @@ public class HtmlMenuBuilder {
 		finalHtml += "<button id=\"plusButtonOptional" + layerNum + "\" class=\"plusButtonSmall\" type=\"button\" disabled=\"disabled\" \n";
 		finalHtml += tabs + "      onmouseover =\"changeColor(this,1);\" onmouseout =\"changeColor(this,0);\" \n";
 		finalHtml += tabs + "      onmouseup =\"changeColor(this,1);\" onmousedown =\"changeColor(this,2);\" \n";
-		finalHtml += tabs + "		onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
+		finalHtml += tabs + "		onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
 		finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">+</button>\n";
 		}
 		else{
 			finalHtml += tabs + "<a class='btn btn-default btn-xs' href='#' id='plusButtonOptional"+ layerNum + "' \n" ;
-			finalHtml += tabs + "		disabled='disabled' onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
+			finalHtml += tabs + "		disabled='disabled' onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
 			finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">";
 			finalHtml += tabs + "<span class='glyphicon glyphicon-plus '></span></a>";
 		}

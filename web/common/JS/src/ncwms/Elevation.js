@@ -217,13 +217,13 @@ function changeElev(value)
         //getElementById('minusButtonElevation').disabled= false;
         $(minusButtonElevation).show();
 	
-    updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter]);
 
 	//TODO next line is controvertial, do we want to update the 
 	// color range when whe change the depth?
 	setColorRangeFromMinMax();
 
-    updateTitleAndKmlLink();
+    owgis.kml.updateTitleAndKmlLink();
 }
 
 
@@ -306,9 +306,9 @@ function changeElevationMobile(sign)
     }
 
     //Update the elevation parameter on the Main layer parameters
-    updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter ]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter ]);
         
-    updateTitleAndKmlLink();
+    owgis.kml.updateTitleAndKmlLink();
 
     createElevationSelectorMobile();
 

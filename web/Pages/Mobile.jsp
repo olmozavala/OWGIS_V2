@@ -70,7 +70,7 @@
 			
 			<c:if test='${netcdf}'>
 			<%-- Color Palettes --%>
-				<%@include file="Options/Mobile/MPalettes.jsp"%>
+			<%@include file="Layouts/Mobile/MPalettes.jsp"%>
 			
 			<%-- Date Selection --%>
 				<%@include file="Options/Mobile/MDateSelection.jsp"%>

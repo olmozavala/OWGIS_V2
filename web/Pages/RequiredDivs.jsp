@@ -1,7 +1,7 @@
 <%-- 
     Document   : RequiredDivs
     Created on : Aug 3, 2012, 5:58:26 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 <!-- Map title -->
 <div class="mapTitle defShadow" id="layerTitle"> 

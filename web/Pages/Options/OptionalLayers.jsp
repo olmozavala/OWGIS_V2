@@ -1,7 +1,7 @@
 <%-- 
 Document   : OptionalLayers
 Created on : Aug 3, 2012, 6:38:05 PM
-Author     : olmozavala
+Author     : Olmo Zavala-Romero
 --%>
 
 <%@ taglib prefix="menuHelper"
@@ -13,7 +13,7 @@ Author     : olmozavala
 	</div>
 	<div class="col-xs-3 text-right">
 		<a class="btn btn-default btn-xs " href="#"
-			onclick="minimizeWindow('optionalsMinimize', 'optionalMenuParent')">
+			onclick="owgis.layouts.draggable.minimizeWindow('optionalsMinimize', 'optionalMenuParent')">
 			<span class="glyphicon glyphicon-resize-small "></span>
 		</a>
 	</div>
@@ -23,7 +23,7 @@ Author     : olmozavala
 		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, ".", false)}
 <!-- 		<ul class='opt_lay_list_root' id='optUl0'> -->
 <!-- 			<li class="opt_lay_title" id="optMenu1" -->
-<!-- 				onclick="toogleList('#optUl1')">Level 1</li> -->
+<!-- 				onclick="owgis.optionalLayers.toogleList('#optUl1')">Level 1</li> -->
 <!-- 			<ul class='opt_lay_list' id='optUl1'> -->
 <!-- 				<fieldset data-role="controlgroup"> -->
 <!-- 					<input type="checkbox" style= "margin-top:0px" id="checkBox1"> <a style="text-decoration: none; margin-left:35px; width: inherit">US States</a> -->

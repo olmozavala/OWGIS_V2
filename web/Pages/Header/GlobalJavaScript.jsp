@@ -1,7 +1,7 @@
 <%-- 
     Document   : GlobalJavaScripls
     Created on : Aug 3, 2012, 5:48:28 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 <script type="text/javascript"  >
 	var layerDetails = ${layerDetails}; //layer details such as title, server, ect in a json object. 

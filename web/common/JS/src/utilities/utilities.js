@@ -53,21 +53,6 @@ owgis.utils.replaceGetParamInLink = function(name, param, newval){
 };
 
 /**
- *open new window
- *@param url - page to display in new window
- *@param width - width of new window
- *@param height - height of new window
- *@return false - it returns false to exit the function. 
- */
-owgis.utils.popItUp = function(url, width, height ) {
-	newwindow=window.open(url,'','height='+height+',width='+width);
-	if (window.focus) {
-		newwindow.focus();
-	}
-	return false;
-};
-
-/**
  *Get minimum value
  *@param value1 - first value
  *@param value2 - second value

@@ -6,7 +6,6 @@ goog.require('goog.events');
 goog.require('owgis.ogc');
 goog.require('owgis.ncwms.animation.status');
 
-
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
 var animSpeed = 300;
@@ -217,7 +216,7 @@ function updateAnimationStatus(newStatus){
 				map.removeLayer(animLayer);
 			}
 			
-			updateTitleAndKmlLink();
+			owgis.kml.updateTitleAndKmlLink();
 			break;
 		case owgis.ncwms.animation.status.paused: break;
 		case owgis.ncwms.animation.status.playing: break;
@@ -383,7 +382,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 
 	currentAnimation++;//Increments the animation counter;
 	owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loading;
-	updateTitleAndKmlLink();
+	owgis.kml.updateTitleAndKmlLink();
 
 	loadedFrames = 0;// Reset the total number of images loaded
 	owgis.interface.loadingatmap(true,0);

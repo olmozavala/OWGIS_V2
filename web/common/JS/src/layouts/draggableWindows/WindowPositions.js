@@ -3,11 +3,13 @@
  * reposition the windows of the interface.
  */
 
+goog.provide('owgis.layouts.draggable');
+
 /** This function saves the positions and other parameters
  * that the user has on the interface to maintain the look
  * when he/she returns to the site
  */
-function saveAllWindowPositionsAndVisualizationStatus(){
+owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(){
     localStorage.zoom = ol3view.getResolution();// Zoom of map
     localStorage.map_center =  ol3view.getCenter();// Center of the map
 
@@ -40,46 +42,35 @@ function saveAllWindowPositionsAndVisualizationStatus(){
     
 }
 
-/**
- * Saves the position of one of the windows. 
- * @param {localStorage} localStorageVariable Local storage variable to be used.
- * @param {string} windowElement Name of the container of the window to save position
- */
-function saveIndividualWindowPosition(localStorageVariable, windowElement){
-    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
-        localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
-    }
-}
-
 /** Places the draggable windows to where the user last placed them. Also controls if they where
  * visible or minimized. 
  */
-function draggableUserPositionAndVisibility()
+owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 {
     // Repositions the main layers menu
-    repositionWindows(localStorage.pos_main_menu, localStorage.main_menu_minimized,
+    repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
             'mainMenuParent', 'mainMenuMinimize');
 
     // Repositions the Optional layers menu 
-    repositionWindows(localStorage.pos_opt_menu, localStorage.opt_menu_minimized,
+    repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized,
             'optionalMenuParent', 'optionalsMinimize');
 
     // If the main layer is a netcdf layer then we update the position
     // of the calendars and palettes windows
     if (netcdf) {
                 //The palettes window is never minimized
-        repositionWindows(localStorage.pos_palettes, "false",
+        repositionWindow(localStorage.pos_palettes, "false",
                 'palettes-div', 'none');
-        repositionWindows(localStorage.pos_color_range, "false",
+        repositionWindow(localStorage.pos_color_range, "false",
                 'paletteWindowColorRange', 'none');
 
         if(_mainlayer_multipleDates){
-            repositionWindows(localStorage.pos_calendars, localStorage.calendars_minimized,
+            repositionWindow(localStorage.pos_calendars, localStorage.calendars_minimized,
                     'CalendarsAndStopContainer', 'calendarsMinimize');
         }
 
         if(_mainlayer_zaxisCoord){
-            repositionWindows(localStorage.pos_elev_selector, "false",
+            repositionWindow(localStorage.pos_elev_selector, "false",
                 'zaxis_selector', 'none');
         }
     }
@@ -111,11 +102,73 @@ function draggableUserPositionAndVisibility()
     }
     if( localStorage.disable_hover === "true"){
         //Disables the text hovers 
-        displayHoverHelp();
+        owgis.help.tooltips.toogleTooltips();
     }
 
    // Finally we test if they fit on the screen
-   repositionDraggablesByScreenSize();
+   owgis.layouts.draggable.repositionDraggablesByScreenSize();
+}
+
+/**
+ *This function moves the draggable windows when the user changes its window size. 
+ */
+owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
+
+	moveOneWindowToFitOnScreen("mainMenuParent");
+	moveOneWindowToFitOnScreen("optionalMenuParent");
+
+    if (cqlFilter) {
+        moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
+    }
+
+    if (netcdf) {
+        moveOneWindowToFitOnScreen("palettes-div");
+        moveOneWindowToFitOnScreen("paletteWindowColorRange");
+        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector");
+        if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
+    }
+}
+
+/**
+ * This function is in charge of making draggable all the divs and spans
+ * with the correct classes, in this case: draggableWindow or transDraggableWindow 
+ * @returns {undefined}
+ */
+owgis.layouts.draggable.init = function(){
+
+    //Only make windows draggable for 'topMenu' design
+    if ( mobile === false) {
+		$(".draggableWindow").each( function(index) {
+			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
+		})
+		$(".transDraggableWindow").each( function(index) {
+			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
+		})
+	}
+}
+
+/**
+ *This function is used to minimize the windows and also to maximize it. 
+ *@param appearId - id of window to make appear as minimized on the bottom of page
+ *@param disapearId - id of window to minimize or disapear. 
+ */
+owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
+    $(eval(disapearId)).toggle("drop",{direction:"down"});
+    $(eval(appearId)).toggle("drop",{direction:"down"});
+	
+    //Check if they fit on the screen
+    //(after 1 second) to be sure it is visible
+    setTimeout( function (){owgis.layouts.draggable.repositionDraggablesByScreenSize();}, 1000);
+}
+/**
+ * Saves the position of one of the windows. 
+ * @param {localStorage} localStorageVariable Local storage variable to be used.
+ * @param {string} windowElement Name of the container of the window to save position
+ */
+function saveIndividualWindowPosition(localStorageVariable, windowElement){
+    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
+        localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
+    }
 }
 
 /**
@@ -123,15 +176,19 @@ function draggableUserPositionAndVisibility()
  * main menu, optional layers menu or calendars.
  * If any of these windows was minimized (before selecting a new main layer)
  * then the window gets minimized.
+ * @param {type} localStorageVariable
+ * @param {type} localStorage_minimized
+ * @param {type} windowToMove
+ * @param {type} minimizedElement
+ * @returns {undefined}
  */
-function repositionWindows(localStorageVariable, localStorage_minimized, 
-        windowToMove, minimizedElement)
+function repositionWindow(localStorageVariable, localStorage_minimized, windowToMove, minimizedElement)
 {
     // We verify that the position is available
     try{
         if( localStorage_minimized !== undefined ){
             if ( localStorage_minimized === "true") {
-                minimizeWindow( minimizedElement, windowToMove );
+                owgis.layouts.draggable.minimizeWindow( minimizedElement, windowToMove );
             } else {
                 if( localStorageVariable!== undefined && localStorageVariable!== null){
                     var prevPosition = localStorageVariable.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
@@ -145,6 +202,7 @@ function repositionWindows(localStorageVariable, localStorage_minimized,
         console.log("Unable to reposition window:", windowToMove, err);
     }
 }  
+
 /**
  *This function moves one window when the browswer is reseized
  *@param id - id of draggable window.
@@ -175,26 +233,3 @@ function moveOneWindowToFitOnScreen(id)
         }
     }
 }
-
-/**
- *This function moves the draggable windows when the user changes its window size. 
- */
-function repositionDraggablesByScreenSize()
-{
-
-	moveOneWindowToFitOnScreen("mainMenuParent");
-	moveOneWindowToFitOnScreen("optionalMenuParent");
-
-    if (cqlFilter) {
-        moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
-    }
-
-    if (netcdf) {
-        moveOneWindowToFitOnScreen("palettes-div");
-        moveOneWindowToFitOnScreen("paletteWindowColorRange");
-        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector");
-        if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
-    }
-}
-
-

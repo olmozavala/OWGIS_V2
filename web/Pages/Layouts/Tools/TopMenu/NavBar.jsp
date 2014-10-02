@@ -40,7 +40,7 @@
 			<!-- Map Instructions-->
 			<li class="buttonStyle toolTip" id="helpParent" 
 				title="<fmt:message key='help.tooltip.help'/>">
-				<span id="helpText"  onclick="displayHelp();" />
+				<span id="helpText"  onclick="owgis.help.main.displayHelp();" />
 			<fmt:message key="main.help" />
 			</span>
 			</li>
@@ -67,7 +67,7 @@
 			</div>
 			<span id="helpHoverSpan" class="col-lg-3 col-md-4 hidden-sm hidden-xs ">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"
-					 onclick="displayHoverHelp();" id="helpHoverImg" src="./common/images/Help/Help1.png">
+					 onclick="owgis.help.tooltips.toogleTooltips();" id="helpHoverImg" src="./common/images/Help/Help1.png">
 			</span>
 		</div>
 	</div>

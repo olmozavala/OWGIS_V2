@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Oct 18, 2012, 7:03:48 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

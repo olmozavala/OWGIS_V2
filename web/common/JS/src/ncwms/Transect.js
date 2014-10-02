@@ -160,11 +160,16 @@ function getVerticalTransect(event){
 	var mainLayer = owgis.layers.getMainLayer();
 	var mainSource = mainLayer.getSource();
 	//TODO not if this function can returnmore than one result
-    var url = mainSource.getUrls().toString();
+    var url;
+	if(mainSource.getUrls !== undefined){
+		url = mainSource.getUrls().toString();
+	}else{
+		url = mainSource.getUrl().toString();
+	}
     url = url + '?REQUEST=GetTransect&LAYER=';
     url = url + mainSource.getParams().LAYERS + "&CRS=" + _map_projection + "&TIME=" + time;
     url = url +"&LINESTRING=" + coordsTxt + "&FORMAT=image/png&COLORSCALERANGE=auto";
     url = url + "&NUMCOLORBANDS=250&LOGSCALE=false&PALETTE=" + mappalette;
 	
-    popUp(url,400,600);
+    owgis.utils.popUp(url,400,600);
 }

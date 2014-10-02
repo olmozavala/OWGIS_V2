@@ -26,7 +26,7 @@ import java.util.Date;
 
 /**
  *This class searches the folders for files
- * @author olmozavala
+ * @author Olmo Zavala-Romero
  */
 public class FileManager {
 

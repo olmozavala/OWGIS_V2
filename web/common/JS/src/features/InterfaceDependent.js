@@ -22,8 +22,8 @@ if(mapConfig['menuDesign']==='sideMenu'){
 
 /**
  * Defines how are we displaying a 'loading' behaviour at the mouse 
- * @param {type} loading
- * @returns {undefined}
+ * @param {bool} loading Indicates if the loading shoudl be on or off
+ * @returns {void}
  */
 owgis.interface.loadingatmouse= function(loading){
 	if(loading){
@@ -35,6 +35,13 @@ owgis.interface.loadingatmouse= function(loading){
 	}
 }
 
+/**
+ * This function is used to show a 'loading' behaviour at the middle 
+ * of the map. If it receives a % then it is also displayed.  
+ * @param {bool} loading Indicates if the 'loading' should be displayed or not
+ * @param {int} percentage Percentaje of loading displayed. 
+ * @returns void
+ */
 owgis.interface.loadingatmap = function(loading,percentage){
 	if(loading){
 		if(percentage !== undefined){

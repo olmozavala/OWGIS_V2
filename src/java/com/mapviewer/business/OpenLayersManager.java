@@ -310,6 +310,7 @@ public class OpenLayersManager {
 				layersScript += "\tlayer" + layerCount + ".setVisible(false);\n";//we make the layer not visible.
 			}
 			layersScript += "\tmap.addLayer(layer" + layerCount + ");\n";
+//			layersScript += "\tlayer"+layerCount+".getSource().on('change'))\n";
 		}else{
 			layersScript += "\t requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+","+visible+");\n";
 		}

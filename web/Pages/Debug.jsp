@@ -64,7 +64,7 @@
 
 
 		<!--OpenLayers 3 Management -->
-		<script type="text/javascript" src="../common/JS/src/ol3/OpenLayersRelated.js"> </script>
+		<script type="text/javascript" src="../common/JS/src/ol3/PopUp.js"> </script>
 		<!--OpenLayers 3 Management -->
 
 		<!--NcWMS related-->
@@ -118,7 +118,7 @@
 					  </select>
 				  </div>
 				  <div class="col-lg-2 blue"  >
-					  <img class="toolTip" onclick="displayHoverHelp();" 
+					  <img class="toolTip" onclick="owgis.help.tooltips.toogleTooltips();" 
 						   id="helpHoverImg" src="../common/images/Help/Help1.png">
 				  </div>
 			  </div>

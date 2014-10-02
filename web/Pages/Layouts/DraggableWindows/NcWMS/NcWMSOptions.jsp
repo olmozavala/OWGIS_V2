@@ -1,7 +1,7 @@
 <%-- 
     Document   : Calendars
     Created on : Aug 3, 2012, 5:53:19 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
@@ -16,7 +16,7 @@
 		</div>
 		<div class="col-xs-2 text-right ">
 			<a class="btn btn-default btn-xs " href="#" 
-			   onclick="minimizeWindow('calendarsMinimize', 'CalendarsAndStopContainer')" >
+			   onclick="owgis.layouts.draggable.minimizeWindow('calendarsMinimize', 'CalendarsAndStopContainer')" >
 				<span class="glyphicon glyphicon-resize-small"></span>
 			</a>
 		</div>

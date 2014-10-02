@@ -109,13 +109,13 @@ function UpdatePalette(newPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
+        owgis.layers.updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPalVal+ ',' + maxPalVal);
     }
 
 	//Changes the palette
-	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
+	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 	owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
 
 	//If an animation is being displayed it reloads it with the new palette.
@@ -140,8 +140,8 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
 //            styles: lay_style+"/"+newPal, 
 //            colorscalerange: minPal+ ',' + maxPal
 //        });
-        updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
-    	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
+        owgis.layers.updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
+    	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
@@ -150,7 +150,7 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
 //        owgis.layers.getMainLayer().setOptions({
 //            styles: lay_style+"/"+newPal
 //        });
-    	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
+    	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);

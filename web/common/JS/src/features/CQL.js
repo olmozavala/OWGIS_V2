@@ -1,3 +1,5 @@
+goog.provide('owgis.cql');
+
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,7 +10,7 @@ var defaultCQLfilter = "";
 /**
  * This functions hides and shows the text box to input a custom CQL filter
  */
-function toggleCustomFilterTextBox(){
+owgis.cql.toggleCustomFilterTextBox = function (){
 		$('#ocqlFilterInputTextParent').toggle();
 }
 
@@ -16,10 +18,10 @@ function toggleCustomFilterTextBox(){
  * When the user hits enter on the cqlfilter text box, the filter
  * gets applied into the base layer.
  */
-function applyFilterOnEnter(){
-	if(event.keyCode == 13){
-		newcql_filter = applyCqlFilter();
-		updateKmlLink('','',newcql_filter);
+owgis.cql.applyFilterOnEnter = function(){
+	if(event.keyCode === 13){
+		newcql_filter = owgis.cql.applyCqlFilter();
+		owgis.kml.updateKmlLink('','',newcql_filter);
 	}
 	return false;
 }
@@ -28,7 +30,7 @@ function applyFilterOnEnter(){
  * Applies the cql filter into the base layer.
 * @return String currFilter Returns the current filter been applied into the base layer
  */
-function applyCqlFilter(){
+owgis.cql.applyCqlFilter = function(){
 
 	//Obtain OL main layer
 	currMainLayer = owgis.layers.getMainLayer();
@@ -50,13 +52,13 @@ function applyCqlFilter(){
 	//In case of empty text box or not defined (layers with CQL_FILTER
 	// but without custom filter option.
 	if(currFilter == "" ||currFilter == undefined ){
-        updateMainLayerParam("CQL_FILTER",defaultCQLfilter); 
+        owgis.layers.updateMainLayerParam("CQL_FILTER",defaultCQLfilter); 
 	}else{
 
 		if(defaultCQLfilter == "" || defaultCQLfilter == undefined){
-            updateMainLayerParam("CQL_FILTER",currFilter); 
+            owgis.layers.updateMainLayerParam("CQL_FILTER",currFilter); 
 		} else{
-            updateMainLayerParam("CQL_FILTER",defaultCQLfilter +" AND "+ currFilter);
+            owgis.layers.updateMainLayerParam("CQL_FILTER",defaultCQLfilter +" AND "+ currFilter);
 		}
 	}
 
