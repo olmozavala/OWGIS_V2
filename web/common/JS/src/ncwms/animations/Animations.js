@@ -376,7 +376,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
 
- 	var canvas = document.getElementById('animationCanvas');    
+ 	var canvas = getElementById('animationCanvas');    
 	canvas.width = canvasWidth;
 	canvas.height = canvasHeight;   	
 	clearCanvas();
@@ -468,7 +468,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
  * @returns {undefined}
  */
 function clearCanvas(){
-	var canvas = document.getElementById('animationCanvas');    
+	var canvas = getElementById('animationCanvas');    
 	
 	//Clears any previous display in the canvas
     var ctx = canvas.getContext('2d');
@@ -574,7 +574,7 @@ function startAnimationLoop(){
  * @returns {undefined}
  */
 function loopAnimation(){
-	var canvas = document.getElementById('animationCanvas');    
+	var canvas = getElementById('animationCanvas');    
     var ctx = canvas.getContext('2d');
 	
 	//When the animation is 'playing' it loops on all the frames

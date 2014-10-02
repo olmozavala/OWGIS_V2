@@ -297,7 +297,7 @@ function CreateArraysOptional(checkboxNum)
  */
 function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus, checkboxId)
 {
-    var checkid = document.getElementById(checkboxId);
+    var checkid = getElementById(checkboxId);
 	
     if (checkid.checked === true)//check if the layer is selected
     {
@@ -307,27 +307,27 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
 		
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
-            document.getElementById(id_minus).disabled = false;
+            getElementById(id_minus).disabled = false;
             $("#"+id_minus).attr('disabled', false);
             if(!mobile)
-            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            	changeColor(getElementById(id_minus), 0);//Change color to enabled
         } else {
-            document.getElementById(id_minus).disabled = true;
+            getElementById(id_minus).disabled = true;
             $("#"+id_minus).attr('disabled', true);
             if(!mobile)
-            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            	changeColor(getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
-            document.getElementById(id_plus).disabled = false;
+            getElementById(id_plus).disabled = false;
             $("#"+id_plus).attr('disabled', false);
             if(!mobile)
-            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            	changeColor(getElementById(id_plus), 0);//Change color to enabled
         } else {
-            document.getElementById(id_plus).disabled = true;
+            getElementById(id_plus).disabled = true;
             $("#"+id_plus).attr('disabled', true);
             if(!mobile)
-            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            	changeColor(getElementById(id_plus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity < .00001) {
@@ -347,7 +347,7 @@ function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus
 function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
 {
 	
-    var checkid = document.getElementById(checkboxId);
+    var checkid = getElementById(checkboxId);
 	
 	
     if (checkid.checked === true)//check if the layer is selected
@@ -356,41 +356,41 @@ function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
 		
         //Disables the buttons.
         if (optionOpacity < maxOpacity) {
-            document.getElementById(id_minus).disabled = false;
+            getElementById(id_minus).disabled = false;
             $("#"+id_minus).attr('disabled', false);
             if(!mobile)
-            	changeColor(document.getElementById(id_minus), 0);//Change color to enabled
+            	changeColor(getElementById(id_minus), 0);//Change color to enabled
         } else {
-            document.getElementById(id_minus).disabled = true;
+            getElementById(id_minus).disabled = true;
             $("#"+id_minus).attr('disabled', true);
             if(!mobile)
-            	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+            	changeColor(getElementById(id_minus), 3);//Change color to disabled 
         }
 		
         if (optionOpacity > minOpacity) {
-            document.getElementById(id_plus).disabled = false;
+            getElementById(id_plus).disabled = false;
             $("#"+id_plus).attr('disabled', false);
             if(!mobile)
-            	changeColor(document.getElementById(id_plus), 0);//Change color to enabled
+            	changeColor(getElementById(id_plus), 0);//Change color to enabled
         } else {
-            document.getElementById(id_plus).disabled = true;
+            getElementById(id_plus).disabled = true;
             $("#"+id_plus).attr('disabled', true);
             if(!mobile)
-            	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+            	changeColor(getElementById(id_plus), 3);//Change color to disabled 
         }
     }
     else
     {
         //Disables the buttons.
-        document.getElementById(id_minus).disabled = true;
+        getElementById(id_minus).disabled = true;
         $("#"+id_minus).attr('disabled', true);
         if(!mobile)
-        	changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
+        	changeColor(getElementById(id_minus), 3);//Change color to disabled 
 		
-        document.getElementById(id_plus).disabled = true;
+        getElementById(id_plus).disabled = true;
         $("#"+id_plus).attr('disabled', true);
         if(!mobile)
-        	changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
+        	changeColor(getElementById(id_plus), 3);//Change color to disabled 
 		
     }
 	
@@ -489,7 +489,7 @@ function MapViewersubmitForm() {
 	        saveAllWindowPositionsAndVisualizationStatus();
     	}
     	else{
-    		document.getElementById("mobile").value = mobile;
+    		getElementById("mobile").value = mobile;
     	}
         submitForm();
     }
@@ -546,6 +546,9 @@ function resetView(){
     submitForm();
 }
 
+function getElementById(id){
+	return $('#'+id)[0];
+}
 
 goog.exportSymbol('owgis',owgis);
 

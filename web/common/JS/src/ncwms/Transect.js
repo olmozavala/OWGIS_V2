@@ -63,7 +63,7 @@ function toggleControl()
 			source: transectSource,
 			style: transectStyle });
 
-        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+        getElementById('lineToggle').innerHTML = unselectTransect.toString();
 		draw = new ol.interaction.Draw({
 			source: transectSource,
 			type: "LineString"
@@ -75,7 +75,7 @@ function toggleControl()
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
-        document.getElementById('lineToggle').innerHTML= transect.toString();
+        getElementById('lineToggle').innerHTML= transect.toString();
 		map.removeInteraction(draw);
 		map.removeLayer(transectLayer);
 		draw.un("drawend",getVerticalTransect);
@@ -97,7 +97,7 @@ function toggleControlMob() {
 			source: transectSource,
 			style: transectStyle });
 
-//        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+//        getElementById('lineToggle').innerHTML = unselectTransect.toString();
 		draw = new ol.interaction.Draw({
 			source: transectSource,
 			type: "LineString"
@@ -109,7 +109,7 @@ function toggleControlMob() {
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
-//        document.getElementById('lineToggle').innerHTML= transect.toString();
+//        getElementById('lineToggle').innerHTML= transect.toString();
 		map.removeInteraction(draw);
 		map.removeLayer(transectLayer);
 		draw.un("drawend",getVerticalTransect);

@@ -135,8 +135,8 @@ function repositionWindows(localStorageVariable, localStorage_minimized,
             } else {
                 if( localStorageVariable!== undefined && localStorageVariable!== null){
                     var prevPosition = localStorageVariable.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
-                    document.getElementById(windowToMove).style.left = prevPosition[0] + "px";//move it from the left
-                    document.getElementById(windowToMove).style.top = prevPosition[1] + "px";//move it from the top
+                    getElementById(windowToMove).style.left = prevPosition[0] + "px";//move it from the left
+                    getElementById(windowToMove).style.top = prevPosition[1] + "px";//move it from the top
                 }
             }
         }
@@ -167,11 +167,11 @@ function moveOneWindowToFitOnScreen(id)
         var finalTop = windowTop - idHeight - constant;
 
         if (windowLeft < left + idWidth) {
-            document.getElementById(id).style.left= finalLeft+ "px";//move it from the left
+            getElementById(id).style.left= finalLeft+ "px";//move it from the left
         }
 
         if (windowTop < top + idHeight) {
-            document.getElementById(id).style.top = finalTop + "px";//move it from the top
+            getElementById(id).style.top = finalTop + "px";//move it from the top
         }
     }
 }

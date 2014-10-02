@@ -7,14 +7,14 @@ function displayHelp()
 }
 
 function getop(x) {
-    o = document.getElementById(x);
+    o = getElementById(x);
     var t = o.offsetTop;
     while (o = o.offsetParent)
         t += o.offsetTop;
     return t;
 }
 function getleft(x) {
-    o = document.getElementById(x);
+    o = getElementById(x);
     var l = o.offsetLeft;
     while (o = o.offsetParent)
         l += o.offsetLeft;
@@ -22,7 +22,7 @@ function getleft(x) {
     return l;
 }
 function getwidth(x) {
-    o = document.getElementById(x);
+    o = getElementById(x);
     var l = o.offsetWidth;
 
     return l;
@@ -103,8 +103,8 @@ function initHelpTxtPos() {
  * It only checks if an id exists and is visible
  */
 function testVisibility(id) {
-    if (document.getElementById(id) != null &&
-            document.getElementById(id).style.display != 'none')
+    if (getElementById(id) != null &&
+            getElementById(id).style.display != 'none')
         return true;
     else
         return false;

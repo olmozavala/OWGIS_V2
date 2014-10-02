@@ -60,7 +60,7 @@ function initOl3(){
 	 * Create an ol_popup to anchor the popup to the map.
 	 */
 	ol_popup = new ol.Overlay({
-		element: document.getElementById('popup'),
+		element: getElementById('popup'),
 		stopEvent:true//Used to not show the popup again when closing it
 	});
 	
@@ -108,7 +108,7 @@ function initOl3(){
 		// comment the following two lines to have the mouse position
 		// be placed within the map.
 		className: 'ol-lat-lon',
-		target: document.getElementById('location'),
+		target: getElementById('location'),
 		undefinedHTML: '&nbsp;'
 	});
 	
