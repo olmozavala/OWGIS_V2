@@ -26,7 +26,6 @@
         <!-- End jQuery Mobile -->
 				
 		<!--Specific for Images in Dropdown for locale-->		
-		<script src="./common/JS/vendor/jquery.dd.min.js"></script>
 		<script src="./common/JS/vendor/jquery.slidePanel.js"></script>
 
         <script>
