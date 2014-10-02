@@ -29,12 +29,16 @@ var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var optionalArray = [];//this is the array to control the opacity of the different optional layers. 
 var hoverDisabled = false; //Used to disable showing the hover texts
-
+var screenWidth = screen.width;
+var windowWidth = $(window).width();
 //Redirect any https request to http
 if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
+if(!mobile && windowWidth <= (screenWidth*0.5)){
+		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
+	 }
 /**
  * Instructions executed when the page is ready
  */
@@ -56,6 +60,9 @@ function owgisMain(){
  * with the correct classes, in this case: draggableWindow or transDraggableWindow 
  * @returns {undefined}
  */
+
+
+    
 function addDraggableWindows(){
 
     //Only make windows draggable for 'topMenu' design
@@ -105,8 +112,16 @@ function initMenus() {
 	
     //if user changes the window size
     $(window).resize(function() {
-        repositionDraggablesByScreenSize();
-    });
+    	screenWidth = screen.width;
+	   	 windowWidth = $(window).width();
+	   	 if(!mobile && windowWidth <= (screenWidth*0.5)){
+	   		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
+	   	 }
+	   	 if(mobile && windowWidth >= (screenWidth*0.5)){
+	   		 window.location.href = window.location.href.split("?")[0];
+	   	 }
+	        repositionDraggablesByScreenSize();
+	    });
 }
 
 /**
