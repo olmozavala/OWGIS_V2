@@ -8,7 +8,7 @@
 	<div class="col-xs-9 text-center noShadow title">
 		<fmt:message key="main.base" />
 	</div>
-	<div class="col-xs-3 text-center">
+	<div class="col-xs-3 text-right">
 		<a class="btn btn-default btn-xs" href="#"
 		   onclick="owgis.layouts.draggable.minimizeWindow('mainMenuMinimize', 'mainMenuParent')">
 			<i class="glyphicon glyphicon-resize-small"></i>

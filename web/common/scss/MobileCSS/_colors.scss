@@ -1,0 +1,70 @@
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
+
+
+//htmlBody
+$htmlBodyBackColor: #06122C;
+
+// Main font and shadow colors
+$fontColor: #ECF2F8; // Main font color and secondary shadow color
+$backColor:black; // Main shadow color and secondary font color
+
+// Inverted font and shadow colors
+$invColor: $backColor;
+$invBackColor: $fontColor;
+
+//left Footer text
+$leftFooterColor: black;
+
+//emailText color
+$emailTextColor: blue;
+
+//MapInstructions --tooltip
+$backHelpHoverColor: darkkhaki;
+
+//buttons
+$butBackColor:#555555; //Default internal background color of the buttons
+$butBackColorHover: darken($butBackColor,10); 
+$butBackColorActive: lighten($butBackColorHover, 7); // Background color when the button is pressed
+$butShadowColor: #80CCDC;
+$butShadowColorHover: #DCC380; 
+$butShadowColorActive: lighten($butShadowColorHover, 17); // Shadow when a button is pressed
+$butBorderColor: $backColor; 
+
+//popup Border of the small triangle in the popup
+$popupBorderTopColorBefore: $fontColor;
+$popupBorderTopColorAfter: $fontColor;
+
+//cqlFilterExampleTable
+$cqlFilterExampleTableBackHeaderColor: darken($backHelpHoverColor,10);
+
+//dropDown of the main layer
+$dropDownColor: $backColor;//Font color
+$dropDownBackColor: lighten($butBackColor, 23);
+$dropDownHover: lighten($butBackColorHover, 23.5);
+
+//draggableWindow
+$dwBackColor: $backColor;
+
+//transDraggableWindow
+$transDWBackColor: rgba(white,.2);
+
+//palette
+$optPaletteImgShadow: $backColor;
+$optPaletteImgShadowHover: $butShadowColorHover;
+
+//minimizedWindows
+$minimizedWindowBackColor: $backColor;
+
+//optionalLayers
+$optLayerTitleColor: $butShadowColor;
+$optLayerTitleColorHover: darken($butShadowColor,20);
+$optLayerTitleColorActive: darken($optLayerTitleColorHover,20);
+
+$warningColor: #EC451F;
+$secondaryWarning: darken($warningColor,10);

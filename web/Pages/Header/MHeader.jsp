@@ -49,7 +49,7 @@
 		<link href="./common/CSS/GeneralStyles.css" rel="stylesheet" type="text/css"/>
         <link href="./common/CSS/Buttons.css" rel="stylesheet" type="text/css"/>
         <link href="./common/CSS/Elevation.css" rel="stylesheet" type="text/css"/>
-        <link href="./common/CSS/BaseLayers.css" rel="stylesheet" type="text/css"/>
+<!--         <link href="./common/CSS/BaseLayers.css" rel="stylesheet" type="text/css"/> -->
         <link href="./common/CSS/Palettes.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Popup.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/cqlFilter.css" rel="stylesheet" type="text/css"/>

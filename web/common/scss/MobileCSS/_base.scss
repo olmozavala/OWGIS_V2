@@ -1,0 +1,67 @@
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala-Romero
+*/
+
+@import "compass";
+@import "fonts";
+@import "colors";
+
+$defFontSize: 13px; 
+$defOpacity: 0.9;//Def opacity for floating windows
+$default-border-radius: 10px;// Default border for all windows and buttons
+
+// Buttons 
+
+$butBoxShadowSize: 6px;//How big the box shadow is on the buttons
+
+//Default padding for windows
+$defPadding: 5px;
+
+// TopMenu hight;
+$topMenuHeight: 44px;
+
+// Common style for floating windows
+@mixin floatingWindow{
+	z-index:1008;
+	position:absolute;
+	border:solid 1px white;
+	padding: $defPadding  $defPadding $defPadding $defPadding; //TRBL
+	cursor: move;
+    color: $invColor;
+    font-size: $f_normal;
+	@include opacity($defOpacity);
+	@include border-radius();
+}
+
+@mixin textHalo($haloColor){
+	/*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
+	$haloSize: 1px;
+	$haloDisp: 2px;//Halo displacement
+	@include text-shadow(   $haloColor 0 $haloDisp $haloSize, 
+                            $haloColor $haloDisp 0 $haloSize,
+                            $haloColor $haloDisp*-1 0 $haloSize,
+                            $haloColor 0 $haloDisp*-1  $haloSize,
+                            $haloColor $haloDisp $haloDisp $haloSize,
+                            $haloColor $haloDisp*-1 $haloDisp $haloSize,
+                            $haloColor $haloDisp $haloDisp*-1 $haloSize,
+                            $haloColor $haloDisp*-1  $haloDisp*-1 $haloSize);
+}
+
+// It makes a button looks like a simple text
+@mixin onlyTextButton{
+    vertical-align: top;
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+// =============== Layout dependent variables ===========
+
+// ============= Help hover text related =========
+$helpDefTop: 1px;
+$helpDefLeft: 1px;
