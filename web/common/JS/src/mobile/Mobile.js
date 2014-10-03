@@ -69,10 +69,19 @@ owgis.mobile.initMobile = function initMobile(){
 	$('#panel2').slidePanel({
 		triggerName: '#trigger2',
 		triggerTopPos: '450px',
-		panelTopPos: '90px',
+		panelTopPos: '120px',
 		clickOutsideToClose: false
 	});
 	
+	/**
+	 * Inserting the sticker panel for CQL Filter
+	 */
+	$('#panel4').slidePanel({
+		triggerName: '#trigger4',
+		triggerTopPos: '250px',
+		panelTopPos: '120px',
+		clickOutsideToClose: false
+	});
 	/**
 	 * Forcing the Main and Optional Layers to be collapsed on load
 	 */
