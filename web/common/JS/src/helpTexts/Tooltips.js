@@ -20,7 +20,7 @@ owgis.help.tooltips.initHelpTexts = function () {
 		show: null, 
 		hide: null, 
 		tooltipClass: 'commonHover',
-		position: { my: "left top+15", at: "left bottom" , collision: "flipfit"},
+		position: { my: "left top+15", at: "left bottom" , collision: "flipfit"}
 			});
 	
 	// Updates the tooltips for the dragabble windows, the tooltip appears at
@@ -29,7 +29,7 @@ owgis.help.tooltips.initHelpTexts = function () {
 		show: null, 
 		hide: null, 
 		tooltipClass: 'commonHover',
-		position: { my: "left+15 center", at: "right center", collision: "flipfit" },
+		position: { my: "left+15 center", at: "right center", collision: "flipfit" }
 			});
 
 

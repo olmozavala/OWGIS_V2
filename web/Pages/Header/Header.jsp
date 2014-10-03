@@ -61,47 +61,10 @@
 		<!--NcWMS related-->
 
         <script src="./common/JS/src/utilities/validation.js"> </script>
-
-		<!--Debug mode-->
-		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
-		<!--<script src="./common/JS/vendor/closure/goog/base.js"> </script>-->
-		<script src="./common/JS/vendor/ol.js"></script>
-		<!--<script src="./common/JS/vendor/ol/ol.js"></script>-->
-		<script src="./common/JS/src/ncwms/animations/Calendars.js" > </script>
-		<script src="./common/JS/src/ncwms/Transect.js"> </script>
-		<script src="./common/JS/src/utilities/utilities.js"> </script>
-		<script src="./common/JS/src/utilities/constants.js"> </script>
-		<script src="./common/JS/src/ncwms/animations/AnimationStatus.js"> </script>
-		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
-		<script src="./common/JS/src/ol3/mainLayers.js"> </script>
-		<script src="./common/JS/src/ol3/MainOl3.js"> </script>
-		<script src="./common/JS/src/ol3/PopUp.js"> </script>
-		<script src="./common/JS/src/main/mapDisplay.js"> </script>
-		<script src="./common/JS/src/ncwms/Palettes.js"> </script>
-		<script src="./common/JS/src/ogcstandards/ogcstandards.js"> </script>
-        <script src="./common/JS/src/ajax/ajax.js"> </script>
-		<script src="./common/JS/src/dynamicVector/VectorStyles.js"> </script>
-		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
-		<script src="./common/JS/src/languages/Languages.js"> </script>
-
-		<script src="./common/JS/src/helpTexts/Tooltips.js"> </script>
-        <script src="./common/JS/src/helpTexts/MainHelp.js"> </script>
-
-		<!-- Features -->
-			<script src="./common/JS/src/features/InterfaceDependent.js"> </script>
-			<script src="./common/JS/src/features/CQL.js"> </script>
-			<script src="./common/JS/src/features/VisualizationTools.js"> </script>
-			<script src="./common/JS/src/features/ExportPng.js"> </script>
-			<script src="./common/JS/src/features/OptionalLayers.js"> </script>
-			<script src="./common/JS/src/features/KML.js"> </script>
-			<script src="./common/JS/src/features/Transparency.js"> </script>
-		<!-- Features -->
-		<!--Layout Used-->
-			<script src="./common/JS/src/layouts/draggableWindows/WindowPositions.js"> </script>
-		<!--Layout Used-->
-		<!--Debug mode-->
+        <script src="./common/JS/src/features/VisualizationTools.js"> </script>
+        <script src="./common/JS/src/global/Globals.js"> </script>
 
 		<!-- Production mode -->
-		<!--<script type="text/javascript" src="common/JS/compiled/script.js"></script>--> 
+		<script type="text/javascript" src="common/JS/compiled/compiled.js"></script> 
 		<!-- Production mode -->
         <title><fmt:message key="header.title" /></title>

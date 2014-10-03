@@ -34,7 +34,7 @@ function setMouseClickOnMap(){
 		if(isOnlyClick){
 			//Verify that the transect tools is not turned on
 			if(!transectOn){
-				owgis.interface.loadingatmouse(true);
+				owgis.interf.loadingatmouse(true);
 			}
 		}
 	});

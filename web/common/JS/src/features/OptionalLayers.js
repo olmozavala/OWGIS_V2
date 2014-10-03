@@ -86,7 +86,7 @@ owgis.optionalLayers.initTransp = function(checkboxNum){
     currTransp[checkboxNum] = 1;
 }
 
-/*
+/**
  *Disables the + or - buttons if the layer is not selected
  *@param index - index of select object
  *@param id_minus - css id of minus button of index object

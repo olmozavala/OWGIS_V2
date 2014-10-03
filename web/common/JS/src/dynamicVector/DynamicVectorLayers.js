@@ -7,6 +7,31 @@ var viewportInitialized = false;//Indicates if 'mousemove' function has already 
 var highlight;
 var featureOverlay;
 
+/**
+ * Adds the JSON layer to the map.
+ * This function is called when the data of a JSON layer ha arrived.
+ * @param {type} geoJSONdata JSON data
+ * @param {type} layerId Numeric identifier of the layer
+ * @param {type} visible Indicates if the layer is visible or not
+ * @returns {undefined}
+ */
+owgis.vector.manager.processJSON = function(geoJSONdata, layerId, visible) {
+	
+	var data = geoJSONdata;//Reads the data
+	//Reads the projection of the layer from the returned JSON data
+	var projection = geoJSONdata.crs.type+":"+geoJSONdata.crs.properties.code;
+	
+	//Creates the vector source from the data and the projection
+	var vectorSource = new ol.source.GeoJSON({
+		object: data ,
+		projection: projection});
+	
+	eval("layer"+layerId+" = new ol.layer.Vector({ source: vectorSource, style: defaultStyleFunction})"); 
+	eval("map.addLayer(layer"+layerId+");");
+	if(!visible){
+		eval("layer" + layerId + ".setVisible(false);");
+	}
+}
 
 /**
  * Reads the default style of a geometry depending of its type. The
@@ -15,8 +40,8 @@ var featureOverlay;
  * @param {type} resolution Is the resolution of the map 
  * @returns  A style for the specified feature
  */
-var defaultStyleFunction = function(feature, resolution) {
-	return owgis.vector.styles.default[feature.getGeometry().getType()];
+function defaultStyleFunction(feature, resolution) {
+	return owgis.vector.styles.def[feature.getGeometry().getType()];
 };	
 
 /**
@@ -69,6 +94,8 @@ var displayFeatureInfo = function(pixel) {
 	}
 };
 
+
+
 /**
  * This function initializes new JSON layers. The call to this function
  * is made by the OpenLayers.java file 
@@ -82,7 +109,7 @@ function requestJSONLayer( layer, layerId, visible ){
 	//TODO the original server should not have the wms in it
 	var server = layer.server.substring(0,layer.server.length-3)+"ows?";//Change the server from wms to ows
 	
-	eval('globalCallback'+layerId+ " = function(geoJSON){ processJSON(geoJSON,"+layerId+","+visible+");};")
+	eval('globalCallback'+layerId+ " = function(geoJSON){ owgis.vector.manager.processJSON(geoJSON,"+layerId+","+visible+");};")
 	
 	var layerParams = {
 		SERVICE:"WFS",
@@ -123,31 +150,5 @@ function requestJSONLayer( layer, layerId, visible ){
 			var pixel = map.getEventPixel(evt.originalEvent);
 			displayFeatureInfo(pixel);
 		});
-	}
-}
-
-/**
- * Adds the JSON layer to the map.
- * This function is called when the data of a JSON layer ha arrived.
- * @param {type} geoJSONdata JSON data
- * @param {type} layerId Numeric identifier of the layer
- * @param {type} visible Indicates if the layer is visible or not
- * @returns {undefined}
- */
-function processJSON(geoJSONdata, layerId, visible) {
-	
-	var data = geoJSONdata;//Reads the data
-	//Reads the projection of the layer from the returned JSON data
-	var projection = geoJSONdata.crs.type+":"+geoJSONdata.crs.properties.code;
-	
-	//Creates the vector source from the data and the projection
-	var vectorSource = new ol.source.GeoJSON({
-		object: data ,
-		projection: projection});
-	
-	eval("layer"+layerId+" = new ol.layer.Vector({ source: vectorSource, style: defaultStyleFunction})"); 
-	eval("map.addLayer(layer"+layerId+");");
-	if(!visible){
-		eval("layer" + layerId + ".setVisible(false);");
 	}
 }

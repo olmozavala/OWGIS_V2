@@ -1,6 +1,6 @@
 goog.provide('owgis.ncwms.calendars');
 
-goog.require('owgis.const');
+goog.require('owgis.constants');
 goog.require('owgis.ol3.popup');
 
 var calStart; //calendar start date
@@ -214,7 +214,7 @@ owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd
 		
 		return startDateTxt;
 	}
-	return owgis.const.notimedim;
+	return owgis.constants.notimedim;
 	
 }
 /**
@@ -258,7 +258,7 @@ function getSuggestedDate(actualDate,ahead){
 	return end_final;
 }
 
-/*
+/**
  * Updates the current layer ant map title with the selected date 
  * @paramnewDate - selected date object passed in
  */ 

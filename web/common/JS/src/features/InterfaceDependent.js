@@ -1,7 +1,7 @@
 // This JS file is used to modify the look of the site. All the modifications
 // to the default template should be made at the function modifyInterface
 // which is called insisde mapDisplay. 
-goog.provide('owgis.interface');
+goog.provide('owgis.interf');
 
 var colorLink;
 var colorLinkOver;
@@ -25,7 +25,7 @@ if(mapConfig['menuDesign']==='sideMenu'){
  * @param {bool} loading Indicates if the loading shoudl be on or off
  * @returns {void}
  */
-owgis.interface.loadingatmouse= function(loading){
+owgis.interf.loadingatmouse= function(loading){
 	if(loading){
 		$("#map").removeClass("defaultCursor");
 		$("#map").addClass("loadingCursor");
@@ -42,7 +42,7 @@ owgis.interface.loadingatmouse= function(loading){
  * @param {int} percentage Percentaje of loading displayed. 
  * @returns void
  */
-owgis.interface.loadingatmap = function(loading,percentage){
+owgis.interf.loadingatmap = function(loading,percentage){
 	if(loading){
 		if(percentage !== undefined){
 			$("#loadperc").html(percentage +"<small> %</small>");

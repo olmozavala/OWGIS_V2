@@ -120,7 +120,7 @@ function toggleControlMob() {
 }
 
 
-/*
+/**
  * When we start creating a new transect we first clear all the previous geoms
  * @param {type} event
  * @returns {undefined}

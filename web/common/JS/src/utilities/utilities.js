@@ -147,7 +147,8 @@ owgis.utils.popUp = function(url, width, height)
 		+ width + ',height=' + height + ',left = 300,top = 300');
 };
 
-/**pass a number and if padding is needed then add 0. 
+/**
+ * Pass a number and if padding is needed then add 0. 
  *Example: pass 1 return 01
  *Example: pass 15 return 15. 
  *@param number - number to pad
@@ -161,7 +162,7 @@ owgis.utils.pad = function(number) {
 	return (number < 10 ? '0' : '') + number;
 };
 
-/*
+/**
  * Gets the day on a specified format like:
  * format = %Y-m-d
  * @param formato - format of date. %Y for just year. 

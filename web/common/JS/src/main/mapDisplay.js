@@ -20,10 +20,17 @@ goog.require('owgis.utils');
 goog.require('owgis.layers');
 goog.require('owgis.ncwms.transect');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.ncwms.palettes');
 goog.require('owgis.languages');
-goog.require('owgis.help.main');
 goog.require('owgis.kml');
-
+goog.require('owgis.cql');
+goog.require('owgis.vector.manager');
+goog.require('owgis.optionalLayers');
+goog.require('owgis.layouts.draggable');
+goog.require('owgis.help.tooltips');
+goog.require('owgis.help.main');
+goog.require('owgis.transparency');
+goog.require('owgis.interf');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
@@ -69,7 +76,7 @@ function initMenus() {
 	
     if (netcdf) {
         //Show the palettes
-        loadPalettes();
+        owgis.ncwms.palettes.loadPalettes();
         initCalendars();
         if (mobile === false) {
             createElevationSelector(); //initialize depth selector

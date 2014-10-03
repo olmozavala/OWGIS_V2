@@ -61,12 +61,12 @@ function updateMenusDisplayVisibility(status){
 					$('#stopAnimText').show("fade");
 				}
 				//Show the 'loading' animation
-				owgis.interface.loadingatmap(true);
+				owgis.interf.loadingatmap(true);
                 $('#hideCalendarButtonParent').hide("fade");//Hide the calendars
 //				$('#animSpeed').parent().hide();
                 break;
             case owgis.ncwms.animation.status.playing:
-				owgis.interface.loadingatmap(false);// Stop showing the "loading"
+				owgis.interf.loadingatmap(false);// Stop showing the "loading"
 				$('#animControls a').hide();// Hidde all the animation controls 
 				$('#animSpeed').parent().show("fade");
 				// Animation controls
@@ -115,7 +115,7 @@ function updateMenusDisplayVisibility(status){
                     $('#minPal').disabled = false;
                     $('#maxPal').disabled = false;
                     $('#hideCalendarButtonParent').show("fade");
-					owgis.interface.loadingatmap(false);
+					owgis.interf.loadingatmap(false);
                 }else{
                     $('#CalendarsAndStopContainer').hide("fade");
                 }
@@ -385,7 +385,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	owgis.kml.updateTitleAndKmlLink();
 
 	loadedFrames = 0;// Reset the total number of images loaded
-	owgis.interface.loadingatmap(true,0);
+	owgis.interf.loadingatmap(true,0);
 	updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 
 	//TODO depending on the WMS version that we are using the position
@@ -530,7 +530,7 @@ function imageHasBeenLoadedParallel(e){
 				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 			}else{//then we still need to load more
-				owgis.interface.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
+				owgis.interf.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 				if( (currentImage + numberOfParallelRquests) < totalNumOfFrames ){
 					var nextImage = currentImage + numberOfParallelRquests;
 					animParams.TIME = allFrames[nextImage];

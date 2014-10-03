@@ -1,7 +1,7 @@
 goog.provide('owgis.ncwms.palettes');
 
 goog.require('owgis.utils');
-goog.require('owgis.consts');
+goog.require('owgis.constants');
 goog.require('owgis.ncwms.animation');
 goog.require('owgis.ncwms.calendars');
 goog.require('owgis.ogc');
@@ -18,7 +18,7 @@ var urlPaletteImg;//this variable is used to get the first original url
  * @param minMaxTxt - value of minimim and maximium colors
  */
 function updateMinMaxFromJson(minMaxTxt){
-	owgis.interface.loadingatmap(false);
+	owgis.interf.loadingatmap(false);
 
     var jsonMinMax = eval("("+minMaxTxt+")");
     $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
@@ -32,7 +32,7 @@ function updateMinMaxFromJson(minMaxTxt){
  * When the user clicks the auto button. 
  */
 function setColorRangeFromMinMax(){
-	owgis.interface.loadingatmap(true);
+	owgis.interf.loadingatmap(true);
 
     var urlParams = {
 
@@ -47,7 +47,7 @@ function setColorRangeFromMinMax(){
     };
 
 	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('yy-mm-dd');
-	if( currTime !== owgis.const.notimedim ){
+	if( currTime !== owgis.constants.notimedim ){
         urlParams.time = currTime;
 	}
 
@@ -64,7 +64,7 @@ function setColorRangeFromMinMax(){
 /**
  * Fills the dropdown menu that contains the available palettes
  */
-function loadPalettes(){
+owgis.ncwms.palettes.loadPalettes = function(){
     
     //Copied from loadDefault
     urlPaletteImg = $('#imgPalette').attr("src");

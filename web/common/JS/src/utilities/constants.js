@@ -1,7 +1,7 @@
 /**
  * Provides general contants for OWGIS 
  */
-goog.provide('owgis.const');
+goog.provide('owgis.constants');
 
-owgis.const.notimedim = 'No current date';
+owgis.constants.notimedim = 'No current date';
 
