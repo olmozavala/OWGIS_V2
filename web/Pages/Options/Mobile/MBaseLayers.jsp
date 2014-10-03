@@ -19,15 +19,3 @@
 	<div class="col-xs-12 " style="margin-left: 4px;">
 		${menuHelper:createMainMenu(MenuDelUsuario,language)}</div>
 </div>
-<c:if test="${cqlfilter}">
-	<div class="row">
-		<div class="col-xs-12">
-			<span id="ocqlMenuButtonParent">
-				<button type="button" name="type" id="idOcqlMenuButton"
-						class="buttonStyle" onclick="owgis.cql.toggleCustomFilterTextBox();">
-					<fmt:message key="cql.custom" />
-				</button>
-			</span>
-		</div>
-	</div>
-</c:if>
