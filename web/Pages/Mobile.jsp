@@ -66,7 +66,10 @@
 				<div id="map"></div>
 			
 			</div>
-			
+			<c:if test="${cqlfilter}">
+                <%-- CQL Custom filter buttons and text field. --%>
+                <%@include file="Options/Mobile/MCQLFilter.jsp" %> 
+            </c:if>
 			
 			<c:if test='${netcdf}'>
 			<%-- Color Palettes --%>
