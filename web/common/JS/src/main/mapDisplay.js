@@ -92,14 +92,21 @@ function initMenus() {
 	}
 	
     //if user changes the window size
-    $(window).resize(function() {
+	$(window).resize(function() {
     	screenWidth = screen.width;
 	   	 windowWidth = $(window).width();
 	   	 if(!mobile && windowWidth <= (screenWidth*0.5)){
-	   		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
+	   		if (map !== null) {
+	   	    	if(!mobile){
+	   	    		owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+	   	    		getElementById("mobile").value = true;
+	   	    	}
+	   	        submitForm();
+	   	    }
 	   	 }
 	   	 if(mobile && windowWidth >= (screenWidth*0.5)){
-	   		 window.location.href = window.location.href.split("?")[0];
+	   		getElementById("mobile").value = false;
+   	        submitForm();
 	   	 }
 	        owgis.layouts.draggable.repositionDraggablesByScreenSize();
 	    });
