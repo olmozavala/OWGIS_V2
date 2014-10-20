@@ -4,7 +4,7 @@ Currently the buttons for the menu and the +,- buttons
 */
 /* 
     Created on : Sep 23, 2013, 1:57:39 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 @import "base";
 
@@ -17,12 +17,12 @@ look like a button */
     border-width: 1px;
     background-color:$butBackColor;
     border-color: $butBorderColor;
-	padding: $defPadding 2*$defPadding;
+	padding: $defPadding 2*$defPadding;//TB and RL
 	color: $fontColor;
 	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
 	@include box-sizing(content-box);
-	margin:  5px 5px; 
+	margin:  $defPadding $defPadding;
 	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
 	vertical-align: middle;
@@ -43,8 +43,6 @@ and also the mainMenu dropdown options*/
     cursor: pointer;
 }
 
-
-
 /* This is just a container of buttons in the top menu, specifically
 for transparency and depth*/
 .buttonContainer{
@@ -63,3 +61,7 @@ for transparency in the optional layers. */
     font-size: $f_larger;
     font-weight: bolder;
 }
+
+
+//Close button
+.closeButton{ float:right; }

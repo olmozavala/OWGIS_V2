@@ -1,0 +1,91 @@
+/*
+This stylesheet defines styles for the 'Home' page of the viewer. 
+*/
+/* 
+    Created on : Aug 18, 2014, 2:14:42 PM
+    Author     :  Olmo Zavala
+*/
+
+@import "base";
+
+/* Left fotter */
+div.leftFoot{
+    position:absolute;
+    bottom:1%;
+    right:1%;
+    z-index:1000;
+    display:inline;
+    color:$leftFooterColor;
+    @include opacity($defOpacity - .1);
+}
+
+// Gives style to the OWGIS logo
+#owgislogocont{
+    position:absolute;
+    display:inline;
+    top:1%;
+    left:1%;
+    z-index:1009;
+}
+
+/*Style for the 'contact' text. At the bottom of the page*/
+#emailText{
+    @include textHalo($fontColor);
+    font-size: $f_tiny;
+    color:$emailTextColor;
+}
+
+//This is just a container to restrict the movment of the draggable windows.
+// It is defined in RequiredDivs.jsp
+#draggable-container{
+    position:absolute;
+    width: 96%;
+    height: 93%;
+    top:50px;
+    left:40px;
+    pointer-events:none;
+}
+
+/* Main title of the map */
+.mapTitle{
+    font-size:$f_huge;
+    position:absolute;
+    width: 100%;
+    top:50px;
+    z-index:1000;
+    display:inline;
+    text-align:center;
+    pointer-events: none;
+}
+
+// This defines the titles inside the windows
+.title{ 
+	font-size: $f_larger;
+    font-weight: bold;
+	text-align: center;
+    padding: 5px 0px;//Put some space above and below title
+}
+
+
+/* Div to display latitude and longitude*/
+.layersLonLat{
+    @include floatingWindow;
+    bottom:50px;
+    right:5%;
+    width: 14em;
+    min-height:4em;
+	cursor: auto;
+    pointer-events: none;
+    background-image:url('../images/transBack.png');
+	font-weight: bold;
+}
+/*Data displayed for JSONP layers above the latitude and longitude*/
+#jsonpdata{
+    @include floatingWindow;
+    bottom:50px;
+    left: 3em;
+    min-width: 12em;
+    background-image:url('../images/transBack.png');
+	font-weight: normal;
+	display: none;
+}

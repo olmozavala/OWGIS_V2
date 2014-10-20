@@ -2,8 +2,7 @@ var elev_glob_counter = 0; //index of layerDetails.zaxis.values[elev_glob_counte
 var zAxis_span_visible = false; // Indicates if the span of the 'elevations' is being displayed
 
 /**
- * This function adds the elevation 'text'
- * to a normal url
+ * This function adds the elevation 'text'to a normal url
  */
 function addElevationText(){
     if(netcdf){
@@ -22,14 +21,14 @@ function addElevationText(){
 function createElevationSelector(){
 	
     //Verify we have at least one z-axis
-    if(layerDetails.zaxis != undefined){
+    if(layerDetails.zaxis !== undefined){
         elev_counter = layerDetails.zaxis.values.length;
         _mainlayer_zaxisCoord = true;
     } else{ 
         return;//Do not create anything 
     }
 	
-    var area = document.getElementById('zaxis_selector');
+    var area = getElementById('zaxis_selector');
     var elev_counter;
 
     var totByPage = 10;//Total number of element for each 'page'
@@ -59,14 +58,14 @@ function createElevationSelector(){
             if(i === elev_glob_counter)
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" 
-                + layerDetails.zaxis.values[i] + "' checked>" + layerDetails.zaxis.values[i] + 
+                + layerDetails.zaxis.values[i] + "' checked> " + layerDetails.zaxis.values[i] + 
                 "&nbsp;&nbsp; " + layerDetails.zaxis.units + "<BR/>";
                 selectedLink = page;
             }
             else//all other are just printed without being checked. 
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" + 
-                layerDetails.zaxis.values[i] + "'>" + layerDetails.zaxis.values[i] + 
+                layerDetails.zaxis.values[i] + "'> " + layerDetails.zaxis.values[i] + 
                 "&nbsp;&nbsp;" + layerDetails.zaxis.units +"<BR/>";
             }
             i++;
@@ -100,7 +99,7 @@ function createElevationSelector(){
  * zAxis options of the main layer
  */
 function createElevationSelectorMobile() {
-    var area = document.getElementById('zaxis_selector');
+    var area = getElementById('zaxis_selector');
 
     var elev_counter;
     if (layerDetails.zaxis !== undefined)
@@ -144,11 +143,11 @@ function createElevationSelectorMobile() {
 function dispElevPage(num, total){
     for(var i=1; i<= total; i++){
         if(i === num){
-            document.getElementById("elevId"+i+"").style.display = "inline";
-            document.getElementById("idElevPageLink"+i+"").className = "linkElevPageSelected";
+            getElementById("elevId"+i+"").style.display = "inline";
+            getElementById("idElevPageLink"+i+"").className = "linkElevPageSelected";
         }else{
-            document.getElementById("elevId"+i+"").style.display = "none";
-            document.getElementById("idElevPageLink"+i+"").className = "linkElevPageDef";
+            getElementById("elevId"+i+"").style.display = "none";
+            getElementById("idElevPageLink"+i+"").className = "linkElevPageDef";
         }
     }
 }
@@ -185,7 +184,7 @@ function noElevation()
     }
 
     if(!hasElevation){
-        document.getElementById('elevationParent').style.display = "none";
+        getElementById('elevationParent').style.display = "none";
     }
 	
     return !hasElevation;
@@ -204,27 +203,27 @@ function changeElev(value)
 	
     //change the + sign in the menu
     if(elev_glob_counter  === 0)
-        //document.getElementById('plusButtonElevation').disabled = true;
+        //getElementById('plusButtonElevation').disabled = true;
         $(plusButtonElevation).hide();
     else
-        //document.getElementById('plusButtonElevation').disabled = false;
+        //getElementById('plusButtonElevation').disabled = false;
         $(plusButtonElevation).show();
     
     //change the - sign in the menu
     if(elev_glob_counter  === array_len -1)
-        //document.getElementById('minusButtonElevation').disabled = true;
+        //getElementById('minusButtonElevation').disabled = true;
         $(minusButtonElevation).hide();
     else
-        //document.getElementById('minusButtonElevation').disabled= false;
+        //getElementById('minusButtonElevation').disabled= false;
         $(minusButtonElevation).show();
 	
-    updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter]);
 
 	//TODO next line is controvertial, do we want to update the 
 	// color range when whe change the depth?
 	setColorRangeFromMinMax();
 
-    updateTitleAndKmlLink();
+    owgis.kml.updateTitleAndKmlLink();
 }
 
 
@@ -255,7 +254,7 @@ function changeElevation(sign)
 
     changeElev(elev_glob_counter);
     
-    document.getElementById('zaxisCheckbox'+elev_glob_counter).checked=true;
+    getElementById('zaxisCheckbox'+elev_glob_counter).checked=true;
 }
 
 /**Mobileversion Changes the elevation of the layer if it is netCDF
@@ -288,28 +287,28 @@ function changeElevationMobile(sign)
     //change the + sign in the menu
     if (elev_glob_counter === 0) {
 
-        document.getElementById('plusButtonElevation').disabled = true;
-        document.getElementById('plusButtonElevation').style.cursor = 'default';
+        getElementById('plusButtonElevation').disabled = true;
+        getElementById('plusButtonElevation').style.cursor = 'default';
     } else {
-        document.getElementById('plusButtonElevation').disabled = false;
-        document.getElementById('plusButtonElevation').style.cursor = 'pointer';
+        getElementById('plusButtonElevation').disabled = false;
+        getElementById('plusButtonElevation').style.cursor = 'pointer';
     }
 
     //change the - sign in the menu
 
     if (elev_glob_counter === array_len - 1) {
 
-        document.getElementById('minusButtonElevation').disabled = true;
-        document.getElementById('minusButtonElevation').style.cursor = 'default';
+        getElementById('minusButtonElevation').disabled = true;
+        getElementById('minusButtonElevation').style.cursor = 'default';
     } else {
-        document.getElementById('minusButtonElevation').disabled = false;
-        document.getElementById('minusButtonElevation').style.cursor = 'pointer';
+        getElementById('minusButtonElevation').disabled = false;
+        getElementById('minusButtonElevation').style.cursor = 'pointer';
     }
 
     //Update the elevation parameter on the Main layer parameters
-    updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter ]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter ]);
         
-    updateTitleAndKmlLink();
+    owgis.kml.updateTitleAndKmlLink();
 
     createElevationSelectorMobile();
 
@@ -324,12 +323,12 @@ function changeElevationMobile(sign)
  */
 function initializeElevation()
 {	  
-    if(document.getElementById('elevationParent') !== null){
+    if(getElementById('elevationParent') !== null){
         if(layerDetails.zaxis === undefined) {
-            document.getElementById('elevationParent').style.display = 'none';
+            getElementById('elevationParent').style.display = 'none';
         }
         else {
-            var temp = document.getElementById('elevationText');
+            var temp = getElementById('elevationText');
             temp.innerHTML = getZaxisText();
         }
     }

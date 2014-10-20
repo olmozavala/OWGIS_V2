@@ -22,7 +22,7 @@ package com.mapviewer.exceptions;
 
 /**
  * This class is the General Exception for our Application
- * @author olmozavala
+ * @author Olmo Zavala-Romero
  */
 public class MapViewerException extends Exception{
 

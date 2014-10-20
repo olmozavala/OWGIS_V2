@@ -3,7 +3,7 @@
 */
 /* 
     Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 
 @import "compass";
@@ -29,7 +29,7 @@ $topMenuHeight: 44px;
 	z-index:1008;
 	position:absolute;
 	border:solid 1px white;
-	padding: $defPadding+2 $defPadding+2;
+	padding: $defPadding  $defPadding $defPadding $defPadding; //TRBL
 	cursor: move;
     color: $invColor;
     font-size: $f_normal;

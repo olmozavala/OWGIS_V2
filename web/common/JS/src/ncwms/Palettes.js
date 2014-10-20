@@ -1,7 +1,11 @@
 goog.provide('owgis.ncwms.palettes');
 
 goog.require('owgis.utils');
+goog.require('owgis.constants');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.ncwms.calendars');
+goog.require('owgis.ogc');
+goog.require('owgis.ajax');
 
 var initialMaxPal;//default maxPalVal
 var initialMinPal;//default minPalVal
@@ -11,64 +15,56 @@ var urlPaletteImg;//this variable is used to get the first original url
  * This function updates the min
  * and max text fields and reloads the 
  * main layer with the appropiate color range
- * @paramminMaxTxt - value of minimim and maximium colors
+ * @param minMaxTxt - value of minimim and maximium colors
  */
 function updateMinMaxFromJson(minMaxTxt){
-    //    alert(minMaxTxt);
+	owgis.interf.loadingatmap(false);
+
     var jsonMinMax = eval("("+minMaxTxt+")");
     $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
     $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
     UpdatePalette(mappalette);
-    //Show the Loading message
-    $('#l-animation').hide("fade");
 }
+
 /**
  * This function request the min and max value for the
  * current layer and updates the color range.
  * When the user clicks the auto button. 
  */
 function setColorRangeFromMinMax(){
-    var asyncMinMax = new Asynchronous();     
+	owgis.interf.loadingatmap(true);
 
     var urlParams = {
-        server:layerDetails["server"],
+
         request:"GetMetadata",
-        version:"1.1.1",
+        version:owgis.ogc.wmsversion,
         layers: layerDetails['name'],
-        width: "10",
+        width: "10",//Hardcoded it doesn't work without width and Height
         height: "10",
         item:'minmax',
-        time: getCurrentlySelectedDate('%Y-%m-%d'),
         bbox: layerDetails['bbox'].toString(),
         srs: layerDetails['srs']
     };
 
+	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('yy-mm-dd');
+	if( currTime !== owgis.constants.notimedim ){
+        urlParams.time = currTime;
+	}
+
     //Verify that the layer has more than one zaxis option
-    if(layerDetails.zaxis!= undefined){
+    if(layerDetails.zaxis !== undefined){
         urlParams.elevation = layerDetails.zaxis.values[elev_glob_counter];
     }
 
-    var currUrl = window.location.href;
-    lastSlash = currUrl.lastIndexOf("/");
-    currUrl = currUrl.substr(0,lastSlash);
+    var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
-    var url = currUrl+'/simpleAjaxRedirect?';
-
-    url += owgis.utils.paramsToUrl(urlParams);
-
-    var path_image = basepath+"/common/images/loading/load.gif";//loading ...
-    //Show the Loading message
-    document.getElementById('loadperc').innerHTML = "0";   
-    $('#l-animation').hide("fade");
-    asyncMinMax.complete = updateMinMaxFromJson;
-    asyncMinMax.call(url);
-
+	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
 /**
  * Fills the dropdown menu that contains the available palettes
  */
-function loadPalettes(){
+owgis.ncwms.palettes.loadPalettes = function(){
     
     //Copied from loadDefault
     urlPaletteImg = $('#imgPalette').attr("src");
@@ -113,17 +109,17 @@ function UpdatePalette(newPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
+        owgis.layers.updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPalVal+ ',' + maxPalVal);
     }
 
 	//Changes the palette
-	updateMainLayerParam('STYLES',lay_style+"/"+newPal);
+	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 	owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
 
 	//If an animation is being displayed it reloads it with the new palette.
-	if(owgis.ncwms.animation.animStatus !== "none"){
+	if(owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none){
 		clearLoopHandler();
 		owgis.ncwms.animation.dispAnimation();
 	}
@@ -140,18 +136,21 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
     mappalette = newPal;//Change the current palette to the one just selected
 
     if(validatePaletteRange()){
-        owgis.layers.getMainLayer().setOptions({
-            styles: lay_style+"/"+newPal, 
-            colorscalerange: minPal+ ',' + maxPal
-        });
+//        owgis.layers.getMainLayer().setOptions({
+//            styles: lay_style+"/"+newPal, 
+//            colorscalerange: minPal+ ',' + maxPal
+//        });
+        owgis.layers.updateMainLayerParam('colorscalerange',minPalVal+ ',' + maxPalVal);
+    	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);
         owgis.utils.replaceGetParamInLink("#kmlLink", "COLORSCALERANGE", minPal+ ',' + maxPal);
     }else{
-        owgis.layers.getMainLayer().setOptions({
-            styles: lay_style+"/"+newPal
-        });
+//        owgis.layers.getMainLayer().setOptions({
+//            styles: lay_style+"/"+newPal
+//        });
+    	owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+newPal);
 
         //Update the KMLlink to visualize on google earth
         owgis.utils.replaceGetParamInLink("#kmlLink", "STYLES", lay_style+"/"+newPal);

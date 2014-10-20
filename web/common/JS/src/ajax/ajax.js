@@ -14,8 +14,35 @@
  *@param {js_var} req - (request)displayanimation or getanimation times
  */
 
+<<<<<<< HEAD
 goog.require('owgis.ogc');
 
+=======
+goog.provide('owgis.ajax');
+
+goog.require('owgis.ogc');
+
+/**
+ * This function is used to call a url without the crossorigin problems.
+ * Internally is using the SimpleAjaxRedirectServlet to make the call
+ * @param {type} url String containing the desired url
+ * @param {type} callback Function to call after the call is made
+ * @returns {undefined}
+ */
+owgis.ajax.crossorigin = function(url, callback){
+
+    var hostUrl = window.location.href;
+    lastSlash = hostUrl.lastIndexOf("/");
+    hostUrl = hostUrl.substr(0,lastSlash);
+
+    hostUrl += '/simpleAjaxRedirect?url='+encodeURIComponent(url);
+
+	$.ajax({ 
+		url: hostUrl
+		}).done(callback);
+};
+
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
 
@@ -44,22 +71,32 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
 /**
  *This function generates the properties needed to request the data of the base layer the user is 
  *currently viewing. It is used by the DownloadData.jsp to be able to download the Geotiff file
- *@param {js_var} path - base path /DeepCProject
  *
  */
+<<<<<<< HEAD
 function downloadData(path) {
+=======
+function downloadData() {
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 
 	var mainLayerServer = owgis.layers.getMainLayerServer();
 
 	var requestParams = { 
 		SERVICE: "WMS",
 		VERSION: owgis.ogc.wfsversion,
+<<<<<<< HEAD
 		REQUEST: "GetMap",
+=======
+		REQUEST: "GetMap"
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 		};
 
 	switch(layerDetails.layerType){
 		case "vector":
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 			requestParams.OUTPUTFORMAT = "SHAPE-ZIP";
 			requestParams.SERVICE = "WFS";
 //			requestParams.VERSION = owgis.ogc.wfsversion;
@@ -80,7 +117,10 @@ function downloadData(path) {
 			requestParams.WIDTH = $(window).width();
 			requestParams.HEIGHT = $(window).height();
 			requestParams.BBOX= layerDetails.bbox;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 			break;
 		case "ncwms"://No possible right now
 			if (layerDetails.zaxis !== undefined) {
@@ -91,6 +131,7 @@ function downloadData(path) {
 	var url = mainLayerServer +"?"+owgis.utils.paramsToUrl(requestParams);
 	console.log(url);
 	window.open(url,'_self');
+<<<<<<< HEAD
 
 	/*
     var asynchronous3 = new Asynchronous();
@@ -116,6 +157,8 @@ function downloadData(path) {
     asynchronous3.complete = AsyncCompleteEventWCS;
     asynchronous3.call(url);
 	*/
+=======
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 }
 
 
@@ -184,11 +227,15 @@ Asynchronous.prototype.call = Asynchronous_call;
 function AsyncPunctualData(responseText) {
 
 	responseText = responseText.replace("ADD_UNITS",layerDetails.units);
+<<<<<<< HEAD
 	$("#map").removeClass("loadingCursor");
 	$("#map").addClass(".defaultCursor");
+=======
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();
+	owgis.interf.loadingatmouse(false);//Stop showing the loading icon
 }
 
 /**

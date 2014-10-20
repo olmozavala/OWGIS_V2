@@ -6,9 +6,9 @@
     Author     : harshulpandav
 */
 
+
 //htmlBody
 $htmlBodyBackColor: #06122C;
-
 
 // Main font and shadow colors
 $fontColor: #ECF2F8; // Main font color and secondary shadow color
@@ -66,3 +66,5 @@ $optLayerTitleColor: $butShadowColor;
 $optLayerTitleColorHover: darken($butShadowColor,20);
 $optLayerTitleColorActive: darken($optLayerTitleColorHover,20);
 
+$warningColor: #EC451F;
+$secondaryWarning: darken($warningColor,10);

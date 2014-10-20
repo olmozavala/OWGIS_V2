@@ -1,6 +1,5 @@
 goog.provide('owgis.utils');
 
-
 /**
  * This function receives a 'map' of key values 
  * that represent url parameters and returns
@@ -51,21 +50,6 @@ owgis.utils.replaceGetParamInLink = function(name, param, newval){
 		newLink = firstPart+param+"="+newval+secondPart;
 		$(name).attr("href",newLink) ;
 	}
-};
-
-/**
- *open new window
- *@param url - page to display in new window
- *@param width - width of new window
- *@param height - height of new window
- *@return false - it returns false to exit the function. 
- */
-owgis.utils.popItUp = function(url, width, height ) {
-	newwindow=window.open(url,'','height='+height+',width='+width);
-	if (window.focus) {
-		newwindow.focus();
-	}
-	return false;
 };
 
 /**
@@ -163,7 +147,8 @@ owgis.utils.popUp = function(url, width, height)
 		+ width + ',height=' + height + ',left = 300,top = 300');
 };
 
-/**pass a number and if padding is needed then add 0. 
+/**
+ * Pass a number and if padding is needed then add 0. 
  *Example: pass 1 return 01
  *Example: pass 15 return 15. 
  *@param number - number to pad
@@ -177,18 +162,22 @@ owgis.utils.pad = function(number) {
 	return (number < 10 ? '0' : '') + number;
 };
 
-/*
+/**
  * Gets the day on a specified format like:
  * format = %Y-m-d
  * @param formato - format of date. %Y for just year. 
+ * @param fromDate - It is used rather than today
  * @return date string depeinding on format passed in. 
  */ 
-owgis.utils.getDate = function(formato)
+owgis.utils.getDate = function(formato, fromDate)
 {   
-	var hoy = new Date();
-	var numDia = hoy.getDate();
-	var numMes = hoy.getMonth() + 1;
-	var anio = hoy.getFullYear();       
+	var usedDate = new Date();
+	if(fromDate !== undefined){
+		usedDate = fromDate;
+	}
+	var numDia = usedDate.getDate();
+	var numMes = usedDate.getMonth() + 1;
+	var anio = usedDate.getFullYear();       
 	var meses = new Array (
 		'',
 		'Enero', 
@@ -227,7 +216,7 @@ owgis.utils.getDate = function(formato)
  * @param {type} name Name of the variable
  */
 owgis.utils.isNotUndefined = function(variable, name){
-    if(variable === undefined){
+    if(typeof(variable) === undefined){
         throw "Variable: "+ name +" is undefined";
     }
     return variable;

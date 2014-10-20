@@ -23,7 +23,7 @@ package com.mapviewer.exceptions;
 /**
  * This Exception should be used for everything related with the
  * improper generation of the XML files. 
- * @author olmozavala
+ * @author Olmo Zavala-Romero
  */
 public class XMLFilesException extends MapViewerException{
 

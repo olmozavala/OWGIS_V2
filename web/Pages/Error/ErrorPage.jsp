@@ -1,7 +1,7 @@
 <%-- 
     Document   : Error
     Created on : Mar 28, 2013, 9:49:28 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

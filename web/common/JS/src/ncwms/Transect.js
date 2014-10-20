@@ -9,7 +9,7 @@ lines over the map using some libraries from OpenLayers.
 goog.provide('owgis.ncwms.transect');
 
 goog.require('ol.Map');
-goog.require('ol.View2D');
+goog.require('ol.View');
 goog.require('ol.interaction');
 goog.require('ol.interaction.Draw');
 goog.require('ol.layer.Tile');
@@ -63,7 +63,7 @@ function toggleControl()
 			source: transectSource,
 			style: transectStyle });
 
-        document.getElementById('lineToggle').innerHTML = unselectTransect.toString();
+        getElementById('lineToggle').innerHTML = unselectTransect.toString();
 		draw = new ol.interaction.Draw({
 			source: transectSource,
 			type: "LineString"
@@ -75,7 +75,7 @@ function toggleControl()
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
-        document.getElementById('lineToggle').innerHTML= transect.toString();
+        getElementById('lineToggle').innerHTML= transect.toString();
 		map.removeInteraction(draw);
 		map.removeLayer(transectLayer);
 		draw.un("drawend",getVerticalTransect);
@@ -85,7 +85,42 @@ function toggleControl()
     transectOn = !transectOn;        
 }
 
-/*
+function toggleControlMob() {
+//	alert("Called");
+//	var sliderVal = $('#lineToggle').slider("option", "value");
+	var sliderVal=$("#lineToggle").val();
+	transectOn=sliderVal=="off"?false:true;
+    if(transectOn){
+		//Initializes source and 
+		transectSource = new ol.source.Vector();
+		transectLayer = new ol.layer.Vector({
+			source: transectSource,
+			style: transectStyle });
+
+//        getElementById('lineToggle').innerHTML = unselectTransect.toString();
+		draw = new ol.interaction.Draw({
+			source: transectSource,
+			type: "LineString"
+		});
+		draw.on("drawend",getVerticalTransect);
+		draw.on("drawstart",cleanPreviousTransect);
+		// Do nothing with single click
+		map.unByKey(singleClickKey);
+		map.addLayer(transectLayer);
+		map.addInteraction(draw);
+    } else {
+//        getElementById('lineToggle').innerHTML= transect.toString();
+		map.removeInteraction(draw);
+		map.removeLayer(transectLayer);
+		draw.un("drawend",getVerticalTransect);
+		//Recover the original behaviour of single click
+		singleClickKey = map.on('singleclick',punctualData);
+    }
+//    transectOn = !transectOn; 
+}
+
+
+/**
  * When we start creating a new transect we first clear all the previous geoms
  * @param {type} event
  * @returns {undefined}
@@ -125,11 +160,16 @@ function getVerticalTransect(event){
 	var mainLayer = owgis.layers.getMainLayer();
 	var mainSource = mainLayer.getSource();
 	//TODO not if this function can returnmore than one result
-    var url = mainSource.getUrls().toString();
+    var url;
+	if(mainSource.getUrls !== undefined){
+		url = mainSource.getUrls().toString();
+	}else{
+		url = mainSource.getUrl().toString();
+	}
     url = url + '?REQUEST=GetTransect&LAYER=';
     url = url + mainSource.getParams().LAYERS + "&CRS=" + _map_projection + "&TIME=" + time;
     url = url +"&LINESTRING=" + coordsTxt + "&FORMAT=image/png&COLORSCALERANGE=auto";
     url = url + "&NUMCOLORBANDS=250&LOGSCALE=false&PALETTE=" + mappalette;
 	
-    popUp(url,400,600);
+    owgis.utils.popUp(url,400,600);
 }

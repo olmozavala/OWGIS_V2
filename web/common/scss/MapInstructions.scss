@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Sep 20, 2013, 9:23:40 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 @import "base";
 $border-select: 6px;
@@ -58,10 +58,6 @@ $border-select: 6px;
 
 //Small question mark on the map, used to display hover texts
 #helpHoverSpan{
-	position: absolute;
-	top:4px;
-	right:0px;
-	display: inline;
     z-index:1019;
 }
 

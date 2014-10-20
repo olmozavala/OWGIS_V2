@@ -28,7 +28,7 @@ public class PagesNames {
 	public PagesNames() {
 	}
 
-	public static String MAIN_PAGE = Globals.PAGES_PATH + "MapViewer.jsp";//Principal page of the atlas
+	public static String MAIN_PAGE = Globals.PAGES_PATH +"MapViewer.jsp";//Principal page of the atlas
 
         public static String MOBILE_PAGE = Globals.PAGES_PATH + "Mobile.jsp";//Mobile page
         
@@ -36,7 +36,7 @@ public class PagesNames {
 	public static String ERROR_PAGE = Globals.PAGES_PATH + "Error/ErrorPage.jsp";//Error page of the atlas
 	public static String MAIN_SERVLET = "/mapviewer";//URL to open the principal servlet
 
-	public String getAcdmPage() {
+	public String getMainPageName() {
 		return MAIN_PAGE;
 	}
 

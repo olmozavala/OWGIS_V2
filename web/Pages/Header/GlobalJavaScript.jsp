@@ -1,14 +1,14 @@
 <%-- 
     Document   : GlobalJavaScripls
     Created on : Aug 3, 2012, 5:48:28 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 <script type="text/javascript"  >
 	var layerDetails = ${layerDetails}; //layer details such as title, server, ect in a json object. 
 	var mainLayer = '${mainLayer}'; //main layer title
 	var mappalette = '${palette}'; // palette color
 	var paletteUrl = '${paletteUrl}'; //palette server url
-	var basepath = '${basepath}'; //url base path ex:/DeepCProject
+	var basepath = "/"+window.location.pathname.split("/")[1]; //url base path
 	var lay_style = '${style}'; //layer color style, part of the url to request the pallete.
 	var map = 'empty map'; //map variable that contains the OpenLayers map
 	var ol3view;//View that contains the map
@@ -29,6 +29,7 @@
 	var cqlFilter = ${cqlfilter}; //Indicates if the base layer uses CQL filtering
     var _map_projection = mapConfig.mapProjection;// This is the default map projection
     var _map_bk_layer = mapConfig.backgroundLayer;// This is the background layer we are using
+	var _curr_language = '${language}';
 
 	// For popup
 	var ol_popup = null;
@@ -49,4 +50,7 @@
 	var resolutionHigh = "<fmt:message key='ncwms.resolutionHigh'/>";
 	var resolutionMiddle = "<fmt:message key='ncwms.resolutionMiddle'/>";
 	var resolutionLow = "<fmt:message key='ncwms.resolutionLow'/>";
+	
+	//calender date format
+	var dateFormat = "yy-mm-dd"; 
 </script>

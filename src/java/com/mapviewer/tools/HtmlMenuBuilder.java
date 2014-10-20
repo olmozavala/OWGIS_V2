@@ -53,7 +53,6 @@ public class HtmlMenuBuilder {
 		int deepLevel = 1;
 		String htmlCode = "<table id='t_mainMenu'>";
 		String tabs = "\t\t\t\t\t";
-
 		//if we want to display the horizontal menu type
 		if (baseLayerMenuOrientation.toLowerCase().equals("horizontal")) {
 			htmlCode += "<tr>";
@@ -104,13 +103,15 @@ public class HtmlMenuBuilder {
 	/**
 	 * It creates the html code for the optional layers recursively.
 	 *
-	 * @param {TreeNode} rootNode rootNode of the optional layers
-	 * @param {String} language Language to be used on the menus Ex. {EN, SP, ...}
-	 * @param {String} basePath Base path of the web page to link for images.
-	 * @return {String} Html code of the optional menu.
+	 * @param rootNode rootNode of the optional layers
+	 * @param language Language to be used on the menus Ex. {EN, SP, ...}
+	 * @param basePath Base path of the web page to link for images.
+	 * @param mob Boolean that indicates if the style should be for mobile interface
+	 * @return Html code of the optional menu.
 	 */
-	public static String createOptionalLayersMenu(TreeNode rootNode, String language, String basePath) {
+	public static String createOptionalLayersMenu(TreeNode rootNode, String language, String basePath, boolean mob) {
 		try {
+//			boolean mob =false;
 			LayerMenuManagerSingleton menuSing = LayerMenuManagerSingleton.getInstance();
 			//Updates the number of main layers and the base path of the website
 			HtmlMenuBuilder.numMainLayers = menuSing.getBackgroundLayers().size();
@@ -123,7 +124,7 @@ public class HtmlMenuBuilder {
 			menuParams.setHtmltxt(tabs + "\n");
 			tabs += "\t";
 
-			menuParams = recursiveBuilder(currRoot, language, menuParams, null);
+			menuParams = recursiveBuilder(currRoot, language, menuParams, null, mob);
 
 			String htmlCode = menuParams.getHtmltxt();
 			htmlCode += "\n";
@@ -143,7 +144,7 @@ public class HtmlMenuBuilder {
 	 * @param {String} currMenuStr The current HTML code for the optional layers
 	 * @return {OptMenuStruct} Menu structure containing the current html code
 	 */
-	public static OptMenuStruct recursiveBuilder(TreeNode currentNode, String language, OptMenuStruct menuParamsCurrent, String currMenuStr) {
+	public static OptMenuStruct recursiveBuilder(TreeNode currentNode, String language, OptMenuStruct menuParamsCurrent, String currMenuStr, boolean mobile) {
 
 		String finalHtml = menuParamsCurrent.getHtmltxt();
 		String tabs = menuParamsCurrent.getTabs();
@@ -151,72 +152,143 @@ public class HtmlMenuBuilder {
 		int numLayer = menuParamsCurrent.getNumLayers();
 
 		OptMenuStruct menuParams = new OptMenuStruct(finalHtml, tabs, numLayer, numUls);
-
+		if(!mobile){
 		//In this case we add the ul and call the function recursively
-		if (currentNode.getHasChilds()) {
-
-			ArrayList<TreeNode> subMenus = currentNode.getChilds();
-			if (!currentNode.isRoot()) {
+			if (currentNode.getHasChilds()) {
+	
+				ArrayList<TreeNode> subMenus = currentNode.getChilds();
+				if (!currentNode.isRoot()) {
+					MenuEntry menu = currentNode.getNode();
+					finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
+					finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+					if (currMenuStr == null) {
+						currMenuStr = menu.getId();
+					} else {
+						currMenuStr += "," + menu.getId();
+					}
+					finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
+				} else {
+					finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
+				}
+	
+				for (int i = 0; i < subMenus.size(); i++) {
+					//Updating num of Uls
+					numUls++;
+					menuParams.setNumUls(numUls);
+	
+					menuParams.setHtmltxt(finalHtml);
+					menuParams.setTabs(tabs + "\t");
+					menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, false);
+	
+					//Update current parameters
+					numUls = menuParams.getNumUls();
+					finalHtml = menuParams.getHtmltxt();
+				}
+	
+				menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
+	
+				return menuParams;
+			} else {//In this case is a final checkbox
+				//Increment layer number
+				numLayer++;
+				menuParams.setNumLayers(numLayer);
+	
 				MenuEntry menu = currentNode.getNode();
-				finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-				finalHtml += tabs + " 	   onclick=\"toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+				String layername = menu.getLayername();
 				if (currMenuStr == null) {
 					currMenuStr = menu.getId();
 				} else {
 					currMenuStr += "," + menu.getId();
 				}
-				finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
-			} else {
-				finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
-			}
-
-			for (int i = 0; i < subMenus.size(); i++) {
-				//Updating num of Uls
-				numUls++;
-				menuParams.setNumUls(numUls);
-
+	
+				finalHtml += tabs + "<li class='opt_lay_menu' id='menuOpt" + numLayer + "'><p class='opt_lay_par'>\n";
+	
+				String oldtab = tabs;
+				tabs += "\t";
+				finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr, mobile)
+						+ tabs + menu.getText(language) + "\n"
+						+ tabs + "<span style='float: right'>\n";
+	
+				tabs += "\t";
+				finalHtml += getMinusTransButton(numLayer, tabs, mobile)
+						+ getPlusTransButton(numLayer, tabs, mobile)
+						+ getKmlTxt(numLayer, tabs, mobile)
+						+ getDownloadLink(layername, tabs, mobile)
+						+ oldtab + "</span></p></li>\n";
+	
 				menuParams.setHtmltxt(finalHtml);
-				menuParams.setTabs(tabs + "\t");
-				menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr);
-
-				//Update current parameters
-				numUls = menuParams.getNumUls();
-				finalHtml = menuParams.getHtmltxt();
+				return menuParams;
 			}
+		}
+		else{ //mobile interface
 
-			menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
-
-			return menuParams;
-		} else {//In this case is a final checkbox
-			//Increment layer number
-			numLayer++;
-			menuParams.setNumLayers(numLayer);
-
-			MenuEntry menu = currentNode.getNode();
-			String layername = menu.getLayername();
-			if (currMenuStr == null) {
-				currMenuStr = menu.getId();
-			} else {
-				currMenuStr += "," + menu.getId();
-			}
-
-			finalHtml += tabs + "<li class='opt_lay_menu' id='menuOpt" + numLayer + "'><p class='opt_lay_par'>\n";
-
-			String oldtab = tabs;
-			tabs += "\t";
-			finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr)
-					+ tabs + menu.getText(language) + "\n"
-					+ tabs + "<span style='float: right'>\n";
-
-			tabs += "\t";
-			finalHtml += getMinusTransButton(numLayer, tabs)
-					+ getPlusTransButton(numLayer, tabs)
-					+ getKmlTxt(numLayer, tabs)
-					+ getDownloadLink(layername, tabs)
-					+ oldtab + "</span></p></li>\n";
-
-			menuParams.setHtmltxt(finalHtml);
-			return menuParams;
+			//In this case we add the ul and call the function recursively
+				if (currentNode.getHasChilds()) {
+		
+					ArrayList<TreeNode> subMenus = currentNode.getChilds();
+					if (!currentNode.isRoot()) {
+						MenuEntry menu = currentNode.getNode();
+						finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
+						finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+						if (currMenuStr == null) {
+							currMenuStr = menu.getId();
+						} else {
+							currMenuStr += "," + menu.getId();
+						}
+						finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
+					} else {
+						finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
+					}
+		
+					for (int i = 0; i < subMenus.size(); i++) {
+						//Updating num of Uls
+						numUls++;
+						menuParams.setNumUls(numUls);
+		
+						menuParams.setHtmltxt(finalHtml);
+						menuParams.setTabs(tabs + "\t");
+						menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, true);
+		
+						//Update current parameters
+						numUls = menuParams.getNumUls();
+						finalHtml = menuParams.getHtmltxt();
+					}
+		
+					menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
+		
+					return menuParams;
+				} else {//In this case is a final checkbox
+					//Increment layer number
+					numLayer++;
+					menuParams.setNumLayers(numLayer);
+		
+					MenuEntry menu = currentNode.getNode();
+					String layername = menu.getLayername();
+					if (currMenuStr == null) {
+						currMenuStr = menu.getId();
+					} else {
+						currMenuStr += "," + menu.getId();
+					}
+		
+					finalHtml += tabs + "<fieldset data-role='controlgroup' style='margin: 5px 10px 10px 0px'>";
+		
+					String oldtab = tabs;
+					tabs += "\t";
+					finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr, mobile)
+							+ tabs + "<a style='text-decoration: none; margin-left:35px; width: inherit'>"+ menu.getText(language) +"</a>"+ "\n"
+							+ tabs + "<div style='float: right'>\n";
+		
+					tabs += "\t";
+					finalHtml += getMinusTransButton(numLayer, tabs, mobile)
+							+ getPlusTransButton(numLayer, tabs, mobile)
+							+ getKmlTxt(numLayer, tabs, mobile)
+							+ getDownloadLink(layername, tabs, mobile)
+							+ oldtab + "</div></fieldset>\n";
+		
+					menuParams.setHtmltxt(finalHtml);
+					return menuParams;
+				}
+			
 		}
 	}
 
@@ -229,12 +301,15 @@ public class HtmlMenuBuilder {
 	 * @param currMenuStr {String} Id of the corresponding menu of the layer
 	 * @return
 	 */
-	public static String getOptionalCheckbox(int layerNum, String tabs, boolean selected, String currMenuStr) {
+	public static String getOptionalCheckbox(int layerNum, String tabs, boolean selected, String currMenuStr, boolean mobile) {
 		int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;
 
 		String finalHtml = tabs + "<input id=\"checkBox" + layerNum + "\" type=\"checkbox\" name=\"vectorLayersSelected\" \n";
-		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"manageOptionalLayers(layer" + OPLayerNum + ",this.checked); "
-				+ "DisableTranspOptionalLayers(" + layerNum + ",'minusButtonOptional" + layerNum + "',"
+		if(mobile){
+			finalHtml += " style= 'margin-top:0px' ";
+		}
+		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"owgis.optionalLayers.showOptionalLayer(layer" + OPLayerNum + ",this.checked); "
+				+ "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',"
 				+ "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"";
 
 		if (selected) {
@@ -244,7 +319,7 @@ public class HtmlMenuBuilder {
 		return finalHtml;
 	}
 
-	public static String getDownloadLink(String layername, String tabs) {
+	public static String getDownloadLink(String layername, String tabs, boolean mobile) {
 		try {
 			Layer selectedLayer = LayerMenuManagerSingleton.getInstance().getLayerByName(layername);
 
@@ -259,10 +334,12 @@ public class HtmlMenuBuilder {
 			String finalHtml = tabs + "<A href=\"" + solicitudWCS[0][0] + "\">\n";
 			tabs += "\t";
 			finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png\" \n";
-			finalHtml += tabs + "     onmouseover=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
-			finalHtml += tabs + "     onmouseout=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png' )\" \n";
-			finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over_click.png' )\" \n";
-//			finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
+			if(!mobile){
+				finalHtml += tabs + "     onmouseover=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
+				finalHtml += tabs + "     onmouseout=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload.png' )\" \n";
+				finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over_click.png' )\" \n";
+	//			finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/Download/LayerDownload_over.png' )\" \n";
+			}
 			finalHtml += tabs + "     border=\"0\" /> </A> \n";
 
 			return finalHtml;
@@ -279,16 +356,18 @@ public class HtmlMenuBuilder {
 	 * @param tabs {String} String that contains the number of tabs being used
 	 * @return
 	 */
-	public static String getKmlTxt(int layerNum, String tabs) {
+	public static String getKmlTxt(int layerNum, String tabs, boolean mobile) {
 		String finalHtml = tabs + "<A href=\"" + HtmlMenuBuilder.vecLinks[layerNum - 1] + "\">\n";
 		tabs += "\t";
 		finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png\" \n";
+		if(!mobile){
 		finalHtml += tabs + "     onmouseover=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
 		finalHtml += tabs + "     onmouseout=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png' )\" \n";
 		finalHtml += tabs + "     onmousedown=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over_click.png' )\" \n";
 //		finalHtml += tabs + "     onmouseup=\"owgis.utils.rollImage(this,'" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz_over.png' )\" \n";
-		finalHtml += tabs + "     border=\"0\" alt=\"Descargar KMZ\" onload=\"CreateArraysOptional(" + layerNum + "); ";
-		finalHtml += "DisableTranspOptionalLayers(" + layerNum + ",'minusButtonOptional" + layerNum + "',";
+		}
+		finalHtml += tabs + "     border=\"0\" alt=\"Descargar KMZ\" onload=\"owgis.optionalLayers.initTransp(" + layerNum + "); ";
+		finalHtml += "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',";
 		finalHtml += "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"></A> \n";
 
 		return finalHtml;
@@ -301,18 +380,25 @@ public class HtmlMenuBuilder {
 	 * @param tabs {String} String that contains the number of tabs being used
 	 * @return
 	 */
-	public static String getMinusTransButton(int layerNum, String tabs) {
+	public static String getMinusTransButton(int layerNum, String tabs, boolean mobile) {
 		int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;
 
 		String finalHtml = "";
+		if(!mobile){
 		finalHtml += tabs + "<button id=\"minusButtonOptional" + layerNum + "\" class=\"minusButtonSmall\" type=\"button\" disabled=\"disabled\" \n";
 		finalHtml += tabs + "      onmouseover =\"changeColor(this,1);\" onmouseout =\"changeColor(this,0);\" \n";
 		finalHtml += tabs + "      onmouseup =\"changeColor(this,1);\" onmousedown =\"changeColor(this,2);\" \n";
-		finalHtml += tabs + "		onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", .20, " + layerNum + ",";
+		finalHtml += tabs + "		onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", .20, " + layerNum + ",";
 		finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">-</button>";
 		//the reason it is a - (minus) and not html decimal encoding is becuase the mobile phone don't
 		//understand some html encodings. 
-
+		}
+		else{
+			finalHtml += tabs + "<a class='btn btn-default btn-xs' href='#' id='minusButtonOptional"+ layerNum + "' \n" ;
+			finalHtml += tabs + "		disabled='disabled' onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", .20, " + layerNum + ",";
+			finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">";
+			finalHtml += tabs + "<span class='glyphicon glyphicon-minus '></span></a>";
+		}
 		return finalHtml;
 	}
 
@@ -323,16 +409,23 @@ public class HtmlMenuBuilder {
 	 * @param tabs {String} String that contains the number of tabs being used
 	 * @return
 	 */
-	public static String getPlusTransButton(int layerNum, String tabs) {
+	public static String getPlusTransButton(int layerNum, String tabs, boolean mobile) {
 		int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;
 
 		String finalHtml = " ";
+		if(!mobile){
 		finalHtml += "<button id=\"plusButtonOptional" + layerNum + "\" class=\"plusButtonSmall\" type=\"button\" disabled=\"disabled\" \n";
 		finalHtml += tabs + "      onmouseover =\"changeColor(this,1);\" onmouseout =\"changeColor(this,0);\" \n";
 		finalHtml += tabs + "      onmouseup =\"changeColor(this,1);\" onmousedown =\"changeColor(this,2);\" \n";
-		finalHtml += tabs + "		onclick=\"changeTranspOptionalLayers(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
+		finalHtml += tabs + "		onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
 		finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">+</button>\n";
-
+		}
+		else{
+			finalHtml += tabs + "<a class='btn btn-default btn-xs' href='#' id='plusButtonOptional"+ layerNum + "' \n" ;
+			finalHtml += tabs + "		disabled='disabled' onclick=\"owgis.optionalLayers.changeTransparency(layer" + OPLayerNum + ", -.20, " + layerNum + ",";
+			finalHtml += "'minusButtonOptional" + layerNum + "','plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ) ;\">";
+			finalHtml += tabs + "<span class='glyphicon glyphicon-plus '></span></a>";
+		}
 		return finalHtml;
 	}
 

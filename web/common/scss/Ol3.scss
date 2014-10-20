@@ -1,9 +1,9 @@
 /* 
     Document   : Ol3
     Created on : Jun 24, 2013, 1:12:08 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
     Description:
-        Purpose of the stylesheet follows.
+		This styles are mostly overrrides for OpenLayers 3
 */
 
 @import "base";
@@ -31,26 +31,12 @@ div.halfHeightWindow{
     z-index:1020;
 }
 
-
 /* This is the class that the FTL from geoserver uses 
 in most of their text */
 .map_content{
     pointer-events: none;
 }
 
-
-/* Div to display latitude and longitude*/
-div.layersLonLat{
-    @include floatingWindow;
-    bottom:50px;
-    right:5%;
-    width: 14em;
-    height:4em;
-	cursor: auto;
-    pointer-events: none;
-    background-image:url('../images/transBack.png');
-	font-weight: bold;
-}
 
 //Defines the position of the +,- zoom buttons
 .ol-zoom{

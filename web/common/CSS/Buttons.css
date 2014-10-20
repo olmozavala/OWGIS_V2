@@ -4,14 +4,14 @@ Currently the buttons for the menu and the +,- buttons
 */
 /* 
     Created on : Sep 23, 2013, 1:57:39 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 /*
 * Base configuration, mixings and global variables
 */
 /* 
     Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 /*
 * Font variables
@@ -102,7 +102,7 @@ and also the mainMenu dropdown options*/
 
 /* This is just a container of buttons in the top menu, specifically
 for transparency and depth*/
-/* line 50, ../scss/Buttons.scss */
+/* line 48, ../scss/Buttons.scss */
 .buttonContainer {
   background-color: transparent;
   background-image: url("../images/transBack.png");
@@ -112,7 +112,7 @@ for transparency and depth*/
 /* This are also plus and minus buttons, but are
 smaller and doesn't have background. Currently are used
 for transparency in the optional layers. */
-/* line 61, ../scss/Buttons.scss */
+/* line 59, ../scss/Buttons.scss */
 .minusButtonSmall, .plusButtonSmall {
   vertical-align: top;
   margin: 0px;
@@ -122,4 +122,9 @@ for transparency in the optional layers. */
   cursor: pointer;
   font-size: 15px;
   font-weight: bolder;
+}
+
+/* line 67, ../scss/Buttons.scss */
+.closeButton {
+  float: right;
 }

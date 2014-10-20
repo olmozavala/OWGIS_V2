@@ -4,14 +4,23 @@ buttons, etc.
 */
 /* 
     Created on : Sep 23, 2013, 1:57:39 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
+.red{ background-color: red}
+.yellow{ background-color: yellow}
+.blue{ background-color: blue}
+.green{ background-color: green}
 
 @import "base";
 
 // Increases the default row space used on bootstrap
 .defRowSpace{
-    margin: 5px 0px;
+    margin: $defPadding 0px $defPadding 0px;//TRBL
+}
+
+// Increases the default row space used on bootstrap
+.doubleRowSpace{
+    margin: 2*$defPadding 0px 2*$defPadding 0px;//TRBL
 }
 
 // Used by any menu that starts as a hidden menu
@@ -34,13 +43,6 @@ for the main layers, the color palettes, the calendars etc.*/
 	background-color: $transDWBackColor;
 }
 
-// Default style for a title
-.title{ 
-	font-size: $f_larger;
-    font-weight: bold;
-	text-align: center;
-    padding: 5px 0px;//Put some space above and below title
-}
 
 //Default shadow for the text
 .defShadow{ color: $fontColor; @include textHalo($invColor); }
@@ -52,41 +54,14 @@ for the main layers, the color palettes, the calendars etc.*/
 //No shadow on the text, using default inverse color
 .noShadowInv{ color: $invColor; }
 
-//Close button
-.closeButton{ float:right; }
-
-/* Main div for user menu options. topmenu */
-.layersMenu{
-    background-image:url('../images/transBack.png');
-    top:0px;
-    left:0px;
-    position:absolute;
-    border-bottom:$fontColor + 20 1px solid;
-    text-align: center;
-    width:100%;
-    padding: $defPadding*2 0px;
-    height:$topMenuHeight;
-}
-
 /* This is the default font type for the letters in the page */
 p{ color: $fontColor; }
-
-/* Main title */
-.mapTitle{
-    font-size:$f_huge;
-    position:absolute;
-    width: 100%;
-    top:50px;
-    z-index:1000;
-    display:inline;
-    text-align:center;
-    pointer-events: none;
-}
 
 //---------------  From map style --------------
 /* Default style for the page */
 html,body {
-    font-family:Tahoma, Verdana, Arial, sans-serif;
+    // font-family:Tahoma, Verdana, Arial, sans-serif;
+    font-family: $font_type_1;
     margin: 0;
     padding: 0;
     background-color: $htmlBodyBackColor;
@@ -104,16 +79,6 @@ html,body {
 	background: transparent;
 }
 
-/* Left fotter */
-div.leftFoot{
-    position:absolute;
-    bottom:1%;
-    right:1%;
-    z-index:1000;
-    display:inline;
-    color:$leftFooterColor;
-    @include opacity($defOpacity - .1);
-}
 
 a{ text-decoration: none; }
 
@@ -127,33 +92,6 @@ a{ text-decoration: none; }
 but the size of the font is larger */
 .bigFontSize{ 
     font-size: 30px; 
-}
-
-/*Style for the 'contact' text. At the bottom of the page*/
-#emailText{
-    @include textHalo($fontColor);
-    font-size: $f_tiny;
-    color:$emailTextColor;
-}
-
-// Gives style to the OWGIS logo
-#owgislogocont{
-    position:absolute;
-    display:inline;
-    top:1%;
-    left:1%;
-    z-index:1009;
-}
-
-//This is just a container to restrict the movment of the draggable windows.
-// It is defined in RequiredDivs.jsp
-#draggable-container{
-    position:absolute;
-    width: 96%;
-    height: 93%;
-    top:50px;
-    left:40px;
-    pointer-events:none;
 }
 
 // It changes the cursor to 'loading' while something is happening on the map

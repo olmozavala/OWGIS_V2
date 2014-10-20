@@ -1,7 +1,7 @@
 goog.provide('owgis');
 
 goog.require('ol.Map');
-goog.require('ol.View2D');
+goog.require('ol.View');
 goog.require('ol.coordinate');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.TileJSON');
@@ -20,20 +20,36 @@ goog.require('owgis.utils');
 goog.require('owgis.layers');
 goog.require('owgis.ncwms.transect');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.ncwms.palettes');
+goog.require('owgis.languages');
+goog.require('owgis.kml');
+goog.require('owgis.cql');
+goog.require('owgis.vector.manager');
+goog.require('owgis.optionalLayers');
+goog.require('owgis.layouts.draggable');
+goog.require('owgis.help.tooltips');
+goog.require('owgis.help.main');
+goog.require('owgis.transparency');
+goog.require('owgis.interf');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
 var minOpacity = 0.1;
 var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
-var optionalArray = [];//this is the array to control the opacity of the different optional layers. 
 var hoverDisabled = false; //Used to disable showing the hover texts
+var screenWidth = screen.width;
+var windowWidth = $(window).width();
+
 
 //Redirect any https request to http
 if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
+if(!mobile && windowWidth <= (screenWidth*0.5)){
+		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
+	 }
 /**
  * Instructions executed when the page is ready
  */
@@ -42,6 +58,7 @@ function owgisMain(){
     addLayers();
     initVariables();
 	initMenus();
+<<<<<<< HEAD
 	initHelpTxtPos();
 	owgis.tooltips.initHelpTexts();
 	initLocaleDropDown();
@@ -62,6 +79,12 @@ function addDraggableWindows(){
 		$(".transDraggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
 		})
+=======
+	owgis.help.tooltips.initHelpTexts();
+	modifyInterface();
+	if(mobile){
+		owgis.mobile.initMobile();
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 	}
 }
 
@@ -70,12 +93,14 @@ function addDraggableWindows(){
  */
 function initMenus() {
 	
+	owgis.languages.buildselection();//Initializes the dropdown of languages
+	
     disableEnterButton(); //disable enter button
-    addDraggableWindows(); // Make the proper windows draggable.
+    owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
     if (netcdf) {
         //Show the palettes
-        loadPalettes();
+        owgis.ncwms.palettes.loadPalettes();
         initCalendars();
         if (mobile === false) {
             createElevationSelector(); //initialize depth selector
@@ -85,29 +110,37 @@ function initMenus() {
 		owgis.ncwms.animation.initAnimationControls();
     } 
 	
-    updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
+    owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-    draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	try{
+		if(mobile === false){
+			owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+		}
+	}catch(err){
+		console.log("Error initializing the menus... clearing local storage");
+		localStorage.clear();
+		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}
 	
     //if user changes the window size
-    $(window).resize(function() {
-        repositionDraggablesByScreenSize();
-    });
-}
-
-/**
- *This function is used to minimize the windows and also to maximize it. 
- *@param appearId - id of window to make appear as minimized on the bottom of page
- *@param disapearId - id of window to minimize or disapear. 
- */
-function minimizeWindow(appearId, disapearId)
-{
-    $(eval(disapearId)).toggle("drop",{direction:"down"});
-    $(eval(appearId)).toggle("drop",{direction:"down"});
-	
-    //Check if they fit on the screen
-    //(after 1 second) to be sure it is visible
-    setTimeout( function (){repositionDraggablesByScreenSize();}, 1000);
+	$(window).resize(function() {
+    	screenWidth = screen.width;
+	   	 windowWidth = $(window).width();
+	   	 if(!mobile && windowWidth <= (screenWidth*0.5)){
+	   		if (map !== null) {
+	   	    	if(!mobile){
+	   	    		owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+	   	    		getElementById("mobile").value = true;
+	   	    	}
+	   	        submitForm();
+	   	    }
+	   	 }
+	   	 if(mobile && windowWidth >= (screenWidth*0.5)){
+	   		getElementById("mobile").value = false;
+   	        submitForm();
+	   	 }
+	        owgis.layouts.draggable.repositionDraggablesByScreenSize();
+	    });
 }
 
 /**
@@ -123,16 +156,6 @@ function disableEnterButton()
             return false;
         }
     });
-}
-
-
-/** Displays an alert when oppening an animation in GoogleEarth.
- * The reason is that it takes some time to generate the file
- */
-function KMZDownAlert()
-{
-    if (netcdf && anim_loaded && !owgis.ncwms.animation.stoppedAnimation)
-        alert("Your download will beggin shortly.");
 }
 
 /**
@@ -178,254 +201,6 @@ function updateTitle(dateText, elevText) {
             $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
         }
     }
-	
-	
-	
-}
-
-/**
- * Updates the time, elevation and CQL filter of the kml link
- * @param newDate - updated date
- * @param newElev - updated elevation
- * @param {type} cql_filter Updated CQL filter
- */
-function updateKmlLink(newDate, newElev, cql_filter) {
-    if (newDate !== '')
-        owgis.utils.replaceGetParamInLink("#kmlLink", "TIME", newDate);
-	
-    if (newElev !== '')
-        owgis.utils.replaceGetParamInLink("#kmlLink", "ELEVATION", newElev);
-	
-    if (cql_filter !== '')
-        owgis.utils.replaceGetParamInLink("#kmlLink", "CQL_FILTER", cql_filter);
-	
-}
-
-/** This function obtain the proper values
- * for the current date and the zaxis value (depth) 
- * and send them to updateTitle() and updateKmlLink()
- */
-function updateTitleAndKmlLink() {
-    if (netcdf) {
-		
-        dateForCal = '';
-        dateText = '';
-		
-        currElevation = '';
-        currElevationTxt = '';
-		
-        //Building elevation text.
-        if (layerDetails.zaxis !== undefined)
-        {
-            currElevation = layerDetails.zaxis.values[elev_glob_counter];
-            units = layerDetails.zaxis.units;
-            currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
-        }
-		
-        if (typeof calStart !== 'undefined') {
-            locstartSel = calStart.selection.get();
-            locstartDate = Calendar.intToDate(locstartSel);
-            dateText = Calendar.printDate(locstartDate, '%d-%B-%Y');
-            dateForCal = Calendar.printDate(locstartDate, '%Y-%m-%d');
-        }
-        updateKmlLink(dateForCal, currElevation, '');
-        updateTitle(dateText, currElevationTxt);
-    }
-}
-
-/**
- * Manages the transparency of the main layer and the animation (if loading)
- * the version parameter is either topMenu or master
- * @param val - new value of transparency
- * @param version - which version it is, it is passed to changeTransp() function
- */
-function changeTranspManager(val, version) {
-    layer = owgis.layers.getMainLayer();
-    changeTransp(val, layer, version);
-	
-    if (netcdf) {
-        if (animation_layer !== undefined) {
-            changeTransp(val, animation_layer, version);
-        }
-    }
-}
-
-/**this function initializes the gloabl optionalArray
- *@param checkboxNum - 0 for us states, 1 for all cruises , and 2 for all sites. 
- */
-function CreateArraysOptional(checkboxNum)
-{
-    optionalArray[checkboxNum] = 1;
-}
-
-/**
- *this function changes the transparency of the optional layers if the layer is selected, otherwise ignore
- *@param selectedLayer - currently displayed layer
- *@param val - transparency value
- *@param {type} index Index of the optional layer
- *@param id_minus - css id of minus button 
- *@param id_plus - css id of plus button 
- *@param checkboxId - option checkbox id
- */
-function changeTranspOptionalLayers(selectedLayer, val, index, id_minus, id_plus, checkboxId)
-{
-    var checkid = document.getElementById(checkboxId);
-	
-    if (checkid.checked === true)//check if the layer is selected
-    {
-        optionalArray[index] = optionalArray[index] + val;
-		
-        var optionOpacity = optionalArray[index];//locate which global opacity layer it is
-		
-        //Disables the buttons.
-        if (optionOpacity < maxOpacity) {
-            document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
-        } else {
-            document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-        }
-		
-        if (optionOpacity > minOpacity) {
-            document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
-        } else {
-            document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-        }
-		
-        if (optionOpacity < .00001) {
-            optionOpacity = 0;
-        }
-        selectedLayer.setOpacity(optionOpacity);
-    }
-}
-
-/*
- *Disables the + or - buttons if the layer is not selected
- *@param index - index of select object
- *@param id_minus - css id of minus button of index object
- *@param id_plus - css id of plus button of index object
- *@param checkboxId - css id of checkbox
- */
-function DisableTranspOptionalLayers(index, id_minus, id_plus, checkboxId)
-{
-	
-    var checkid = document.getElementById(checkboxId);
-	
-	
-    if (checkid.checked === true)//check if the layer is selected
-    {
-        var optionOpacity = optionalArray[index];//localte which global opacity layer it is
-		
-        //Disables the buttons.
-        if (optionOpacity < maxOpacity) {
-            document.getElementById(id_minus).disabled = false;
-            changeColor(document.getElementById(id_minus), 0);//Change color to enabled
-        } else {
-            document.getElementById(id_minus).disabled = true;
-            changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-        }
-		
-        if (optionOpacity > minOpacity) {
-            document.getElementById(id_plus).disabled = false;
-            changeColor(document.getElementById(id_plus), 0);//Change color to enabled
-        } else {
-            document.getElementById(id_plus).disabled = true;
-            changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-        }
-    }
-    else
-    {
-        //Disables the buttons.
-        document.getElementById(id_minus).disabled = true;
-        changeColor(document.getElementById(id_minus), 3);//Change color to disabled 
-		
-        document.getElementById(id_plus).disabled = true;
-        changeColor(document.getElementById(id_plus), 3);//Change color to disabled 
-		
-    }
-	
-}
-
-/**
- * Changes the transparencya of the inputed layer.
- * @param val - value of transparency
- * @layer layer - currently viewing layer
- * @version - topMenu or master version, the reason is becuase the topMenu version 
- * uses buttons that are disabled, while the master version uses images that can not be disabled
- * so an alert is popped. 
- */
-function changeTransp(val, layer, version) {
-    opacity = opacity + val;
-    //Checks we are not in the limits of transparency
-    // This is only used for images, it should not display it for buttons
-	
-    if (version === "master")
-    {
-        if (opacity > maxOpacity) {
-            opacity = maxOpacity;
-            alert('You are at minimum transparency.');
-            return;
-        }
-		
-        if (opacity < minOpacity) {
-            opacity = minOpacity;
-            alert('You are at maximum transparency.');
-            return;
-        }
-		
-    }
-	
-    //Disables the buttons.
-    if (opacity <= maxOpacity) {
-        $(minusButtonTrans).css('visibility','visible');
-    } else {
-        $(minusButtonTrans).css('visibility','hidden');
-    }
-	
-    if (opacity >= minOpacity) {
-        $(plusButtonTrans).css('visibility','visible');
-    } else {
-        $(plusButtonTrans).css('visibility','hidden');
-    }
-	
-    layer.setOpacity(opacity);
-}
-
-/** This function is called when the Browser gets resized,
-  it should keep all the user selections.
- */
-function refreshWindow() {
-    resizeMap();
-    initHelpTxtPos();
-}
-
-/**
- * This function updates the size of the div that
- * contains the map. It is used to 'resize' the map
- */
-function resizeMap() {
-    $("#map").width = $(window).width();
-    $("#map").height = $(window).height();
-}
-
-/**
- * This functions returns a valid browser height for IE or null
- */
-function findPageHeight() {
-    if (typeof window.innerHeight !== 'undefined') {
-        return window.innerHeight;
-    }
-    if (document.documentElement && typeof
-	document.documentElement.clientWidth !== 'undefined' &&
-            document.documentElement.clientHeight !== 0) {
-		return document.documentElement.clientHeight;
-	}
-    if (document.body && typeof document.body.clientWidth !== 'undefined') {
-        return document.body.clientHeight;
-    }
-    return (null);
 }
 
 /**
@@ -437,23 +212,18 @@ function findPageHeight() {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
+<<<<<<< HEAD
         saveAllWindowPositionsAndVisualizationStatus();
         setSelectedLocale();
+=======
+    	if(!mobile){
+	        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+    	}
+    	else{
+    		getElementById("mobile").value = mobile;
+    	}
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
         submitForm();
-    }
-}
-
-/** This function reduces the font size for small Monitors less than 800 px
- * 
- */
-function smallMonitors()
-{
-    var height = screen.height;
-	
-    if (height <= 800)
-    {
-        $('.buttonStyle').css("font-size", '11px');
-        $("#layersMenu").css("height", "40px");
     }
 }
 
@@ -480,7 +250,6 @@ function changeText(btn, pos) {
         case 3:
             btn.style.color = "gray";
             break;
-		
     }
 }
 
@@ -494,6 +263,7 @@ function resetView(){
     submitForm();
 }
 
+<<<<<<< HEAD
 /**
  * This function is used to modify the locale dropdown
  * to display flag icons in it.
@@ -509,6 +279,10 @@ function initLocaleDropDown(){
 function setSelectedLocale(){
 	var selectedLocale= $("#langDropDown").find('option:selected').val();
 	document.getElementById("_locale").value = selectedLocale;
+=======
+function getElementById(id){
+	return $('#'+id)[0];
+>>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 }
 
 goog.exportSymbol('owgis',owgis);

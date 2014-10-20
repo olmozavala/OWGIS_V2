@@ -44,7 +44,6 @@ public class Layer {
 	private String layout;//indicates if the layer should load with additional information. 
 	private boolean vectorLayer;//check to see if it a vector layer type
 	private boolean tiled = false;//Indicates if the layer should be displayed has tiled or as a single image
-	private String[] tilesOrigin = {"0", "0"};//Latitude and longitude where the tiles of the image start.
 	private MenuEntry[] idLayer;//Array of menus that this layer represent
 	private int width;//Number of columns that this layer has. This property is very important
 	//because affects the way WCS request the layers. It is also used to define the
@@ -70,6 +69,7 @@ public class Layer {
 	//------- CQL
 	private String cql;
 	private String cql_cols;
+	private boolean jsonp;//Itentifies if the layer is a json layer (dynamic vector layer)
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -125,7 +125,6 @@ public class Layer {
 	 * are made. (When the user clicks on the map)
 	 * @param {boolean}isTiled boolean Indicates if the layers should be displayed as
 	 * tiled
-	 * @param {String[2]}tilesOrigin String[2] Lon,Lat Of the star of the tiles (if this
 	 * layer is displayed tiled)
 	 * @param {boolean} displayTitle boolean Indicates if the title of this layer should
 	 * be displayed (This is used in the optional layers, checkboxes, when there is one
@@ -136,6 +135,8 @@ public class Layer {
 	 * temporal data)
 	 * @param {String} maxTimeLayer string that defines the maximum time range the user
 	 * can select (week, month, year)
+	 * @param {boolan} jsonp Boolean value that indicates if the layer is a dynamic
+	 * vector layer served using jsonp
 	 */
 	public Layer(BoundaryBox bbox,
 			String style,
@@ -149,12 +150,11 @@ public class Layer {
 			int height,
 			String featureInfoLayer,
 			boolean isTiled,
-			String[] tilesOrigin,
 			boolean displayTitle,
 			String layout,
 			boolean vectorLayer,
 			String palette,
-			boolean netCDF, String maxTimeLayer) {
+			boolean netCDF, String maxTimeLayer, boolean jsonp) {
 
 		this.bbox = bbox;
 		this.style = style;
@@ -168,7 +168,6 @@ public class Layer {
 		this.height = height;
 		this.featureInfoLayer = featureInfoLayer;
 		this.tiled = isTiled;
-		this.tilesOrigin = tilesOrigin;
 		this.displayTitle = displayTitle;
 		this.layout = layout;
 		this.vectorLayer = vectorLayer;
@@ -177,6 +176,7 @@ public class Layer {
 		this.palette = palette;
 		this.selected = false;//By default none of the optional layers is selected
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming 
+		this.jsonp = jsonp;
 
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter. 
@@ -210,6 +210,8 @@ public class Layer {
 			JSONObject layDet;
 			if (layerDetailsStr.equals("")) {
 				this.layerDetails = new JSONObject();
+				//The boundary box only gets added if none layer's details were received
+				layerDetails.accumulate("bbox", this.getBbox().toString());
 			} else {
 				this.layerDetails = new JSONObject(layerDetailsStr);
 				if ((this.minColor == -1) && (this.maxColor == -1)) {
@@ -220,8 +222,7 @@ public class Layer {
 
 			layerDetails.accumulate("server", server);
 			layerDetails.accumulate("name", name);
-			layerDetails.accumulate("srs", this.getProjection());
-			layerDetails.accumulate("bbox", this.getBbox().toString());
+			layerDetails.accumulate("srs", this.getProjection());			
 			
 			String layerType = "raster"; //By default all layer are  raster
 
@@ -283,14 +284,6 @@ public class Layer {
 		return false;
 	}
 
-	public String getTilesOrigin() {
-		return StringAndNumbers.arrregloSeparadoPorComas(tilesOrigin);
-	}
-
-	public String[] getTilesOriginArr() {
-		return tilesOrigin;
-	}
-
 	public String getDisplayName(String language) {
 		if (layerDisplayNames == null) {
 			return "Title not defined for layer:" + this.getName();
@@ -319,10 +312,6 @@ public class Layer {
 
 	public Map<String, String> getLayerDisplayNames() {
 		return layerDisplayNames;
-	}
-
-	public String[] getTilesOriginArray() {
-		return tilesOrigin;
 	}
 
 	public boolean getTitle() {
@@ -396,10 +385,6 @@ public class Layer {
 
 	public void setTiled(boolean tiled) {
 		this.tiled = tiled;
-	}
-
-	public void setTilesOrigin(String[] tilesOrigin) {
-		this.tilesOrigin = tilesOrigin;
 	}
 
 	public void setTitle(boolean displayTitle) {
@@ -496,4 +481,14 @@ public class Layer {
 	public void setCql_cols(String cql_cols) {
 		this.cql_cols = cql_cols;
 	}
+
+	public boolean isJsonp() {
+		return jsonp;
+	}
+
+	public void setJsonp(boolean jsonp) {
+		this.jsonp = jsonp;
+	}
+
+	
 }

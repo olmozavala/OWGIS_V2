@@ -31,7 +31,7 @@ import org.json.me.JSONObject;
 
 /**
  *
- * @author olmozavala
+ * @author Olmo Zavala-Romero
  */
 public class NetCDFRequestManager {
 
@@ -218,7 +218,7 @@ public class NetCDFRequestManager {
 				+ "&LAYER=" + layer.getName()
 				+ "&COLORBARONLY=true"
 				+ "&PALETTE=" + palette
-				+ "&WIDTH=20&HEIGHT=120"
+				+ "&WIDTH=20&HEIGHT=100"
 				+ "&NUMCOLORBANDS=250";
 		
 		return paletteUrl;
