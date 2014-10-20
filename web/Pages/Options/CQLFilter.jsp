@@ -4,13 +4,13 @@
     Author     : olmozavala
 --%>
 
-<span class="draggableWindow" id="ocqlFilterInputTextParent" 
-	  onmouseover="hoverInstructionsFixedPos('ocqlFilterText', '1')" 
-	  onmouseout="hoverInstructionsFixedPos('ocqlFilterText', '2')"  >
+<span class="draggableWindow toolTipWithImage" id="ocqlFilterInputTextParent" 
+	 title="ocqlFilterText"
+	   >
 
     <div class="row">
         <div class="col-xs-10 text-center defRowSpace">
-            <span class="title invShadow"> Custom filter </span>
+            <span class="title invShadow"> <fmt:message key="cql.custom" /></span>
         </div>
         <div class="col-xs-2 ">
             <a class="btn btn-default btn-xs" href="#" onclick="toggleCustomFilterTextBox();">
@@ -20,7 +20,7 @@
     <div class="row defRowSpace">
         <div class="col-xs-12">
             <span id="availableFiltersText" class="defShadow"> 
-                    Available filters: <b>${cqlcols}</b> </span>	
+					<fmt:message key="cql.avai" />: <b>${cqlcols}</b> </span>	
         </div>
     </div>
     <div class="row">
@@ -35,11 +35,9 @@
     </div>
 
 
-    <span id="ocqlFilterText" class="row commonHover">
+    <div id="ocqlFilterText" class="row commonHover">
             <div clas="col-xs-12">
-                This is a
-                <a href="http://en.wikipedia.org/wiki/Contextual_Query_Language"> CQL </a>
-                filter text box. Possible options: 
+            <fmt:message key="help.tooltip.cql.customfilter.line1" />
             </div>
             <div clas="col-xs-12">
                 <table class="cqlFilterExampleTable">
@@ -54,15 +52,16 @@
                     </tr>
                 </table>
             </div>
-            <div clas="col-xs-12">
-                <br> <b>Examples (review available filters)</b>:
+            <div class="col-xs-12">
+           
+                <br> <b> <fmt:message key="help.tooltip.cql.customfilter.line2" /></b>:
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; time <b>></b> '2013-01-01'
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>></b> 2008 <b>AND </b>year <b><</b> 2011
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; temperature <b>></b> 10 <b>OR</b> salinity <b>>=</b> 1
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; year <b>IN</b> (2012,2013) <b>AND</b> date < '8/10/2013'
                 <br> &nbsp;&nbsp;&nbsp;&nbsp; name <b>LIKE</b> 'John<b>%</b>' <b>AND</b> year <b><</b> 2013
             </div>
-    </span>
+    </div>
     <span id="ocqlErrorParent" class="commonHover">
         <p class="errorText"></p>
     </span>

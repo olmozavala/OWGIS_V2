@@ -4,8 +4,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : May 14, 2014, 2:52:33 PM
-    Author     : olmozavala
+    Created on : Jun 18, 2014, 5:47:23 PM
+    Author     : harshulpandav
 */
 /*
 * Base configuration, mixings and global variables
@@ -53,18 +53,28 @@ and open the template in the editor.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 13, ../scss/Animations.scss */
-#animContainer {
+/* line 13, ../scss/Locale.scss */
+#languageDropDown {
   position: absolute;
-  min-width: 100px;
-  height: 100px;
-  z-index: 10030;
+  top: 4px;
+  right: 30px;
+  display: inline;
+  padding-top: 3px;
+  z-index: 1019;
 }
 
-/* line 21, ../scss/Animations.scss */
-#animControls {
-  top: 40%;
-  left: 50%;
-  min-width: 13em;
-  padding: 0px 20px;
+/* line 23, ../scss/Locale.scss */
+.languageDropDownSel {
+  font-size: 15px;
+  width: 110px;
+  color: black;
+  background-color: #909090;
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
+  border-radius: 6px / 6px;
+  margin: 1px 0px;
+}
+/* line 29, ../scss/Locale.scss */
+.languageDropDownSel:hover {
+  background-color: #777777;
 }

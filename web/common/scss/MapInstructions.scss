@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : olmozavala
 */
 @import "base";
-
+$border-select: 6px;
 // ============ This section is for the general help instructions ==========
 
 // Table that contains the help instructions
@@ -37,6 +37,7 @@ and open the template in the editor.
     padding: $defPadding;
     font-size: $f_small;
 	color:$invColor;
+	background-image: none;
     background-color: $backHelpHoverColor;
     z-index:1009;
 	top: $helpDefTop;
@@ -69,3 +70,4 @@ and open the template in the editor.
 	right:10px;
 	width: 150px;
 }
+

@@ -36,8 +36,7 @@
             <div class="col-xs-10">
                 <div class="row">
                     <div class="col-xs-8 invShadow title ">
-                        <!-- TODO put language text -->
-                        Color range
+                        <fmt:message key="ncwms.colorrange" />
                     </div>
                     <div class="col-xs-4">
                         <div class="pull-right">

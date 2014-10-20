@@ -75,6 +75,7 @@ and open the template in the editor.
   padding: 5px;
   font-size: 12px;
   color: black;
+  background-image: none;
   background-color: darkkhaki;
   z-index: 1009;
   top: 1px;
@@ -90,14 +91,14 @@ and open the template in the editor.
 }
 
 /* CQL filter parent of all the instructions*/
-/* line 52, ../scss/MapInstructions.scss */
+/* line 53, ../scss/MapInstructions.scss */
 #ocqlFilterText {
   top: 120px;
   left: 40px;
   display: none;
 }
 
-/* line 59, ../scss/MapInstructions.scss */
+/* line 60, ../scss/MapInstructions.scss */
 #helpHoverSpan {
   position: absolute;
   top: 4px;
@@ -106,7 +107,7 @@ and open the template in the editor.
   z-index: 1019;
 }
 
-/* line 68, ../scss/MapInstructions.scss */
+/* line 69, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

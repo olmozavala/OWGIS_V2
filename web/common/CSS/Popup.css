@@ -53,7 +53,7 @@ and open the template in the editor.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 13, ../scss/Popup.scss */
+/* line 14, ../scss/Popup.scss */
 .ol-popup {
   position: absolute;
   background-color: #ecf2f8;
@@ -63,7 +63,7 @@ and open the template in the editor.
   box-shadow: black 2px 2px 3px;
   padding: 14px;
   border-radius: 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ecf2f8;
   bottom: 12px;
   left: -50px;
   z-index: 1006;
@@ -71,7 +71,7 @@ and open the template in the editor.
   width: 200px;
 }
 
-/* line 28, ../scss/Popup.scss */
+/* line 29, ../scss/Popup.scss */
 .ol-popup:after, .ol-popup:before {
   top: 100%;
   border: solid transparent;
@@ -82,23 +82,23 @@ and open the template in the editor.
   pointer-events: none;
 }
 
-/* line 38, ../scss/Popup.scss */
+/* line 39, ../scss/Popup.scss */
 .ol-popup:after {
-  border-top-color: #cccccc;
+  border-top-color: #ecf2f8;
   border-width: 10px;
   left: 48px;
   margin-left: -10px;
 }
 
-/* line 45, ../scss/Popup.scss */
+/* line 46, ../scss/Popup.scss */
 .ol-popup:before {
-  border-top-color: #cccccc;
+  border-top-color: #ecf2f8;
   border-width: 11px;
   left: 48px;
   margin-left: -11px;
 }
 
-/* line 53, ../scss/Popup.scss */
+/* line 54, ../scss/Popup.scss */
 .ol-popup-closer {
   text-decoration: none;
   position: absolute;
@@ -106,7 +106,7 @@ and open the template in the editor.
   right: 8px;
 }
 
-/* line 59, ../scss/Popup.scss */
+/* line 60, ../scss/Popup.scss */
 .ol-popup-closer:after {
   content: "x";
 }

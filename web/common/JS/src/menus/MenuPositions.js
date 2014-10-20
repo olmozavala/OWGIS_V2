@@ -37,6 +37,7 @@ function saveAllWindowPositionsAndVisualizationStatus(){
     }
 
     localStorage.disable_hover = hoverDisabled;
+    
 }
 
 /**

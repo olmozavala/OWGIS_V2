@@ -17,4 +17,9 @@
     <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
     <function-signature>String translateName(com.mapviewer.model.menu.TreeNode, java.lang.String)</function-signature>
   </function>
+    <function>
+    <name>createLanguageComboBox</name>
+    <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
+    <function-signature>String createLanguageComboBox(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+  </function>
 </taglib>

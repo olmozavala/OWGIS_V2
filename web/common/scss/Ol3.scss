@@ -21,6 +21,37 @@ div.halfHeightWindow{
 	height: 50%;
 }
 
+/* container of map image of openlayers */
+#map
+{
+	width: 100%;
+	height: 100%;
+    margin-left: auto ;
+    margin-right: auto ;
+    z-index:1020;
+}
+
+
+/* This is the class that the FTL from geoserver uses 
+in most of their text */
+.map_content{
+    pointer-events: none;
+}
+
+
+/* Div to display latitude and longitude*/
+div.layersLonLat{
+    @include floatingWindow;
+    bottom:50px;
+    right:5%;
+    width: 14em;
+    height:4em;
+	cursor: auto;
+    pointer-events: none;
+    background-image:url('../images/transBack.png');
+	font-weight: bold;
+}
+
 //Defines the position of the +,- zoom buttons
 .ol-zoom{
     top: $topMenuHeight+10;
@@ -42,40 +73,11 @@ div.halfHeightWindow{
     top: $topMenuHeight+5;
 }
 
-/* container of map image of openlayers */
-#map
-{
-	width: 100%;
-	height: 100%;
-    cursor:crosshair;
-    margin-left: auto ;
-    margin-right: auto ;
-    z-index:1020;
-}
-
 /* Defines to not display anything if the layer was not found*/
 .olImageLoadError{
 	display: none !important;
 }
 
-/* This is the class that the FTL from geoserver uses 
-in most of their text */
-.map_content{
-    pointer-events: none;
-}
-
-/* Div to display latitude and longitude*/
-div.layersLonLat{
-    @include floatingWindow;
-    bottom:50px;
-    right:5%;
-    width: 14em;
-    height:4em;
-	cursor: auto;
-    pointer-events: none;
-    background-image:url('../images/transBack.png');
-	font-weight: bold;
-}
 /* Used by open layers to display longitude and latitude */
 .ol-lat-lon{
     color: $invColor;
@@ -83,5 +85,3 @@ div.layersLonLat{
     text-align: center;
 	font-weight: normal;
 }
-
-

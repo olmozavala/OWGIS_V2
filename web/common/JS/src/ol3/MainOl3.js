@@ -12,9 +12,33 @@ var elevation = 0;
 // data from the temporal data.
 var startDate;
 
+// Is used to know if the user did only click with the mouse or he/she
+// panned the map
+var isOnlyClick = false; 
+
 //Creates 100 layer objects
 for (var i = 0; i < 100; i++) {
 	eval("var layer" + i);
+}
+
+/**
+ * This function is in charge of displaying the 'progress' cursor
+ * when the user has requested some punctual data 
+ * @returns {undefined}
+ */
+function setMouseClickOnMap(){
+
+	$("#map").addClass("defaultCursor");
+
+	$("#map").on('mousedown', function() { isOnlyClick = true; })
+	.on('mousemove', function() { isOnlyClick = false; })
+	.on('mouseup', function(){
+		if(isOnlyClick){
+			$("#map").addClass("loadingCursor");
+			$("#map").removeClass("defaultCursor");
+		}
+	});
+
 }
 
 function initOl3(){
@@ -30,7 +54,8 @@ function initOl3(){
 		$("#popup").hide();
 		$("#popup-closer").blur();
 	});
-	
+
+	setMouseClickOnMap();
 	
 	/**
 	 * Create an ol_popup to anchor the popup to the map.
@@ -41,10 +66,10 @@ function initOl3(){
 	});
 	
 	
-	var bounds = mapConfig.mapBounds;
-	var extent = mapConfig.restrictedExtent;
-	var maxRes = mapConfig.maxResolution;
-	var minRes = mapConfig.minResolution;
+//	var bounds = mapConfig.mapBounds;
+//	var extent = mapConfig.restrictedExtent;
+//	var maxRes = mapConfig.maxResolution;
+//	var minRes = mapConfig.minResolution;
 	
 	var strCenter = mapConfig.mapcenter.split(",");
 	

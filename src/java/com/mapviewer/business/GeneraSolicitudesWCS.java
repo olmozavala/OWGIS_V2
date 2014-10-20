@@ -38,7 +38,6 @@ public class GeneraSolicitudesWCS {
 	 * This class obtains the call of WCS of the main layer depending on the
 	 * zoom level.
 	 *
-	 * @param {int} zoomLevel - Value of zoom level of map
 	 * @param {Layer} selectedLayer - base layer to
 	 * download
 	 * @param {String} downloadFormat format to download the data. This depends
@@ -48,7 +47,7 @@ public class GeneraSolicitudesWCS {
 	 * @return {String[]} resultado [3]  First [] is for the WCS Request, the second index is for the resolucion
 	 * of the layer, and the third is for the name of the layer.
 	 */
-	public static String[][] wcsManager(int zoomLevel, Layer selectedLayer, String downloadFormat, String cqlfilter) {
+	public static String[][] wcsManager(Layer selectedLayer, String downloadFormat, String cqlfilter) {
 
 		String[][] resultado = null; //value to return
 		String[] tituloCapasDatos = selectedLayer.getTituloCapasDatos();//get layer titles
