@@ -22,10 +22,10 @@
 		<Menu ID="shores" EN="Shore lines" ES="Linea de costa"/>
 
 		<Menu ID="latest" EN="Latest" ES="Actual"/>
-		<Menu ID="prev1" EN="Prev 1"/>
-		<Menu ID="prev2" EN="Prev 2"/>
-		<Menu ID="prev3" EN="Prev 3"/>
-		<Menu ID="prev4" EN="Prev 4"/>
+		<Menu ID="previous01" EN="Prev 1"/>
+		<Menu ID="previous02" EN="Prev 2"/>
+		<Menu ID="previous03" EN="Prev 3"/>
+		<Menu ID="previous04" EN="Prev 4"/>
 		<Menu ID="prev5" EN="Prev 5"/>
 	</Menus>
 
@@ -38,29 +38,29 @@
     <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
 				ncWMS="true" >  
-		<layer Menu="latest,atm,d2,t2" EN="Air Temperature at 2m"
+		<layer Menu="latest,atm,t2" EN="Air Temperature at 2m"
 			   ES="Temperatura a 2mts" name="atm_forecast_latest/T2" />
-		<layer Menu="latest,atm,d2,wind" EN="Wind speed at 10m"
+		<layer Menu="latest,atm,wind" EN="Wind speed at 10m"
 			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind"  style="vector"/>
-		<layer Menu="latest,atm,d2,psfc" EN="Surface Pressure"
+		<layer Menu="latest,atm,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_latest/PSFC" />
-		<layer Menu="latest,atm,d2,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
+		<layer Menu="latest,atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
 			   name="atm_forecast_latest/SST" />
-		<layer Menu="latest,atm,d2,tsk" EN="Surface Skin Temperature" ES="Temperatura en la piel de la superficie"
+		<layer Menu="latest,atm,tsk" EN="Surface Skin Temperature" ES="Temperatura en la piel de la superficie"
 			   name="atm_forecast_latest/TSK" />
-		<layer Menu="latest,atm,d2,rainc" EN="Convective Precipitacion" ES="Precipitacion"
+		<layer Menu="latest,atm,rainc" EN="Convective Precipitacion" ES="Precipitacion"
 			   name="atm_forecast_latest/RAINC" />
-		<layer Menu="latest,atm,d2,cld" EN="Cloud Fraction" ES="Nubes"
+		<layer Menu="latest,atm,cld" EN="Cloud Fraction" ES="Nubes"
 			   name="atm_forecast_latest/CLDFRA" />
-		<layer Menu="latest,atm,d2,glw" EN="Downward Longwave Radiation Flux" ES="TODO"
+		<layer Menu="latest,atm,glw" EN="Downward Longwave Radiation Flux" ES="TODO"
 			   name="atm_forecast_latest/GLW" />
-		<layer Menu="latest,atm,d2,swdown" EN="Downward Shortwave Radiation Flux" ES="TODO"
+		<layer Menu="latest,atm,swdown" EN="Downward Shortwave Radiation Flux" ES="TODO"
 			   name="atm_forecast_latest/SWDOWN" />
-		<layer Menu="latest,atm,d2,lh" EN="Net Latent Heat Flux" ES="Flujo de calor neto"
+		<layer Menu="latest,atm,lh" EN="Net Latent Heat Flux" ES="Flujo de calor neto"
 			   name="atm_forecast_latest/LH" />
-		<layer Menu="latest,atm,d2,hfx" EN="Net Sensible Heat Flux" ES="Flujo sensible de calor"
+		<layer Menu="latest,atm,hfx" EN="Net Sensible Heat Flux" ES="Flujo sensible de calor"
 			   name="atm_forecast_latest/HFX" />
-		<layer Menu="latest,atm,d2,pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"
+		<layer Menu="latest,atm,pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"
 			   name="atm_forecast_latest/PBLH" />
 	</MainLayers>
 	
