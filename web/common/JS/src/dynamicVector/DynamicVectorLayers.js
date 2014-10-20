@@ -2,10 +2,12 @@ goog.provide('owgis.vector.manager');
 
 goog.require('owgis.ogc');
 goog.require('owgis.vector.styles');
+goog.require('ol.source.GeoJSON');
 
 var viewportInitialized = false;//Indicates if 'mousemove' function has already been initialized
 var highlight;
 var featureOverlay;
+
 
 /**
  * Adds the JSON layer to the map.
@@ -25,13 +27,81 @@ owgis.vector.manager.processJSON = function(geoJSONdata, layerId, visible) {
 	var vectorSource = new ol.source.GeoJSON({
 		object: data ,
 		projection: projection});
-	
-	eval("layer"+layerId+" = new ol.layer.Vector({ source: vectorSource, style: defaultStyleFunction})"); 
-	eval("map.addLayer(layer"+layerId+");");
+
+	// These two lines are required for the Closure compiler to be able to 
+	// relate to the probler layer id
+	var currLayer = "";
+	window['owgis.vector.manager.tempLayer'] = currLayer;
+
+	owgis.vector.manager.tempLayer = new ol.layer.Vector({ source: vectorSource, style: defaultStyleFunction}); 
+	map.addLayer(owgis.vector.manager.tempLayer );
+
+	eval('layer'+layerId+' = owgis.vector.manager.tempLayer');
+
 	if(!visible){
-		eval("layer" + layerId + ".setVisible(false);");
+		owgis.vector.manager.tempLayer.setVisible(false);
 	}
 }
+window['owgis.vector.manager.processJSON'] = owgis.vector.manager.processJSON;
+
+/**
+ * This function initializes new JSON layers. The call to this function
+ * is made by the OpenLayers.java file 
+ * @param {string} layer details (the whole object of the layer)
+ * @param {int} layerId (numeric identifier of the layer)
+ * @param {boolean} visible Indicates if the layer is visible (is selected in the optional layers)
+ * @returns {undefined}
+ */
+
+owgis.vector.manager.requestJSONLayer = function( layer, layerId, visible ){
+	
+	//TODO the original server should not have the wms in it
+	var server = layer.server.substring(0,layer.server.length-3)+"ows?";//Change the server from wms to ows
+	
+	eval('globalCallback'+layerId+ " = function(geoJSON){ owgis.vector.manager.processJSON(geoJSON,"+layerId+","+visible+");};")
+	
+	var layerParams = {
+		SERVICE:"WFS",
+		VERSION: owgis.ogc.wmsversion,
+		REQUEST: "GetFeature",
+		TYPENAME: layer.name, 
+		MAXFEATURES: 50,
+		SRSNAME: _map_projection,
+		OUTPUTFORMAT: "text/javascript",
+		FORMAT_OPTIONS: "callback:globalCallback"+layerId
+	};
+	
+	//Converts all the parameters to a URL
+	var url= server+owgis.utils.paramsToUrl(layerParams);
+	
+	// This is required to avoid the cross origin problem
+	$.ajax({
+		url: url,
+		dataType: "jsonp",
+		error: function (err) {
+		},
+		success: function () {
+		}
+	});
+	
+	
+	// Adds the 'mousemove' event into the map
+	if(!viewportInitialized){
+		
+		featureOverlay = new ol.FeatureOverlay({
+			map: map,
+			style: highlightStyleFunction
+		});
+
+		//For each 'mousemove' event it calls displayFeatureInfo, to
+		// draw features on map
+		$(map.getViewport()).on('mousemove', function(evt) {
+			var pixel = map.getEventPixel(evt.originalEvent);
+			displayFeatureInfo(pixel);
+		});
+	}
+}
+window['owgis.vector.manager.requestJSONLayer'] = owgis.vector.manager.requestJSONLayer;
 
 /**
  * Reads the default style of a geometry depending of its type. The
@@ -96,59 +166,3 @@ var displayFeatureInfo = function(pixel) {
 
 
 
-/**
- * This function initializes new JSON layers. The call to this function
- * is made by the OpenLayers.java file 
- * @param {string} layer details (the whole object of the layer)
- * @param {int} layerId (numeric identifier of the layer)
- * @param {boolean} visible Indicates if the layer is visible (is selected in the optional layers)
- * @returns {undefined}
- */
-function requestJSONLayer( layer, layerId, visible ){
-	
-	//TODO the original server should not have the wms in it
-	var server = layer.server.substring(0,layer.server.length-3)+"ows?";//Change the server from wms to ows
-	
-	eval('globalCallback'+layerId+ " = function(geoJSON){ owgis.vector.manager.processJSON(geoJSON,"+layerId+","+visible+");};")
-	
-	var layerParams = {
-		SERVICE:"WFS",
-		VERSION: owgis.ogc.wmsversion,
-		REQUEST: "GetFeature",
-		TYPENAME: layer.name, 
-		MAXFEATURES: 50,
-		SRSNAME: _map_projection,
-		OUTPUTFORMAT: "text/javascript",
-		FORMAT_OPTIONS: "callback:globalCallback"+layerId
-	};
-	
-	//Converts all the parameters to a URL
-	var url= server+owgis.utils.paramsToUrl(layerParams);
-	
-	// This is required to avoid the cross origin problem
-	$.ajax({
-		url: url,
-		dataType: "jsonp",
-		error: function (err) {
-		},
-		success: function () {
-		}
-	});
-	
-	
-	// Adds the 'mousemove' event into the map
-	if(!viewportInitialized){
-		
-		featureOverlay = new ol.FeatureOverlay({
-			map: map,
-			style: highlightStyleFunction
-		});
-
-		//For each 'mousemove' event it calls displayFeatureInfo, to
-		// draw features on map
-		$(map.getViewport()).on('mousemove', function(evt) {
-			var pixel = map.getEventPixel(evt.originalEvent);
-			displayFeatureInfo(pixel);
-		});
-	}
-}

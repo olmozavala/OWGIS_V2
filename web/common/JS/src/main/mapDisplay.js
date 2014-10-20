@@ -41,6 +41,7 @@ var hoverDisabled = false; //Used to disable showing the hover texts
 var screenWidth = screen.width;
 var windowWidth = $(window).width();
 
+
 //Redirect any https request to http
 if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);

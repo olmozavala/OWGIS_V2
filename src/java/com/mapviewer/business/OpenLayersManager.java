@@ -312,7 +312,7 @@ public class OpenLayersManager {
 			layersScript += "\tmap.addLayer(layer" + layerCount + ");\n";
 //			layersScript += "\tlayer"+layerCount+".getSource().on('change'))\n";
 		}else{
-			layersScript += "\t requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+","+visible+");\n";
+			layersScript += "\t owgis.vector.manager.requestJSONLayer("+actualLayer.getLayerDetails()+","+layerCount+","+visible+");\n";
 		}
 		return layersScript;
 	}
