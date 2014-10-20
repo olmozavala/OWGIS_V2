@@ -6,10 +6,7 @@ goog.require('ol.source.ImageCanvas');
 goog.require('ol.renderer.canvas.ImageLayer');
 goog.require('goog.events');
 goog.require('owgis.ogc');
-<<<<<<< HEAD
-=======
 goog.require('owgis.ncwms.animation.status');
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 
 owgis.ncwms.animation.currUrl = "Not yet defined";//Current base url used for the animation
 
@@ -79,13 +76,9 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class*=glyphicon-backward]').parent().show();
 				$('#animControls [class*=glyphicon-forward]').parent().show();
 				$('#animControls [class*=pause]').parent().show();
-<<<<<<< HEAD
-				$('#animControls [class*=save]').parent().show();
-=======
 				$('#animControls [class*=stop]').parent().show();
 				$('#animControls [class*=save]').parent().show();
 				$('#animControls [class*=globe]').parent().show();
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
                 break;
             case owgis.ncwms.animation.status.paused:
 				$('#animSpeed').parent().hide("fade");
@@ -94,15 +87,11 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class*=fast-back]').parent().show();
 				$('#animControls [class*=fast-forw]').parent().show();
 				$('#animControls [class*=play]').parent().show();
-<<<<<<< HEAD
-				$('#animControls [class*=save]').parent().show();
-=======
 				$('#animControls [class*=stop]').parent().show();
 				if(loadedFrames > 0){
 					$('#animControls [class*=save]').parent().show();
 					$('#animControls [class*=globe]').parent().show();
 				}
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 				break;
             case owgis.ncwms.animation.status.none:
             default:
@@ -454,15 +443,8 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	// images.
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-<<<<<<< HEAD
-		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
-
-//		console.log(imgSrc);
-		eval('imageNumber'+i+'.src = imgSrc;');
-=======
 
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
 		eval("imageNumber"+i+".belongs = "+currentAnimation+";");//Attach an animation 'counter'

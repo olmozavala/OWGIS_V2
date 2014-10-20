@@ -40,20 +40,6 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 
     localStorage.disable_hover = hoverDisabled;
     
-<<<<<<< HEAD:web/common/JS/src/menus/MenuPositions.js
-}
-
-/**
- * Saves the position of one of the windows. 
- * @param {localStorage} localStorageVariable Local storage variable to be used.
- * @param {string} windowElement Name of the container of the window to save position
- */
-function saveIndividualWindowPosition(localStorageVariable, windowElement){
-    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
-        localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
-    }
-=======
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5:web/common/JS/src/layouts/draggableWindows/WindowPositions.js
 }
 
 /** Places the draggable windows to where the user last placed them. Also controls if they where

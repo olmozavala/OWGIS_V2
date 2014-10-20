@@ -14,10 +14,6 @@
  *@param {js_var} req - (request)displayanimation or getanimation times
  */
 
-<<<<<<< HEAD
-goog.require('owgis.ogc');
-
-=======
 goog.provide('owgis.ajax');
 
 goog.require('owgis.ogc');
@@ -42,7 +38,6 @@ owgis.ajax.crossorigin = function(url, callback){
 		}).done(callback);
 };
 
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
 
@@ -73,30 +68,18 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
  *currently viewing. It is used by the DownloadData.jsp to be able to download the Geotiff file
  *
  */
-<<<<<<< HEAD
-function downloadData(path) {
-=======
 function downloadData() {
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 
 	var mainLayerServer = owgis.layers.getMainLayerServer();
 
 	var requestParams = { 
 		SERVICE: "WMS",
 		VERSION: owgis.ogc.wfsversion,
-<<<<<<< HEAD
-		REQUEST: "GetMap",
-=======
 		REQUEST: "GetMap"
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 		};
 
 	switch(layerDetails.layerType){
 		case "vector":
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 			requestParams.OUTPUTFORMAT = "SHAPE-ZIP";
 			requestParams.SERVICE = "WFS";
 //			requestParams.VERSION = owgis.ogc.wfsversion;
@@ -117,10 +100,6 @@ function downloadData() {
 			requestParams.WIDTH = $(window).width();
 			requestParams.HEIGHT = $(window).height();
 			requestParams.BBOX= layerDetails.bbox;
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 			break;
 		case "ncwms"://No possible right now
 			if (layerDetails.zaxis !== undefined) {
@@ -131,34 +110,6 @@ function downloadData() {
 	var url = mainLayerServer +"?"+owgis.utils.paramsToUrl(requestParams);
 	console.log(url);
 	window.open(url,'_self');
-<<<<<<< HEAD
-
-	/*
-    var asynchronous3 = new Asynchronous();
-
-	var currPath = path + "/WCSServlet?";
-			
-    //Generamos el URL que se manda llamar de manera asincrona
-    var requestParams= {
-		WCS: true,
-		HEIGHT: height, 
-		WIDTH: width,
-		isWCS: true,
-		CENTER: map.getView().getCenter().toString(),
-		mainLayer: mainLayer}
-
-	var cqlfilter = owgis.layers.getCQLFilter();
-    if (cqlfilter !== undefined) {
-        requestParams.CQLFILTER = applyCqlFilter();
-    }
-
-	var url = currPath + owgis.utils.paramsToUrl(requestParams);
-    //Aqui se asigna la funcion de un parametro que es la encargada de hacer algo con la respuesta
-    asynchronous3.complete = AsyncCompleteEventWCS;
-    asynchronous3.call(url);
-	*/
-=======
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 }
 
 
@@ -227,11 +178,6 @@ Asynchronous.prototype.call = Asynchronous_call;
 function AsyncPunctualData(responseText) {
 
 	responseText = responseText.replace("ADD_UNITS",layerDetails.units);
-<<<<<<< HEAD
-	$("#map").removeClass("loadingCursor");
-	$("#map").addClass(".defaultCursor");
-=======
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();

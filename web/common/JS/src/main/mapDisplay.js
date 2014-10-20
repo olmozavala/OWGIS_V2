@@ -58,33 +58,10 @@ function owgisMain(){
     addLayers();
     initVariables();
 	initMenus();
-<<<<<<< HEAD
-	initHelpTxtPos();
-	owgis.tooltips.initHelpTexts();
-	initLocaleDropDown();
-}
-
-/**
- * This function is in charge of making draggable all the divs and spans
- * with the correct classes, in this case: draggableWindow or transDraggableWindow 
- * @returns {undefined}
- */
-function addDraggableWindows(){
-
-    //Only make windows draggable for 'topMenu' design
-    if (mapConfig['menuDesign'] === "topMenu" && mobile === false) {
-		$(".draggableWindow").each( function(index) {
-			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-		$(".transDraggableWindow").each( function(index) {
-			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-=======
 	owgis.help.tooltips.initHelpTexts();
 	modifyInterface();
 	if(mobile){
 		owgis.mobile.initMobile();
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 	}
 }
 
@@ -212,17 +189,12 @@ function updateTitle(dateText, elevText) {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-<<<<<<< HEAD
-        saveAllWindowPositionsAndVisualizationStatus();
-        setSelectedLocale();
-=======
     	if(!mobile){
 	        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
     	else{
     		getElementById("mobile").value = mobile;
     	}
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
         submitForm();
     }
 }
@@ -263,26 +235,9 @@ function resetView(){
     submitForm();
 }
 
-<<<<<<< HEAD
-/**
- * This function is used to modify the locale dropdown
- * to display flag icons in it.
- */
-function initLocaleDropDown(){
-	$("#langDropDown").msDropDown();
-}
 
-/**
- * This function is used to set the selected locale to a parameter _locale
- * to use it in the MapViewerServlet
- */
-function setSelectedLocale(){
-	var selectedLocale= $("#langDropDown").find('option:selected').val();
-	document.getElementById("_locale").value = selectedLocale;
-=======
 function getElementById(id){
 	return $('#'+id)[0];
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 }
 
 goog.exportSymbol('owgis',owgis);
