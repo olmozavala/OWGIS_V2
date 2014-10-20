@@ -34,3 +34,21 @@ owgis.layers.getMainLayerServer = function(){
 	var mainLayerServer = mainSource.getUrls()[0];
 	return mainLayerServer;
 }
+
+/** Hides or shows one layer of openLayers */
+owgis.layers.showLayer = function(layer,show){
+    layer.setVisible(show);
+}
+
+
+/**
+ * This function replaces one parameter of the main layer and refresh the map
+ */
+owgis.layers.updateMainLayerParam= function(param,value){
+	//Obtain the current parameters of the main layer
+    layerParams= owgis.layers.getMainLayer().getSource().getParams();
+
+    eval("layerParams."+param+"=\""+value+"\"");//Modify the desired parameter
+	
+    owgis.layers.getMainLayer().getSource().updateParams(layerParams);//Updates the layer
+}

@@ -64,7 +64,7 @@
 
 
 		<!--OpenLayers 3 Management -->
-		<script type="text/javascript" src="../common/JS/src/ol3/OpenLayersRelated.js"> </script>
+		<script type="text/javascript" src="../common/JS/src/ol3/PopUp.js"> </script>
 		<!--OpenLayers 3 Management -->
 
 		<!--NcWMS related-->
@@ -76,28 +76,53 @@
 		<script src="../common/JS/src/menus/OptionalLayersMenu.js"> </script>
         <script src="../common/JS/src/menus/HelpInstructions.js"> </script>
 		<!--Menus related-->
-		
+			
 		<!--Debug mode-->
 		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
 		<!--<script src="../common/JS/vendor/closure/goog/base.js"> </script>-->
 		<script src="../common/JS/vendor/ol.js"></script>
 		<!--<script src="../common/JS/vendor/ol/ol.js"></script>-->
 		<!--Debug mode-->
-
-       <title>OZ hello Ol3</title>
+		<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Sans:400,700|Open+Sans:400,700|Roboto:700,400|Raleway:400,700' rel='stylesheet' type='text/css'>
+			
+		<title>OZ hello Ol3</title>
   </head>
-  <body>
-	  <div class="container-fluid">
+  <body style='background-color: white'>
+	  <section class="container-fluid">
 		  <div class="row">
-			  <div class="col-lg-1 blue">Logo Left</div>
-			  <div class="col-lg-8 col-lg-offset-1 red  center-block"> 
-				  <div class="col-lg-1 ">Menu</div>
-				  <div class="col-lg-1 ">Menu</div>
-				  <div class="col-lg-1">Menu</div>
-				  <div class="col-lg-1">Menu</div>
+			  <div class="col-lg-1 red" >
+				  <a href="http://owgis.org" target="_blank">
+					  <img border="0" src="../common/images/Logos/owgis.png" alt="OWGIS" height="20px"  />
+				  </a>
 			  </div>
-			  <div class="col-lg-1 col-lg-offset-1 green ">Languages right</div>
+			  <div class="col-lg-9 green text-center" >
+				  <!-- Link to download kml files-->
+				  <div class="col-lg-6 sh" >
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > Google Earth</div>
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > 222 Transparency 222</div>
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > Color Palette </div>
+				  </div>
+				  <div class="col-lg-6 text-left" >
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > Transect Tool </div>
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > Help </div>
+					  <div class="buttonStyle toolTip" id="kmlLinkParent" > Reset View</div>
+				  </div>
+			  </div>
+			  <div class="col-lg-2" >
+				  <div class="col-lg-10 yellow text-right" >
+					  <select>
+						  <option value="sopas">perico</option>
+						  <option value="sopas">perico</option>
+						  <option value="sopas">perico</option>
+						  <option value="sopas">perico</option>
+					  </select>
+				  </div>
+				  <div class="col-lg-2 blue"  >
+					  <img class="toolTip" onclick="owgis.help.tooltips.toogleTooltips();" 
+						   id="helpHoverImg" src="../common/images/Help/Help1.png">
+				  </div>
+			  </div>
 		  </div>
-	  </div>
+	  </section>
   </body>
 </html>

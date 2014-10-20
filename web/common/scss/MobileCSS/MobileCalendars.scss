@@ -1,0 +1,91 @@
+/* Display animation button */
+#p-animation{ 
+	text-align: center;
+	font-size: 12px;
+	visibility: visible;
+}
+
+/* Stop animation button */
+#s-animation{ 
+	display:none;
+	cursor: pointer;
+	font-size:12px;
+    z-index:1009;
+	white-space: nowrap;
+	text-align: center;
+}
+
+/* animation button that pops up when calendar dates have been selected */
+div.dispAnimation{
+	z-index:1000;
+	visibility: hidden;
+        font-size:50px;
+}
+
+
+.buttonStyle
+{
+    font-size:25px;
+    
+}
+
+/* This is the Loading text */
+#l-animation{ 
+	visibility: hidden; 
+	position:absolute;	
+	margin:auto;
+    top:30%;
+    left:40%;
+    z-index:1009;
+	pointer-events: none;
+	font-size: 18px;
+}
+
+#timeSelect{
+	display: inline-block;
+	width: 200px;
+        font-size:25px;
+}
+
+/* Calendars container */
+#CalendarsAndStopContainer{
+   
+	white-space: nowrap;
+	
+        display:none;
+    
+      
+       background-color:black;
+       
+       -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius:10px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border:solid 5px white;
+    padding:3px;
+       
+       
+}
+
+
+
+#hideOneDay, #hideOneDayEnd{
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+
+/*holds the start calendar  */
+div.startDateCal{
+	float:left;
+	display: inline-block;
+       
+       
+}
+/*holds the end calendar  */
+div.endDateCal{
+	float:right;
+	display: inline-block;
+}
+

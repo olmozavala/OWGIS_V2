@@ -1,7 +1,7 @@
 <%-- <%--  --%>
 <%--     Document   : HelpTexts --%>
 <%--     Created on : Mar 28, 2013, 3:38:41 PM --%>
-<%--     Author     : olmozavala --%>
+<%--     Author     : Olmo Zavala-Romero --%>
 <%-- --%> 
 <!-- 		<span id="mainKmlParentHover" class="commonHover"> -->
 <!-- 			Open current animation <br> -->

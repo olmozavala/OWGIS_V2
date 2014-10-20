@@ -25,7 +25,7 @@ import java.io.FileFilter;
 
 /**
  *
- * @author olmozavala
+ * @author Olmo Zavala-Romero
  */
 public class xmlFileFilter implements FileFilter{
 

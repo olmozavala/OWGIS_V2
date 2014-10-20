@@ -10,7 +10,7 @@ This stylesheet defines styles for the 'Home' page of the viewer.
 */
 /* 
     Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 /*
 * Font variables
@@ -113,22 +113,8 @@ div.leftFoot {
   padding: 5px 0px;
 }
 
-/* Main div for user menu options. topmenu */
-/* line 70, ../scss/HomePage.scss */
-.layersMenu {
-  background-image: url("../images/transBack.png");
-  top: 0px;
-  left: 0px;
-  position: absolute;
-  border-bottom: white 1px solid;
-  text-align: center;
-  width: 100%;
-  padding: 10px 0px;
-  height: 44px;
-}
-
 /* Div to display latitude and longitude*/
-/* line 83, ../scss/HomePage.scss */
+/* line 71, ../scss/HomePage.scss */
 .layersLonLat {
   z-index: 1008;
   position: absolute;
@@ -155,7 +141,7 @@ div.leftFoot {
 }
 
 /*Data displayed for JSONP layers above the latitude and longitude*/
-/* line 95, ../scss/HomePage.scss */
+/* line 83, ../scss/HomePage.scss */
 #jsonpdata {
   z-index: 1008;
   position: absolute;

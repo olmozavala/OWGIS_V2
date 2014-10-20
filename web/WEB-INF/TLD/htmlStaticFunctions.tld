@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
-  <tlib-version>1.0</tlib-version>
-  <uri>HtmlMenusHelper</uri>
-  <function>
-    <name>createMainMenu</name>
-    <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String createMainMenu(com.mapviewer.model.menu.TreeNode, java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>createOptionalLayersMenu</name>
-    <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String createOptionalLayersMenu(com.mapviewer.model.menu.TreeNode, java.lang.String, java.lang.String, boolean)</function-signature>
-  </function>
-  <function>
-    <name>transName</name>
-    <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String translateName(com.mapviewer.model.menu.TreeNode, java.lang.String)</function-signature>
-  </function>
-    <function>
-    <name>createLanguageComboBox</name>
-    <function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
-    <function-signature>String createLanguageComboBox(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</function-signature>
-  </function>
+	<tlib-version>1.0</tlib-version>
+	<uri>HtmlMenusHelper</uri>
+	<function>
+		<name>createMainMenu</name>
+		<function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
+		<function-signature>String createMainMenu(com.mapviewer.model.menu.TreeNode, java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>createOptionalLayersMenu</name>
+		<function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
+		<function-signature>String createOptionalLayersMenu(com.mapviewer.model.menu.TreeNode, java.lang.String, java.lang.String, boolean)</function-signature>
+	</function>
+	<function>
+		<name>transName</name>
+		<function-class>com.mapviewer.tools.HtmlMenuBuilder</function-class>
+		<function-signature>String translateName(com.mapviewer.model.menu.TreeNode, java.lang.String)</function-signature>
+	</function>
 </taglib>

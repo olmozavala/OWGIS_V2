@@ -3,77 +3,97 @@
  #ulBaseLayers, #optionalLayersWindow{
  display: none;
  } */
+/* line 6, ../../scss/MobileCSS/MobStyles.scss */
 html, body {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
+
+/* line 10, ../../scss/MobileCSS/MobStyles.scss */
 .loader {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url('../../images/loading/009.gif') 50% 50% no-repeat rgb(249,249,249);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("../../images/loading/009.gif") 50% 50% no-repeat #f9f9f9;
 }
+
+/* line 19, ../../scss/MobileCSS/MobStyles.scss */
 #header {
-    /*display: none;*/
-    height: 35px;
-    width: 100%;
-    position: absolute;
-    z-index: 10000;
-    opacity: 0.9;
-    background: #293041;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #293041), color-stop(1, #6d6d6d));
-    background: -webkit-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -moz-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -ms-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -o-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: linear-gradient(to top, #293041 0%, #6d6d6d 100%);
+  /*display: none;*/
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  z-index: 10000;
+  opacity: 0.9;
+  background: #293041;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #293041), color-stop(1, #6d6d6d));
+  background: -webkit-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+  background: -moz-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+  background: -ms-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+  background: -o-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
+  background: linear-gradient(to top, #293041 0%, #6d6d6d 100%);
 }
 
+/* line 35, ../../scss/MobileCSS/MobStyles.scss */
 #navpanelleft {
-    width: auto;
+  width: auto;
 }
+
+/* line 38, ../../scss/MobileCSS/MobStyles.scss */
 #navpanelright {
-    width: 259px;
+  width: 259px;
 }
+
+/* line 41, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
-    padding: 0px;
+  padding: 0px;
 }
+
+/* line 44, ../../scss/MobileCSS/MobStyles.scss */
 .ui-controlgroup {
-    margin: 0;
+  margin: 0;
 }
 
+/* line 48, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
-    overflow-x: hidden;
-    max-height: 500px;
+  overflow-x: hidden;
+  max-height: 500px;
 }
 
+/* line 53, ../../scss/MobileCSS/MobStyles.scss */
 #bars-button_left, #bars-button_right {
-    opacity: 1;
-    height: 27px;
-    padding-top: 5px;
+  opacity: 1;
+  height: 27px;
+  padding-top: 5px;
 }
-.languageDropDownSel {
-    padding-right: 5px;
+
+/* line 58, ../../scss/MobileCSS/MobStyles.scss */
+.languageContainerSel {
+  padding-right: 5px;
 }
+
 /*     ul ul { display: none; } */
+/* line 62, ../../scss/MobileCSS/MobStyles.scss */
 html {
-    font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#leftList{
-margin: 0.4em;
-width: 170px;
+/* line 67, ../../scss/MobileCSS/MobStyles.scss */
+#leftList {
+  margin: 0.4em;
+  width: 170px;
 }
 
+/* line 72, ../../scss/MobileCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-controls {
-    width: 100%;
+  width: 100%;
 }
 
-
+/* line 77, ../../scss/MobileCSS/MobStyles.scss */
 #l-animation {
   position: absolute;
   margin: auto;
@@ -84,12 +104,17 @@ width: 170px;
   font-size: 18px;
 }
 
+/* line 87, ../../scss/MobileCSS/MobStyles.scss */
 #timeSelect {
   width: 170px;
 }
 
-.transect-slider  .ui-slider-label {
-    font-size: 13px;
+/* line 91, ../../scss/MobileCSS/MobStyles.scss */
+.transect-slider .ui-slider-label {
+  font-size: 13px;
 }
 
-.transect-slider .ui-slider-switch { width: 10em }
+/* line 95, ../../scss/MobileCSS/MobStyles.scss */
+.transect-slider .ui-slider-switch {
+  width: 10em;
+}

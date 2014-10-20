@@ -2,11 +2,13 @@ goog.provide('owgis.ncwms.animation');
 
 goog.require('ol.source.ImageStatic');
 goog.require('ol.source.ImageWMS');
+goog.require('ol.source.ImageCanvas');
+goog.require('ol.renderer.canvas.ImageLayer');
 goog.require('goog.events');
 goog.require('owgis.ogc');
 goog.require('owgis.ncwms.animation.status');
-goog.require('owgis.interface');
 
+owgis.ncwms.animation.currUrl = "Not yet defined";//Current base url used for the animation
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
@@ -16,7 +18,6 @@ var imagesReady = new Array();//A bit array that indicates which layer are alrea
 
 var animLayer;
 var animSource;
-var currUrl;
 var animParams; //Parameters requested for the animation
 var intervalHandler;// This is the handler of the 'interval' function
 var loadedFrames = 0;//Indicates how many frames have been loaded. 
@@ -63,12 +64,12 @@ function updateMenusDisplayVisibility(status){
 					$('#stopAnimText').show("fade");
 				}
 				//Show the 'loading' animation
-				owgis.interface.loadingatmap(true);
+				owgis.interf.loadingatmap(true);
                 $('#hideCalendarButtonParent').hide("fade");//Hide the calendars
 //				$('#animSpeed').parent().hide();
                 break;
             case owgis.ncwms.animation.status.playing:
-				owgis.interface.loadingatmap(false);// Stop showing the "loading"
+				owgis.interf.loadingatmap(false);// Stop showing the "loading"
 				$('#animControls a').hide();// Hidde all the animation controls 
 				$('#animSpeed').parent().show("fade");
 				// Animation controls
@@ -117,7 +118,7 @@ function updateMenusDisplayVisibility(status){
                     $('#minPal').disabled = false;
                     $('#maxPal').disabled = false;
                     $('#hideCalendarButtonParent').show("fade");
-					owgis.interface.loadingatmap(false);
+					owgis.interf.loadingatmap(false);
                 }else{
                     $('#CalendarsAndStopContainer').hide("fade");
                 }
@@ -218,7 +219,7 @@ function updateAnimationStatus(newStatus){
 				map.removeLayer(animLayer);
 			}
 			
-			updateTitleAndKmlLink();
+			owgis.kml.updateTitleAndKmlLink();
 			break;
 		case owgis.ncwms.animation.status.paused: break;
 		case owgis.ncwms.animation.status.playing: break;
@@ -285,6 +286,8 @@ function obtainSelectedDates(){
  * This function gets the selected dates from the user and starts
  * the ajax request to generate the animation of the NetCDF files.
  */
+
+window['owgis.ncwms.animation.dispAnimation'] = owgis.ncwms.animation.dispAnimation;
 owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 
 	//This check is necessary to avoid keep adding layers to the map
@@ -377,17 +380,17 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
     var canvasWidth = size[0];
     var canvasHeight = size[1];        
 
- 	var canvas = document.getElementById('animationCanvas');    
+ 	var canvas = getElementById('animationCanvas');    
 	canvas.width = canvasWidth;
 	canvas.height = canvasHeight;   	
 	clearCanvas();
 
 	currentAnimation++;//Increments the animation counter;
 	owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loading;
-	updateTitleAndKmlLink();
+	owgis.kml.updateTitleAndKmlLink();
 
 	loadedFrames = 0;// Reset the total number of images loaded
-	owgis.interface.loadingatmap(true,0);
+	owgis.interf.loadingatmap(true,0);
 	updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 
 	//TODO depending on the WMS version that we are using the position
@@ -409,9 +412,9 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	var layerName = mainParams.LAYERS;
 	
 	if(mainSource.getUrls){
-		currUrl = mainSource.getUrls()[0];//Get url for 
+		owgis.ncwms.animation.currUrl = mainSource.getUrls()[0];//Get url for 
 	}else{
-		currUrl = mainSource.getUrl();//Get url for 
+		owgis.ncwms.animation.currUrl = mainSource.getUrl();//Get url for 
 	}
 	
 	animParams = { 
@@ -434,28 +437,25 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
 	}
 	
-	var imgSrc;
-	
 	currentFrame = 0;// Reset to first frame
 	
 	// This loops starts 'n' number of parallel requests for animation
 	// images.
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-		imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 
-//		console.log(imgSrc);
-		eval('imageNumber'+i+'.src = imgSrc;');
+		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
 		eval("imageNumber"+i+".belongs = "+currentAnimation+";");//Attach an animation 'counter'
-		eval("imageNumber"+i+".addEventListener('load', imageHasBeenLoadedParallel);");
+		eval("imageNumber"+i+".addEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel);");
 		eval("imageNumber"+i+".addEventListener('error', errorFunction);");
 	}
+
 	//For the link to download the GIF
 	animParams.FORMAT = "image/gif";
 	animParams.TIME = allFrames.join(",");
-	var gifLink = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+	var gifLink = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 	$('#animControls [class*=save]').parent().attr("href",gifLink);
 
 	startAnimationLoop();
@@ -469,7 +469,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
  * @returns {undefined}
  */
 function clearCanvas(){
-	var canvas = document.getElementById('animationCanvas');    
+	var canvas = getElementById('animationCanvas');    
 	
 	//Clears any previous display in the canvas
     var ctx = canvas.getContext('2d');
@@ -494,17 +494,25 @@ function errorFunction(e){
 		console.log("Error loading image: "+currentImage);
 
 		animParams.TIME = allFrames[currentImage];
-		var imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
-
-		eval('imageNumber'+currentImage+'.src = imgSrc;'); eval("imageNumber"+currentImage+".errorCount = "+(errorCount+1)+";");
+		eval("imageNumber"+currentImage+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
+		eval('imageNumber'+currentImage+'.src = imgSrc;'); 
+		eval("imageNumber"+currentImage+".errorCount = "+(errorCount+1)+";");
 	}
 }
 
-function imageHasBeenLoadedParallel(e){
-	e.target.removeEventListener('load', imageHasBeenLoadedParallel, false); 
+/**
+ * This function is called when an image has been loaded and is also in charge
+ * of 'fireing' the next corresponding image.  
+ * @param {type} e Image that triggered the event
+ * @returns {undefined}
+ */
+
+window['owgis.ncwms.animation.imageHasBeenLoadedParallel'] = owgis.ncwms.animation.imageHasBeenLoadedParallel;
+owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
+	e.target.removeEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel, false); 
 
 	// This force to clear the canvas is to avoid bug in
-	// firefox that displays previous imagesj
+	// firefox that displays previous images
 	clearCanvas();
 
 	if( owgis.ncwms.animation.status.current === owgis.ncwms.animation.status.loading ||
@@ -532,16 +540,15 @@ function imageHasBeenLoadedParallel(e){
 				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 			}else{//then we still need to load more
-				owgis.interface.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
+				owgis.interf.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 				if( (currentImage + numberOfParallelRquests) < totalNumOfFrames ){
 					var nextImage = currentImage + numberOfParallelRquests;
 					animParams.TIME = allFrames[nextImage];
 					
-					var imgSrc = currUrl+"?"+owgis.utils.paramsToUrl(animParams);
 					eval("imageNumber"+nextImage+".belongs = "+currentAnimation+";");//Attach an animation 'counter'
-					eval('imageNumber'+nextImage+'.src = imgSrc;');
+					eval("imageNumber"+nextImage+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 					eval("imageNumber"+nextImage+".id = "+nextImage+";");
-					eval("imageNumber"+nextImage+".addEventListener('load', imageHasBeenLoadedParallel);");
+					eval("imageNumber"+nextImage+".addEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel);");
 				}
 			}
 			
@@ -564,6 +571,7 @@ function clearLoopHandler(){
  * @returns {undefined}
  */
 function startAnimationLoop(){
+
 	clearLoopHandler();
 	intervalHandler = setInterval(loopAnimation,animSpeed);
 	$('#animSpeed').text( (1000/animSpeed).toFixed(1) +" fps");
@@ -575,7 +583,7 @@ function startAnimationLoop(){
  * @returns {undefined}
  */
 function loopAnimation(){
-	var canvas = document.getElementById('animationCanvas');    
+	var canvas = getElementById('animationCanvas');    
     var ctx = canvas.getContext('2d');
 	
 	//When the animation is 'playing' it loops on all the frames

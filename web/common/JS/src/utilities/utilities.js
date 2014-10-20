@@ -54,21 +54,6 @@ owgis.utils.replaceGetParamInLink = function(name, param, newval){
 };
 
 /**
- *open new window
- *@param url - page to display in new window
- *@param width - width of new window
- *@param height - height of new window
- *@return false - it returns false to exit the function. 
- */
-owgis.utils.popItUp = function(url, width, height ) {
-	newwindow=window.open(url,'','height='+height+',width='+width);
-	if (window.focus) {
-		newwindow.focus();
-	}
-	return false;
-};
-
-/**
  *Get minimum value
  *@param value1 - first value
  *@param value2 - second value
@@ -163,7 +148,8 @@ owgis.utils.popUp = function(url, width, height)
 		+ width + ',height=' + height + ',left = 300,top = 300');
 };
 
-/**pass a number and if padding is needed then add 0. 
+/**
+ * Pass a number and if padding is needed then add 0. 
  *Example: pass 1 return 01
  *Example: pass 15 return 15. 
  *@param number - number to pad
@@ -177,7 +163,7 @@ owgis.utils.pad = function(number) {
 	return (number < 10 ? '0' : '') + number;
 };
 
-/*
+/**
  * Gets the day on a specified format like:
  * format = %Y-m-d
  * @param formato - format of date. %Y for just year. 

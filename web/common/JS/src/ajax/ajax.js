@@ -75,7 +75,7 @@ function downloadData() {
 	var requestParams = { 
 		SERVICE: "WMS",
 		VERSION: owgis.ogc.wfsversion,
-		REQUEST: "GetMap",
+		REQUEST: "GetMap"
 		};
 
 	switch(layerDetails.layerType){
@@ -181,7 +181,7 @@ function AsyncPunctualData(responseText) {
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();
-	owgis.interface.loadingatmouse(false);//Stop showing the loading icon
+	owgis.interf.loadingatmouse(false);//Stop showing the loading icon
 }
 
 /**

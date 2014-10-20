@@ -66,18 +66,6 @@ div.leftFoot{
     padding: 5px 0px;//Put some space above and below title
 }
 
-/* Main div for user menu options. topmenu */
-.layersMenu{
-    background-image:url('../images/transBack.png');
-    top:0px;
-    left:0px;
-    position:absolute;
-    border-bottom:$fontColor + 20 1px solid;
-    text-align: center;
-    width:100%;
-    padding: $defPadding*2 0px;
-    height:$topMenuHeight;
-}
 
 /* Div to display latitude and longitude*/
 .layersLonLat{

@@ -1,7 +1,7 @@
 <%-- 
     Document   : GlobalJavaScripls
     Created on : Aug 3, 2012, 5:48:28 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 <script type="text/javascript"  >
 	var layerDetails = ${layerDetails}; //layer details such as title, server, ect in a json object. 
@@ -29,6 +29,7 @@
 	var cqlFilter = ${cqlfilter}; //Indicates if the base layer uses CQL filtering
     var _map_projection = mapConfig.mapProjection;// This is the default map projection
     var _map_bk_layer = mapConfig.backgroundLayer;// This is the background layer we are using
+	var _curr_language = '${language}';
 
 	// For popup
 	var ol_popup = null;

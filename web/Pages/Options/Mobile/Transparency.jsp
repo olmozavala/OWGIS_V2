@@ -1,7 +1,7 @@
 <%-- 
     Document   : Transparency
     Created on : Aug 3, 2012, 6:19:41 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 --%>
 
 <%--
@@ -16,7 +16,7 @@ but a service offered by the OpenLayers Library.
 	
     <table cellpadding="0" border="0">
         <tr>
-            <td><button id="minusButtonTrans" class="mobileButton"  type="button" disabled="disabled" onclick="changeTranspManager(.15, 'topMenu');">
+            <td><button id="minusButtonTrans" class="mobileButton"  type="button" disabled="disabled" onclick="owgis.transparency.changeTransp(.15);">
                     -
 
                 </button></td>
@@ -27,7 +27,7 @@ but a service offered by the OpenLayers Library.
             <td>
 
 
-                <button id="plusButtonTrans" type="button" class="mobileButton" onclick="changeTranspManager(-.15, 'topMenu');">
+                <button id="plusButtonTrans" type="button" class="mobileButton" onclick="owgis.transparency.changeTransp(-.15);">
                     +
 
                 </button>

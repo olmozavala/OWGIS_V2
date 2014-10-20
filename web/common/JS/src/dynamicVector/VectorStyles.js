@@ -1,7 +1,5 @@
 goog.provide('owgis.vector.styles');
 
-goog.require('ol.source.*');
-
 // General styles for default vector layer
 var strokeColor = "blue";//Default color for the stroke
 var fillColor = "rgba(255, 255, 0, 0.1)"; // Default fill color
@@ -25,7 +23,7 @@ var pointImageHighlight = new ol.style.Circle({
 });
 
 //---------------------- Default styles -------------
-owgis.vector.styles.default = {
+owgis.vector.styles.def = {
     'Point': [new ol.style.Style({
 			image: pointImageDef
 		})],

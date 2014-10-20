@@ -1,6 +1,6 @@
-#optionalLayersWindow{
-    border: 2px solid #a1a1a1; 
-    border-radius: 10px; 
-    margin: 0.3em 0.2em;
-    font-size: 11px;
+/* line 1, ../../scss/MobileCSS/MOptionalLayers.scss */
+#optionalLayersWindow {
+  border: 2px solid #a1a1a1;
+  border-radius: 10px;
+  margin: 0.3em 0.2em;
 }

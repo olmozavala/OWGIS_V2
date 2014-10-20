@@ -5,14 +5,14 @@ and open the template in the editor.
 */
 /* 
     Created on : Sep 20, 2013, 9:23:40 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 /*
 * Base configuration, mixings and global variables
 */
 /* 
     Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : olmozavala
+    Author     : Olmo Zavala-Romero
 */
 /*
 * Font variables
@@ -100,14 +100,10 @@ and open the template in the editor.
 
 /* line 60, ../scss/MapInstructions.scss */
 #helpHoverSpan {
-  position: absolute;
-  top: 4px;
-  right: 0px;
-  display: inline;
   z-index: 1019;
 }
 
-/* line 69, ../scss/MapInstructions.scss */
+/* line 65, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

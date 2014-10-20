@@ -1,6 +1,7 @@
 goog.provide('owgis.ncwms.calendars');
 
-goog.require('owgis.const');
+goog.require('owgis.constants');
+goog.require('owgis.ol3.popup');
 
 var calStart; //calendar start date
 var calEnd;  //calendar end date
@@ -136,7 +137,7 @@ function updateCalendarStart(){
 	
 	// When updateing the 'current' layer by changing the start cal, we should
 	// close the popup
-	closePopUp();
+	owgis.ol3.popup.closePopUp();
 }
 
 /**
@@ -213,7 +214,7 @@ owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd
 		
 		return startDateTxt;
 	}
-	return owgis.const.notimedim;
+	return owgis.constants.notimedim;
 	
 }
 /**
@@ -257,14 +258,14 @@ function getSuggestedDate(actualDate,ahead){
 	return end_final;
 }
 
-/*
+/**
  * Updates the current layer ant map title with the selected date 
  * @paramnewDate - selected date object passed in
  */ 
 function updateMainLayerDate(newDate){
 	
-    updateMainLayerParam('TIME',newDate);
-	updateTitleAndKmlLink();
+    owgis.layers.updateMainLayerParam('TIME',newDate);
+	owgis.kml.updateTitleAndKmlLink();
 }
 
 /**

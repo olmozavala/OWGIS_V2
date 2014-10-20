@@ -1,0 +1,62 @@
+/* container of map image of openlayers */
+#map
+{
+    cursor:crosshair;
+    margin-left: auto ;
+    margin-right: auto ;
+
+}
+
+/* Used by open layers to display longitude and latitude */
+#location {
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    display: inline;
+    margin: auto;
+	font-weight: normal;
+}
+
+/* Thic class controls the complete popup (the content plust the close button area*/
+.olPopup{
+    border-radius: 10px;
+}
+/* This is the style of the OpenLayers pop up (Layer details)
+   The font size has to be defined on JavaScript (I doesn't work here)
+	This style only works when using default PopUp types (not clouds)
+*/
+div.olPopupContent{
+    background-image:url('../../images/transBack2.png');
+    border-radius: 10px;
+    /*overflow: hidden;*/
+    width: 190px;
+}
+
+/* Defines the style for the PanPanel control */
+div.olControlPanPanel{
+    position:absolute;
+    top:20px;
+    left:150px;
+    display:none;
+    zoom:200%;
+}
+/* Defines the style for the PanPanel control */
+div.olControlZoomPanel{
+    position:absolute;
+     top:90px;
+    left:158px;
+    display:none;
+    zoom:200%;
+    
+}
+
+/* Defines to not display anything if the layer was not found*/
+.olImageLoadError{
+	display: none !important;
+}
+
+/* This is the class that the punctual data from geoserver uses 
+in most of their text */
+.map_content{
+    pointer-events: none;
+}
