@@ -3,12 +3,12 @@
 -->
 
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-	<MenuEntries>
-		<MenuEntry ID="hycom54" EN="54-year Exp" ES="Exp. 54-años"/>
-		<MenuEntry ID="first18" EN="Years 1 to 18" ES="Primeros 18"/>
-		<MenuEntry ID="second18" EN="Years 19 to 36" ES="Segundos 18"/>
-		<MenuEntry ID="third18" EN="Years 37 to 54" ES="Terceros 18"/>
-	</MenuEntries>
+	<Menus>
+		<Menu ID="hycom54" EN="54-year Exp" ES="Exp. 54-años"/>
+		<Menu ID="first18" EN="Years 1 to 18" ES="Primeros 18"/>
+		<Menu ID="second18" EN="Years 19 to 36" ES="Segundos 18"/>
+		<Menu ID="third18" EN="Years 37 to 54" ES="Terceros 18"/>
+	</Menus>
 	
     <!-- First 18 years -->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"

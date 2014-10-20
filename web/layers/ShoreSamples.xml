@@ -1,9 +1,9 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 
-	<MenuEntries>
-		<MenuEntry ID="shorem" EN="Shore missions" ES="Misiones"/>
-		<MenuEntry ID="shorem" EN="Shore missions" ES="Misiones"/>
-	</MenuEntries>
+	<Menus>
+		<Menu ID="shorem" EN="Shore missions" ES="Misiones"/>
+		<Menu ID="shorem" EN="Shore missions" ES="Misiones"/>
+	</Menus>
 
     <MainLayers BBOX="-96.36875,29.1038333,-29.10666667,37.281888889"
         format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"

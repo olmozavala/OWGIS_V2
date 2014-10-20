@@ -8,16 +8,16 @@ Author     : Olmo Zavala Romero
 <div id="leftFooter" class="leftFoot">
     &nbsp;
     <a  href="http://www.fsu.edu/">
-        <img border="0" src="${basepath}/common/images/Logos/FSU.png" alt="FSU" width="30" height="30" /></a>
+        <img border="0" src="./common/images/Logos/FSU.png" alt="FSU" width="30" height="30" /></a>
     &nbsp;
     <a  href="http://coaps.fsu.edu/">
-        <img border="0" src="${basepath}/common/images/Logos/COAPSoz.png" alt="COAPS" width="30" height="30" /></a>
+        <img border="0" src="./common/images/Logos/COAPSoz.png" alt="COAPS" width="30" height="30" /></a>
     &nbsp 
     <a  href="http://www.deep-c.org/">
-        <img border="0" src="${basepath}/common/images/Logos/DeepC.png" alt="DeepC" width="51" height="30" /></a>
+        <img border="0" src="./common/images/Logos/DeepC.png" alt="DeepC" width="51" height="30" /></a>
     &nbsp 
     <a  href="http://www.noaa.gov/">
-        <img border="0" src="${basepath}/common/images/Logos/NOAA.png" alt="NOAA" width="30" height="30" /></a>
+        <img border="0" src="./common/images/Logos/NOAA.png" alt="NOAA" width="30" height="30" /></a>
 
     <a  href="http://deep-c.org/copyright">
         <p class="footNote" align="left">

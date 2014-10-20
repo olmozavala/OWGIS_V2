@@ -33,8 +33,6 @@ owgis.layers.getMainLayerServer = function(){
 
 	var mainLayerServer = mainSource.getUrls()[0];
 	return mainLayerServer;
-<<<<<<< HEAD
-=======
 }
 
 /** Hides or shows one layer of openLayers */
@@ -53,5 +51,4 @@ owgis.layers.updateMainLayerParam= function(param,value){
     eval("layerParams."+param+"=\""+value+"\"");//Modify the desired parameter
 	
     owgis.layers.getMainLayer().getSource().updateParams(layerParams);//Updates the layer
->>>>>>> 9cd9bc94f6dc403b4c3c0cbd780392e04d5938c5
 }

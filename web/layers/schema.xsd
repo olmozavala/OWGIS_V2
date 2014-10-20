@@ -233,10 +233,6 @@
 									<xs:attribute name="featureInfo" type="xs:string"></xs:attribute>
 									<xs:attribute name="title" type="xs:string"></xs:attribute>
 									<xs:attribute name="EN" type="xs:string"></xs:attribute>
-<<<<<<< HEAD
-									<xs:attribute name="ES" type="xs:string"></xs:attribute>
-									<xs:attribute name="BBOX" type="xs:string" />
-=======
 									<xs:attribute name="ES" type="xs:string" ></xs:attribute>
 									<xs:attribute name="FR" type="xs:string" ></xs:attribute>
 									<xs:attribute name="MS" type="xs:string" ></xs:attribute>
@@ -246,7 +242,6 @@
 									<xs:attribute name="RU" type="xs:string" ></xs:attribute>
 									<xs:attribute name="HI_IN" type="xs:string" ></xs:attribute>
 									<xs:attribute name="BBOX" type="xs:string"/>
->>>>>>> 2c78f5a502e4fce0cb1813f37f470e41eaaf40ea
 									<xs:attribute name="vectorLayer">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

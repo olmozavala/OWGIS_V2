@@ -1,66 +1,66 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-	<MenuEntries>
-		<MenuEntry ID="2014" EN="2014" ES="2014"/>
-		<MenuEntry ID="2013" EN="2013" ES="2013"/>
-		<MenuEntry ID="2012" EN="2012" ES="2012"/>
-		<MenuEntry ID="2011" EN="2011" ES="2011"/>
-		<MenuEntry ID="2010" EN="2010" ES="2010"/>
-		<MenuEntry ID="Jan" EN="January" ES="Enero"/>
-		<MenuEntry ID="Feb" EN="February" ES="Febrero"/>
-		<MenuEntry ID="Mar" EN="March" ES="Marzo"/>
-		<MenuEntry ID="Apr" EN="April" ES="Abril"/>
-		<MenuEntry ID="May" EN="May" ES="Mayo"/>
-		<MenuEntry ID="Jun" EN="June" ES="Junio"/>
-		<MenuEntry ID="Jul" EN="July" ES="Julio"/>
-		<MenuEntry ID="Ago" EN="August" ES="Agosto"/>
-		<MenuEntry ID="Sep" EN="September" ES="Septiembre"/>
-		<MenuEntry ID="Oct" EN="October" ES="Octubre"/>
-		<MenuEntry ID="Nov" EN="November" ES="Noviembre"/>
-		<MenuEntry ID="Dec" EN="December" ES="Diciembre"/>
-		<MenuEntry ID="all" EN="All" ES="Todos"/>
+	<Menus>
+		<Menu ID="2014" EN="2014" ES="2014"/>
+		<Menu ID="2013" EN="2013" ES="2013"/>
+		<Menu ID="2012" EN="2012" ES="2012"/>
+		<Menu ID="2011" EN="2011" ES="2011"/>
+		<Menu ID="2010" EN="2010" ES="2010"/>
+		<Menu ID="Jan" EN="January" ES="Enero"/>
+		<Menu ID="Feb" EN="February" ES="Febrero"/>
+		<Menu ID="Mar" EN="March" ES="Marzo"/>
+		<Menu ID="Apr" EN="April" ES="Abril"/>
+		<Menu ID="May" EN="May" ES="Mayo"/>
+		<Menu ID="Jun" EN="June" ES="Junio"/>
+		<Menu ID="Jul" EN="July" ES="Julio"/>
+		<Menu ID="Ago" EN="August" ES="Agosto"/>
+		<Menu ID="Sep" EN="September" ES="Septiembre"/>
+		<Menu ID="Oct" EN="October" ES="Octubre"/>
+		<Menu ID="Nov" EN="November" ES="Noviembre"/>
+		<Menu ID="Dec" EN="December" ES="Diciembre"/>
+		<Menu ID="all" EN="All" ES="Todos"/>
 
 
 		<!-- SailBuoy -->
-		<MenuEntry ID="sailbuoy" EN="CMR SailBuoy " ES="CMR SailBuoy"/>
-		<MenuEntry ID="path" EN="Path" ES="Recorrido"/>
-		<MenuEntry ID="location" EN="Location" ES="Posicion"/>
+		<Menu ID="sailbuoy" EN="CMR SailBuoy " ES="CMR SailBuoy"/>
+		<Menu ID="path" EN="Path" ES="Recorrido"/>
+		<Menu ID="location" EN="Location" ES="Posicion"/>
 
 		<!--Cruises related-->
-		<MenuEntry ID="year" EN="Year" ES="Ano"/>
-		<MenuEntry ID="id" EN="Cruise ID" ES="ID"/>
-		<MenuEntry ID="cruises" EN="Cruises" ES="Cruceros"/>
-		<MenuEntry ID="sites" EN="Sites" ES="Estaciones"/>
-		<MenuEntry ID="evnttype" EN="Event type" ES="Tipo de evento"/>
-		<MenuEntry ID="etype" EN="Event type" ES="Tipo de evento"/>
-		<MenuEntry ID="allsites" EN="All sites" ES="Todos los sitios"/>
-		<MenuEntry ID="allcruises" EN="All cruises" ES="Todos los cruceros"/>
+		<Menu ID="year" EN="Year" ES="Ano"/>
+		<Menu ID="id" EN="Cruise ID" ES="ID"/>
+		<Menu ID="cruises" EN="Cruises" ES="Cruceros"/>
+		<Menu ID="sites" EN="Sites" ES="Estaciones"/>
+		<Menu ID="evnttype" EN="Event type" ES="Tipo de evento"/>
+		<Menu ID="etype" EN="Event type" ES="Tipo de evento"/>
+		<Menu ID="allsites" EN="All sites" ES="Todos los sitios"/>
+		<Menu ID="allcruises" EN="All cruises" ES="Todos los cruceros"/>
 
         <!-- Site types -->
-		<MenuEntry ID="longlt" EN="Long line trap" ES="Long line trap"/>
-		<MenuEntry ID="ctd" EN="CTD" ES="CTD"/>
-		<MenuEntry ID="plankton" EN="Plankton" ES="Plankton"/>
-		<MenuEntry ID="sediment" EN="Sediment" ES="Sediment"/>
-		<MenuEntry ID="multicore" EN="Multicore" ES="Multicore"/>
-		<MenuEntry ID="survey" EN="Survey" ES="Survey"/>
-		<MenuEntry ID="fauna" EN="Fauna" ES="Fauna"/>
-		<MenuEntry ID="drifters" EN="Drifters" ES="Drifters"/>
-        <MenuEntry ID="general" EN="General" ES="General"/>
-        <!--<MenuEntry ID="aaa" EN="ccc" ES="ccc"/>-->
+		<Menu ID="longlt" EN="Long line trap" ES="Long line trap"/>
+		<Menu ID="ctd" EN="CTD" ES="CTD"/>
+		<Menu ID="plankton" EN="Plankton" ES="Plankton"/>
+		<Menu ID="sediment" EN="Sediment" ES="Sediment"/>
+		<Menu ID="multicore" EN="Multicore" ES="Multicore"/>
+		<Menu ID="survey" EN="Survey" ES="Survey"/>
+		<Menu ID="fauna" EN="Fauna" ES="Fauna"/>
+		<Menu ID="drifters" EN="Drifters" ES="Drifters"/>
+        <Menu ID="general" EN="General" ES="General"/>
+        <!--<Menu ID="aaa" EN="ccc" ES="ccc"/>-->
 
 		<!--Ocean models related-->
-		<MenuEntry ID="omodel" EN="Ocean models" ES="Modelos oceano"/>
-		<MenuEntry ID="hycom" EN="HYCOM" ES="HYCOM"/>
-		<MenuEntry ID="Temp" EN="Temperature" ES="Temperatura"/>
-		<MenuEntry ID="SurfTemp" EN="Temperature Trend" ES="Tendencia de Temp.`"/>
-		<MenuEntry ID="Salinity" EN="Salinity" ES="Salinidad"/>
-		<MenuEntry ID="SeaElev" EN="Elevation" ES="Elevacion"/>
-		<MenuEntry ID="SeaVel" EN="Velocity" ES="Velocidad"/>
+		<Menu ID="omodel" EN="Ocean models" ES="Modelos oceano"/>
+		<Menu ID="hycom" EN="HYCOM" ES="HYCOM"/>
+		<Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
+		<Menu ID="SurfTemp" EN="Temperature Trend" ES="Tendencia de Temp.`"/>
+		<Menu ID="Salinity" EN="Salinity" ES="Salinidad"/>
+		<Menu ID="SeaElev" EN="Elevation" ES="Elevacion"/>
+		<Menu ID="SeaVel" EN="Velocity" ES="Velocidad"/>
 
 		<!--Extra titles -->
-		<MenuEntry ID="gebco" EN="GEBCO Bathymetry" ES="Batimetria de GEBCO"/>
-		<MenuEntry ID="bathcontour" EN="Bath. Contours" ES="Contor. de prof."/>
-		<MenuEntry ID="mx_st" EN="Mexico States" 		ES="Estados de Mexico"/>
-		<MenuEntry ID="us_st" EN="US States" 		ES="Estados de USA"/>
-		<MenuEntry ID="deep" EN="DeepC" 		ES="DeepC"/>
-	</MenuEntries>
+		<Menu ID="gebco" EN="GEBCO Bathymetry" ES="Batimetria de GEBCO"/>
+		<Menu ID="bathcontour" EN="Bath. Contours" ES="Contor. de prof."/>
+		<Menu ID="mx_st" EN="Mexico States" 		ES="Estados de Mexico"/>
+		<Menu ID="us_st" EN="US States" 		ES="Estados de USA"/>
+		<Menu ID="deep" EN="DeepC" 		ES="DeepC"/>
+	</Menus>
 </MenuConf>

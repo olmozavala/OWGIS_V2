@@ -9,8 +9,6 @@
 --%>
 		<link rel="icon" href="./common/images/icon/PageIcon.ico" type="image/x-icon" />
         <meta charset="utf-8"  />
-        <meta name="Description" content="OWGIS Template" />
-        <meta name="Keywords" content="OWGIS " />
 
         <!-- Jquery -->
 		<script src="./common/JS/vendor/jquery-2.1.1.min.js"></script>

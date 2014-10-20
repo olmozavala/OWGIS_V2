@@ -1,44 +1,44 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!--- Cruises menus ids -->
-	<MenuEntries>
-        <MenuEntry ID='ap-1302' EN='AP-1302' ES='AP-1302'/>
-        <MenuEntry ID='ap-1306' EN='AP-1306' ES='AP-1306'/>
-        <MenuEntry ID='ap-1307' EN='AP-1307' ES='AP-1307'/>
-        <MenuEntry ID='ap-1312' EN='AP-1312' ES='AP-1312'/>
-        <MenuEntry ID='ap-1401' EN='AP-1401' ES='AP-1401'/>
-        <MenuEntry ID='ap-1405' EN='AP-1405' ES='AP-1405'/>
-        <MenuEntry ID='be-1204' EN='BE-1204' ES='BE-1204'/>
-        <MenuEntry ID='be-1205' EN='BE-1205' ES='BE-1205'/>
-        <MenuEntry ID='be-1212' EN='BE-1212' ES='BE-1212'/>
-        <MenuEntry ID='be-1301' EN='BE-1301' ES='BE-1301'/>
-        <MenuEntry ID='be-1302' EN='BE-1302' ES='BE-1302'/>
-        <MenuEntry ID='be-1307' EN='BE-1307' ES='BE-1307'/>
-        <MenuEntry ID='be-1311' EN='BE-1311' ES='BE-1311'/>
-        <MenuEntry ID='be-1317' EN='BE-1317' ES='BE-1317'/>
-        <MenuEntry ID='be-1322' EN='BE-1322' ES='BE-1322'/>
-        <MenuEntry ID='be-1323' EN='BE-1323' ES='BE-1323'/>
-        <MenuEntry ID='be-1403' EN='BE-1403' ES='BE-1403'/>
-        <MenuEntry ID='be-1407' EN='BE-1407' ES='BE-1407'/>
-        <MenuEntry ID='pe12-26' EN='PE12-26' ES='PE12-26'/>
-        <MenuEntry ID='pe13-27' EN='PE13-27' ES='PE13-27'/>
-        <MenuEntry ID='sab-1201' EN='SAB-1201' ES='SAB-1201'/>
-        <MenuEntry ID='wb-1118' EN='WB-1118' ES='WB-1118'/>
-        <MenuEntry ID='wb-1121' EN='WB-1121' ES='WB-1121'/>
-        <MenuEntry ID='wb-1204' EN='WB-1204' ES='WB-1204'/>
-        <MenuEntry ID='wb-1212' EN='WB-1212' ES='WB-1212'/>
-        <MenuEntry ID='wb-1215' EN='WB-1215' ES='WB-1215'/>
-        <MenuEntry ID='wb-1218' EN='WB-1218' ES='WB-1218'/>
-        <MenuEntry ID='wb-1303' EN='WB-1303' ES='WB-1303'/>
-        <MenuEntry ID='wb-1304' EN='WB-1304' ES='WB-1304'/>
-        <MenuEntry ID='wb-1305' EN='WB-1305' ES='WB-1305'/>
-        <MenuEntry ID='wb1306' EN='WB1306' ES='WB1306'/>
-        <MenuEntry ID='wb-1307' EN='WB-1307' ES='WB-1307'/>
-        <MenuEntry ID='wb-1310' EN='WB-1310' ES='WB-1310'/>
-        <MenuEntry ID='wb-1318' EN='WB-1318' ES='WB-1318'/>
-        <MenuEntry ID='wb-1403' EN='WB-1403' ES='WB-1403'/>
-        <MenuEntry ID='wb-1405' EN='WB-1405' ES='WB-1405'/>
-        <MenuEntry ID='wb-1411' EN='WB-1411' ES='WB-1411'/>
-	</MenuEntries>
+	<Menus>
+        <Menu ID='ap-1302' EN='AP-1302' ES='AP-1302'/>
+        <Menu ID='ap-1306' EN='AP-1306' ES='AP-1306'/>
+        <Menu ID='ap-1307' EN='AP-1307' ES='AP-1307'/>
+        <Menu ID='ap-1312' EN='AP-1312' ES='AP-1312'/>
+        <Menu ID='ap-1401' EN='AP-1401' ES='AP-1401'/>
+        <Menu ID='ap-1405' EN='AP-1405' ES='AP-1405'/>
+        <Menu ID='be-1204' EN='BE-1204' ES='BE-1204'/>
+        <Menu ID='be-1205' EN='BE-1205' ES='BE-1205'/>
+        <Menu ID='be-1212' EN='BE-1212' ES='BE-1212'/>
+        <Menu ID='be-1301' EN='BE-1301' ES='BE-1301'/>
+        <Menu ID='be-1302' EN='BE-1302' ES='BE-1302'/>
+        <Menu ID='be-1307' EN='BE-1307' ES='BE-1307'/>
+        <Menu ID='be-1311' EN='BE-1311' ES='BE-1311'/>
+        <Menu ID='be-1317' EN='BE-1317' ES='BE-1317'/>
+        <Menu ID='be-1322' EN='BE-1322' ES='BE-1322'/>
+        <Menu ID='be-1323' EN='BE-1323' ES='BE-1323'/>
+        <Menu ID='be-1403' EN='BE-1403' ES='BE-1403'/>
+        <Menu ID='be-1407' EN='BE-1407' ES='BE-1407'/>
+        <Menu ID='pe12-26' EN='PE12-26' ES='PE12-26'/>
+        <Menu ID='pe13-27' EN='PE13-27' ES='PE13-27'/>
+        <Menu ID='sab-1201' EN='SAB-1201' ES='SAB-1201'/>
+        <Menu ID='wb-1118' EN='WB-1118' ES='WB-1118'/>
+        <Menu ID='wb-1121' EN='WB-1121' ES='WB-1121'/>
+        <Menu ID='wb-1204' EN='WB-1204' ES='WB-1204'/>
+        <Menu ID='wb-1212' EN='WB-1212' ES='WB-1212'/>
+        <Menu ID='wb-1215' EN='WB-1215' ES='WB-1215'/>
+        <Menu ID='wb-1218' EN='WB-1218' ES='WB-1218'/>
+        <Menu ID='wb-1303' EN='WB-1303' ES='WB-1303'/>
+        <Menu ID='wb-1304' EN='WB-1304' ES='WB-1304'/>
+        <Menu ID='wb-1305' EN='WB-1305' ES='WB-1305'/>
+        <Menu ID='wb1306' EN='WB1306' ES='WB1306'/>
+        <Menu ID='wb-1307' EN='WB-1307' ES='WB-1307'/>
+        <Menu ID='wb-1310' EN='WB-1310' ES='WB-1310'/>
+        <Menu ID='wb-1318' EN='WB-1318' ES='WB-1318'/>
+        <Menu ID='wb-1403' EN='WB-1403' ES='WB-1403'/>
+        <Menu ID='wb-1405' EN='WB-1405' ES='WB-1405'/>
+        <Menu ID='wb-1411' EN='WB-1411' ES='WB-1411'/>
+	</Menus>
 
     <!-- All Cruises --> 
     <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 

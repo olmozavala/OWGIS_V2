@@ -1,13 +1,7 @@
 <section class="container-fluid topMenu">
 	<div class="row">
-		<!--Logo OWGIS-->
-		<span class="col-lg-1 visible-lg" >
-			<a href="http://owgis.org" target="_blank">
-				<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20"  />
-			</a>
-		</span>
 		<!--TODO Changing the margin at css didn't work -->
-		<ul class="horizontal col-lg-9 col-md-10 text-center" style="margin-bottom: 0px">
+		<ul class="horizontal col-lg-10 col-md-10 text-center" style="margin-bottom: 0px">
 			<li class="buttonStyle toolTip" id="kmlLinkParent" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>

@@ -1,8 +1,8 @@
 <!-- This xml file contains the Moorings configuration -->
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-    <MenuEntries>
-        <MenuEntry ID="moor" EN="Moorings" ES="Moorings"/>
-    </MenuEntries>
+    <Menus>
+        <Menu ID="moor" EN="Moorings" ES="Moorings"/>
+    </Menus>
 
     <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
         format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
