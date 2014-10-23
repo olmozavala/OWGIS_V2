@@ -36,13 +36,17 @@ html, body {
     width: auto;
 }
 #navpanelright {
-    width: 259px;
+    width: 290px;
 }
+
 .ui-panel-inner {
     padding: 0px;
 }
 .ui-controlgroup {
     margin: 0;
+}
+.ui-field-contain .ui-controlgroup-label {
+    width: 100%; 
 }
 
 .ui-panel-inner {
@@ -50,23 +54,21 @@ html, body {
     max-height: 500px;
 }
 
-#bars-button_left, #bars-button_right {
-    opacity: 1;
+#bars-button {
+    // opacity: 1;
     height: 27px;
-    padding-top: 5px;
+    // padding-top: 5px; 
 }
 .languageContainerSel {
     padding-right: 5px;
 }
 /*     ul ul { display: none; } */
 html {
-    font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #leftList{
 margin: 0.4em;
-width: 170px;
 }
 
 .ui-field-contain .ui-controlgroup-controls {

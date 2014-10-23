@@ -44,56 +44,57 @@ html, body {
 
 /* line 38, ../../scss/MobileCSS/MobStyles.scss */
 #navpanelright {
-  width: 259px;
+  width: 290px;
 }
 
-/* line 41, ../../scss/MobileCSS/MobStyles.scss */
+/* line 42, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
   padding: 0px;
 }
 
-/* line 44, ../../scss/MobileCSS/MobStyles.scss */
+/* line 45, ../../scss/MobileCSS/MobStyles.scss */
 .ui-controlgroup {
   margin: 0;
 }
 
 /* line 48, ../../scss/MobileCSS/MobStyles.scss */
+.ui-field-contain .ui-controlgroup-label {
+  width: 100%;
+}
+
+/* line 52, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
   overflow-x: hidden;
   max-height: 500px;
 }
 
-/* line 53, ../../scss/MobileCSS/MobStyles.scss */
-#bars-button_left, #bars-button_right {
-  opacity: 1;
+/* line 57, ../../scss/MobileCSS/MobStyles.scss */
+#bars-button {
   height: 27px;
-  padding-top: 5px;
 }
 
-/* line 58, ../../scss/MobileCSS/MobStyles.scss */
+/* line 62, ../../scss/MobileCSS/MobStyles.scss */
 .languageContainerSel {
   padding-right: 5px;
 }
 
 /*     ul ul { display: none; } */
-/* line 62, ../../scss/MobileCSS/MobStyles.scss */
+/* line 66, ../../scss/MobileCSS/MobStyles.scss */
 html {
-  font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* line 67, ../../scss/MobileCSS/MobStyles.scss */
+/* line 70, ../../scss/MobileCSS/MobStyles.scss */
 #leftList {
   margin: 0.4em;
-  width: 170px;
 }
 
-/* line 72, ../../scss/MobileCSS/MobStyles.scss */
+/* line 74, ../../scss/MobileCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-controls {
   width: 100%;
 }
 
-/* line 77, ../../scss/MobileCSS/MobStyles.scss */
+/* line 79, ../../scss/MobileCSS/MobStyles.scss */
 #l-animation {
   position: absolute;
   margin: auto;
@@ -104,17 +105,17 @@ html {
   font-size: 18px;
 }
 
-/* line 87, ../../scss/MobileCSS/MobStyles.scss */
+/* line 89, ../../scss/MobileCSS/MobStyles.scss */
 #timeSelect {
   width: 170px;
 }
 
-/* line 91, ../../scss/MobileCSS/MobStyles.scss */
+/* line 93, ../../scss/MobileCSS/MobStyles.scss */
 .transect-slider .ui-slider-label {
   font-size: 13px;
 }
 
-/* line 95, ../../scss/MobileCSS/MobStyles.scss */
+/* line 97, ../../scss/MobileCSS/MobStyles.scss */
 .transect-slider .ui-slider-switch {
   width: 10em;
 }
