@@ -495,7 +495,6 @@ function errorFunction(e){
 
 		animParams.TIME = allFrames[currentImage];
 		eval("imageNumber"+currentImage+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
-		eval('imageNumber'+currentImage+'.src = imgSrc;'); 
 		eval("imageNumber"+currentImage+".errorCount = "+(errorCount+1)+";");
 	}
 }

@@ -2,10 +2,9 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <ul data-role="listview" data-inset="true" data-shadow="false"
 	id="leftList">
-	<li><div id="kmlLinkParent"
-			title="<fmt:message key='help.tooltip.googleE'/>">
+	<li>
 			<%@include file="../KmlLink.jsp"%>
-		</div></li>
+		</li>
 	<li>
 		<div id="transParent"
 			title="<fmt:message key='help.tooltip.transparency'/>">
@@ -25,9 +24,9 @@
 			</select>
 		</div>
 	</li>
-	<li><div id="downloadDataParent"
-			title="<fmt:message key='help.tooltip.download'/>"
-			onclick="downloadData();">
+	<li>
+	<a	onclick="downloadData();"  data-role="button" style="text-decoration: none;">
+	<img class="ui-li-icon" border="0" src="./common/images/icon/download-ico.png"/>
 			<fmt:message key="main.download" />
-		</div></li>
+		</a></li>
 </ul>
