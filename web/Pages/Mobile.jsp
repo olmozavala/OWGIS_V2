@@ -51,7 +51,7 @@
 				
 				<!-- Buttons on the navbar  -->
 				<div id="header" data-role="header" data-theme="b" data-fullscreen="true">
-					<a id="bars-button_left" data-icon="bars" class="ui-btn-left" data-inline="true" href="#navpanelleft">Tools</a>
+					<a id="bars-button_left" data-icon="bars" class="ui-btn-left" data-inline="true" href="#navpanelleft" style="line-height: 0.7em; height: 27px">Tools</a>
 					<div data-type="horizontal" data-role="controlgroup" class="ui-btn-right">					
 						<button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="margin-right: 5px; height: 25px">
 							<!--It gets initialized by languages.js-->
@@ -59,13 +59,11 @@
 							<ul id="langDropDown" class="dropdown-menu" role="menu">
 							<!--It gets initialized by languages.js-->
 							</ul>
-						<a id="bars-button_right" data-role="button" data-icon="bars" href="#navpanelright">Layers</a>
+						<a id="bars-button_right" data-role="button" data-icon="bars" href="#navpanelright" style="line-height: 0.7em; height: 27px">Layers</a>
 					</div>
 				</div>
 				
 				<div id="map"></div>
-			
-			</div>
 			<c:if test="${cqlfilter}">
                 <%-- CQL Custom filter buttons and text field. --%>
                 <%@include file="Options/Mobile/MCQLFilter.jsp" %> 
@@ -77,11 +75,13 @@
 			
 			<%-- Date Selection --%>
 				<%@include file="Options/Mobile/MDateSelection.jsp"%>
-				
+			</c:if>
+			</div>
+			
+			<c:if test='${netcdf}'>
 			<%-- Animations --%>
 				<%@include file="Options/Mobile/MAnimations.jsp"%>
 			</c:if>
-			
 			<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="_locale" value="" />

@@ -46,43 +46,24 @@
 */
 /* Extra styling for the mainlayer dropdowns */
 /* line 8, ../../scss/MobileCSS/MBaseLayers.scss */
-.mainMenu {
+[id^="dropDownLevels"] {
   font-size: 15px;
-  width: 165px;
-  color: black;
+  width: 235px;
   background-color: #909090;
   -webkit-border-radius: 6px 6px;
   -moz-border-radius: 6px / 6px;
   border-radius: 6px / 6px;
   margin: 1px 0px;
 }
-/* line 14, ../../scss/MobileCSS/MBaseLayers.scss */
-.mainMenu:hover {
-  background-color: #777777;
+
+/* line 18, ../../scss/MobileCSS/MBaseLayers.scss */
+.ui-field-contain .ui-select {
+  width: 235px;
 }
 
-/* The 'MainMenu'(base layers dropdowns) container */
-/* line 22, ../../scss/MobileCSS/MBaseLayers.scss */
-#mainMenuParent {
-  top: 60px;
-  left: 50px;
-  width: 180px;
-}
-
-/* Table that contains the menu for the base layers*/
-/* line 29, ../../scss/MobileCSS/MBaseLayers.scss */
-#t_mainMenu {
-  margin: .5em 0 .5em 0;
-  background-color: transparent;
-}
-
-/* line 35, ../../scss/MobileCSS/MBaseLayers.scss */
-#mainMenuParentHover {
-  left: 200px;
-}
-
-/* line 36, ../../scss/MobileCSS/MBaseLayers.scss */
+/* line 21, ../../scss/MobileCSS/MBaseLayers.scss */
 #ulBaseLayers {
+  padding: 5px;
   border: 2px solid #a1a1a1;
   border-radius: 10px;
   margin: 0.3em 0.2em;

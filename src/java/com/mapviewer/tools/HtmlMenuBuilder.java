@@ -51,7 +51,7 @@ public class HtmlMenuBuilder {
 
 		TreeNode currRoot = rootNode;
 		int deepLevel = 1;
-		String htmlCode = "<table id='t_mainMenu'>";
+		String htmlCode = "";
 		String tabs = "\t\t\t\t\t";
 		//if we want to display the horizontal menu type
 		if (baseLayerMenuOrientation.toLowerCase().equals("horizontal")) {
@@ -59,8 +59,7 @@ public class HtmlMenuBuilder {
 
 			while (currRoot.getHasChilds()) {
 				ArrayList<TreeNode> subMenus = currRoot.getChilds();
-				htmlCode += "<td class='simpleSpace'>";
-				htmlCode += "<select class='mainMenu' id='dropDownLevels" + deepLevel + "' name='dropDownLevels' onchange='MapViewersubmitForm();'>";
+				htmlCode += "<select class='mainMenu' id='dropDownLevels" + deepLevel + "' name='dropDownLevels' onchange='MapViewersubmitForm();' data-mini='true'>";
 				for (int i = 0; i < subMenus.size(); i++) {
 					MenuEntry menu = subMenus.get(i).getNode();
 					htmlCode += "<option class='mainMenuOption' value='" + menu.getId() + "' ";
@@ -71,17 +70,16 @@ public class HtmlMenuBuilder {
 					}
 					htmlCode += ">" + HtmlMenuBuilder.translateName(subMenus.get(i), language) + " </option>\n";
 				}
-				htmlCode += "</select></td>";
+				htmlCode += "</select>";
 				deepLevel++;
 			}
 
-			htmlCode += "</tr>";
+			htmlCode += "";
 
 		} else {//this else is to display the vertical menu type. 
 			while (currRoot.getHasChilds()) {
 				ArrayList<TreeNode> subMenus = currRoot.getChilds();
-				htmlCode += "\n" + tabs + "<tr><td class='simpleSpace'>\n";
-				htmlCode += tabs + "\t<select class='mainMenu' id='dropDownLevels" + deepLevel + "' name='dropDownLevels' onchange='MapViewersubmitForm();'>\n";
+				htmlCode += tabs + "\t<select class='mainMenu' id='dropDownLevels" + deepLevel + "' name='dropDownLevels' onchange='MapViewersubmitForm();' data-mini='true'>\n";
 				for (int i = 0; i < subMenus.size(); i++) {
 					MenuEntry menu = subMenus.get(i).getNode();
 					htmlCode += tabs + "\t\t<option class='mainMenuOption' value='" + menu.getId() + "' ";
@@ -92,11 +90,10 @@ public class HtmlMenuBuilder {
 					}
 					htmlCode += ">" + HtmlMenuBuilder.translateName(subMenus.get(i), language) + " </option>\n";
 				}
-				htmlCode += tabs + "</select></td></tr>\n";
+				htmlCode += tabs + "</select>\n";
 				deepLevel++;
 			}
 		}
-		htmlCode += "</table>";
 		return htmlCode;
 	}
 
@@ -270,13 +267,13 @@ public class HtmlMenuBuilder {
 						currMenuStr += "," + menu.getId();
 					}
 		
-					finalHtml += tabs + "<fieldset data-role='controlgroup' style='margin: 5px 10px 10px 0px'>";
+					finalHtml += tabs + "<fieldset data-role='controlgroup' data-mini='true' data-type='horizontal' style='margin: 5px 10px 0px 0px; border-bottom: 2px solid #222'>";
 		
 					String oldtab = tabs;
 					tabs += "\t";
 					finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr, mobile)
-							+ tabs + "<a style='text-decoration: none; margin-left:35px; width: inherit'>"+ menu.getText(language) +"</a>"+ "\n"
-							+ tabs + "<div style='float: right'>\n";
+							+ tabs + "<label for=\"checkBox" + numLayer + "\" >"+ menu.getText(language) +"</label>"+ "\n"
+							+ tabs + "<div style='float: right; padding-top: 6px'>\n";
 		
 					tabs += "\t";
 					finalHtml += getMinusTransButton(numLayer, tabs, mobile)
@@ -306,7 +303,7 @@ public class HtmlMenuBuilder {
 
 		String finalHtml = tabs + "<input id=\"checkBox" + layerNum + "\" type=\"checkbox\" name=\"vectorLayersSelected\" \n";
 		if(mobile){
-			finalHtml += " style= 'margin-top:0px' ";
+//			finalHtml += " style= 'margin-top:0px' ";
 		}
 		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"owgis.optionalLayers.showOptionalLayer(layer" + OPLayerNum + ",this.checked); "
 				+ "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',"

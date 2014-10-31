@@ -80,7 +80,7 @@ a.active.trigger {
 /* line 66, ../../scss/MobileCSS/MPanels.scss */
 .panel.right {
   right: 0;
-  padding: 50px 20px 20px 30px;
+  padding: 0px 0px 0px 30px;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
   -moz-border-radius-bottomleft: 15px;
