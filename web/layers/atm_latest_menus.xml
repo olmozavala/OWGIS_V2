@@ -29,19 +29,19 @@
 		<Menu ID="prev5" EN="Prev 5"/>
 	</Menus>
 
-	<BackgroundLayers BBOX="-180,90,-90,180" server="http://viewer.coaps.fsu.edu/geoserver/wms">
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
 
 	
 	<!-- Atmosphere layers -->
     <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
-				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
+				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true" >  
 		<layer Menu="latest,atm,t2" EN="Air Temperature at 2m"
 			   ES="Temperatura a 2mts" name="atm_forecast_latest/T2" />
 		<layer Menu="latest,atm,wind" EN="Wind speed at 10m"
-			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind"  style="vector"/>
+			   ES="Velocidad de viento a 10m " name="atm_forecast_latest/wind" style="vector" />
 		<layer Menu="latest,atm,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_latest/PSFC" />
 		<layer Menu="latest,atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
@@ -66,7 +66,7 @@
 	
 	<!-- Optional layers -->
 	<OptionalLayers BBOX="-180, -59.487167, 180, 83.633389"
-				  server="http://viewer.coaps.fsu.edu/geoserver/wms"
+				  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
 				  vectorLayer="true"> 
 		<layer Menu="shores" name="comm:shorelines" selected="true"/>
 	</OptionalLayers>

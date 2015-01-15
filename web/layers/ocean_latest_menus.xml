@@ -37,7 +37,7 @@
 
 	<!--2D Ocean layers-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
+				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
 		<layer Menu="latest,ocn,bathy" EN="Bathymetry at RHO-Points"
 			   ES="Batimetria en puntos Rho" name="ocn_forecast_latest/h"  />
@@ -67,7 +67,7 @@
 
 	<!--3D Ocean layers-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
+				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
 		<layer Menu="latest,ocn,temp" EN="Gulf of Mexico Temperature"
 			   ES="Temperatura" name="ocn_forecast_latest/temp"  />
