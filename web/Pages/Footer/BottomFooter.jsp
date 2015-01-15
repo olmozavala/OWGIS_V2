@@ -6,7 +6,6 @@ Author     : Olmo Zavala Romero
 
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
-    testing
     &nbsp;
     <a  href="#">
         <img border="0" src="./common/images/Logos/gomri_logo.png" alt="Logo" width="73" height="30" /></a>
