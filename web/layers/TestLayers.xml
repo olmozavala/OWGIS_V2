@@ -109,7 +109,7 @@
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
                 ncWMS="true" max_time_range="month">  
-        <layer Menu="ncwms,test" EN="Gulf of Mexico Temperature 2014"
+        <layer Menu="ncwms,test" EN="Takis test"
 			   name="atm_forecast_latest/T2" />
     </MainLayers> 
 </MenuConf>
