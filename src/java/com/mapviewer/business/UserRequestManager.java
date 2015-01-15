@@ -68,7 +68,7 @@ public class UserRequestManager {
 		String[] selectedValues = ConvertionTools.convertObjectArrayToStringArray(levelsSelected);
 
 		LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
-		boolean update = menuManager.refreshTree();//Search for any update on the XML files
+		boolean update = menuManager.refreshTree(false);//Search for any update on the XML files
 
 		//If is the first time the user access the webpage then we 
 		// return the default menu. 

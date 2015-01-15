@@ -18,10 +18,7 @@
 
 
 
-        <!-- jQuery Mobile -->
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-		<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-        <!-- End jQuery Mobile -->
+
 				
 		<!--Specific for Images in Dropdown for locale-->		
 		<script src="./common/JS/vendor/jquery.slidePanel.js"></script>
@@ -35,7 +32,10 @@
 		<link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 		<script src="./common/JS/vendor/bootstrap.min.js"></script>
         <!-- End Bootstrap -->
-
+        <!-- jQuery Mobile -->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <!-- End jQuery Mobile -->
 		<link href="./common/CSS/MobileCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
 
 		<link href="./common/CSS/MobileCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
@@ -51,7 +51,7 @@
         <link href="./common/CSS/Palettes.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Popup.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/cqlFilter.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
+<!-- 		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/> -->
 		<link href="./common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>

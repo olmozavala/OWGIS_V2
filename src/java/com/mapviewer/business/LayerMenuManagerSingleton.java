@@ -249,9 +249,10 @@ public class LayerMenuManagerSingleton {
 	 * @return
 	 */
 	public static synchronized LayerMenuManagerSingleton getInstance() throws XMLFilesException {
+
 		if (instance == null) {//Only the first time we initialize
 			instance = new LayerMenuManagerSingleton();
-			instance.refreshTree();
+			instance.refreshTree(true);
 		}
 
 		return instance;
@@ -261,62 +262,63 @@ public class LayerMenuManagerSingleton {
 	 * This function is called to refresh the Tree using all the XML files inside the
 	 * specified folder.
 	 *
-	 * @param layerFolder
+	 * @param forceXMLreload It is used to force the reload of the XML files
 	 * @return Indicates if the XML files (trees) were updated.
 	 */
-	public boolean refreshTree() throws XMLFilesException {
+	public boolean refreshTree(boolean forceXMLreload) throws XMLFilesException {
 		if (xmlFiles == null) {
 			throw new XMLFilesException("XML Layers file is not defined");
 		}
 
 		Date currLastUpdate;
-		boolean updated = false;
+		boolean update = forceXMLreload;
 
 		//Verifies that there are not more or less xml files in the folder. 
 		if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
 			LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
-			updated = true;
+			update = true;
 		} else {
 			for (String xmlFile : xmlFiles) {
 				currLastUpdate = FileManager.lastModification(xmlFile);
 				//If is the first time we generate the tree or the file has been updated we
 				// regenerate the tree menu and update the layers. 
 				synchronized (this) {
-					if ((lastUpdate == null) || (lastUpdate.getTime() < currLastUpdate.getTime())) {
-						updated = true;
+					if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
+						update = true;
 						break;//For any file that has been updated we reload everything
 					}
 				}
 			}
 		}
 
-		if (updated) {//If at least one file was updated we change the lastUpdate date. 
+		if (update) {//If at least one file was updated we change the lastUpdate date. 
 			resetVariables();
-			instance.createMenuFromXMLfiles();
 			lastUpdate = new Date();
+			instance.createMenuFromXMLfiles();
 		}
-
-		return updated;//Indicates if the menus were updated.
+		
+		return update;//Indicates if the menus were updated.
 	}
-
+	
 	//------------------------ PRIVATE FUNCTIONS ----------------------
 	private LayerMenuManagerSingleton() {
+		lastUpdate = new Date(0);//Initialize the variable 
 		resetVariables();
 	}
-
+	
 	/**
 	 * resets the variables before refresh
 	 */
 	private void resetVariables() {
 		rootMenu = new TreeNode(true, null, null, false);
 		rootVectorMenu = new TreeNode(true, null, null, false);
-
+		
 		menuEntries = new HashMap<>();
 		mainLayers = new ArrayList<>();
 		vectorLayers = new ArrayList<>();
 		backgroundLayers = new ArrayList<>();
 	}
-
+	
 	/**
 	 * Creates the initial Tree of layers from the specified XML files.
 	 */
@@ -327,11 +329,11 @@ public class LayerMenuManagerSingleton {
 			for (String fileName : xmlFiles) {
 				SAXBuilder builder = new SAXBuilder(); //used to read XML
 				Document doc = builder.build(fileName);
-
+				
 				// Obtains the root element of the current XML file
 				Element root = doc.getRootElement();
 				List children = root.getChildren();
-
+				
 				//Obtains the menu entries or the layers
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
@@ -342,13 +344,13 @@ public class LayerMenuManagerSingleton {
 			}
 			for (String fileName : xmlFiles) {
 				SAXBuilder builder = new SAXBuilder();
-				Document doc;
-				doc = builder.build(fileName);
 
+				Document doc = builder.build(fileName);
+				
 				// Obtains the root element of the current XML file
 				Element root = doc.getRootElement();
 				List children = root.getChildren();
-
+				
 				//Obtains the menu entries or the layers
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
@@ -375,14 +377,14 @@ public class LayerMenuManagerSingleton {
 			System.out.println("\n----------- FINAL Vector MENU-------------");
 			TreeMenuUtils.traverseTree(rootVectorMenu);
 			System.out.println("\n");
-
-
+			
+			
 		} catch (JDOMException | IOException ex) {
 			Logger.getLogger(LayerMenuManagerSingleton.class.getName()).log(Level.SEVERE, null, ex);
 			throw new XMLFilesException("Error parsing XML files" + ex.getMessage());
 		}
 	}
-
+	
 	/**
 	 * Reads the boundary box from the layers configuration node of the xml file.
 	 *
@@ -391,7 +393,7 @@ public class LayerMenuManagerSingleton {
 	 * BoundaryBox, throw an exception.
 	 */
 	private BoundaryBox getBoundaryBox(Element layerConf) {
-
+		
 		String bbox_str = layerConf.getAttributeValue("BBOX");
 		if (bbox_str != null) {
 			return new BoundaryBox(bbox_str);
@@ -399,7 +401,7 @@ public class LayerMenuManagerSingleton {
 			return null;
 		}
 	}
-
+	
 	/**
 	 * This method obtains all the title on different languages of the layer
 	 *
@@ -419,7 +421,7 @@ public class LayerMenuManagerSingleton {
 		}
 		return displayNames;
 	}
-
+	
 	/**
 	 * It will fill all what it cans from elem into the layer
 	 *
@@ -428,39 +430,39 @@ public class LayerMenuManagerSingleton {
 	 * @return
 	 */
 	private Layer updateFields(Element layerConf, Layer layer) {
-
+		
 		BoundaryBox bbox = getBoundaryBox(layerConf);
 		bbox = bbox != null ? bbox : layer.getBbox();
-
+		
 		String format = layerConf.getAttributeValue("format");
 		format = format != null ? format : layer.getFormat();
-
+		
 		String proj = layerConf.getAttributeValue("proj");
 		proj = proj != null ? proj : layer.getProjection();
-
+		
 		String server = layerConf.getAttributeValue("server");
 		server = server != null ? server : layer.getServer();
-
+		
 		String palette = layerConf.getAttributeValue("palette");
 		palette = palette != null ? palette : layer.getPalette();
-
+		
 		String transEffect = layerConf.getAttributeValue("trans_effect");
 		transEffect = transEffect != null ? transEffect : layer.getTransEffect();
-
+		
 		int width = layerConf.getAttributeValue("width") != null
 				? Integer.parseInt(layerConf.getAttributeValue("width")) : layer.getWidth();
-
+		
 		int height = layerConf.getAttributeValue("height") != null
 				? Integer.parseInt(layerConf.getAttributeValue("height")) : layer.getHeight();
-
-
+		
+		
 		float minColor = layerConf.getAttributeValue("mincolor") != null
 				? Float.parseFloat(layerConf.getAttributeValue("mincolor")) : layer.getMinColor();
-
+		
 		float maxColor = layerConf.getAttributeValue("maxcolor") != null
 				? Float.parseFloat(layerConf.getAttributeValue("maxcolor")) : layer.getMaxColor();
-
-		// Defines if a layer is a vector layer. It is used 
+		
+		// Defines if a layer is a vector layer. It is used
 		// to modify the way KML links are created and for the 'Download data' feature
 		String tempVectorLayer = layerConf.getAttributeValue("vectorLayer");
 		boolean vectorLayer = false;
@@ -469,7 +471,7 @@ public class LayerMenuManagerSingleton {
 		} else {
 			vectorLayer = layer.isVectorLayer();
 		}
-
+		
 		String tempTiled = layerConf.getAttributeValue("tiled");
 		boolean tiled;
 		if (tempTiled != null) {
@@ -477,7 +479,7 @@ public class LayerMenuManagerSingleton {
 		} else {
 			tiled = layer.isTiled();
 		}
-
+		
 		String selectedStr = layerConf.getAttributeValue("selected");
 		boolean selected = false;//false by default;
 		if (selectedStr != null) {
@@ -485,22 +487,22 @@ public class LayerMenuManagerSingleton {
 		} else {
 			selected = layer.isSelected();
 		}
-
+		
 		String netCDF = layerConf.getAttributeValue("ncWMS");
 		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isNetCDF();
-
+		
 		String style = layerConf.getAttributeValue("style");
 		style = style != null ? style : layer.getStyle();
-
+		
 		if (boolnetCDF) {//If it is a netcdf layer, the default style is boxfill
 			style = style.equals("") ? "boxfill" : style;
 		}
-
+		
 		String name = layerConf.getAttributeValue("name");
 		name = name != null ? name : layer.getName();
-
+		
 		String featureInfo = layerConf.getAttributeValue("featureInfo");
-
+		
 		if (featureInfo != null) {//If is not null we verify that is not equal to none
 			//If is none, is the equivalent to not having anything.
 			featureInfo = featureInfo.equals("none") ? null : featureInfo;
@@ -508,43 +510,43 @@ public class LayerMenuManagerSingleton {
 			//By default (if nothing) then we request for the feature info of the same layer.
 			featureInfo = name;
 		}
-
+		
 		String max_time_range = layerConf.getAttributeValue("max_time_range") != null
 				? layerConf.getAttributeValue("max_time_range") : layer.getMaxTimeLayer();
-
-		//this is used to make queries to the database that is linked trhoguh the geoserver layer request. 
+		
+		//this is used to make queries to the database that is linked trhoguh the geoserver layer request.
 		String cql = layerConf.getAttributeValue("CQL") != null
 				? layerConf.getAttributeValue("CQL") : layer.getCql();
-
-		//this is used to make queries to the database that is linked trhoguh the geoserver layer request. 
+		
+		//this is used to make queries to the database that is linked trhoguh the geoserver layer request.
 		String cql_cols = layerConf.getAttributeValue("cqlcols") != null
 				? layerConf.getAttributeValue("cqlcols") : layer.getCql_cols();
-
-
+		
+		
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
-
+		
 		/*
-		 String[] cql_cols = null;
-		 if(cql_cols_str!=null){
-		 ArrayList<String> items = new ArrayList<>(Arrays.asList(cql_cols_str.split(",")));
-		 cql_cols = items.toArray(new String[items.size()]);
-		 }*/
-
+		String[] cql_cols = null;
+		if(cql_cols_str!=null){
+		ArrayList<String> items = new ArrayList<>(Arrays.asList(cql_cols_str.split(",")));
+		cql_cols = items.toArray(new String[items.size()]);
+		}*/
+		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
-
+		
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
 		newLayer.setSelected(selected);
 		newLayer.setTransEffect(transEffect);
 		newLayer.setCql(cql);
 		newLayer.setCql_cols(cql_cols);
-
+		
 		return newLayer;
 	}
-
+	
 	/**
 	 * Fills a layer with default values. Some of these values are very useful to avoid
 	 * setting them on the xml file of layer.s
@@ -574,14 +576,14 @@ public class LayerMenuManagerSingleton {
 		Map<String, String> displayNames = null;
 		String max_time_range = "week";
 		boolean jsonp = false;//By default we assume the layer is not "Dynamic vector"
-
+		
 		Layer defLayer = new Layer(bbox, style, format, name, displayNames,
 				proj, menuLayer, server, width, height, featureInfo,
 				tiled, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
-
+		
 		return defLayer;
 	}
-
+	
 	/**
 	 * Adds all the menu entries from a list of xml elements
 	 *
@@ -591,15 +593,15 @@ public class LayerMenuManagerSingleton {
 		try {
 			System.out.println("Adding menu entries");
 			for (Iterator it = entries.iterator(); it.hasNext();) {
-
+				
 				Element entry = (Element) it.next();
-
+				
 				// The id for the hash table is the same as the menu entry
 				String id = entry.getAttributeValue("ID");
 				String text = entry.getAttributeValue("EN");// English text is required
-
+				
 				MenuEntry currMenuEntry = new MenuEntry(id, "EN", text);
-
+				
 				List attribs = entry.getAttributes();//Add all the remaining languages
 				for (Iterator it1 = attribs.iterator(); it1.hasNext();) {
 					Attribute atrib = (Attribute) it1.next();
@@ -608,7 +610,7 @@ public class LayerMenuManagerSingleton {
 						currMenuEntry.addText(atrib.getName(), atrib.getValue());
 					}
 				}
-
+				
 //				currMenuEntry.print();
 				menuEntries.put(id, currMenuEntry);
 			}
@@ -616,7 +618,7 @@ public class LayerMenuManagerSingleton {
 			System.out.println("Exception addin menu entries");
 		}
 	}
-
+	
 	/**
 	 * Searches for menu entries from an array of string keys
 	 *
@@ -631,7 +633,7 @@ public class LayerMenuManagerSingleton {
 		}
 		return result;
 	}
-
+	
 	/**
 	 * This method is a recursive method in charge of creating and updating the user menus
 	 * (Very important)
@@ -644,12 +646,12 @@ public class LayerMenuManagerSingleton {
 	 */
 	private void updateMenu(String[] allMenus, TreeNode currNode, int currMenu,boolean selected) throws XMLFilesException {
 		MenuEntry menuEntry = menuEntries.get(allMenus[currMenu]);
-
+		
 		//Throw an exception if the menu was not found.
 		if (menuEntry == null) {
 			throw new XMLFilesException("The menu entry: " + allMenus[currMenu] + " was not found");
 		}
-
+		
 		TreeNode newNode;
 		if (currNode.getHasChilds()) {
 			//If this level has menus then search for the current one
@@ -658,7 +660,7 @@ public class LayerMenuManagerSingleton {
 			if (newNode == null) {//If the node was not found then we create it
 				newNode = new TreeNode(false, menuEntry, null, selected);
 				currNode.addChild(newNode);
-
+				
 				//If the layer was forced to be selected, then we need to 'remove'
 				// that the first menu of that level on the tree is the one selected.
 				if(selected){
@@ -671,12 +673,12 @@ public class LayerMenuManagerSingleton {
 			newNode = new TreeNode(false, menuEntries.get(allMenus[currMenu]), null, true);
 			currNode.addChild(newNode);
 		}
-
+		
 		if ((currMenu + 1) < allMenus.length) {
 			updateMenu(allMenus, newNode, currMenu + 1, selected);
 		}
 	}
-
+	
 	/**
 	 * This method is in charge of creating the optional menu
 	 *
@@ -688,12 +690,12 @@ public class LayerMenuManagerSingleton {
 	private void updateVectorMenu(String[] allMenus, TreeNode currNode, int currMenu,boolean selected, String layerName) throws XMLFilesException {
 		MenuEntry menuEntry = menuEntries.get(allMenus[currMenu]);
 		menuEntry.setLayername(layerName);
-
+		
 		//Throw an exception if the menu was not found.
 		if (menuEntry == null) {
 			throw new XMLFilesException("The menu entry: " + allMenus[currMenu] + " was not found");
 		}
-
+		
 		TreeNode newNode;
 		if (currNode.getHasChilds()) {
 			//If this level has menus then search for the current one
@@ -709,12 +711,12 @@ public class LayerMenuManagerSingleton {
 			newNode = new TreeNode(false, menuEntries.get(allMenus[currMenu]), null, selected);
 			currNode.addChild(newNode);
 		}
-
+		
 		if ((currMenu + 1) < allMenus.length) {
 			updateVectorMenu(allMenus, newNode, currMenu + 1, selected, layerName);
 		}
 	}
-
+	
 	/**
 	 * Searches for one specific menu inside a list of treenodes. If it finds it it
 	 * returns the tree node, if not it returns null.
@@ -724,7 +726,7 @@ public class LayerMenuManagerSingleton {
 	 * @return TreeNode
 	 */
 	private TreeNode menuPosition(String menu, ArrayList<TreeNode> childs) {
-
+		
 		int pos = 1;//Position of the menu inside the tree nodes of this level
 		for (Iterator<TreeNode> it = childs.iterator(); it.hasNext();) {
 			TreeNode treeNode = it.next();
@@ -735,19 +737,19 @@ public class LayerMenuManagerSingleton {
 		}
 		return null;// It didn't find the menu in this options
 	}
-
+	
 	public ArrayList<Layer> getBackgroundLayers() {
 		return backgroundLayers;
 	}
-
+	
 	public ArrayList<Layer> getMainLayers() {
 		return mainLayers;
 	}
-
+	
 	public ArrayList<Layer> getVectorLayers() {
 		return vectorLayers;
 	}
-
+	
 	/**
 	 * Sets the folder where the xml layers files are stored.
 	 *
@@ -763,7 +765,7 @@ public class LayerMenuManagerSingleton {
 		}
 		java.util.Arrays.sort(xmlFiles);
 	}
-
+	
 	/**
 	 * Returns the default vector menu for the user. It has to be a new object so it be
 	 * different for every user.
@@ -773,7 +775,7 @@ public class LayerMenuManagerSingleton {
 	public TreeNode getRootVectorMenu() {
 		return TreeMenuUtils.copyCurrentTree(rootVectorMenu);
 	}
-
+	
 	/**
 	 * Returns the default menu for the user. It has to be a new object so it be different
 	 * for every user.
@@ -783,7 +785,7 @@ public class LayerMenuManagerSingleton {
 	public TreeNode getRootMenu() {
 		return TreeMenuUtils.copyCurrentTree(rootMenu);
 	}
-
+	
 	/**
 	 * Obtains an array of strings containing the Menus of the selected optional layers.
 	 *
