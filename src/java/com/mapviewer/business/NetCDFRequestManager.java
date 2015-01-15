@@ -147,7 +147,7 @@ public class NetCDFRequestManager {
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
 		JSONObject layerDetails = new JSONObject();
 
-		int maxTries = 3; //120
+		int maxTries = 1; //120
 		int tryNumber = 0;// Current try
 		boolean accepted = false;
 
