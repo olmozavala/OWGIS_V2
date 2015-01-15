@@ -292,18 +292,9 @@ public class LayerMenuManagerSingleton {
 		}
 
 		if (update) {//If at least one file was updated we change the lastUpdate date. 
-			long t1 = lastUpdate.getTime();
-			long t2 = (new Date()).getTime();
-			//We only reset everything at most every 5 minutes
-			long timeBetweenReloads = 10000;
-			if( (t2 - t1) > timeBetweenReloads){
-				resetVariables();
-				lastUpdate = new Date();
-				instance.createMenuFromXMLfiles();
-			}else{
-				throw new XMLFilesException("Trying to reload XML files but Time to next "
-						+ "reload is: " + ((timeBetweenReloads - (t2-t1))/1000) + " sec.");
-			}
+			resetVariables();
+			lastUpdate = new Date();
+			instance.createMenuFromXMLfiles();
 		}
 		
 		return update;//Indicates if the menus were updated.

@@ -78,8 +78,6 @@ public class MapViewerServlet extends HttpServlet {
 			HtmlMenuBuilder.baseLayerMenuOrientation = baseLayerMenuOrientation;
 
 			LayerMenuManagerSingleton.setLayersFolder(layersFolder);//Initializes all the layers from the XML files
-			LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
-			menuManager.refreshTree(true);
 
 			accessControl = AccessControls.getInstance();
 
@@ -224,7 +222,7 @@ public class MapViewerServlet extends HttpServlet {
 				request.setAttribute("mobile", "false");
 			}
 			
-		} catch (XMLFilesException ex) {
+		} catch (Exception ex) {
 			request.setAttribute("errorText", "XMLException: " + ex.getMessage());
 			StringWriter sw = new StringWriter();
 			ex.printStackTrace(new PrintWriter(sw));
@@ -233,28 +231,14 @@ public class MapViewerServlet extends HttpServlet {
 
 			try {
 				this.initializeVariables();
+				LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
+				menuManager.refreshTree(true);
 			} catch (Exception ex1) {
 				request.setAttribute("errorText", "Error initializing layers, please verify your XML configuration");
 				request.setAttribute("traceText", "Exception: Can't initialize variables of main servlet");
 			}
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-			
-		} catch (Exception ex) {
-			request.setAttribute("errorText", "Exception: " + ex.getMessage());
-			StringWriter sw = new StringWriter();
-			ex.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			request.setAttribute("traceText", exceptionAsString);
-			
-			try {
-				this.initializeVariables();
-			} catch (Exception ex1) {
-				request.setAttribute("errorText", "Error initializing layers, please verify your XML configuration");
-				request.setAttribute("traceText", "Exception: Can't initialize variables of main servlet");
-			}
-			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-		}
+				}
 		
 		RequestDispatcher view = request.getRequestDispatcher(nextPage);
 		view.forward(request, response);
