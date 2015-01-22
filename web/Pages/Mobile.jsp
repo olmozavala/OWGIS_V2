@@ -64,19 +64,19 @@
 				</div>
 				
 				<div id="map"></div>
-			<c:if test="${cqlfilter}">
-                <%-- CQL Custom filter buttons and text field. --%>
-                <%@include file="Options/Mobile/MCQLFilter.jsp" %> 
-            </c:if>
-			
-			<c:if test='${netcdf}'>
-			<%-- Color Palettes --%>
-			<%@include file="Layouts/Mobile/MPalettes.jsp"%>
-			
-			<%-- Date Selection --%>
-				<%@include file="Options/Mobile/MDateSelection.jsp"%>
-			</c:if>
-			</div>
+				<c:if test="${cqlfilter}">
+					<%-- CQL Custom filter buttons and text field. --%>
+					<%@include file="Options/Mobile/MCQLFilter.jsp" %> 
+				</c:if>
+				
+				<c:if test='${netcdf}'>
+				<%-- Color Palettes --%>
+				<%@include file="Layouts/Mobile/MPalettes.jsp"%>
+				
+				<%-- Date Selection --%>
+					<%@include file="Options/Mobile/MDateSelection.jsp"%>
+				</c:if>
+			</div><!-- Main page -->
 			
 			<c:if test='${netcdf}'>
 			<%-- Animations --%>

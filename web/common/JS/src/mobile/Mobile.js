@@ -87,4 +87,17 @@ owgis.mobile.initMobile = function initMobile(){
 	 */
 	owgis.optionalLayers.toogleList('#baseLayersData');
 	owgis.optionalLayers.toogleList('#optionalLayersData');
+	owgis.mobile.updateSize();
+}
+
+/**
+ * This function updates the size of the map when the screen size has changed. 
+ * @returns {undefined}
+ */
+owgis.mobile.updateSize = function (){
+	windowHeight = $(window).height();
+	$("#map").height(windowHeight); //Resize the size of the map container
+	if (map !== null) {
+		map.updateSize();
+	}
 }

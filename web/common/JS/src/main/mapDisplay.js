@@ -38,8 +38,8 @@ var minOpacity = 0.1;
 var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var hoverDisabled = false; //Used to disable showing the hover texts
-var screenWidth = screen.width;
 var windowWidth = $(window).width();
+var _mobileScreenThreshold = 750;
 
 
 //Redirect any https request to http
@@ -47,7 +47,7 @@ if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
-if(!mobile && windowWidth <= (screenWidth*0.5)){
+if(!mobile && windowWidth <= _mobileScreenThreshold){
 		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
 	 }
 /**
@@ -101,9 +101,8 @@ function initMenus() {
 	
     //if user changes the window size
 	$(window).resize(function() {
-    	screenWidth = screen.width;
-	   	 windowWidth = $(window).width();
-	   	 if(!mobile && windowWidth <= (screenWidth*0.5)){
+	   	windowWidth = $(window).width();
+		if(!mobile && windowWidth <= _mobileScreenThreshold ){
 	   		if (map !== null) {
 	   	    	if(!mobile){
 	   	    		owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
@@ -111,13 +110,16 @@ function initMenus() {
 	   	    	}
 	   	        submitForm();
 	   	    }
-	   	 }
-	   	 if(mobile && windowWidth >= (screenWidth*0.5)){
-	   		getElementById("mobile").value = false;
-   	        submitForm();
-	   	 }
-	        owgis.layouts.draggable.repositionDraggablesByScreenSize();
-	    });
+		}
+		if(mobile){
+			if(windowWidth >= _mobileScreenThreshold){
+				getElementById("mobile").value = false;
+				submitForm();
+			}
+			owgis.mobile.updateSize();//If is only resizing in mobile then we need to udpate the map
+		}
+		owgis.layouts.draggable.repositionDraggablesByScreenSize();
+	});
 }
 
 /**
@@ -168,10 +170,10 @@ function updateTitle(dateText, elevText) {
             locendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
-
+		
         if(!(owgis.ncwms.animation.animStatus === "none") )//falta hacer lo de resolution langauge y end date
         {
-          			
+			
             $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + elevText + separationSymbol);
         }
         else {
