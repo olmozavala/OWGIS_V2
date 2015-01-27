@@ -50,6 +50,7 @@ if (window.location.protocol !== "http:") {
 if(!mobile && windowWidth <= _mobileScreenThreshold){
 		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
 	 }
+
 /**
  * Instructions executed when the page is ready
  */
@@ -93,6 +94,15 @@ function initMenus() {
 		if(mobile === false){
 			owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 		}
+		else{
+		    if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+		    if( localStorage.map_center!== undefined){
+		        strCenter = localStorage.map_center.split(",")
+		        lat = Number(strCenter[0]);
+		        lon = Number(strCenter[1]);
+		        ol3view.setCenter([lat,lon]);// Center of the map
+		    }
+		}
 	}catch(err){
 		console.log("Error initializing the menus... clearing local storage");
 		localStorage.clear();
@@ -100,8 +110,14 @@ function initMenus() {
 	}
 	
     //if user changes the window size
+	if(mobile){
+		window.addEventListener('orientationchange', doOnOrientationChange);
+		resizeMobilePanels();
+	}
 	$(window).resize(function() {
 	   	windowWidth = $(window).width();
+	  
+
 		if(!mobile && windowWidth <= _mobileScreenThreshold ){
 	   		if (map !== null) {
 	   	    	if(!mobile){
@@ -112,6 +128,7 @@ function initMenus() {
 	   	    }
 		}
 		if(mobile){
+			 resizeMobilePanels();
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
@@ -122,6 +139,32 @@ function initMenus() {
 	});
 }
 
+function resizeMobilePanels(){
+ 	windowHeight = $(window).height();
+	if(windowHeight <= 500){
+		$("#panel2, #panel3").css("top","60px");
+		$("#panel2, #panel3").css("overflow-y","scroll");
+		$("#panel2, #panel3").css("max-height","200px");
+	}else{
+		$("#panel2, #panel3").css("overflow-y","");
+		$("#panel2, #panel3").css("max-height","");
+	}
+}
+
+function doOnOrientationChange()
+{
+  switch(window.orientation) 
+  {  
+    case -90:
+    case 90:
+    	resizeMobilePanels()
+      break; 
+    default:
+    $("#panel2, #panel3").css("overflow-y","");
+	$("#panel2, #panel3").css("max-height","");
+      break; 
+  }
+}
 /**
  * This function disables the enter button for the user
  * The reason this function was created is becuase for some reason
@@ -194,7 +237,9 @@ function MapViewersubmitForm() {
     	if(!mobile){
 	        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
-    	else{
+    	else{ 
+    	    localStorage.zoom = ol3view.getResolution();// Zoom of map
+    	    localStorage.map_center =  ol3view.getCenter();// Center of the map
     		getElementById("mobile").value = mobile;
     	}
         submitForm();

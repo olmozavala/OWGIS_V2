@@ -68,7 +68,7 @@ owgis.mobile.initMobile = function initMobile(){
 	 */
 	$('#panel2').slidePanel({
 		triggerName: '#trigger2',
-		triggerTopPos: '450px',
+		triggerBottomPosFl: true,
 		panelTopPos: '120px',
 		clickOutsideToClose: false
 	});
