@@ -10,7 +10,7 @@
 	<!-- start: Header -->
 	<%@include file="navbar.jsp"%>
 	<!-- start: Header -->
-
+<div class="loader"></div>
 	<div class="container-fluid-full">
 		<div class="row-fluid">
 
@@ -51,22 +51,29 @@
 							</div>
 						</div>
 						<div class="box-content">
-							<form class="form-horizontal" action="../MobileServlet">
+							<form class="form-horizontal" action="#">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="mobileSiteUrl">Enter the URL</label>
 										<div class="controls">
 											<div class="input-append">
 												<input id="mobileSiteUrl" type="text" name="url">
-												<button type="submit" class="btn btn-primary" type="button">Download</button>
+												<button class="btn btn-primary" onclick="downloadMobileApp();" type="button">Download</button>
 											</div>
 										</div>
+									<div class="control-group" id="qrcode-control" style="display:none">
+										<label class="control-label" for="disabledInput" style="margin-top: 20px;">Scan QR to download directly on Device</label>
+										<div class="controls">
+								<div id="qrcode"></div>
+										</div>
+									  </div>
 									</div>
-
 								</fieldset>
+								
 							</form>
 
 						</div>
+						
 					</div>
 					<!--/span-->
 

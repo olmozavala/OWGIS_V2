@@ -1,6 +1,10 @@
 /**
  * 
  */
+//$( document ).ready(function() {
+//	var qrcode = new QRCode("qrcode");
+//	qrcode.makeCode("test");
+//});
 
 function getGesdsoServerLayers(){
 	
@@ -85,13 +89,20 @@ function getGeoServerLayers(){
 
 
 function downloadMobileApp(){
-	alert('function called');
+	$(".loader").fadeIn("fast");
 	var url = $("#mobileSiteUrl").val();
 	
 	$.ajax({
-		async:   false,
-		type : "GET",
+		type : "POST",
 		url : "../MobileServlet",
-		data : "url=" + url
+		data : "url=" + url,
+		success: function(data){
+			$(".loader").fadeOut("slow");
+			var qrcode = new QRCode("qrcode");
+			qrcode.makeCode(data);
+			$('#qrcode-control').css('display','block');
+			window.open(data,'_self');
+
+		}
 		});	
 }
