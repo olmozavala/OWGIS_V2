@@ -18,6 +18,8 @@
         opts = $.extend({
             triggerName: '#trigger',
 			position: 'absolute',
+			triggerBottomPosFl: false,
+			triggerBottomPos: '100px',
 			triggerTopPos: '80px',
 			panelTopPos: '50px',
 			panelOpacity: 0.9,
@@ -34,8 +36,13 @@
 		// ie6 doesn't like fixed position
 //		if(isIE6) { opts.position = 'absolute' }
 		// set css properties for trigger and panel
+		
 		trigger.css('position',opts.position)
+		if(opts.triggerBottomPosFl){
+			trigger.css('bottom',opts.triggerBottomPos);
+		}else{
 		trigger.css('top',opts.triggerTopPos);
+		}
 		panel.css('position',opts.position)
 		panel.css('top',opts.panelTopPos);
 		panel.css('filter', 'alpha(opacity='+(opts.panelOpacity*100)+')');
