@@ -31,6 +31,7 @@
 		<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
 		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  />
 		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
+		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises" />
 	</OptionalLayers>
 
 	<!-- Vector layer -->
@@ -106,10 +107,10 @@
 
     </MainLayers> 
 
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+    <!--<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
                 ncWMS="true" max_time_range="month">  
         <layer Menu="ncwms,test" EN="Takis test"
 			   name="atm_forecast_latest/T2" />
-    </MainLayers> 
+    </MainLayers> --> 
 </MenuConf>

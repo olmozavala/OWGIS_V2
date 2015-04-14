@@ -67,13 +67,15 @@
 					<!--It gets initialized by languages.js-->
 				</ul>
 			</div>
-<a class="btn btn-default btn-xs " href="./admin/index.jsp" id="adminConsole">
-   Admin </a>
+
+			<a class="btn btn-default btn-xs " href="./admin/index.jsp" id="adminConsole">
+				Admin </a>
+
 			<span id="helpHoverSpan" class="col-lg-3 col-md-4 hidden-sm hidden-xs ">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"
 					 onclick="owgis.help.tooltips.toogleTooltips();" id="helpHoverImg" src="./common/images/Help/Help1.png">
 			</span>
 		</div>
 	</div>
-	
+		
 </section>
