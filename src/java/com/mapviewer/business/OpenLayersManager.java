@@ -292,9 +292,8 @@ public class OpenLayersManager {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}
-			} else {
-				layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			}
+			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			
 			layersScript += ", SRS: _map_projection";
 			

@@ -278,6 +278,7 @@
 										</xs:simpleType>
 									</xs:attribute>                      
 									<xs:attribute name="style" type="xs:string" /> 
+									<xs:attribute name="overlaycurrents" type="xs:string" /> 
 									<xs:attribute name="max_time_range">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

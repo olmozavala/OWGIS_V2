@@ -54,7 +54,7 @@ owgis.help.tooltips.initHelpTexts = function () {
 /**
  * This function enables or disables displaying the hover txts 
  */
-owgis.help.tooltips.toogleTooltips = function() {
+owgis.help.tooltips.toggleTooltips = function() {
 
     hoverDisabled = !hoverDisabled;
     if (hoverDisabled) {

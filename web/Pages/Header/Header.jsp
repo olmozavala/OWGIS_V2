@@ -16,8 +16,8 @@
 		<script src="./common/JS/vendor/jquery-2.1.1.min.js"></script>
 		<script src="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.js"></script>
 		<link href="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-		
         <!-- End Jquery -->
+
         <script>
 //			It is used to avoid conflicts with Bootstrap Tooltip
 			$.widget.bridge('uitooltip', $.ui.tooltip);
@@ -49,12 +49,16 @@
 		<!--Specific for Images in Dropdown for locale-->
 		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
 
+		<!--Cesium-->
+		<script src="js/vendor/Cesium/Cesium.js"></script>
 
 		<!--Specific for OpenLayers3 -->
 		<!--<link rel="stylesheet" href="http://ol3js.org/en/master/css/ol.css" />-->
 		<link rel="stylesheet" href="./common/CSS/ol.css" />
 		<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
-		<!--Specific for OpenLayers3 -->
+
+		<!--Cesium and Ol3-->
+		<script src="js/vendor/ol3cesium-debug.js"></script>
 
 		<!--NcWMS related-->
 		<script type="text/javascript" src="./common/JS/src/ncwms/Elevation.js"> </script>

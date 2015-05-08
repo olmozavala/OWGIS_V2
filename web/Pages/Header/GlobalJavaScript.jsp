@@ -12,6 +12,7 @@
 	var lay_style = '${style}'; //layer color style, part of the url to request the pallete.
 	var map = 'empty map'; //map variable that contains the OpenLayers map
 	var ol3view;//View that contains the map
+	var _cesium; //Cesium container
 
     // This variables are used by JavaScript to control de interface. 
 	var netcdf = ${netcdf}; //true if layer displayed is netcdf, false otherwise

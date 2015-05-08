@@ -7,7 +7,7 @@ var widthContainer = 0;
  * It shows or hides the submenus in the optional layers menu
  * @param {string} id Id of the object we want to show or hide
  */
-owgis.optionalLayers.toogleList = function(id){
+owgis.optionalLayers.toggleList = function(id){
 	var currWidth = $(id).parent().width();
 	if( widthContainer < currWidth){
 		widthContainer = currWidth;

@@ -99,7 +99,7 @@ owgis.utils.rollImage = function(img, img_src){
 	img.src = img_src;
 };
 
-/**This function changes the styel of the current id with the specified mode
+/**This function changes the style of the current id with the specified mode
  *@param id - id to change of css
  *@param mode - case of switch statment. case 1 is black, 2 is white. 
  */
@@ -107,26 +107,26 @@ owgis.utils.changeShadow = function(id, mode){
 	switch(mode){
 		case 1:
 			id.style.color = 'black';
-			id.style.textShadow= "0px -1px 5px #eeeeee,\n\
-								  0px  1px 5px #eeeeee,\n\
-								 -1px  0px 5px #eeeeee,\n\
-								 1px  0px 5px #eeeeee,\n\
-								 -1px -1px 5px #eeeeee,\n\
-								 -1px  1px 5px #eeeeee,\n\
-								 1px -1px 5px #eeeeee,\n\
-								 1px  1px 5px #eeeeee";
+			id.style.textShadow= "0px -1px 5px #eeeeee,\n" +
+								"  0px  1px 5px #eeeeee,\n" +
+								" -1px  0px 5px #eeeeee,\n" +
+								" 1px  0px 5px #eeeeee,\n" +
+								" -1px -1px 5px #eeeeee,\n" +
+								" -1px  1px 5px #eeeeee,\n" +
+								" 1px -1px 5px #eeeeee,\n" +
+								" 1px  1px 5px #eeeeee";
 			id.style.cursor = 'pointer';
 			break;
 		case 2:
 			id.style.color = 'white';
-			id.style.textShadow= "0px -1px 5px #000000,\n\
-								  0px  1px 5px #000000,\n\
-								 -1px  0px 5px #000000,\n\
-								 1px  0px 5px #000000,\n\
-								 -1px -1px 5px #000000,\n\
-								 -1px  1px 5px #000000,\n\
-								 1px -1px 5px #000000,\n\
-								 1px  1px 5px #000000";
+			id.style.textShadow= "0px -1px 5px #000000,\n" +
+								"  0px  1px 5px #000000,\n" +
+								" -1px  0px 5px #000000,\n" +
+								" 1px  0px 5px #000000,\n" +
+								" -1px -1px 5px #000000,\n" +
+								" -1px  1px 5px #000000,\n" +
+								" 1px -1px 5px #000000,\n" +
+								" 1px  1px 5px #000000";
 			id.style.cursor = 'pointer';
 			break;
 	}

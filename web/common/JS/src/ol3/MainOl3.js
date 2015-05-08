@@ -45,11 +45,7 @@ function initOl3(){
 	 * This file contains all the functions related with the Ol3 popup
 	 */
 	
-	/**
-	 * Add a click handler to hide the popup.
-	 * @return {boolean} Don't follow the href.
-	 */
-	$("#popup-closer").click(function() {
+    $("#popup-closer").click(function() {
 		$("#popup").hide();
 		$("#popup-closer").blur();
 	});

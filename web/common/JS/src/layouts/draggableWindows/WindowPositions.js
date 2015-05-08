@@ -102,7 +102,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
     }
     if( localStorage.disable_hover === "true"){
         //Disables the text hovers 
-        owgis.help.tooltips.toogleTooltips();
+        owgis.help.tooltips.toggleTooltips();
     }
 
    // Finally we test if they fit on the screen

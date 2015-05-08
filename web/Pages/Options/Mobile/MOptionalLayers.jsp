@@ -2,7 +2,7 @@
 <%@ taglib prefix="menuHelper"
 	uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
 <!-- This sections generate the menu of optional layers, normally vector layers -->
-<div class="row" onClick="owgis.optionalLayers.toogleList('#optionalLayersData')">
+<div class="row" onClick="owgis.optionalLayers.toggleList('#optionalLayersData')">
 	<div class="col-xs-9 title noShadow text-center">
 		<fmt:message key="main.optional" />
 	</div>

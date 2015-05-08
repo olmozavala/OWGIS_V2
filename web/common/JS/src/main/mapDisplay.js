@@ -64,6 +64,12 @@ function owgisMain(){
 	if(mobile){
 		owgis.mobile.initMobile();
 	}
+	_cesium = new olcs.OLCesium({map: map});
+
+}
+
+function toggleCesium(){
+	_cesium.setEnabled(!_cesium.getEnabled());
 }
 
 /**

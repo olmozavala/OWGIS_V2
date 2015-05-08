@@ -184,7 +184,7 @@ function DefaultPalette()
 
 /**
  * Displays or hides the div that contains all the palettes.
- * @paramforce_visib Forces an specific visibility of optional palettes.
+ * @param force_visib Forces an specific visibility of optional palettes.
  */
 function displayOptionalPalettes(){
 	 $('#palettes-div').toggle("fade"); 
@@ -208,7 +208,7 @@ function showPalettes()
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @paramamount - amount to change or update to 
+ * @param amount - amount to change or update to 
  */
 function increaseMaxColorRange(amount){
     $('#maxPal').val( eval(parseFloat($('#maxPal').val()).toPrecision(4)) + parseFloat(amount));
@@ -217,7 +217,7 @@ function increaseMaxColorRange(amount){
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @paramamount - amount to change or update to 
+ * @param amount - amount to change or update to 
  */
 function decreaseMinColorRange(amount){
     $('#minPal').val( eval(parseFloat($('#minPal').val()).toPrecision(4)) - parseFloat(amount));
