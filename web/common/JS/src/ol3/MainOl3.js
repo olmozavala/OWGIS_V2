@@ -132,6 +132,7 @@ function initOl3(){
 	
 }
 
+//TODO clean and document this function
 function detectMapLayersStatus(){
 	var mapLayers = map.getLayers().getArray();
 	var mapDoneRendering = true;

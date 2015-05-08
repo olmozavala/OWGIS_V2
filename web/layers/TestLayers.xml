@@ -35,6 +35,18 @@
 		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises" />
 	</OptionalLayers>
 
+	<!-- ncWMS all -->
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://132.248.8.238:8080/ncWMS/wms"
+                ncWMS="true" max_time_range="month">  
+        <layer Menu="ncwms,ncwmsMultDateMultDepthCurr" EN="Gulf of Mexico Temperature 2014 and currents"
+               ES="Golfo de M&#233;xico Temperatura 2014 y corrientes" 
+			   name="gulf_vel/sea_water_velocity" 
+			   overlaycurrents="gulf_vel/sea_water_velocity"
+               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+
+    </MainLayers> 
+
 	<!-- Vector layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
 				server="http://132.248.8.238:8080/geoserver/wms"
@@ -108,17 +120,6 @@
 
     </MainLayers> 
 
-	<!-- ncWMS all -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://132.248.8.238:8080/ncWMS/wms"
-                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
-        <layer Menu="ncwms,ncwmsMultDateMultDepthCurr" EN="Gulf of Mexico Temperature 2014 and currents"
-               ES="Golfo de M&#233;xico Temperatura 2014 y corrientes" 
-			   name="gulf_temp/temperature" 
-			   overlaycurrents="gulf_vel/sea_water_velocity"
-               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
-
-    </MainLayers> 
 
     <!--<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
 				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"

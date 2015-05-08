@@ -37,6 +37,11 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<%@include file="Layouts/DraggableWindows/HelpTexts/MapInstructions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			
 			<c:if test='${netcdf}'>
+				<!--Canvas that contains the animations-->
+				<canvas id="animationCanvas"></canvas>
+				<!--Canvas that may contain the currents-->
+				<canvas id="currentsCanvas"></canvas>
+
 				<%@include file="Layouts/DraggableWindows/NcWMS/NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 				<!-- Elevation -->
 				<%@include file="Layouts/DraggableWindows/NcWMS/ZaxisSelection.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>

@@ -16,8 +16,12 @@
 		<script src="./common/JS/vendor/jquery-2.1.1.min.js"></script>
 		<script src="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.js"></script>
 		<link href="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-		
         <!-- End Jquery -->
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
         <script>
 //			It is used to avoid conflicts with Bootstrap Tooltip
 			$.widget.bridge('uitooltip', $.ui.tooltip);
@@ -86,10 +90,11 @@
 		<script src="./common/JS/src/features/InterfaceDependent.js"> </script>
 		<script src="./common/JS/src/features/CQL.js"> </script>
 		<script src="./common/JS/src/layouts/draggableWindows/WindowPositions.js"> </script>
+		<script src="./common/JS/src/main/layer.js"> </script>
 			
 		<!--This require some libraries defined above-->
 		<!--This require some libraries defined above-->
-		<!--This require some libraries defined above-->
+		<script src="./common/JS/src/ncwms/currents/particles.js"> </script>
 		<script src="./common/JS/src/features/Transparency.js"> </script>
         <script src="./common/JS/src/ajax/ajax.js"> </script>
 		<script src="./common/JS/src/ncwms/animations/Animations.js"> </script>
@@ -98,6 +103,8 @@
 		<script src="./common/JS/src/ncwms/Palettes.js"> </script>
 		<script src="./common/JS/src/dynamicVector/DynamicVectorLayers.js"> </script>
 			
+		<script src="./common/JS/src/ncwms/currents/AnimationCurrents.js"> </script>
+
 		<script src="./common/JS/src/main/mapDisplay.js"> </script>
 			
 		<!--Cesium and Ol3-->

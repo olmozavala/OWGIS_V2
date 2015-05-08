@@ -70,6 +70,9 @@ public class Layer {
 	private String cql;
 	private String cql_cols;
 	private boolean jsonp;//Itentifies if the layer is a json layer (dynamic vector layer)
+	// ------ Curreants
+	private String overlayCurrents;
+
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -105,6 +108,45 @@ public class Layer {
 		}
 		return thisIsTheLayer;
 	}
+
+	/**
+	 * * In this constructor all the properties are initialized with default values;
+	 */
+	public Layer(){
+		this.bbox = new BoundaryBox("-180,90,-90,180");
+		this.style = "";
+		this.format = "image/jpeg";
+		this.name = "";
+		this.projection = "EPSG:4326";//By default proj is EPSG:4326
+		this.server = null;
+		// This sizes are important, this are the default resolutions when
+		// generating animations and also requesting data (WCS)
+		this.width = 512;
+		this.height = 512;
+		this.featureInfoLayer = null;
+		this.tiled = true;
+		this.netCDF = false;
+		this.layout = "";
+		this.layerDisplayNames = null;
+		this.displayTitle = true;
+		this.vectorLayer = false;
+		this.tituloCapasDatos = null;
+		this.palette = "default";
+		this.selected = false;//By default none of the optional layers is selected
+		this.transEffect = "resize";//By default we use the 'resize' effect when zooming 
+		this.jsonp = false;
+
+		// Default min and max color is -1
+		// they have to be modified by external getter and setter. 
+		this.minColor = -1;
+		this.maxColor = -1;
+		this.maxTimeLayer = "week";
+
+		// By default the layer doesn't have any cql parameter
+		this.cql = "";
+		this.cql_cols = "";// By default the layers doe not have cql columns	
+		this.overlayCurrents = "";
+	}
 	/**
 	 *
 	 * * In this constructor we specified all the properties
@@ -137,6 +179,7 @@ public class Layer {
 	 * can select (week, month, year)
 	 * @param {boolan} jsonp Boolean value that indicates if the layer is a dynamic
 	 * vector layer served using jsonp
+	 * @param {String} overlayCurrents string that defines the name of the currents layer to overlay
 	 */
 	public Layer(BoundaryBox bbox,
 			String style,
@@ -154,7 +197,9 @@ public class Layer {
 			String layout,
 			boolean vectorLayer,
 			String palette,
-			boolean netCDF, String maxTimeLayer, boolean jsonp) {
+			boolean netCDF, String maxTimeLayer, 
+			boolean jsonp,
+			String overlayCurrents) {
 
 		this.bbox = bbox;
 		this.style = style;
@@ -187,6 +232,7 @@ public class Layer {
 		// By default the layer doesn't have any cql parameter
 		this.cql = "";
 		this.cql_cols = "";// By default the layers doe not have cql columns
+		this.overlayCurrents = overlayCurrents;
 	}
 	//Geters    
 
@@ -230,6 +276,12 @@ public class Layer {
 			if(this.isNetCDF()){ layerType = "ncwms"; }
 
 			layerDetails.accumulate("layerType", layerType); 
+			if(this.overlayCurrents.equals("")){
+				layerDetails.accumulate("overlayCurrents", false); 
+			}else{
+				layerDetails.accumulate("overlayCurrents", true); 
+				layerDetails.accumulate("currentsLayer", this.overlayCurrents); 
+			}
 
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -490,5 +542,12 @@ public class Layer {
 		this.jsonp = jsonp;
 	}
 
+	public String getOverlayCurrents() {
+		return overlayCurrents;
+	}
+
+	public void setOverlayCurrents(String overlayCurrents) {
+		this.overlayCurrents = overlayCurrents;
+	}
 	
 }

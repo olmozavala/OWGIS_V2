@@ -505,7 +505,6 @@ function errorFunction(e){
  * @param {type} e Image that triggered the event
  * @returns {undefined}
  */
-
 window['owgis.ncwms.animation.imageHasBeenLoadedParallel'] = owgis.ncwms.animation.imageHasBeenLoadedParallel;
 owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 	e.target.removeEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel, false); 

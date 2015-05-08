@@ -31,6 +31,8 @@ goog.require('owgis.help.tooltips');
 goog.require('owgis.help.main');
 goog.require('owgis.transparency');
 goog.require('owgis.interf');
+goog.require('owgis.ncwms.currents');
+goog.require('owgis.layer');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var maxOpacity = 1;
@@ -92,6 +94,27 @@ function initMenus() {
             createElevationSelectorMobile(); //initialize depth selector
         }
 		owgis.ncwms.animation.initAnimationControls();
+		if(layerDetails.overlayCurrents){
+
+			var ncwmsoceancurrents = new owgis.layer.model({
+				server: layerDetails.server,
+				layers: layerDetails.currentsLayer,
+				time: layerDetails.nearestTimeIso,
+				bbox: layerDetails.bbox.join(","),
+				origbbox: layerDetails.bbox.join(","),
+				width: 100,
+				height: 100
+			}); 
+			if(layerDetails.zaxis !== undefined){
+				ncwmsoceancurrents.set("elevation",layerDetails.zaxis.values[elev_glob_counter]);
+			}else{
+				ncwmsoceancurrents.set("elevation",null);
+			}
+
+			owgis.ncwms.currents.layers = [ncwmsoceancurrents];
+			owgis.ncwms.currents.currentFrame = 0;
+			owgis.ncwms.currents.dispAnimation();
+		}
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer

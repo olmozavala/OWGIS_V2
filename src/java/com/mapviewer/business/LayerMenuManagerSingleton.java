@@ -526,6 +526,9 @@ public class LayerMenuManagerSingleton {
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
 		
+		String overlayCurrents = layerConf.getAttributeValue("overlaycurrents") != null
+				? layerConf.getAttributeValue("overlaycurrents") : layer.getOverlayCurrents();
+
 		/*
 		String[] cql_cols = null;
 		if(cql_cols_str!=null){
@@ -535,7 +538,7 @@ public class LayerMenuManagerSingleton {
 		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
+				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp,overlayCurrents);
 		
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
@@ -554,33 +557,7 @@ public class LayerMenuManagerSingleton {
 	 * @return
 	 */
 	private Layer defaultLayer() {
-		BoundaryBox bbox = new BoundaryBox("-180,90,-90,180");
-		String style = "";
-		String format = "image/jpeg";
-		String name = "";
-		String proj = "EPSG:4326";//By default proj is EPSG:4326
-		String server = null;
-		// This sizes are important, this are the default resolutions when
-		// generating animations and also requesting data (WCS)
-		int width = 512;
-		int height = 512;
-		//If you don't want to generate the code (to request feature info) it has to be null
-		String featureInfo = null;
-		boolean tiled = true;
-		boolean netCDF = false;
-		MenuEntry[] menuLayer = null;
-		String layout = "";
-		String palette = "default";
-		boolean displayTitle = true;
-		boolean isVectorLayer = false;
-		Map<String, String> displayNames = null;
-		String max_time_range = "week";
-		boolean jsonp = false;//By default we assume the layer is not "Dynamic vector"
-		
-		Layer defLayer = new Layer(bbox, style, format, name, displayNames,
-				proj, menuLayer, server, width, height, featureInfo,
-				tiled, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
-		
+		Layer defLayer = new Layer();
 		return defLayer;
 	}
 	
