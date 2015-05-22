@@ -81,6 +81,8 @@
 			<c:if test='${netcdf}'>
 			<%-- Animations --%>
 				<%@include file="Options/Mobile/MAnimations.jsp"%>
+				<!--Canvas that may contain the currents-->
+				<canvas id="currentsCanvas"></canvas>
 			</c:if>
 			<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />

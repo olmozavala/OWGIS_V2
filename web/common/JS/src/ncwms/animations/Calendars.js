@@ -2,6 +2,7 @@ goog.provide('owgis.ncwms.calendars');
 
 goog.require('owgis.constants');
 goog.require('owgis.ol3.popup');
+goog.require('owgis.ncwms.currents')
 
 var calStart; //calendar start date
 var calEnd;  //calendar end date
@@ -266,6 +267,10 @@ function updateMainLayerDate(newDate){
 	
     owgis.layers.updateMainLayerParam('TIME',newDate);
 	owgis.kml.updateTitleAndKmlLink();
+
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
 }
 
 /**

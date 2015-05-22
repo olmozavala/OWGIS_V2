@@ -163,7 +163,6 @@ function displayElevationSelector() {
  this function checks to see if the layer has elevation or not
 this function is called by the init() in the OpenLayersConfig.jsp
 */
-
 function noElevation()
 {	
     var check =	layerDetails.zaxis;		//check to see if it has elevation at all
@@ -194,7 +193,6 @@ function noElevation()
  *this changes the elevation and updates all necesary variables 
  *@param value - height of current elevation
  */
-
 function changeElev(value)
 {
     elev_glob_counter  = value;
@@ -224,9 +222,10 @@ function changeElev(value)
 	setColorRangeFromMinMax();
 
     owgis.kml.updateTitleAndKmlLink();
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
 }
-
-
 
 /** Changes the elevation of the layer if it is netCDF
  *this are used by the + and - of the elevation toolbar
@@ -263,7 +262,6 @@ function changeElevation(sign)
  *  */
 function changeElevationMobile(sign)
 {
-
     //get the highest possible value
     var array_len = layerDetails.zaxis.values.length;
 
@@ -313,11 +311,6 @@ function changeElevationMobile(sign)
     createElevationSelectorMobile();
 
 }
-
-
-
-
-
 
 /**checks if there is a layerDetails.zaxis and also changes the text to elevation or precipitation
  */

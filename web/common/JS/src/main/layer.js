@@ -32,7 +32,7 @@ owgis.layer.model = Backbone.Model.extend({
 			}
 		});
 
-		console.log(urlString);
+//		console.log(urlString);
 		return urlString;
 	}
 });

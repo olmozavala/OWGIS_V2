@@ -550,4 +550,7 @@ public class Layer {
 		this.overlayCurrents = overlayCurrents;
 	}
 	
+	public boolean isOverlayCurrents() {
+		return !this.overlayCurrents.equals("");
+	}
 }

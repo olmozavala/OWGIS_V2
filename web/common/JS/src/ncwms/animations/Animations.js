@@ -7,6 +7,8 @@ goog.require('ol.renderer.canvas.ImageLayer');
 goog.require('goog.events');
 goog.require('owgis.ogc');
 goog.require('owgis.ncwms.animation.status');
+goog.require('owgis.ncwms.currents');
+goog.require('owgis.ncwms.currents.particles');
 
 owgis.ncwms.animation.currUrl = "Not yet defined";//Current base url used for the animation
 
@@ -14,7 +16,6 @@ var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
 var animSpeed = 300;
 var imagesReady = new Array();//A bit array that indicates which layer are already loaded
-
 
 var animLayer;
 var animSource;
@@ -175,14 +176,22 @@ function animIncreaseFrame(){
  */
 function animFaster(){
 	animSpeed = animSpeed*.80;
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
+	}
 	startAnimationLoop();
 }
+
+
 /**
  * Makes the animation 10% slower. 
  * @returns {undefined}
  */
 function animSlower(){
 	animSpeed = animSpeed*1.20;
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
+	}
 	startAnimationLoop();
 }
 
@@ -286,7 +295,6 @@ function obtainSelectedDates(){
  * This function gets the selected dates from the user and starts
  * the ajax request to generate the animation of the NetCDF files.
  */
-
 window['owgis.ncwms.animation.dispAnimation'] = owgis.ncwms.animation.dispAnimation;
 owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 
@@ -295,6 +303,11 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 		map.removeLayer(animLayer);
 	}
 	obtainSelectedDates();
+
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
+	}
+
 	if(mobile) {
 		$("#animContainer").css("display","block");
 		$("#panel2").css("display","none");
@@ -597,6 +610,14 @@ function loopAnimation(){
 		}while(imagesReady[currentFrame] === 0)
 	}
 	
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.particles.setCurrentGrid(currentFrame);
+		//We clear the previous particles if we start the animation
+		if(currentFrame === 0){
+			owgis.ncwms.currents.clearCurrentsCanvas();
+		}
+	}
+
 	clearCanvas();
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
 	

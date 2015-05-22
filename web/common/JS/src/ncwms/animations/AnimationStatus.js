@@ -1,9 +1,3 @@
-/**
- * Saves all the status of the animations
- * 
- * @param {type} param
- */
-
 goog.provide('owgis.ncwms.animation.status');
 
 // Is the animation status it can be:

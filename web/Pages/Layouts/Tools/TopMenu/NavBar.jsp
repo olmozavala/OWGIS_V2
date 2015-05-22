@@ -19,6 +19,14 @@
 			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
 				<%@include file="../../../Options/Elevation.jsp" %>
 			</li>
+			<!--Options to manipulate the style of currents-->
+			<c:if test='${currents}'>
+				<li class="buttonStyle menuHidden toolTip" id="currentsParent" 
+					title="Currents"
+					onclick="owgis.ncwms.currents.style.togglestyling()">
+					Currents
+				</li>
+			</c:if>
 			<!-- Palettes -->
 			<li class="buttonStyle menuHidden toolTip" id="palettesMenuParent" 
 				title="<fmt:message key='help.tooltip.palettes'/>"
@@ -52,11 +60,11 @@
 			</span>
 			</li>
 		</ul>
-		
+			
 		<!--Languages and tooltip help button-->
 		<div class="col-lg-2 col-md-2 " >
-<!-- 			<div class="btn-group col-lg-5 col-lg-offset-4 col-md-7 col-md-offset-1 -->
-<!-- 				 hidden-sm hidden-xs "> -->
+			<!-- 			<div class="btn-group col-lg-5 col-lg-offset-4 col-md-7 col-md-offset-1 -->
+			<!-- 				 hidden-sm hidden-xs "> -->
 			<div class="btn-group col-lg-5 col-lg-offset-1 col-md-7 col-md-offset-1
 				 hidden-sm hidden-xs ">
 				<button id="selectedLanguage" type="button" 
@@ -67,15 +75,15 @@
 					<!--It gets initialized by languages.js-->
 				</ul>
 			</div>
-
+				
 			<!--<a class="btn btn-default btn-xs " href="./admin/index.jsp" id="adminConsole"> Admin </a>-->
 			<a class="btn btn-default btn-xs" onclick="toggleCesium();" id="toggleCesium"> toggle Cesium </a>
-
+				
 			<span id="helpHoverSpan" class="col-lg-3 col-md-4 hidden-sm hidden-xs ">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"
 					 onclick="owgis.help.tooltips.toggleTooltips();" id="helpHoverImg" src="./common/images/Help/Help1.png">
 			</span>
 		</div>
 	</div>
-		
+	
 </section>

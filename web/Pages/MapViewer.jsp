@@ -39,8 +39,12 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<c:if test='${netcdf}'>
 				<!--Canvas that contains the animations-->
 				<canvas id="animationCanvas"></canvas>
-				<!--Canvas that may contain the currents-->
-				<canvas id="currentsCanvas"></canvas>
+				<c:if test='${currents}'>
+					<!--Canvas that contain the currents-->
+					<canvas id="currentsCanvas"></canvas>
+					<!-- Window with the custom styling for the currents -->
+					<%@include file="Layouts/DraggableWindows/NcWMS/Currents.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
+				</c:if>
 
 				<%@include file="Layouts/DraggableWindows/NcWMS/NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 				<!-- Elevation -->

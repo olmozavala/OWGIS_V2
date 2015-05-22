@@ -51,5 +51,6 @@
 						
 			</div>
 		</div><!-- Row -->
+
 	</div><!-- col-xs-10 -->
 </div><!-- Row -->
