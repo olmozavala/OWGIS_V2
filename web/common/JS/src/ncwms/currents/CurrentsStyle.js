@@ -8,8 +8,8 @@ owgis.ncwms.currents.style.togglestyling = function toggleWindow(){
 
 owgis.ncwms.currents.style.init = function init(){
 	initPicker();
-	iniSliderNumParticles();
-	iniSliderParticlesSpeed();
+	initNumParticlesSlider();
+	initParticlesSpeedSlider();
 }
 
 function initPicker(){
@@ -24,18 +24,18 @@ function initPicker(){
 	});
 }
 
-function iniSliderParticlesSpeed(){
+function initParticlesSpeedSlider(){
 	$("#particleSpeedSlider").slider({
-		max:30,
-		min:0,
+		max:60,
+		min:0.3,
 		value:owgis.ncwms.currents.particles.getParticleSpeed()*100,
 		change: setParticlesSpeed
 	});
 }
 
-function iniSliderNumParticles(){
+function initNumParticlesSlider(){
 	$("#numParticlesSlider").slider({
-		max:20000,
+		max:30000,
 		min:100,
 		value:owgis.ncwms.currents.particles.getNumParticles (),
 		change: setNumParticles

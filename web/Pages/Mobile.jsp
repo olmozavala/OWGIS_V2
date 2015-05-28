@@ -16,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<%@include file="Header/GlobalJavaScript.jsp"%>
 		<%-- Sets all the javascript global variables that are initiated by the java application --%>
-		<%@include file="Header/MHeader.jsp"%>
+		<%@include file="Header/HeaderDebug.jsp"%>
 		<%-- contains all the css links and javascript links --%>
 		<%@include file="Header/InitJSVariables.jsp"%>
 		<%-- Sets all the javascript global variables that are initiated by the java application --%>

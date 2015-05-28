@@ -16,13 +16,27 @@
 	<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/vendor/ol.css" rel="stylesheet"  type="text/css"/>
-	<!--<link href="./common/CSS/vendor/minimized/dd.css" rel="stylesheet" type="text/css"/>-->
 	<c:if test='${currents}'>
 		<link href="./common/CSS/vendor/spectrum.css" rel="stylesheet" type="text/css"/>
 	</c:if>
 
+	<!--This is the mobile case-->
+	<c:if test='${mobile}'>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link href="./common/CSS/MobileCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileCSS/MPanels.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
+	</c:if>
+	<!--this is the Desktop case-->
+	<c:if test='${!mobile}'>
+		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
+	</c:if>
+
 	<!--Internal CSS -->
-	<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/MapInstructions.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/GeneralStyles.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Buttons.css" rel="stylesheet" type="text/css"/>
@@ -31,7 +45,6 @@
 	<link href="./common/CSS/Palettes.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Popup.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/cqlFilter.css" rel="stylesheet" type="text/css"/>
-	<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
@@ -70,6 +83,16 @@
 	<script src="./common/JS/src/utilities/validation.js"> </script>
 	<script src="./common/JS/src/features/VisualizationTools.js"> </script>
 	<script src="./common/JS/src/features/ExportPng.js"> </script>
+
+	<!--this is the Mobile case-->
+	<c:if test='${mobile}'>
+		<script	src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script src="./common/JS/vendor/minimized/jquery.slidePanel.js"></script>
+		<script src="./common/JS/src/mobile/Mobile.js"> </script>
+	</c:if>
+	<!--this is the Desktop case-->
+	<c:if test='${!mobile}'>
+	</c:if>
 
 	<!--Using closure library-->
 	<script src="./common/JS/src/ncwms/Transect.js"> </script>

@@ -10,11 +10,11 @@ but a service offered by the OpenLayers Library.
 	
 --%>
 <a class="btn btn-default btn-xs disabled" href="#" id="minusButtonTrans"
-    onclick="owgis.transparency.changeTransp(.15);">
+	   onclick="owgis.transparency.increaseTransp();">
     <span class="glyphicon glyphicon-minus "></span>
 </a>
 <span style="cursor: default;" id="transText" ><fmt:message key="ncwms.trans" /></span>
 <a class="btn btn-default btn-xs" href="#" id="plusButtonTrans"
-    onclick="owgis.transparency.changeTransp(-.15);">
+   onclick="owgis.transparency.decreaseTransp();">
     <span class="glyphicon glyphicon-plus"> </span>
 </a>

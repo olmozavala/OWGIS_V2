@@ -8,6 +8,7 @@
 		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
 		<Menu ID="ncwmsMultDateMultDepthCurr" EN="ncWMS With Currents " ES="ESP ncWMS Corrientes"/>
 		<Menu ID="ncwmsMultDateMultDepthCurrGlobal" EN="ncWMS With Currents " ES="ESP ncWMS Corrientes"/>
+		<Menu ID="ncwmsLocal" EN="Localhost Currents " ES="Localhost Corrientes"/>
 		<Menu ID="ncwmsMultDateOneZ" EN="ncWMS OneZ MultDate" ES="ESP ncWMS OneZ MultDate"/>
 		<Menu ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
 		<Menu ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
@@ -51,10 +52,18 @@
     <MainLayers BBOX="-180,-90,180,90" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 ncWMS="true" max_time_range="month">  
+
         <layer Menu="ncwms,ncwmsMultDateMultDepthCurrGlobal" EN="Gulf of Mexico Temperature 2014 and currents"
-			   name="global_uv_2015/sea_water_velocity" 
+			   name="global_ts_2015/water_temp" 
 			   overlaycurrents="global_uv_2015/sea_water_velocity"
                HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+			   <!--name="global_uv_2015/sea_water_velocity"--> 
+
+        <layer Menu="ncwms,ncwmsLocal" EN="Gulf"
+				server="http://localhost:8080/ncWMS/wms"
+			   name="global_uv_2015/sea_water_velocity" 
+			   overlaycurrents="global_uv_2015/sea_water_velocity"
+                />
     </MainLayers> 
 
 	<!-- Vector layer -->

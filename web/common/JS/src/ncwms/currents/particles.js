@@ -3,9 +3,11 @@ goog.provide('owgis.ncwms.currents.particles');
 goog.require('owgis.layer');
 
 var particlesArray  = new Array();
-var numparticles = 4000;
-var particleSpeed = .2;
-var timeParticle = 50; // Number of frames a particle is alive in the animation
+var numparticles = 20000;
+var defNumParticles = 20000;
+var particleSpeed = .25;
+var defParticleSpeed = .25;
+var timeParticle = 180; // Number of frames a particle is alive in the animation
 
 //These two variables are used in the trilinear interpolation,
 // they indicate the animation speed of the particles and the 'main' animation
@@ -32,6 +34,10 @@ var layer = 0;
 var grids = new Array();
 var gridInfo;//Contains the header info of all the grids
 
+owgis.ncwms.currents.particles.clearGrids = function clearGrids(){
+	grids = new Array();
+}
+
 owgis.ncwms.currents.particles.setInternalAnimationSpeed = function setInternalSpeed(speed){
 	internalAnimationSpeed = speed;
 	dt = internalAnimationSpeed/externalAnimationSpeed;
@@ -42,11 +48,16 @@ owgis.ncwms.currents.particles.setExternalAnimationSpeed = function setExternalS
 }
 
 owgis.ncwms.currents.particles.setParticleSpeed = function setParticleSpeed(speed){
+//	console.log("Old:" + particleSpeed);
 	particleSpeed = speed;
+//	console.log("New:" + speed);
 	initParticles();
 }
 owgis.ncwms.currents.particles.getParticleSpeed= function getParticleSpeed(){
 	return particleSpeed;
+}
+owgis.ncwms.currents.particles.getDefaultParticleSpeed = function getDefaultParticleSpeed(){
+	return defParticleSpeed;
 }
 
 owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
@@ -57,11 +68,13 @@ owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
 owgis.ncwms.currents.particles.getNumParticles = function getNumParticles(){
 	return numparticles;
 }
+owgis.ncwms.currents.particles.getDefaultNumberOfParticles = function getDefaultNumberOfParticles(){
+	return defNumParticles;
+}
 //window['owgis.ncwms.currents.particles.initData'] = owgis.ncwms.currents.particles.initData;
-owgis.ncwms.currents.particles.initData = 
-		function initData(GridInfo,currentE){
+owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 			
-			canvas = document.getElementById("currentsCanvas");
+	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
 	
 	gridInfo = GridInfo;
@@ -113,6 +126,11 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 					if(particle[4] > timeParticle){
 						particlesArray[idx]= randomParticle();
 					}
+
+					//Just in the case of the whole world we need to allow for
+					//looping
+//					if(gridInfo.lo1=)
+					
 					//Validate the position of the particle is between the limits of the grid
 					if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
 							(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){

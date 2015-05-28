@@ -4,11 +4,7 @@
     Author     : Olmo Zavala-Romero
 --%>
 
-<!-- Title -->
-<div class="row ">
-	<!--Contains the applied pallete on the left of the window-->
-	<div class="col-xs-12 invShadow title" > Customize currents</div>
-</div><!-- Row -->
+
 <!-- Color Picker-->
 <div class="row ">
 	<div class="col-xs-4 col-xs-offset-1 invShadow " > Color </div>
@@ -40,14 +36,9 @@
 <div class="row defRowSpace">
 	<div class="col-xs-6 col-xs-offset-3 " > 
 		<a class="btn btn-default btn-xs " href="#" 
-		   onclick="owgis.ncwms.currents.play()"
-		   title="Play" >
-			<span class="glyphicon glyphicon-play" ></span>
-		</a>
-		<a class="btn btn-default btn-xs " href="#" 
-		   onclick="owgis.ncwms.currents.pause()"
-		   title="<fmt:message key='ncwms.anim.help.pause'/>" >
-			<span class="glyphicon glyphicon-pause"></span>
+		   onclick="owgis.ncwms.currents.playPause()"
+		   title="<fmt:message key='ncwms.anim.help.play'/>/<fmt:message key='ncwms.anim.help.pause'/>" >
+			<span id="currentsPlayPauseButton" class="glyphicon glyphicon-pause"></span>
 		</a>
 	</div>
 </div>

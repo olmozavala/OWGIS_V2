@@ -36,9 +36,6 @@ goog.require('owgis.ncwms.currents.style');
 goog.require('owgis.layer');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
-var maxOpacity = 1;
-var minOpacity = 0.1;
-var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
@@ -98,6 +95,7 @@ function initMenus() {
 		if(layerDetails.overlayCurrents){
 			owgis.ncwms.currents.style.init();
 			owgis.ncwms.currents.startSingleDateAnimation();
+			owgis.transparency.changeTransp(.35);
 		}
     } 
 	

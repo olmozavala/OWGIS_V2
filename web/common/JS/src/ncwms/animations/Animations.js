@@ -9,12 +9,13 @@ goog.require('owgis.ogc');
 goog.require('owgis.ncwms.animation.status');
 goog.require('owgis.ncwms.currents');
 goog.require('owgis.ncwms.currents.particles');
+goog.require('owgis.ncwms.animation.status');
 
 owgis.ncwms.animation.currUrl = "Not yet defined";//Current base url used for the animation
 
 var currentFrame; // Current frame that is being displayed
 var allFrames; // Will contain the 'dates' for each frame
-var animSpeed = 300;
+var animSpeed = 1000;
 var imagesReady = new Array();//A bit array that indicates which layer are already loaded
 
 var animLayer;
@@ -38,7 +39,7 @@ var errorRetryNumber = 5; //How many times try to reload an image before conside
 function updateMenusDisplayVisibility(status){
 
     // ------- Visibility of top menus (general menus) -------
-	console.log("Status: " + status);
+//	console.log("Status: " + status);
 	if(netcdf){
 		// When we are selecting dates. 
 		switch( status ){
@@ -50,6 +51,10 @@ function updateMenusDisplayVisibility(status){
 				$('#animControls [class*=pause]').parent().show();
 				$('#animControls [class*=stop]').parent().show();
 				$('#animSpeed').parent().show("fade");
+				//Sets the current transparency into the animation
+				owgis.transparency.changeTransp(owgis.transparency.getTransp());
+				// Hides the current main layer
+				owgis.layers.getMainLayer().setVisible(false);
                 break;
             case owgis.ncwms.animation.status.loading:
                 $('#CalendarsAndStopContainer').hide("fade");
@@ -182,7 +187,6 @@ function animFaster(){
 	startAnimationLoop();
 }
 
-
 /**
  * Makes the animation 10% slower. 
  * @returns {undefined}
@@ -229,6 +233,13 @@ function updateAnimationStatus(newStatus){
 			}
 			
 			owgis.kml.updateTitleAndKmlLink();
+
+			if(layerDetails.overlayCurrents){
+				owgis.ncwms.currents.startSingleDateAnimation();
+			}
+
+			//Show main layer
+			owgis.layers.getMainLayer().setVisible(true);
 			break;
 		case owgis.ncwms.animation.status.paused: break;
 		case owgis.ncwms.animation.status.playing: break;
@@ -280,9 +291,11 @@ function obtainSelectedDates(){
 			currYear = currDate.getUTCFullYear();
 			currMonth = currDate.getUTCMonth();
 			currDay = currDate.getUTCDate();
-			//		allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T00:00:00.000Z");
-			for(var hr = 0; hr < hrsPerDay; hr++){
-				allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T"+hr*hrsIncrement+":00:00.000Z");
+			//Be sure the day is available in the layers
+			if(_.contains(layerDetails.datesWithData[currYear][currMonth],currDay)){
+				for(var hr = 0; hr < hrsPerDay; hr++){
+					allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T"+hr*hrsIncrement+":00:00.000Z");
+				}
 			}
 			currDate.setDate( currDate.getDate() + 1);
 		}
@@ -304,17 +317,12 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	}
 	obtainSelectedDates();
 
-	if(layerDetails.overlayCurrents){
-		owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
-	}
-
 	if(mobile) {
 		$("#animContainer").css("display","block");
 		$("#panel2").css("display","none");
 		$("#drawer").css("display","block");
 	}
 	//Create the required global variables if they don't exist
-//	console.log("TotalNumber of frames: "+ totalNumOfFrames);
 	for(var i = 0; i < totalNumOfFrames; i++){
 		try{// Hack to test if the variable already exists
 			eval('imageNumber'+i);
@@ -351,25 +359,6 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 }
 
 /**
- * The resolution of the animation depends on the size of the screen. Assuming
- * that if you have a larger screen then you will have a better internet 
- * @returns {Number}
- */
-function getResolutionRatio(){
-	var selectedRes = $("[name=video_res]:checked").val(); 
-	switch(selectedRes){
-		case "high":
-			return .55;
-			break;
-		case "normal":
-			return .3;
-			break;
-		case "low":
-			return .2;
-			break;
-	}
-}
-/**
  * This is the main function in charge of creating the animatinons.
  * It is called by Ol3 everytime there is a change in the map (zoom, pan, etc).
  * It receives the location and resolution of the map and it returns a canvas with
@@ -382,7 +371,13 @@ function getResolutionRatio(){
  * @returns {Element|canvasAnimationFunction.canvas}
  */
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
-	
+	//Clear any previous currents animations
+	if(layerDetails.overlayCurrents){
+		owgis.ncwms.currents.cleanAnimationCurrentsAll();
+		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
+//		console.log("CANCELING PARTICLES");
+	}
+
 	imagesReady = new Array();
 	for(var i = 0; i < totalNumOfFrames; i++){
 		eval("imageNumber"+i+".src = '';");
@@ -414,7 +409,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	}
 
 	bbox = extent;
-	var animResolution = getResolutionRatio();
+	var animResolution = owgis.ncwms.animation.status.getResolutionRatio();
 	var imgWidth = Math.ceil(canvasWidth*animResolution);
 	var imgHeight = Math.ceil(canvasHeight*animResolution);
 	
@@ -539,9 +534,10 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 			owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.loadingplaying;
 			updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 			currentFrame = currentImage;
+
 		}
 
-//		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
+		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
 		if( currentBelongs === currentAnimation ){
@@ -550,6 +546,11 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 			if(loadedFrames >= totalNumOfFrames ){
 				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
+				//Load the currents if the animation finished loading
+				if(layerDetails.overlayCurrents){
+					console.log("Loading particles!!!!!!!!");
+					owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
+				}
 			}else{//then we still need to load more
 				owgis.interf.loadingatmap(true,Math.ceil(100*(loadedFrames/totalNumOfFrames)));
 				if( (currentImage + numberOfParallelRquests) < totalNumOfFrames ){
@@ -612,7 +613,6 @@ function loopAnimation(){
 	
 	if(layerDetails.overlayCurrents){
 		owgis.ncwms.currents.particles.setCurrentGrid(currentFrame);
-		//We clear the previous particles if we start the animation
 		if(currentFrame === 0){
 			owgis.ncwms.currents.clearCurrentsCanvas();
 		}
