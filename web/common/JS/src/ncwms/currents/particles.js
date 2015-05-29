@@ -7,7 +7,9 @@ var numparticles = 20000;
 var defNumParticles = 20000;
 var particleSpeed = .25;
 var defParticleSpeed = .25;
-var timeParticle = 180; // Number of frames a particle is alive in the animation
+var currentResolutionParticleSpeed = .25;
+var timeParticle = 150; // Number of frames a particle is alive in the animation
+var defTimeParticle = 150; // Deault Number of frames a particle is alive in the animation
 
 //These two variables are used in the trilinear interpolation,
 // they indicate the animation speed of the particles and the 'main' animation
@@ -59,21 +61,38 @@ owgis.ncwms.currents.particles.getParticleSpeed= function getParticleSpeed(){
 owgis.ncwms.currents.particles.getDefaultParticleSpeed = function getDefaultParticleSpeed(){
 	return defParticleSpeed;
 }
+owgis.ncwms.currents.particles.setCurrentResolutionParticleSpeed = function setCurrentResolutionParticleSpeed(val){ 
+	currentResolutionParticleSpeed = val;
+}
+owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed = function getCurrentResolutionParticleSpeed(){ 
+	return currentResolutionParticleSpeed;
+}
 
 owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
 	numparticles = tot;
 	initParticles();
 }
-
 owgis.ncwms.currents.particles.getNumParticles = function getNumParticles(){
 	return numparticles;
 }
 owgis.ncwms.currents.particles.getDefaultNumberOfParticles = function getDefaultNumberOfParticles(){
 	return defNumParticles;
 }
-//window['owgis.ncwms.currents.particles.initData'] = owgis.ncwms.currents.particles.initData;
+
+owgis.ncwms.currents.particles.setParticlesLifeTime = function setParticlesLifeTime(tot){
+	console.log(tot);
+	timeParticle = tot;
+	initParticles();
+}
+owgis.ncwms.currents.particles.getParticlesLifeTime = function getParticlesLifeTime(){
+	return timeParticle;
+}
+owgis.ncwms.currents.particles.getDefaultParticlesLifeTime= function getDefaultParticlesLifeTime(){
+	return defTimeParticle;
+}
+
 owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
-			
+	
 	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
 	
@@ -118,62 +137,62 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 		// because it is more efficient to do it this way. 
 		if( (grids.length === 1) || (currentGrid === (grids.length - 1)) ) {
 			_.each(particlesArray,function(particle,idx){
-					//Validate that particle is in range
-					//The previous position of the particle is in 0 and 1
-					//the new position will be in 2 and 3
-					particle[0] = particle[2];
-					particle[1] = particle[3];
-					if(particle[4] > timeParticle){
-						particlesArray[idx]= randomParticle();
-					}
-
-					//Just in the case of the whole world we need to allow for
-					//looping
-//					if(gridInfo.lo1=)
+				//Validate that particle is in range
+				//The previous position of the particle is in 0 and 1
+				//the new position will be in 2 and 3
+				particle[0] = particle[2];
+				particle[1] = particle[3];
+				if(particle[4] > timeParticle){
+					particlesArray[idx]= randomParticle();
+				}
+				
+				//Just in the case of the whole world we need to allow for
+				//looping
+				//					if(gridInfo.lo1=)
+				
+				//Validate the position of the particle is between the limits of the grid
+				if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
+						(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
 					
-					//Validate the position of the particle is between the limits of the grid
-					if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
-							(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
-						
-						//Obtain the decimal index of the grid
-						var row = (particle[1] - gridInfo.la1)/gridInfo.dy;
-						var col = (particle[0] - gridInfo.lo1)/gridInfo.dx;
-						
-						// Obtain the final indices of the grid below
-						var row1 = gridInfo.ny - 1 - Math.floor(row);
-						var col1 = Math.floor(col);
-						
-						// Obtain the final indices of the grid above
-						var row2 = Math.max(row1-1,0);
-						var col2 = Math.min(col1+1,gridInfo.nx-1);
-						
-						//Obtain the corresponding values
-						var q11 = grids[currentGrid][row1][col1];
-						var q12 = grids[currentGrid][row2][col1];
-						var q21 = grids[currentGrid][row1][col2];
-						var q22 = grids[currentGrid][row2][col2];
-						
-						if( q11[0] === null || q12[0] === null || q12[0] === null || q22[0] === null){ 
-							//If any of the values does not exist, it means we are
-							// outside the vector field and we restart the particle
-							particlesArray[idx]= randomParticle();
-						}else{
-							var x1 = gridInfo.lo1+col1*gridInfo.dx;
-							var x2 = x1 + gridInfo.dx;
-							var y1 = gridInfo.la1+(gridInfo.ny - 1 - row1)*gridInfo.dy;
-							var y2 = y1 + gridInfo.dy;
-							uv = bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22); 
-							particle[2] =  particle[0]  + particleSpeed*uv[0];
-							particle[3] =  particle[1]  + particleSpeed*uv[1];
-						}
-					}else{
-						//If the particle is not on the limitis of the grid, we create a new one
+					//Obtain the decimal index of the grid
+					var row = (particle[1] - gridInfo.la1)/gridInfo.dy;
+					var col = (particle[0] - gridInfo.lo1)/gridInfo.dx;
+					
+					// Obtain the final indices of the grid below
+					var row1 = gridInfo.ny - 1 - Math.floor(row);
+					var col1 = Math.floor(col);
+					
+					// Obtain the final indices of the grid above
+					var row2 = Math.max(row1-1,0);
+					var col2 = Math.min(col1+1,gridInfo.nx-1);
+					
+					//Obtain the corresponding values
+					var q11 = grids[currentGrid][row1][col1];
+					var q12 = grids[currentGrid][row2][col1];
+					var q21 = grids[currentGrid][row1][col2];
+					var q22 = grids[currentGrid][row2][col2];
+					
+					if( q11[0] === null || q12[0] === null || q12[0] === null || q22[0] === null){ 
+						//If any of the values does not exist, it means we are
+						// outside the vector field and we restart the particle
 						particlesArray[idx]= randomParticle();
+					}else{
+						var x1 = gridInfo.lo1+col1*gridInfo.dx;
+						var x2 = x1 + gridInfo.dx;
+						var y1 = gridInfo.la1+(gridInfo.ny - 1 - row1)*gridInfo.dy;
+						var y2 = y1 + gridInfo.dy;
+						uv = bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22); 
+						particle[2] =  particle[0]  + particleSpeed*uv[0];
+						particle[3] =  particle[1]  + particleSpeed*uv[1];
 					}
-					//Increase the time of the particle
-					particle[4]++;
-
-						});
+				}else{
+					//If the particle is not on the limitis of the grid, we create a new one
+					particlesArray[idx]= randomParticle();
+				}
+				//Increase the time of the particle
+				particle[4]++;
+				
+			});
 		}else{
 			if(!_.isEmpty(grids[currentGrid+1])){
 				_.each(particlesArray,function(particle,idx){
@@ -252,7 +271,7 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 		if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
 				(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
 			pixParticle = particleToCanvas(particle,lonDomain, latDomain);
-//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
+			//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
 			ctx.moveTo(pixParticle[0], pixParticle[1]);
 			ctx.lineTo(pixParticle[2], pixParticle[3]);
 		}

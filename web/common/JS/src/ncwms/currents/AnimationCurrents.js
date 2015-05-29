@@ -10,6 +10,7 @@ goog.require('owgis.interf');
 owgis.ncwms.currents.grids = new Array();
 
 var currentsColor = "rgba(255, 255, 255, .5)";
+var currentsDefColor = "rgba(255, 255, 255, .5)";
 var currAnimSpeed = 100;
 
 // This is the amount of data requested for every 800 pixels
@@ -41,6 +42,9 @@ owgis.ncwms.currents.setColor= function setColor(color){
 }
 owgis.ncwms.currents.getColor= function getColor(){
 	return currentsColor;
+}
+owgis.ncwms.currents.getDefColor= function getDefColor(){
+	return currentsDefColor;
 }
 
 owgis.ncwms.currents.playPause = function playPause(){
@@ -220,7 +224,6 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 	
 	currentExtent = extent;
 
-	
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
 			updateParticlesParameters(extent,resolution);
@@ -239,8 +242,9 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 }
 
 function updateParticlesParameters(extent, resolution){
-	$("#particleSpeedSlider").slider("option","value",
-		1500*resolution*owgis.ncwms.currents.particles.getDefaultParticleSpeed() );
+	var newParticleSpeed = 1500*resolution*owgis.ncwms.currents.particles.getDefaultParticleSpeed();
+	$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
+	owgis.ncwms.currents.particles.setCurrentResolutionParticleSpeed(newParticleSpeed);
 
 	var currBBOX = layerTemplate.get("bbox").split(',');	
 	var estimatedArea = (Number(currBBOX[2])-Number(currBBOX[0])) * (Number(currBBOX[3])-Number(currBBOX[1]));

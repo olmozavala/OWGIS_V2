@@ -375,7 +375,6 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	if(layerDetails.overlayCurrents){
 		owgis.ncwms.currents.cleanAnimationCurrentsAll();
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
-//		console.log("CANCELING PARTICLES");
 	}
 
 	imagesReady = new Array();
@@ -451,7 +450,6 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	// images.
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");

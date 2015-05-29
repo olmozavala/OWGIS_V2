@@ -21,8 +21,8 @@ function updateMinMaxFromJson(minMaxTxt){
 	owgis.interf.loadingatmap(false);
 
     var jsonMinMax = eval("("+minMaxTxt+")");
-    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
-    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
+    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4)); 
+    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4));
     UpdatePalette(mappalette);
 }
 
@@ -39,8 +39,8 @@ function setColorRangeFromMinMax(){
         request:"GetMetadata",
         version:owgis.ogc.wmsversion,
         layers: layerDetails['name'],
-        width: "10",//Hardcoded it doesn't work without width and Height
-        height: "10",
+        width: "100",//Hardcoded it doesn't work without width and Height
+        height: "100",
         item:'minmax',
         bbox: layerDetails['bbox'].toString(),
         srs: layerDetails['srs']
@@ -58,6 +58,7 @@ function setColorRangeFromMinMax(){
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
+	console.log(url);
 	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
@@ -189,7 +190,6 @@ function DefaultPalette()
 function displayOptionalPalettes(){
 	 $('#palettes-div').toggle("fade"); 
 }
-
 
 /** Shows and hides the palettes windows (both at the same time) */
 function showPalettes()
