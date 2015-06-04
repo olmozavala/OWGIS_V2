@@ -6,6 +6,7 @@ goog.require('goog.events');
 goog.require('owgis.ncwms.currents.particles');
 goog.require('owgis.ncwms.animation.status');
 goog.require('owgis.interf');
+goog.require('owgis.transparency');
 
 owgis.ncwms.currents.grids = new Array();
 
@@ -14,7 +15,7 @@ var currentsDefColor = "rgba(255, 255, 255, .5)";
 var currAnimSpeed = 100;
 
 // This is the amount of data requested for every 800 pixels
-var imageRequestResolution = 350;
+var imageRequestResolution = 300;
 
 var layerTemplate;
 var times = new Array();
@@ -65,6 +66,8 @@ owgis.ncwms.currents.playPause = function playPause(){
  */
 window['owgis.ncwms.currents.startSingleDateAnimation'] = owgis.ncwms.currents.startSingleDateAnimation;
 owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimation(){
+
+	owgis.transparency.changeTransp(.35);
 	isRunningUnderMainAnimation = false;
 	
 	//Creates new currents layer model
@@ -124,7 +127,6 @@ owgis.ncwms.currents.cleanAnimationCurrentsAll = function cleanAnimationCurrents
  */
 window['owgis.ncwms.currents.clearCurrentsCanvas'] = owgis.ncwms.currents.clearCurrentsCanvas;
 owgis.ncwms.currents.clearCurrentsCanvas= function clearCurrentsCanvas(){
-	console.log("CLEARING!!!!!!!!!!!!");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -170,7 +172,7 @@ function updateWidthAndHeight(layerTemplate){
 
 	var width = Math.ceil(($(window).width()/800)*imageRequestResolution*resolutionFactor);
 	var height = Math.ceil(($(window).height()/800)*imageRequestResolution*resolutionFactor);
-	console.log("Requested resolution is: "+width+" x "+height);
+//	console.log("Requested resolution is: "+width+" x "+height);
 	layerTemplate.set("width",width);	
 	layerTemplate.set("height",height);	
 	return layerTemplate;
@@ -292,7 +294,7 @@ function updateData(){
 			if(error){
 				console.log("Not possible to read JSON data: "+error.statusText);
 			}else{
-				console.log("Data has been received: "+idx);
+//				console.log("Data has been received: "+idx);
 				var uData = file[0].data;
 				var vData = file[1].data;
 				

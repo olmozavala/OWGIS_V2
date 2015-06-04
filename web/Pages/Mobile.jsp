@@ -14,12 +14,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<%@include file="Header/GlobalJavaScript.jsp"%>
-		<%-- Sets all the javascript global variables that are initiated by the java application --%>
-		<%@include file="Header/HeaderDebug.jsp"%>
 		<%-- contains all the css links and javascript links --%>
-		<%@include file="Header/InitJSVariables.jsp"%>
-		<%-- Sets all the javascript global variables that are initiated by the java application --%>
+		<%@include file="Header/HeaderDebug.jsp"%>
 		<title></title>
 	</head>
 	<body>

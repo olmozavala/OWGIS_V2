@@ -64,6 +64,7 @@ public class LayerMenuManagerSingleton {
 	ArrayList<Layer> backgroundLayers;
 	static String[] xmlFiles;
 	static String xmlFolder;
+	static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
 	Date lastUpdate;
 
 	/**
@@ -273,19 +274,24 @@ public class LayerMenuManagerSingleton {
 		Date currLastUpdate;
 		boolean update = forceXMLreload;
 
-		//Verifies that there are not more or less xml files in the folder. 
-		if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
-			LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
+		Date currDate = new Date();
+		if( (currDate.getTime() - lastUpdate.getTime()) > MILLIS_PER_DAY){
 			update = true;
-		} else {
-			for (int i = 0; i < xmlFiles.length; i++) {
-				currLastUpdate = FileManager.lastModification(xmlFiles[i]);
-				//If is the first time we generate the tree or the file has been updated we 
-				// regenerate the tree menu and update the layers. 
-				synchronized (this) {
-					if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
-						update = true;
-						break;//For any file that has been updated we reload everything
+		}else{
+			//Verifies that there are not more or less xml files in the folder. 
+			if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
+				LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
+				update = true;
+			} else {
+				for (int i = 0; i < xmlFiles.length; i++) {
+					currLastUpdate = FileManager.lastModification(xmlFiles[i]);
+					//If is the first time we generate the tree or the file has been updated we 
+					// regenerate the tree menu and update the layers. 
+					synchronized (this) {
+						if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
+							update = true;
+							break;//For any file that has been updated we reload everything
+						}
 					}
 				}
 			}

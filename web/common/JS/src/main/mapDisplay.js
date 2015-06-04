@@ -57,12 +57,16 @@ if(!mobile && windowWidth <= _mobileScreenThreshold){
 function owgisMain(){
 	initOl3();
     addLayers();
-    initVariables();
+	owgis.layers.initMainLayer(eval('layer'+idx_main_layer));
 	initMenus();
 	owgis.help.tooltips.initHelpTexts();
 	modifyInterface();
 	if(mobile){
 		owgis.mobile.initMobile();
+	}
+	//Start the currents animation of 'static' day.
+	if(_mainlayer_currents){
+		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 //	_cesium = new olcs.OLCesium({map: map});
 
@@ -79,11 +83,11 @@ function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
 	
-    disableEnterButton(); //disable enter button
+    disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
     if (netcdf) {
-        //Show the palettes
+        //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
         if (mobile === false) {
@@ -92,32 +96,24 @@ function initMenus() {
             createElevationSelectorMobile(); //initialize depth selector
         }
 		owgis.ncwms.animation.initAnimationControls();
-		if(layerDetails.overlayCurrents){
+		if(_mainlayer_currents){
 			owgis.ncwms.currents.style.init();
-			owgis.ncwms.currents.startSingleDateAnimation();
-			owgis.transparency.changeTransp(.35);
 		}
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-	try{
-		if(mobile === false){
-			owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-		}
-		else{
-		    if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-		    if( localStorage.map_center!== undefined){
-		        strCenter = localStorage.map_center.split(",")
-		        lat = Number(strCenter[0]);
-		        lon = Number(strCenter[1]);
-		        ol3view.setCenter([lat,lon]);// Center of the map
-		    }
-		}
-	}catch(err){
-		console.log("Error initializing the menus... clearing local storage");
-		localStorage.clear();
+	if(mobile === false){
 		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}
+	else{
+		if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+		if( localStorage.map_center!== undefined){
+			strCenter = localStorage.map_center.split(",")
+			lat = Number(strCenter[0]);
+			lon = Number(strCenter[1]);
+			ol3view.setCenter([lat,lon]);// Center of the map
+		}
 	}
 	
     //if user changes the window size
@@ -127,8 +123,8 @@ function initMenus() {
 	}
 	$(window).resize(function() {
 	   	windowWidth = $(window).width();
-	  
-
+		
+		//In this case we go beyond the smaller size the window can have for destkop use
 		if(!mobile && windowWidth <= _mobileScreenThreshold ){
 	   		if (map !== null) {
 	   	    	if(!mobile){
@@ -139,7 +135,8 @@ function initMenus() {
 	   	    }
 		}
 		if(mobile){
-			 resizeMobilePanels();
+			resizeMobilePanels();
+			// In this case we are increasing the size of the window and go to desktop mode
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
@@ -164,25 +161,26 @@ function resizeMobilePanels(){
 
 function doOnOrientationChange()
 {
-  switch(window.orientation) 
-  {  
-    case -90:
-    case 90:
-    	resizeMobilePanels()
-      break; 
-    default:
-    $("#panel2, #panel3").css("overflow-y","");
-	$("#panel2, #panel3").css("max-height","");
-      break; 
-  }
+	switch(window.orientation) 
+	{  
+		case -90:
+		case 90:
+			resizeMobilePanels()
+			break; 
+		default:
+			$("#panel2, #panel3").css("overflow-y","");
+			$("#panel2, #panel3").css("max-height","");
+			break; 
+	}
 }
+
 /**
  * This function disables the enter button for the user
  * The reason this function was created is becuase for some reason
  * the page reloads whenever the user clicks the enter in the maxPalVal input
  * box, also when a calendar date is selected and enter is pressed the page reloads, so we disable it. 
  */
-function disableEnterButton()
+function disbleEnterKey()
 {
     $('html').on('keypress', function(e) {
         if (e.keyCode === 13) {

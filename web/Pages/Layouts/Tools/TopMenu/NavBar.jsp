@@ -77,7 +77,7 @@
 			</div>
 				
 			<!--<a class="btn btn-default btn-xs " href="./admin/index.jsp" id="adminConsole"> Admin </a>-->
-			<a class="btn btn-default btn-xs" onclick="toggleCesium();" id="toggleCesium"> toggle Cesium </a>
+			<!--<a class="btn btn-default btn-xs" onclick="toggleCesium();" id="toggleCesium"> toggle Cesium </a>-->
 				
 			<span id="helpHoverSpan" class="col-lg-3 col-md-4 hidden-sm hidden-xs ">
 				<img title="<fmt:message key='help.helpicon'/>" class="toolTip"

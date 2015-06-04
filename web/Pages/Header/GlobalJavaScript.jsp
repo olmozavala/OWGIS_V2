@@ -19,6 +19,8 @@
 	var mobile = ${mobile}; // check to see if we are in mobile version
     var _mainlayer_multipleDates = false;// Indicates if the main layer has multiple dates
     var _mainlayer_zaxisCoord = false;// Indicates if the main layer has a z-axis coordinate
+    var _mainlayer_currents = layerDetails.overlayCurrents;// Indicates if the main layer has 'currents' layer information
+
 
 		//minPalVal = layerDetails.scaleRange[0];
 		//maxPalVal = layerDetails.scaleRange[1];

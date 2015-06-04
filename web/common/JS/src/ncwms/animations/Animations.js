@@ -181,7 +181,7 @@ function animIncreaseFrame(){
  */
 function animFaster(){
 	animSpeed = animSpeed*.80;
-	if(layerDetails.overlayCurrents){
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
 	startAnimationLoop();
@@ -193,7 +193,7 @@ function animFaster(){
  */
 function animSlower(){
 	animSpeed = animSpeed*1.20;
-	if(layerDetails.overlayCurrents){
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
 	startAnimationLoop();
@@ -234,7 +234,7 @@ function updateAnimationStatus(newStatus){
 			
 			owgis.kml.updateTitleAndKmlLink();
 
-			if(layerDetails.overlayCurrents){
+			if(_mainlayer_currents){
 				owgis.ncwms.currents.startSingleDateAnimation();
 			}
 
@@ -372,7 +372,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
  */
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	//Clear any previous currents animations
-	if(layerDetails.overlayCurrents){
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.cleanAnimationCurrentsAll();
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
@@ -545,7 +545,7 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 				//Load the currents if the animation finished loading
-				if(layerDetails.overlayCurrents){
+				if(_mainlayer_currents){
 					console.log("Loading particles!!!!!!!!");
 					owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
 				}
@@ -609,7 +609,7 @@ function loopAnimation(){
 		}while(imagesReady[currentFrame] === 0)
 	}
 	
-	if(layerDetails.overlayCurrents){
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.particles.setCurrentGrid(currentFrame);
 		if(currentFrame === 0){
 			owgis.ncwms.currents.clearCurrentsCanvas();

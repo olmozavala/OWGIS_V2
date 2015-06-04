@@ -2,7 +2,7 @@ goog.provide('owgis.layer')
 
 owgis.layer.model = Backbone.Model.extend({
 	initialize: function(){
-		console.log("ncWMS object initialized");
+//		console.log("ncWMS object initialized");
 	},
 	defaults:{
 		server : "",

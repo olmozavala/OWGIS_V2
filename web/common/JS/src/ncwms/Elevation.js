@@ -222,7 +222,7 @@ function changeElev(value)
 	setColorRangeFromMinMax();
 
     owgis.kml.updateTitleAndKmlLink();
-	if(layerDetails.overlayCurrents){
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 }

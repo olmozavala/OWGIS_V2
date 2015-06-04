@@ -12,6 +12,7 @@
 		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
 		<Menu ID="ncwmsMultDateMultDepthCurr" EN="GoM Temperature With Currents " ES="Golfo con corrientes"/>
 		<Menu ID="worldTempCurrents" EN="World Temperature w Currents " ES="Temperatura y corrientes"/>
+		<Menu ID="worldTempCurrentsLocal" EN="Localhost World Temperature w Currents " ES="Temperatura y corrientes"/>
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
 
 		<Menu ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
@@ -47,7 +48,14 @@
 			   EN="Gulf of Mexico Temperatures and currents"
 			   name="global_ts_2015/water_temp" 
 			   overlaycurrents="global_uv_2015/sea_water_velocity" />
-				<!--server="http://localhost:8080/ncWMS/wms"-->
+
+		<!--
+        <layer Menu="ncwms,worldTempCurrentsLocal" 
+			   EN="Gulf of Mexico Temperatures and currents"
+			   name="global_ts_2015/water_temp" 
+				server="http://localhost:8080/ncWMS/wms"
+			   overlaycurrents="global_uv_2015/sea_water_velocity" />
+			   -->
 
         <layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"

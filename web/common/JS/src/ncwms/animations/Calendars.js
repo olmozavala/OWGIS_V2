@@ -80,7 +80,21 @@ function initCalendars(){
 			//I don't know why but for the selection the month needs to be increased by one
 			minMonth = minMonth + 1;
 			startDate = minYear + (minMonth < 10? '0' + minMonth: minMonth) + (minDay < 10? '0' + minDay: minDay);
-			
+
+			var locCurrDate = new Date(minValidDate);
+			var datesWithNoData = new Array();
+			while(locCurrDate <= maxValidDate){
+				var currYear = locCurrDate.getUTCFullYear();
+				var currMonth = locCurrDate.getUTCMonth();
+				var currDay = locCurrDate.getUTCDate();
+				//Be sure the day is available in the layers
+				if(!_.contains(datesWithData[currYear][currMonth],currDay)){
+					datesWithNoData.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate));
+				}
+				locCurrDate.setDate( locCurrDate.getDate() + 1);
+			}
+
+		
 			$("#cal-start").datepicker({
 				minDate: minValidDate,
 				maxDate: maxValidDate,
@@ -96,16 +110,38 @@ function initCalendars(){
 				dateFormat: dateFormat,
 				onSelect: updateCalendarEnd
 			});
-			if(mobile){
-			$("#ui-datepicker-div").click( function(event) {
-                event.stopPropagation();
-            });
+
+			//If there are some days in between max and min data that doesn't
+			// have data then we need to 'disable' them on the calendar
+			if(!_.isEmpty(datesWithNoData)){
+				$('#cal-start').datepicker("option", {
+					beforeShowDay: function(date){
+						var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+						return [!_.contains(datesWithNoData, string)];
+					}
+				});
+				$('#cal-end').datepicker("option", {
+					beforeShowDay: function(date){
+						var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+						return [!_.contains(datesWithNoData, string)];
+					}
+				});
 			}
+
+			if(mobile){
+				$("#ui-datepicker-div").click( function(event) {
+					event.stopPropagation();
+				});
+			}
+
+			console.log("Min date: "+minValidDate);
+			console.log("Max date: "+maxValidDate);
 			
 			startDate = getSuggestedDate(maxValidDate, false);
 			$("#cal-start").datepicker("setDate",startDate);
 			$("#cal-end").datepicker("setDate",maxValidDate);
 			
+
 			displayCalendars(true);
 			
 			calInitialized = true;
@@ -267,8 +303,8 @@ function updateMainLayerDate(newDate){
 	
     owgis.layers.updateMainLayerParam('TIME',newDate);
 	owgis.kml.updateTitleAndKmlLink();
-
-	if(layerDetails.overlayCurrents){
+	
+	if(_mainlayer_currents){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 }
@@ -280,18 +316,18 @@ function hideCalendarFunc() {
 	var button = $('#hideCalendar');    
 	var inner_text = button.html();  
 	if(!mobile){
-	//this if handles when the calendar is hiden and we should show it
-	if(inner_text === hideCal)
-	{
-		
-		button.html(showCal.toString());
-		$('#CalendarsAndStopContainer').css("display","none");
-	}
-	else//this handles when we need to hide the calendar. 
-	{           
-		button.html(hideCal.toString());
-		$('#CalendarsAndStopContainer').css("display","block");
-	}
+		//this if handles when the calendar is hiden and we should show it
+		if(inner_text === hideCal)
+		{
+			
+			button.html(showCal.toString());
+			$('#CalendarsAndStopContainer').css("display","none");
+		}
+		else//this handles when we need to hide the calendar. 
+		{           
+			button.html(hideCal.toString());
+			$('#CalendarsAndStopContainer').css("display","block");
+		}
 	}
 }
 
