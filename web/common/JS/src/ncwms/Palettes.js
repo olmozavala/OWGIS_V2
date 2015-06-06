@@ -6,6 +6,7 @@ goog.require('owgis.ncwms.animation');
 goog.require('owgis.ncwms.calendars');
 goog.require('owgis.ogc');
 goog.require('owgis.ajax');
+goog.require('owgis.layouts.draggable.topmenu');
 
 var initialMaxPal;//default maxPalVal
 var initialMinPal;//default minPalVal
@@ -199,11 +200,11 @@ function showPalettes()
 
     // We test the opacity of the 'color range window' to decide what
     // to do with the 'optional palettes window'
-    if($('#paletteWindowColorRange').css("opacity") === "0") 
+	 if($('#paletteWindowColorRange').css("opacity") === "0") {
         $('#palettes-div').show();
-    else
+	}else{
         $('#palettes-div').hide();
-
+	}
 }
 
 /**

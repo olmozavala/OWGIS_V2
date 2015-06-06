@@ -111,6 +111,7 @@
 	<script src="./common/JS/src/features/InterfaceDependent.js"> </script>
 	<script src="./common/JS/src/features/CQL.js"> </script>
 	<script src="./common/JS/src/layouts/draggableWindows/WindowPositions.js"> </script>
+	<script src="./common/JS/src/layouts/draggableWindows/NavBar.js"> </script>
 	<script src="./common/JS/src/main/layer.js"> </script>
 		
 	<!--This require some libraries defined above-->

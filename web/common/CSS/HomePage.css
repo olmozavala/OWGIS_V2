@@ -108,7 +108,7 @@ div.leftFoot {
 /* line 62, ../scss/HomePage.scss */
 .title {
   font-size: 15px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   text-align: center;
   padding: 5px 0px;
 }
@@ -125,11 +125,11 @@ div.leftFoot {
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
   bottom: 50px;
   right: 5%;
   width: 14em;
@@ -152,11 +152,11 @@ div.leftFoot {
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
   bottom: 50px;
   left: 3em;
   min-width: 12em;

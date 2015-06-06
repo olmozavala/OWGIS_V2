@@ -17,4 +17,5 @@ There is 3 options. Either '-' or '+' or click the button to choose the disired 
 
 <a class="btn btn-default btn-xs " href="#" id="plusButtonElevation"
         onclick="changeElevation('+', layer1);">
-    <span class="glyphicon glyphicon-plus "></span> </a>
+    <span class="glyphicon glyphicon-plus"> </span>
+</a>

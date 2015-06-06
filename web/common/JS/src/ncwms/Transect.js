@@ -41,8 +41,6 @@ if(netcdf){
 			})
 		})
 	});
-	
-	
 	var transectSource = new ol.source.Vector();
 	var transectLayer = new ol.layer.Vector({
 		source: transectSource,
@@ -54,71 +52,46 @@ if(netcdf){
  *once selected it calls this function and lets the map know that this control 
  *is now activated. 
  */
-function toggleControl() 
-{
-    if(!transectOn){
-		//Initializes source and 
-		transectSource = new ol.source.Vector();
-		transectLayer = new ol.layer.Vector({
-			source: transectSource,
-			style: transectStyle });
-
-        getElementById('lineToggle').innerHTML = unselectTransect.toString();
-		draw = new ol.interaction.Draw({
-			source: transectSource,
-			type: "LineString"
-		});
-		draw.on("drawend",getVerticalTransect);
-		draw.on("drawstart",cleanPreviousTransect);
-		// Do nothing with single click
-		map.unByKey(singleClickKey);
-		map.addLayer(transectLayer);
-		map.addInteraction(draw);
-    } else {
-        getElementById('lineToggle').innerHTML= transect.toString();
-		map.removeInteraction(draw);
-		map.removeLayer(transectLayer);
-		draw.un("drawend",getVerticalTransect);
-		//Recover the original behaviour of single click
-		singleClickKey = map.on('singleclick',punctualData);
-    }
+function toggleControl() {
+	toggleTransect(transectOn);
     transectOn = !transectOn;        
 }
 
 function toggleControlMob() {
-//	alert("Called");
-//	var sliderVal = $('#lineToggle').slider("option", "value");
+	//	alert("Called");
+	//	var sliderVal = $('#lineToggle').slider("option", "value");
 	var sliderVal=$("#lineToggle").val();
 	transectOn=sliderVal=="off"?false:true;
-    if(transectOn){
+	toggleTransect(!transectOn);
+}
+
+function toggleTransect(transectStatus){
+	if(!transectStatus){
 		//Initializes source and 
 		transectSource = new ol.source.Vector();
 		transectLayer = new ol.layer.Vector({
 			source: transectSource,
 			style: transectStyle });
-
-//        getElementById('lineToggle').innerHTML = unselectTransect.toString();
+		
 		draw = new ol.interaction.Draw({
 			source: transectSource,
 			type: "LineString"
 		});
-		draw.on("drawend",getVerticalTransect);
 		draw.on("drawstart",cleanPreviousTransect);
+		draw.on("drawend",getVerticalTransect);
+		
 		// Do nothing with single click
 		map.unByKey(singleClickKey);
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
-//        getElementById('lineToggle').innerHTML= transect.toString();
 		map.removeInteraction(draw);
 		map.removeLayer(transectLayer);
 		draw.un("drawend",getVerticalTransect);
 		//Recover the original behaviour of single click
 		singleClickKey = map.on('singleclick',punctualData);
     }
-//    transectOn = !transectOn; 
 }
-
 
 /**
  * When we start creating a new transect we first clear all the previous geoms
@@ -134,20 +107,19 @@ function cleanPreviousTransect(event){
  * @param {event} event Event object
  */
 function getVerticalTransect(event){   
-	var features = transectSource.getFeatures();
-	var geom = features[0].getGeometry();
-//	console.log(geom.getFlatCoordinates());
-//	console.log(geom.getCoordinates());
+	var feature = event.feature;
+	var geom = feature.getGeometry();
+	console.log(geom.getCoordinates());
 	var coords = geom.getCoordinates();
 	var coordsTxt = "";
-
+	
 	for (i = 0; i < coords.length; i++) {
 		if(i>0){
 			coordsTxt+=",";
 		}
 		coordsTxt+= coords[i].toString().replace(',',' ');
 	}
-
+	
     try{
         time = calStart.selection.get();//get the selected time in the start calendar
         time = Calendar.intToDate(time);    

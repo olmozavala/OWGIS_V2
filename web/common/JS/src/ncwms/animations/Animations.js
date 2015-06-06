@@ -101,13 +101,12 @@ function updateMenusDisplayVisibility(status){
 				break;
             case owgis.ncwms.animation.status.none:
             default:
-                $("#palettesMenuParent").show();
+                $(".palettesMenuParent").show();
                 $("#lineToggle").show();
-//                $("#downloadDataParent").hide();
 				if(netcdf){
-					$("#downloadDataParent").hide();
+					$(".downloadDataParent").hide();
 				}else{
-					$("#downloadDataParent").show();
+					$(".downloadDataParent").show();
 				}
 
                 if(_mainlayer_zaxisCoord){
@@ -132,7 +131,7 @@ function updateMenusDisplayVisibility(status){
 		}
     }else{
         //Menus when the layer is not a netcdf
-        $("#palettesMenuParent").hide();
+        $(".palettesMenuParent").hide();
         $("#lineToggle").hide();
         $("#downloadDataParent").show();
         $("#elevationParent").hide();

@@ -68,6 +68,17 @@ function owgisMain(){
 	if(_mainlayer_currents){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
+	$(".glyphicon-remove").parent().on("click",function(event){
+		if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
+		}
+		if($(event.currentTarget).parents("#paletteWindowColorRange").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".palettesMenuParent");
+		}
+		if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
+		}
+	});
 //	_cesium = new olcs.OLCesium({map: map});
 
 }
@@ -100,6 +111,8 @@ function initMenus() {
 			owgis.ncwms.currents.style.init();
 		}
     } 
+//	$(".topMenu .buttonStyle").addClass("buttonStyleCompressed");
+//	$(".topMenu .buttonStyle").removeClass("buttonStyle");
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
@@ -121,6 +134,8 @@ function initMenus() {
 		window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
+
+	
 	$(window).resize(function() {
 	   	windowWidth = $(window).width();
 		
