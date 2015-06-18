@@ -83,7 +83,11 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 	}
 
 	//Reads and updates the data
-	initCurrentsLayer();
+	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		initCurrentsLayerCesium();
+	}else{
+		initCurrentsLayer();
+	}
 }
 
 /**
@@ -179,6 +183,51 @@ function updateWidthAndHeight(layerTemplate){
 
 }
 
+function initCurrentsLayerCesium(){
+	
+	if(currentsLayer !== null){//If the layer already existed, we remove it
+		map.removeLayer(currentsLayer);
+	}
+
+	var scene = _cesium.getCesiumScene();
+	var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+	handler.setInputAction(function(event) {
+		updateCurrentsCesium(event);
+	}, Cesium.ScreenSpaceEventType.LEFT_UP);
+
+	handler.setInputAction(function(event) {
+		updateCurrentsCesium(event);
+	}, Cesium.ScreenSpaceEventType.WHEEL);
+	
+}
+
+function updateCurrentsCesium(event){
+	console.log(event);
+	canvas.width = $(window).width();
+	canvas.height = $(window).height();
+
+	currentExtent = [-180, -90, 180, 90];
+
+	if(!isRunningUnderMainAnimation){
+		if(updateURL()){
+			updateParticlesParameters(extent,resolution);
+			updateData();
+		}
+	}else{
+		//TODO
+		/*
+		if(isFirstTime){
+			if(updateURL()){
+				updateParticlesParameters(extent,resolution);
+				updateData();
+			}
+			isFirstTime = false;
+		}
+		*/
+	}
+
+}
+
 function initCurrentsLayer(){
 	
 	if(currentsLayer !== null){//If the layer already existed, we remove it
@@ -195,7 +244,6 @@ function initCurrentsLayer(){
 		source: animSource});
 	
 	var layersCollection = map.getLayers();
-	//TODO when the normal animation is running this +1 wont work
 	if(_.isEmpty(animLayer)){
 		layersCollection.insertAt(parseInt(idx_main_layer)+1,currentsLayer);//Adds the animation layer just above the main layer
 	}else{
@@ -225,7 +273,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 	canvas.height = canvasHeight;   	
 	
 	currentExtent = extent;
-
+	
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
 			updateParticlesParameters(extent,resolution);
@@ -247,17 +295,16 @@ function updateParticlesParameters(extent, resolution){
 	var newParticleSpeed = 1500*resolution*owgis.ncwms.currents.particles.getDefaultParticleSpeed();
 	$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
 	owgis.ncwms.currents.particles.setCurrentResolutionParticleSpeed(newParticleSpeed);
-
+	
+	/*
 	var currBBOX = layerTemplate.get("bbox").split(',');	
 	var estimatedArea = (Number(currBBOX[2])-Number(currBBOX[0])) * (Number(currBBOX[3])-Number(currBBOX[1]));
-
-/*
 	var newNumberOfParticles = Math.ceil(Math.sqrt(estimatedArea*owgis.ncwms.currents.particles.getDefaultNumberOfParticles()));
 	console.log(estimatedArea);
 	console.log(newNumberOfParticles);
 //	$("#numParticles").text( newNumberOfParticles );
 //	$("#numParticlesSlider").slider("option","value", newNumberOfParticles);
-	*/
+	 */
 }
 
 /**
@@ -279,7 +326,7 @@ function abortPrevious(){
 function updateData(){
 	// Clears previous animations
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
-
+	
 	var totalRequests = times.length;	
 	var loadedRequests = 0;
 	
@@ -288,13 +335,13 @@ function updateData(){
 	_.each(times, function(time, idx){
 		layerTemplate.set("time",time);	
 		readDataPremises = new Array();
-//		console.log(layerTemplate.getURL());
+		//		console.log(layerTemplate.getURL());
 		readDataPremises[idx] = d3.json(layerTemplate.getURL(), 
 		function(error, file){
 			if(error){
 				console.log("Not possible to read JSON data: "+error.statusText);
 			}else{
-//				console.log("Data has been received: "+idx);
+				//				console.log("Data has been received: "+idx);
 				var uData = file[0].data;
 				var vData = file[1].data;
 				
@@ -312,6 +359,7 @@ function updateData(){
 					startAnimationLoopCurrents();
 				}
 				
+				// We read the data and create the grid
 				var grid = new Array();
 				for (j = 0, p = 0; j < gridInfo.ny; j++) {
 					var row = [];
@@ -324,10 +372,10 @@ function updateData(){
 				
 				loadedRequests++;
 				owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
-//				owgis.interf.loadingatmouse(true);
+				//				owgis.interf.loadingatmouse(true);
 				if(loadedRequests === totalRequests){
 					owgis.interf.loadingatmap(false,0);
-//					owgis.interf.loadingatmouse(false);
+					//					owgis.interf.loadingatmouse(false);
 				}
 			}
 		});

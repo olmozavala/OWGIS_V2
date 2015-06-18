@@ -93,7 +93,8 @@ for the help text, the optional layers, the depth etc.*/
 .draggableWindow {
   z-index: 1008;
   position: absolute;
-  border: solid 1px white;
+  /*border:solid 1px white;*/
+  border: none;
   padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;
@@ -115,7 +116,8 @@ for the main layers, the color palettes, the calendars etc.*/
 .transDraggableWindow {
   z-index: 1008;
   position: absolute;
-  border: solid 1px white;
+  /*border:solid 1px white;*/
+  border: none;
   padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;

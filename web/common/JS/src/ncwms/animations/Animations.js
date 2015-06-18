@@ -534,7 +534,7 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 
 		}
 
-		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
+//		console.log('Loaded image:'+currentImage+" belongs: "+currentBelongs);
 		
 		//Being sure that we are in order, if not then we dont' do anything
 		if( currentBelongs === currentAnimation ){
@@ -545,7 +545,7 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 				//Load the currents if the animation finished loading
 				if(_mainlayer_currents){
-					console.log("Loading particles!!!!!!!!");
+//					console.log("Loading particles!!!!!!!!");
 					owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
 				}
 			}else{//then we still need to load more

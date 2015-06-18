@@ -50,10 +50,8 @@ owgis.ncwms.currents.particles.setExternalAnimationSpeed = function setExternalS
 }
 
 owgis.ncwms.currents.particles.setParticleSpeed = function setParticleSpeed(speed){
-//	console.log("Old:" + particleSpeed);
+//	console.log("Set Particle speed");
 	particleSpeed = speed;
-//	console.log("New:" + speed);
-	initParticles();
 }
 owgis.ncwms.currents.particles.getParticleSpeed= function getParticleSpeed(){
 	return particleSpeed;
@@ -69,6 +67,7 @@ owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed = function getC
 }
 
 owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
+//	console.log("setNumParticles");
 	numparticles = tot;
 	initParticles();
 }
@@ -80,7 +79,7 @@ owgis.ncwms.currents.particles.getDefaultNumberOfParticles = function getDefault
 }
 
 owgis.ncwms.currents.particles.setParticlesLifeTime = function setParticlesLifeTime(tot){
-	console.log(tot);
+//	console.log("setParticlesLifeTime");
 	timeParticle = tot;
 	initParticles();
 }
@@ -92,6 +91,7 @@ owgis.ncwms.currents.particles.getDefaultParticlesLifeTime= function getDefaultP
 }
 
 owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
+//	console.log("initData for particles");
 	
 	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
@@ -101,8 +101,27 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 	
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
 	latDomain = Math.abs(currentExtent[1] - currentExtent[3]);
-	
+
+	updateDomains();
 	initParticles();
+}
+
+/**
+ * 
+ * @returns {undefined}Updates the limits of the particles taking into account the limits
+ * of the map and the limits of the layer.
+ */
+function updateDomains(){
+//	console.log("Updating the domains....");
+	
+	limLonMin = Math.max(currentExtent[0], gridInfo.lo1);
+	limLatMin = Math.max(currentExtent[1], gridInfo.la1);
+	
+	var limLonMax = Math.min(currentExtent[2], gridInfo.lo2);
+	var limLatMax = Math.min(currentExtent[3], gridInfo.la2);
+	
+	lonDomainRand = Math.abs(limLonMin - limLonMax);
+	latDomainRand = Math.abs(limLatMin - limLatMax);
 }
 
 owgis.ncwms.currents.particles.setGrid = function setGrid(grid, idx){
@@ -123,18 +142,10 @@ owgis.ncwms.currents.particles.setCurrentGrid= function setCurrentGrid(CurrentGr
 owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 	
 	if(!_.isEmpty(grids[currentGrid])){
-		
-		limLonMin = Math.max(currentExtent[0], gridInfo.lo1);
-		limLatMin = Math.max(currentExtent[1], gridInfo.la1);
-		
-		var limLonMax = Math.min(currentExtent[2], gridInfo.lo2);
-		var limLatMax = Math.min(currentExtent[3], gridInfo.la2);
-		
-		lonDomainRand = Math.abs(limLonMin - limLonMax);
-		latDomainRand = Math.abs(limLatMin - limLatMax);
-		
+
 		//We make the if here even when we have to repeat the code
 		// because it is more efficient to do it this way. 
+		// Check if we have only one time step or multiple time steps
 		if( (grids.length === 1) || (currentGrid === (grids.length - 1)) ) {
 			_.each(particlesArray,function(particle,idx){
 				//Validate that particle is in range
@@ -145,10 +156,6 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 				if(particle[4] > timeParticle){
 					particlesArray[idx]= randomParticle();
 				}
-				
-				//Just in the case of the whole world we need to allow for
-				//looping
-				//					if(gridInfo.lo1=)
 				
 				//Validate the position of the particle is between the limits of the grid
 				if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 

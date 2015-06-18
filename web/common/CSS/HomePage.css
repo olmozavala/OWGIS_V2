@@ -118,7 +118,8 @@ div.leftFoot {
 .layersLonLat {
   z-index: 1008;
   position: absolute;
-  border: solid 1px white;
+  /*border:solid 1px white;*/
+  border: none;
   padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;
@@ -145,7 +146,8 @@ div.leftFoot {
 #jsonpdata {
   z-index: 1008;
   position: absolute;
-  border: solid 1px white;
+  /*border:solid 1px white;*/
+  border: none;
   padding: 5px 5px 5px 5px;
   cursor: move;
   color: black;

@@ -117,6 +117,13 @@
 				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
 				<span class="glyphicon glyphicon-question-sign "> </span>
 			</li>
+
+			<!-- Toogle Cesium -->
+			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
+				title="Cesium"	
+				onclick="toogleCesium();" >
+				<span class="glyphicon glyphicon-globe"> </span>
+			</li>
 		</ul>
 			
 		<!--Languages and tooltip help button-->
@@ -131,7 +138,6 @@
 				</ul>
 			</div>
 			<!--<a class="btn btn-default btn-xs " href="./admin/index.jsp" id="adminConsole"> Admin </a>-->
-			<!--<a class="btn btn-default btn-xs" onclick="toggleCesium();" id="toggleCesium"> toggle Cesium </a>-->
 		</div>
 	</div> <!--row-->
 	

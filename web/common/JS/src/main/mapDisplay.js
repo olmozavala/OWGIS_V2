@@ -79,12 +79,18 @@ function owgisMain(){
 			owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
 		}
 	});
-//	_cesium = new olcs.OLCesium({map: map});
 
 }
 
-function toggleCesium(){
+function toogleCesium(){
+	if(_.isEmpty(_cesium)){
+		_cesium = new olcs.OLCesium({map: map});
+	}
 	_cesium.setEnabled(!_cesium.getEnabled());
+	//Start the currents animation of 'static' day.
+	if(_mainlayer_currents){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
 }
 
 /**

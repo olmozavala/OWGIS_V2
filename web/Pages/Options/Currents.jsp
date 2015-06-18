@@ -42,15 +42,21 @@
 	</div>
 </div>
 <div class="row defRowSpace">
-	<div class="col-xs-3 col-xs-offset-1 " > 
-		<a class="btn btn-default btn-xs " href="#" 
-		   onclick="owgis.ncwms.currents.style.reset();"
-		   title="" >
-			Reset
-		</a>
+	<div class="col-xs-3 " > 
+		<div class="buttonStyle "
+			 onclick="owgis.ncwms.currents.style.reset();" > 
+			Reset 
+		</div>
+		<!-- Standard button -->
+		<!--
+		<button type="button" class="btn btn-default btn-xs"
+				onclick="owgis.ncwms.currents.style.reset();" >
+				reset
+		</button>
+  		-->
 	</div>
-
-	<div class="col-xs-1 col-xs-offset-1 " > 
+		
+	<div class="col-xs-2 col-xs-offset-2 " > 
 		<a class="btn btn-default btn-xs " href="#" 
 		   onclick="owgis.ncwms.currents.playPause()"
 		   title="<fmt:message key='ncwms.anim.help.play'/>/<fmt:message key='ncwms.anim.help.pause'/>" >

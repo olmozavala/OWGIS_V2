@@ -28,8 +28,9 @@ $topMenuHeight: 44px;
 @mixin floatingWindow{
 	z-index:1008;
 	position:absolute;
-	border:solid 1px white;
-	padding: $defPadding  $defPadding $defPadding $defPadding; //TRBL
+	/*border:solid 1px white;*/
+	border:none;
+	padding: $defPadding $defPadding $defPadding $defPadding; //TRBL
 	cursor: move;
     color: $invColor;
     font-size: $f_normal;
