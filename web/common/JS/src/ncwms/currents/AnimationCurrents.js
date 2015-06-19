@@ -37,6 +37,14 @@ var animationPaused = false;
 var isRunningUnderMainAnimation = false;
 var isFirstTime = true;//Only important when been run under main animation
 
+// ------------------ Cesium related -------------
+var c_move = false;//Used to detect movement of the mouse
+var c_leftdown = false;//Used to detect a left click of the mouse
+var c_x = 0.0350; // Used to increase the longitude angle
+var c_y = -0.75;// Used to increase the longitude angle
+var c_scene;
+var c_handler;
+
 window['owgis.ncwms.currents.setColor'] = owgis.ncwms.currents.setColor;
 owgis.ncwms.currents.setColor= function setColor(color){
 	currentsColor = color;
@@ -84,8 +92,12 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 
 	//Reads and updates the data
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		$("#currentsCanvas").css({position:'absolute', left:'0px',top:'0px','pointer-events':'none'});
+		$(".layersLonLat").hide();
 		initCurrentsLayerCesium();
 	}else{
+		$("#currentsCanvas").removeAttr('style');
+		$(".layersLonLat").show();
 		initCurrentsLayer();
 	}
 }
@@ -189,28 +201,67 @@ function initCurrentsLayerCesium(){
 		map.removeLayer(currentsLayer);
 	}
 
-	var scene = _cesium.getCesiumScene();
-	var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
-	handler.setInputAction(function(event) {
-		updateCurrentsCesium(event);
+	c_scene = _cesium.getCesiumScene();
+	c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);
+
+	updateCurrentsCesium(event);
+
+	c_handler.setInputAction(function(event) {
+		if(c_leftdown && c_move){
+			updateCurrentsCesium(event);
+		}
+		c_move = false;
+		c_leftdown = false;
 	}, Cesium.ScreenSpaceEventType.LEFT_UP);
 
-	handler.setInputAction(function(event) {
+	//Mouse movement
+	c_handler.setInputAction(function(event) {
+		if(c_leftdown){
+			c_move = true;
+		}
+	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+	//Left click movement
+	c_handler.setInputAction(function(event) {
+		c_leftdown = true;
+	}, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+
+	c_handler.setInputAction(function(event) {
 		updateCurrentsCesium(event);
 	}, Cesium.ScreenSpaceEventType.WHEEL);
 	
 }
 
 function updateCurrentsCesium(event){
-	console.log(event);
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
 
-	currentExtent = [-180, -90, 180, 90];
+	var c_center_rad = c_scene.camera.positionCartographic;
+	var c_center = {
+		longitude:c_center_rad.longitude*180/Math.PI,
+		latitude:c_center_rad.latitude*180/Math.PI};
+
+	var def_max_angle = 70;
+	var hight_for_max_angle = 9000000;
+	var view_angle_lat = Math.min(def_max_angle,def_max_angle*c_center_rad.height/hight_for_max_angle);
+	var inc_angle_by = Math.abs(c_center.latitude)*c_x + c_y;
+	var view_angle_lon;
+	if(inc_angle_by > 1){
+		view_angle_lon = Math.min(180, Math.max(1,inc_angle_by)*(def_max_angle*c_center_rad.height/hight_for_max_angle));
+	}else{
+		view_angle_lon = Math.min(def_max_angle, def_max_angle*c_center_rad.height/hight_for_max_angle);
+	}
+	currentExtent = [c_center.longitude-view_angle_lon,
+					c_center.latitude-view_angle_lat,
+					c_center.longitude+view_angle_lon,
+					c_center.latitude+view_angle_lat];
+	console.log(inc_angle_by);
+	console.log(view_angle_lat);
+	console.log(view_angle_lon);
+	console.log(currentExtent);
 
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
-			updateParticlesParameters(extent,resolution);
 			updateData();
 		}
 	}else{

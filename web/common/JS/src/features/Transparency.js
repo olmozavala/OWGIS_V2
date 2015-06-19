@@ -6,7 +6,7 @@ goog.require('owgis.ncwms.animation.status');
 var maxOpacity = 1;
 var minOpacity = 0.1;
 var opacity = .95;//Default opacity
-var incStep = .15;//Increment step of the transparency
+var incStep = .05;//Increment step of the transparency
 
 /**
  * Returns the current transparency value

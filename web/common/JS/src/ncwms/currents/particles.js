@@ -4,7 +4,7 @@ goog.require('owgis.layer');
 
 var particlesArray  = new Array();
 var numparticles = 20000;
-var defNumParticles = 20000;
+var defNumParticles = 10;
 var particleSpeed = .25;
 var defParticleSpeed = .25;
 var currentResolutionParticleSpeed = .25;
@@ -28,6 +28,10 @@ var lonDomainRand;
 var latDomainRand;
 var currentExtent;
 var currentGrid; 
+
+// For Cesium
+var cesium_scene
+var c_center;//Current center of the map
 
 var canvas;
 var ctx;
@@ -274,19 +278,56 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 //window['owgis.ncwms.currents.particles.drawParticles'] = owgis.ncwms.currents.particles.drawParticles;
 owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 	
-	_.each(particlesArray,function(particle){
-		if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
-				(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
-			pixParticle = particleToCanvas(particle,lonDomain, latDomain);
-			//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
-			ctx.moveTo(pixParticle[0], pixParticle[1]);
-			ctx.lineTo(pixParticle[2], pixParticle[3]);
-		}
-	});
-	
+	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		_.each(particlesArray,function(particle){
+			if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
+					(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
+				pixParticle = particleToCanvasCesium(particle);
+				//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
+				ctx.moveTo(pixParticle[0], pixParticle[1]);
+				ctx.lineTo(pixParticle[2], pixParticle[3]);
+			}
+		});
+	}else{
+		_.each(particlesArray,function(particle){
+			if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
+					(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
+				pixParticle = particleToCanvas(particle,lonDomain, latDomain);
+				//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
+				ctx.moveTo(pixParticle[0], pixParticle[1]);
+				ctx.lineTo(pixParticle[2], pixParticle[3]);
+			}
+		});
+	}
 	ctx.stroke();
 }
 
+/**
+ * Transforms a particle position into a pixel position in the canvas
+ * @param {type} particle
+ * @param {type} lonDomain
+ * @param {type} latDomain
+ * @returns {Array}
+ */
+function particleToCanvasCesium(particle, lonDomain, latDomain){
+	// Particles values go from -180 to 180 and -90 to 90
+	if(_.isEmpty(cesium_scene)){
+		cesium_scene = _cesium.getCesiumScene();
+	}
+	var cart3Pos = Cesium.Cartesian3.fromDegrees(particle[0], particle[1])
+	//TODO fix this hardcoded number, we need to know when the particle is visible
+	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
+			cart3Pos);
+	var x = position.x;
+	var y = position.y;
+	position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
+			Cesium.Cartesian3.fromDegrees(particle[2], particle[3]));
+	var dx = position.x;
+	var dy = position.y;
+	return [x,y,dx,dy,particle[4]];
+	//This will not render the particle, it 
+	return [0,0,0,0,particle[4]];
+}
 /**
  * Transforms a particle position into a pixel position in the canvas
  * @param {type} particle

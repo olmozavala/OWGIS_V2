@@ -40,7 +40,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				<canvas id="animationCanvas"></canvas>
 				<c:if test='${currents}'>
 					<!--Canvas that contain the currents-->
-					<canvas id="currentsCanvas"></canvas>
+					<canvas id="currentsCanvas" > </canvas>
 					<!-- Window with the custom styling for the currents -->
 					<%@include file="Layouts/DraggableWindows/NcWMS/Currents.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 				</c:if>

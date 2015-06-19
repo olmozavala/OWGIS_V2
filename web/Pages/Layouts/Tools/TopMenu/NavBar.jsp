@@ -68,6 +68,12 @@
 				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
 				<span class="glyphicon glyphicon-question-sign"> </span>
 			</li>
+			<!-- Toogle Cesium -->
+			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
+				title="Cesium"	
+				onclick="toogleCesium();" >
+				<span class="glyphicon glyphicon-globe"> </span>
+			</li>
 		</ul>
 		
 		<!--This whole ul is used for the 'smaller ' sizes-->

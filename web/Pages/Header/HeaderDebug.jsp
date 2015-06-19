@@ -74,8 +74,6 @@
 	<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 
 	<!--Cesium and Ol3 TODO should be loaded on demand only-->
-	<script src="./common/JS/vendor/minimized/Cesium.js"></script>
-	<script src="./common/JS/vendor/minimized/ol3cesium.js"></script>
 
 	<!--Internal JS-->
 	<!--Missing Closure library-->
