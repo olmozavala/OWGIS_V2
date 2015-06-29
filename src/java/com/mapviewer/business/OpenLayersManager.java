@@ -243,7 +243,7 @@ public class OpenLayersManager {
 			// The two variables: elevation and startDate have to match
 			// javascript variable names. 
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[elev_glob_counter]+\"&" 
-			URLscript += "\"+addElevationText()+\""
+			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
 					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"yy-mm-dd\")+\"&"
 					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"

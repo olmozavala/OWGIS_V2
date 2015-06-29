@@ -5,8 +5,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="names" class="com.mapviewer.model.PagesNames" scope="page"> </jsp:useBean>
 <jsp:useBean id="globals" class="com.mapviewer.model.Globals" scope="page"> </jsp:useBean>
-
-<!--This part is used to change the texts depending on the language of the user browser-->
+	
+	<!--This part is used to change the texts depending on the language of the user browser-->
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.mapviewer.messages.text" />
 <!DOCTYPE html>
@@ -28,16 +28,34 @@
 		</div>
 		<%-- Contains the title of the layer and the div that hold the whole map --%>
 		<form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
-
+			
 			<div data-role="page" id="home" data-theme="a">
-				
+
+				<c:if test='${netcdf}'>
+					<%-- Right panel with Depth selector --%>
+					<div data-role="panel" class="rightPanel" id="zaxis_selector_parent" data-theme="b"
+							 data-display="overlay" data-position="right">
+						<h4><span id="zaxis_title" > </span></h4>
+						<span id="zaxis_selector"> </span>			
+					</div>			
+				</c:if>
+				<c:if test='${netcdf}'>
+					<%-- Right panel with current options--%>
+					<div data-role="panel" class="rightPanel" id="navpanelrightcurrents" 
+							 data-display="overlay" data-position="right">
+						<h4>Currents</h4>
+						<%@include file="Options/Currents.jsp"%>
+					</div>			
+				</c:if>
+
 				<%-- Left Panel for Map Tools --%>
-				<div data-role="panel" id="navpanelleft" data-theme="a"	 data-display="overlay" data-position="left">
-						<%@include file="Options/Mobile/MTools.jsp"%>
+				<div data-role="panel" class="leftPanel" id="navpanelleft" data-theme="a"	 
+					 data-display="overlay" data-position="left">
+					<%@include file="Options/Mobile/MTools.jsp"%>
 				</div>
-				
+
 				<%-- Right Panel for Main and Optional Layers --%>
-				<div data-role="panel" id="navpanelright" data-theme="b"
+				<div data-role="panel" class="rightPanel" id="navpanelright" data-theme="b"
 					 data-display="overlay" data-position="right">
 					<div data-role="fieldcontain" id="ulBaseLayers">
 						<%@include file="Options/Mobile/MBaseLayers.jsp"%>
@@ -46,19 +64,20 @@
 						<%@include file="Options/Mobile/MOptionalLayers.jsp"%>
 					</div>
 				</div>
-				
 				<!-- Buttons on the navbar  -->
-				<div id="header" data-role="header" data-theme="b" data-fullscreen="true">
-					<a id="bars-button_left" data-icon="bars" class="ui-btn-left" data-inline="true" href="#navpanelleft" style="line-height: 0.7em; height: 27px">Tools</a>
+				<div id="header" data-role="header" data-theme="b">
+					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#navpanelleft" >Tools</a>
+					<span class="ui-title"></span>
+					<%--
 					<div data-type="horizontal" data-role="controlgroup" class="ui-btn-right">					
 						<button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="margin-right: 5px; height: 25px">
 							<!--It gets initialized by languages.js-->
-							</button>
-							<ul id="langDropDown" class="dropdown-menu" role="menu">
+						</button>
+						<ul id="langDropDown" class="dropdown-menu" role="menu">
 							<!--It gets initialized by languages.js-->
-							</ul>
-						<a id="bars-button_right" data-role="button" data-icon="bars" href="#navpanelright" style="line-height: 0.7em; height: 27px">Layers</a>
-					</div>
+						</ul>
+					</div>--%>
+					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#navpanelright" >Layers</a>
 				</div>
 				
 				<div id="map"></div>
@@ -68,21 +87,22 @@
 				</c:if>
 				
 				<c:if test='${netcdf}'>
-				<%-- Color Palettes --%>
-				<%@include file="Layouts/Mobile/MPalettes.jsp"%>
-				
-				<%-- Date Selection --%>
+					<%-- Color Palettes --%>
+					<%@include file="Layouts/Mobile/MPalettes.jsp"%>
+					
+					<%-- Date Selection --%>
 					<%@include file="Options/Mobile/MDateSelection.jsp"%>
 				</c:if>
 			</div><!-- Main page -->
 			
 			<c:if test='${netcdf}'>
-			<%-- Animations --%>
+				<%-- Animations --%>
 				<%@include file="Options/Mobile/MAnimations.jsp"%>
 				<!--Canvas that may contain the currents-->
 				<canvas id="currentsCanvas"></canvas>
 			</c:if>
-			<%-- Parameter set true in JS if accessed from mobile --%>
+
+				<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="_locale" value="" />
 			<input type="hidden" id="mobile" name="mobile" value="" />

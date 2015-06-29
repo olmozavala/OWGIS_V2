@@ -4,6 +4,7 @@
  */
 
 goog.provide('owgis.layouts.draggable');
+goog.require('owgis.ol3');
 
 /** This function saves the positions and other parameters
  * that the user has on the interface to maintain the look
@@ -33,8 +34,8 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
             saveIndividualWindowPosition("pos_calendars", "#CalendarsAndStopContainer");
         }
         if(_mainlayer_zaxisCoord){
-            localStorage.elev_selector_visible= $("#zaxis_selector").css("display") === "none"? false: true;
-            saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector");
+            localStorage.elev_selector_visible= $("#zaxis_selector_parent").css("display") === "none"? false: true;
+            saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector_parent");
         }
         if(_mainlayer_currents){
             localStorage.currents_controls_visible = $("#currentsControlsContainer").css("display") === "none"? false: true;
@@ -78,7 +79,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 				
 				if(_mainlayer_zaxisCoord){
 					repositionWindow(localStorage.pos_elev_selector, "false",
-					'zaxis_selector', 'none');
+					'zaxis_selector_parent', 'none');
 				}
 				
 				if(_mainlayer_currents){
@@ -104,20 +105,15 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 				if( localStorage.elev_selector_visible!== undefined){
 					if(_mainlayer_zaxisCoord){
 						if ( localStorage.elev_selector_visible=== "true") {
-							$("#zaxis_selector").show("fade");
+							$("#zaxis_selector_parent").show("fade");
 						}
 					}
 				}
 			}
+
+			//Updates the position of the map as it was previously set
+			owgis.ol3.positionMap();
 			
-			// --------------- Map visualization and hover texts
-			if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-			if( localStorage.map_center!== undefined){
-				strCenter = localStorage.map_center.split(",")
-				lat = Number(strCenter[0]);
-				lon = Number(strCenter[1]);
-				ol3view.setCenter([lat,lon]);// Center of the map
-			}
 			if( localStorage.disable_hover === "true"){
 				//Disables the text hovers 
 				owgis.help.tooltips.toggleTooltips();
@@ -149,7 +145,7 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
     if (netcdf) {
         moveOneWindowToFitOnScreen("palettes-div");
         moveOneWindowToFitOnScreen("paletteWindowColorRange");
-        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector");
+        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector_parent");
         if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
         if(_mainlayer_currents) moveOneWindowToFitOnScreen("currentsControlsContainer");
     }

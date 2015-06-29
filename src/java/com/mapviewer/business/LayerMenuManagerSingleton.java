@@ -98,8 +98,7 @@ public class LayerMenuManagerSingleton {
 				//For vector and main layers we update the current menu tree
 				if (!layerType.equalsIgnoreCase("BackgroundLayers")) {
 					//Obtains the menu for this layer
-					layerMenu = StringAndNumbers.strArrayFromStringColon(
-							(String) layerElem.getAttributeValue("Menu"));
+					layerMenu = StringAndNumbers.strArrayFromStringColon(layerElem.getAttributeValue("Menu"));
 				}
 
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres

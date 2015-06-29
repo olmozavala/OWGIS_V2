@@ -10,8 +10,9 @@ Styles for the elevation options.
 
 /* Defines the position of the draggable window that
 selects the zaxis value*/
-#zaxis_selector
+#zaxis_selector_parent
 {
+	min-width:100px;
     top:45px;
     left:40%;
     display:none;

@@ -65,7 +65,7 @@ public class WCSServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		try {
-			String mainLayer = (String) request.getParameter("mainLayer");
+			String mainLayer = request.getParameter("mainLayer");
 
 
 			Layer selectedLayer = LayerMenuManagerSingleton.getInstance().getLayerByName(mainLayer);
@@ -74,7 +74,7 @@ public class WCSServlet extends HttpServlet {
 			String cqlfilter = "";
 			if (selectedLayer.isVectorLayer()) {
 				format = "SHAPE-ZIP";
-				cqlfilter = (String) request.getParameter("CQLFILTER");
+				cqlfilter = request.getParameter("CQLFILTER");
 			} else {
 				format = "image/geotiff";
 			}

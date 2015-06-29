@@ -3,8 +3,8 @@ goog.provide('owgis.ncwms.currents.particles');
 goog.require('owgis.layer');
 
 var particlesArray  = new Array();
-var numparticles = 20000;
-var defNumParticles = 10;
+var numparticles = 20000;//Initial number of particles
+var defNumParticles = 20000;// Used to reset the number of particles	
 var particleSpeed = .25;
 var defParticleSpeed = .25;
 var currentResolutionParticleSpeed = .25;

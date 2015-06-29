@@ -128,18 +128,12 @@ function initMenus() {
         //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
-        if (mobile === false) {
-            createElevationSelector(); //initialize depth selector
-        }else{
-            createElevationSelectorMobile(); //initialize depth selector
-        }
+		owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
 		owgis.ncwms.animation.initAnimationControls();
 		if(_mainlayer_currents){
 			owgis.ncwms.currents.style.init();
 		}
     } 
-	//	$(".topMenu .buttonStyle").addClass("buttonStyleCompressed");
-	//	$(".topMenu .buttonStyle").removeClass("buttonStyle");
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
@@ -147,17 +141,8 @@ function initMenus() {
 		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}
 	else{
-		if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-		if( localStorage.map_center!== undefined){
-			strCenter = localStorage.map_center.split(",")
-			lat = Number(strCenter[0]);
-			lon = Number(strCenter[1]);
-			ol3view.setCenter([lat,lon]);// Center of the map
-		}
-	}
-	
-    //if user changes the window size
-	if(mobile){
+		owgis.ol3.positionMap();
+		//if user changes the window size
 		window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
@@ -177,7 +162,8 @@ function initMenus() {
 	   	    }
 		}
 		if(mobile){
-			resizeMobilePanels();
+			//TODO delete resizeMobilePanels if not used by Agost 2015
+//			resizeMobilePanels();
 			// In this case we are increasing the size of the window and go to desktop mode
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;

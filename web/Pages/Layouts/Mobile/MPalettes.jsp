@@ -5,21 +5,12 @@
 --%>
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<a href="#" id="trigger3" class="trigger right">Palettes</a>
-
-<div id="panel3" class="panel right">
+<div id="panelRightPalettes" data-role="panel" data-display="overlay" data-position="right">
 	<!--Title and close button-->
-	<div class="row defRowSpace">
-		<div class="col-xs-12 invShadow title" > <fmt:message key="ncwms.newpal" /></div>
-	</div>
+	<h4><fmt:message key="ncwms.newpal" /></h4>
 	<%@include file="../../Options/Palettes.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 
 	<!--This is the draggable window with the current palette and color range options-->
-	<div class="row"> 
-		<div class="col-xs-12 invShadow title ">
-			<fmt:message key="ncwms.colorrange" />
-		</div>
-	</div>
+	<h4> <fmt:message key="ncwms.colorrange" /></h4>
 	<%@include file="../../Options/ColorRange.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 </div>

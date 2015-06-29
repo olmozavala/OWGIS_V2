@@ -16,27 +16,16 @@ html, body {
     z-index: 9999;
     background: url('../../images/loading/009.gif') 50% 50% no-repeat rgb(249,249,249);
 }
-#header {
-    /*display: none;*/
-    height: 35px;
-    width: 100%;
-    position: absolute;
-    z-index: 10000;
-    opacity: 0.9;
-    background: #293041;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #293041), color-stop(1, #6d6d6d));
-    background: -webkit-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -moz-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -ms-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: -o-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-    background: linear-gradient(to top, #293041 0%, #6d6d6d 100%);
+
+label{
+	text-align: center;
 }
 
-#navpanelleft {
-    width: auto;
+.leftPanel{
+	max-width: 200px;
 }
-#navpanelright {
-    width: 290px;
+.rightPanel{
+	max-width: 200px;
 }
 
 .ui-panel-inner {
@@ -50,8 +39,9 @@ html, body {
 }
 
 .ui-panel-inner {
-    overflow-x: hidden;
-    max-height: 500px;
+    /*overflow-x: hidden;*/
+    /*max-height: 500px;*/
+    /*height: 100%;*/
 }
 
 #bars-button {
@@ -74,7 +64,6 @@ margin: 0.4em;
 .ui-field-contain .ui-controlgroup-controls {
     width: 100%;
 }
-
 
 #l-animation {
   position: absolute;
