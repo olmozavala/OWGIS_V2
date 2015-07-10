@@ -10,15 +10,15 @@ owgis.help.tooltips.initHelpTexts = function () {
 		// When any of the windows move, it repositions the tooltip by reloading it.
 		// "toolTipWithImage are used when the text of the tooltip requires images
 		$('.toolTip, .toolTipWithImage').on("mousemove",function(){
-				var disabled = $('.toolTip').tooltip( "option", "disabled" );
+				var disabled = $('.toolTip').uitooltip( "option", "disabled" );
 				if(!disabled){
-					$(this).tooltip('close'); 
-					$(this).tooltip('open');
+					$(this).uitooltip('close'); 
+					$(this).uitooltip('open');
 				}
 		});
 		
 		//Initializes all the tooltips. By default they appear at the left bottom
-		$('.toolTip').tooltip({
+		$('.toolTip').uitooltip({
 			show: null, 
 			hide: null, 
 			tooltipClass: 'commonHover',
@@ -27,7 +27,7 @@ owgis.help.tooltips.initHelpTexts = function () {
 		
 		// Updates the tooltips for the dragabble windows, the tooltip appears at
 		// the center in the right.
-		$('.toolTip.transDraggableWindow, .toolTip.draggableWindow' ).tooltip({
+		$('.toolTip.transDraggableWindow, .toolTip.draggableWindow' ).uitooltip({
 			show: null, 
 			hide: null, 
 			tooltipClass: 'commonHover',
@@ -37,7 +37,7 @@ owgis.help.tooltips.initHelpTexts = function () {
 
 		//For the tooltips that require images inside, we assign the contents
 		// of the the object with the id of title='id' and use that as a conent
-		$('.toolTipWithImage.transDraggableWindow, .toolTipWithImage.draggableWindow').tooltip({
+		$('.toolTipWithImage.transDraggableWindow, .toolTipWithImage.draggableWindow').uitooltip({
 			show: null, 
 			hide: null, 
 			tooltipClass: 'commonHover',
@@ -62,21 +62,21 @@ owgis.help.tooltips.toggleTooltips = function() {
     hoverDisabled = !hoverDisabled;
     if (hoverDisabled) {
     	try{
-    	$('.toolTip').tooltip( "option", "disabled", true );
-    	$('.toolTipWithImage').tooltip( "option", "disabled", true );
+    	$('.toolTip').uitooltip( "option", "disabled", true );
+    	$('.toolTipWithImage').uitooltip( "option", "disabled", true );
     }
     catch(e){
-       	$('.toolTip').tooltip();
-    	$('.toolTipWithImage').tooltip();
-    	$('.toolTip').tooltip( "option", "disabled", true );
-    	$('.toolTipWithImage').tooltip( "option", "disabled", true );
+       	$('.toolTip').uitooltip();
+    	$('.toolTipWithImage').uitooltip();
+    	$('.toolTip').uitooltip( "option", "disabled", true );
+    	$('.toolTipWithImage').uitooltip( "option", "disabled", true );
     }
 finally {
         $("#helpHoverImg").attr("src","./common/images/Help/Help1Disabled.png");
 }
     } else {
-     	$('.toolTip').tooltip('enable');
-    	$('.toolTipWithImage').tooltip('enable');
+     	$('.toolTip').uitooltip('enable');
+    	$('.toolTipWithImage').uitooltip('enable');
         $("#helpHoverImg").attr("src","./common/images/Help/Help1.png");
     }
 }

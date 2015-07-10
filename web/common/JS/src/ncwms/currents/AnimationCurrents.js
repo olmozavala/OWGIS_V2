@@ -195,7 +195,7 @@ function updateWidthAndHeight(layerTemplate){
 		resolutionFactor *= .5;//In mobile devices by default the requested resolution is half
 	}
 	if( owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none ){ 
-		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatio();
+		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatioCurrents();
 	}
 
 	var width = Math.ceil(($(window).width()/800)*imageRequestResolution*resolutionFactor);
@@ -385,149 +385,160 @@ if(!_.isEmpty(readDataPremises)){
 }
 
 function updateData(){
-// Clears previous animations
-owgis.ncwms.currents.cleanAnimationCurrentsAll();
-
-var totalRequests = times.length;	
-var loadedRequests = 0;
-
-//Reads the data
-owgis.interf.loadingatmap(true,0,"Currents");
-_.each(times, function(time, idx){
-	layerTemplate.set("time",time);	
-	readDataPremises = new Array();
-	//		console.log(layerTemplate.getURL());
-	readDataPremises[idx] = d3.json(layerTemplate.getURL(), 
-	function(error, file){
-		if(error){
-			console.log("Not possible to read JSON data: "+error.statusText);
-		}else{
-			//				console.log("Data has been received: "+idx);
-			var uData = file[0].data;
-			var vData = file[1].data;
-			
-			//We set the gridInfo only for the first time frame 
-			
-			var gridInfo = file[0].header;
-			//TODO I don't know why latitude ranges come flipped
-			var temp = gridInfo.la1;
-			gridInfo.la1 = gridInfo.la2;
-			gridInfo.la2 = temp;
-			
-			//We only initialize the loop and the headers for the first request
-			if(loadedRequests === 0){
-				owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-				startAnimationLoopCurrents();
-			}
-			
-			// We read the data and create the grid
-			var grid = new Array();
-			for (j = 0, p = 0; j < gridInfo.ny; j++) {
-				var row = [];
-				for (i = 0; i < gridInfo.nx; i++, p++) {
-					row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+	// Clears previous animations
+	owgis.ncwms.currents.cleanAnimationCurrentsAll();
+	
+	var totalRequests = times.length;	
+	var loadedRequests = 0;
+	
+	//Reads the data
+	owgis.interf.loadingatmap(true,0,"Currents");
+	
+	totalFiles = times.length;
+	loadedRequests
+	
+	_.each(times, function(time, idx){
+		layerTemplate.set("time",time);	
+		readDataPremises = new Array();
+		//		console.log(layerTemplate.getURL());
+		readDataPremises[idx] = d3.json(
+				layerTemplate.getURL(), function(error, file){
+					if(error){
+						console.log("Not possible to read JSON data: "+error.statusText);
+			}else{
+				//				console.log("Data has been received: "+idx);
+				var uData = file[0].data;
+				var vData = file[1].data;
+				
+				//We set the gridInfo only for the first time frame 
+				
+				var gridInfo = file[0].header;
+				//TODO I don't know why latitude ranges come flipped
+				var temp = gridInfo.la1;
+				gridInfo.la1 = gridInfo.la2;
+				gridInfo.la2 = temp;
+				
+				//We only initialize the loop and the headers for the first request
+				if(loadedRequests === 0){
+					owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+					startAnimationLoopCurrents();
 				}
-				grid[j] = row;
+				
+				// We read the data and create the grid
+				var grid = new Array();
+				for (j = 0, p = 0; j < gridInfo.ny; j++) {
+					var row = [];
+					for (i = 0; i < gridInfo.nx; i++, p++) {
+						row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+					}
+					grid[j] = row;
+				}
+				owgis.ncwms.currents.particles.setGrid(grid,idx);
+				
+				loadedRequests++;
+				owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
+				//				owgis.interf.loadingatmouse(true);
+				if(loadedRequests === totalRequests){
+					owgis.interf.loadingatmap(false,0);
+				}
 			}
-			owgis.ncwms.currents.particles.setGrid(grid,idx);
-			
-			loadedRequests++;
-			owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
-			//				owgis.interf.loadingatmouse(true);
-			if(loadedRequests === totalRequests){
-				owgis.interf.loadingatmap(false,0);
-				//					owgis.interf.loadingatmouse(false);
-			}
+		});
+		
+		//This function is used to display the progress of the download, only used when
+		// we have one time
+		if(times.length === 1){
+			readDataPremises[idx].on("progress",function(){
+				owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/2000000)*100),"Currents");
+			});
 		}
 	});
-});
-
+	
 }
 
 /**
-* This function updates the BBOX of the layers in order to modify the request.
-* The objective is to request only what is in the visible map 
-* @returns {undefined}
-*/
+ * This function updates the BBOX of the layers in order to modify the request.
+ * The objective is to request only what is in the visible map 
+ * @returns {undefined}
+ */
 function updateURL(){
-var origBBOX = layerTemplate.get("origbbox").split(',');
-// Validate that the user is viewing some area of the data
-if( (currentExtent[0] > origBBOX[2]) ||
-		(currentExtent[2] < origBBOX[0]) ||
-		(currentExtent[1] > origBBOX[3]) ||
-		(currentExtent[3] < origBBOX[1]) ){
-	//In this case the current map view is outside the limits of the data
-	return false;
-}else{
-	// Updating current BBOX
-	limLonMin = Math.max(currentExtent[0], origBBOX[0]);
-	limLatMin = Math.max(currentExtent[1], origBBOX[1]);
-	
-	var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
-	var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
-	
-	var newbbox = limLonMin+","+limLatMin+","+limLonMax+","+limLatMax;
-	layerTemplate.set("bbox",newbbox);	
-	
-	// Updating current zaxis
-	if( !_.isEmpty(layerDetails.zaxis)){
-		var elev = layerDetails.zaxis.values[elev_glob_counter];
-		layerTemplate.set("elevation",elev);	
+	var origBBOX = layerTemplate.get("origbbox").split(',');
+	// Validate that the user is viewing some area of the data
+	if( (currentExtent[0] > origBBOX[2]) ||
+			(currentExtent[2] < origBBOX[0]) ||
+			(currentExtent[1] > origBBOX[3]) ||
+			(currentExtent[3] < origBBOX[1]) ){
+		//In this case the current map view is outside the limits of the data
+		return false;
 	}else{
-		layerTemplate.set("elevation",null);	
+		// Updating current BBOX
+		limLonMin = Math.max(currentExtent[0], origBBOX[0]);
+		limLatMin = Math.max(currentExtent[1], origBBOX[1]);
+		
+		var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
+		var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
+		
+		var newbbox = limLonMin+","+limLatMin+","+limLonMax+","+limLatMax;
+		layerTemplate.set("bbox",newbbox);	
+		
+		// Updating current zaxis
+		if( !_.isEmpty(layerDetails.zaxis)){
+			var elev = layerDetails.zaxis.values[elev_glob_counter];
+			layerTemplate.set("elevation",elev);	
+		}else{
+			layerTemplate.set("elevation",null);	
+		}
+		
+		layerTemplate = updateWidthAndHeight(layerTemplate);
+		return true;
 	}
-	
-	layerTemplate = updateWidthAndHeight(layerTemplate);
-	return true;
-}
 }
 
 /**
-* Removes previously defined animation callback functions 
-* @returns {undefined}
-*/
+ * Removes previously defined animation callback functions 
+ * @returns {undefined}
+ */
 function clearLoopHandlerCurrents(){
-if(typeof intervalHandlerCurrents !== 'undefined'){
-	clearInterval(intervalHandlerCurrents);
-}
+	if(typeof intervalHandlerCurrents !== 'undefined'){
+		clearInterval(intervalHandlerCurrents);
+	}
 }
 
 /**
-* Initilizes the callback function to start the animation loop 
-* @returns {undefined}
-*/
+ * Initilizes the callback function to start the animation loop 
+ * @returns {undefined}
+ */
 function startAnimationLoopCurrents(){
-clearLoopHandlerCurrents();
-owgis.ncwms.currents.particles.setInternalAnimationSpeed(currAnimSpeed);
-intervalHandlerCurrents = setInterval(loopAnimationCurrents,currAnimSpeed);
+	clearLoopHandlerCurrents();
+	owgis.ncwms.currents.particles.setInternalAnimationSpeed(currAnimSpeed);
+	intervalHandlerCurrents = setInterval(loopAnimationCurrents,currAnimSpeed);
 }
 
 /**
-* This is the callback function in charge of displaying
-* the proper frames of the animations 
-* @returns {undefined}
-*/
+ * This is the callback function in charge of displaying
+ * the proper frames of the animations 
+ * @returns {undefined}
+ */
 function loopAnimationCurrents(){
-//When the animation is 'playing' it loops on all the frames
-if(!animationPaused){
-	
-	ctx.beginPath();
-	
-	//Make previous ones transparent
-	var prev = ctx.globalCompositeOperation;
-	ctx.globalCompositeOperation = "destination-out";
-	ctx.fillStyle = "rgba(255, 255, 255, .2)";
-	ctx.fillRect(0, 0, canvas.width,canvas.height);
-	ctx.globalCompositeOperation = prev;
-	ctx.strokeStyle = currentsColor;
-	
-	//Update particles positions
-	owgis.ncwms.currents.particles.updateParticles();
-	// Render again
-	owgis.ncwms.currents.particles.drawParticles();
-	
-	ctx.stroke();
-	
-	map.render();
-}
+	//When the animation is 'playing' it loops on all the frames
+	if(!animationPaused){
+		
+		ctx.beginPath();
+		
+		//Make previous ones transparent
+		var prev = ctx.globalCompositeOperation;
+		ctx.globalCompositeOperation = "destination-out";
+		ctx.fillStyle = "rgba(255, 255, 255, .2)";
+		ctx.fillRect(0, 0, canvas.width,canvas.height);
+		ctx.globalCompositeOperation = prev;
+		ctx.strokeStyle = currentsColor;
+		
+		//Update particles positions
+		owgis.ncwms.currents.particles.updateParticles();
+		// Render again
+		owgis.ncwms.currents.particles.drawParticles();
+		
+		ctx.stroke();
+		
+		map.render();
+	}
 }

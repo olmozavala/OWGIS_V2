@@ -86,8 +86,9 @@
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
-		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery-ui.min.js"></script>
+		<script> $.widget.bridge('uitooltip', $.ui.tooltip); </script>	
+		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 	</c:if>
 
 	<!--Using closure library-->
