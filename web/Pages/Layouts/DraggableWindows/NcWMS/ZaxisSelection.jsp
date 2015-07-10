@@ -9,7 +9,7 @@
 		
 		<div class="col-xs-4 pull-right">
 			<a class="btn btn-default btn-xs" href="#" 
-			   onclick="displayElevationSelector();">
+			   onclick=" owgis.ncwms.zaxis.displayElevationSelector();">
 				<span class="glyphicon glyphicon-remove"> </span> 
 			</a>
 		</div>

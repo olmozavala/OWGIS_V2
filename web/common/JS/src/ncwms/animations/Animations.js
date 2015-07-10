@@ -634,5 +634,7 @@ function loopAnimation(){
  * @returns {undefined}
  */
 owgis.ncwms.animation.initAnimationControls = function(){
-	$('#animControls a').tooltip({ position: "bottom left", opacity: 0.7});
+	if(!mobile){
+		$('#animControls a').tooltip({ position: "bottom left", opacity: 0.7});
+	}
 };

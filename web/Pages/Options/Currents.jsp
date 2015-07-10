@@ -7,35 +7,38 @@
 
 <c:if test='${mobile}'>
 	<!-- Color Picker-->
-	<div class="ui-grid-a">
-		<div class="ui-block-a">
-			<h4> Color</h4>
+	<li>
+		<div class="ui-field-contain">
+			<label for="currentsColor">Color</label>
+			<input type='text' name="currentsColor" id="currentsColor" style="width:50px" />
 		</div>
-		<div class="ui-block-b">
-			<input type='text' name="currentsColor" id="currentsColor" />
+	</li>
+	<li>
+		<input type="range" name="numParticlesSlider" id="numParticlesSlider" />
+	</li>
+	<li>
+		<!-- Particles speed -->
+		<label for="particleSpeedSlider"> Speed </label>
+		<input data-mini="true" type="range" id="particleSpeedSlider" name="particleSpeedSlider" />
+	</li>
+	<li>
+		<!-- Particles Life time-->
+		<label for="particleLifeTimeSlider">Life time</label>
+		<input data-mini="true" type="range" id="particleLifeTimeSlider" name="particleLifeTimeSlider" />
+	</li>
+	<li>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<a href="#" class="ui-btn ui-corner-all ui-mini" 
+				   onclick="owgis.ncwms.currents.style.reset();" > Reset</a>
+			</div>
+			<div class="ui-block-b" >
+				<a href="#" data-theme="b" class="ui-btn ui-icon-pause ui-btn-icon-left ui-mini
+								   ui-corner-all"  id="currentsPlayPauseButton"
+				   onclick="owgis.ncwms.currents.playPause()" >Pause</a>
+			</div>
 		</div>
-	</div>
-	<!-- Number of particles -->
-	<label for="numParticlesSlider" id="numParticles"># Of Particles</label>
-	<input type="range" name="numParticlesSlider" id="numParticlesSlider" />
-	<!-- Particles speed -->
-	<label for="particleSpeedSlider"> Particles speed </label>
-	<input data-mini="true" type="range" id="particleSpeedSlider" name="particleSpeedSlider" />
-	<!-- Particles Life time-->
-	<label for="particleLifeTimeSlider">Particles life time</label>
-	<input data-mini="true" type="range" id="particleLifeTimeSlider" name="particleLifeTimeSlider" />
-	<div class="ui-grid-a">
-		<div class="ui-block-a">
-			<a href="#" class="ui-btn ui-corner-all ui-mini" 
-			   onclick="owgis.ncwms.currents.style.reset();" > Reset</a>
-		</div>
-		<div class="ui-block-b" >
-			<a href="#" data-theme="b" class="ui-btn ui-icon-pause ui-btn-icon-left ui-mini
-							   ui-corner-all"  id="currentsPlayPauseButton"
-			   onclick="owgis.ncwms.currents.playPause()" >Pause</a>
-		</div>
-			
-	</div>
+	</li>
 </c:if>
 <c:if test='${!mobile}'>
 	<!-- Color Picker-->
@@ -89,5 +92,5 @@
 			</a>
 		</div>
 	</div>
-		
+	
 </c:if>

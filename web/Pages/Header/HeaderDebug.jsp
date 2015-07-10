@@ -20,15 +20,15 @@
 
 	<!--This is the mobile case-->
 	<c:if test='${mobile}'>
-		<link rel="stylesheet" href="./common/CSS/vendor/jquery.mobile-1.4.5.min.css" />
+		<link href="./common/CSS/vendor/jquery.mobile-1.4.5.min.css"  rel="stylesheet"/>
+		<link href="./common/CSS/vendor/jqm-icon-pack-fa-modified.css"  rel="stylesheet"/>
 		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-		<link rel="stylesheet" href="./common/CSS/vendor/jqm-icon-pack-fa.css" />
-		<link href="./common/CSS/MobileCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/MobileCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/MobileCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/MobileCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/MobileCSS/MPanels.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/MobileCSS/MElevation.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MPanels.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MElevation.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
 	</c:if>
 	<!--this is the Desktop case-->
@@ -62,7 +62,6 @@
 	<script src="./common/JS/vendor/debug/closure-lite.js"></script>
 
 	<script src="./common/JS/vendor/minimized/jquery-2.1.4.min.js"></script>
-	<script src="./common/JS/vendor/minimized/jquery-ui.min.js"></script>
 	<script src="./common/JS/vendor/minimized/underscore-min.js"></script>
 	<script src="./common/JS/vendor/minimized/backbone-min.js"></script>
 	<script src="./common/JS/vendor/minimized/d3.min.js"></script>
@@ -70,13 +69,6 @@
 	<c:if test='${currents}'>
 		<script src="./common/JS/vendor/minimized/spectrum.min.js"></script>
 	</c:if>
-	<script>
-//			It is used to avoid conflicts with Bootstrap Tooltip
-		$.widget.bridge('uitooltip', $.ui.tooltip);
-//		Required to avoid conflict with jquery ui slider and mobile slider
-		$.widget.bridge('uislider', $.ui.slider);
-	</script>
-
 	<!--Cesium and Ol3 TODO should be loaded on demand only-->
 
 	<!--Internal JS-->
@@ -89,11 +81,13 @@
 	<c:if test='${mobile}'>
 		<script src="./common/JS/vendor/minimized/jquery.mobile.min.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery.slidePanel.js"></script>
+		<script src="./common/JS/vendor/minimized/jquery_ui_datepicker/jquery-ui.min.js"></script>
 		<script src="./common/JS/src/mobile/Mobile.js"> </script>
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
 		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
+		<script src="./common/JS/vendor/minimized/jquery-ui.min.js"></script>
 	</c:if>
 
 	<!--Using closure library-->

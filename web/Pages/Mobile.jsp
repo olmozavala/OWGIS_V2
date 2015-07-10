@@ -26,47 +26,18 @@
 			<a href="#" id="popup-closer" class="ol-popup-closer"></a>
 			<div id="popup-content"></div>
 		</div>
-		<%-- Contains the title of the layer and the div that hold the whole map --%>
+
+			<%-- Contains the title of the layer and the div that hold the whole map --%>
 		<form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 			
 			<div data-role="page" id="home" data-theme="a">
-
-				<c:if test='${netcdf}'>
-					<%-- Right panel with Depth selector --%>
-					<div data-role="panel" class="rightPanel" id="zaxis_selector_parent" data-theme="b"
-							 data-display="overlay" data-position="right">
-						<h4><span id="zaxis_title" > </span></h4>
-						<span id="zaxis_selector"> </span>			
-					</div>			
-				</c:if>
-				<c:if test='${netcdf}'>
-					<%-- Right panel with current options--%>
-					<div data-role="panel" class="rightPanel" id="navpanelrightcurrents" 
-							 data-display="overlay" data-position="right">
-						<h4>Currents</h4>
-						<%@include file="Options/Currents.jsp"%>
-					</div>			
-				</c:if>
-
-				<%-- Left Panel for Map Tools --%>
-				<div data-role="panel" class="leftPanel" id="navpanelleft" data-theme="a"	 
-					 data-display="overlay" data-position="left">
-					<%@include file="Options/Mobile/MTools.jsp"%>
-				</div>
-
-				<%-- Right Panel for Main and Optional Layers --%>
-				<div data-role="panel" class="rightPanel" id="navpanelright" data-theme="b"
-					 data-display="overlay" data-position="right">
-					<div data-role="fieldcontain" id="ulBaseLayers">
-						<%@include file="Options/Mobile/MBaseLayers.jsp"%>
-					</div>
-					<div data-role="fieldcontain" id="optionalLayersWindow">
-						<%@include file="Options/Mobile/MOptionalLayers.jsp"%>
-					</div>
-				</div>
+				<!--Left panels-->
+				<%@include file="Layouts/Mobile/LeftPanels/M_MainTools.jsp" %> 
+				<%@include file="Layouts/Mobile/LeftPanels/M_MainAndOptionalLayers.jsp" %> 
+							
 				<!-- Buttons on the navbar  -->
 				<div id="header" data-role="header" data-theme="b">
-					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#navpanelleft" >Tools</a>
+					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#mobPanelMainTools" >Tools</a>
 					<span class="ui-title"></span>
 					<%--
 					<div data-type="horizontal" data-role="controlgroup" class="ui-btn-right">					
@@ -77,32 +48,36 @@
 							<!--It gets initialized by languages.js-->
 						</ul>
 					</div>--%>
-					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#navpanelright" >Layers</a>
+					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#mobPanelLayers" >Layers</a>
 				</div>
 				
 				<div id="map"></div>
 				<c:if test="${cqlfilter}">
 					<%-- CQL Custom filter buttons and text field. --%>
-					<%@include file="Options/Mobile/MCQLFilter.jsp" %> 
+					<%@include file="Layouts/Mobile/RightPanels/M_CQLFilter.jsp" %> 
 				</c:if>
-				
+
+				<!--Right panels -->
+				<c:if test='${currents}'>
+					<%@include file="Layouts/Mobile/RightPanels/M_CurrentsStyle.jsp" %> 
+				</c:if>
 				<c:if test='${netcdf}'>
-					<%-- Color Palettes --%>
-					<%@include file="Layouts/Mobile/MPalettes.jsp"%>
+					<%@include file="Layouts/Mobile/RightPanels/M_Palettes.jsp" %> 
+					<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
+					<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
 					
-					<%-- Date Selection --%>
-					<%@include file="Options/Mobile/MDateSelection.jsp"%>
+					<%@include file="Layouts/Mobile/Drawer/M_Animations.jsp"%>
+				</c:if>
+
+				<!--Adding extra canvas for animations and currents if necessary-->
+				<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
+				<c:if test='${netcdf}'> <canvas id="animationCanvas"></canvas>
+									<img id="animContainer" src="" class="menuHidden"></img>
 				</c:if>
 			</div><!-- Main page -->
 			
-			<c:if test='${netcdf}'>
-				<%-- Animations --%>
-				<%@include file="Options/Mobile/MAnimations.jsp"%>
-				<!--Canvas that may contain the currents-->
-				<canvas id="currentsCanvas"></canvas>
-			</c:if>
-
-				<%-- Parameter set true in JS if accessed from mobile --%>
+			
+			<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="_locale" value="" />
 			<input type="hidden" id="mobile" name="mobile" value="" />
@@ -115,7 +90,6 @@
 				});
 				$(window).load(function() {
 					$(".loader").fadeOut("slow");
-					
 				})
 		</script>
 	</body>

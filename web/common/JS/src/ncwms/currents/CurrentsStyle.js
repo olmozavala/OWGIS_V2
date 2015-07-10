@@ -16,13 +16,13 @@ owgis.ncwms.currents.style.togglestyling = function toggleWindow(){
 owgis.ncwms.currents.style.reset = function reset(){
 
 	if(!mobile){
-		$("#numParticlesSlider").uislider("option","value",
+		$("#numParticlesSlider").slider("option","value",
 		owgis.ncwms.currents.particles.getDefaultNumberOfParticles() );
 
-		$("#particleSpeedSlider").uislider("option","value",
+		$("#particleSpeedSlider").slider("option","value",
 		owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed() );
 		
-		$("#particleLifeTimeSlider").uislider("option","value",
+		$("#particleLifeTimeSlider").slider("option","value",
 		owgis.ncwms.currents.particles.getDefaultParticlesLifeTime());
 		
 	}else{
@@ -68,7 +68,7 @@ function initPicker(){
 
 function initParticlesLifeTimeSlider(){
 	if(!mobile){
-		$("#particleLifeTimeSlider").uislider({
+		$("#particleLifeTimeSlider").slider({
 			max:maxParticleLifeTime,
 			min:minParticleLifeTime,
 			value:owgis.ncwms.currents.particles.getParticlesLifeTime(),
@@ -88,7 +88,7 @@ function initParticlesLifeTimeSlider(){
 
 function initParticlesSpeedSlider(){
 	if(!mobile){
-		$("#particleSpeedSlider").uislider({
+		$("#particleSpeedSlider").slider({
 			max:maxParticleSpeed,
 			min:minParticleSpeed,
 			value:owgis.ncwms.currents.particles.getParticleSpeed()*100,
@@ -118,7 +118,7 @@ function initNumParticlesSlider(){
 		$("#numParticles").text( owgis.ncwms.currents.particles.getNumParticles());
 	}else{
 		$("#numParticlesSlider")
-				.prop("min",minNumParticles)
+				.prop("min",minNumParticles/2)
 				.prop("max",maxNumParticles)
 				.prop("value",owgis.ncwms.currents.particles.getNumParticles());
 		

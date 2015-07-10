@@ -21,28 +21,13 @@ label{
 	text-align: center;
 }
 
-.leftPanel{
-	max-width: 200px;
-}
-.rightPanel{
-	max-width: 200px;
-}
-
-.ui-panel-inner {
-    padding: 0px;
-}
 .ui-controlgroup {
-    margin: 0;
+    margin: 2px;
 }
 .ui-field-contain .ui-controlgroup-label {
     width: 100%; 
 }
 
-.ui-panel-inner {
-    /*overflow-x: hidden;*/
-    /*max-height: 500px;*/
-    /*height: 100%;*/
-}
 
 #bars-button {
     // opacity: 1;
@@ -55,10 +40,6 @@ label{
 /*     ul ul { display: none; } */
 html {
     font-family: Arial, Helvetica, sans-serif;
-}
-
-#leftList{
-margin: 0.4em;
 }
 
 .ui-field-contain .ui-controlgroup-controls {

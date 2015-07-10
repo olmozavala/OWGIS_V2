@@ -8,14 +8,11 @@
 	<div class="col-xs-9 text-center noShadow title">
 		<fmt:message key="main.base" />
 	</div>
-	<div class="col-xs-3 text-right">
-		<a class="btn btn-default btn-xs" href="#"
-		   onclick="owgis.layouts.draggable.minimizeWindow('mainMenuMinimize', 'mainMenuParent')">
-			<i class="glyphicon glyphicon-resize-small"></i>
-		</a>
-	</div>
+	<a class="btn btn-default btn-xs" href="#"
+	   onclick="owgis.layouts.draggable.minimizeWindow('mainMenuMinimize', 'mainMenuParent')">
+		<i class="glyphicon glyphicon-resize-small"></i>
+	</a>
 </div>
 <div class="row" id="baseLayersData">
-	<div class="col-xs-12 " style="margin-left: 4px;">
-		${menuHelper:createMainMenu(MenuDelUsuario,language)}</div>
+	${menuHelper:createMainMenu(MenuDelUsuario,language)}
 </div>

@@ -359,7 +359,7 @@ function updateParticlesParameters(extent, resolution){
 	console.log("Updating particles parameters: resolution:"+resolution+", extent:"+extent);
 	var newParticleSpeed = 1500*resolution*owgis.ncwms.currents.particles.getDefaultParticleSpeed();
 	if(!mobile){
-		$("#particleSpeedSlider").uislider("option","value",newParticleSpeed);
+		$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
 	}else{
 		$("#particleSpeedSlider").prop("value",newParticleSpeed);
 		$("#particleSpeedSlider").slider('refresh');

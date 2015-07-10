@@ -80,7 +80,7 @@ owgis.ncwms.palettes.loadPalettes = function(){
     //The 'default' style is defined in the MapViewerServlet
     origpalette = mappalette;
     
-    if(mappalette == 'default' ||  mappalette == ''){
+    if(mappalette === 'default' ||  mappalette === ''){
         mappalette = layerDetails.defaultPalette;
         $('#imgPalette').attr("src", $('#imgPalette').attr("src").replace(origpalette,mappalette));
     }
@@ -100,7 +100,6 @@ owgis.ncwms.palettes.loadPalettes = function(){
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
 }
-
 
 /**
  * Replaces the image of the palette used

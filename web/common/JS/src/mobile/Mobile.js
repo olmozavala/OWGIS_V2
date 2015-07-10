@@ -3,14 +3,10 @@ goog.provide('owgis.mobile');
 owgis.mobile.initMobile = function initMobile(){
 	
 	$('html, body').css({
-	    'overflow': 'hidden',
 	    'height': '100%'
 	});
 	
-	$(function() {
-	    $( "#radio" ).buttonset();
-	  });
-	
+
 	/**
 	 * Hides the tools which are not applicable for the selected Main layer
 	 */
@@ -24,7 +20,7 @@ owgis.mobile.initMobile = function initMobile(){
 	 *  Styling and modifying the height of the Side panels for Tools and Layers
 	 */
 	var header = $('[data-role=header]').outerHeight();
-	$('.ui-panel').css({
+	$('#mobPanelLayers, #mobPanelPalettes, #mobPanelCalendars, #mobPanelCurrents, #mobPanelCQL').css({
 	    'top': header,
 	    'min-height': '20px',
 		'border-radius': '10px',
@@ -54,33 +50,6 @@ owgis.mobile.initMobile = function initMobile(){
 	});
 
 	/**
-	 * Inserting the sticker panel for Color Panel
-	 */
-	$('#panel3').slidePanel({
-		triggerName: '#trigger3',
-		clickOutsideToClose: false
-	});
-
-	/**
-	 * Inserting the sticker panel for Date Range
-	 */
-	$('#panel2').slidePanel({
-		triggerName: '#trigger2',
-		triggerBottomPosFl: true,
-		panelTopPos: '120px',
-		clickOutsideToClose: false
-	});
-	
-	/**
-	 * Inserting the sticker panel for CQL Filter
-	 */
-	$('#panel4').slidePanel({
-		triggerName: '#trigger4',
-		triggerTopPos: '250px',
-		panelTopPos: '120px',
-		clickOutsideToClose: false
-	});
-	/**
 	 * Forcing the Main and Optional Layers to be collapsed on load
 	 */
 	owgis.optionalLayers.toggleList('#baseLayersData');
@@ -97,5 +66,13 @@ owgis.mobile.updateSize = function (){
 	$("#map").height(windowHeight); //Resize the size of the map container
 	if (map !== null) {
 		map.updateSize();
+	}
+}
+
+
+owgis.mobile.closePanels = function(){
+	if(mobile){
+		console.log("Closing panels...");
+		$(".rightPanel").panel("close");
 	}
 }
