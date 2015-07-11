@@ -24,6 +24,7 @@
 		<link href="./common/CSS/vendor/jqm-icon-pack-fa-modified.css"  rel="stylesheet"/>
 		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileSCSS/MobStyles.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/MobileSCSS/MAnimations.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileSCSS/MBaseLayers.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileSCSS/MControlDrawer.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileSCSS/MOptionalLayers.css" rel="stylesheet" type="text/css"/>
@@ -38,6 +39,7 @@
 		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Elevation.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
 	</c:if>
 
 	<!--Internal CSS -->
@@ -50,7 +52,6 @@
 	<link href="./common/CSS/cqlFilter.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/MenuOptions.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/MinimizedWindows.css" rel="stylesheet" type="text/css"/>
-	<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Locale.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/HomePage.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/TopMenu.css" rel="stylesheet" type="text/css"/>

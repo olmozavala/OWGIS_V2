@@ -30,6 +30,8 @@ var grids;
 var gridsHeaders;
 
 var readDataPremises;
+// This is the estimated file size for a screen with 800x800 pixels
+var estimatedFileSize = 2000000;
 
 var animationPaused = false;
 //This variable is used to stop refreshing the data when the 'main' animation is
@@ -56,8 +58,20 @@ owgis.ncwms.currents.getDefColor= function getDefColor(){
 	return currentsDefColor;
 }
 
-owgis.ncwms.currents.playPause = function playPause(){
-	animationPaused = !animationPaused;
+/**
+ * This function is used to play/pause the animation of the currents. 
+ * If not parameters are received it toggles the play/pause. 
+ * Else it sets the status depending on the 'pause' parameter 
+ * @param {type} pause
+ * @returns {undefined}
+ */
+owgis.ncwms.currents.playPause = function playPause(pause){
+	//If the play variable is empty we toogle the animation
+	if(!_.isBoolean(pause)){
+		animationPaused = !animationPaused;
+	}else{
+		animationPaused = pause;
+	}
 	if(!mobile){
 		if(animationPaused){
 			$("#currentsPlayPauseButton").removeClass("glyphicon-pause");
@@ -192,7 +206,7 @@ function updateWidthAndHeight(layerTemplate){
 
 	var resolutionFactor = 1;//For desktop
 	if(mobile){
-		resolutionFactor *= .5;//In mobile devices by default the requested resolution is half
+		resolutionFactor *= .8;//In mobile devices by default the requested resolution is reduced
 	}
 	if( owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none ){ 
 		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatioCurrents();
@@ -357,7 +371,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 
 function updateParticlesParameters(extent, resolution){
 	console.log("Updating particles parameters: resolution:"+resolution+", extent:"+extent);
-	var newParticleSpeed = 1500*resolution*owgis.ncwms.currents.particles.getDefaultParticleSpeed();
+	var newParticleSpeed = (1500*resolution) * owgis.ncwms.currents.particles.getDefaultParticleSpeed();
 	if(!mobile){
 		$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
 	}else{
@@ -387,6 +401,8 @@ if(!_.isEmpty(readDataPremises)){
 function updateData(){
 	// Clears previous animations
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
+
+	var computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
 	
 	var totalRequests = times.length;	
 	var loadedRequests = 0;
@@ -448,7 +464,7 @@ function updateData(){
 		// we have one time
 		if(times.length === 1){
 			readDataPremises[idx].on("progress",function(){
-				owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/2000000)*100),"Currents");
+				owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
 			});
 		}
 	});

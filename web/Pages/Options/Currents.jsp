@@ -3,8 +3,6 @@
     Created on : Aug 3, 2012, 6:26:56 PM
     Author     : Olmo Zavala-Romero
 --%>
-
-
 <c:if test='${mobile}'>
 	<!-- Color Picker-->
 	<li>
@@ -86,8 +84,9 @@
 		</div>
 		<div class="col-xs-2 col-xs-offset-2 " > 
 			<a class="btn btn-default btn-xs " href="#" 
-			   onclick="owgis.ncwms.currents.playPause()"
-			   title="<fmt:message key='ncwms.anim.help.play'/>/<fmt:message key='ncwms.anim.help.pause'/>" >
+			   onclick="owgis.ncwms.currents.playPause()">
+				<!--I dont know why the title is not working-->
+			   <!--title="<fmt:message key='ncwms.anim.help.play'/>/<fmt:message key='ncwms.anim.help.pause'/>" >-->
 				<span id="currentsPlayPauseButton" class="glyphicon glyphicon-pause"></span>
 			</a>
 		</div>

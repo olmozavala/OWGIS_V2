@@ -26,15 +26,15 @@
 			<a href="#" id="popup-closer" class="ol-popup-closer"></a>
 			<div id="popup-content"></div>
 		</div>
-
-			<%-- Contains the title of the layer and the div that hold the whole map --%>
+		
+		<%-- Contains the title of the layer and the div that hold the whole map --%>
 		<form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 			
 			<div data-role="page" id="home" data-theme="a">
 				<!--Left panels-->
 				<%@include file="Layouts/Mobile/LeftPanels/M_MainTools.jsp" %> 
 				<%@include file="Layouts/Mobile/LeftPanels/M_MainAndOptionalLayers.jsp" %> 
-							
+					
 				<!-- Buttons on the navbar  -->
 				<div id="header" data-role="header" data-theme="b">
 					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#mobPanelMainTools" >Tools</a>
@@ -50,38 +50,42 @@
 					</div>--%>
 					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#mobPanelLayers" >Layers</a>
 				</div>
-				
-				<div id="map"></div>
-				<c:if test="${cqlfilter}">
-					<%-- CQL Custom filter buttons and text field. --%>
-					<%@include file="Layouts/Mobile/RightPanels/M_CQLFilter.jsp" %> 
-				</c:if>
-
-				<!--Right panels -->
-				<c:if test='${currents}'>
-					<%@include file="Layouts/Mobile/RightPanels/M_CurrentsStyle.jsp" %> 
-				</c:if>
-				<c:if test='${netcdf}'>
-					<%@include file="Layouts/Mobile/RightPanels/M_Palettes.jsp" %> 
-					<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
-					<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
 					
-					<%@include file="Layouts/Mobile/Drawer/M_Animations.jsp"%>
-				</c:if>
-
-				<!--Adding extra canvas for animations and currents if necessary-->
-				<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
-				<c:if test='${netcdf}'> <canvas id="animationCanvas"></canvas>
-									<img id="animContainer" src="" class="menuHidden"></img>
-				</c:if>
+				<div role="main" class="ui-content">
+					<div id="map"></div>
+					<c:if test="${cqlfilter}">
+						<%-- CQL Custom filter buttons and text field. --%>
+						<%@include file="Layouts/Mobile/RightPanels/M_CQLFilter.jsp" %> 
+					</c:if>
+						
+					<!--Right panels -->
+					<c:if test='${currents}'>
+						<%@include file="Layouts/Mobile/RightPanels/M_CurrentsStyle.jsp" %> 
+					</c:if>
+					<c:if test='${netcdf}'>
+						<%@include file="Layouts/Mobile/RightPanels/M_Palettes.jsp" %> 
+						<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
+						<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
+					</c:if>
+						
+					<!--Adding extra canvas for animations and currents if necessary-->
+					<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
+						<c:if test='${netcdf}'> 
+						<canvas id="animationCanvas"></canvas>
+						<img id="animContainer" src="" class="menuHidden"></img>
+					</c:if>
+				</div>
 			</div><!-- Main page -->
-			
-			
+
+			<c:if test='${netcdf}'>
+				<%@include file="Layouts/Mobile/Drawer/M_Animations.jsp"%>
+			</c:if>		
+				
 			<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
 			<input type="hidden" id="_locale" value="" />
 			<input type="hidden" id="mobile" name="mobile" value="" />
-			
+				
 		</form>
 		<script>
 			${openLayerConfig}
