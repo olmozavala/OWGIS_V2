@@ -234,7 +234,7 @@ public class MapViewerServlet extends HttpServlet {
 				LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
 				menuManager.refreshTree(true);
 			} catch (Exception ex1) {
-				request.setAttribute("errorText", "Error initializing layers, please verify your XML configuration");
+				request.setAttribute("errorText", "Error initializing layers, please verify your XML configuration"+ex1.getMessage());
 				request.setAttribute("traceText", "Exception: Can't initialize variables of main servlet");
 			}
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);

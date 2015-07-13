@@ -1,5 +1,6 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<Menus>
+		<Menu ID="2015" EN="2015" ES="2015"/>
 		<Menu ID="2014" EN="2014" ES="2014"/>
 		<Menu ID="2013" EN="2013" ES="2013"/>
 		<Menu ID="2012" EN="2012" ES="2012"/>
