@@ -173,7 +173,7 @@ owgis.utils.pad = function(number) {
 owgis.utils.getDate = function(formato, fromDate)
 {   
 	var usedDate = new Date();
-	if(fromDate !== undefined){
+	if(fromDate !== null && fromDate !== undefined){
 		usedDate = fromDate;
 	}
 	var numDia = usedDate.getDate();
