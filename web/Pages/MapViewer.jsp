@@ -35,14 +35,14 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<%@include file="Layouts/DraggableWindows/Layers/OptionalLayers.jsp" %> <%-- Optional layers as draggable windows --%>
 			<%@include file="Layouts/DraggableWindows/HelpTexts/MapInstructions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			
-			<c:if test='${netcdf}'>
+			<c:if test='${ncwms}'>
 				<!--Canvas that contains the animations-->
 				<canvas id="animationCanvas"></canvas>
 				<c:if test='${currents}'>
 					<!--Canvas that contain the currents-->
 					<canvas id="currentsCanvas" > </canvas>
 					<!-- Window with the custom styling for the currents -->
-					<%@include file="Layouts/DraggableWindows/NcWMS/Currents.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
+					<%@include file="Layouts/DraggableWindows/NcWMS/StreamLines.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 				</c:if>
 
 				<%@include file="Layouts/DraggableWindows/NcWMS/NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>

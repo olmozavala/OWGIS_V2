@@ -7,7 +7,7 @@
 			</a>
 		</span>
 		<!--This are always available-->
-		<ul class="horizontal col-lg-5 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
+		<ul class="horizontal col-lg-4 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
@@ -22,33 +22,37 @@
 		</ul>
 			
 		<!--This whole ul is used for the 'large' size-->
-		<ul class="horizontal col-lg-5 text-left visible-lg " style="margin-bottom: 0px">
+		<ul class="horizontal col-lg-6 text-left visible-lg " style="margin-bottom: 0px">
 			<!--Options to manipulate the style of currents-->
 			<c:if test='${currents}'>
 				<li class="buttonStyle menuHidden toolTip currentsParent" 
-					title="Currents"
+					title="<fmt:message key='ncwms.streamlines.help.streamlines'/>"
 					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');">
-					Currents
+					<fmt:message key='ncwms.streamlines.streamlines'/>
 				</li>
 			</c:if>
-			<!-- Palettes -->
-			<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
-				title="<fmt:message key='help.tooltip.palettes'/>"
-				onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
-			<fmt:message key="ncwms.pal" />
-			</li>
-			<!-- Transect tool-->
-			<li class="buttonStyle menuHidden toolTip lineToggle" 
-				title="<fmt:message key='help.tooltip.transect'/>"
-				onclick="toggleControl(this,'below');owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
-			<fmt:message key="ncwms.transect" />
-			</li>
-			<!-- Download data-->
-			<li class="buttonStyle menuHidden toolTip downloadDataParent" 
-				title="<fmt:message key='help.tooltip.download'/>"
-				onclick="downloadData();"  >
-			<fmt:message key="main.download" />
-			</li>
+			<c:if test='${ncwms}'>
+				<!-- Palettes -->
+				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
+					title="<fmt:message key='help.tooltip.palettes'/>"
+					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
+				<fmt:message key="ncwms.pal" />
+				</li>
+				<!-- Transect tool-->
+				<li class="buttonStyle menuHidden toolTip lineToggle" 
+					title="<fmt:message key='help.tooltip.transect'/>"
+					onclick="toggleControl(this,'below');owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
+				<fmt:message key="ncwms.transect" />
+				</li>
+			</c:if>
+			<c:if test='${!ncwms}'>
+				<!-- Download data-->
+				<li class="buttonStyle menuHidden toolTip downloadDataParent" 
+					title="<fmt:message key='help.tooltip.download'/>"
+					onclick="downloadData();"  >
+				<fmt:message key="main.download" />
+				</li>
+			</c:if>
 			<!-- Reset view -->
 			<li class="buttonStyle toolTip resetParent" 
 				title="<fmt:message key='help.tooltip.resetview'/>" >
@@ -69,9 +73,9 @@
 				<span class="glyphicon glyphicon-question-sign"> </span>
 			</li>
 			<!-- Toogle Cesium -->
-			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
+			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="Cesium"	
-				onclick="toogleCesium();" >
+				onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 		</ul>
@@ -81,29 +85,33 @@
 			<!--Options to manipulate the style of currents-->
 			<c:if test='${currents}'>
 				<li class="buttonStyle menuHidden toolTip currentsParent" 
-					title="Currents"
+					title="<fmt:message key='ncwms.streamlines.streamlines'/>"
 					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');">
 					<span class="glyphicon glyphicon-random"> </span>
 				</li>
 			</c:if>
-			<!-- Palettes Minimized-->
-			<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
-				title="<fmt:message key='help.tooltip.palettes'/>"
-				onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
-				<span class="glyphicon glyphicon-picture"> </span>
-			</li>
-			<!-- Transect tool minimized-->
-			<li class="buttonStyle menuHidden toolTip lineToggle" 
-				title="<fmt:message key='help.tooltip.transect'/>"
-				onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
-				<span class="glyphicon glyphicon-signal"> </span>
-			</li>
-			<!-- Download minimized -->
-			<li class="buttonStyle menuHidden toolTip downloadDataParent" 
-				title="<fmt:message key='help.tooltip.download'/>"
-				onclick="downloadData();"  >
-				<span class="glyphicon glyphicon-download-alt"> </span>
-			</li>
+			<c:if test='${ncwms}'>
+				<!-- Palettes Minimized-->
+				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
+					title="<fmt:message key='help.tooltip.palettes'/>"
+					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
+					<span class="glyphicon glyphicon-picture"> </span>
+				</li>
+				<!-- Transect tool minimized-->
+				<li class="buttonStyle menuHidden toolTip lineToggle" 
+					title="<fmt:message key='help.tooltip.transect'/>"
+					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
+					<span class="glyphicon glyphicon-signal"> </span>
+				</li>
+			</c:if>
+			<c:if test='${!ncwms}'>
+				<!-- Download minimized -->
+				<li class="buttonStyle menuHidden toolTip downloadDataParent" 
+					title="<fmt:message key='help.tooltip.download'/>"
+					onclick="downloadData();"  >
+					<span class="glyphicon glyphicon-download-alt"> </span>
+				</li>
+			</c:if>
 			<!-- Reset view minimized -->
 			<li class="buttonStyle toolTip resetParent" 
 				title="<fmt:message key='help.tooltip.resetview'/>" 
@@ -117,17 +125,17 @@
 				<span id="helpText" class="glyphicon glyphicon-info-sign"> </span>
 			</li>
 
-			<!-- Toogle tooltip -->
+			<!-- Toogle tooltip Minimized-->
 			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
 				title="<fmt:message key='help.helpicon'/>"	
 				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
 				<span class="glyphicon glyphicon-question-sign "> </span>
 			</li>
 
-			<!-- Toogle Cesium -->
-			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
+			<!-- Toogle Cesium Minimized-->
+			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="Cesium"	
-				onclick="toogleCesium();" >
+				onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 		</ul>

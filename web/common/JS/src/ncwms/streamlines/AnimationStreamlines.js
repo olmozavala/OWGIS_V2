@@ -24,7 +24,7 @@ var intervalHandlerCurrents;// This is the handler of the 'interval' function
 var canvas;
 var ctx;
 var currentExtent;
-var currentsLayer;
+var streamlineLayer;
 
 var grids;
 var gridsHeaders;
@@ -120,11 +120,11 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		$("#currentsCanvas").css({position:'absolute', left:'0px',top:'0px','pointer-events':'none'});
 		$(".layersLonLat").hide();
-		initCurrentsLayerCesium();
+		initstreamlineLayerCesium();
 	}else{
 		$("#currentsCanvas").removeAttr('style');
 		$(".layersLonLat").show();
-		initCurrentsLayer();
+		initstreamlineLayer();
 	}
 }
 
@@ -144,7 +144,7 @@ owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnim
 	//Adds the only model into the available layers
 	layerTemplate = getDefaultLayer();
 	//Reads and updates the data
-	initCurrentsLayer();
+	initstreamlineLayer();
 }
 
 /**
@@ -174,14 +174,14 @@ owgis.ncwms.currents.clearCurrentsCanvas= function clearCurrentsCanvas(){
 
 /**
  * This function builds the layer with the information retrieved
- * from the main layer but using the 'currentsLayer' name. 
+ * from the main layer but using the 'streamlineLayer' name. 
  * @returns {owgis.layer.model}
  */
 function getDefaultLayer(){
 
 	var defLayer = new owgis.layer.model({
 			server: layerDetails.server,
-			layers: layerDetails.currentsLayer,
+			layers: layerDetails.streamlineLayer,
 			bbox: layerDetails.bbox.join(","),
 			origbbox: layerDetails.bbox.join(",")
 		}); 
@@ -221,10 +221,10 @@ function updateWidthAndHeight(layerTemplate){
 
 }
 
-function initCurrentsLayerCesium(){
+function initstreamlineLayerCesium(){
 	
-	if(currentsLayer !== null){//If the layer already existed, we remove it
-		map.removeLayer(currentsLayer);
+	if(streamlineLayer !== null){//If the layer already existed, we remove it
+		map.removeLayer(streamlineLayer);
 	}
 
 	c_scene = _cesium.getCesiumScene();
@@ -305,10 +305,10 @@ function updateCurrentsCesium(event){
 
 }
 
-function initCurrentsLayer(){
+function initstreamlineLayer(){
 	
-	if(currentsLayer !== null){//If the layer already existed, we remove it
-		map.removeLayer(currentsLayer);
+	if(streamlineLayer !== null){//If the layer already existed, we remove it
+		map.removeLayer(streamlineLayer);
 	}
 	
 	//This is the source of the new map layer
@@ -317,14 +317,14 @@ function initCurrentsLayer(){
 		projection: layerDetails.srs
 	});
 	
-	currentsLayer = new ol.layer.Image({
+	streamlineLayer = new ol.layer.Image({
 		source: animSource});
 	
 	var layersCollection = map.getLayers();
 	if(_.isEmpty(animLayer)){
-		layersCollection.insertAt(parseInt(idx_main_layer)+1,currentsLayer);//Adds the animation layer just above the main layer
+		layersCollection.insertAt(parseInt(idx_main_layer)+1,streamlineLayer);//Adds the animation layer just above the main layer
 	}else{
-		layersCollection.insertAt(parseInt(idx_main_layer)+2,currentsLayer);//Adds the animation layer just above the main layer
+		layersCollection.insertAt(parseInt(idx_main_layer)+2,streamlineLayer);//Adds the animation layer just above the main layer
 	}
 }
 
@@ -340,7 +340,7 @@ function initCurrentsLayer(){
  */
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
 	
-	console.log("Update currents view and data");
+//	console.log("Update currents view and data");
 	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
 	
@@ -370,16 +370,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 }
 
 function updateParticlesParameters(extent, resolution){
-	console.log("Updating particles parameters: resolution:"+resolution+", extent:"+extent);
-	var newParticleSpeed = (1500*resolution) * owgis.ncwms.currents.particles.getDefaultParticleSpeed();
-	if(!mobile){
-		$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
-	}else{
-		$("#particleSpeedSlider").prop("value",newParticleSpeed);
-		$("#particleSpeedSlider").slider('refresh');
-
-	}
-	owgis.ncwms.currents.particles.setCurrentResolutionParticleSpeed(newParticleSpeed);
+	owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
 }
 
 /**
@@ -417,58 +408,57 @@ function updateData(){
 		layerTemplate.set("time",time);	
 		readDataPremises = new Array();
 		//		console.log(layerTemplate.getURL());
-		readDataPremises[idx] = d3.json(
-				layerTemplate.getURL(), function(error, file){
+		readDataPremises[idx] = d3.json( layerTemplate.getURL(), function(error, file){
 					if(error){
 						console.log("Not possible to read JSON data: "+error.statusText);
-			}else{
-				//				console.log("Data has been received: "+idx);
-				var uData = file[0].data;
-				var vData = file[1].data;
-				
-				//We set the gridInfo only for the first time frame 
-				
-				var gridInfo = file[0].header;
-				//TODO I don't know why latitude ranges come flipped
-				var temp = gridInfo.la1;
-				gridInfo.la1 = gridInfo.la2;
-				gridInfo.la2 = temp;
-				
-				//We only initialize the loop and the headers for the first request
-				if(loadedRequests === 0){
-					owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-					startAnimationLoopCurrents();
-				}
-				
-				// We read the data and create the grid
-				var grid = new Array();
-				for (j = 0, p = 0; j < gridInfo.ny; j++) {
-					var row = [];
-					for (i = 0; i < gridInfo.nx; i++, p++) {
-						row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+					}else{
+						//				console.log("Data has been received: "+idx);
+						var uData = file[0].data;
+						var vData = file[1].data;
+						
+						//We set the gridInfo only for the first time frame 
+						
+						var gridInfo = file[0].header;
+						//TODO I don't know why latitude ranges come flipped
+						var temp = gridInfo.la1;
+						gridInfo.la1 = gridInfo.la2;
+						gridInfo.la2 = temp;
+						
+						//We only initialize the loop and the headers for the first request
+						if(loadedRequests === 0){
+							owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+							startAnimationLoopCurrents();
+						}
+						
+						// We read the data and create the grid
+						var grid = new Array();
+						for (j = 0, p = 0; j < gridInfo.ny; j++) {
+							var row = [];
+							for (i = 0; i < gridInfo.nx; i++, p++) {
+								row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+							}
+							grid[j] = row;
+						}
+						owgis.ncwms.currents.particles.setGrid(grid,idx);
+						
+						loadedRequests++;
+						owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
+						//				owgis.interf.loadingatmouse(true);
+						if(loadedRequests === totalRequests){
+							owgis.interf.loadingatmap(false,0);
+						}
 					}
-					grid[j] = row;
-				}
-				owgis.ncwms.currents.particles.setGrid(grid,idx);
+				});
 				
-				loadedRequests++;
-				owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
-				//				owgis.interf.loadingatmouse(true);
-				if(loadedRequests === totalRequests){
-					owgis.interf.loadingatmap(false,0);
+				//This function is used to display the progress of the download, only used when
+				// we have one time
+				if(times.length === 1){
+					readDataPremises[idx].on("progress",function(){
+						owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
+					});
 				}
-			}
-		});
-		
-		//This function is used to display the progress of the download, only used when
-		// we have one time
-		if(times.length === 1){
-			readDataPremises[idx].on("progress",function(){
-				owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
 			});
-		}
-	});
-	
+			
 }
 
 /**

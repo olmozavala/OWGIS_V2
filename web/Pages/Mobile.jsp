@@ -60,9 +60,9 @@
 						
 					<!--Right panels -->
 					<c:if test='${currents}'>
-						<%@include file="Layouts/Mobile/RightPanels/M_CurrentsStyle.jsp" %> 
+						<%@include file="Layouts/Mobile/RightPanels/M_StreamlinesStyle.jsp" %> 
 					</c:if>
-					<c:if test='${netcdf}'>
+					<c:if test='${ncwms}'>
 						<%@include file="Layouts/Mobile/RightPanels/M_Palettes.jsp" %> 
 						<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
 						<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
@@ -70,14 +70,14 @@
 						
 					<!--Adding extra canvas for animations and currents if necessary-->
 					<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
-						<c:if test='${netcdf}'> 
+						<c:if test='${ncwms}'> 
 						<canvas id="animationCanvas"></canvas>
 						<img id="animContainer" src="" class="menuHidden"></img>
 					</c:if>
 				</div>
 			</div><!-- Main page -->
 
-			<c:if test='${netcdf}'>
+			<c:if test='${ncwms}'>
 				<%@include file="Layouts/Mobile/Drawer/M_Animations.jsp"%>
 			</c:if>		
 				

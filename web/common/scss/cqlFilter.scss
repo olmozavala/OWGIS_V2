@@ -8,6 +8,8 @@ and open the template in the editor.
     Author     : Olmo Zavala-Romero
 */
 @import "colors";
+@import "base";
+
 /* CQL custom filter parent  */
 #ocqlFilterInputTextParent{
     display: none;
@@ -24,9 +26,15 @@ and open the template in the editor.
 	left: 10%;
 }
 
+ /*Button at Main layers to open the Custom filter dialog*/
+#idOcqlMenuButton{
+	padding: 0 2*$defPadding;//TB and RL
+}
+
 /* 'Apply' button for CQL filter */
 #idOcqlFilterButton{
 	display:inline;
+	padding: 0 2*$defPadding;//TB and RL
 }
 
 /* Span to input some error text */

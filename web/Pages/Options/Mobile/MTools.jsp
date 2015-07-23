@@ -21,7 +21,7 @@
 	</li>
 	<li>
 		<!--Depth selection-->
-	<c:if test='${netcdf}'>
+	<c:if test='${ncwms}'>
 		<li>
 			<a class="ui-btn ui-icon-align-center ui-btn-icon-left " 
 			   href="#zaxis_selector_parent" >
@@ -41,12 +41,12 @@
 	<li>
 		<a class="ui-btn ui-icon-random ui-btn-icon-left currentsParent " 
 		   href="#mobPanelCurrents">
-			Currents
+			<fmt:message key='ncwms.streamlines.streamlines'/>
 		</a>
 	</li>
 </c:if>
 
-<c:if test='${netcdf}'>
+<c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
 		<a class="ui-btn ui-icon-picture-o ui-btn-icon-left " href="#mobPanelPalettes" > Palettes

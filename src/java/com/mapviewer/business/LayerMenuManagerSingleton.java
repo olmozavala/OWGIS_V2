@@ -494,7 +494,7 @@ public class LayerMenuManagerSingleton {
 		}
 		
 		String netCDF = layerConf.getAttributeValue("ncWMS");
-		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isNetCDF();
+		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isncWMS();
 		
 		String style = layerConf.getAttributeValue("style");
 		style = style != null ? style : layer.getStyle();
@@ -531,8 +531,11 @@ public class LayerMenuManagerSingleton {
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
 		
-		String overlayCurrents = layerConf.getAttributeValue("overlaycurrents") != null
-				? layerConf.getAttributeValue("overlaycurrents") : layer.getOverlayCurrents();
+		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null
+				? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
+
+		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
+				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
 
 		/*
 		String[] cql_cols = null;
@@ -543,7 +546,8 @@ public class LayerMenuManagerSingleton {
 		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp,overlayCurrents);
+				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, 
+				max_time_range, boolJsonp,overlayStreamlines,defParticleSpeed);
 		
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);

@@ -14,8 +14,54 @@ and open the template in the editor.
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala-Romero
+*/
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
 /* CQL custom filter parent  */
-/* line 12, ../scss/cqlFilter.scss */
+/* line 14, ../scss/cqlFilter.scss */
 #ocqlFilterInputTextParent {
   display: none;
   left: 200px;
@@ -24,34 +70,41 @@ and open the template in the editor.
 
 /* Input text for CQL filter */
 /* Button to show and hide CQL filter text box*/
-/* line 22, ../scss/cqlFilter.scss */
+/* line 24, ../scss/cqlFilter.scss */
 #ocqlMenuButtonParent {
   position: relative;
   left: 10%;
 }
 
+/*Button at Main layers to open the Custom filter dialog*/
+/* line 30, ../scss/cqlFilter.scss */
+#idOcqlMenuButton {
+  padding: 0 10px;
+}
+
 /* 'Apply' button for CQL filter */
-/* line 28, ../scss/cqlFilter.scss */
+/* line 35, ../scss/cqlFilter.scss */
 #idOcqlFilterButton {
   display: inline;
+  padding: 0 10px;
 }
 
 /* Span to input some error text */
-/* line 33, ../scss/cqlFilter.scss */
+/* line 41, ../scss/cqlFilter.scss */
 #ocqlErrorParent {
   display: none;
   top: 200px;
 }
 
 /* Table containing hover help */
-/* line 39, ../scss/cqlFilter.scss */
+/* line 47, ../scss/cqlFilter.scss */
 table.cqlFilterExampleTable {
   border-style: solid;
   border-width: 1px;
   border-collapse: collapse;
 }
 
-/* line 44, ../scss/cqlFilter.scss */
+/* line 52, ../scss/cqlFilter.scss */
 table.cqlFilterExampleTable th {
   border-width: 1px;
   border-style: solid;
@@ -60,7 +113,7 @@ table.cqlFilterExampleTable th {
   padding: 2px 4px;
 }
 
-/* line 51, ../scss/cqlFilter.scss */
+/* line 59, ../scss/cqlFilter.scss */
 table.cqlFilterExampleTable td {
   padding: 6px;
   border-width: 1px;

@@ -1,6 +1,6 @@
 <%-- 
     Document   : Palettes
-    Created on : Aug 3, 2012, 6:26:56 PM
+    Created on : July 3, 2015, 6:26:56 PM
     Author     : Olmo Zavala-Romero
 --%>
 <c:if test='${mobile}'>
@@ -16,12 +16,12 @@
 	</li>
 	<li>
 		<!-- Particles speed -->
-		<label for="particleSpeedSlider"> Speed </label>
+		<label for="particleSpeedSlider"> <fmt:message key='ncwms.streamlines.speed'/></label>
 		<input data-mini="true" type="range" id="particleSpeedSlider" name="particleSpeedSlider" />
 	</li>
 	<li>
 		<!-- Particles Life time-->
-		<label for="particleLifeTimeSlider">Life time</label>
+		<label for="particleLifeTimeSlider"><fmt:message key='ncwms.streamlines.lifetime'/></label>
 		<input data-mini="true" type="range" id="particleLifeTimeSlider" name="particleLifeTimeSlider" />
 	</li>
 	<li>
@@ -33,7 +33,7 @@
 			<div class="ui-block-b" >
 				<a href="#" data-theme="b" class="ui-btn ui-icon-pause ui-btn-icon-left ui-mini
 								   ui-corner-all"  id="currentsPlayPauseButton"
-				   onclick="owgis.ncwms.currents.playPause()" >Pause</a>
+				   onclick="owgis.ncwms.currents.playPause()" > <fmt:message key='ncwms.anim.help.pause'/></a>
 			</div>
 		</div>
 	</li>
@@ -48,7 +48,7 @@
 	</div><!-- Row -->
 	<!-- Number of particles -->
 	<div class="row defRowSpace">
-		<div class="col-xs-12 invShadow " > # Of Particles 
+		<div class="col-xs-12 invShadow " > # <fmt:message key='ncwms.streamlines.particles'/> 
 			<span id="numParticles"></span>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 	</div>
 	<!-- Particles speed -->
 	<div class="row defRowSpace">
-		<div class="col-xs-12 invShadow " > Particles speed </div>
+		<div class="col-xs-12 invShadow " > <fmt:message key='ncwms.streamlines.particles'/> <fmt:message key='ncwms.streamlines.speed'/></div>
 	</div>
 	<div class="row defRowSpace">
 		<div class="col-xs-10 col-xs-offset-1 " > 
@@ -68,7 +68,7 @@
 	</div>
 	<!-- Particles Life time-->
 	<div class="row defRowSpace">
-		<div class="col-xs-12 invShadow " > Particles life time</div>
+		<div class="col-xs-12 invShadow " > <fmt:message key='ncwms.streamlines.lifetime'/></div>
 	</div>
 	<div class="row defRowSpace">
 		<div class="col-xs-10 col-xs-offset-1 " > 

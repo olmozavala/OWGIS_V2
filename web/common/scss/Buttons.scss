@@ -13,15 +13,15 @@ $btn-default-color:red;
 /* This class has some general properties that make a span
 look like a button */
 .buttonLook{
-    /*border-style: solid;*/
+    border-style: none;
     /*border-width: 1px;*/
     background-color:$butBackColor;
-    border-color: $butBorderColor;
+    /*border-color: $butBorderColor;*/
 	padding: $defPadding 2*$defPadding;//TB and RL
 	color: $fontColor;
 	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
-	@include box-sizing(content-box);
+	/*@include box-sizing(content-box);*/
 	margin:  $defPadding $defPadding;
 	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
