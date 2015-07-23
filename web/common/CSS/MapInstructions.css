@@ -71,17 +71,18 @@ and open the template in the editor.
 /* line 34, ../scss/MapInstructions.scss */
 .commonHover {
   position: absolute;
-  border: 1px solid;
-  padding: 5px;
+  /*border:1px solid;*/
+  border: none;
+  padding: 5px 10px;
   font-size: 12px;
   color: black;
   background-image: none;
-  background-color: darkkhaki;
+  background-color: #dbe9e9;
   z-index: 1009;
   top: 1px;
   left: 1px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=88);
-  opacity: 0.88;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
+  opacity: 0.95;
   -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
@@ -91,19 +92,19 @@ and open the template in the editor.
 }
 
 /* CQL filter parent of all the instructions*/
-/* line 53, ../scss/MapInstructions.scss */
+/* line 54, ../scss/MapInstructions.scss */
 #ocqlFilterText {
   top: 120px;
   left: 40px;
   display: none;
 }
 
-/* line 60, ../scss/MapInstructions.scss */
+/* line 61, ../scss/MapInstructions.scss */
 #helpHoverSpan {
   z-index: 1019;
 }
 
-/* line 65, ../scss/MapInstructions.scss */
+/* line 66, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

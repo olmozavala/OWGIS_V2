@@ -1,0 +1,44 @@
+@import "base";
+
+$drawerWidth: 180; 
+$drawerHeight: 105; 
+$backgroundColor: rgba(black,.4);
+
+#drawer {
+	position: absolute;
+	height: $drawerHeight+px;
+	min-width: $drawerWidth+px;
+	bottom: -($drawerHeight - 50)+px;
+	left: 50%;
+	margin-left: -$drawerWidth/2 + px;//In or
+	border: none;
+	@include border-top-radius();
+	background: $backgroundColor;
+	pointer-events: auto;
+	z-index: 1001;
+}
+#drawer-pull {
+	width: 20px;
+	height: 13px;
+	background-image: url(http://webapps.flightstats.com/flick/img/drawer-pull@x2.png);
+	background-size: 20px 13px;
+	background-repeat: no-repeat;
+	margin: auto;
+	cursor: n-resize;
+	@include transition-property(height);
+	@include transition-duration(.55s);
+}
+#drawer-pull.flipped {
+	@include rotateX(180deg);
+}
+
+#drawer-content {
+	font-size: $f_small;
+	color: $fontColor;
+	padding: 0 25px;
+}
+#drawer-status {
+	text-align: center;
+	width: 100%;
+	line-height: 16px;
+}

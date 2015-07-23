@@ -199,7 +199,7 @@ public class UserRequestManager {
 		String server = layer.getServer();
 		String layerName = layer.getName();
 		String kmlLink = "";
-		if (layer.isNetCDF()) {
+		if (layer.isncWMS()) {
 			try {
 				JSONObject layDet = new JSONObject(layer.getLayerDetails());
 				String time = (String) layDet.get("nearestTimeIso");

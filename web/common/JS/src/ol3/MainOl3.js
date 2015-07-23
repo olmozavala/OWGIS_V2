@@ -119,6 +119,7 @@ function initOl3(){
 		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
 		maxResolution: mapConfig.maxResolution
+//	extent: mapConfig.restrictedExtent  // Not working
 	});
 
  	map = new ol.Map({
@@ -130,8 +131,10 @@ function initOl3(){
 		view: ol3view
 	});
 	
+
 }
 
+//TODO clean and document this function
 function detectMapLayersStatus(){
 	var mapLayers = map.getLayers().getArray();
 	var mapDoneRendering = true;
@@ -148,4 +151,16 @@ function detectMapLayersStatus(){
 	}else{
 		console.log("MAP IS NOT ready!");
 	}
+}
+
+owgis.ol3.positionMap = function(){
+	// --------------- Map visualization and hover texts
+	if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+	if( localStorage.map_center!== undefined){
+		var strCenter = localStorage.map_center.split(",")
+		var lat = Number(strCenter[0]);
+		var lon = Number(strCenter[1]);
+		ol3view.setCenter([lat,lon]);// Center of the map
+	}
+	
 }

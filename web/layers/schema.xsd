@@ -6,7 +6,7 @@
 		<xs:complexType mixed="true">
 			<xs:sequence maxOccurs="unbounded"><!--childs of root, limited to 3 for now -->    
    
-				<xs:element name="MenuEntries" minOccurs="0"><!--MenuEntries(root's child) level -->
+				<xs:element name="Menus" minOccurs="0"><!--Menus(root's child) level -->
 					<xs:complexType mixed="true">
   
 						<xs:sequence maxOccurs="unbounded"><!--infinite limit of MenuEntry numbers -->
@@ -28,7 +28,7 @@
 							</xs:element>       
 						</xs:sequence>  
 					</xs:complexType>
-				</xs:element><!--end of MenuEntries -->
+				</xs:element><!--end of Menus -->
    
 				<xs:element name="BackgroundLayers" minOccurs="0"> <!--BackgroundLayers (root's child) level -->
        
@@ -278,7 +278,8 @@
 										</xs:simpleType>
 									</xs:attribute>                      
 									<xs:attribute name="style" type="xs:string" /> 
-									<xs:attribute name="overlaycurrents" type="xs:string" /> 
+									<xs:attribute name="overlaystreamlines" type="xs:string" /> 
+									<xs:attribute name="defParticleSpeed" type="xs:string" /> 
 									<xs:attribute name="max_time_range">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">

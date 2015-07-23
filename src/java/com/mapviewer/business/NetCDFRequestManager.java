@@ -139,7 +139,7 @@ public class NetCDFRequestManager {
 	public static String getLayerDetails(Layer layer) throws Exception {
 
 		//For the moment we only obtain the datails for netCDF layers (ncWMS server)
-		if (!layer.isNetCDF()) {
+		if (!layer.isncWMS()) {
 			return "";
 		}
 
@@ -210,7 +210,7 @@ public class NetCDFRequestManager {
 	 */
 	public static String getPaletteUrl(Layer layer, String palette) {
 		
-		if (!layer.isNetCDF()) {
+		if (!layer.isncWMS()) {
 			return "";
 		}
 		

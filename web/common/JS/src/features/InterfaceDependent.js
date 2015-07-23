@@ -42,10 +42,14 @@ owgis.interf.loadingatmouse= function(loading){
  * @param {int} percentage Percentaje of loading displayed. 
  * @returns void
  */
-owgis.interf.loadingatmap = function(loading,percentage){
+owgis.interf.loadingatmap = function(loading,percentage,extraText){
 	if(loading){
 		if(percentage !== undefined){
-			$("#loadperc").html(percentage +"<small> %</small>");
+			if(_.isEmpty(extraText)){
+				$("#loadperc").html(percentage +"<small> %</small>");
+			}else{
+				$("#loadperc").html(extraText+" "+ percentage +"<small> %</small>");
+			}
 		}
 		$('#l-animation').show("fade");
 	}else{

@@ -6,6 +6,7 @@ goog.require('owgis.ncwms.animation');
 goog.require('owgis.ncwms.calendars');
 goog.require('owgis.ogc');
 goog.require('owgis.ajax');
+goog.require('owgis.layouts.draggable.topmenu');
 
 var initialMaxPal;//default maxPalVal
 var initialMinPal;//default minPalVal
@@ -21,8 +22,8 @@ function updateMinMaxFromJson(minMaxTxt){
 	owgis.interf.loadingatmap(false);
 
     var jsonMinMax = eval("("+minMaxTxt+")");
-    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
-    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
+    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4)); 
+    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4));
     UpdatePalette(mappalette);
 }
 
@@ -39,8 +40,8 @@ function setColorRangeFromMinMax(){
         request:"GetMetadata",
         version:owgis.ogc.wmsversion,
         layers: layerDetails['name'],
-        width: "10",//Hardcoded it doesn't work without width and Height
-        height: "10",
+        width: "100",//Hardcoded it doesn't work without width and Height
+        height: "100",
         item:'minmax',
         bbox: layerDetails['bbox'].toString(),
         srs: layerDetails['srs']
@@ -58,6 +59,7 @@ function setColorRangeFromMinMax(){
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
+	console.log(url);
 	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
@@ -78,7 +80,7 @@ owgis.ncwms.palettes.loadPalettes = function(){
     //The 'default' style is defined in the MapViewerServlet
     origpalette = mappalette;
     
-    if(mappalette == 'default' ||  mappalette == ''){
+    if(mappalette === 'default' ||  mappalette === ''){
         mappalette = layerDetails.defaultPalette;
         $('#imgPalette').attr("src", $('#imgPalette').attr("src").replace(origpalette,mappalette));
     }
@@ -98,7 +100,6 @@ owgis.ncwms.palettes.loadPalettes = function(){
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
 }
-
 
 /**
  * Replaces the image of the palette used
@@ -190,7 +191,6 @@ function displayOptionalPalettes(){
 	 $('#palettes-div').toggle("fade"); 
 }
 
-
 /** Shows and hides the palettes windows (both at the same time) */
 function showPalettes()
 {       
@@ -199,11 +199,11 @@ function showPalettes()
 
     // We test the opacity of the 'color range window' to decide what
     // to do with the 'optional palettes window'
-    if($('#paletteWindowColorRange').css("opacity") === "0") 
+	 if($('#paletteWindowColorRange').css("opacity") === "0") {
         $('#palettes-div').show();
-    else
+	}else{
         $('#palettes-div').hide();
-
+	}
 }
 
 /**
