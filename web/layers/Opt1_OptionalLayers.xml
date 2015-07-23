@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 
-				<!--format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"-->
+				<!--format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"-->
 	<OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-				format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+				format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
 				tiled="true" trans_effect="none" vectorLayer="true"> 
         <!-- The Language atributes (EN,ES) has to be of size 2. and none other should have this size -->
 		<layer Menu="bathcontour"  name="comm:bathcontour"/>

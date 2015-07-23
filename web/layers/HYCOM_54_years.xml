@@ -12,7 +12,7 @@
 	
     <!-- First 18 years -->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://146.201.212.61/ncWMS/wms"
+                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 tiled="true" ncWMS="true" max_time_range="month">  
                 <!-- Temperature -->
                 <layer Menu="omodel,hycom,hycom54,first18,Temp" 
@@ -35,7 +35,7 @@
     </MainLayers>
     <!-- Second 18 years -->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://146.201.212.61/ncWMS/wms"
+                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 tiled="true" ncWMS="true" max_time_range="month">  
                 <!-- Temperature -->
                 <layer Menu="omodel,hycom,hycom54,second18,Temp" 
@@ -58,7 +58,7 @@
     </MainLayers>
     <!-- Third 18 years -->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://146.201.212.61/ncWMS/wms"
+                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 tiled="true" ncWMS="true" max_time_range="month">  
                 <!-- Temperature -->
                 <layer Menu="omodel,hycom,hycom54,third18,Temp" 

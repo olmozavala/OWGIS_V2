@@ -46,14 +46,14 @@
 
     <!-- All Cruises --> 
     <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-        format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+        format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
         tiled="true" trans_effect="none" vectorLayer="true"
         cqlcols="year, id, dep (departure date), name (PI)" > 
         <layer Menu="cruises,all" EN="Cruises" name="postgis:all_cruises" />
     </MainLayers>
 
     <MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666"
-        format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+        format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
         tiled="true" trans_effect="none" vectorLayer="true">
 
         <layer Menu="cruises,year,2011" EN="All cruises from 2011" name="postgis:all_cruises" CQL="year='2011'" 
@@ -110,7 +110,7 @@
     </MainLayers>
 
     <OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666"
-        format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+        format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
         tiled="true" trans_effect="none" vectorLayer="true">
 
         <layer Menu='cruises,2011,wb-1204' EN='Cruise WB-1204' name='postgis:all_cruises' CQL="id='WB-1204'" />

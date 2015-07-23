@@ -3,7 +3,7 @@
 
     <!-- All sites -->
 	<MainLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-				format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+				format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
                 cqlcols="year, event_type, date, site"
 				tiled="true" trans_effect="none" vectorLayer="true">
 		<layer Menu="sites,all" EN="All sites" name="postgis:sites_events" />
@@ -11,7 +11,7 @@
     
     <!-- Sites by event type -->
 	<OptionalLayers BBOX="-120,-59.983333333333,-10,50.0166666666666" 
-				format="image/jpeg"  server="http://146.201.212.61/geoserver/wms"
+				format="image/jpeg"  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
 				tiled="true" trans_effect="none" vectorLayer="true">
 
 		<!-- Sites by type -->

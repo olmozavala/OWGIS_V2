@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 <!--	<BackgroundLayers BBOX="-180,90,-90,180" 
-				format="image/jpeg" proj="EPSG:4326" server="http://146.201.212.61/geoserver/wms">
+				format="image/jpeg" proj="EPSG:4326" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:gebco" title="GEBCO"/>
 	</BackgroundLayers>-->
 	<BackgroundLayers BBOX="-180,90,-90,180" 
-				format="image/jpeg" proj="EPSG:4326" server="http://146.201.212.61/geoserver/wms">
+				format="image/jpeg" proj="EPSG:4326" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco" title="GEBCO"/>
 		<layer name="comm:states" />
 	</BackgroundLayers>

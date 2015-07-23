@@ -16,10 +16,6 @@
 		<link href="./common/JS/vendor/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <!-- End jQuery -->
 
-
-
-
-				
 		<!--Specific for Images in Dropdown for locale-->		
 		<script src="./common/JS/vendor/jquery.slidePanel.js"></script>
 
@@ -75,8 +71,7 @@
         <script src="./common/JS/src/utilities/validation.js"> </script>
 
 		<!--Debug mode-->
-		<script src="http://resources.programmingclosure.com/closure-lite.js"></script>
-		<!--<script src="./common/JS/vendor/closure/goog/base.js"> </script>-->
+		<script src="./common/JS/vendor/debug/closure-lite.js"></script>
 		<script src="./common/JS/vendor/ol.js"></script>
 		<script src="./common/JS/src/ncwms/Transect.js"> </script>
 		<script src="./common/JS/src/utilities/utilities.js"> </script>
