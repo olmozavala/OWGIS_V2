@@ -93,6 +93,7 @@
 	</c:if>
 
 	<!--Using closure library-->
+	<script src="./common/JS/src/cesium/CesiumOwgis.js"> </script>
 	<script src="./common/JS/src/ncwms/Elevation.js"> </script>
 	<script src="./common/JS/src/ncwms/Transect.js"> </script>
 	<script src="./common/JS/src/ncwms/animations/AnimationStatus.js"> </script>
@@ -114,9 +115,9 @@
 	<script src="./common/JS/src/main/layer.js"> </script>
 		
 	<!--This require some libraries defined above-->
-	<script src="./common/JS/src/ncwms/currents/particles.js"> </script>
-	<script src="./common/JS/src/ncwms/currents/CurrentsStyle.js"> </script>
-	<script src="./common/JS/src/ncwms/currents/AnimationCurrents.js"> </script>
+	<script src="./common/JS/src/ncwms/streamlines/particles.js"> </script>
+	<script src="./common/JS/src/ncwms/streamlines/StreamlinesStyle.js"> </script>
+	<script src="./common/JS/src/ncwms/streamlines/AnimationStreamlines.js"> </script>
 
 	<!--This require some libraries defined above-->
 	<script src="./common/JS/src/features/Transparency.js"> </script>

@@ -34,13 +34,13 @@ goog.require('owgis.interf');
 goog.require('owgis.ncwms.currents');
 goog.require('owgis.ncwms.currents.style');
 goog.require('owgis.layer');
+goog.require('owgis.cesium');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
 var _mobileScreenThreshold = 750;
-var CESIUM_BASE_URL="./common/JS/vendor/minimized/";
 
 
 //Redirect any https request to http
@@ -69,6 +69,7 @@ function owgisMain(){
 	if(_mainlayer_currents){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
+	//Enables the 'close' behaviour of some windows. 
 	$(".glyphicon-remove").parent().on("click",function(event){
 		if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
 			owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
@@ -81,37 +82,6 @@ function owgisMain(){
 		}
 	});
 
-}
-
-function toogleCesium(){
-	if(_.isEmpty(_cesium)){
-		$.getScript( "./common/JS/vendor/minimized/Cesium.js")
-				.done(function( data, textStatus) {
-						$.getScript("./common/JS/vendor/minimized/ol3cesium.js")
-							.done(function( data, textStatus) {
-
-									_cesium = new olcs.OLCesium({map: map});
-									_cesium.setEnabled(!_cesium.getEnabled());
-									//Start the currents animation of 'static' day.
-									if(_mainlayer_currents){
-										owgis.ncwms.currents.startSingleDateAnimation();
-									}
-
-									})//done
-						.fail(function( jqxhr, settings, exception){
-							console.log("Fail to load ol3cesium.js: "+exception);
-								});
-					})
-				.fail(function( jqxhr, settings, exception){
-					console.log("Fail to load Cesium.js: "+exception);
-						});
-	}else{
-		_cesium.setEnabled(!_cesium.getEnabled());
-		//Start the currents animation of 'static' day.
-		if(_mainlayer_currents){
-			owgis.ncwms.currents.startSingleDateAnimation();
-		}
-	}
 }
 
 /**

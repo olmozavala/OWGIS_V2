@@ -9,7 +9,7 @@
 		<!-- Title -->
 		<div class="row defRowSpace">
 			<!--Contains the applied pallete on the left of the window-->
-			<div class="col-xs-8 invShadow title" > Currents</div>
+			<div class="col-xs-8 invShadow title" > <fmt:message key='ncwms.streamlines.streamlines'/> </div>
 			<div class="col-xs-3 pull-right">
 				<a class="btn btn-default btn-xs" href="#" onclick="owgis.ncwms.currents.style.togglestyling();">
 					<span class="glyphicon glyphicon-remove"> </span> 
@@ -18,5 +18,5 @@
 
 		</div><!-- Row -->
 		
-	<%@include file="../../../Options/Currents.jsp" %> 
+	<%@include file="../../../Options/StreamLines.jsp" %> 
 </div>

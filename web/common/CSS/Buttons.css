@@ -56,10 +56,10 @@ Currently the buttons for the menu and the +,- buttons
 look like a button */
 /* line 15, ../scss/Buttons.scss */
 .buttonLook, .buttonStyle, .buttonContainer {
-  /*border-style: solid;*/
+  border-style: none;
   /*border-width: 1px;*/
   background-color: #555555;
-  border-color: black;
+  /*border-color: $butBorderColor;*/
   padding: 5px 10px;
   color: #ecf2f8;
   -webkit-border-radius: 7px;
@@ -70,9 +70,7 @@ look like a button */
   -webkit-box-shadow: #80ccdc 2px 2px 6px;
   -moz-box-shadow: #80ccdc 2px 2px 6px;
   box-shadow: #80ccdc 2px 2px 6px;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  /*@include box-sizing(content-box);*/
   margin: 5px 5px;
   height: 23px;
   display: inline;

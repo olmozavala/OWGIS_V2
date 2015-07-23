@@ -171,7 +171,7 @@ public class OpenLayersManager {
 				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t\t $('#popup').hide();\n" +
-				"\t\t currPopupText = '';\n" +
+				"\t\t currPopupText = '<b>Lon: </b>'+coordinate[0].toFixed(2)+ ' <b>Lat: </b>'+coordinate[1].toFixed(2)+'<br>'\n" +
 				"\t\t ol_popup.setPosition(coordinate);\n";
 
 		//En este for agrega las capas que son de fondo
@@ -240,7 +240,7 @@ public class OpenLayersManager {
 		}
 
 		//In this case we also need the time information
-		if (actualLayer.isNetCDF()) {
+		if (actualLayer.isncWMS()) {
 			// The two variables: elevation and startDate have to match
 			// javascript variable names. 
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[elev_glob_counter]+\"&" 
@@ -289,7 +289,7 @@ public class OpenLayersManager {
 //				+ "\t\t crossOrigin: 'null',\n"
 					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "'";
 			
-			if (actualLayer.isNetCDF()) {
+			if (actualLayer.isncWMS()) {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}

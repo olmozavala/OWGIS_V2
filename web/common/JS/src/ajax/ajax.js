@@ -113,14 +113,12 @@ function downloadData() {
 	window.open(url,'_self');
 }
 
-
 /**
  *This is the constructor function of the ajax asynchronous call
  */
 function Asynchronous( ) {
     this._xmlhttp = new FactoryXMLHttpRequest();
 }
-
 
 /**
  *this functions sends the request to the server and also returns the different states the current call is in

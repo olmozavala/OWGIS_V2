@@ -4,10 +4,23 @@ goog.require('owgis.ncwms.currents.particles')
 
 var minNumParticles = 100;
 var maxNumParticles = 40000;
-var maxParticleSpeed = 80;
-var minParticleSpeed = .3;
 var maxParticleLifeTime = 400;
 var minParticleLifeTime = 10;
+
+
+var speedIncrement = 1;
+function particleSpeedToSlider(speed){
+	var sliderSpeed = speed*speedIncrement;
+//	console.log("Speed to slider ----- Speed: "+speed+ " slider:"+sliderSpeed);
+	return sliderSpeed;
+}
+
+function sliderToParticleSpeed(value){
+	var speed = value/speedIncrement;
+//	console.log("Slider to speed ------ Speed : "+speed + " slider:"+value);
+	return speed;
+}
+
 
 owgis.ncwms.currents.style.togglestyling = function toggleWindow(){
 	$("#currentsControlsContainer").toggle();
@@ -20,7 +33,7 @@ owgis.ncwms.currents.style.reset = function reset(){
 		owgis.ncwms.currents.particles.getDefaultNumberOfParticles() );
 
 		$("#particleSpeedSlider").slider("option","value",
-		owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed() );
+		particleSpeedToSlider(owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed()) );
 		
 		$("#particleLifeTimeSlider").slider("option","value",
 		owgis.ncwms.currents.particles.getDefaultParticlesLifeTime());
@@ -33,7 +46,8 @@ owgis.ncwms.currents.style.reset = function reset(){
 			owgis.ncwms.currents.particles.getDefaultNumberOfParticles() ); 
 
 		$("#particleSpeedSlider")
-				.prop("value", owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed() ); 
+				.prop("value", particleSpeedToSlider(owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed() )); 
+
 		$("#particleSpeedSlider").slider('refresh');
 
 		$("#particleLifeTimeSlider")
@@ -52,6 +66,32 @@ owgis.ncwms.currents.style.init = function init(){
 	initNumParticlesSlider();
 	initParticlesSpeedSlider();
 	initParticlesLifeTimeSlider();
+}
+
+owgis.ncwms.currents.style.updateParticleSpeedFromResolution = function updateParticleSpeedFromResolution(resolution, extent){
+	
+	var newParticleSpeed = (Math.pow(resolution,1.01)) * owgis.ncwms.currents.particles.getDefaultParticleSpeed();
+	
+	//This indicates at what percentage from 0 to 100 the default
+	// value will be in the slider
+	speedIncrement = 30/newParticleSpeed;
+	
+	if(mobile){
+		owgis.ncwms.currents.particles.setParticleSpeed(newParticleSpeed);
+	}
+	
+	owgis.ncwms.currents.particles.setCurrentResolutionParticleSpeed(newParticleSpeed);
+	//	console.log("Speed increment: "+speedIncrement);
+	
+	newParticleSpeed = particleSpeedToSlider(newParticleSpeed);
+	if(!mobile){
+		$("#particleSpeedSlider").slider("option","value",newParticleSpeed);
+	}else{
+		$("#particleSpeedSlider").prop("value",newParticleSpeed);
+		$("#particleSpeedSlider").slider('refresh');
+		
+	}
+	
 }
 
 function initPicker(){
@@ -87,11 +127,14 @@ function initParticlesLifeTimeSlider(){
 }
 
 function initParticlesSpeedSlider(){
+	var minParticleSpeed = 1;
+	var maxParticleSpeed = 100;
+	
 	if(!mobile){
 		$("#particleSpeedSlider").slider({
 			max:maxParticleSpeed,
 			min:minParticleSpeed,
-			value:owgis.ncwms.currents.particles.getParticleSpeed()*100,
+			value: particleSpeedToSlider(owgis.ncwms.currents.particles.getParticleSpeed()),
 			change: setParticlesSpeed
 		});
 	}else{
@@ -99,7 +142,7 @@ function initParticlesSpeedSlider(){
 				.addClass("ui-hidden-accessible")
 				.prop("min",minParticleSpeed)
 				.prop("max",maxParticleSpeed)
-				.prop("value",owgis.ncwms.currents.particles.getParticleSpeed()*100);
+				.prop("value",particleSpeedToSlider(owgis.ncwms.currents.particles.getParticleSpeed()));
 		
 		
 		$("#particleSpeedSlider").slider('refresh');
@@ -127,13 +170,24 @@ function initNumParticlesSlider(){
 	}
 }
 
+/**
+ * This function updates the particles speed from the slider, for desktop version.
+ * @param {type} event
+ * @param {type} ui
+ * @returns {undefined}
+ */
 function setParticlesSpeed(event, ui){
-	owgis.ncwms.currents.particles.setParticleSpeed(ui.value/100);
+	owgis.ncwms.currents.particles.setParticleSpeed(sliderToParticleSpeed(ui.value));
 }
-
+/**
+ * This function updates the particles speed from the slider, for mobile version
+ * @param {type} event
+ * @param {type} ui
+ * @returns {undefined}
+ */
 function setParticlesSpeedMobile(event){
 	var value = event.currentTarget.value;
-	owgis.ncwms.currents.particles.setParticleSpeed(value/100);
+	owgis.ncwms.currents.particles.setParticleSpeed(sliderToParticleSpeed(value));
 }
 
 function setParticlesTimeSpeed(event, ui){

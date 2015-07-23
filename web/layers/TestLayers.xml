@@ -14,6 +14,7 @@
 		<Menu ID="worldTempCurrents" EN="World Temperature w Currents " ES="Temperatura y corrientes"/>
 		<Menu ID="worldTempCurrentsLocal" EN="Localhost World Temperature w Currents " ES="Temperatura y corrientes"/>
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
+		<Menu ID="localwinds" EN="Region Winds" ES="Vientos por zona"/>
 
 		<Menu ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
 		<Menu ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
@@ -47,28 +48,18 @@
         <layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
 			   name="global_ts_2015/water_temp" 
-			   overlaycurrents="global_uv_2015/sea_water_velocity" />
-
-		<!--
-        <layer Menu="ncwms,worldTempCurrentsLocal" 
-			   EN="Gulf of Mexico Temperatures and currents"
-			   name="global_ts_2015/water_temp" 
-				server="http://localhost:8080/ncWMS/wms"
-			   overlaycurrents="global_uv_2015/sea_water_velocity" />
-			   -->
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
         <layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"
 			   name="global_uv_2015/sea_water_velocity" 
-			   overlaycurrents="global_uv_2015/sea_water_velocity" />
-			   <!--name="global_uv_2015/sea_water_velocity"--> 
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
-<!--
-        <layer Menu="ncwms,ncwmsLocal" EN="Gulf"
-				server="http://localhost:8080/ncWMS/wms"
-			   name="global_uv_2015/sea_water_velocity" 
-			   overlaycurrents="global_uv_2015/sea_water_velocity"
-                />-->
+        <layer Menu="ncwms,localwinds" 
+			   EN="Wind speed at 10m"
+			   name="atm_forecast_latest/wind" 
+			   overlaystreamlines="atm_forecast_latest/wind" 
+				defParticleSpeed=".03"/>
     </MainLayers> 
 
 	<!-- ncWMS all -->
@@ -78,7 +69,7 @@
         <layer Menu="ncwms,ncwmsMultDateMultDepthCurr" EN="Gulf of Mexico Temperature 2014 and currents"
                ES="Golfo de M&#233;xico Temperatura 2014 y corrientes" 
 			   name="gulf_temp/temperature" 
-			   overlaycurrents="gulf_vel/sea_water_velocity"
+			   overlaystreamlines="gulf_vel/sea_water_velocity"
                HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
     </MainLayers> 
 
@@ -155,11 +146,4 @@
 
     </MainLayers> 
 
-
-    <!--<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-				format="image/gif"  server="http://146.201.212.61/ncWMS/wms"
-                ncWMS="true" max_time_range="month">  
-        <layer Menu="ncwms,test" EN="Takis test"
-			   name="atm_forecast_latest/T2" />
-    </MainLayers> --> 
 </MenuConf>

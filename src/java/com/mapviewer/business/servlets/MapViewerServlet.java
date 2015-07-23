@@ -138,8 +138,8 @@ public class MapViewerServlet extends HttpServlet {
 			
 			//this variables are then read by the GlobalJavascript.jsp
 			
-			request.setAttribute("netcdf", curr_main_layer.isNetCDF());
-			request.setAttribute("currents", curr_main_layer.isOverlayCurrents());
+			request.setAttribute("ncwms", curr_main_layer.isncWMS());
+			request.setAttribute("currents", curr_main_layer.isoverlayStreamlines());
 			request.setAttribute("layerDetails", curr_main_layer.getLayerDetails());
 			
 			//Obtains the selection of the vector layers of the user.

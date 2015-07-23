@@ -5,9 +5,9 @@ goog.require('owgis.layer');
 var particlesArray  = new Array();
 var numparticles = 20000;//Initial number of particles
 var defNumParticles = 20000;// Used to reset the number of particles	
-var particleSpeed = .25;
-var defParticleSpeed = .25;
-var currentResolutionParticleSpeed = .25;
+var defParticleSpeed = parseFloat(layerDetails.defParticleSpeed);
+var particleSpeed = defParticleSpeed;
+var currentResolutionParticleSpeed = defParticleSpeed;
 var timeParticle = 150; // Number of frames a particle is alive in the animation
 var defTimeParticle = 150; // Deault Number of frames a particle is alive in the animation
 
@@ -145,6 +145,7 @@ owgis.ncwms.currents.particles.setCurrentGrid= function setCurrentGrid(CurrentGr
 //window['owgis.ncwms.currents.particles.updateParticles'] = owgis.ncwms.currents.particles.updateParticles;
 owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 	
+	var localParticleSpeed = 5*particleSpeed;
 	if(!_.isEmpty(grids[currentGrid])){
 
 		//We make the if here even when we have to repeat the code
@@ -193,8 +194,8 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 						var y1 = gridInfo.la1+(gridInfo.ny - 1 - row1)*gridInfo.dy;
 						var y2 = y1 + gridInfo.dy;
 						uv = bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22); 
-						particle[2] =  particle[0]  + particleSpeed*uv[0];
-						particle[3] =  particle[1]  + particleSpeed*uv[1];
+						particle[2] =  particle[0]  + localParticleSpeed*uv[0];
+						particle[3] =  particle[1]  + localParticleSpeed*uv[1];
 					}
 				}else{
 					//If the particle is not on the limitis of the grid, we create a new one
@@ -255,8 +256,8 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 							var zd = currTime*dt;
 							uv = trilinearInterpolation( particle, x1, x2, y1, y2, zd, q11, q21, q12, q22, 
 							q_next_11, q_next_21, q_next_12, q_next_22);
-							particle[2] =  particle[0]  + particleSpeed*uv[0];
-							particle[3] =  particle[1]  + particleSpeed*uv[1];
+							particle[2] =  particle[0]  + localParticleSpeed*uv[0];
+							particle[3] =  particle[1]  + localParticleSpeed*uv[1];
 						}
 					}else{
 						//If the particle is not on the limitis of the grid, we create a new one

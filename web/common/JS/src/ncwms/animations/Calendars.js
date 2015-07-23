@@ -134,8 +134,8 @@ function initCalendars(){
 				});
 			}
 
-			console.log("Min date: "+minValidDate);
-			console.log("Max date: "+maxValidDate);
+//			console.log("Min date: "+minValidDate);
+//			console.log("Max date: "+maxValidDate);
 			
 			startDate = getSuggestedDate(maxValidDate, false);
 			$("#cal-start").datepicker("setDate",startDate);
