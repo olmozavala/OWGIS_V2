@@ -167,6 +167,7 @@ public class OpenLayersManager {
 		int layerCount = 0;
 		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
+				"\t\t if(mobile){owgis.mobile.closePanels();}\n" +
 				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t\t $('#popup').hide();\n" +
@@ -243,7 +244,7 @@ public class OpenLayersManager {
 			// The two variables: elevation and startDate have to match
 			// javascript variable names. 
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[elev_glob_counter]+\"&" 
-			URLscript += "\"+addElevationText()+\""
+			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
 					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"yy-mm-dd\")+\"&"
 					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
@@ -292,9 +293,8 @@ public class OpenLayersManager {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}
-			} else {
-				layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			}
+			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			
 			layersScript += ", SRS: _map_projection";
 			

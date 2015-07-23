@@ -31,15 +31,16 @@ goog.require('owgis.help.tooltips');
 goog.require('owgis.help.main');
 goog.require('owgis.transparency');
 goog.require('owgis.interf');
+goog.require('owgis.ncwms.currents');
+goog.require('owgis.ncwms.currents.style');
+goog.require('owgis.layer');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
-var maxOpacity = 1;
-var minOpacity = 0.1;
-var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var hoverDisabled = false; //Used to disable showing the hover texts
-var screenWidth = screen.width;
 var windowWidth = $(window).width();
+var _mobileScreenThreshold = 750;
+var CESIUM_BASE_URL="./common/JS/vendor/minimized/";
 
 
 //Redirect any https request to http
@@ -47,21 +48,69 @@ if (window.location.protocol !== "http:") {
 	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
-if(!mobile && windowWidth <= (screenWidth*0.5)){
+if(!mobile && windowWidth <= _mobileScreenThreshold){
 		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
 	 }
+
 /**
  * Instructions executed when the page is ready
  */
 function owgisMain(){
 	initOl3();
     addLayers();
-    initVariables();
+	owgis.layers.initMainLayer(eval('layer'+idx_main_layer));
 	initMenus();
 	owgis.help.tooltips.initHelpTexts();
 	modifyInterface();
 	if(mobile){
 		owgis.mobile.initMobile();
+	}
+	//Start the currents animation of 'static' day.
+	if(_mainlayer_currents){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
+	$(".glyphicon-remove").parent().on("click",function(event){
+		if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
+		}
+		if($(event.currentTarget).parents("#paletteWindowColorRange").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".palettesMenuParent");
+		}
+		if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
+		}
+	});
+
+}
+
+function toogleCesium(){
+	if(_.isEmpty(_cesium)){
+		$.getScript( "./common/JS/vendor/minimized/Cesium.js")
+				.done(function( data, textStatus) {
+						$.getScript("./common/JS/vendor/minimized/ol3cesium.js")
+							.done(function( data, textStatus) {
+
+									_cesium = new olcs.OLCesium({map: map});
+									_cesium.setEnabled(!_cesium.getEnabled());
+									//Start the currents animation of 'static' day.
+									if(_mainlayer_currents){
+										owgis.ncwms.currents.startSingleDateAnimation();
+									}
+
+									})//done
+						.fail(function( jqxhr, settings, exception){
+							console.log("Fail to load ol3cesium.js: "+exception);
+								});
+					})
+				.fail(function( jqxhr, settings, exception){
+					console.log("Fail to load Cesium.js: "+exception);
+						});
+	}else{
+		_cesium.setEnabled(!_cesium.getEnabled());
+		//Start the currents animation of 'static' day.
+		if(_mainlayer_currents){
+			owgis.ncwms.currents.startSingleDateAnimation();
+		}
 	}
 }
 
@@ -72,38 +121,38 @@ function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
 	
-    disableEnterButton(); //disable enter button
+    disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
     if (netcdf) {
-        //Show the palettes
+        //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
-        if (mobile === false) {
-            createElevationSelector(); //initialize depth selector
-        }else{
-            createElevationSelectorMobile(); //initialize depth selector
-        }
+		owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
 		owgis.ncwms.animation.initAnimationControls();
+		if(_mainlayer_currents){
+			owgis.ncwms.currents.style.init();
+		}
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-	try{
-		if(mobile === false){
-			owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-		}
-	}catch(err){
-		console.log("Error initializing the menus... clearing local storage");
-		localStorage.clear();
+	if(mobile === false){
 		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}
+	else{
+		owgis.ol3.positionMap();
+		//if user changes the window size
+		window.addEventListener('orientationchange', doOnOrientationChange);
+		resizeMobilePanels();
+	}
 	
-    //if user changes the window size
+	
 	$(window).resize(function() {
-    	screenWidth = screen.width;
-	   	 windowWidth = $(window).width();
-	   	 if(!mobile && windowWidth <= (screenWidth*0.5)){
+	   	windowWidth = $(window).width();
+		
+		//In this case we go beyond the smaller size the window can have for destkop use
+		if(!mobile && windowWidth <= _mobileScreenThreshold ){
 	   		if (map !== null) {
 	   	    	if(!mobile){
 	   	    		owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
@@ -111,13 +160,46 @@ function initMenus() {
 	   	    	}
 	   	        submitForm();
 	   	    }
-	   	 }
-	   	 if(mobile && windowWidth >= (screenWidth*0.5)){
-	   		getElementById("mobile").value = false;
-   	        submitForm();
-	   	 }
-	        owgis.layouts.draggable.repositionDraggablesByScreenSize();
-	    });
+		}
+		if(mobile){
+			//TODO delete resizeMobilePanels if not used by Agost 2015
+//			resizeMobilePanels();
+			// In this case we are increasing the size of the window and go to desktop mode
+			if(windowWidth >= _mobileScreenThreshold){
+				getElementById("mobile").value = false;
+				submitForm();
+			}
+			owgis.mobile.updateSize();//If is only resizing in mobile then we need to udpate the map
+		}
+		owgis.layouts.draggable.repositionDraggablesByScreenSize();
+	});
+}
+
+function resizeMobilePanels(){
+ 	windowHeight = $(window).height();
+	if(windowHeight <= 500){
+		$("#panel2, #panel3").css("top","60px");
+		$("#panel2, #panel3").css("overflow-y","scroll");
+		$("#panel2, #panel3").css("max-height","200px");
+	}else{
+		$("#panel2, #panel3").css("overflow-y","");
+		$("#panel2, #panel3").css("max-height","");
+	}
+}
+
+function doOnOrientationChange()
+{
+	switch(window.orientation) 
+	{  
+		case -90:
+		case 90:
+			resizeMobilePanels()
+			break; 
+		default:
+			$("#panel2, #panel3").css("overflow-y","");
+			$("#panel2, #panel3").css("max-height","");
+			break; 
+	}
 }
 
 /**
@@ -126,7 +208,7 @@ function initMenus() {
  * the page reloads whenever the user clicks the enter in the maxPalVal input
  * box, also when a calendar date is selected and enter is pressed the page reloads, so we disable it. 
  */
-function disableEnterButton()
+function disbleEnterKey()
 {
     $('html').on('keypress', function(e) {
         if (e.keyCode === 13) {
@@ -168,10 +250,10 @@ function updateTitle(dateText, elevText) {
             locendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
-
+		
         if(!(owgis.ncwms.animation.animStatus === "none") )//falta hacer lo de resolution langauge y end date
         {
-          			
+			
             $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + elevText + separationSymbol);
         }
         else {
@@ -192,7 +274,9 @@ function MapViewersubmitForm() {
     	if(!mobile){
 	        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
-    	else{
+    	else{ 
+    	    localStorage.zoom = ol3view.getResolution();// Zoom of map
+    	    localStorage.map_center =  ol3view.getCenter();// Center of the map
     		getElementById("mobile").value = mobile;
     	}
         submitForm();

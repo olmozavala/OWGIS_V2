@@ -20,81 +20,70 @@ html, body {
   background: url("../../images/loading/009.gif") 50% 50% no-repeat #f9f9f9;
 }
 
-/* line 19, ../../scss/MobileCSS/MobStyles.scss */
-#header {
-  /*display: none;*/
-  height: 35px;
-  width: 100%;
-  position: absolute;
-  z-index: 10000;
-  opacity: 0.9;
-  background: #293041;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #293041), color-stop(1, #6d6d6d));
-  background: -webkit-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-  background: -moz-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-  background: -ms-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-  background: -o-linear-gradient(bottom, #293041 0%, #6d6d6d 100%);
-  background: linear-gradient(to top, #293041 0%, #6d6d6d 100%);
+/* line 20, ../../scss/MobileCSS/MobStyles.scss */
+label {
+  text-align: center;
 }
 
-/* line 35, ../../scss/MobileCSS/MobStyles.scss */
-#navpanelleft {
-  width: auto;
+/* line 24, ../../scss/MobileCSS/MobStyles.scss */
+.leftPanel {
+  max-width: 200px;
 }
 
-/* line 38, ../../scss/MobileCSS/MobStyles.scss */
-#navpanelright {
-  width: 290px;
+/* line 27, ../../scss/MobileCSS/MobStyles.scss */
+.rightPanel {
+  max-width: 200px;
 }
 
-/* line 42, ../../scss/MobileCSS/MobStyles.scss */
+/* line 31, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
   padding: 0px;
 }
 
-/* line 45, ../../scss/MobileCSS/MobStyles.scss */
+/* line 34, ../../scss/MobileCSS/MobStyles.scss */
 .ui-controlgroup {
   margin: 0;
 }
 
-/* line 48, ../../scss/MobileCSS/MobStyles.scss */
+/* line 37, ../../scss/MobileCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-label {
   width: 100%;
 }
 
-/* line 52, ../../scss/MobileCSS/MobStyles.scss */
+/* line 41, ../../scss/MobileCSS/MobStyles.scss */
 .ui-panel-inner {
-  overflow-x: hidden;
-  max-height: 500px;
+  /*overflow-x: hidden;*/
+  /*max-height: 500px;*/
+  /*height: 100%;*/
 }
 
-/* line 57, ../../scss/MobileCSS/MobStyles.scss */
+/* line 47, ../../scss/MobileCSS/MobStyles.scss */
 #bars-button {
   height: 27px;
 }
 
-/* line 62, ../../scss/MobileCSS/MobStyles.scss */
+/* line 52, ../../scss/MobileCSS/MobStyles.scss */
 .languageContainerSel {
   padding-right: 5px;
 }
 
 /*     ul ul { display: none; } */
-/* line 66, ../../scss/MobileCSS/MobStyles.scss */
+/* line 56, ../../scss/MobileCSS/MobStyles.scss */
 html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* line 70, ../../scss/MobileCSS/MobStyles.scss */
+/* line 60, ../../scss/MobileCSS/MobStyles.scss */
 #leftList {
   margin: 0.4em;
 }
 
-/* line 74, ../../scss/MobileCSS/MobStyles.scss */
+/* line 64, ../../scss/MobileCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-controls {
   width: 100%;
 }
 
-/* line 79, ../../scss/MobileCSS/MobStyles.scss */
+/* line 68, ../../scss/MobileCSS/MobStyles.scss */
 #l-animation {
   position: absolute;
   margin: auto;
@@ -105,17 +94,17 @@ html {
   font-size: 18px;
 }
 
-/* line 89, ../../scss/MobileCSS/MobStyles.scss */
+/* line 78, ../../scss/MobileCSS/MobStyles.scss */
 #timeSelect {
   width: 170px;
 }
 
-/* line 93, ../../scss/MobileCSS/MobStyles.scss */
+/* line 82, ../../scss/MobileCSS/MobStyles.scss */
 .transect-slider .ui-slider-label {
   font-size: 13px;
 }
 
-/* line 97, ../../scss/MobileCSS/MobStyles.scss */
+/* line 86, ../../scss/MobileCSS/MobStyles.scss */
 .transect-slider .ui-slider-switch {
   width: 10em;
 }

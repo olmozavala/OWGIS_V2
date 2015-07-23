@@ -6,7 +6,7 @@
 		<xs:complexType mixed="true">
 			<xs:sequence maxOccurs="unbounded"><!--childs of root, limited to 3 for now -->    
    
-				<xs:element name="MenuEntries" minOccurs="0" ><!--MenuEntries(root's child) level -->
+				<xs:element name="Menus" minOccurs="0"><!--Menus(root's child) level -->
 					<xs:complexType mixed="true">
   
 						<xs:sequence maxOccurs="unbounded"><!--infinite limit of MenuEntry numbers -->
@@ -28,7 +28,7 @@
 							</xs:element>       
 						</xs:sequence>  
 					</xs:complexType>
-				</xs:element><!--end of MenuEntries -->
+				</xs:element><!--end of Menus -->
    
 				<xs:element name="BackgroundLayers" minOccurs="0"> <!--BackgroundLayers (root's child) level -->
        
@@ -41,7 +41,7 @@
 								<xs:complexType mixed="true">
           
 									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
-									<xs:attribute name="featureInfo" type="xs:string"></xs:attribute>
+									<xs:attribute name="title" type="xs:string"></xs:attribute>
 									<xs:attribute name="BBOX" type="xs:string" />
 									<xs:attribute name="vectorLayer">
 										<xs:simpleType>
@@ -54,8 +54,21 @@
 									<xs:attribute name="format" type="xs:string" />
 									<xs:attribute name="proj" type="xs:string" />
 									<xs:attribute name="server" type="xs:string" />
+									<xs:attribute name="palette" type="xs:string" />
 									<xs:attribute name="trans_effect" type="xs:string" />
+									<xs:attribute name="width" type="xs:string" />
+									<xs:attribute name="height" type="xs:string" />
+									<xs:attribute name="mincolor" type="xs:string" />
+									<xs:attribute name="maxcolor" type="xs:string" />
 									<xs:attribute name="tiled">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="true" /> 
+												<xs:enumeration value="false" />                                                           
+											</xs:restriction> 
+										</xs:simpleType>
+									</xs:attribute>                      
+									<xs:attribute name="ncWMS">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:enumeration value="true" /> 
@@ -71,10 +84,23 @@
 						</xs:sequence>
 						<!-- Attributes of BackgroundLayers -->
 						<xs:attribute name="BBOX" type="xs:string" />
+						<xs:attribute name="vectorLayer">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
 						<xs:attribute name="format" type="xs:string" />
 						<xs:attribute name="proj" type="xs:string" />
 						<xs:attribute name="server" type="xs:string" />
+						<xs:attribute name="palette" type="xs:string" />
 						<xs:attribute name="trans_effect" type="xs:string" />
+						<xs:attribute name="width" type="xs:string" />
+						<xs:attribute name="height" type="xs:string" />
+						<xs:attribute name="mincolor" type="xs:string" />
+						<xs:attribute name="maxcolor" type="xs:string" />
 						<xs:attribute name="tiled">
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -83,10 +109,19 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute>                     
+						<xs:attribute name="ncWMS">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute> 
+						<xs:attribute name="style" type="xs:string" />  
 					</xs:complexType>
 				</xs:element> <!--End of BackgroundLayer -->
    
-				<xs:element name="OptionalLayers" minOccurs="0"> <!--OptionalLayers (root's child) level -->
+				<xs:element name="VectorLayers" minOccurs="0"> <!--VectorLayers (root's child) level -->
        
 					<xs:complexType mixed="true">
                   
@@ -100,14 +135,6 @@
 									<xs:attribute name="featureInfo" type="xs:string"></xs:attribute>
 									<xs:attribute name="title" type="xs:string"></xs:attribute>
 									<xs:attribute name="BBOX" type="xs:string" />
-									<xs:attribute name="jsonp">
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="true" /> 
-												<xs:enumeration value="false" />                                                           
-											</xs:restriction> 
-										</xs:simpleType>
-									</xs:attribute>                      
 									<xs:attribute name="vectorLayer">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -119,7 +146,12 @@
 									<xs:attribute name="format" type="xs:string" />
 									<xs:attribute name="proj" type="xs:string" />
 									<xs:attribute name="server" type="xs:string" />
+									<xs:attribute name="palette" type="xs:string" />
 									<xs:attribute name="trans_effect" type="xs:string" />
+									<xs:attribute name="width" type="xs:string" />
+									<xs:attribute name="height" type="xs:string" />
+									<xs:attribute name="mincolor" type="xs:string" />
+									<xs:attribute name="maxcolor" type="xs:string" />
 									<xs:attribute name="tiled">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -136,13 +168,21 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
+									<xs:attribute name="ncWMS">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="true" /> 
+												<xs:enumeration value="false" />                                                           
+											</xs:restriction> 
+										</xs:simpleType>
+									</xs:attribute>                      
 									<xs:attribute name="style" type="xs:string" /> 
 								</xs:complexType>
                   
-							</xs:element><!-- End of Menuconf/OptionalLayers/layer -->
+							</xs:element><!-- End of Menuconf/VectorLayers/layer -->
        
 						</xs:sequence>
-						<!-- Attributes of OptionalLayers -->
+						<!-- Attributes of VectorLayers -->
 						<xs:attribute name="BBOX" type="xs:string" />
 						<xs:attribute name="vectorLayer">
 							<xs:simpleType>
@@ -152,11 +192,15 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute>                      
-
 						<xs:attribute name="format" type="xs:string" />
 						<xs:attribute name="proj" type="xs:string" />
 						<xs:attribute name="server" type="xs:string" />
+						<xs:attribute name="palette" type="xs:string" />
 						<xs:attribute name="trans_effect" type="xs:string" />
+						<xs:attribute name="width" type="xs:string" />
+						<xs:attribute name="height" type="xs:string" />
+						<xs:attribute name="mincolor" type="xs:string" />
+						<xs:attribute name="maxcolor" type="xs:string" />
 						<xs:attribute name="tiled">
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -165,18 +209,26 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute>                     
+						<xs:attribute name="ncWMS">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute> 
 						<xs:attribute name="style" type="xs:string" />  
 					</xs:complexType>
 				</xs:element> <!--End of VectorLayer -->
    
    
 				<xs:element name="MainLayers" minOccurs="0"> <!--MainLayers (root's child) level -->
+       
 					<xs:complexType mixed="true">
-						<!-- Layers for main layers -->
-						<xs:sequence maxOccurs="unbounded"><!-- There can be multiple MainLayers element on the xml file -->
+                        <xs:sequence maxOccurs="unbounded"><!-- There can be multiple MainLayers element on the xml file -->
 							<xs:element name="layer" minOccurs="1"> <!--Internal element of Main layers is a layer -->
 								<xs:complexType mixed="true">
-									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+                                    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
 									<xs:attribute name="Menu" type="xs:string"></xs:attribute>
 									<xs:attribute name="featureInfo" type="xs:string"></xs:attribute>
 									<xs:attribute name="title" type="xs:string"></xs:attribute>
@@ -198,23 +250,17 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
-									<xs:attribute name="jsonp">
-										<xs:simpleType>
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="true" /> 
-												<xs:enumeration value="false" />                                                           
-											</xs:restriction> 
-										</xs:simpleType>
-									</xs:attribute>                      
 									<xs:attribute name="format" type="xs:string" />
 									<xs:attribute name="proj" type="xs:string" />
 									<xs:attribute name="server" type="xs:string" />
 									<xs:attribute name="palette" type="xs:string" />
 									<xs:attribute name="trans_effect" type="xs:string" />
+									<xs:attribute name="width" type="xs:string" />
+									<xs:attribute name="height" type="xs:string" />
 									<xs:attribute name="mincolor" type="xs:string" />
-									<xs:attribute name="maxcolor" type="xs:string" />
 									<xs:attribute name="CQL" type="xs:string" />
 									<xs:attribute name="cqlcols" type="xs:string" />
+									<xs:attribute name="maxcolor" type="xs:string" />
 									<xs:attribute name="tiled">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -232,6 +278,7 @@
 										</xs:simpleType>
 									</xs:attribute>                      
 									<xs:attribute name="style" type="xs:string" /> 
+									<xs:attribute name="overlaycurrents" type="xs:string" /> 
 									<xs:attribute name="max_time_range">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
@@ -241,18 +288,28 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
-
-								</xs:complexType><!-- Complex type def of Main Layers -->
+								</xs:complexType>
+                  
 							</xs:element><!-- End of Menuconf/MainLayers/layer -->
+       
 						</xs:sequence>
 						<!-- Attributes of MainLayers -->
 						<xs:attribute name="BBOX" type="xs:string" />
-						<xs:attribute name="vectorLayer" type="xs:boolean"/>
+						<xs:attribute name="vectorLayer">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
 						<xs:attribute name="format" type="xs:string" />
 						<xs:attribute name="proj" type="xs:string" />
 						<xs:attribute name="server" type="xs:string" />
 						<xs:attribute name="palette" type="xs:string" />
 						<xs:attribute name="trans_effect" type="xs:string" />
+						<xs:attribute name="width" type="xs:string" />
+						<xs:attribute name="height" type="xs:string" />
 						<xs:attribute name="cqlcols" type="xs:string" />
 						<xs:attribute name="mincolor" type="xs:string" />
 						<xs:attribute name="maxcolor" type="xs:string" />
@@ -273,6 +330,14 @@
 							</xs:simpleType>
 						</xs:attribute> 
 						<xs:attribute name="style" type="xs:string" />  
+						<xs:attribute name="selected">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
 						<xs:attribute name="max_time_range">
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -283,12 +348,11 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute>   
-
        
 					</xs:complexType>
 				</xs:element> <!--End of MainLayer -->
    
-			</xs:sequence><!-- This sequence is for any child Menus or layers -->
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element><!-- end of root element -->
 

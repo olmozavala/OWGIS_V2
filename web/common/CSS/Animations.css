@@ -69,12 +69,12 @@ and open the template in the editor.
   padding: 0px 20px;
 }
 
-/* line 29, ../scss/Animations.scss */
+/* line 28, ../scss/Animations.scss */
 .warning {
   color: #ec451f;
 }
 
-/* line 30, ../scss/Animations.scss */
+/* line 29, ../scss/Animations.scss */
 .btn-default.warning:hover, .btn-default.warning:focus {
   color: #c73311;
 }

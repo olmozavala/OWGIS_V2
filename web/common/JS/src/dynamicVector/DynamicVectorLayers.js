@@ -2,7 +2,7 @@ goog.provide('owgis.vector.manager');
 
 goog.require('owgis.ogc');
 goog.require('owgis.vector.styles');
-goog.require('ol.source.GeoJSON');
+goog.require('ol.source.Vector');
 
 var viewportInitialized = false;//Indicates if 'mousemove' function has already been initialized
 var highlight;
@@ -24,7 +24,7 @@ owgis.vector.manager.processJSON = function(geoJSONdata, layerId, visible) {
 	var projection = geoJSONdata.crs.type+":"+geoJSONdata.crs.properties.code;
 	
 	//Creates the vector source from the data and the projection
-	var vectorSource = new ol.source.GeoJSON({
+	var vectorSource = new ol.source.Vector({
 		object: data ,
 		projection: projection});
 

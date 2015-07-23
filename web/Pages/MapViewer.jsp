@@ -21,7 +21,6 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		<!--contains all the css links and javascript links--> 
         <%@include file="Header/HeaderDebug.jsp" %>  
         <%--<%@include file="Header/Header.jsp" %>--%>  
-        <%@include file="Header/InitJSVariables.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
 		<title><fmt:message key="header.title"/></title>
     </head>
@@ -37,6 +36,15 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<%@include file="Layouts/DraggableWindows/HelpTexts/MapInstructions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			
 			<c:if test='${netcdf}'>
+				<!--Canvas that contains the animations-->
+				<canvas id="animationCanvas"></canvas>
+				<c:if test='${currents}'>
+					<!--Canvas that contain the currents-->
+					<canvas id="currentsCanvas" > </canvas>
+					<!-- Window with the custom styling for the currents -->
+					<%@include file="Layouts/DraggableWindows/NcWMS/Currents.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
+				</c:if>
+
 				<%@include file="Layouts/DraggableWindows/NcWMS/NcWMSOptions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 				<!-- Elevation -->
 				<%@include file="Layouts/DraggableWindows/NcWMS/ZaxisSelection.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>

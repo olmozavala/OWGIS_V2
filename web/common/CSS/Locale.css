@@ -61,9 +61,11 @@ and open the template in the editor.
 /* line 20, ../scss/Locale.scss */
 #langDropDown li {
   min-width: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
-/* line 25, ../scss/Locale.scss */
+/* line 27, ../scss/Locale.scss */
 #selectedLanguage {
   padding-bottom: 0px;
   padding-top: 0px;

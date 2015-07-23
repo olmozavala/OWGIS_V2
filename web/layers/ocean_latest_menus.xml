@@ -44,7 +44,8 @@
 		<layer Menu="latest,ocn,zeta" EN="Sea surface Height"
 			   ES="Temperatura superficial del mar" name="ocn_forecast_latest/zeta"  />
 		<layer Menu="latest,ocn,barvel" EN="Vertically Integrated Currents"
-				style="vector" ES="TODO" name="ocn_forecast_latest/barotropic_sea_water_velocity"  />
+				ES="TODO" name="ocn_forecast_latest/barotropic_sea_water_velocity" 
+			   overlaycurrents="ocn_forecast_latest/barotropic_sea_water_velocity" />
 		<layer Menu="latest,ocn,sustr" EN="Surface U-Momentum Stress"
 				ES="TODO" name="ocn_forecast_latest/sustr"  />
 		<layer Menu="latest,ocn,svstr" EN="Surface V-Momentum Stress"
@@ -74,7 +75,8 @@
 		<layer Menu="latest,ocn,salt" EN="Gulf of Mexico salinity"
 			   ES="Salinidad" name="ocn_forecast_latest/salt"  />
 		<layer Menu="latest,ocn,vel" EN="Currents"
-				style="vector" ES="" name="ocn_forecast_latest/sea_water_velocity"  />
+				ES="" name="ocn_forecast_latest/sea_water_velocity"  
+			   overlaycurrents="ocn_forecast_latest/sea_water_velocity" />
 		<layer Menu="latest,ocn,rho" EN="Water Density Anomaly"
 			   ES="Anomalia en la densidad del agua" name="ocn_forecast_latest/rho"  />
 		<!--<layer Menu="latest,ocn,tke" EN="Turbulent kinetic energy"

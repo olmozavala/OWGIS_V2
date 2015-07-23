@@ -48,7 +48,7 @@
 			</div> 
 		</div>
 		<div class="col-xs-6 ">
-			<select class="form-control" id="timeSelect" name="timeSelect">
+			<select class="form-control input-sm" id="timeSelect" name="timeSelect">
 			</select>
 		</div>
 	</div>
