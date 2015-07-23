@@ -184,7 +184,7 @@ public class NetCDFRequestManager {
 			} catch (JSONException | IOException e) {
 				try {
 					tryNumber++;
-					System.out.println("Layer details try number:" + tryNumber + " Error:"+ e.getMessage());
+					System.out.println("Layer " + layer.getName() + " details try number:" + tryNumber + " Error:"+ e.getMessage());
 					Thread.sleep(1000);//We wait for 1 seconds.
 				} catch (InterruptedException ex) {
 					System.out.println("Interrupted exception while waiting for layer details:" + ex.getMessage());
