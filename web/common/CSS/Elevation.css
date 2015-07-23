@@ -54,30 +54,31 @@ Styles for the elevation options.
 /* Defines the position of the draggable window that
 selects the zaxis value*/
 /* line 14, ../scss/Elevation.scss */
-#zaxis_selector {
+#zaxis_selector_parent {
+  min-width: 100px;
   top: 45px;
   left: 40%;
   display: none;
 }
 
-/* line 20, ../scss/Elevation.scss */
+/* line 21, ../scss/Elevation.scss */
 .linkElevPageDef {
   font-size: 16px;
   color: #F9FFCB;
 }
 
-/* line 24, ../scss/Elevation.scss */
+/* line 25, ../scss/Elevation.scss */
 .linkElevPageSelected {
   font-size: 16px;
   color: #BBA364;
 }
 
-/* line 30, ../scss/Elevation.scss */
+/* line 31, ../scss/Elevation.scss */
 #plusButtonElevation {
   display: none;
 }
 
-/* line 32, ../scss/Elevation.scss */
+/* line 33, ../scss/Elevation.scss */
 #elevationText {
   padding: 3px 10px;
 }

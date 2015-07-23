@@ -64,6 +64,7 @@ public class LayerMenuManagerSingleton {
 	ArrayList<Layer> backgroundLayers;
 	static String[] xmlFiles;
 	static String xmlFolder;
+	static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
 	Date lastUpdate;
 
 	/**
@@ -97,8 +98,7 @@ public class LayerMenuManagerSingleton {
 				//For vector and main layers we update the current menu tree
 				if (!layerType.equalsIgnoreCase("BackgroundLayers")) {
 					//Obtains the menu for this layer
-					layerMenu = StringAndNumbers.strArrayFromStringColon(
-							(String) layerElem.getAttributeValue("Menu"));
+					layerMenu = StringAndNumbers.strArrayFromStringColon(layerElem.getAttributeValue("Menu"));
 				}
 
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
@@ -273,19 +273,24 @@ public class LayerMenuManagerSingleton {
 		Date currLastUpdate;
 		boolean update = forceXMLreload;
 
-		//Verifies that there are not more or less xml files in the folder. 
-		if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
-			LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
+		Date currDate = new Date();
+		if( (currDate.getTime() - lastUpdate.getTime()) > MILLIS_PER_DAY){
 			update = true;
-		} else {
-			for (String xmlFile : xmlFiles) {
-				currLastUpdate = FileManager.lastModification(xmlFile);
-				//If is the first time we generate the tree or the file has been updated we
-				// regenerate the tree menu and update the layers. 
-				synchronized (this) {
-					if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
-						update = true;
-						break;//For any file that has been updated we reload everything
+		}else{
+			//Verifies that there are not more or less xml files in the folder. 
+			if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
+				LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
+				update = true;
+			} else {
+				for (int i = 0; i < xmlFiles.length; i++) {
+					currLastUpdate = FileManager.lastModification(xmlFiles[i]);
+					//If is the first time we generate the tree or the file has been updated we 
+					// regenerate the tree menu and update the layers. 
+					synchronized (this) {
+						if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
+							update = true;
+							break;//For any file that has been updated we reload everything
+						}
 					}
 				}
 			}
@@ -324,9 +329,9 @@ public class LayerMenuManagerSingleton {
 	 */
 	private void createMenuFromXMLfiles() throws XMLFilesException {
 		try {
-			// Iterates over all the XML files finding MenuEntries and adding into the 
-			// menuEntries array
-			for (String fileName : xmlFiles) {
+			//First search for MenuEntries in all the files
+			for (int i = 0; i < xmlFiles.length; i++) {
+				String fileName = xmlFiles[i];
 				SAXBuilder builder = new SAXBuilder(); //used to read XML
 				Document doc = builder.build(fileName);
 				
@@ -342,9 +347,9 @@ public class LayerMenuManagerSingleton {
 					}
 				}
 			}
-			for (String fileName : xmlFiles) {
+			for (int i = 0; i < xmlFiles.length; i++) {
+				String fileName = xmlFiles[i];
 				SAXBuilder builder = new SAXBuilder();
-
 				Document doc = builder.build(fileName);
 				
 				// Obtains the root element of the current XML file
@@ -489,7 +494,7 @@ public class LayerMenuManagerSingleton {
 		}
 		
 		String netCDF = layerConf.getAttributeValue("ncWMS");
-		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isNetCDF();
+		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isncWMS();
 		
 		String style = layerConf.getAttributeValue("style");
 		style = style != null ? style : layer.getStyle();
@@ -526,6 +531,12 @@ public class LayerMenuManagerSingleton {
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
 		
+		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null
+				? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
+
+		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
+				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
+
 		/*
 		String[] cql_cols = null;
 		if(cql_cols_str!=null){
@@ -535,7 +546,8 @@ public class LayerMenuManagerSingleton {
 		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, max_time_range, boolJsonp);
+				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, 
+				max_time_range, boolJsonp,overlayStreamlines,defParticleSpeed);
 		
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
@@ -554,33 +566,7 @@ public class LayerMenuManagerSingleton {
 	 * @return
 	 */
 	private Layer defaultLayer() {
-		BoundaryBox bbox = new BoundaryBox("-180,90,-90,180");
-		String style = "";
-		String format = "image/jpeg";
-		String name = "";
-		String proj = "EPSG:4326";//By default proj is EPSG:4326
-		String server = null;
-		// This sizes are important, this are the default resolutions when
-		// generating animations and also requesting data (WCS)
-		int width = 512;
-		int height = 512;
-		//If you don't want to generate the code (to request feature info) it has to be null
-		String featureInfo = null;
-		boolean tiled = true;
-		boolean netCDF = false;
-		MenuEntry[] menuLayer = null;
-		String layout = "";
-		String palette = "default";
-		boolean displayTitle = true;
-		boolean isVectorLayer = false;
-		Map<String, String> displayNames = null;
-		String max_time_range = "week";
-		boolean jsonp = false;//By default we assume the layer is not "Dynamic vector"
-		
-		Layer defLayer = new Layer(bbox, style, format, name, displayNames,
-				proj, menuLayer, server, width, height, featureInfo,
-				tiled, displayTitle, layout, isVectorLayer, palette, netCDF, max_time_range,jsonp);
-		
+		Layer defLayer = new Layer();
 		return defLayer;
 	}
 	

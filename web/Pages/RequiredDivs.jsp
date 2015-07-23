@@ -34,7 +34,7 @@ draggable windows -->
 	
 <!--Loading gif to display on the map -->
 <div id="l-animation" class="menuHidden">
-	<p class="bigFontSize invShadow"> 
+	<p > 
 		<span id="loadperc" class="invShadow"></span> 
 		<img src="./common/images/loading/009.gif" height="40" border="0" alt="loading" />	
 	</p>

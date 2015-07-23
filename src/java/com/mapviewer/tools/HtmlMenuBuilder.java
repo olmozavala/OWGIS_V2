@@ -157,7 +157,7 @@ public class HtmlMenuBuilder {
 				if (!currentNode.isRoot()) {
 					MenuEntry menu = currentNode.getNode();
 					finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-					finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+					finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
 					if (currMenuStr == null) {
 						currMenuStr = menu.getId();
 					} else {
@@ -226,7 +226,7 @@ public class HtmlMenuBuilder {
 					if (!currentNode.isRoot()) {
 						MenuEntry menu = currentNode.getNode();
 						finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-						finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toogleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+						finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
 						if (currMenuStr == null) {
 							currMenuStr = menu.getId();
 						} else {
