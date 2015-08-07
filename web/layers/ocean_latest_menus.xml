@@ -35,6 +35,23 @@
 		<layer name="" Menu="" featureInfo="" title="" BBOX="" vectorLayer="" format="" proj="" server="" trans_effect="" tiled="" selected="" style=""></layer>
 	</VectorLayers> -->
 
+	<!--3D Ocean layers-->
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				ncWMS="true"  proj="EPSG:4052" >  
+		<layer Menu="latest,ocn,vel" EN="Currents"
+				ES="" name="ocn_forecast_latest/sea_water_velocity"  
+			   overlaystreamlines="ocn_forecast_latest/sea_water_velocity" />
+		<layer Menu="latest,ocn,temp" EN="Gulf of Mexico Temperature"
+			   ES="Temperatura" name="ocn_forecast_latest/temp"  />
+		<layer Menu="latest,ocn,salt" EN="Gulf of Mexico salinity"
+			   ES="Salinidad" name="ocn_forecast_latest/salt"  />
+		<layer Menu="latest,ocn,rho" EN="Water Density Anomaly"
+			   ES="Anomalia en la densidad del agua" name="ocn_forecast_latest/rho"  />
+		<!--<layer Menu="latest,ocn,tke" EN="Turbulent kinetic energy"
+			   ES="TODO" name="ocn_forecast_latest/tke"  />-->
+	</MainLayers>
+
 	<!--2D Ocean layers-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
@@ -45,7 +62,7 @@
 			   ES="Temperatura superficial del mar" name="ocn_forecast_latest/zeta"  />
 		<layer Menu="latest,ocn,barvel" EN="Vertically Integrated Currents"
 				ES="TODO" name="ocn_forecast_latest/barotropic_sea_water_velocity" 
-			   overlaycurrents="ocn_forecast_latest/barotropic_sea_water_velocity" />
+			   overlaystreamlines="ocn_forecast_latest/barotropic_sea_water_velocity" />
 		<layer Menu="latest,ocn,sustr" EN="Surface U-Momentum Stress"
 				ES="TODO" name="ocn_forecast_latest/sustr"  />
 		<layer Menu="latest,ocn,svstr" EN="Surface V-Momentum Stress"
@@ -65,22 +82,4 @@
 		<!--<layer Menu="latest,ocn,evaporation" EN="Evaporation"
 			   ES="Evaporacion" name="ocn_forecast_latest/evaporation"  /> -->
 	</MainLayers>
-
-	<!--3D Ocean layers-->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
-				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
-				ncWMS="true"  proj="EPSG:4052" >  
-		<layer Menu="latest,ocn,temp" EN="Gulf of Mexico Temperature"
-			   ES="Temperatura" name="ocn_forecast_latest/temp"  />
-		<layer Menu="latest,ocn,salt" EN="Gulf of Mexico salinity"
-			   ES="Salinidad" name="ocn_forecast_latest/salt"  />
-		<layer Menu="latest,ocn,vel" EN="Currents"
-				ES="" name="ocn_forecast_latest/sea_water_velocity"  
-			   overlaycurrents="ocn_forecast_latest/sea_water_velocity" />
-		<layer Menu="latest,ocn,rho" EN="Water Density Anomaly"
-			   ES="Anomalia en la densidad del agua" name="ocn_forecast_latest/rho"  />
-		<!--<layer Menu="latest,ocn,tke" EN="Turbulent kinetic energy"
-			   ES="TODO" name="ocn_forecast_latest/tke"  />-->
-	</MainLayers>
-	
 </MenuConf>
