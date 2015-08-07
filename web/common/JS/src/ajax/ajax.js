@@ -5,14 +5,7 @@
  * dispAnimaton: Makes the request for displaying the animation
  * getAnimTimes: Gets and sets the options for the animation
  *
-**
- *This function creates an asynchronous object to request for the animation
- *it basically constructs a url to request the server. 
- *@param {js_var} startDate - calendar start date
- *@param {js_var} endDate - end date of calendar
- *@param {js_var} layerName - the layername of the animation
- *@param {js_var} req - (request)displayanimation or getanimation times
- */
+ * */
 
 goog.provide('owgis.ajax');
 
@@ -38,6 +31,14 @@ owgis.ajax.crossorigin = function(url, callback){
 		}).done(callback);
 };
 
+/**
+ *This function creates an asynchronous object to request for the animation
+ *it basically constructs a url to request the server. 
+ *@param {js_var} startDate - calendar start date
+ *@param {js_var} endDate - end date of calendar
+ *@param {js_var} layerName - the layername of the animation
+ *@param {js_var} req - (request)displayanimation or getanimation times
+ */
 function dispAnimationAjax(startDate, endDate, layerName, req) {
 	var asynchronous5 = new Asynchronous();
 
@@ -112,14 +113,12 @@ function downloadData() {
 	window.open(url,'_self');
 }
 
-
 /**
  *This is the constructor function of the ajax asynchronous call
  */
 function Asynchronous( ) {
     this._xmlhttp = new FactoryXMLHttpRequest();
 }
-
 
 /**
  *this functions sends the request to the server and also returns the different states the current call is in

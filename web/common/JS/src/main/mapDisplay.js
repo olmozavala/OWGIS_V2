@@ -31,11 +31,12 @@ goog.require('owgis.help.tooltips');
 goog.require('owgis.help.main');
 goog.require('owgis.transparency');
 goog.require('owgis.interf');
+goog.require('owgis.ncwms.currents');
+goog.require('owgis.ncwms.currents.style');
+goog.require('owgis.layer');
+goog.require('owgis.cesium');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
-var maxOpacity = 1;
-var minOpacity = 0.1;
-var opacity = 1;//Default opacity
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
 var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
@@ -57,13 +58,30 @@ if(!mobile && windowWidth <= _mobileScreenThreshold){
 function owgisMain(){
 	initOl3();
     addLayers();
-    initVariables();
+	owgis.layers.initMainLayer(eval('layer'+idx_main_layer));
 	initMenus();
 	owgis.help.tooltips.initHelpTexts();
 	modifyInterface();
 	if(mobile){
 		owgis.mobile.initMobile();
 	}
+	//Start the currents animation of 'static' day.
+	if(_mainlayer_currents){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
+	//Enables the 'close' behaviour of some windows. 
+	$(".glyphicon-remove").parent().on("click",function(event){
+		if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
+		}
+		if($(event.currentTarget).parents("#paletteWindowColorRange").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".palettesMenuParent");
+		}
+		if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
+			owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
+		}
+	});
+
 }
 
 /**
@@ -73,51 +91,37 @@ function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
 	
-    disableEnterButton(); //disable enter button
+    disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
     if (netcdf) {
-        //Show the palettes
+        //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
-        if (mobile === false) {
-            createElevationSelector(); //initialize depth selector
-        }else{
-            createElevationSelectorMobile(); //initialize depth selector
-        }
+		owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
 		owgis.ncwms.animation.initAnimationControls();
+		if(_mainlayer_currents){
+			owgis.ncwms.currents.style.init();
+		}
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-	try{
-		if(mobile === false){
-			owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-		}
-		else{
-		    if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-		    if( localStorage.map_center!== undefined){
-		        strCenter = localStorage.map_center.split(",")
-		        lat = Number(strCenter[0]);
-		        lon = Number(strCenter[1]);
-		        ol3view.setCenter([lat,lon]);// Center of the map
-		    }
-		}
-	}catch(err){
-		console.log("Error initializing the menus... clearing local storage");
-		localStorage.clear();
+	if(mobile === false){
 		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}
-	
-    //if user changes the window size
-	if(mobile){
+	else{
+		owgis.ol3.positionMap();
+		//if user changes the window size
 		window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
+	
+	
 	$(window).resize(function() {
 	   	windowWidth = $(window).width();
-	  
-
+		
+		//In this case we go beyond the smaller size the window can have for destkop use
 		if(!mobile && windowWidth <= _mobileScreenThreshold ){
 	   		if (map !== null) {
 	   	    	if(!mobile){
@@ -128,7 +132,9 @@ function initMenus() {
 	   	    }
 		}
 		if(mobile){
-			 resizeMobilePanels();
+			//TODO delete resizeMobilePanels if not used by Agost 2015
+//			resizeMobilePanels();
+			// In this case we are increasing the size of the window and go to desktop mode
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
@@ -153,25 +159,26 @@ function resizeMobilePanels(){
 
 function doOnOrientationChange()
 {
-  switch(window.orientation) 
-  {  
-    case -90:
-    case 90:
-    	resizeMobilePanels()
-      break; 
-    default:
-    $("#panel2, #panel3").css("overflow-y","");
-	$("#panel2, #panel3").css("max-height","");
-      break; 
-  }
+	switch(window.orientation) 
+	{  
+		case -90:
+		case 90:
+			resizeMobilePanels()
+			break; 
+		default:
+			$("#panel2, #panel3").css("overflow-y","");
+			$("#panel2, #panel3").css("max-height","");
+			break; 
+	}
 }
+
 /**
  * This function disables the enter button for the user
  * The reason this function was created is becuase for some reason
  * the page reloads whenever the user clicks the enter in the maxPalVal input
  * box, also when a calendar date is selected and enter is pressed the page reloads, so we disable it. 
  */
-function disableEnterButton()
+function disbleEnterKey()
 {
     $('html').on('keypress', function(e) {
         if (e.keyCode === 13) {

@@ -11,7 +11,8 @@
 		<div class="col-xs-10 invShadow title" > <fmt:message key="ncwms.newpal" /></div>
 			
 		<div class="col-xs-2 pull-right">
-			<a class="btn btn-default btn-xs" href="#" onclick="displayOptionalPalettes();">
+			<a class="btn btn-default btn-xs" href="#" 
+			   onclick="displayOptionalPalettes();">
 				<span class="glyphicon glyphicon-remove"> </span> 
 			</a>
 		</div>

@@ -1,0 +1,36 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="ssh" EN="Sea Surface High" ES="Altura Superficial" />
+		<Menu ID="temp" EN="Temperature" ES="Temperatura" />
+		<Menu ID="salinity" EN="Salinity" ES="Salinidad" />
+		<Menu ID="uv" EN="Currents" ES="Currents" />
+		<Menu ID="countries" EN="Countries" ES="Paises" />
+	</Menus>
+
+	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+
+	<!-- Optional layers -->
+	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
+				  server="http://server.owgis.org/geoserver/wms"
+				  vectorLayer="true"> 
+		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
+	</OptionalLayers>
+
+	<!-- ncWMS with one date-->
+	<MainLayers BBOX="-180,-90,180,90"
+				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				ncWMS="true">  
+		<layer Menu="temp" EN="" ES="" name="global_ts_2015/water_temp"  
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
+		<layer Menu="uv" EN="" ES="" name="global_uv_2015/sea_water_velocity"  
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
+		<layer Menu="ssh" EN="" ES="" name="global_ssh_2015/surf_el" 
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
+		<layer Menu="salinity" EN="" ES="" name="global_ts_2015/salinity"
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
+	</MainLayers>
+
+	</MenuConf>
