@@ -1,5 +1,5 @@
 /* Display animation button */
-/* line 2, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 2, ../../scss/MobileSCSS/MobileCalendars.scss */
 #p-animation {
   text-align: center;
   font-size: 12px;
@@ -7,7 +7,7 @@
 }
 
 /* Stop animation button */
-/* line 9, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 9, ../../scss/MobileSCSS/MobileCalendars.scss */
 #s-animation {
   display: none;
   cursor: pointer;
@@ -18,20 +18,20 @@
 }
 
 /* animation button that pops up when calendar dates have been selected */
-/* line 19, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 19, ../../scss/MobileSCSS/MobileCalendars.scss */
 div.dispAnimation {
   z-index: 1000;
   visibility: hidden;
   font-size: 50px;
 }
 
-/* line 27, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 27, ../../scss/MobileSCSS/MobileCalendars.scss */
 .buttonStyle {
   font-size: 25px;
 }
 
 /* This is the Loading text */
-/* line 33, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 33, ../../scss/MobileSCSS/MobileCalendars.scss */
 #l-animation {
   visibility: hidden;
   position: absolute;
@@ -43,7 +43,7 @@ div.dispAnimation {
   font-size: 18px;
 }
 
-/* line 44, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 44, ../../scss/MobileSCSS/MobileCalendars.scss */
 #timeSelect {
   display: inline-block;
   width: 200px;
@@ -51,7 +51,7 @@ div.dispAnimation {
 }
 
 /* Calendars container */
-/* line 51, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 51, ../../scss/MobileSCSS/MobileCalendars.scss */
 #CalendarsAndStopContainer {
   white-space: nowrap;
   display: none;
@@ -65,7 +65,7 @@ div.dispAnimation {
   padding: 3px;
 }
 
-/* line 73, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 73, ../../scss/MobileSCSS/MobileCalendars.scss */
 #hideOneDay, #hideOneDayEnd {
   padding: 0px;
   margin: 0px;
@@ -73,14 +73,14 @@ div.dispAnimation {
 }
 
 /*holds the start calendar  */
-/* line 80, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 80, ../../scss/MobileSCSS/MobileCalendars.scss */
 div.startDateCal {
   float: left;
   display: inline-block;
 }
 
 /*holds the end calendar  */
-/* line 87, ../../scss/MobileCSS/MobileCalendars.scss */
+/* line 87, ../../scss/MobileSCSS/MobileCalendars.scss */
 div.endDateCal {
   float: right;
   display: inline-block;

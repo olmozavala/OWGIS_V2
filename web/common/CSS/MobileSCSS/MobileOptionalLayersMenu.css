@@ -1,5 +1,5 @@
 /* optional layers such as us state, DeepC, etc*/
-/* line 5, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 5, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 #optionalMenuParent {
   top: -20px;
   min-width: 185px;
@@ -11,14 +11,14 @@
   padding: 0px;
 }
 
-/* line 16, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 16, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .optionalTitle {
   font-size: 35px;
   font-weight: bold;
 }
 
 /* Subtable that contains the optional layers */
-/* line 22, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 22, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 table.vectorLayer {
   /*  background-image:url('../images/transBack.png');*/
   font-size: 30px;
@@ -27,13 +27,13 @@ table.vectorLayer {
 }
 
 /*List of optional layers*/
-/* line 31, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 31, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .opt_lay_list_root {
   padding-left: 0px;
   list-style-type: none;
 }
 
-/* line 37, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 37, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .opt_lay_list {
   list-style-type: none;
   padding-left: 10px;
@@ -41,14 +41,14 @@ table.vectorLayer {
 }
 
 /*Single menu on the optional layers menu*/
-/* line 45, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 45, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .opt_lay_menu {
   border: solid black;
   padding-left: 20px;
 }
 
 /*A title in the optional menu layers*/
-/* line 51, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 51, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .opt_lay_title {
   font-size: 30px;
   font-weight: bold;
@@ -58,7 +58,7 @@ table.vectorLayer {
 }
 
 /*Default format for each menu as paragraph*/
-/* line 61, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 61, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .opt_lay_par {
   height: 110px;
   margin: 0px;
@@ -67,7 +67,7 @@ table.vectorLayer {
   text-shadow: none;
 }
 
-/* line 72, ../../scss/MobileCSS/MobileOptionalLayersMenu.scss */
+/* line 72, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .optionalImg {
   width: 75px;
   height: 75px;

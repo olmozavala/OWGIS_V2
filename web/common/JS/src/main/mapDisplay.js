@@ -66,7 +66,7 @@ function owgisMain(){
 		owgis.mobile.initMobile();
 	}
 	//Start the currents animation of 'static' day.
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 	//Enables the 'close' behaviour of some windows. 
@@ -98,9 +98,11 @@ function initMenus() {
         //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
-		owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
+		if(_mainlayer_zaxisCoord){
+			owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
+		}
 		owgis.ncwms.animation.initAnimationControls();
-		if(_mainlayer_currents){
+		if(_mainlayer_streamlines){
 			owgis.ncwms.currents.style.init();
 		}
     } 
@@ -118,6 +120,7 @@ function initMenus() {
 	}
 	
 	
+	//This is the resize function
 	$(window).resize(function() {
 	   	windowWidth = $(window).width();
 		
@@ -132,16 +135,22 @@ function initMenus() {
 	   	    }
 		}
 		if(mobile){
-			//TODO delete resizeMobilePanels if not used by Agost 2015
-//			resizeMobilePanels();
 			// In this case we are increasing the size of the window and go to desktop mode
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
 			}
-			owgis.mobile.updateSize();//If is only resizing in mobile then we need to udpate the map
+			owgis.mobile.update();//If is only resizing in mobile then we need to udpate the map
 		}
 		owgis.layouts.draggable.repositionDraggablesByScreenSize();
+
+		//If cesium is enabled check to redraw the streamlines
+		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+			if(_mainlayer_streamlines){
+				owgis.ncwms.currents.startSingleDateAnimation();
+			}
+		}
+
 	});
 }
 
@@ -163,11 +172,13 @@ function doOnOrientationChange()
 	{  
 		case -90:
 		case 90:
-			resizeMobilePanels()
+			console.log('Orientation change');
+//			resizeMobilePanels()
 			break; 
 		default:
-			$("#panel2, #panel3").css("overflow-y","");
-			$("#panel2, #panel3").css("max-height","");
+			console.log('Orientation change');
+//			$("#panel2, #panel3").css("overflow-y","");
+//			$("#panel2, #panel3").css("max-height","");
 			break; 
 	}
 }

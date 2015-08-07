@@ -1,0 +1,47 @@
+/* line 3, ../../scss/MobileSCSS/MPanels.scss */
+.panel {
+  color: #CCC;
+  background: rgba(255, 255, 255, 0.2);
+  /*border:solid 1px white;*/
+  /*height: auto;*/
+  z-index: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+}
+
+/* line 12, ../../scss/MobileSCSS/MPanels.scss */
+.panel-title {
+  text-align: center;
+}
+
+/* line 16, ../../scss/MobileSCSS/MPanels.scss */
+.ui-panel-inner {
+  /*overflow-x: hidden;*/
+  /*max-height: 500px;*/
+  /*height: 100%;*/
+  /*This is one is important, it controls the padding of all the panels. Which
+  is an internal paddingk*/
+  padding: 0px;
+}
+
+/* line 26, ../../scss/MobileSCSS/MPanels.scss */
+.ui-listview-inset {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 31, ../../scss/MobileSCSS/MPanels.scss */
+.ui-listview > .ui-li-static {
+  padding: 0px 4px;
+  margin: 0px;
+}
+
+/* line 36, ../../scss/MobileSCSS/MPanels.scss */
+.leftPanel {
+  /*max-width: 200px;*/
+}
+
+/* line 39, ../../scss/MobileSCSS/MPanels.scss */
+.rightPanel {
+  max-width: 200px;
+}

@@ -1,5 +1,5 @@
 /* container of map image of openlayers */
-/* line 3, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 3, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 #map {
   cursor: crosshair;
   margin-left: auto;
@@ -7,7 +7,7 @@
 }
 
 /* Used by open layers to display longitude and latitude */
-/* line 11, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 11, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 #location {
   color: black;
   font-size: 12px;
@@ -18,7 +18,7 @@
 }
 
 /* Thic class controls the complete popup (the content plust the close button area*/
-/* line 21, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 21, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 .olPopup {
   border-radius: 10px;
 }
@@ -27,7 +27,7 @@
    The font size has to be defined on JavaScript (I doesn't work here)
 	This style only works when using default PopUp types (not clouds)
 */
-/* line 28, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 28, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 div.olPopupContent {
   background-image: url("../../images/transBack2.png");
   border-radius: 10px;
@@ -36,7 +36,7 @@ div.olPopupContent {
 }
 
 /* Defines the style for the PanPanel control */
-/* line 36, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 36, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 div.olControlPanPanel {
   position: absolute;
   top: 20px;
@@ -46,7 +46,7 @@ div.olControlPanPanel {
 }
 
 /* Defines the style for the PanPanel control */
-/* line 44, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 44, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 div.olControlZoomPanel {
   position: absolute;
   top: 90px;
@@ -56,14 +56,14 @@ div.olControlZoomPanel {
 }
 
 /* Defines to not display anything if the layer was not found*/
-/* line 54, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 54, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 .olImageLoadError {
   display: none !important;
 }
 
 /* This is the class that the punctual data from geoserver uses 
 in most of their text */
-/* line 60, ../../scss/MobileCSS/MobileOpenLayersRelated.scss */
+/* line 60, ../../scss/MobileSCSS/MobileOpenLayersRelated.scss */
 .map_content {
   pointer-events: none;
 }

@@ -45,7 +45,7 @@
     Author     : harshulpandav
 */
 /* Extra styling for the mainlayer dropdowns */
-/* line 8, ../../scss/MobileCSS/MBaseLayers.scss */
+/* line 8, ../../scss/MobileSCSS/MBaseLayers.scss */
 [id^="dropDownLevels"] {
   font-size: 15px;
   width: 235px;
@@ -56,12 +56,12 @@
   margin: 1px 0px;
 }
 
-/* line 18, ../../scss/MobileCSS/MBaseLayers.scss */
+/* line 18, ../../scss/MobileSCSS/MBaseLayers.scss */
 .ui-field-contain .ui-select {
   width: 235px;
 }
 
-/* line 21, ../../scss/MobileCSS/MBaseLayers.scss */
+/* line 21, ../../scss/MobileSCSS/MBaseLayers.scss */
 #ulBaseLayers {
   padding: 5px;
   border: 2px solid #a1a1a1;

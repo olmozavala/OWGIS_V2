@@ -1,5 +1,5 @@
 /* CQL custom filter parent (of textbox and 'apply' button) */
-/* line 2, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 2, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlFilterInputTextParent {
   display: none;
   left: 200px;
@@ -8,39 +8,39 @@
 }
 
 /* Input text for CQL filter */
-/* line 10, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 10, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #idOcqlFilterInputText {
   width: 60%;
 }
 
 /* Button to show and hide CQL filter text box*/
-/* line 17, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 17, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlMenuButtonParent {
   position: relative;
   left: 10%;
 }
 
 /* 'Apply' button for CQL filter */
-/* line 23, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 23, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #idOcqlFilterButton {
   display: inline;
 }
 
 /* Span to input some error text */
-/* line 28, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 28, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlErrorParent {
   display: none;
   top: 200px;
 }
 
 /* Error text id */
-/* line 33, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 33, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlErrorText {
   color: red;
 }
 
 /* CQL filter parent of all the instructions*/
-/* line 38, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 38, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlFilterText {
   color: black;
   text-align: left;
@@ -50,14 +50,14 @@
 }
 
 /* Table containing options */
-/* line 47, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 47, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 table.cqlFilterExampleTable {
   border-style: solid;
   border-width: 1px;
   border-collapse: collapse;
 }
 
-/* line 52, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 52, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 table.cqlFilterExampleTable th {
   border-width: 1px;
   border-style: solid;
@@ -66,7 +66,7 @@ table.cqlFilterExampleTable th {
   padding: 2px 4px;
 }
 
-/* line 59, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 59, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 table.cqlFilterExampleTable td {
   padding: 6px;
   border-width: 1px;
@@ -74,7 +74,7 @@ table.cqlFilterExampleTable td {
   text-align: center;
 }
 
-/* line 67, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 67, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 .cqlFilterTable {
   /*background-color:black;*/
   z-index: 1008;
@@ -94,7 +94,7 @@ table.cqlFilterExampleTable td {
   width: 500px;
 }
 
-/* line 91, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 91, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #cqlhelptext {
   position: absolute;
   top: 400px;
@@ -109,7 +109,7 @@ table.cqlFilterExampleTable td {
   height: 300px;
 }
 
-/* line 107, ../../scss/MobileCSS/MobilecqlFilter.scss */
+/* line 107, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #ocqlFilterText #ocqlErrorParent {
   display: none;
 }

@@ -7,12 +7,13 @@ goog.require('owgis.ncwms.currents.particles');
 goog.require('owgis.ncwms.animation.status');
 goog.require('owgis.interf');
 goog.require('owgis.transparency');
+goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
 
 var currentsColor = "rgba(255, 255, 255, .5)";
 var currentsDefColor = "rgba(255, 255, 255, .5)";
-var currAnimSpeed = 100;
+var currAnimSpeed = 120;
 
 // This is the amount of data requested for every 800 pixels
 var imageRequestResolution = 300;
@@ -101,7 +102,7 @@ owgis.ncwms.currents.playPause = function playPause(pause){
 window['owgis.ncwms.currents.startSingleDateAnimation'] = owgis.ncwms.currents.startSingleDateAnimation;
 owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimation(){
 
-	owgis.transparency.changeTransp(.35);
+	owgis.transparency.changeTransp(.55);
 	isRunningUnderMainAnimation = false;
 	
 	//Creates new currents layer model
@@ -198,15 +199,20 @@ function getDefaultLayer(){
 	return defLayer;
 }
 
+/**
+ *	This function changes the requested resolution depending on:
+ *	If we are displaying an animation or not
+ *	If is an animation, then we need to take into account the animation resolution
+ *	If we are at a mobile device or not
+ * @param {type} layerTemplate
+ * @returns {unresolved}
+ */
 function updateWidthAndHeight(layerTemplate){
-	//This function needs to change the requested resolution depending on:
-	// If we are displaying an animation or not
-	// If is an animation, then we need to take into account the animation resolution
-	// If we are at a mobile device or not
+
 
 	var resolutionFactor = 1;//For desktop
 	if(mobile){
-		resolutionFactor *= .8;//In mobile devices by default the requested resolution is reduced
+		resolutionFactor *= .6;//In mobile devices by default the requested resolution is reduced
 	}
 	if( owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none ){ 
 		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatioCurrents();
@@ -221,6 +227,10 @@ function updateWidthAndHeight(layerTemplate){
 
 }
 
+/**
+ * Starts the streamlines when they are viewed with the Cesium 3D world 
+ * @returns {undefined}
+ */
 function initstreamlineLayerCesium(){
 	
 	if(streamlineLayer !== null){//If the layer already existed, we remove it
@@ -230,8 +240,10 @@ function initstreamlineLayerCesium(){
 	c_scene = _cesium.getCesiumScene();
 	c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);
 
+	owgis.ncwms.currents.cleanAnimationCurrentsAll();
 	updateCurrentsCesium(event);
 
+	//When the left mouse click has been released (UP)
 	c_handler.setInputAction(function(event) {
 		if(c_leftdown && c_move){
 			updateCurrentsCesium(event);
@@ -244,6 +256,7 @@ function initstreamlineLayerCesium(){
 	c_handler.setInputAction(function(event) {
 		if(c_leftdown){
 			c_move = true;
+			owgis.ncwms.currents.cleanAnimationCurrentsAll();
 		}
 	}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
@@ -252,50 +265,147 @@ function initstreamlineLayerCesium(){
 		c_leftdown = true;
 	}, Cesium.ScreenSpaceEventType.LEFT_DOWN);
 
+	//Rotation of the mouse (ZOOM)
 	c_handler.setInputAction(function(event) {
 		updateCurrentsCesium(event);
 	}, Cesium.ScreenSpaceEventType.WHEEL);
 	
 }
 
+owgis.ncwms.currents.init = function(){
+	owgis.transparency.changeTransp(0);
+	var canvas = d3.select("body").append("canvas")
+			.attr('id','testing')
+			.attr('width',$(window).width())
+			.attr('height',$(window).height());
+
+	canvas.style('position','absolute')
+			.style('top','0px')
+			.style('left','0px')
+			.style('z-index','1000')
+			.style('pointer-events','none')
+			.style('background-color','rgba(1,0,1,.5)');
+
+}
+
+function del(particle, cesiumNavBarHeight){
+	// Particles values go from -180 to 180 and -90 to 90
+	if(_.isEmpty(cesium_scene)){
+		cesium_scene = _cesium.getCesiumScene();
+	}
+	var cart3Pos = Cesium.Cartesian3.fromRadians(particle[0], particle[1])
+	//TODO fix this hardcoded number, we need to know when the particle is visible
+	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
+			cart3Pos);
+	var x = position.x;
+	var y = position.y;
+		return [x,y+cesiumNavBarHeight];
+}
+
+owgis.ncwms.currents.test = function(){
+
+	c_scene = _cesium.getCesiumScene();
+
+	var cam_rad = c_scene.camera.positionCartographic;
+
+	var cam_lon = cam_rad.longitude;
+	var cam_lat = cam_rad.latitude;
+
+	var par = del([cam_lon, cam_lat], 0);
+	// Get the cross product
+
+	// Get vector corresponding to location
+	var X = owgis.utilities.mathgeo.spheretocart(cam_lon,cam_lat);
+	// Get cross product
+	var A = owgis.utilities.mathgeo.cross(X, [0,1,0]);
+	var C = owgis.utilities.mathgeo.flipVect(A);
+	var B = owgis.utilities.mathgeo.cross(C,X);
+	var D = owgis.utilities.mathgeo.flipVect(B);
+	console.log(X);
+	console.log("A red: ", A);
+	console.log("B white: ", B);
+	console.log("C yellow: ", C);
+	console.log("D cyan: ", D);
+
+	// Move to lat lon
+	var A_sphe = owgis.utilities.mathgeo.carttosphere(A[0],A[1],A[2]);
+	var C_sphe = owgis.utilities.mathgeo.carttosphere(C[0],C[1],C[2]);
+	var B_sphe = owgis.utilities.mathgeo.carttosphere(B[0],B[1],B[2]);
+	var D_sphe = owgis.utilities.mathgeo.carttosphere(D[0],D[1],D[2]);
+	console.log("-----------------------");
+	console.log("Cam : ", [cam_lon, cam_lat]);
+	console.log("A red: "	, owgis.utilities.mathgeo.radtodeg(A_sphe));
+	console.log("B white: "	, owgis.utilities.mathgeo.radtodeg(B_sphe));
+	console.log("C yellow: ", owgis.utilities.mathgeo.radtodeg(C_sphe));
+	console.log("D cyan: "	, owgis.utilities.mathgeo.radtodeg(D_sphe));
+
+	var canvas = d3.select("#testing");
+	ctx = canvas.node().getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = "green";
+	ctx.fillRect(par[0], par[1], 10, 10);
+
+	ctx.fillStyle = "red";
+	var temp_pos = del(A_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
+	ctx.fillStyle = "yellow";
+	temp_pos = del(C_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
+	ctx.fillStyle = "cyan";
+	temp_pos = del(D_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
+	ctx.fillStyle = "white";
+	temp_pos = del(B_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
+}
+
+/**
+ * This function is in charge of updating the extents in Cesium 
+ * @param {type} event
+ * @returns {undefined}
+ */
 function updateCurrentsCesium(event){
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
 
-	var c_center_rad = c_scene.camera.positionCartographic;
+	var cam_rad = c_scene.camera.positionCartographic;
 	var c_center = {
-		longitude:c_center_rad.longitude*180/Math.PI,
-		latitude:c_center_rad.latitude*180/Math.PI};
+		longitude:cam_rad.longitude*180/Math.PI,
+		latitude:cam_rad.latitude*180/Math.PI};
+
+	console.log("Camera pos: "+ cam_rad );
 
 	var def_max_angle = 70;
 	var hight_for_max_angle = 9000000;
-	var view_angle_lat = Math.min(def_max_angle,def_max_angle*c_center_rad.height/hight_for_max_angle);
+	var view_angle_lat = Math.min(def_max_angle,def_max_angle*cam_rad.height/hight_for_max_angle);
 	var inc_angle_by = Math.abs(c_center.latitude)*c_x + c_y;
 	var view_angle_lon;
 	if(inc_angle_by > 1){
-		view_angle_lon = Math.min(180, Math.max(1,inc_angle_by)*(def_max_angle*c_center_rad.height/hight_for_max_angle));
+		view_angle_lon = Math.min(180, Math.max(1,inc_angle_by)*(def_max_angle*cam_rad.height/hight_for_max_angle));
 	}else{
-		view_angle_lon = Math.min(def_max_angle, def_max_angle*c_center_rad.height/hight_for_max_angle);
+		view_angle_lon = Math.min(def_max_angle, def_max_angle*cam_rad.height/hight_for_max_angle);
 	}
 	currentExtent = [c_center.longitude-view_angle_lon,
 					c_center.latitude-view_angle_lat,
 					c_center.longitude+view_angle_lon,
 					c_center.latitude+view_angle_lat];
+
+/*
 	console.log(inc_angle_by);
 	console.log(view_angle_lat);
 	console.log(view_angle_lon);
 	console.log(currentExtent);
+	*/
 
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
+			//Trying to match the resolution obtained with the non-cesium version.
+			var resolution = cam_rad.height/200000000;
+			console.log("Computes res: "+resolution);
+			owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
 			updateData();
 		}
 	}else{
-		//TODO
+		//TODO Cesium still doesn't do animations
 		/*
 		if(isFirstTime){
 			if(updateURL()){
-				updateParticlesParameters(extent,resolution);
 				updateData();
 			}
 			isFirstTime = false;
@@ -354,23 +464,19 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 	
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
-			updateParticlesParameters(extent,resolution);
+			owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
 			updateData();
 		}
 	}else{
 		if(isFirstTime){
 			if(updateURL()){
-				updateParticlesParameters(extent,resolution);
+				owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
 				updateData();
 			}
 			isFirstTime = false;
 		}
 	}
 	return canvas;
-}
-
-function updateParticlesParameters(extent, resolution){
-	owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
 }
 
 /**
@@ -389,6 +495,11 @@ if(!_.isEmpty(readDataPremises)){
 }
 }
 
+/**
+ * This function Reads the json files from the server and loads the vector field
+ * into the proper variables,  
+ * @returns {undefined}
+ */
 function updateData(){
 	// Clears previous animations
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
@@ -402,7 +513,6 @@ function updateData(){
 	owgis.interf.loadingatmap(true,0,"Currents");
 	
 	totalFiles = times.length;
-	loadedRequests
 	
 	_.each(times, function(time, idx){
 		layerTemplate.set("time",time);	
