@@ -128,11 +128,13 @@ function initCalendars(){
 				});
 			}
 
+/*
 			if(mobile){
 				$("#ui-datepicker-div").click( function(event) {
 					event.stopPropagation();
 				});
 			}
+			*/
 
 //			console.log("Min date: "+minValidDate);
 //			console.log("Max date: "+maxValidDate);
@@ -303,7 +305,7 @@ function updateMainLayerDate(newDate){
     owgis.layers.updateMainLayerParam('TIME',newDate);
 	owgis.kml.updateTitleAndKmlLink();
 	
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 }

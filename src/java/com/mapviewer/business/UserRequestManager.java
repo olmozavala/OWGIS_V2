@@ -64,7 +64,6 @@ public class UserRequestManager {
 		//Obtain the menu of the user that is in session. 
 		TreeNode rootMenu = (TreeNode) session.getAttribute("MenuDelUsuario");
 
-
 		String[] selectedValues = ConvertionTools.convertObjectArrayToStringArray(levelsSelected);
 
 		LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();

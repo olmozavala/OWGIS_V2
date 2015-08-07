@@ -55,7 +55,6 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
 	if(noElevation()) return;//Do not create anything 
 
 	elev_counter = layerDetails.zaxis.values.length;
-	_mainlayer_zaxisCoord = true;
 	
     var totByPage = 10;//Total number of element for each 'page'
 		
@@ -210,7 +209,7 @@ function changeElev(value)
 	setColorRangeFromMinMax();
 
     owgis.kml.updateTitleAndKmlLink();
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
 }

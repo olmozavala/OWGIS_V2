@@ -64,8 +64,12 @@
 					</c:if>
 					<c:if test='${ncwms}'>
 						<%@include file="Layouts/Mobile/RightPanels/M_Palettes.jsp" %> 
-						<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
-						<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
+						<c:if test='${zaxis}'>
+							<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
+						</c:if>
+						<c:if test='${multipleDates}'>
+							<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
+						</c:if>
 					</c:if>
 						
 					<!--Adding extra canvas for animations and currents if necessary-->

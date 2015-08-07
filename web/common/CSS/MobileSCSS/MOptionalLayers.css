@@ -44,7 +44,7 @@
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 5, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 5, ../../scss/MobileSCSS/MOptionalLayers.scss */
 #optionalMenuParent {
   min-width: 200px;
   top: 70px;
@@ -52,21 +52,21 @@
   transition: width 2s;
 }
 
-/* line 8, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 8, ../../scss/MobileSCSS/MOptionalLayers.scss */
 #optionalLayersParentHover {
   width: 200px;
   left: -230px;
 }
 
 /*Root list of optional layers*/
-/* line 14, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 14, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_list_root {
   padding: 0px;
   margin: 8px 2px;
   list-style-type: none;
 }
 
-/* line 22, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 22, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_list {
   list-style-type: none;
   padding-left: 10px;
@@ -78,7 +78,7 @@
 
 /*Single menu on the optional layers menu*/
 /*A title in the optional menu layers tree */
-/* line 35, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 35, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_title {
   font-size: 14px;
   margin: 5px 0px 0px 0px;
@@ -86,24 +86,24 @@
   color: #80ccdc;
 }
 
-/* line 41, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 41, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_title:hover {
   color: #35a9c1;
 }
 
-/* line 42, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 42, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_title:active {
   color: #1f6371;
 }
 
 /*Default format for each menu as paragraph*/
-/* line 45, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 45, ../../scss/MobileSCSS/MOptionalLayers.scss */
 .opt_lay_par {
   margin: 0px;
   font-size: 13px;
 }
 
-/* line 51, ../../scss/MobileCSS/MOptionalLayers.scss */
+/* line 51, ../../scss/MobileSCSS/MOptionalLayers.scss */
 #optionalLayersWindow {
   padding: 5px;
   border: 2px solid #a1a1a1;

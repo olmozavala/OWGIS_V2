@@ -18,6 +18,7 @@ package com.mapviewer.model;
 
 import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.tools.StringAndNumbers;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +55,6 @@ public class Layer {
 	// resolution of the animation for ncwms layers. It is not used to request normal maps,
 	// for this case the size of the browser window is used and required.
 	private String[] tituloCapasDatos;//titles of the layers data
-	private boolean ncwms;//Indicates if the layer is a ncwms (contains temporal data)
 	private JSONObject layerDetails;
 	private String palette;
 	private float minColor;//Minimum color used for the palette colors
@@ -75,6 +75,9 @@ public class Layer {
 	private String overlayStreamlines;//Stores the name of the layer used to display streamlines
 	private float defParticleSpeed;//Variable used to modify the default particle speed
 	
+	private boolean ncwms;//Indicates if the layer is a ncwms (contains temporal data)
+	private boolean zaxis;// Indicates if the layer has zaxis values
+	private boolean multipleDates;// Indicates if the layer has multiple dates
 	
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -236,6 +239,8 @@ public class Layer {
 		// By default the layer doesn't have any cql parameter
 		this.cql = "";
 		this.cql_cols = "";// By default the layers doe not have cql columns
+		this.zaxis = false;
+		this.multipleDates = false;
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
 	}
@@ -268,6 +273,19 @@ public class Layer {
 				if ((this.minColor == -1) && (this.maxColor == -1)) {
 					this.minColor = Float.parseFloat((String) (((JSONArray) layerDetails.get("scaleRange")).get(0)));
 					this.maxColor = Float.parseFloat((String) (((JSONArray) layerDetails.get("scaleRange")).get(1)));
+				}
+			}
+
+			if(layerDetails.has("zaxis") ){
+				this.zaxis = true;
+			}
+
+			//Testing for multiple dates inside the layer
+			if(layerDetails.has("datesWithData") ){
+				String[] dateValues = layerDetails.getString("datesWithData").split(",");
+				//If it has only 3 values then it means it is only one day
+				if(dateValues.length > 1){
+					this.multipleDates = true;
 				}
 			}
 			
@@ -567,6 +585,22 @@ public class Layer {
 	
 	public void setDefParticleSpeed(Float defParticleSpeed) {
 		this.defParticleSpeed = defParticleSpeed;
+	}
+
+	public boolean isZaxis() {
+		return zaxis;
+	}
+
+	public void setZaxis(boolean zaxis) {
+		this.zaxis = zaxis;
+	}
+
+	public boolean isMultipleDates() {
+		return multipleDates;
+	}
+
+	public void setMultipleDates(boolean multipleDates) {
+		this.multipleDates = multipleDates;
 	}
 	
 	
