@@ -3,18 +3,18 @@ goog.provide('owgis.ncwms.currents.particles');
 goog.require('owgis.layer');
 
 var particlesArray  = new Array();
-var numparticles = 20000;//Initial number of particles
 var defNumParticles = 20000;// Used to reset the number of particles	
+var numparticles = defNumParticles;//Initial number of particles
 var defParticleSpeed = parseFloat(layerDetails.defParticleSpeed);
 var particleSpeed = defParticleSpeed;
 var currentResolutionParticleSpeed = defParticleSpeed;
-var timeParticle = 150; // Number of frames a particle is alive in the animation
-var defTimeParticle = 150; // Deault Number of frames a particle is alive in the animation
+var defTimeParticle = 80; // Deault Number of frames a particle is alive in the animation
+var timeParticle = defTimeParticle; // Number of frames a particle is alive in the animation
 
 //These two variables are used in the trilinear interpolation,
 // they indicate the animation speed of the particles and the 'main' animation
-var internalAnimationSpeed = 100;
-var externalAnimationSpeed = 300;
+var internalAnimationSpeed;//Orginally set in AnimationStreamlines
+var externalAnimationSpeed;
 var currTime = 0;//Current Z time
 var dt = internalAnimationSpeed/externalAnimationSpeed;
 
@@ -28,6 +28,10 @@ var lonDomainRand;
 var latDomainRand;
 var currentExtent;
 var currentGrid; 
+
+// This is the height of the mobile navbar, we need to add it to the
+// particles when displaying Cesium. TODO why?
+var mobileNavBarHeight = 40;
 
 // For Cesium
 var cesium_scene
@@ -71,14 +75,14 @@ owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed = function getC
 }
 
 owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
-//	console.log("setNumParticles");
+	console.log("setNumParticles: "+tot);
 	numparticles = tot;
 	initParticles();
 }
 owgis.ncwms.currents.particles.getNumParticles = function getNumParticles(){
 	return numparticles;
 }
-owgis.ncwms.currents.particles.getDefaultNumberOfParticles = function getDefaultNumberOfParticles(){
+owgis.ncwms.currents.particles.getDefaultNumParticles = function getDefaultNumParticles(){
 	return defNumParticles;
 }
 
@@ -146,6 +150,12 @@ owgis.ncwms.currents.particles.setCurrentGrid= function setCurrentGrid(CurrentGr
 owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 	
 	var localParticleSpeed = 5*particleSpeed;
+	var randomFunction;//Identifies which random function will be used 
+	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		randomFunction = randomParticleDenseCenter;
+	}else{
+		randomFunction = randomParticle;
+	}
 	if(!_.isEmpty(grids[currentGrid])){
 
 		//We make the if here even when we have to repeat the code
@@ -159,7 +169,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 				particle[0] = particle[2];
 				particle[1] = particle[3];
 				if(particle[4] > timeParticle){
-					particlesArray[idx]= randomParticle();
+					particlesArray[idx]= randomFunction();
 				}
 				
 				//Validate the position of the particle is between the limits of the grid
@@ -187,7 +197,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 					if( q11[0] === null || q12[0] === null || q12[0] === null || q22[0] === null){ 
 						//If any of the values does not exist, it means we are
 						// outside the vector field and we restart the particle
-						particlesArray[idx]= randomParticle();
+						particlesArray[idx]= randomFunction();
 					}else{
 						var x1 = gridInfo.lo1+col1*gridInfo.dx;
 						var x2 = x1 + gridInfo.dx;
@@ -199,7 +209,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 					}
 				}else{
 					//If the particle is not on the limitis of the grid, we create a new one
-					particlesArray[idx]= randomParticle();
+					particlesArray[idx]= randomFunction();
 				}
 				//Increase the time of the particle
 				particle[4]++;
@@ -214,7 +224,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 					particle[0] = particle[2];
 					particle[1] = particle[3];
 					if(particle[4] > timeParticle){
-						particlesArray[idx]= randomParticle();
+						particlesArray[idx]= randomFunction();
 					}
 					//Validate the position of the particle is between the limits of the grid
 					if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
@@ -247,7 +257,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 								q_next_11[0] === null || q_next_12[0] === null || q_next_12[0] === null || q_next_22[0] === null  ){
 							//If any of the values does not exist, it means we are
 							// outside the vector field and we restart the particle
-							particlesArray[idx]= randomParticle();
+							particlesArray[idx]= randomFunction();
 						}else{
 							var x1 = gridInfo.lo1+j*gridInfo.dx;
 							var x2 = x1 + gridInfo.dx;
@@ -261,7 +271,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 						}
 					}else{
 						//If the particle is not on the limitis of the grid, we create a new one
-						particlesArray[idx]= randomParticle();
+						particlesArray[idx]= randomFunction();
 					}
 					//Increase the time of the particle
 					particle[4]++;
@@ -280,10 +290,14 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 	
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		var cesiumNavBarHeight = 0;//We need to add the hight of the navbar
+		if(mobile){
+			cesiumNavBarHeight = mobileNavBarHeight;
+		}
 		_.each(particlesArray,function(particle){
 			if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
 					(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
-				pixParticle = particleToCanvasCesium(particle);
+				pixParticle = particleToCanvasCesium(particle, cesiumNavBarHeight);
 				//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
 				ctx.moveTo(pixParticle[0], pixParticle[1]);
 				ctx.lineTo(pixParticle[2], pixParticle[3]);
@@ -310,7 +324,7 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
  * @param {type} latDomain
  * @returns {Array}
  */
-function particleToCanvasCesium(particle, lonDomain, latDomain){
+function particleToCanvasCesium(particle, cesiumNavBarHeight){
 	// Particles values go from -180 to 180 and -90 to 90
 	if(_.isEmpty(cesium_scene)){
 		cesium_scene = _cesium.getCesiumScene();
@@ -325,9 +339,7 @@ function particleToCanvasCesium(particle, lonDomain, latDomain){
 			Cesium.Cartesian3.fromDegrees(particle[2], particle[3]));
 	var dx = position.x;
 	var dy = position.y;
-	return [x,y,dx,dy,particle[4]];
-	//This will not render the particle, it 
-	return [0,0,0,0,particle[4]];
+	return [x,y+cesiumNavBarHeight,dx,dy+cesiumNavBarHeight,particle[4]];
 }
 /**
  * Transforms a particle position into a pixel position in the canvas
@@ -345,15 +357,40 @@ function particleToCanvas(particle, lonDomain, latDomain){
 	return [x,y,dx,dy,particle[4]];
 }
 
+
+/**
+ * This function returns a random particle but setting more particles in the
+ * center, in a radial way. 
+ * @returns {Array}
+ */
+function randomParticleDenseCenter(){
+	//The latitude is flipped in the data
+	//This is for a denser centerd circle random values
+//	var r = Math.random()*.5;//We only need a radius of at most .5
+	 r = ((Math.random() + Math.random() + Math.random() + Math.random() ) - 2) / 2;
+	// Changing the 'radial' dense area
+	//r = Math.pow(r,8/10);
+	var theta = 2*Math.PI*Math.random();
+
+	var x = limLonMin + lonDomainRand/2 + r*Math.sin(theta)*lonDomainRand;
+	var y = limLatMin + latDomainRand/2 + r*Math.cos(theta)*latDomainRand;
+
+	var t = Math.random()*timeParticle;
+
+	return [x,y,x,y,t];
+	
+}
 /**
  * Creates a random particle position 
  * @returns {Array}
  */
 function randomParticle(){
 	//The latitude is flipped in the data
-	x = limLonMin + Math.random()*lonDomainRand;
-	y = limLatMin + Math.random()*latDomainRand;
-	t = Math.random()*timeParticle;
+	var x = limLonMin + Math.random()*lonDomainRand;
+	var y = limLatMin + Math.random()*latDomainRand;
+
+	var t = Math.random()*timeParticle;
+
 	return [x,y,x,y,t];
 }
 
@@ -425,8 +462,17 @@ function bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22){
  */
 function initParticles(){
 	particlesArray = new Array();
-	for(i = 0; i < numparticles; i++){
-		particlesArray[i] = randomParticle();
+	
+	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		//For Cesium we used a distribution function that has 
+		// more particles in the center
+		for(i = 0; i < numparticles; i++){
+			particlesArray[i] = randomParticleDenseCenter();
+		}
+	}else{
+		for(i = 0; i < numparticles; i++){
+			particlesArray[i] = randomParticle();
+		}
+
 	}
 }
-

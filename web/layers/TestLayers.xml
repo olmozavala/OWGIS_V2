@@ -47,12 +47,14 @@
 
         <layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
-			   name="global_ts_2015/water_temp" 
-			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
+			   name="global_ts_2015/water_temp" />
+				<!--defParticleSpeed=".9"-->
+			   <!--overlaystreamlines="global_uv_2015/sea_water_velocity" />-->
 
         <layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"
 			   name="global_uv_2015/sea_water_velocity" 
+				defParticleSpeed=".9"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
         <layer Menu="ncwms,localwinds" 

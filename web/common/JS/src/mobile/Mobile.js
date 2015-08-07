@@ -2,6 +2,8 @@ goog.provide('owgis.mobile');
 
 var isDrawerOpen=false;
 
+var reduceNumberStreamLinesBy = 2;// n times less particles than non cesium
+
 owgis.mobile.openDrawer = function openDrawer(){
 	$("#drawer").animate({
 		bottom: 0
@@ -62,7 +64,7 @@ owgis.mobile.initMobile = function initMobile(){
 	 */
 	owgis.optionalLayers.toggleList('#baseLayersData');
 	owgis.optionalLayers.toggleList('#optionalLayersData');
-	owgis.mobile.updateSize();
+	owgis.mobile.update();
 	
 	$("#drawer").css("display","block");
 }
@@ -71,11 +73,16 @@ owgis.mobile.initMobile = function initMobile(){
  * This function updates the size of the map when the screen size has changed. 
  * @returns {undefined}
  */
-owgis.mobile.updateSize = function (){
+owgis.mobile.update = function (){
 	windowHeight = $(window).height();
 	$("#map").height(windowHeight); //Resize the size of the map container
 	if (map !== null) {
 		map.updateSize();
+	}
+	if(_mainlayer_streamlines){
+		var totParticles = Math.ceil(owgis.ncwms.currents.particles.getDefaultNumParticles()/reduceNumberStreamLinesBy);
+		owgis.ncwms.currents.style.updateNumberOfParticlesSliders(totParticles);
+		owgis.ncwms.currents.particles.setNumParticles(totParticles);
 	}
 }
 

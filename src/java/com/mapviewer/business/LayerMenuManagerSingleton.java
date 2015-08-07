@@ -270,13 +270,29 @@ public class LayerMenuManagerSingleton {
 			throw new XMLFilesException("XML Layers file is not defined");
 		}
 
+
 		Date currLastUpdate;
 		boolean update = forceXMLreload;
 
 		Date currDate = new Date();
-		if( (currDate.getTime() - lastUpdate.getTime()) > MILLIS_PER_DAY){
-			update = true;
-		}else{
+		OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance(); 
+
+		String refreshLayers = mapConfig.getRefreshLayers();
+		long millsSinceLastUpdate = currDate.getTime() - lastUpdate.getTime();
+		switch(refreshLayers.toLowerCase()){
+			case "daily":
+				if( millsSinceLastUpdate > MILLIS_PER_DAY) update = true;
+				break;
+			case "weekly":
+				if( millsSinceLastUpdate > MILLIS_PER_DAY*7) update = true;
+				break;
+			case "monthly":
+				if( millsSinceLastUpdate > MILLIS_PER_DAY*30) update = true;
+				break;
+		}
+
+//		If we still haven't decide if we are updating the layers. 
+		if(!update){
 			//Verifies that there are not more or less xml files in the folder. 
 			if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
 				LayerMenuManagerSingleton.setLayersFolder(xmlFolder);

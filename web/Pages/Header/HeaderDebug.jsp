@@ -70,7 +70,6 @@
 	<c:if test='${currents}'>
 		<script src="./common/JS/vendor/minimized/spectrum.min.js"></script>
 	</c:if>
-	<!--Cesium and Ol3 TODO should be loaded on demand only-->
 
 	<!--Internal JS-->
 	<!--Missing Closure library-->
@@ -93,6 +92,7 @@
 	</c:if>
 
 	<!--Using closure library-->
+	<script src="./common/JS/src/utilities/MathAndGeo.js"> </script>
 	<script src="./common/JS/src/cesium/CesiumOwgis.js"> </script>
 	<script src="./common/JS/src/ncwms/Elevation.js"> </script>
 	<script src="./common/JS/src/ncwms/Transect.js"> </script>

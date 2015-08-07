@@ -141,6 +141,8 @@ public class MapViewerServlet extends HttpServlet {
 			request.setAttribute("ncwms", curr_main_layer.isncWMS());
 			request.setAttribute("currents", curr_main_layer.isoverlayStreamlines());
 			request.setAttribute("layerDetails", curr_main_layer.getLayerDetails());
+			request.setAttribute("zaxis", curr_main_layer.isZaxis());
+			request.setAttribute("multipleDates", curr_main_layer.isMultipleDates());
 			
 			//Obtains the selection of the vector layers of the user.
 			
