@@ -1,0 +1,91 @@
+/* table that contains current palette and the color range*/
+/* IMPORTANT we can't use ''right' because the windows doesn't drag properly*/
+/* line 5, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palette {
+  top: 5px;
+  display: none;
+  right: 0px;
+}
+
+/* line 10, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palette.th {
+  padding: 0;
+}
+
+/* Div of the optional palettes div */
+/* Color palettes that pops with all the optional palettes */
+/* IMPORTANT we can't use ''right' because the windows doesn't drag properly*/
+/* line 17, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettes-div {
+  top: 5px;
+  display: none;
+  left: 0px;
+}
+
+/* Id of the div that contains both Palettes windows */
+/* line 27, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettesParent {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  width: 200px;
+  z-index: 1008;
+}
+
+/* line 37, ../../scss/MobileSCSS/MobilePalettes.scss */
+#imgPalette {
+  height: 300px;
+  width: 20px;
+}
+
+/* line 43, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettesHover {
+  display: none;
+}
+
+/*
+Table that contains all the optional palettes
+*/
+/* line 50, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettesTable {
+  cursor: pointer;
+}
+
+/* line 55, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettesTable img {
+  height: 150px;
+}
+
+/* Reduces the default padding for the button style. This 
+style is being used by the buttons inside the colorPaleteRangeOptions*/
+/* line 61, ../../scss/MobileSCSS/MobilePalettes.scss */
+.reducedPadding {
+  padding: 3px 5px 3px;
+}
+
+/* This is a table that contains the header text and buttons
+of the optional palettes table*/
+/* line 66, ../../scss/MobileSCSS/MobilePalettes.scss */
+#optionalPalettesHeader {
+  width: 100%;
+}
+
+/* '+' and '-' Paragraph inside the color range palettes window */
+/* line 71, ../../scss/MobileSCSS/MobilePalettes.scss */
+.palMinMax {
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
+}
+
+/* line 77, ../../scss/MobileSCSS/MobilePalettes.scss */
+img.minusButton, img.plusButton {
+  width: 40px;
+  height: 40px;
+}
+
+/* line 86, ../../scss/MobileSCSS/MobilePalettes.scss */
+#palettesTable img:active {
+  position: relative;
+  top: 2px;
+}

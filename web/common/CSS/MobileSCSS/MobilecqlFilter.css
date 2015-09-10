@@ -1,0 +1,115 @@
+/* CQL custom filter parent (of textbox and 'apply' button) */
+/* line 2, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlFilterInputTextParent {
+  display: none;
+  left: 200px;
+  top: 30px;
+  padding: 2px 5px;
+}
+
+/* Input text for CQL filter */
+/* line 10, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#idOcqlFilterInputText {
+  width: 60%;
+}
+
+/* Button to show and hide CQL filter text box*/
+/* line 17, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlMenuButtonParent {
+  position: relative;
+  left: 10%;
+}
+
+/* 'Apply' button for CQL filter */
+/* line 23, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#idOcqlFilterButton {
+  display: inline;
+}
+
+/* Span to input some error text */
+/* line 28, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlErrorParent {
+  display: none;
+  top: 200px;
+}
+
+/* Error text id */
+/* line 33, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlErrorText {
+  color: red;
+}
+
+/* CQL filter parent of all the instructions*/
+/* line 38, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlFilterText {
+  color: black;
+  text-align: left;
+  top: 85px;
+  padding: 10px;
+  width: 270px;
+}
+
+/* Table containing options */
+/* line 47, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+table.cqlFilterExampleTable {
+  border-style: solid;
+  border-width: 1px;
+  border-collapse: collapse;
+}
+
+/* line 52, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+table.cqlFilterExampleTable th {
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  background-color: #CBC361;
+  padding: 2px 4px;
+}
+
+/* line 59, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+table.cqlFilterExampleTable td {
+  padding: 6px;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+}
+
+/* line 67, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+.cqlFilterTable {
+  /*background-color:black;*/
+  z-index: 1008;
+  color: white;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: solid 5px white;
+  padding: 3px;
+  cursor: move;
+  opacity: 0.95;
+  background-color: #000000;
+  border-spacing: 5px 2px;
+  font-size: 55px;
+  width: 500px;
+}
+
+/* line 91, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#cqlhelptext {
+  position: absolute;
+  top: 400px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: solid 5px black;
+  z-index: 1008;
+  padding: 5px;
+  width: 350px;
+  background-color: white;
+  height: 300px;
+}
+
+/* line 107, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+#ocqlFilterText #ocqlErrorParent {
+  display: none;
+}

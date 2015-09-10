@@ -1,0 +1,107 @@
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala-Romero
+*/
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
+/* line 7, ../../scss/MobileSCSS/MControlDrawer.scss */
+#drawer {
+  position: absolute;
+  height: 105px;
+  min-width: 180px;
+  bottom: -55px;
+  left: 50%;
+  margin-left: -90px;
+  border: none;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  z-index: 1001;
+}
+
+/* line 20, ../../scss/MobileSCSS/MControlDrawer.scss */
+#drawer-pull {
+  width: 20px;
+  height: 13px;
+  background-image: url(http://webapps.flightstats.com/flick/img/drawer-pull@x2.png);
+  background-size: 20px 13px;
+  background-repeat: no-repeat;
+  margin: auto;
+  cursor: n-resize;
+  -webkit-transition-property: height;
+  -moz-transition-property: height;
+  -o-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration: 0.55s;
+  -moz-transition-duration: 0.55s;
+  -o-transition-duration: 0.55s;
+  transition-duration: 0.55s;
+}
+
+/* line 31, ../../scss/MobileSCSS/MControlDrawer.scss */
+#drawer-pull.flipped {
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+/* line 35, ../../scss/MobileSCSS/MControlDrawer.scss */
+#drawer-content {
+  font-size: 12px;
+  color: #ecf2f8;
+  padding: 0 25px;
+}
+
+/* line 40, ../../scss/MobileSCSS/MControlDrawer.scss */
+#drawer-status {
+  text-align: center;
+  width: 100%;
+  line-height: 16px;
+}
