@@ -63,6 +63,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			<%@include file="Footer/BottomFooter.jsp" %>
 			<!-- minimizable windows file -->
 			<%@include file="Options/MinimizeWindows.jsp" %>
+			<%@include file="Error/ErrorPopup.jsp" %>
 		</form>
 			
 		<script>

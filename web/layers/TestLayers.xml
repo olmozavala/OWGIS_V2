@@ -45,11 +45,12 @@
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 ncWMS="true" max_time_range="month">  
 
+		 <!--server="http://localhost:8080/ncWMS/wms"-->
         <layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
-			   name="global_ts_2015/water_temp" />
-				<!--defParticleSpeed=".9"-->
-			   <!--overlaystreamlines="global_uv_2015/sea_water_velocity" />-->
+			   name="global_uv_2015/sea_water_velocity" 
+				defParticleSpeed=".9"
+			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
         <layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"

@@ -57,6 +57,7 @@
 	<link href="./common/CSS/TopMenu.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Currents.css" rel="stylesheet" type="text/css"/>
+	<link href="./common/CSS/Error.css" rel="stylesheet" type="text/css"/>
 
 	<!--External JS -->
 	<!--Debug mode-->
@@ -92,6 +93,8 @@
 	</c:if>
 
 	<!--Using closure library-->
+	<script src="./common/JS/src/warning/ErrorTexts.js"> </script>
+	<script src="./common/JS/src/warning/ErrorPopover.js"> </script>
 	<script src="./common/JS/src/utilities/MathAndGeo.js"> </script>
 	<script src="./common/JS/src/cesium/CesiumOwgis.js"> </script>
 	<script src="./common/JS/src/ncwms/Elevation.js"> </script>

@@ -273,6 +273,7 @@ function initstreamlineLayerCesium(){
 }
 
 owgis.ncwms.currents.init = function(){
+	console.log("Creating particle canvas!");
 	owgis.transparency.changeTransp(0);
 	var canvas = d3.select("body").append("canvas")
 			.attr('id','testing')
