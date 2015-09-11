@@ -516,7 +516,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
  * @returns {undefined}
  */
 function clearCanvas(){
-	var canvas = getElementById('animationCanvas');    
+	var canvas = document.getElementById('animationCanvas');    
 	
 	//Clears any previous display in the canvas
 	var ctx = canvas.getContext('2d');
