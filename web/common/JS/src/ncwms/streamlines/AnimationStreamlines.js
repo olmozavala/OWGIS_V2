@@ -302,7 +302,7 @@ function updateCurrentsCesium(event){
 	// The 20 degrees indicates when we start requesting the whole 180
 	// degrees, in this case if the camera is above view_angle_lat - 20
 	if( (Math.abs(c_center.latitude) + view_angle_lat - 20) > 90){
-		console.log("Max lat: " + (Math.abs(c_center.latitude) + view_angle_lat + 10));
+//		console.log("Max lat: " + (Math.abs(c_center.latitude) + view_angle_lat + 10));
 		currentExtent = [c_center.longitude-180,
 						Math.max(-90, c_center.latitude-view_angle_lat),
 						c_center.longitude+180,
@@ -314,7 +314,8 @@ function updateCurrentsCesium(event){
 						c_center.latitude+view_angle_lat];
 	}
 
-//	console.log(cam_rad.height);
+/*
+	console.log(cam_rad.height);
 	console.log("****************************************************************");
 	console.log("Hight: " + cam_rad.height/hight_for_max_angle);
 	console.log("Win prop:" + win_prop);
@@ -322,6 +323,7 @@ function updateCurrentsCesium(event){
 	console.log("Angle lon: " + view_angle_lon);
 	console.log("Camera center: (" + c_center.latitude + "," + c_center.longitude + ")");
 	console.log("Computed extent: " + currentExtent);
+	*/
 
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
@@ -529,7 +531,7 @@ function updateURL(){
 		
 		// Updating current zaxis
 		if( !_.isEmpty(layerDetails.zaxis)){
-			var elev = layerDetails.zaxis.values[elev_glob_counter];
+			var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 			layerTemplate.set("elevation",elev);	
 		}else{
 			layerTemplate.set("elevation",null);	

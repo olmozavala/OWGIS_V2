@@ -478,7 +478,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	};
 	
 	if (layerDetails.zaxis !== undefined) {
-		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
+		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 	}
 	
 	currentFrame = 0;// Reset to first frame
