@@ -118,8 +118,8 @@ function initOl3(){
 		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
-		maxResolution: mapConfig.maxResolution
-//	extent: mapConfig.restrictedExtent  // Not working
+		maxResolution: mapConfig.maxResolution,
+		extent: mapConfig.restrictedExtent.split(",")  // Not working
 	});
 
  	map = new ol.Map({

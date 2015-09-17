@@ -1,10 +1,13 @@
 goog.provide('owgis.mobile');
 
+goog.require('owgis.ol3.popup');
+
 var isDrawerOpen=false;
 
 var reduceNumberStreamLinesBy = 2;// n times less particles than non cesium
 
 owgis.mobile.openDrawer = function openDrawer(){
+	console.log("Opening Drawer");
 	$("#drawer").animate({
 		bottom: 0
 	}, 200);
@@ -13,8 +16,19 @@ owgis.mobile.openDrawer = function openDrawer(){
 	isDrawerOpen =true;
 }
 
+/**
+ * This function is used to bind the events of opening and closing panels
+ * so that the punctual data popup is closed with any of those events. 
+ * @returns {undefined}
+ */
+function onTooglePanelEvents(){
+	console.log("Toogle Panels...");
+	$("[data-role=panel]").on("panelbeforeopen", owgis.ol3.popup.closePopUp);
+	$("[data-role=panel]").on("panelbeforeclose", owgis.ol3.popup.closePopUp);
+}
+
 owgis.mobile.closeDrawer = function closeDrawer(){
-	//TODO this 133 is hard coded remove it
+	console.log("Closing Drawer");
 	$("#drawer").animate({
 				bottom: -92
 			}, 200);
@@ -67,6 +81,9 @@ owgis.mobile.initMobile = function initMobile(){
 	owgis.mobile.update();
 	
 	$("#drawer").css("display","block");
+
+	//Binds opening and closing events to the panels
+	onTooglePanelEvents();
 }
 
 /**

@@ -54,7 +54,7 @@ function setColorRangeFromMinMax(){
 
     //Verify that the layer has more than one zaxis option
     if(layerDetails.zaxis !== undefined){
-        urlParams.elevation = layerDetails.zaxis.values[elev_glob_counter];
+        urlParams.elevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
     }
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);

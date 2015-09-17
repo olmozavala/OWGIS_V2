@@ -104,7 +104,7 @@ function downloadData() {
 			break;
 		case "ncwms"://No possible right now
 			if (layerDetails.zaxis !== undefined) {
-				animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
+				animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 			}
 			break;
 	}

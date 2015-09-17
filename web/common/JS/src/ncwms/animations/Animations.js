@@ -478,7 +478,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	};
 	
 	if (layerDetails.zaxis !== undefined) {
-		animParams.elevation =  layerDetails.zaxis.values[elev_glob_counter];
+		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 	}
 	
 	currentFrame = 0;// Reset to first frame
@@ -516,7 +516,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
  * @returns {undefined}
  */
 function clearCanvas(){
-	var canvas = getElementById('animationCanvas');    
+	var canvas = document.getElementById('animationCanvas');    
 	
 	//Clears any previous display in the canvas
 	var ctx = canvas.getContext('2d');
