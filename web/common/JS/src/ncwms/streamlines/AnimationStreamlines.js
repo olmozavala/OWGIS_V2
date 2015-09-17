@@ -241,7 +241,7 @@ function initstreamlineLayerCesium(){
 	c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);
 
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
-	updateCurrentsCesium(event);
+	updateCurrentsCesium();
 
 	//When the left mouse click has been released (UP)
 	c_handler.setInputAction(function(event) {
