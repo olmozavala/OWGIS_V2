@@ -34,8 +34,13 @@ var currentGrid;
 var mobileNavBarHeight = 40;
 
 // For Cesium
-var cesium_scene
-var c_center;//Current center of the map
+var c_scene
+var cam_lon_deg;//Longitude of camera
+var cam_lat_deg;//Latitudeof camera
+var half_lon_domain; 
+var half_lat_domain;
+var long_domain;// Longitude domain used to fire random particles
+var latg_domain;// Longitude domain used to fire random particles
 
 var canvas;
 var ctx;
@@ -130,6 +135,16 @@ function updateDomains(){
 	
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
+
+	// This one is only used in cesium 
+	if(lonDomainRand >= 180){//In this case we need to fire in all the globe
+		long_domain = 180;
+	}else{
+		long_domain = lonDomainRand/2;
+	}
+	latg_domain= latDomainRand/2;
+	console.log("SIZE OF RANDOM: "+latg_domain);
+	console.log("SIZE OF RANDOM: "+long_domain);
 }
 
 owgis.ncwms.currents.particles.setGrid = function setGrid(grid, idx){
@@ -148,7 +163,9 @@ owgis.ncwms.currents.particles.setCurrentGrid= function setCurrentGrid(CurrentGr
  */
 //window['owgis.ncwms.currents.particles.updateParticles'] = owgis.ncwms.currents.particles.updateParticles;
 owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
-	
+
+	//This is used internally by OWGIS (leave the 5) if you want a faster speed
+	// modify the XML of the layer
 	var localParticleSpeed = 5*particleSpeed;
 	var randomFunction;//Identifies which random function will be used 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
@@ -172,21 +189,29 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 					particlesArray[idx]= randomFunction();
 				}
 				
+				var lo1 = gridInfo.lo1;
+				var la1 = gridInfo.la1;
+				var lo2 = gridInfo.lo2;
+				var la2 = gridInfo.la2;
+				var dx =  gridInfo.dx;
+				var dy =  gridInfo.dy;
+				var nx =  gridInfo.nx;
+				var ny =  gridInfo.ny;
 				//Validate the position of the particle is between the limits of the grid
-				if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
-						(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
+				if( (particle[0] > lo1) && (particle[1] > la1) && 
+						(particle[0] < lo2) && (particle[1] < la2)){
 					
 					//Obtain the decimal index of the grid
-					var row = (particle[1] - gridInfo.la1)/gridInfo.dy;
-					var col = (particle[0] - gridInfo.lo1)/gridInfo.dx;
+					var row = (particle[1] - la1)/dy;
+					var col = (particle[0] - lo1)/dx;
 					
 					// Obtain the final indices of the grid below
-					var row1 = gridInfo.ny - 1 - Math.floor(row);
+					var row1 = ny - 1 - Math.floor(row);
 					var col1 = Math.floor(col);
 					
 					// Obtain the final indices of the grid above
 					var row2 = Math.max(row1-1,0);
-					var col2 = Math.min(col1+1,gridInfo.nx-1);
+					var col2 = Math.min(col1+1,nx-1);
 					
 					//Obtain the corresponding values
 					var q11 = grids[currentGrid][row1][col1];
@@ -199,11 +224,11 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 						// outside the vector field and we restart the particle
 						particlesArray[idx]= randomFunction();
 					}else{
-						var x1 = gridInfo.lo1+col1*gridInfo.dx;
-						var x2 = x1 + gridInfo.dx;
-						var y1 = gridInfo.la1+(gridInfo.ny - 1 - row1)*gridInfo.dy;
-						var y2 = y1 + gridInfo.dy;
-						uv = bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22); 
+						var x1 = lo1+col1*dx;
+						var x2 = x1 + dx;
+						var y1 = la1+(ny - 1 - row1)*dy;
+						var y2 = y1 + dy;
+						var uv = bilinearInterpolation( particle, x1, x2, y1, y2, q11, q21, q12, q22); 
 						particle[2] =  particle[0]  + localParticleSpeed*uv[0];
 						particle[3] =  particle[1]  + localParticleSpeed*uv[1];
 					}
@@ -264,7 +289,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 							var y1 = gridInfo.la1+(gridInfo.ny - 1 - i)*gridInfo.dy;
 							var y2 = y1 + gridInfo.dy;
 							var zd = currTime*dt;
-							uv = trilinearInterpolation( particle, x1, x2, y1, y2, zd, q11, q21, q12, q22, 
+							var uv = trilinearInterpolation( particle, x1, x2, y1, y2, zd, q11, q21, q12, q22, 
 							q_next_11, q_next_21, q_next_12, q_next_22);
 							particle[2] =  particle[0]  + localParticleSpeed*uv[0];
 							particle[3] =  particle[1]  + localParticleSpeed*uv[1];
@@ -295,23 +320,27 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 			cesiumNavBarHeight = mobileNavBarHeight;
 		}
 		_.each(particlesArray,function(particle){
-			if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
-					(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
-				pixParticle = particleToCanvasCesium(particle, cesiumNavBarHeight);
-				//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
+			//We do not display any particle that is on the other side of the earth
+//			particle = [10,10];
+			var pangle = owgis.utilities.mathgeo.anglebetweenspherical(particle, [cam_lon_deg, cam_lat_deg]);
+			if( pangle > 70) {
+//				var a = particle;
+//				var b =  [cam_lon_deg, cam_lat_deg];
+//				console.log("A("+a[0]+","+a[1]+") B("+b[0]+","+b[1]+")");
+//				console.log("Final angle is: "+  pangle);
+				particle[4] = timeParticle;
+			}else{
+				var pixParticle = particleToCanvasCesium(particle, cesiumNavBarHeight);
 				ctx.moveTo(pixParticle[0], pixParticle[1]);
 				ctx.lineTo(pixParticle[2], pixParticle[3]);
 			}
 		});
 	}else{
 		_.each(particlesArray,function(particle){
-			if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
-					(particle[0] < gridInfo.lo2) && (particle[1] < gridInfo.la2)){
-				pixParticle = particleToCanvas(particle,lonDomain, latDomain);
-				//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
-				ctx.moveTo(pixParticle[0], pixParticle[1]);
-				ctx.lineTo(pixParticle[2], pixParticle[3]);
-			}
+			var pixParticle = particleToCanvas(particle,lonDomain, latDomain);
+			//			ctx.fillRect( pixParticle[0], pixParticle[1], 6, 6 );
+			ctx.moveTo(pixParticle[0], pixParticle[1]);
+			ctx.lineTo(pixParticle[2], pixParticle[3]);
 		});
 	}
 	ctx.stroke();
@@ -325,17 +354,12 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
  * @returns {Array}
  */
 function particleToCanvasCesium(particle, cesiumNavBarHeight){
-	// Particles values go from -180 to 180 and -90 to 90
-	if(_.isEmpty(cesium_scene)){
-		cesium_scene = _cesium.getCesiumScene();
-	}
+
 	var cart3Pos = Cesium.Cartesian3.fromDegrees(particle[0], particle[1])
-	//TODO fix this hardcoded number, we need to know when the particle is visible
-	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
-			cart3Pos);
+	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(c_scene, cart3Pos);
 	var x = position.x;
 	var y = position.y;
-	position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
+	position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(c_scene,
 			Cesium.Cartesian3.fromDegrees(particle[2], particle[3]));
 	var dx = position.x;
 	var dy = position.y;
@@ -366,8 +390,9 @@ function particleToCanvas(particle, lonDomain, latDomain){
 function randomParticleDenseCenter(){
 	//The latitude is flipped in the data
 	//This is for a denser centerd circle random values
-//	var r = Math.random()*.5;//We only need a radius of at most .5
-	 r = ((Math.random() + Math.random() + Math.random() + Math.random() ) - 2) / 2;
+	/*
+	var randVal = Math.random();
+	 r = ((randVal + Math.random() + Math.random() + Math.random() ) - 2) / 2;
 	// Changing the 'radial' dense area
 	//r = Math.pow(r,8/10);
 	var theta = 2*Math.PI*Math.random();
@@ -375,8 +400,21 @@ function randomParticleDenseCenter(){
 	var x = limLonMin + lonDomainRand/2 + r*Math.sin(theta)*lonDomainRand;
 	var y = limLatMin + latDomainRand/2 + r*Math.cos(theta)*latDomainRand;
 
-	var t = Math.random()*timeParticle;
+	var t = randVal*timeParticle;
+	 */
+	var randVal = Math.random();
 
+	var Rlon = long_domain;
+	var Rlat = latg_domain;
+
+	var r = Math.pow(randVal,.8); 
+	var theta = 2*Math.PI*Math.random();
+	
+	var x = cam_lon_deg + Rlon*r*Math.sin(theta);
+	var y = cam_lat_deg + Rlat*r*Math.cos(theta);
+	
+	var t = randVal*timeParticle;
+	
 	return [x,y,x,y,t];
 	
 }
@@ -386,11 +424,12 @@ function randomParticleDenseCenter(){
  */
 function randomParticle(){
 	//The latitude is flipped in the data
-	var x = limLonMin + Math.random()*lonDomainRand;
+	var randVal = Math.random();
+	var x = limLonMin + randVal*lonDomainRand;
 	var y = limLatMin + Math.random()*latDomainRand;
-
-	var t = Math.random()*timeParticle;
-
+	
+	var t = randVal*timeParticle;
+	
 	return [x,y,x,y,t];
 }
 
@@ -466,13 +505,27 @@ function initParticles(){
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		//For Cesium we used a distribution function that has 
 		// more particles in the center
+	// Particles values go from -180 to 180 and -90 to 90
+		if(_.isEmpty(c_scene)){
+			c_scene = _cesium.getCesiumScene();
+		}
+
+		var cam_rad = c_scene.camera.positionCartographic;
+		cam_lon_deg = owgis.utilities.mathgeo.radtodeg(cam_rad.longitude);
+		cam_lat_deg = owgis.utilities.mathgeo.radtodeg(cam_rad.latitude);
+
+		//avoid computing this value for every particle
+		half_lon_domain =  (limLonMin + lonDomainRand/2);
+		half_lat_domain =  (limLatMin + latDomainRand/2);
+		console.log("Using dense random");
 		for(i = 0; i < numparticles; i++){
 			particlesArray[i] = randomParticleDenseCenter();
 		}
 	}else{
+		console.log("Using Normal random");
 		for(i = 0; i < numparticles; i++){
 			particlesArray[i] = randomParticle();
 		}
-
+		
 	}
 }

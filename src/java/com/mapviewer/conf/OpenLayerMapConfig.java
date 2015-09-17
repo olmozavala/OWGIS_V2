@@ -41,7 +41,6 @@ public class OpenLayerMapConfig {
 	private double zoomFactor;
 	private double maxResolution;//Controls the maximum resolution of the map
 	private String restrictedExtent = "-180.0,-90.0,180.0,90.0";//Restricts the extent of the map
-	private String mapBounds="-180.0,-90.0,180.0,90.0";
 	private String refreshLayers;
 	Date lastUpdate;//Indicates when was the last update of the properties file
 
@@ -158,7 +157,6 @@ public class OpenLayerMapConfig {
 		zoomFactor = Float.parseFloat(getProperty("zoomFactor"));
 		maxResolution = Float.parseFloat(getProperty("maxResolution"));
 		restrictedExtent = getProperty("maxExtent");
-		mapBounds=getProperty("mapBounds");
 		mapProj=getProperty("mapProjection");
 		refreshLayers=getProperty("refreshLayers");
 	}
@@ -192,12 +190,6 @@ public class OpenLayerMapConfig {
 	}
 	public void setRestrictedExtent(String restrictedExtent) {
 		this.restrictedExtent = restrictedExtent;
-	}
-	public String getmapBounds() {
-		return mapBounds;
-	}
-	public void setmapBounds(String mapBounds) {
-		this.mapBounds=mapBounds;
 	}
 	
 	public String getMapProjection() {

@@ -69,7 +69,7 @@
 			<!-- Toogle Cesium -->
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="Cesium"	
-				onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" >
+				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 		</ul>
@@ -129,7 +129,7 @@
 			<!-- Toogle Cesium Minimized-->
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="Cesium"	
-				onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" >
+				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 		</ul>

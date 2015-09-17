@@ -1,5 +1,24 @@
 goog.provide('owgis.utilities.mathgeo');
 
+/**
+ * This method computes the angle between two vectors in spherical
+ * coordinates with magnitude 1 and the values are in degrees 
+ * @param {type} a
+ * @param {type} b
+ * @returns {undefined}
+ */
+owgis.utilities.mathgeo.anglebetweenspherical = function (a, b){
+
+  	var A =  owgis.utilities.mathgeo.spheretocartdeg( a[0], a[1]);
+  	var B =  owgis.utilities.mathgeo.spheretocartdeg( b[0], b[1]);
+
+	var anglerad =  Math.acos(owgis.utilities.mathgeo.dot(A,B));
+	var angladeg = owgis.utilities.mathgeo.radtodeg(anglerad);
+	
+	//console.log("A("+a[0]+","+a[1]+") B("+b[0]+","+b[1]+")");
+	//console.log("Final angle is: "+  angladeg);
+	return angladeg;
+}
 
 /**
  * This function computes the dot product of two vectors of any dimension
@@ -46,11 +65,12 @@ owgis.utilities.mathgeo.cross = function (a, b){
 
 /**
  * This function transforms sphere coordinates into 3D cartesian coordinates
+ * Assuming it is in radians
  */
 owgis.utilities.mathgeo.spheretocart = function (lon, lat){
-	var res = [Math.cos(lon)*Math.sin(lat),
-			   Math.sin(lat)*Math.sin(lon),
-		   		Math.cos(lon)];
+	var res = [Math.sin(lon)*Math.cos(lat),
+			   Math.sin(lat),
+		   		Math.cos(lon)*Math.cos(lat)];
 
 	return res;
 }
@@ -62,9 +82,8 @@ owgis.utilities.mathgeo.spheretocart = function (lon, lat){
 owgis.utilities.mathgeo.spheretocartdeg = function (lon, lat){
 	lat = owgis.utilities.mathgeo.degtorad(lat);//Changes lat from deg to radians
 	lon = owgis.utilities.mathgeo.degtorad(lon);//Changes lon from deg to radians
-	var res = [Math.cos(lon)*Math.sin(lat),
-			   Math.sin(lat)*Math.sin(lon),
-		   		Math.cos(lon)];
+
+	var res =  owgis.utilities.mathgeo.spheretocart(lon,lat);
 
 	return res;
 }

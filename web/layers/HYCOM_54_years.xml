@@ -10,73 +10,79 @@
 		<Menu ID="third18" EN="Years 37 to 54" ES="Terceros 18"/>
 	</Menus>
 	
-    <!-- First 18 years -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
-                tiled="true" ncWMS="true" max_time_range="month">  
-                <!-- Temperature -->
-                <layer Menu="omodel,hycom,hycom54,first18,Temp" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. First 18 years. Temperature. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Temperatura. "
-                mincolor="10" maxcolor="34" 
+	<!-- First 18 years -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
+				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				tiled="true" ncWMS="true" max_time_range="month">  
+		<!-- Velocity -->
+		<layer Menu="omodel,hycom,hycom54,first18,SeaVel" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. First 18 years. Velocity " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Velocidad. "
+			   mincolor="-0.113" maxcolor="2.4" tiled="false" 
+			   name="54yearHycom_R1v/sea_water_velocity"  
+			   overlaystreamlines="54yearHycom_R1v/sea_water_velocity"  />
+
+		<!-- Temperature -->
+		<layer Menu="omodel,hycom,hycom54,first18,Temp" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. First 18 years. Temperature. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Temperatura. "
+			   mincolor="10" maxcolor="34" 
 			   name="54yearHycom_R1t/temperature"  />
-                <!-- Salinity -->
-                <layer Menu="omodel,hycom,hycom54,first18,Salinity" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. First 18 years. Salinity. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Salinidad. "
-              mincolor="30" maxcolor="40"
+		<!-- Salinity -->
+		<layer Menu="omodel,hycom,hycom54,first18,Salinity" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. First 18 years. Salinity. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Salinidad. "
+			   mincolor="30" maxcolor="40"
 			   name="54yearHycom_R1s/salinity"  />
-                <!-- Velocity -->
-                <layer Menu="omodel,hycom,hycom54,first18,SeaVel" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. First 18 years. Velocity " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Primeros 18 años. Velocidad. "
-                 mincolor="-0.113" maxcolor="2.4" tiled="false" 
-			   name="54yearHycom_R1v/sea_water_velocity"  style="vector" />
-    </MainLayers>
-    <!-- Second 18 years -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
-                tiled="true" ncWMS="true" max_time_range="month">  
-                <!-- Temperature -->
-                <layer Menu="omodel,hycom,hycom54,second18,Temp" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Second 18 years (19 to 36). Temperature. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Temperatura. "
-                mincolor="10" maxcolor="34" 
+	</MainLayers>
+	<!-- Second 18 years -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
+				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				tiled="true" ncWMS="true" max_time_range="month">  
+		<!-- Velocity -->
+		<layer Menu="omodel,hycom,hycom54,second18,SeaVel" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Second 18 years (19 to 36). Velocity " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Velocidad. "
+			   mincolor="-0.113" maxcolor="2.4" tiled="false" 
+			   name="54yearHycom_R2v/sea_water_velocity"
+			   overlaystreamlines="54yearHycom_R2v/sea_water_velocity"  />
+		<!-- Temperature -->
+		<layer Menu="omodel,hycom,hycom54,second18,Temp" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Second 18 years (19 to 36). Temperature. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Temperatura. "
+			   mincolor="10" maxcolor="34" 
 			   name="54yearHycom_R2t/temperature"  />
-                <!-- Salinity -->
-                <layer Menu="omodel,hycom,hycom54,second18,Salinity" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. Second 18 years (19 to 36). Salinity. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Salinidad. "
-              mincolor="30" maxcolor="40"
+		<!-- Salinity -->
+		<layer Menu="omodel,hycom,hycom54,second18,Salinity" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. Second 18 years (19 to 36). Salinity. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Salinidad. "
+			   mincolor="30" maxcolor="40"
 			   name="54yearHycom_R2s/salinity"  />
-                <!-- Velocity -->
-                <layer Menu="omodel,hycom,hycom54,second18,SeaVel" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Second 18 years (19 to 36). Velocity " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Velocidad. "
-                 mincolor="-0.113" maxcolor="2.4" tiled="false" 
-			   name="54yearHycom_R2v/sea_water_velocity"  style="vector" />
-    </MainLayers>
-    <!-- Third 18 years -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
-                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
-                tiled="true" ncWMS="true" max_time_range="month">  
-                <!-- Temperature -->
-                <layer Menu="omodel,hycom,hycom54,third18,Temp" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Third 18 years (37 to 54). Temperature. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Temperatura. "
-                mincolor="10" maxcolor="34" 
+
+	</MainLayers>
+	<!-- Third 18 years -->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812"
+				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				tiled="true" ncWMS="true" max_time_range="month">  
+		<!-- Velocity -->
+		<layer Menu="omodel,hycom,hycom54,third18,SeaVel" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Third 18 years (37 to 54). Velocity " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Velocidad. "
+			   mincolor="-0.113" maxcolor="2.4" tiled="false" 
+			   name="54yearHycom_R3v/sea_water_velocity"
+			   overlaystreamlines="54yearHycom_R3v/sea_water_velocity"  />
+		<!-- Temperature -->
+		<layer Menu="omodel,hycom,hycom54,third18,Temp" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Third 18 years (37 to 54). Temperature. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Temperatura. "
+			   mincolor="10" maxcolor="34" 
 			   name="54yearHycom_R3t/temperature"  />
-                <!-- Salinity -->
-                <layer Menu="omodel,hycom,hycom54,third18,Salinity" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. Third 18 years (37 to 54). Salinity. " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Salinidad. "
-              mincolor="30" maxcolor="40"
+		<!-- Salinity -->
+		<layer Menu="omodel,hycom,hycom54,third18,Salinity" 
+			   EN="HYCOM + CFSR Gulf of Mexico 1/25&#176;  54-year Experiment. Third 18 years (37 to 54). Salinity. " 
+			   ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Salinidad. "
+			   mincolor="30" maxcolor="40"
 			   name="54yearHycom_R3s/salinity"  />
-                <!-- Velocity -->
-                <layer Menu="omodel,hycom,hycom54,third18,SeaVel" 
-                    EN="HYCOM + CFSR Gulf of Mexico 1/25&#176; 54-year Experiment. Third 18 years (37 to 54). Velocity " 
-                    ES="HYCOM + CFSR Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Experimento de 54 años. Segundos 18 años. Velocidad. "
-                 mincolor="-0.113" maxcolor="2.4" tiled="false" 
-			   name="54yearHycom_R3v/sea_water_velocity"  style="vector" />
-    </MainLayers>
+
+	</MainLayers>
 </MenuConf>
