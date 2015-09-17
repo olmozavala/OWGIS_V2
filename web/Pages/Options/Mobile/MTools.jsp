@@ -21,7 +21,7 @@
 	</li>
 	<li>
 		<!--Depth selection-->
-	<c:if test='${ncwms}'>
+	<c:if test='${zaxis}'>
 		<li>
 			<a class="ui-btn ui-icon-align-center ui-btn-icon-left " 
 			   href="#zaxis_selector_parent" >
@@ -30,13 +30,15 @@
 		</li>
 	</c:if>
 </li>
-<li>
-	<!--Download data-->
-	<a onclick="downloadData();" class="ui-btn ui-icon-download ui-btn-icon-left currentsParent " 
-	   data-theme="b">
-		<fmt:message key="main.download" />
-	</a>
-</li>
+<c:if test='${!ncwms}'>
+	<li>
+		<!--Download data-->
+		<a onclick="downloadData();" class="ui-btn ui-icon-download ui-btn-icon-left currentsParent " 
+		   data-theme="b">
+			<fmt:message key="main.download" />
+		</a>
+	</li>
+</c:if>
 <c:if test='${currents}'>
 	<li>
 		<a class="ui-btn ui-icon-random ui-btn-icon-left currentsParent " 
@@ -53,12 +55,23 @@
 		</a>
 	</li>
 	<%-- Calendars --%>
-	<li>
-		<a class="ui-btn ui-icon-calendar ui-btn-icon-left " href="#mobPanelCalendars" >
-			Calendars
-		</a>
-	</li>
+	<c:if test='${multipleDates}'>
+		<li>
+			<a class="ui-btn ui-icon-calendar ui-btn-icon-left " href="#mobPanelCalendars" >
+				Calendars
+			</a>
+		</li>
+	</c:if>
 </c:if>
+
+<%-- Toogle Cesium --%>
+<li>
+	<a class="ui-btn ui-icon-globe ui-btn-icon-left currentsParent " 
+		onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
+	   href="#">
+		3D View
+	</a>
+</li>
 
 <!-- Download minimized -->
 <li><a class="ui-btn downloadDataParent" 

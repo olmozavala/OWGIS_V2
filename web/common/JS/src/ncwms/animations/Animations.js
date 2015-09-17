@@ -204,7 +204,7 @@ function animIncreaseFrame(){
  */
 function animFaster(){
 	animSpeed = animSpeed*.80;
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
 	startAnimationLoop();
@@ -216,7 +216,7 @@ function animFaster(){
  */
 function animSlower(){
 	animSpeed = animSpeed*1.20;
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
 	startAnimationLoop();
@@ -257,25 +257,25 @@ function updateAnimationStatus(newStatus){
 			
 			owgis.kml.updateTitleAndKmlLink();
 			
-			if(_mainlayer_currents){
+			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.startSingleDateAnimation();
 			}
 			
 			//Show main layer
 			owgis.layers.getMainLayer().setVisible(true);
 			//IF we had currents then start the animation
-			if(_mainlayer_currents){
+			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(false);//Play the currents animation
 			}
 			break;
 		case owgis.ncwms.animation.status.paused: 
 			//Pause the currents animation
-			if(_mainlayer_currents){
+			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(true);//Pause the currents animation
 			}
 			break;
 		case owgis.ncwms.animation.status.playing:
-			if(_mainlayer_currents){
+			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(false);//Play the currents animation
 			}
 			break;
@@ -409,7 +409,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
  */
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	//Clear any previous currents animations
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.cleanAnimationCurrentsAll();
 		owgis.ncwms.currents.particles.setExternalAnimationSpeed(animSpeed);
 	}
@@ -586,7 +586,7 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 				owgis.ncwms.animation.status.current = owgis.ncwms.animation.status.playing;
 				updateMenusDisplayVisibility(owgis.ncwms.animation.status.current);
 				//Load the currents if the animation finished loading
-				if(_mainlayer_currents){
+				if(_mainlayer_streamlines){
 					//					console.log("Loading particles!!!!!!!!");
 					owgis.ncwms.currents.startMultipleDateAnimation(allFrames);
 				}
@@ -650,7 +650,7 @@ function loopAnimation(){
 		}while(imagesReady[currentFrame] === 0);
 	}
 	
-	if(_mainlayer_currents){
+	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.particles.setCurrentGrid(currentFrame);
 		if(currentFrame === 0){
 			owgis.ncwms.currents.clearCurrentsCanvas();

@@ -37,7 +37,7 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
             localStorage.elev_selector_visible= $("#zaxis_selector_parent").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector_parent");
         }
-        if(_mainlayer_currents){
+        if(_mainlayer_streamlines){
             localStorage.currents_controls_visible = $("#currentsControlsContainer").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_currents_controls", "#currentsControlsContainer");
 		}
@@ -82,7 +82,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 					'zaxis_selector_parent', 'none');
 				}
 				
-				if(_mainlayer_currents){
+				if(_mainlayer_streamlines){
 					repositionWindow(localStorage.pos_currents_controls, "false",
 					'currentsControlsContainer', 'none');
 				}
@@ -97,7 +97,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 				}
 				
 				if( localStorage.currents_controls_visible!== undefined){
-					if(_mainlayer_currents){
+					if(_mainlayer_streamlines){
 						if ( localStorage.currents_controls_visible=== "true") $("#currentsControlsContainer").show("fade");
 					}
 				}
@@ -147,7 +147,7 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
         moveOneWindowToFitOnScreen("paletteWindowColorRange");
         if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector_parent");
         if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
-        if(_mainlayer_currents) moveOneWindowToFitOnScreen("currentsControlsContainer");
+        if(_mainlayer_streamlines) moveOneWindowToFitOnScreen("currentsControlsContainer");
     }
 }
 

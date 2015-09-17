@@ -4,7 +4,7 @@ goog.require('owgis.ncwms.currents.particles')
 
 var minNumParticles = 100;
 var maxNumParticles = 40000;
-var maxParticleLifeTime = 400;
+var maxParticleLifeTime = 300;
 var minParticleLifeTime = 10;
 
 
@@ -30,7 +30,7 @@ owgis.ncwms.currents.style.reset = function reset(){
 
 	if(!mobile){
 		$("#numParticlesSlider").slider("option","value",
-		owgis.ncwms.currents.particles.getDefaultNumberOfParticles() );
+		owgis.ncwms.currents.particles.getDefaultNumParticles() );
 
 		$("#particleSpeedSlider").slider("option","value",
 		particleSpeedToSlider(owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed()) );
@@ -40,10 +40,10 @@ owgis.ncwms.currents.style.reset = function reset(){
 		
 	}else{
 		$("#numParticlesSlider")
-				.prop("value", owgis.ncwms.currents.particles.getDefaultNumberOfParticles() ); 
+				.prop("value", owgis.ncwms.currents.particles.getDefaultNumParticles() ); 
 		$("#numParticlesSlider").slider('refresh');
 		owgis.ncwms.currents.particles.setNumParticles(
-			owgis.ncwms.currents.particles.getDefaultNumberOfParticles() ); 
+			owgis.ncwms.currents.particles.getDefaultNumParticles() ); 
 
 		$("#particleSpeedSlider")
 				.prop("value", particleSpeedToSlider(owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed() )); 
@@ -68,8 +68,16 @@ owgis.ncwms.currents.style.init = function init(){
 	initParticlesLifeTimeSlider();
 }
 
+/**
+ * Depending on the resolution been received  it modifies the speed of the 
+ * particles with an exponential function. 
+ * @param {type} resolution
+ * @param {type} extent
+ * @returns {undefined}
+ */
 owgis.ncwms.currents.style.updateParticleSpeedFromResolution = function updateParticleSpeedFromResolution(resolution, extent){
 	
+//	console.log("Resolution non Cesium: "+resolution);
 	var newParticleSpeed = (Math.pow(resolution,1.01)) * owgis.ncwms.currents.particles.getDefaultParticleSpeed();
 	
 	//This indicates at what percentage from 0 to 100 the default
@@ -89,9 +97,23 @@ owgis.ncwms.currents.style.updateParticleSpeedFromResolution = function updatePa
 	}else{
 		$("#particleSpeedSlider").prop("value",newParticleSpeed);
 		$("#particleSpeedSlider").slider('refresh');
-		
 	}
-	
+}
+
+/**
+ * This function is used to update the sliders with a new value of number of
+ * particles 
+ * @param {type} numParticles
+ * @returns {undefined}
+ */
+owgis.ncwms.currents.style.updateNumberOfParticlesSliders = function(numParticles){
+	console.log("Update num of particles slider: "+numParticles);
+	if(!mobile){
+		$("#numParticlesSlider").slider("option","value",numParticles);
+	}else{
+		$("#numParticlesSlider").prop("value",numParticles);
+		$("#numParticlesSlider").slider('refresh');
+	}
 }
 
 function initPicker(){

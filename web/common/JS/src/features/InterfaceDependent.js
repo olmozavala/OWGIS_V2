@@ -63,6 +63,6 @@ owgis.interf.loadingatmap = function(loading,percentage,extraText){
  * @returns {undefined}
  */
 function modifyInterface(){
-	var firstDate = owgis.utils.getDate("%m/%d/%Y", ($("#cal-start").datepicker("option","minDate")));
-	$("#dropDownLevels1 .mainMenuOption:selected").append(firstDate);
+//	var firstDate = owgis.utils.getDate("%m/%d/%Y", ($("#cal-start").datepicker("option","minDate")));
+	$("#dropDownLevels1 .mainMenuOption:selected").append("Test Date");
 }
