@@ -20,16 +20,27 @@
 	</OptionalLayers>
 
 	<!-- ncWMS with one date-->
+	<!-- 
+	<MainLayers BBOX="-180,-90,180,90"
+				format="image/png"  server="http://localhost:8080/ncWMS/wms"
+				ncWMS="true">  
+		<layer Menu="temp" EN="" ES="" name="globalwind/air_velocity"  
+			   overlaystreamlines="globalwind/air_velocity" 
+				defParticleSpeed=".01"/>
+	</MainLayers>
+-->
+	<!-- ncWMS with one date-->
 	<MainLayers BBOX="-180,-90,180,90"
 				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true">  
-		<layer Menu="temp" EN="" ES="" name="global_ts_2015/water_temp"  
+		<layer Menu="temp" EN=" HYCOM + NCODA Global 1/12° Analysis, Temperature" ES="Temperatura global analisis HYCOM + NCODA Global 1/12° " name="global_ts_2015/water_temp"  
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
-		<layer Menu="uv" EN="" ES="" name="global_uv_2015/sea_water_velocity"  
+
+		<layer Menu="uv" EN=" HYCOM + NCODA Global 1/12° Analysis, Currents" ES="Corrientes globales analisis HYCOM + NCODA Global 1/12° " name="global_uv_2015/sea_water_velocity"  
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
-		<layer Menu="ssh" EN="" ES="" name="global_ssh_2015/surf_el" 
+		<layer Menu="ssh" EN=" HYCOM + NCODA Global 1/12° Analysis, Sea surface height" ES="Elevacion superficial del mar analisis HYCOM + NCODA Global 1/12° " name="global_ssh_2015/surf_el" 
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
-		<layer Menu="salinity" EN="" ES="" name="global_ts_2015/salinity"
+		<layer Menu="salinity" EN=" HYCOM + NCODA Global 1/12° Analysis, Salinity" ES="Salinidad analisis HYCOM + NCODA Global 1/12° " name="global_ts_2015/salinity"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 	</MainLayers>
 
