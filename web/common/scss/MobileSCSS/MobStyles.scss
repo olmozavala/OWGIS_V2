@@ -17,6 +17,10 @@ html, body {
     background: url('../../images/loading/009.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
+.loading:after{
+    content: url('../../images/loading/042.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
 /*Default title inside a window*/
 
 label{
