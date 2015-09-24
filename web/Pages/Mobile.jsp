@@ -18,6 +18,7 @@
 		<%@include file="Header/GlobalJavaScript.jsp"%>
 		<%-- contains all the css links and javascript links --%>
 		<%@include file="Header/HeaderDebug.jsp"%>
+		<%--<%@include file="Header/Header.jsp"%>--%>
 		<title></title>
 	</head>
 	<body>
@@ -76,6 +77,7 @@
 					<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
 						<c:if test='${ncwms}'> 
 						<canvas id="animationCanvas"></canvas>
+						<canvas id="testWebGLCanvas"></canvas>
 						<img id="animContainer" src="" class="menuHidden"></img>
 					</c:if>
 				</div>
@@ -97,8 +99,10 @@
 					owgisMain();
 				});
 				$(window).load(function() {
-					$(".loader").fadeOut("slow");
+					owgis.interf.loadingallscreen(false);
 				})
 		</script>
+
+		<div class="loadingMobile"></div>
 	</body>
 </html>

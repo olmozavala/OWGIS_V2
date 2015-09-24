@@ -13,7 +13,6 @@
 		<script src="./common/JS/vendor/minimized/jquery.mobile.min.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery.slidePanel.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery_ui_datepicker/jquery-ui.min.js"></script>
-		<script src="./common/JS/src/mobile/Mobile.js"> </script>
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>

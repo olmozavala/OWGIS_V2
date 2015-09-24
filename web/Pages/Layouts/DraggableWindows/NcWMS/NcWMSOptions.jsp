@@ -8,10 +8,10 @@
 <div class="transDraggableWindow menuHidden toolTip container-fluid" id="CalendarsAndStopContainer"
 	 title="<fmt:message key='help.tooltip.calender'/>" >
 	<div class="row">
-		<div class="col-xs-6 text-center title "> 
+		<div class="col-xs-6 text-center title "  id="cal-start-title"> 
 			<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>
 		</div>
-		<div class="col-xs-4 text-center title ">
+		<div class="col-xs-4 text-center title " id="cal-end-title">
 			<span class="invShadow"> <fmt:message key="ncwms.cal.end" /></span><br>
 		</div>
 		<div class="col-xs-2 text-right ">
@@ -25,7 +25,7 @@
 		<div class="col-xs-6 " id="cal-start"> </div>
 		<div class="col-xs-6 " id="cal-end"> </div>
 	</div>
-	<div class="row ">
+	<div class="row " id="animRes">
 		<div class="col-xs-6 col-xs-offset-3 invShadow text-center ">
 			<fmt:message key='ncwms.resolution'/>:
 		</div>
@@ -41,7 +41,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="row defRowSpace">
+	<div class="row defRowSpace" id="animDisp">
 		<div class="col-xs-6 text-center " id="p-animation">
 			<div class="buttonStyle " onclick="owgis.ncwms.animation.dispAnimation();" > 
 				<fmt:message key="ncwms.dispanim" />

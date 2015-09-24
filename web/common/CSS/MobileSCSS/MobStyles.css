@@ -20,45 +20,50 @@ html, body {
   background: url("../../images/loading/009.gif") 50% 50% no-repeat #f9f9f9;
 }
 
+/* line 20, ../../scss/MobileSCSS/MobStyles.scss */
+.loading:after {
+  content: url("../../images/loading/042.gif") 50% 50% no-repeat #f9f9f9;
+}
+
 /*Default title inside a window*/
-/* line 22, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 26, ../../scss/MobileSCSS/MobStyles.scss */
 label {
   width: 100%;
   text-align: center;
 }
 
-/* line 27, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 31, ../../scss/MobileSCSS/MobStyles.scss */
 .ui-controlgroup {
   margin: 2px;
 }
 
-/* line 30, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 34, ../../scss/MobileSCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-label {
   width: 100%;
 }
 
-/* line 35, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 39, ../../scss/MobileSCSS/MobStyles.scss */
 #bars-button {
   height: 27px;
 }
 
-/* line 40, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 44, ../../scss/MobileSCSS/MobStyles.scss */
 .languageContainerSel {
   padding-right: 5px;
 }
 
 /*     ul ul { display: none; } */
-/* line 44, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 48, ../../scss/MobileSCSS/MobStyles.scss */
 html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* line 48, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 52, ../../scss/MobileSCSS/MobStyles.scss */
 .ui-field-contain .ui-controlgroup-controls {
   width: 100%;
 }
 
-/* line 52, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 56, ../../scss/MobileSCSS/MobStyles.scss */
 #l-animation {
   position: absolute;
   margin: auto;
@@ -69,17 +74,17 @@ html {
   font-size: 18px;
 }
 
-/* line 62, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 66, ../../scss/MobileSCSS/MobStyles.scss */
 #timeSelect {
   width: 170px;
 }
 
-/* line 66, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 70, ../../scss/MobileSCSS/MobStyles.scss */
 .transect-slider .ui-slider-label {
   font-size: 13px;
 }
 
-/* line 70, ../../scss/MobileSCSS/MobStyles.scss */
+/* line 74, ../../scss/MobileSCSS/MobStyles.scss */
 .transect-slider .ui-slider-switch {
   width: 10em;
 }
