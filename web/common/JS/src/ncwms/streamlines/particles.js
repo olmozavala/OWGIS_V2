@@ -143,8 +143,8 @@ function updateDomains(){
 		long_domain = lonDomainRand/2;
 	}
 	latg_domain= latDomainRand/2;
-	console.log("SIZE OF RANDOM: "+latg_domain);
-	console.log("SIZE OF RANDOM: "+long_domain);
+//	console.log("SIZE OF RANDOM: "+latg_domain);
+//	console.log("SIZE OF RANDOM: "+long_domain);
 }
 
 owgis.ncwms.currents.particles.setGrid = function setGrid(grid, idx){

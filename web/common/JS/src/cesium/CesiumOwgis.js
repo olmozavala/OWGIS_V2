@@ -5,6 +5,7 @@ goog.require('owgis.error.texts');
 goog.require('owgis.error.popover');
 goog.require('olcs.OLCesium');
 goog.require('owgis.interf');
+goog.require('owgis.ncwms.animation.status');
 
 var CESIUM_BASE_URL="./common/JS/vendor/minimized/";
 
@@ -37,8 +38,7 @@ function validateWebGL(){
 function initCesium(){
 	_cesium = new olcs.OLCesium({map: map});
 	_cesium.setEnabled(true);
-	//Start the currents animation of 'static' day.
-	
+
 	var c_scene = _cesium.getCesiumScene();
 	// Don't show the border of the world
 	c_scene.skyAtmosphere.show = false;
@@ -50,9 +50,7 @@ function initCesium(){
 	var cam = _cesium.getCamera();
 	cam.setAltitude(res*200000000);
 	
-	owgis.layouts.draggable.topmenu.isUsed('.cesiumSpan');
-	cesiumParticles(false);
-	owgis.interf.loadingallscreen(false);
+	startCesium(false);
 }
 
 function cesiumParticles(wasEnabled){
@@ -69,6 +67,46 @@ function cesiumParticles(wasEnabled){
 		owgis.ncwms.currents.style.updateNumberOfParticlesSliders(totParticles);
 		owgis.ncwms.currents.startSingleDateAnimation();
 	}
+}
+
+/**
+ * This is the function used to start cesium. If particles have been showing
+ * it starts the particles for Cesium and if the animatinos are been playing
+ * then it stops them.  
+ * @param {type} wasEnabled
+ * @returns {undefined}
+ */
+function startCesium(wasEnabled){
+	_cesium.setEnabled(!wasEnabled);
+	cesiumParticles(wasEnabled);
+
+	if(!wasEnabled){ //In this case we are enabeling Cesium
+		owgis.layouts.draggable.topmenu.isUsed('.cesiumSpan');
+
+		if(netcdf){
+			//Disable end data
+			$("#animRes").hide();
+			$("#animDisp").hide();
+			$("#cal-end").hide();
+			$("#cal-end-title").hide();
+			// Hide all bellow resolution
+		}
+
+		if(owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none){
+			updateAnimationStatus(owgis.ncwms.animation.status.none);
+			owgis.error.popover.create(owgis.error.texts._ANIMCESIUM);
+		}
+	}else{
+		owgis.layouts.draggable.topmenu.isNotUsed('.cesiumSpan');
+		if(netcdf){
+			$("#animRes").show();
+			$("#animDisp").show();
+			$("#cal-end").show();
+			$("#cal-end-title").show();
+		}
+	}
+
+	owgis.interf.loadingallscreen(false);
 }
 
 /**
@@ -102,8 +140,6 @@ owgis.cesium.toogleCesium= function toogleCesium(){
 		}//Validate WebGL
 	}else{
 		var wasEnabled = _cesium.getEnabled();
-		_cesium.setEnabled(!wasEnabled);
-		cesiumParticles(wasEnabled);
-		owgis.interf.loadingallscreen(false);
+		startCesium(wasEnabled);
 	}
 }
