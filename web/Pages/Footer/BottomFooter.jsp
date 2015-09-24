@@ -24,6 +24,6 @@
 			 Center for Ocean-Atmospheric Prediction Studies
 			 &nbsp;
 		</p></a>
-	<a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
+	<a id="emailText" href="mailto:olmozavala@gmail.com"> <fmt:message key="main.contact" /></a>
 </div>
 
