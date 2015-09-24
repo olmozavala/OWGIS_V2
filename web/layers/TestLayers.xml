@@ -70,7 +70,7 @@
 			   EN="Wind speed at 10m"
 			   name="atm_forecast_latest/wind" 
 			   overlaystreamlines="atm_forecast_latest/wind" 
-				defParticleSpeed=".03"/>
+				defParticleSpeed=".05"/>
     </MainLayers> 
 
 	<!-- ncWMS all -->
