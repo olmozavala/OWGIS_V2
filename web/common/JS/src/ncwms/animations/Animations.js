@@ -315,11 +315,6 @@ function obtainSelectedDates(){
 			for(var i = 0; i < daysStr.length; i++){
 				currDate = new Date(daysStr[i]);//Get next day
 				reqTIME = owgis.utils.getDate("%Y-%m-%d",currDate,true);
-				currYear = currDate.getUTCFullYear();
-				currMonth = currDate.getUTCMonth();
-				currDay = currDate.getUTCDate();
-
-				var reqTIME = currYear+"-"+currMonth+"-"+currDay;
 
 				owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
 			}
