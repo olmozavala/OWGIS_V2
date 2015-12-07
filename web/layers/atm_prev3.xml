@@ -3,12 +3,12 @@
     <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true" >  
-		<layer Menu="prev3,atm,t2" EN="Air Temperature at 2m"
-			   ES="Temperatura a 2mts" name="atm_forecast_prev3/T2" />
 		<layer Menu="prev3,atm,wind" EN="Wind speed at 10m"
 			   ES="Velocidad de viento a 10m " name="atm_forecast_prev3/wind"  
 			   overlaystreamlines="atm_forecast_prev3/wind" 
 				defParticleSpeed=".03"/>
+		<layer Menu="prev3,atm,t2" EN="Air Temperature at 2m"
+			   ES="Temperatura a 2mts" name="atm_forecast_prev3/T2" />
 		<layer Menu="prev3,atm,psfc" EN="Surface Pressure"
 			   ES="Presion" name="atm_forecast_prev3/PSFC" />
 		<layer Menu="prev3,atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"

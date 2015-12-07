@@ -6,12 +6,13 @@
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
+		<layer Menu="prev2,ocn,barvel" EN="Vertically Integrated Currents"
+				ES="TODO" name="ocn_forecast_prev2/barotropic_sea_water_velocity" 
+			   overlaystreamlines="ocn_forecast_prev2/barotropic_sea_water_velocity" />
 		<layer Menu="prev2,ocn,bathy" EN="Bathymetry at RHO-Points"
 			   ES="Batimetria en puntos Rho" name="ocn_forecast_prev2/h"  />
 		<layer Menu="prev2,ocn,zeta" EN="Sea surface Height"
 			   ES="Temperatura superficial del mar" name="ocn_forecast_prev2/zeta"  />
-		<layer Menu="prev2,ocn,barvel" EN="Vertically Integrated Currents"
-				style="vector" ES="TODO" name="ocn_forecast_prev2/barotropic_sea_water_velocity"  />
 		<layer Menu="prev2,ocn,sustr" EN="Surface U-Momentum Stress"
 				ES="TODO" name="ocn_forecast_prev2/sustr"  />
 		<layer Menu="prev2,ocn,svstr" EN="Surface V-Momentum Stress"
@@ -36,12 +37,13 @@
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
+		<layer Menu="prev2,ocn,vel" EN="Currents"
+				ES="" name="ocn_forecast_prev2/sea_water_velocity"  
+			   overlaystreamlines="ocn_forecast_prev2/sea_water_velocity" />
 		<layer Menu="prev2,ocn,temp" EN="Gulf of Mexico Temperature"
 			   ES="Temperatura" name="ocn_forecast_prev2/temp"  />
 		<layer Menu="prev2,ocn,salt" EN="Gulf of Mexico salinity"
 			   ES="Salinidad" name="ocn_forecast_prev2/salt"  />
-		<layer Menu="prev2,ocn,vel" EN="Currents"
-				style="vector" ES="" name="ocn_forecast_prev2/sea_water_velocity"  />
 		<layer Menu="prev2,ocn,rho" EN="Water Density Anomaly"
 			   ES="Anomalia en la densidad del agua" name="ocn_forecast_prev2/rho"  />
 		<!--<layer Menu="prev2,ocn,tke" EN="Turbulent kinetic energy"

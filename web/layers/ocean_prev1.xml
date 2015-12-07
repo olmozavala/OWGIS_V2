@@ -6,46 +6,48 @@
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
-		<layer Menu="prev1,ocn,bathy" EN="Bathymetry at RHO-Points"
-			   ES="Batimetria en puntos Rho" name="ocn_forecast_prev1/h"  />
-		<layer Menu="prev1,ocn,zeta" EN="Sea surface Height"
-			   ES="Temperatura superficial del mar" name="ocn_forecast_prev1/zeta"  />
 		<layer Menu="prev1,ocn,barvel" EN="Vertically Integrated Currents"
-				style="vector" ES="TODO" name="ocn_forecast_prev1/barotropic_sea_water_velocity"  />
+				ES="TODO" name="ocn_forecast_prev2/barotropic_sea_water_velocity" 
+			   overlaystreamlines="ocn_forecast_prev2/barotropic_sea_water_velocity" />
+		<layer Menu="prev1,ocn,bathy" EN="Bathymetry at RHO-Points"
+			   ES="Batimetria en puntos Rho" name="ocn_forecast_prev2/h"  />
+		<layer Menu="prev1,ocn,zeta" EN="Sea surface Height"
+			   ES="Temperatura superficial del mar" name="ocn_forecast_prev2/zeta"  />
 		<layer Menu="prev1,ocn,sustr" EN="Surface U-Momentum Stress"
-				ES="TODO" name="ocn_forecast_prev1/sustr"  />
+				ES="TODO" name="ocn_forecast_prev2/sustr"  />
 		<layer Menu="prev1,ocn,svstr" EN="Surface V-Momentum Stress"
-				ES="TODO" name="ocn_forecast_prev1/svstr"  />
+				ES="TODO" name="ocn_forecast_prev2/svstr"  />
 		<layer Menu="prev1,ocn,rain" EN="Precipitacion"
-			   ES="Lluvia" name="ocn_forecast_prev1/rain"  />
+			   ES="Lluvia" name="ocn_forecast_prev2/rain"  />
 		<layer Menu="prev1,ocn,shflux" EN="Net Surface Heat Flux"
-			   ES="Flujo neto de calor en la superficie" name="ocn_forecast_prev1/shflux"  />
+			   ES="Flujo neto de calor en la superficie" name="ocn_forecast_prev2/shflux"  />
 		<layer Menu="prev1,ocn,swrad" EN="Solar Shortwave Radiation Flux"
-			   ES="Flujo de onda corta" name="ocn_forecast_prev1/swrad"  />
+			   ES="Flujo de onda corta" name="ocn_forecast_prev2/swrad"  />
 		<layer Menu="prev1,ocn,lwrad" EN="Net Longwave Radiation Flux"
-			   ES="Flujo neto de onda larga" name="ocn_forecast_prev1/lwrad"  />
+			   ES="Flujo neto de onda larga" name="ocn_forecast_prev2/lwrad"  />
 		<layer Menu="prev1,ocn,latent" EN="Latent"
-			   ES="lat" name="ocn_forecast_prev1/latent"  />
+			   ES="lat" name="ocn_forecast_prev2/latent"  />
 		<layer Menu="prev1,ocn,sensible" EN="Sensible"
-			   ES="lat" name="ocn_forecast_prev1/sensible"  />
+			   ES="lat" name="ocn_forecast_prev2/sensible"  />
 		<!--<layer Menu="prev1,ocn,evaporation" EN="Evaporation"
-			   ES="Evaporacion" name="ocn_forecast_prev1/evaporation"  /> -->
+			   ES="Evaporacion" name="ocn_forecast_prev2/evaporation"  /> -->
 	</MainLayers>
 
 	<!--3D Ocean layers-->
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				ncWMS="true"  proj="EPSG:4052" >  
-		<layer Menu="prev1,ocn,temp" EN="Gulf of Mexico Temperature"
-			   ES="Temperatura" name="ocn_forecast_prev1/temp"  />
-		<layer Menu="prev1,ocn,salt" EN="Gulf of Mexico salinity"
-			   ES="Salinidad" name="ocn_forecast_prev1/salt"  />
 		<layer Menu="prev1,ocn,vel" EN="Currents"
-				style="vector" ES="" name="ocn_forecast_prev1/sea_water_velocity"  />
+				ES="" name="ocn_forecast_prev2/sea_water_velocity"  
+			   overlaystreamlines="ocn_forecast_prev2/sea_water_velocity" />
+		<layer Menu="prev1,ocn,temp" EN="Gulf of Mexico Temperature"
+			   ES="Temperatura" name="ocn_forecast_prev2/temp"  />
+		<layer Menu="prev1,ocn,salt" EN="Gulf of Mexico salinity"
+			   ES="Salinidad" name="ocn_forecast_prev2/salt"  />
 		<layer Menu="prev1,ocn,rho" EN="Water Density Anomaly"
-			   ES="Anomalia en la densidad del agua" name="ocn_forecast_prev1/rho"  />
+			   ES="Anomalia en la densidad del agua" name="ocn_forecast_prev2/rho"  />
 		<!--<layer Menu="prev1,ocn,tke" EN="Turbulent kinetic energy"
-			   ES="TODO" name="ocn_forecast_prev1/tke"  />-->
+			   ES="TODO" name="ocn_forecast_prev2/tke"  />-->
 	</MainLayers>
 	
 </MenuConf>
