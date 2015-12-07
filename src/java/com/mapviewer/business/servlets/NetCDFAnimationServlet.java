@@ -65,6 +65,29 @@ public class NetCDFAnimationServlet extends HttpServlet {
 			JSONObject jsonStartDates = new JSONObject(NetCDFRequestManager.getLayerTimeStepsForAnimation(layer, firstDay, lastDay));
 			out.print(jsonStartDates.toString());
 	}
+	/**
+	 * available for the user selection). 
+	 * @param {httpServlet} request
+	 * @param {HttpServletResponse}response
+	 * @param {PrintWriter} out
+	 * @throws ServletException
+	 * @throws IOException
+	 * @throws JSONException 
+	 */
+	protected void getTimeSteps(HttpServletRequest request, HttpServletResponse response, PrintWriter out)
+			throws ServletException, IOException, JSONException, XMLFilesException {
+
+			String layerName = request.getParameter("layerName");
+			String currday = request.getParameter("day");
+
+			LayerMenuManagerSingleton layers = LayerMenuManagerSingleton.getInstance();
+			Layer layer = layers.getLayerByName(layerName);//Search current layer
+
+			//Retrieve all the times available on the first and last day of the
+			//selected range
+			JSONObject jsonStartDates = new JSONObject(NetCDFRequestManager.getLayerTimeSteps(layer, currday));
+			out.print(jsonStartDates.toString());
+	}
 
 	/**
 	 * This method makes the request of the animation. It builds
@@ -175,6 +198,9 @@ public class NetCDFAnimationServlet extends HttpServlet {
 					break;
 				case "getanimtimes":
 					getAnimationOptions(request, response, out);
+					break;
+				case "gettimesteps":
+					getTimeSteps(request, response, out);
 					break;
 			}
 		} catch (JSONException | XMLFilesException ex) {

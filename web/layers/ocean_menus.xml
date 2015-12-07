@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConf
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='file:/home/olmozavala/Dropbox/OWGISV1_Projects/OWGIS_Takis/web/layers/schema.xsd'>
+	<Menus>
+		<!-- 2D Menu entries -->
+		<Menu ID="ocn" EN="Ocean" ES="Oceano"/>
+		<Menu ID="zeta" EN="Sea Surface Height" ES="Altura Superficial"/>
+		<Menu ID="salt" EN="Salinity" ES="Salinidad"/>
+		<Menu ID="temp" EN="Temperature" ES="Temperatura"/>
+		<Menu ID="bathy" EN="Bathymetry" ES="Batimetria"/>
+		<Menu ID="vel" EN="Currents" ES="Corrientes"/>
+		<Menu ID="barvel" EN="Vertically Int. Currents" ES="Velocidad"/>
+		<Menu ID="sustr" EN="U-Momentum Stress" ES="U-Momentum Stress"/>
+		<Menu ID="svstr" EN="V-Momentum Stress" ES="V-Momentum Stress"/>
+		<Menu ID="rain" EN="Precipitation" ES="Precipitacion"/>
+		<Menu ID="shflux" EN="Net Heat Flux" ES="Flujo neto de calor"/>
+		<Menu ID="swrad" EN="Shortwave Radiation Flux" ES="Flujo de onda corta"/>
+		<Menu ID="lwrad" EN="Longwave Radiation Flux" ES="Flujo de onda larga"/>
+		<Menu ID="lonu" EN="Long-u" ES="lon-u"/>
+		<Menu ID="lonv" EN="Long-v" ES="lon-v"/>
+		<Menu ID="uvbar" EN="Vertically integrated" ES="Integrado vertical "/>
+		<Menu ID="latent" EN="Latent" ES="Lat"/>
+		<Menu ID="sensible" EN="Sensible" ES="Lat"/>
+		<Menu ID="evaporation" EN="Evaporation" ES="Evaporacion"/>
+		<Menu ID="rho" EN="Water Density anomaly" ES="Anomalia de Densidad"/>
+		<Menu ID="tke" EN="Kinetic energy" ES="TODO"/>
+		<Menu ID="u" EN="U-momentum" ES="Componente u"/>
+		<Menu ID="v" EN="V-momentvm" ES="Componente v"/>
+		<!-- 2D Menu entries -->
+	</Menus>
+
+</MenuConf>

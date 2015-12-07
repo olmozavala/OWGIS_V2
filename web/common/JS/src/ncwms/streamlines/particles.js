@@ -36,7 +36,7 @@ var mobileNavBarHeight = 40;
 // For Cesium
 var c_scene
 var cam_lon_deg;//Longitude of camera
-var cam_lat_deg;//Latitudeof camera
+var cam_lat_deg;//Latitude of camera
 var half_lon_domain; 
 var half_lat_domain;
 var long_domain;// Longitude domain used to fire random particles
@@ -125,7 +125,6 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
  * of the map and the limits of the layer.
  */
 function updateDomains(){
-//	console.log("Updating the domains....");
 	
 	limLonMin = Math.max(currentExtent[0], gridInfo.lo1);
 	limLatMin = Math.max(currentExtent[1], gridInfo.la1);
@@ -136,15 +135,27 @@ function updateDomains(){
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
 
-	// This one is only used in cesium 
-	if(lonDomainRand >= 180){//In this case we need to fire in all the globe
-		long_domain = 180;
-	}else{
-		long_domain = lonDomainRand/2;
+	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+		// This one is only used in cesium. It defines the radius
+		// of the random particles
+		if(lonDomainRand >= 180){//In this case we need to create particles in all the globe
+			long_domain = 180;
+			latg_domain= latDomainRand;
+		}else{
+			//Depending on the height of the camera we decide the max angle
+			// to generate random particles
+			var cam_rad = c_scene.camera.positionCartographic;
+			var cam_height = cam_rad.height;
+			var norm_cam_height = cam_height/7000000; 
+			var angle = 90*Math.atan(owgis.utilities.mathgeo.degtorad(45))*norm_cam_height;
+//			long_domain = Math.min(angle,lonDomainRand*.7);
+//			latg_domain=  Math.min(angle,latDomainRand*.7);
+			long_domain = Math.min(angle,70);
+			latg_domain=  Math.min(angle,70);
+		}
+		console.log("SIZE OF LAT RANDOM: "+latg_domain);
+		console.log("SIZE OF LON RANDOM: "+long_domain);
 	}
-	latg_domain= latDomainRand/2;
-	console.log("SIZE OF RANDOM: "+latg_domain);
-	console.log("SIZE OF RANDOM: "+long_domain);
 }
 
 owgis.ncwms.currents.particles.setGrid = function setGrid(grid, idx){
@@ -166,7 +177,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 
 	//This is used internally by OWGIS (leave the 5) if you want a faster speed
 	// modify the XML of the layer
-	var localParticleSpeed = 5*particleSpeed;
+	var localParticleSpeed = 2.5*particleSpeed;
 	var randomFunction;//Identifies which random function will be used 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		randomFunction = randomParticleDenseCenter;
@@ -343,7 +354,6 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 			ctx.lineTo(pixParticle[2], pixParticle[3]);
 		});
 	}
-	ctx.stroke();
 }
 
 /**
@@ -428,7 +438,7 @@ function randomParticle(){
 	var x = limLonMin + randVal*lonDomainRand;
 	var y = limLatMin + Math.random()*latDomainRand;
 	
-	var t = randVal*timeParticle;
+	var t = Math.random()*timeParticle;
 	
 	return [x,y,x,y,t];
 }

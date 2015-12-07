@@ -1,0 +1,43 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="d2" EN="2D" ES="2D"/>
+		<Menu ID="d3" EN="3D" ES="3D"/>
+		<Menu ID="atm" EN="Atmosphere" ES="Atmosfera"/>
+
+		<Menu ID="wind" EN="Wind Speed 10m" ES="Viento"/>
+		<Menu ID="psfc" EN="Surface Pressure" ES="Presion"/>
+		<Menu ID="t2" EN="Temp. at 2m" ES="Temp. a 2m"/>
+		<Menu ID="sst" EN="Sea Surface Temp" ES="Temperatura superfical"/>
+		<Menu ID="tsk" EN="Skin Temperature" ES="Temperatura borde"/>
+		<Menu ID="rainc" EN="Convective Precipitation" ES="Precipitacion"/>
+		<Menu ID="cld" EN="Cloud fraction" ES="Nubes"/>
+		<Menu ID="glw" EN="Downward Long Rad. Flux" ES="Down"/>
+		<Menu ID="swdown" EN="Downward Short Rad. Flux" ES="TODO"/>
+		<Menu ID="lh" EN="Latent Heat Flux" ES="Flujo de calor latente"/>
+		<Menu ID="hfx" EN="Sensible Heat Flux" ES="Flujo sensible de calor"/>
+		<Menu ID="pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"/>
+
+		<Menu ID="states" EN="US states" ES="Estados"/>
+		<Menu ID="shores" EN="Shore lines" ES="Linea de costa"/>
+
+		<Menu ID="latest" EN="Latest" ES="Actual"/>
+		<Menu ID="prev1" EN="Prev 1"/>
+		<Menu ID="prev2" EN="Prev 2"/>
+		<Menu ID="prev3" EN="Prev 3"/>
+		<Menu ID="prev4" EN="Prev 4"/>
+		<Menu ID="prev5" EN="Prev 5"/>
+	</Menus>
+
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+	
+	<!-- Optional layers -->
+	<OptionalLayers BBOX="-180, -59.487167, 180, 83.633389"
+				  server="http://ncwms.coaps.fsu.edu/geoserver/wms"
+				  vectorLayer="true"> 
+		<layer Menu="shores" name="comm:shorelines" selected="true"/>
+	</OptionalLayers>
+
+</MenuConf>

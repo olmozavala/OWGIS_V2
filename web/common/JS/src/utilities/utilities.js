@@ -1,4 +1,3 @@
-
 goog.provide('owgis.utils');
 
 /**
@@ -163,22 +162,10 @@ owgis.utils.pad = function(number) {
 	return (number < 10 ? '0' : '') + number;
 };
 
-/**
- * Gets the day on a specified format like:
- * format = %Y-m-d
- * @param formato - format of date. %Y for just year. 
- * @param fromDate - It is used rather than today
- * @return date string depeinding on format passed in. 
- */ 
-owgis.utils.getDate = function(formato, fromDate)
-{   
-	var usedDate = new Date();
-	if(fromDate !== null && fromDate !== undefined){
-		usedDate = fromDate;
-	}
-	var numDia = usedDate.getDate();
-	var numMes = usedDate.getMonth() + 1;
-	var anio = usedDate.getFullYear();       
+function getDate(day,month,year,format){
+
+	var numDays;
+	var numMonths;
 	var meses = new Array (
 		'',
 		'Enero', 
@@ -194,21 +181,56 @@ owgis.utils.getDate = function(formato, fromDate)
 		'Noviembre',
 		'Diciembre'
 		);
-	if (numDia < 10) {
-		numDiaS = '0' + numDia;
+	if (day < 10) {
+		numDays = '0' + day;
 	} else {
-		numDiaS = numDia;
+		numDays = day;
 	}
-	if (numMes < 10) {
-		numMesS = '0' + numMes;
+	if (month < 10) {
+		numMonths = '0' + month;
 	} else {
-		numMesS = numMes;
+		numMonths = month;
 	}   
-	formato = formato.replace(/%Y/, anio);
-	formato = formato.replace(/%d/, numDiaS);
-	formato = formato.replace(/%m/, numMesS);
-	formato = formato.replace(/%M/, meses[numMes]);
-	return formato;
+	format = format.replace(/%Y/, year);
+	format = format.replace(/%d/, numDays);
+	format = format.replace(/%m/, numMonths);
+	format = format.replace(/%M/, meses[month]);
+	return format;
+
+}
+/**
+ * Gets the day on a specified format like:
+ * format = %Y-m-d
+ * @param format - format of date. %Y for just year. 
+ * @param fromDate - It is used rather than today
+ * @param utc - Indicates if it should be returned as utc
+ * @return date string depeinding on format passed in. 
+ */ 
+owgis.utils.getDate = function(format, fromDate, utc)
+{   
+	var usedDate = new Date();
+	var day;
+	var month;
+	var year;
+
+	if(fromDate !== undefined){
+		usedDate = fromDate;
+	}
+
+	if(utc!== undefined){
+		if(utc){
+			year = usedDate.getUTCFullYear();       
+			day = usedDate.getUTCDate();
+			month = usedDate.getUTCMonth() + 1;
+		}
+	}else{
+		day = usedDate.getDate();
+		month = usedDate.getMonth() + 1;
+		year = usedDate.getFullYear();       
+	}
+	
+	return getDate(day,month,year,format);
+	
 };
 
 /**
@@ -230,17 +252,17 @@ owgis.utils.isNotUndefined = function(variable, name){
  * @returns {Number}
  */
 owgis.utils.days_between = function (date1, date2) {
-
+	
     // The number of milliseconds in one day
     var ONE_DAY = 1000 * 60 * 60 * 24;
-
+	
     // Convert both dates to milliseconds
     var date1_ms = date1.getTime();
     var date2_ms = date2.getTime();
-
+	
     // Calculate the difference in milliseconds
     var difference_ms = Math.abs(date1_ms - date2_ms);
-
+	
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY);
 }

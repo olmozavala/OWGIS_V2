@@ -1,0 +1,9 @@
+find . -name '*.xml' -exec sed -i "s/d2,//g" '{}' \;
+sudo find . -name '*.xml' -exec sed -i "s/prev1,/previous01,/g" '{}' \;
+sudo find . -name '*.xml' -exec sed -i "s/prev2,/previous02,/g" '{}' \;
+sudo find . -name '*.xml' -exec sed -i "s/prev3,/previous03,/g" '{}' \;
+sudo find . -name '*.xml' -exec sed -i "s/prev4,/previous04,/g" '{}' \;
+sudo find . -name '*.xml' -exec sed -i "s/prev5,/previous05,/g" '{}' \;
+
+
+sudo find . -name '*.xml' -exec sed -i "s/viewer\./ncwms\./g" '{}' \;

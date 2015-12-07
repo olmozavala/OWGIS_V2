@@ -11,9 +11,11 @@ goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
 
-var currentsColor = "rgba(255, 255, 255, .5)";
-var currentsDefColor = "rgba(255, 255, 255, .5)";
-var currAnimSpeed = 120;
+var currentsColor = "rgba(255, 255, 255, .6)";
+var currentsDefColor = "rgba(255, 255, 255, .6)";
+var currAnimSpeed = 80;
+var defLineWidth = 1.7;
+var defLineWidthCesium = 2.5;
 
 // This is the amount of data requested for every 800 pixels
 var imageRequestResolution = 300;
@@ -576,10 +578,21 @@ function loopAnimationCurrents(){
 		//Make previous ones transparent
 		var prev = ctx.globalCompositeOperation;
 		ctx.globalCompositeOperation = "destination-out";
-		ctx.fillStyle = "rgba(255, 255, 255, .2)";
+		ctx.fillStyle = "rgba(255, 255, 255, .1)";
 		ctx.fillRect(0, 0, canvas.width,canvas.height);
 		ctx.globalCompositeOperation = prev;
 		ctx.strokeStyle = currentsColor;
+		if(mobile){
+			if(_.isEmpty(_cesium) || !_cesium.getEnabled()){
+				//When Cesium is enabled
+				ctx.lineWidth = defLineWidthCesium;
+			}else{
+				//When not Cesium and mobile
+				ctx.lineWidth = defLineWidth;
+			}
+		}else{
+			ctx.lineWidth = defLineWidth;
+		}
 		
 		//Update particles positions
 		owgis.ncwms.currents.particles.updateParticles();

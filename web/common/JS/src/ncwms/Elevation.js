@@ -1,4 +1,5 @@
 goog.provide('owgis.ncwms.zaxis');
+goog.require('owgis.mobile');
 
 owgis.ncwms.zaxis.globcounter = 0; //index of layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]
 var zAxis_span_visible = false; // Indicates if the span of the 'elevations' is being displayed
@@ -200,6 +201,8 @@ function changeElev(value)
 		else
 			//getElementById('minusButtonElevation').disabled= false;
 			$(minusButtonElevation).show();
+	}else{
+		owgis.mobile.closePanels();
 	}
 	
     owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]);

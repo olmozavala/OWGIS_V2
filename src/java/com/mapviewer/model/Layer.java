@@ -279,6 +279,12 @@ public class Layer {
 			if(layerDetails.has("zaxis") ){
 				this.zaxis = true;
 			}
+			
+			/*
+			if(layerDetails.has("nearestTimeIso") ){
+				String closestDate = layerDetails.getString("nearestTimeIso");
+				layerDetails.accumulate("nearestTimeIso", closestDate);
+			}*/
 
 			//Testing for multiple dates inside the layer
 			if(layerDetails.has("datesWithData") ){

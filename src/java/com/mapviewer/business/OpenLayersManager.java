@@ -167,7 +167,8 @@ public class OpenLayersManager {
 		int layerCount = 0;
 		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
-				"\t\t if(mobile){owgis.mobile.closePanels();}\n" +
+				"\t\t if(mobile){owgis.mobile.closePanels();"
+				+ "\t\t\t owgis.interf.loadingatmap(true);}\n" +
 				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t\t $('#popup').hide();\n" +
@@ -246,7 +247,7 @@ public class OpenLayersManager {
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]+\"&" 
 			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
 					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"yy-mm-dd\")+\"&"
-					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
+					+ "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
 					+ "NETCDF=true&";
 		} else {

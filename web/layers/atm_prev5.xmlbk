@@ -1,0 +1,31 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- Atmosphere layers -->
+    <MainLayers BBOX="-123.828622,-2.459646,-58.255699,48.7692"
+				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+				ncWMS="true" >  
+		<layer Menu="prev5,atm,t2" EN="Air Temperature at 2m"
+			   ES="Temperatura a 2mts" name="atm_forecast_prev5/T2" />
+		<layer Menu="prev5,atm,wind" EN="Wind speed at 10m"
+			   ES="Velocidad de viento a 10m " name="atm_forecast_prev5/wind"  />
+		<layer Menu="prev5,atm,psfc" EN="Surface Pressure"
+			   ES="Presion" name="atm_forecast_prev5/PSFC" />
+		<layer Menu="prev5,atm,sst" EN="Sea Surface Temperature" ES="Temperatura superfical del mar"
+			   name="atm_forecast_prev5/SST" />
+		<layer Menu="prev5,atm,tsk" EN="Surface Skin Temperature" ES="Temperatura en la piel de la superficie"
+			   name="atm_forecast_prev5/TSK" />
+		<layer Menu="prev5,atm,rainc" EN="Convective Precipitacion" ES="Precipitacion"
+			   name="atm_forecast_prev5/RAINC" />
+		<layer Menu="prev5,atm,cld" EN="Cloud Fraction" ES="Nubes"
+			   name="atm_forecast_prev5/CLDFRA" />
+		<layer Menu="prev5,atm,glw" EN="Downward Longwave Radiation Flux" ES="TODO"
+			   name="atm_forecast_prev5/GLW" />
+		<layer Menu="prev5,atm,swdown" EN="Downward Shortwave Radiation Flux" ES="TODO"
+			   name="atm_forecast_prev5/SWDOWN" />
+		<layer Menu="prev5,atm,lh" EN="Net Latent Heat Flux" ES="Flujo de calor neto"
+			   name="atm_forecast_prev5/LH" />
+		<layer Menu="prev5,atm,hfx" EN="Net Sensible Heat Flux" ES="Flujo sensible de calor"
+			   name="atm_forecast_prev5/HFX" />
+		<layer Menu="prev5,atm,pblh" EN="Planetary Boundary Layer Height" ES="Capa limite de altura planetaria"
+			   name="atm_forecast_prev5/PBLH" />
+	</MainLayers>
+</MenuConf>

@@ -12,7 +12,8 @@
 <script src="./common/JS/vendor/minimized/ol.js"></script>
 
 <%@include file="ExternalJS.jsp" %>  
-		
+
+
 <!--Internal JS-->
 <!--Missing Closure library-->
 <script src="./common/JS/src/utilities/validation.js"> </script>
@@ -48,6 +49,11 @@
 <script src="./common/JS/src/ncwms/streamlines/particles.js"> </script>
 <script src="./common/JS/src/ncwms/streamlines/StreamlinesStyle.js"> </script>
 <script src="./common/JS/src/ncwms/streamlines/AnimationStreamlines.js"> </script>
+
+<!--this is the Desktop case-->
+<c:if test='${mobile}'>
+	<script src="./common/JS/src/mobile/Mobile.js"></script>
+</c:if>
 		
 <!--This require some libraries defined above-->
 <script src="./common/JS/src/features/Transparency.js"> </script>

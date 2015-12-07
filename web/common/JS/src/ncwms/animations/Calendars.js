@@ -10,10 +10,79 @@ var minValidDate; //earliest possible day in data range
 var maxValidDate; //last possible day in data range
 var calInitialized = false;//Indicates if the calendars have already been initialized
 var calendarPosLeft = null;//this is used for the program to remember the last calendar position if a layer makes it dissapear
+var severalTimes = false;//Indicates if there is more than one time in the current date.
+var currStartTime;
+var currEndTime;
 //this is becuase when you put a temporal data with one date the calendar disapears so it won't remeber the last
 //position becuase its none existen becuase its display(CSS) is none. So this variables records the position before it actually disapeared 
 //for rendering it into the next layer that does display the map. Other wise it will use the position of the disapeared display and will be an error. 
 var calendarPosTop = null;
+
+/**
+ * Iterates over the number of hours available for the currently selected date
+ * and adds the options into the corresponding select. 
+ * @param {type} hours
+ * @param {type} cal
+ * @returns {undefined}
+ */
+owgis.ncwms.calendars.updatehours = function(hours, cal){
+	var totHours = hours.timesteps.length;
+	var currSelect;
+	if(cal === owgis.constants.startcal){
+		currSelect = $("#startTimeCalendar");
+	}else{
+		currSelect = $("#endTimeCalendar");;
+	}
+
+	//If there are more than one time value, then we need to show the
+	// corresponding select, as well as filling the options.
+	if(totHours > 1){
+		severalTimes = true;//Indicates that we have more than one possible time
+		//Clear select
+		currSelect.find('option')
+					.remove()
+					.end()
+		
+		//Fill select
+		for(var i=0; i < totHours; i++){
+			var hour = hours.timesteps[i];
+			currSelect.append( $('<option>',{ 'value' : hour } ).text(hour.substring(0,hour.indexOf("."))));// Displaying UTC hour
+		}
+		//Show select
+		currSelect.parent().show();
+
+	}else{//If there is only one, then we 'hide' the selection.
+		severalTimes = false;//Indicates that we don't have more than one possible time
+		currSelect.parent().hide();
+	}
+
+	setCurrentTime(cal);
+	updateAnimationRange();
+}
+
+/**
+ * Updates the time range ("Next to display animation") asynchronously 
+ * @returns {undefined}
+ */
+function updateAnimationRange(){
+	//Updates the total number of frames in the time range 
+	var asString = true;
+	var inGMT = true;
+	var startDateTxt = getCurrentDate(asString, owgis.constants.startcal, inGMT);
+	var endDateTxt= getCurrentDate(asString, owgis.constants.endcal, inGMT);
+	if( !_.isUndefined(startDateTxt) && !_.isUndefined(endDateTxt) ){
+		dispAnimationAjax(startDateTxt, endDateTxt, mainLayer,"getAnimTimes");
+	}
+}
+
+owgis.ncwms.calendars.updateStartHour = function(){
+	updateMainLayerDate();
+	updateAnimationRange();
+}
+owgis.ncwms.calendars.updateEndHour = function(){
+	//For the moment we don't need to do anything.
+	updateAnimationRange();
+}
 
 /**
  *displays and hides the calendars
@@ -72,28 +141,42 @@ function initCalendars(){
 			}
 		}
 		
+		//Setting the time in local time
+		var minValidDateLocal = new Date(Date.UTC(minYear,minMonth, minDay));
+		var maxValidDateLocal = new Date(Date.UTC(maxYear,maxMonth, maxDay));
+
+//		console.log("--------- LOCAL ---------")
+//		console.log(minValidDateLocal +" --- " + maxValidDateLocal);
+
 		var minValidDate = new Date(minYear,minMonth, minDay);
 		var maxValidDate = new Date(maxYear,maxMonth, maxDay);
-        
+
+//		console.log("--------- UTC ---------")
+//		console.log(minValidDate +" --- " + maxValidDate);
+
+		var locCurrDate = new Date(minValidDate);
+
+		var reqTIME = owgis.utils.getDate("%Y-%m-%d",locCurrDate,true);
+		var hoursForFirstDay = new Array();
+
+		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
+
 		//We verify that we have more than one day
-		if( minValidDate < maxValidDate){
+		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
 			//I don't know why but for the selection the month needs to be increased by one
 			minMonth = minMonth + 1;
-			startDate = minYear + (minMonth < 10? '0' + minMonth: minMonth) + (minDay < 10? '0' + minDay: minDay);
 
-			var locCurrDate = new Date(minValidDate);
 			var datesWithNoData = new Array();
 			while(locCurrDate <= maxValidDate){
-				var currYear = locCurrDate.getUTCFullYear();
-				var currMonth = locCurrDate.getUTCMonth();
-				var currDay = locCurrDate.getUTCDate();
+				currYear = locCurrDate.getUTCFullYear();
+				currMonth = locCurrDate.getUTCMonth();
+				currDay = locCurrDate.getUTCDate();
 				//Be sure the day is available in the layers
 				if(!_.contains(datesWithData[currYear][currMonth],currDay)){
 					datesWithNoData.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate));
 				}
 				locCurrDate.setDate( locCurrDate.getDate() + 1);
 			}
-
 		
 			$("#cal-start").datepicker({
 				minDate: minValidDate,
@@ -128,32 +211,21 @@ function initCalendars(){
 				});
 			}
 
-/*
-			if(mobile){
-				$("#ui-datepicker-div").click( function(event) {
-					event.stopPropagation();
-				});
-			}
-			*/
-
-//			console.log("Min date: "+minValidDate);
-//			console.log("Max date: "+maxValidDate);
-			
-			startDate = getSuggestedDate(maxValidDate, false);
+			var startDate = new Date(layerDetails.nearestTimeIso);
 			$("#cal-start").datepicker("setDate",startDate);
 			$("#cal-end").datepicker("setDate",maxValidDate);
 			
-
 			displayCalendars(true);
 			
 			calInitialized = true;
 			_mainlayer_multipleDates= true;
-			updateCalendarOpts("startCal");
-		}
+			updateCalendarOpts(owgis.constants.startcal);
+			updateCalendarOpts(owgis.constants.endcal);
+		}//We have more than one day
 		else{//If we only have one day then we hide all the calendar options
 			_mainlayer_multipleDates= false;
 		}
-		
+
 	}
 	else{//If we only have one day then we hide all the calendar options
         _mainlayer_multipleDates= false;
@@ -164,7 +236,7 @@ function initCalendars(){
  * Function called when the end calendar gets updated
  */
 function updateCalendarEnd(){
-	updateCalendarOpts("endCal");
+	updateCalendarOpts(owgis.constants.endcal);
 }
 
 /**
@@ -172,7 +244,7 @@ function updateCalendarEnd(){
  */
 function updateCalendarStart(){
 	//alert(max_time_range);
-	updateCalendarOpts("startCal");
+	updateCalendarOpts(owgis.constants.startcal);
 	
 	// When updateing the 'current' layer by changing the start cal, we should
 	// close the popup
@@ -188,32 +260,35 @@ function updateCalendarOpts(calUpdated){
 	
 	//Only do it if the calendars have already beeing initialized
 	if(calInitialized){
+		// These dates are in local time
 		var startDateTxt = $("#cal-start").val();
 		var endDateTxt = $("#cal-end").val();
 		
-		var startDate = new Date(startDateTxt);
-		var endDate = new Date(endDateTxt);
+		var startDateDays = new Date(startDateTxt);
+		var endDateDays = new Date(endDateTxt);
 		
-		if(calUpdated ===  "startCal"){
-			updateMainLayerDate(startDateTxt);
+		if(calUpdated ===  owgis.constants.startcal){
+			dispAnimationAjax(startDateTxt, null, 
+						mainLayer,"getTimeSteps", owgis.constants.startcal);
 			
-			if(  endDate <=  startDate){
+			if(  endDateDays <=  startDateDays){
 				ahead = true;//Looking suggested time forward in time
-				endDate = getSuggestedDate(startDate,ahead);
-				$("#cal-end").datepicker("setDate",endDate);
+				endDateDays = getSuggestedDate(startDateDays,ahead);
+				$("#cal-end").datepicker("setDate",endDateDays);
 			}
 			
-		}else if(calUpdated ===  "endCal"){
-			if(  endDate <=  startDate ){
+		}else if(calUpdated ===  owgis.constants.endcal){
+
+			dispAnimationAjax(endDateTxt, null, 
+						mainLayer,"getTimeSteps", owgis.constants.endcal);
+
+			if(  endDateDays <=  startDateDays ){
 				ahead = false;// Suggested time backward in time
-				startDate = getSuggestedDate(endDate,ahead);
-				$("#cal-start").datepicker("setDate",startDate);
+				startDateDays = getSuggestedDate(endDateDays,ahead);
+				$("#cal-start").datepicker("setDate",startDateDays);
 			}
 		}
 		
-		startDateTxt = $("#cal-start").val();
-		endDateTxt = $("#cal-end").val();
-		dispAnimationAjax(startDateTxt, endDateTxt, mainLayer,"getAnimTimes");
 	}
 }
 
@@ -221,7 +296,7 @@ function updateCalendarOpts(calUpdated){
  * This function return the selected dates taking into account the user selection.
  * For example if the user has selected only to display weekly or monthly
  */
-function getUserSelectedTimeFrame(){
+owgis.ncwms.calendars.getUserSelectedTimeFrame = function (){
 	if( $('#timeSelect :selected').val() !== null ){
 		return $('#timeSelect :selected').val();
 	}else{
@@ -256,6 +331,7 @@ owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd
 	return owgis.constants.notimedim;
 	
 }
+
 /**
  * This function returns the suggested day from the layer properties.
  * It can give one week ahead or one month etc. It takes into account
@@ -301,9 +377,10 @@ function getSuggestedDate(actualDate,ahead){
  * Updates the current layer ant map title with the selected date 
  * @paramnewDate - selected date object passed in
  */ 
-function updateMainLayerDate(newDate){
+function updateMainLayerDate(){
 	
-    owgis.layers.updateMainLayerParam('TIME',newDate);
+    var currTime = getCurrentDate(false, owgis.constants.startcal, true);
+    owgis.layers.updateMainLayerParam('TIME', currTime.toISOString());
 	owgis.kml.updateTitleAndKmlLink();
 	
 	if(_mainlayer_streamlines){
@@ -333,4 +410,79 @@ function hideCalendarFunc() {
 	}
 }
 
+/**
+ * Updates the two global variables that control the selected
+ * time in the calendars. 
+ * @param {type} cal
+ * @returns {undefined}
+ */
+function setCurrentTime(cal){
 
+	var asString = false;
+	var inGMT = true;
+	switch(cal){
+		case owgis.constants.startcal:
+			currStartTime = getCurrentDate(asString, cal, inGMT);
+//			console.log("Setting start time to: " + currStartTime);
+			updateMainLayerDate();
+			break;
+		case owgis.constants.endcal:
+			currEndTime = getCurrentDate(asString, cal, inGMT);
+//			console.log("Setting end time to: " + currEndTime);
+			break;
+	}
+}
+
+function getCurrentDate(asString, cal, GMT){
+	var currDateStr;// Value from selected calendar
+	var currTimeStr;// Value from selected time select
+	var currCal; //Current calendar
+	var requestedDate; //The final requested date
+	switch(cal){
+		case owgis.constants.startcal:
+			//Get date from calendar
+			currDateStr = $("#cal-start").val();
+			currTimeStr = $("#startTimeCalendar option:selected").attr("value");
+			currCal = $("#cal-start");
+			
+			//Get hours from select and update date
+			if( !_.isUndefined(currTimeStr) ){
+				requestedDate = new Date(currCal.val()+"T"+currTimeStr);
+			}else{
+				requestedDate = new Date(currDateStr);
+			}
+			break;
+		case owgis.constants.endcal:
+			currDateStr = $("#cal-end").val();
+			currTimeStr = $("#endTimeCalendar option:selected").attr("value");
+			currCal = $("#cal-end");
+			
+			//Get hours from select and update date
+			if( !_.isUndefined(currTimeStr) ){
+				requestedDate = new Date(currCal.val()+"T"+currTimeStr);
+			}else{
+				requestedDate = new Date(currDateStr);
+			}
+			break;
+	}
+
+/*
+	if(GMT){
+		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 
+						requestedDate.getUTCDate(),  requestedDate.getUTCHours(), 
+						requestedDate.getUTCMinutes(), requestedDate.getUTCSeconds());
+						
+	}
+	*/
+	
+	if(asString){
+		return requestedDate.toISOString();
+	}else{
+		return requestedDate;
+	}
+}
+
+function localStringToUTCstring(localString){
+	var localDate = new Date(localString); 
+	return localDate.getUTCFullYear()+"-"+localDate.getUTCMonth()+"-"+localDate.getUTCDay();
+}

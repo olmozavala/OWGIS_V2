@@ -31,6 +31,7 @@ draggable windows -->
 
 <!-- This div displays the specific data of the dynamic maps-->
 <div id="jsonpdata" ></div>
+<canvas id="testWebGLCanvas"></canvas>
 	
 <!--Loading gif to display on the map -->
 <div id="l-animation" class="menuHidden">
