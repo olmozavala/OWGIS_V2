@@ -10,6 +10,8 @@
 goog.provide('owgis.ajax');
 
 goog.require('owgis.ogc');
+goog.require('owgis.constants');
+goog.require('owgis.calendars');
 
 /**
  * This function is used to call a url without the crossorigin problems.
@@ -38,8 +40,9 @@ owgis.ajax.crossorigin = function(url, callback){
  *@param {js_var} endDate - end date of calendar
  *@param {js_var} layerName - the layername of the animation
  *@param {js_var} req - (request)displayanimation or getanimation times
+ *@param {js_var} cal - (request) The calendar to update (start or end)
  */
-function dispAnimationAjax(startDate, endDate, layerName, req) {
+function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
 	var asynchronous5 = new Asynchronous();
 
 	var currUrl = window.location.href;//get server location
@@ -57,12 +60,40 @@ function dispAnimationAjax(startDate, endDate, layerName, req) {
             url3 += '&endDate=' + endDate;
             asynchronous5.complete = asyncFillAnimationSelect;
             asynchronous5.call(url3);
-
-            break;
+        case "getTimeSteps":
+            url3 += '&day=' + startDate;
+			switch (cal) {
+				case owgis.constants.startcal:
+					asynchronous5.complete = asyncFillTimeStepsStart;
+					break;
+				case owgis.constants.endcal:
+					asynchronous5.complete = asyncFillTimeStepsEnd;
+					break;
+			}
+			asynchronous5.call(url3);
     }
 
     finishedLoading = false;
 }
+
+/*
+ * Receives the number of time steps for the start date of the calendar
+ * @param {type} responseText
+ * @returns {undefined}
+ */
+function asyncFillTimeStepsStart(responseText){
+	owgis.ncwms.calendars.updatehours(jQuery.parseJSON( responseText ), owgis.constants.startcal) ;
+}
+
+/*
+ * Receives the number of time steps for the end date of the calendar
+ * @param {type} responseText
+ * @returns {undefined}
+ */
+function asyncFillTimeStepsEnd(responseText){
+	owgis.ncwms.calendars.updatehours(jQuery.parseJSON( responseText ), owgis.constants.endcal) ;
+}
+
 
 /**
  *This function generates the properties needed to request the data of the base layer the user is 
@@ -199,52 +230,34 @@ function updateKmzLink(responseText) {
  */
 function asyncFillAnimationSelect(responseText) {
 
-    var animOpts = eval('(' + responseText + ')');
+    var animOpts = jQuery.parseJSON(responseText);
 
     $('#timeSelect').find('option').remove().end();
-    //Obtain the values for Full and daily, if they are equal
-    // then assign to daily the same string as full.
-    // Trying to avoid the long URL. TODO we need to find a better
-    // solution to the problem, it may involve modifying the ncWMS server. 
-    totDaily = 0;
-    totFull = 0;
-    tempfullStr = '';
-    fullStr = '';
 
+	//Get the total number of frames in "Full" 
+	
     for (var key in animOpts.timeStrings) {
-        title = animOpts.timeStrings[key].title;
-        fullStr = animOpts.timeStrings[key].timeString;
+        var title = animOpts.timeStrings[key].title;
+        var fullStr = animOpts.timeStrings[key].timeString;
 
-        if (title.indexOf("Full") != -1) {//Verifies it is the 'Full' option
-            tempfullStr = title.match(/[0-9]+/);//Obtain only the number of frames
-            totFull = parseInt(tempfullStr);//Parse them as int
-            break;
-        }
+		var tempNum= title.match(/[0-9]+/);//Obtain only the number of frames
+		var totNum = parseInt(tempNum);//Parse them as int
+
+		// We need to initialize the days for the 'full' case
+		if( key === "0"){ 
+			// If we have more than one day, then we copy the days from the 'daily' option
+			if( animOpts.timeStrings.length > 1){
+				fullStr = animOpts.timeStrings[1].timeString;//Force daily options
+			}else{//If not, it means we are only looking at one day
+				var tempStr = animOpts.timeStrings[0].timeString;//Force daily options
+				fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
+
+			}
+		}
+
+        $('#timeSelect').append( $('<option>', 
+			{'totFrames': totNum, 'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
     }
-
-    for (var key in animOpts.timeStrings) {
-        timeStr = animOpts.timeStrings[key].timeString;
-        title = animOpts.timeStrings[key].title;
-
-
-        optNew = document.createElement('option');
-        optNew.text = title;
-        optNew.value = timeStr;
-
-        //By default we select Daily if exists
-        if (title.indexOf("Daily") != -1) {
-            optNew.selected = true;
-
-            //Verify which string to use for daily
-            dailyStr = title.match(/[0-9]+/);
-            //If the size of daily and Full are the same, then use the Full one
-            if (totFull == parseInt(dailyStr)) {
-                optNew.value = fullStr;
-            }
-        }
-        $('#timeSelect').append(optNew); // standards compliant; doesn't work in IE
-    }
-
 }
 
 

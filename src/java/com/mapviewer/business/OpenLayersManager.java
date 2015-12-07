@@ -247,7 +247,7 @@ public class OpenLayersManager {
 //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]+\"&" 
 			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
 					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"yy-mm-dd\")+\"&"
-					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
+					+ "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
 					+ "NETCDF=true&";
 		} else {

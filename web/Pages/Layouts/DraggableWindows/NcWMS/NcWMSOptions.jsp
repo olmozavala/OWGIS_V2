@@ -25,6 +25,18 @@
 		<div class="col-xs-6 " id="cal-start"> </div>
 		<div class="col-xs-6 " id="cal-end"> </div>
 	</div>
+	<div class="row">
+		<div class="col-xs-6 " style="text-align: center">
+			<select class="form-control input-sm" id="startTimeCalendar" name="startTimeCalendar" 
+					onchange="owgis.ncwms.calendars.updateStartHour()">
+			</select>
+		</div>
+		<div class="col-xs-6 " style="text-align: center">
+			<select class="form-control input-sm" id="endTimeCalendar" name="endTimeCalendar" 
+					onchange="owgis.ncwms.calendars.updateEndHour()">
+			</select>
+		</div>
+	</div>
 	<div class="row " id="animRes">
 		<div class="col-xs-6 col-xs-offset-3 invShadow text-center ">
 			<fmt:message key='ncwms.resolution'/>:

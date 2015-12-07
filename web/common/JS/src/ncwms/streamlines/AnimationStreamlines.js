@@ -13,7 +13,9 @@ owgis.ncwms.currents.grids = new Array();
 
 var currentsColor = "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
-var currAnimSpeed = 120;
+var currAnimSpeed = 80;
+var defLineWidth = 1.7;
+var defLineWidthCesium = 2.5;
 
 // This is the amount of data requested for every 800 pixels
 var imageRequestResolution = 300;
@@ -582,12 +584,14 @@ function loopAnimationCurrents(){
 		ctx.strokeStyle = currentsColor;
 		if(mobile){
 			if(_.isEmpty(_cesium) || !_cesium.getEnabled()){
-				ctx.lineWidth = 2.5;
+				//When Cesium is enabled
+				ctx.lineWidth = defLineWidthCesium;
 			}else{
-				ctx.lineWidth = 1.2;
+				//When not Cesium and mobile
+				ctx.lineWidth = defLineWidth;
 			}
 		}else{
-			ctx.lineWidth = 1.2;
+			ctx.lineWidth = defLineWidth;
 		}
 		
 		//Update particles positions

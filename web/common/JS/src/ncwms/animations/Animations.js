@@ -290,54 +290,42 @@ function updateAnimationStatus(newStatus){
  */
 function obtainSelectedDates(){
 	
-	if(getUserSelectedTimeFrame().indexOf("/") === -1){
-		allFrames = getUserSelectedTimeFrame().split(",");
-	}else{
-		//In this case the user has selected full
-		// we haven't find a proper way to find all the requests when is full.
-		// We obtain the number of frames, divided by the number of days and assume
-		// the hours all start at 0. Example. Full frames are 24, and is one day, then 
-		// we assume there is one frame each hour, from hr 0 to 23
-		allFrames = new Array();
-		totalNumOfFrames = 0;
-		
-		var startDate = new Date($("#cal-start").val());
-		var endDate = new Date($("#cal-end").val());
-		
-		var totalFramesTxt = $("#timeSelect :selected").text();
-		var firstIndx = totalFramesTxt.indexOf("(");
-		totalFramesTxt = totalFramesTxt.substr(firstIndx,totalFramesTxt.length);
-		var secondIndx = totalFramesTxt.indexOf(" ");
-		totalFramesTxt = totalFramesTxt.substr(1,secondIndx);
-		
-		var hrsIncrement = 24;
-		try{
-			var totFrames = parseInt(totalFramesTxt);
-			var totDays = owgis.utils.days_between(startDate,endDate);
-			var hrsPerDay = (totFrames - 1)/totDays;
-			hrsIncrement = 24/hrsPerDay;
-		}catch(e){
-			
-		}
-		
-		var currYear, currMonth, currDay;
-		currDate= startDate;
-		
-		while(currDate <= endDate){
-			currYear = currDate.getUTCFullYear();
-			currMonth = currDate.getUTCMonth();
-			currDay = currDate.getUTCDate();
-			//Be sure the day is available in the layers
-			if(_.contains(layerDetails.datesWithData[currYear][currMonth],currDay)){
-				for(var hr = 0; hr < hrsPerDay; hr++){
-					allFrames.push(currYear+"-"+(currMonth+1)+"-"+currDay+"T"+hr*hrsIncrement+":00:00.000Z");
-				}
+	//Reads all the days selected
+	allFrames =  $('#timeSelect :selected').attr('timestring').split(",");
+	var key =  $('#timeSelect :selected').attr('key');
+	totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
+
+	if(key === "0"){//It means we are requesting the 'full' dimension
+		//Total number of frames in 'full' mode
+		//Total number of frames in 'daily' mode
+		var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames'));
+		totFramesDaily = _.isNaN(totFramesDaily)? 0:totFramesDaily;
+
+		if(totalNumOfFrames > totFramesDaily){
+			// In this case we have more than one data per day
+			// We need to request the hours for each day
+
+			var daysStr = new Array();
+			daysStr = allFrames;
+			allFrames = new Array();
+
+			var currYear;
+			var currMonth;
+			var currDay;
+			var currDate;
+
+			for(var i = 0; i < daysStr.length; i++){
+				currDate = new Date(daysStr[i]);//Get next day
+				currYear = currDate.getUTCFullYear();
+				currMonth = currDate.getUTCMonth();
+				currDay = currDate.getUTCDate();
+
+				var reqTIME = currYear+"-"+currMonth+"-"+currDay;
+
+				owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
 			}
-			currDate.setDate( currDate.getDate() + 1);
 		}
 	}
-	
-	totalNumOfFrames = allFrames.length;
 }
 
 /**
@@ -380,13 +368,13 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 		source: animSource});
 	
 	// On the mobile interface we can't download from a link
-//	if(!mobile){
-		//Creates a link to download the animation as kml for google earth
-		// Copies original link from start date
-		$("#animSaveAsKml").attr("href",$("#kmlLink").attr("href"));
-		// Replaces time with whole the times being displayed
-		owgis.utils.replaceGetParamInLink("#animSaveAsKml", "TIME", allFrames.join(","));
-//	}
+	//	if(!mobile){
+	//Creates a link to download the animation as kml for google earth
+	// Copies original link from start date
+	$("#animSaveAsKml").attr("href",$("#kmlLink").attr("href"));
+	// Replaces time with whole the times being displayed
+	owgis.utils.replaceGetParamInLink("#animSaveAsKml", "TIME", allFrames.join(","));
+	//	}
 	
 	currentFrame = 0; //Set to use the first frame
 	//	map.addLayer(animLayer);
@@ -662,8 +650,8 @@ function loopAnimation(){
 	
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-	finalText = finalText.replace(":00:00.000Z",'');
-	finalText = finalText.replace("T",' Hr ');
+	finalText = finalText.substring(0,finalText.lastIndexOf("."));
+	finalText = finalText.replace("T",' ');
 	
 	$("#animDate").text(finalText);
 	

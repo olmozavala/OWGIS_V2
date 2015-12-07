@@ -25,14 +25,22 @@
 		<Menu ID="test" EN="Testing" />
 	</Menus>
 
-	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
+	<!--<BackgroundLayers BBOX="-180,90,-90,180"  proj=""
+  server="http://svs.gsfc.nasa.gov/cgi-bin/wms">
+		<layer name="3185_21913" /> 
+	</BackgroundLayers>-->
+	<!--<BackgroundLayers BBOX="-180,90,-90,180"
+  server="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv">
+		<layer name="GEBCO_LATEST" /> 
+	</BackgroundLayers>--> 
+	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
 
 	<!-- Optional layers -->
 	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
-				  server="http://132.248.8.238:8080/geoserver/wms"
-				  vectorLayer="true"> 
+					server="http://132.248.8.238:8080/geoserver/wms"
+					vectorLayer="true"> 
 		<!--<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>-->
 		<layer Menu="lev1,states" name="demo:us_states" EN="US States" ES="Estados US"  />
 		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
@@ -41,48 +49,40 @@
 
 
 	<!-- ncWMS all -->
-    <MainLayers BBOX="-180,-90,180,90" 
+	<MainLayers BBOX="-180,-90,180,90" 
 				format="image/gif"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
-                ncWMS="true" max_time_range="month">  
+				ncWMS="true" max_time_range="month">  
 
-		<!-- 
-        <layer Menu="test" 
-			 server="http://localhost:8080/ncWMS_2015/wms"
-			   EN="TESTING"
-			   name="globalwind/air_velocity" 
-				defParticleSpeed=".07"
-			   overlaystreamlines="globalwind/air_velocity" />-->
-
-		 <!--server="http://localhost:8080/ncWMS/wms"-->
-        <layer Menu="ncwms,worldTempCurrents" 
+		<!--server="http://localhost:8080/ncWMS/wms"-->
+		<layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
 			   name="global_ts_2015/water_temp" 
-				defParticleSpeed=".9"
+			   defParticleSpeed=".9"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
-        <layer Menu="ncwms,worldCurrents" 
+		<layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"
 			   name="global_uv_2015/sea_water_velocity" 
-				defParticleSpeed=".9"
+			   defParticleSpeed=".9"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
-        <layer Menu="ncwms,localwinds" 
+		<layer Menu="ncwms,localwinds" 
 			   EN="Wind speed at 10m"
 			   name="atm_forecast_latest/wind" 
 			   overlaystreamlines="atm_forecast_latest/wind" 
-				defParticleSpeed=".05"/>
-    </MainLayers> 
+			   defParticleSpeed=".03"/>
+	</MainLayers> 
 
 	<!-- ncWMS all -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS/wms"
-                ncWMS="true" max_time_range="month">  
-        <layer Menu="ncwms,ncwmsMultDateMultDepthCurr" EN="Gulf of Mexico Temperature 2014 and currents"
-               ES="Golfo de M&#233;xico Temperatura 2014 y corrientes" 
+				ncWMS="true" max_time_range="month">  
+		<layer Menu="ncwms,ncwmsMultDateMultDepthCurr" EN="Gulf of Mexico Temperature 2014 and currents"
+			   ES="Golfo de M&#233;xico Temperatura 2014 y corrientes" 
 			   name="gulf_temp/temperature" 
 			   overlaystreamlines="gulf_vel/sea_water_velocity"
-               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
-    </MainLayers> 
+			   HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+	</MainLayers> 
 
 	<!-- Vector layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
@@ -147,14 +147,25 @@
 	</MainLayers>
 
 	<!-- ncWMS all -->
-    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS/wms"
-                ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
-        <layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
-               ES="Golfo de M&#233;xico Temperatura 2014" 
+				ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+		<layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
+			   ES="Golfo de M&#233;xico Temperatura 2014" 
 			   name="gulf_temp/temperature" 
-               HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+			   HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
 
-    </MainLayers> 
+	</MainLayers> 
+
+	<!-- Delete 
+	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  server="http://146.201.212.175:8080/ncWMS_2015/wms" ncWMS="true" >  
+		<layer Menu="test"  EN="DEL" name="zizu/viento" />
+	</MainLayers> 
+	-->
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" format="image/png" 
+				server="http://ncwms.coaps.fsu.edu/ncWMS/wms" tiled="true" ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">
+		<layer Menu="test" EN="TEST" ES="TEST" name="hycom2015/temperature"/>
+	</MainLayers>
+
 
 </MenuConf>
