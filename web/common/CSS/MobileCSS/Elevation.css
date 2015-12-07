@@ -1,0 +1,84 @@
+/*
+Styles for the elevation options. 
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : Olmo Zavala-Romero
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala-Romero
+*/
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
+/* Defines the position of the draggable window that
+selects the zaxis value*/
+/* line 14, ../../scss/MobileCSS/Elevation.scss */
+#zaxis_selector_parent {
+  min-width: 100px;
+  top: 45px;
+  left: 40%;
+  display: none;
+}
+
+/* line 21, ../../scss/MobileCSS/Elevation.scss */
+.linkElevPageDef {
+  font-size: 16px;
+  color: #F9FFCB;
+}
+
+/* line 25, ../../scss/MobileCSS/Elevation.scss */
+.linkElevPageSelected {
+  font-size: 16px;
+  color: #BBA364;
+}
+
+/* line 31, ../../scss/MobileCSS/Elevation.scss */
+#plusButtonElevation {
+  display: none;
+}
+
+/* line 33, ../../scss/MobileCSS/Elevation.scss */
+#elevationText {
+  padding: 3px 10px;
+}

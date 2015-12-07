@@ -2,6 +2,7 @@ goog.provide('owgis.kml');
 
 goog.require('owgis.utils');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.ncwms.zaxis');
 /**
  * Updates the time, elevation and CQL filter of the kml link
  * @param newDate - updated date
@@ -44,7 +45,7 @@ owgis.kml.updateTitleAndKmlLink = function() {
         //Building elevation text.
         if (layerDetails.zaxis !== undefined)
         {
-            currElevation = layerDetails.zaxis.values[elev_glob_counter];
+            currElevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
             units = layerDetails.zaxis.units;
             currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
         }

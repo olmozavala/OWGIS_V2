@@ -241,7 +241,7 @@ function initstreamlineLayerCesium(){
 	c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);
 
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
-	updateCurrentsCesium(event);
+	updateCurrentsCesium();
 
 	//When the left mouse click has been released (UP)
 	c_handler.setInputAction(function(event) {
@@ -272,89 +272,6 @@ function initstreamlineLayerCesium(){
 	
 }
 
-owgis.ncwms.currents.init = function(){
-	owgis.transparency.changeTransp(0);
-	var canvas = d3.select("body").append("canvas")
-			.attr('id','testing')
-			.attr('width',$(window).width())
-			.attr('height',$(window).height());
-
-	canvas.style('position','absolute')
-			.style('top','0px')
-			.style('left','0px')
-			.style('z-index','1000')
-			.style('pointer-events','none')
-			.style('background-color','rgba(1,0,1,.5)');
-
-}
-
-function del(particle, cesiumNavBarHeight){
-	// Particles values go from -180 to 180 and -90 to 90
-	if(_.isEmpty(cesium_scene)){
-		cesium_scene = _cesium.getCesiumScene();
-	}
-	var cart3Pos = Cesium.Cartesian3.fromRadians(particle[0], particle[1])
-	//TODO fix this hardcoded number, we need to know when the particle is visible
-	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(cesium_scene,
-			cart3Pos);
-	var x = position.x;
-	var y = position.y;
-		return [x,y+cesiumNavBarHeight];
-}
-
-owgis.ncwms.currents.test = function(){
-
-	c_scene = _cesium.getCesiumScene();
-
-	var cam_rad = c_scene.camera.positionCartographic;
-
-	var cam_lon = cam_rad.longitude;
-	var cam_lat = cam_rad.latitude;
-
-	var par = del([cam_lon, cam_lat], 0);
-	// Get the cross product
-
-	// Get vector corresponding to location
-	var X = owgis.utilities.mathgeo.spheretocart(cam_lon,cam_lat);
-	// Get cross product
-	var A = owgis.utilities.mathgeo.cross(X, [0,1,0]);
-	var C = owgis.utilities.mathgeo.flipVect(A);
-	var B = owgis.utilities.mathgeo.cross(C,X);
-	var D = owgis.utilities.mathgeo.flipVect(B);
-	console.log(X);
-	console.log("A red: ", A);
-	console.log("B white: ", B);
-	console.log("C yellow: ", C);
-	console.log("D cyan: ", D);
-
-	// Move to lat lon
-	var A_sphe = owgis.utilities.mathgeo.carttosphere(A[0],A[1],A[2]);
-	var C_sphe = owgis.utilities.mathgeo.carttosphere(C[0],C[1],C[2]);
-	var B_sphe = owgis.utilities.mathgeo.carttosphere(B[0],B[1],B[2]);
-	var D_sphe = owgis.utilities.mathgeo.carttosphere(D[0],D[1],D[2]);
-	console.log("-----------------------");
-	console.log("Cam : ", [cam_lon, cam_lat]);
-	console.log("A red: "	, owgis.utilities.mathgeo.radtodeg(A_sphe));
-	console.log("B white: "	, owgis.utilities.mathgeo.radtodeg(B_sphe));
-	console.log("C yellow: ", owgis.utilities.mathgeo.radtodeg(C_sphe));
-	console.log("D cyan: "	, owgis.utilities.mathgeo.radtodeg(D_sphe));
-
-	var canvas = d3.select("#testing");
-	ctx = canvas.node().getContext('2d');
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	ctx.fillStyle = "green";
-	ctx.fillRect(par[0], par[1], 10, 10);
-
-	ctx.fillStyle = "red";
-	var temp_pos = del(A_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
-	ctx.fillStyle = "yellow";
-	temp_pos = del(C_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
-	ctx.fillStyle = "cyan";
-	temp_pos = del(D_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
-	ctx.fillStyle = "white";
-	temp_pos = del(B_sphe, 0); ctx.fillRect(temp_pos[0], temp_pos[1], 10, 10);
-}
-
 /**
  * This function is in charge of updating the extents in Cesium 
  * @param {type} event
@@ -369,33 +286,49 @@ function updateCurrentsCesium(event){
 		longitude:cam_rad.longitude*180/Math.PI,
 		latitude:cam_rad.latitude*180/Math.PI};
 
-	console.log("Camera pos: "+ cam_rad );
-
+	//This is the hight were the user see at most 70 degrees from each direction
 	var def_max_angle = 70;
-	var hight_for_max_angle = 9000000;
-	var view_angle_lat = Math.min(def_max_angle,def_max_angle*cam_rad.height/hight_for_max_angle);
-	var inc_angle_by = Math.abs(c_center.latitude)*c_x + c_y;
-	var view_angle_lon;
-	if(inc_angle_by > 1){
-		view_angle_lon = Math.min(180, Math.max(1,inc_angle_by)*(def_max_angle*cam_rad.height/hight_for_max_angle));
+	var hight_for_max_angle = 8000000; 
+
+	//The proportion of the window affects how much the user can sees but
+	// it also should take into account how far are we
+
+	var win_prop = canvas.width/canvas.height;
+	var view_angle_lat = Math.min(def_max_angle,def_max_angle*cam_rad.height/(hight_for_max_angle*Math.max(1,win_prop)));
+	var view_angle_lon = Math.min(def_max_angle,def_max_angle*cam_rad.height*Math.min(1,win_prop)/hight_for_max_angle);
+
+
+	//In this case we have to load all the space in the longitude
+	// The 20 degrees indicates when we start requesting the whole 180
+	// degrees, in this case if the camera is above view_angle_lat - 20
+	if( (Math.abs(c_center.latitude) + view_angle_lat - 20) > 90){
+//		console.log("Max lat: " + (Math.abs(c_center.latitude) + view_angle_lat + 10));
+		currentExtent = [c_center.longitude-180,
+						Math.max(-90, c_center.latitude-view_angle_lat),
+						c_center.longitude+180,
+						Math.min(90, c_center.latitude+view_angle_lat)];
 	}else{
-		view_angle_lon = Math.min(def_max_angle, def_max_angle*cam_rad.height/hight_for_max_angle);
+		currentExtent = [ c_center.longitude-view_angle_lon,
+						c_center.latitude-view_angle_lat,
+						c_center.longitude+view_angle_lon,
+						c_center.latitude+view_angle_lat];
 	}
-	currentExtent = [c_center.longitude-view_angle_lon,
-					c_center.latitude-view_angle_lat,
-					c_center.longitude+view_angle_lon,
-					c_center.latitude+view_angle_lat];
 
 /*
-	console.log(inc_angle_by);
-	console.log(view_angle_lat);
-	console.log(view_angle_lon);
-	console.log(currentExtent);
+	console.log(cam_rad.height);
+	console.log("****************************************************************");
+	console.log("Hight: " + cam_rad.height/hight_for_max_angle);
+	console.log("Win prop:" + win_prop);
+	console.log("Angle lat: " + view_angle_lat);
+	console.log("Angle lon: " + view_angle_lon);
+	console.log("Camera center: (" + c_center.latitude + "," + c_center.longitude + ")");
+	console.log("Computed extent: " + currentExtent);
 	*/
 
 	if(!isRunningUnderMainAnimation){
 		if(updateURL()){
 			//Trying to match the resolution obtained with the non-cesium version.
+			// This is just to modify the the speed of the particles when zooming in/out
 			var resolution = cam_rad.height/200000000;
 			console.log("Computes res: "+resolution);
 			owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
@@ -598,7 +531,7 @@ function updateURL(){
 		
 		// Updating current zaxis
 		if( !_.isEmpty(layerDetails.zaxis)){
-			var elev = layerDetails.zaxis.values[elev_glob_counter];
+			var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 			layerTemplate.set("elevation",elev);	
 		}else{
 			layerTemplate.set("elevation",null);	
