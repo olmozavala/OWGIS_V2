@@ -309,13 +309,12 @@ function obtainSelectedDates(){
 			daysStr = allFrames;
 			allFrames = new Array();
 
-			var currYear;
-			var currMonth;
-			var currDay;
 			var currDate;
+			var reqTIME;
 
 			for(var i = 0; i < daysStr.length; i++){
 				currDate = new Date(daysStr[i]);//Get next day
+				reqTIME = owgis.utils.getDate("%Y-%m-%d",currDate,true);
 				currYear = currDate.getUTCFullYear();
 				currMonth = currDate.getUTCMonth();
 				currDay = currDate.getUTCDate();
