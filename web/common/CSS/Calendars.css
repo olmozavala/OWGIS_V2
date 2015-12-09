@@ -54,11 +54,11 @@
 #l-animation {
   position: absolute;
   margin: auto;
-  top: 30%;
+  top: 20%;
   left: 40%;
   z-index: 1009;
   pointer-events: none;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* Calendars container */
@@ -74,7 +74,7 @@
   /*width: $containerSize/2 - 20;*/
 }
 
-/* line 37, ../scss/Calendars.scss */
+/* line 36, ../scss/Calendars.scss */
 .ui-widget {
   /*font-size: $f_tiny;*/
 }

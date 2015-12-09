@@ -2,6 +2,7 @@ goog.provide('owgis.kml');
 
 goog.require('owgis.utils');
 goog.require('owgis.ncwms.animation');
+goog.require('owgis.ncwms.zaxis');
 /**
  * Updates the time, elevation and CQL filter of the kml link
  * @param newDate - updated date
@@ -35,27 +36,24 @@ owgis.kml.KMZDownAlert = function() {
 owgis.kml.updateTitleAndKmlLink = function() {
     if (netcdf) {
 		
-        dateForCal = '';
-        dateText = '';
+        var dateText = '';
 		
-        currElevation = '';
-        currElevationTxt = '';
+        var currElevation = '';
+        var currElevationTxt = '';
 		
         //Building elevation text.
         if (layerDetails.zaxis !== undefined)
         {
-            currElevation = layerDetails.zaxis.values[elev_glob_counter];
-            units = layerDetails.zaxis.units;
+            currElevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
+            var units = layerDetails.zaxis.units;
             currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
         }
+
+		var dateText =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
 		
-        if (typeof calStart !== 'undefined') {
-            locstartSel = calStart.selection.get();
-            locstartDate = Calendar.intToDate(locstartSel);
-            dateText = Calendar.printDate(locstartDate, '%d-%B-%Y');
-            dateForCal = Calendar.printDate(locstartDate, '%Y-%m-%d');
-        }
-        owgis.kml.updateKmlLink(dateForCal, currElevation, '');
-        updateTitle(dateText, currElevationTxt);
+        owgis.kml.updateKmlLink(dateText, currElevation, '');
+		var dateForTitle = dateText.substring(0,dateText.indexOf("T"))
+		+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));
+        updateTitle(dateForTitle, currElevationTxt);
     }
 }

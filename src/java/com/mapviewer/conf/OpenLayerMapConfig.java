@@ -22,12 +22,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  * This SINGLETON class represent the OpenLayer configuration of the map. For
@@ -44,7 +41,7 @@ public class OpenLayerMapConfig {
 	private double zoomFactor;
 	private double maxResolution;//Controls the maximum resolution of the map
 	private String restrictedExtent = "-180.0,-90.0,180.0,90.0";//Restricts the extent of the map
-	private String mapBounds="-180.0,-90.0,180.0,90.0";
+	private String refreshLayers;
 	Date lastUpdate;//Indicates when was the last update of the properties file
 
 	//This contains the properties used on JavaScript, which are not the same
@@ -160,8 +157,8 @@ public class OpenLayerMapConfig {
 		zoomFactor = Float.parseFloat(getProperty("zoomFactor"));
 		maxResolution = Float.parseFloat(getProperty("maxResolution"));
 		restrictedExtent = getProperty("maxExtent");
-		mapBounds=getProperty("mapBounds");
 		mapProj=getProperty("mapProjection");
+		refreshLayers=getProperty("refreshLayers");
 	}
 	
 	public String getCenter() {
@@ -194,12 +191,6 @@ public class OpenLayerMapConfig {
 	public void setRestrictedExtent(String restrictedExtent) {
 		this.restrictedExtent = restrictedExtent;
 	}
-	public String getmapBounds() {
-		return mapBounds;
-	}
-	public void setmapBounds(String mapBounds) {
-		this.mapBounds=mapBounds;
-	}
 	
 	public String getMapProjection() {
 		return mapProj;
@@ -224,7 +215,12 @@ public class OpenLayerMapConfig {
 	public void setZoomFactor(double zoomFactor) {
 		this.zoomFactor = zoomFactor;
 	}
-	
-	
-	
+
+	public String getRefreshLayers() {
+		return refreshLayers;
+	}
+
+	public void setRefreshLayers(String refreshLayers) {
+		this.refreshLayers = refreshLayers;
+	}
 }

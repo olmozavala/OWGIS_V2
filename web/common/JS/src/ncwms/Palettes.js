@@ -6,6 +6,7 @@ goog.require('owgis.ncwms.animation');
 goog.require('owgis.ncwms.calendars');
 goog.require('owgis.ogc');
 goog.require('owgis.ajax');
+goog.require('owgis.layouts.draggable.topmenu');
 
 var initialMaxPal;//default maxPalVal
 var initialMinPal;//default minPalVal
@@ -21,8 +22,8 @@ function updateMinMaxFromJson(minMaxTxt){
 	owgis.interf.loadingatmap(false);
 
     var jsonMinMax = eval("("+minMaxTxt+")");
-    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4) - 1); 
-    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4) + 1);
+    $('#minPal').val(parseFloat(jsonMinMax["min"]).toPrecision(4)); 
+    $('#maxPal').val(parseFloat(jsonMinMax["max"]).toPrecision(4));
     UpdatePalette(mappalette);
 }
 
@@ -39,25 +40,26 @@ function setColorRangeFromMinMax(){
         request:"GetMetadata",
         version:owgis.ogc.wmsversion,
         layers: layerDetails['name'],
-        width: "10",//Hardcoded it doesn't work without width and Height
-        height: "10",
+        width: "100",//Hardcoded it doesn't work without width and Height
+        height: "100",
         item:'minmax',
         bbox: layerDetails['bbox'].toString(),
         srs: layerDetails['srs']
     };
 
-	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('yy-mm-dd');
+	var currTime = owgis.ncwms.calendars.getCurrentDate(true,owgis.constants.startcal,true);
 	if( currTime !== owgis.constants.notimedim ){
         urlParams.time = currTime;
 	}
 
     //Verify that the layer has more than one zaxis option
     if(layerDetails.zaxis !== undefined){
-        urlParams.elevation = layerDetails.zaxis.values[elev_glob_counter];
+        urlParams.elevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
     }
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
+	console.log(url);
 	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
@@ -78,9 +80,9 @@ owgis.ncwms.palettes.loadPalettes = function(){
     //The 'default' style is defined in the MapViewerServlet
     origpalette = mappalette;
     
-    if(mappalette == 'default' ||  mappalette == ''){
+    if(mappalette === 'default' ||  mappalette === ''){
         mappalette = layerDetails.defaultPalette;
-        $('#imgPalette').attr("src", $('#imgPalette').attr("src").replace(origpalette,mappalette));
+		owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+mappalette);
     }
 
     //Inserts the optional palettes in a table
@@ -98,7 +100,6 @@ owgis.ncwms.palettes.loadPalettes = function(){
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
 }
-
 
 /**
  * Replaces the image of the palette used
@@ -162,17 +163,10 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
  */
 function DefaultPalette()
 {
-
-    var lookup = /PALETTE=[A-z]*&/g; //use regular expresion to find the default palette
-
     minPalVal = initialMinPal;//reset globals back to defualt values
     maxPalVal = initialMaxPal;
 
-    var match = urlPaletteImg.match(lookup);
-    match = String(match);
-    var equalSign = match.indexOf("=");
-    var ampersand = match.indexOf("&");
-    var defaultColor = match.substring(equalSign+1, ampersand);  
+	defaultColor = layerDetails.defaultPalette
 
     // here we don't use UpdatePalette() becuase that one defualt to the max and min that is currently 
     //selected by the user
@@ -184,12 +178,11 @@ function DefaultPalette()
 
 /**
  * Displays or hides the div that contains all the palettes.
- * @paramforce_visib Forces an specific visibility of optional palettes.
+ * @param force_visib Forces an specific visibility of optional palettes.
  */
 function displayOptionalPalettes(){
 	 $('#palettes-div').toggle("fade"); 
 }
-
 
 /** Shows and hides the palettes windows (both at the same time) */
 function showPalettes()
@@ -199,16 +192,16 @@ function showPalettes()
 
     // We test the opacity of the 'color range window' to decide what
     // to do with the 'optional palettes window'
-    if($('#paletteWindowColorRange').css("opacity") === "0") 
+	 if($('#paletteWindowColorRange').css("opacity") === "0") {
         $('#palettes-div').show();
-    else
+	}else{
         $('#palettes-div').hide();
-
+	}
 }
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @paramamount - amount to change or update to 
+ * @param amount - amount to change or update to 
  */
 function increaseMaxColorRange(amount){
     $('#maxPal').val( eval(parseFloat($('#maxPal').val()).toPrecision(4)) + parseFloat(amount));
@@ -217,7 +210,7 @@ function increaseMaxColorRange(amount){
 
 /**
  * changes the color of the layer depengind on the amount passed in
- * @paramamount - amount to change or update to 
+ * @param amount - amount to change or update to 
  */
 function decreaseMinColorRange(amount){
     $('#minPal').val( eval(parseFloat($('#minPal').val()).toPrecision(4)) - parseFloat(amount));

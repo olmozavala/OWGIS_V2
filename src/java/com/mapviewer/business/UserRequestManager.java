@@ -64,11 +64,10 @@ public class UserRequestManager {
 		//Obtain the menu of the user that is in session. 
 		TreeNode rootMenu = (TreeNode) session.getAttribute("MenuDelUsuario");
 
-
 		String[] selectedValues = ConvertionTools.convertObjectArrayToStringArray(levelsSelected);
 
 		LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
-		boolean update = menuManager.refreshTree();//Search for any update on the XML files
+		boolean update = menuManager.refreshTree(false);//Search for any update on the XML files
 
 		//If is the first time the user access the webpage then we 
 		// return the default menu. 
@@ -199,7 +198,7 @@ public class UserRequestManager {
 		String server = layer.getServer();
 		String layerName = layer.getName();
 		String kmlLink = "";
-		if (layer.isNetCDF()) {
+		if (layer.isncWMS()) {
 			try {
 				JSONObject layDet = new JSONObject(layer.getLayerDetails());
 				String time = (String) layDet.get("nearestTimeIso");

@@ -51,8 +51,8 @@ public class MenuEntry {
 		System.out.println("ID: " + id);
 		Object[] keys = texts.keySet().toArray();
 		for (int i = 0; i < texts.size(); i++) {
-			System.out.println("\t Language: "+ (String)keys[i]);
-			System.out.println("\t Text: "+ texts.get((String)keys[i]));
+			System.out.println("\t Language: "+ keys[i]);
+			System.out.println("\t Text: "+ texts.get(keys[i]));
 		}
 	}
     

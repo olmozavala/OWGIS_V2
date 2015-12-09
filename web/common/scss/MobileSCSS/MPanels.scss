@@ -1,0 +1,41 @@
+@import "compass";
+
+.panel {
+    color:#CCC;
+    background: rgba(white,.2);
+    /*border:solid 1px white;*/
+    /*height: auto;*/
+    z-index:1;
+    @include opacity(0.9);
+}
+
+.panel-title{
+    text-align: center;
+}
+
+.ui-panel-inner {
+    /*overflow-x: hidden;*/
+    /*max-height: 500px;*/
+    /*height: 100%;*/
+
+	/*This is one is important, it controls the padding of all the panels. Which
+	is an internal paddingk*/
+    padding: 0px;
+}
+
+.ui-listview-inset{
+	margin: 0px;
+    padding: 0px;
+}
+
+.ui-listview > .ui-li-static{
+	padding: 0px 4px;
+	margin: 0px;
+}
+
+.leftPanel{
+	/*max-width: 200px;*/
+}
+.rightPanel{
+	max-width: 200px;
+}

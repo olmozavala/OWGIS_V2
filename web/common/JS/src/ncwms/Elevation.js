@@ -1,14 +1,46 @@
-var elev_glob_counter = 0; //index of layerDetails.zaxis.values[elev_glob_counter]
+goog.provide('owgis.ncwms.zaxis');
+goog.require('owgis.mobile');
+
+owgis.ncwms.zaxis.globcounter = 0; //index of layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]
 var zAxis_span_visible = false; // Indicates if the span of the 'elevations' is being displayed
+
+/**
+ this function checks to see if the layer has elevation or not
+this function is called by the init() in the OpenLayersConfig.jsp
+*/
+function noElevation(){	
+    var check =	layerDetails.zaxis;		//check to see if it has elevation at all
+    var hasElevation = true;
+
+    //this means zaxis object exist, now we gotta check the amount of days it has
+    if(check !== undefined)
+    {
+        var heights = layerDetails.zaxis.values.length;
+		
+        //In this case it only has one elevation
+        if(heights === 1)
+            hasElevation = false;
+    }
+    else//this means there is absolutely no hieght. 
+    {		
+        hasElevation = false;
+    }
+
+    if(!hasElevation){
+        getElementById('elevationParent').style.display = "none";
+    }
+	
+    return !hasElevation;
+}
 
 /**
  * This function adds the elevation 'text'to a normal url
  */
-function addElevationText(){
+owgis.ncwms.zaxis.addElevationText = function addElevationText(){
     if(netcdf){
         //Asks if it has elevation
         if(!noElevation()){
-            return "ELEVATION="+layerDetails.zaxis.values[elev_glob_counter] + "&";
+            return "ELEVATION="+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter] + "&";
         }
     }
     return '';
@@ -18,24 +50,18 @@ function addElevationText(){
  * Initializes the span of 'zaxis_selector' with the
  * zAxis options of the main layer
  */
-function createElevationSelector(){
+owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
 	
     //Verify we have at least one z-axis
-    if(layerDetails.zaxis !== undefined){
-        elev_counter = layerDetails.zaxis.values.length;
-        _mainlayer_zaxisCoord = true;
-    } else{ 
-        return;//Do not create anything 
-    }
-	
-    var area = getElementById('zaxis_selector');
-    var elev_counter;
+	if(noElevation()) return;//Do not create anything 
 
+	elev_counter = layerDetails.zaxis.values.length;
+	
     var totByPage = 10;//Total number of element for each 'page'
 		
-    var inner_text = "<table><tr>";
-    inner_text += "<td><p class='title'>" +getZaxisText();
-    inner_text += " <a class='btn btn-default btn-xs' href='#' onclick='displayElevationSelector()'> <span class='glyphicon glyphicon-remove'> </span> </a></p></td></tr>";
+	//Update the title of the container
+	$("#zaxis_title").text(getZaxisText());
+    var inner_text = "<table>";
     inner_text += "<tr><td align='left'>";
 		
     var totPages = Math.ceil(elev_counter/totByPage);//Total number of pages
@@ -44,8 +70,8 @@ function createElevationSelector(){
     var selectedLink = 0;
     for(var page = 1; page <=totPages; page++){
         iCurrPage = 0;
-        if( ((page-1)*totByPage <= elev_glob_counter) &&
-            ( elev_glob_counter <= page*totByPage )){
+        if( ((page-1)*totByPage <= owgis.ncwms.zaxis.globcounter) &&
+            ( owgis.ncwms.zaxis.globcounter <= page*totByPage )){
             inner_text += "<table id='elevId"+page+"' style='display: inline' id='elevId"+page+"' >";
         } else{
             inner_text += "<table id='elevId"+page+"' style='display: none' id='elevId"+page+"' >";
@@ -55,7 +81,7 @@ function createElevationSelector(){
         while(i < elev_counter && iCurrPage < totByPage)
         {	
             //when the current height is reached(index) then make the radio button checked
-            if(i === elev_glob_counter)
+            if(i === owgis.ncwms.zaxis.globcounter)
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" 
                 + layerDetails.zaxis.values[i] + "' checked> " + layerDetails.zaxis.values[i] + 
@@ -93,46 +119,6 @@ function createElevationSelector(){
     
 }
 
-
-/**
- * Initializes the span of 'zaxis_selector' with the
- * zAxis options of the main layer
- */
-function createElevationSelectorMobile() {
-    var area = getElementById('zaxis_selector');
-
-    var elev_counter;
-    if (layerDetails.zaxis !== undefined)
-        elev_counter = layerDetails.zaxis.values.length;
-
-    var inner_text = "<table >";
-    
-    inner_text += "<tr><td align='left'><select style='font-size:30px;' onchange='changeElev(this.value)'>";
-
-    var i = 0;
-
-    while (i < elev_counter)
-    {
-
-        if (i === elev_glob_counter)
-        {
-
-            inner_text += "<option value='" + i + "' selected >" + layerDetails.zaxis.values[i] + "</option>";
-        }
-        else
-        {
-            inner_text += "<option value='" + i + "'>" + layerDetails.zaxis.values[i] + "</option>";
-        }
-
-        i++;
-    }
-
-    inner_text += "</select></td></tr></table>";
-
-    $('#zaxis_selector').html(inner_text);
-
-}
-
 /**
  * This function is used by the elevation selector and what it does
  * is basically simulate a paging for the depth options, so instead of displaying all
@@ -154,16 +140,14 @@ function dispElevPage(num, total){
 
 /**Displays the different elevations for the user to select
  */
-function displayElevationSelector() {
-    //$(zaxis_selector).slideToggle();
-    $(zaxis_selector).fadeToggle();
+owgis.ncwms.zaxis.displayElevationSelector = function displayElevationSelector(){
+    $("#zaxis_selector_parent").fadeToggle();
 }
 
 /**
  this function checks to see if the layer has elevation or not
 this function is called by the init() in the OpenLayersConfig.jsp
 */
-
 function noElevation()
 {	
     var check =	layerDetails.zaxis;		//check to see if it has elevation at all
@@ -194,39 +178,44 @@ function noElevation()
  *this changes the elevation and updates all necesary variables 
  *@param value - height of current elevation
  */
-
 function changeElev(value)
 {
-    elev_glob_counter  = value;
+    owgis.ncwms.zaxis.globcounter  = value;
     //add the elevation parameter to the layerDetails object. 
     var array_len = layerDetails.zaxis.values.length;
 	
-    //change the + sign in the menu
-    if(elev_glob_counter  === 0)
-        //getElementById('plusButtonElevation').disabled = true;
-        $(plusButtonElevation).hide();
-    else
-        //getElementById('plusButtonElevation').disabled = false;
-        $(plusButtonElevation).show();
-    
-    //change the - sign in the menu
-    if(elev_glob_counter  === array_len -1)
-        //getElementById('minusButtonElevation').disabled = true;
-        $(minusButtonElevation).hide();
-    else
-        //getElementById('minusButtonElevation').disabled= false;
-        $(minusButtonElevation).show();
+	// If is not mobile we update the signs of the button
+	if(!mobile){
+		//change the + sign in the menu
+		if(owgis.ncwms.zaxis.globcounter  === 0)
+			//getElementById('plusButtonElevation').disabled = true;
+			$(plusButtonElevation).hide();
+		else
+			//getElementById('plusButtonElevation').disabled = false;
+			$(plusButtonElevation).show();
+		
+		//change the - sign in the menu
+		if(owgis.ncwms.zaxis.globcounter  === array_len -1)
+			//getElementById('minusButtonElevation').disabled = true;
+			$(minusButtonElevation).hide();
+		else
+			//getElementById('minusButtonElevation').disabled= false;
+			$(minusButtonElevation).show();
+	}else{
+		owgis.mobile.closePanels();
+	}
 	
-    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]);
 
 	//TODO next line is controvertial, do we want to update the 
 	// color range when whe change the depth?
 	setColorRangeFromMinMax();
 
     owgis.kml.updateTitleAndKmlLink();
+	if(_mainlayer_streamlines){
+		owgis.ncwms.currents.startSingleDateAnimation();
+	}
 }
-
-
 
 /** Changes the elevation of the layer if it is netCDF
  *this are used by the + and - of the elevation toolbar
@@ -239,22 +228,22 @@ function changeElevation(sign)
 
     //if we need to add more height
     if(sign === '+') { 
-        if(elev_glob_counter  !== 0)
-            elev_glob_counter --;          
+        if(owgis.ncwms.zaxis.globcounter  !== 0)
+            owgis.ncwms.zaxis.globcounter --;          
         else
             alert('You have reached the highest '+getZaxisText());
             
     }
     else if(sign === '-') {
-        if(elev_glob_counter  !== array_len -1)
-            elev_glob_counter ++;
+        if(owgis.ncwms.zaxis.globcounter  !== array_len -1)
+            owgis.ncwms.zaxis.globcounter ++;
         else
             alert('You have reached the lowest '+getZaxisText());
     }
 
-    changeElev(elev_glob_counter);
+    changeElev(owgis.ncwms.zaxis.globcounter);
     
-    getElementById('zaxisCheckbox'+elev_glob_counter).checked=true;
+    getElementById('zaxisCheckbox'+owgis.ncwms.zaxis.globcounter).checked=true;
 }
 
 /**Mobileversion Changes the elevation of the layer if it is netCDF
@@ -263,29 +252,28 @@ function changeElevation(sign)
  *  */
 function changeElevationMobile(sign)
 {
-
     //get the highest possible value
     var array_len = layerDetails.zaxis.values.length;
 
     //if we need to add more height
     if (sign === '+')
     {
-        if (elev_glob_counter !== 0)
-            elev_glob_counter--;
+        if (owgis.ncwms.zaxis.globcounter !== 0)
+            owgis.ncwms.zaxis.globcounter--;
         else
             alert('You have reached the highest ' + getZaxisText());
 
     }
     else if (sign === '-')
     {
-        if (elev_glob_counter !== array_len - 1)
-            elev_glob_counter++;
+        if (owgis.ncwms.zaxis.globcounter !== array_len - 1)
+            owgis.ncwms.zaxis.globcounter++;
         else
             alert('You have reached the lowest elevation');
     }
 
     //change the + sign in the menu
-    if (elev_glob_counter === 0) {
+    if (owgis.ncwms.zaxis.globcounter === 0) {
 
         getElementById('plusButtonElevation').disabled = true;
         getElementById('plusButtonElevation').style.cursor = 'default';
@@ -296,7 +284,7 @@ function changeElevationMobile(sign)
 
     //change the - sign in the menu
 
-    if (elev_glob_counter === array_len - 1) {
+    if (owgis.ncwms.zaxis.globcounter === array_len - 1) {
 
         getElementById('minusButtonElevation').disabled = true;
         getElementById('minusButtonElevation').style.cursor = 'default';
@@ -306,18 +294,13 @@ function changeElevationMobile(sign)
     }
 
     //Update the elevation parameter on the Main layer parameters
-    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[elev_glob_counter ]);
+    owgis.layers.updateMainLayerParam("ELEVATION",layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter ]);
         
     owgis.kml.updateTitleAndKmlLink();
 
     createElevationSelectorMobile();
 
 }
-
-
-
-
-
 
 /**checks if there is a layerDetails.zaxis and also changes the text to elevation or precipitation
  */

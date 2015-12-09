@@ -139,7 +139,7 @@ public class NetCDFRequestManager {
 	public static String getLayerDetails(Layer layer) throws Exception {
 
 		//For the moment we only obtain the datails for netCDF layers (ncWMS server)
-		if (!layer.isNetCDF()) {
+		if (!layer.isncWMS()) {
 			return "";
 		}
 
@@ -147,7 +147,7 @@ public class NetCDFRequestManager {
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
 		JSONObject layerDetails = new JSONObject();
 
-		int maxTries = 3; //120
+		int maxTries = 1; //120
 		int tryNumber = 0;// Current try
 		boolean accepted = false;
 
@@ -210,7 +210,7 @@ public class NetCDFRequestManager {
 	 */
 	public static String getPaletteUrl(Layer layer, String palette) {
 		
-		if (!layer.isNetCDF()) {
+		if (!layer.isncWMS()) {
 			return "";
 		}
 		

@@ -1,0 +1,24 @@
+/*
+This stylesheet defines styles for the 'Currents' related styling
+*/
+/* 
+    Created on : May 21, 2015, 2:14:42 PM
+    Author     :  Olmo Zavala
+*/
+
+@import "base";
+
+/* Id of the div that contains both Palettes windows */
+#currentsControlsContainer{
+    top: 245px;
+	width: 180px;
+    left: 40%;
+    position:absolute;
+    display:none;
+}
+
+.colorPickerContainer{
+	background-color: white;
+	@include opacity(.8);
+	@include border-radius();
+}

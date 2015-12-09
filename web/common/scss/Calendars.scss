@@ -12,11 +12,11 @@
 #l-animation{ 
 	position:absolute;	
 	margin:auto;
-    top:30%;
+    top:20%;
     left:40%;
     z-index:1009;
 	pointer-events: none;
-	font-size: 18px;
+	font-size: $f_huge;
 }
 
 /* Calendars container */
@@ -32,7 +32,6 @@
 #timeSelect{
     /*width: $containerSize/2 - 20;*/
 }
-
 
 .ui-widget{
 	/*font-size: $f_tiny;*/

@@ -8,7 +8,8 @@
 
 
 //htmlBody
-$htmlBodyBackColor: #06122C;
+//$htmlBodyBackColor: #06122C;
+$htmlBodyBackColor: black;
 
 // Main font and shadow colors
 $fontColor: #ECF2F8; // Main font color and secondary shadow color
@@ -25,12 +26,14 @@ $leftFooterColor: black;
 $emailTextColor: blue;
 
 //MapInstructions --tooltip
-$backHelpHoverColor: darkkhaki;
+$backHelpHoverColor:#DBE9E9;
 
 //buttons
 $butBackColor:#555555; //Default internal background color of the buttons
 $butBackColorHover: darken($butBackColor,10); 
 $butBackColorActive: lighten($butBackColorHover, 7); // Background color when the button is pressed
+$butBackColorUsed: #1A7979; //When a button is being used
+
 $butShadowColor: #80CCDC;
 $butShadowColorHover: #DCC380; 
 $butShadowColorActive: lighten($butShadowColorHover, 17); // Shadow when a button is pressed

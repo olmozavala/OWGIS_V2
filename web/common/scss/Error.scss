@@ -1,0 +1,21 @@
+/* 
+    Created on : Sep 4, 2015, 1:32:32 PM
+    Author     : olmozavala
+*/
+
+
+@import "base";
+
+/* This is the CSS for a default floating window. It should be used
+for the help text, the optional layers, the depth etc.*/ 
+.errorPopup{
+	@include floatingWindow;
+	@include opacity(1);
+	color: $fontColor;
+	background-color: $warningColor; 
+	top: 10%;
+	left: 40%;
+	z-index: 1010;
+	position: absolute;
+	display: none;
+}

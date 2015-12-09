@@ -167,10 +167,12 @@ public class OpenLayersManager {
 		int layerCount = 0;
 		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
+				"\t\t if(mobile){owgis.mobile.closePanels();"
+				+ "\t\t\t owgis.interf.loadingatmap(true);}\n" +
 				"\t\t var coordinate = evt.coordinate;\n" +
                 "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t\t $('#popup').hide();\n" +
-				"\t\t currPopupText = '';\n" +
+				"\t\t currPopupText = '<b>Lon: </b>'+coordinate[0].toFixed(2)+ ' <b>Lat: </b>'+coordinate[1].toFixed(2)+'<br>'\n" +
 				"\t\t ol_popup.setPosition(coordinate);\n";
 
 		//En este for agrega las capas que son de fondo
@@ -239,13 +241,13 @@ public class OpenLayersManager {
 		}
 
 		//In this case we also need the time information
-		if (actualLayer.isNetCDF()) {
+		if (actualLayer.isncWMS()) {
 			// The two variables: elevation and startDate have to match
 			// javascript variable names. 
-//			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[elev_glob_counter]+\"&" 
-			URLscript += "\"+addElevationText()+\""
-					+ "TIME=\"+owgis.ncwms.calendars.getCurrentlySelectedDate(\"yy-mm-dd\")+\"&"
-					+ "BOTHTIMES=\"+getUserSelectedTimeFrame()+\"&"
+//			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]+\"&" 
+			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
+					+ "TIME=\"+owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true)+\"&"
+					+ "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
 					+ "NETCDF=true&";
 		} else {
@@ -288,13 +290,12 @@ public class OpenLayersManager {
 //				+ "\t\t crossOrigin: 'null',\n"
 					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "'";
 			
-			if (actualLayer.isNetCDF()) {
+			if (actualLayer.isncWMS()) {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}
-			} else {
-				layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			}
+			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			
 			layersScript += ", SRS: _map_projection";
 			

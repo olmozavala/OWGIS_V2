@@ -1,0 +1,32 @@
+/*
+Styles for the elevation options. 
+*/
+/* 
+    Created on : Sep 23, 2013, 1:57:39 PM
+    Author     : Olmo Zavala-Romero
+*/
+
+@import "base";
+
+/* Defines the position of the draggable window that
+selects the zaxis value*/
+#zaxis_selector_parent
+{
+	max-width: 150px;
+}
+
+.linkElevPageDef{
+    font-size: 16px;
+    color: #F9FFCB;
+}
+.linkElevPageSelected{
+    font-size: 16px;
+    color: #BBA364;
+}
+
+// Start by not showing the 'plus' button
+#plusButtonElevation{ display: none; }
+
+#elevationText{
+	padding: $defPadding - 2 2*$defPadding;
+}

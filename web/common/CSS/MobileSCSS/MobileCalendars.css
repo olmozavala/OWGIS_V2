@@ -1,0 +1,87 @@
+/* Display animation button */
+/* line 2, ../../scss/MobileSCSS/MobileCalendars.scss */
+#p-animation {
+  text-align: center;
+  font-size: 12px;
+  visibility: visible;
+}
+
+/* Stop animation button */
+/* line 9, ../../scss/MobileSCSS/MobileCalendars.scss */
+#s-animation {
+  display: none;
+  cursor: pointer;
+  font-size: 12px;
+  z-index: 1009;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* animation button that pops up when calendar dates have been selected */
+/* line 19, ../../scss/MobileSCSS/MobileCalendars.scss */
+div.dispAnimation {
+  z-index: 1000;
+  visibility: hidden;
+  font-size: 50px;
+}
+
+/* line 27, ../../scss/MobileSCSS/MobileCalendars.scss */
+.buttonStyle {
+  font-size: 25px;
+}
+
+/* This is the Loading text */
+/* line 33, ../../scss/MobileSCSS/MobileCalendars.scss */
+#l-animation {
+  visibility: hidden;
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  left: 40%;
+  z-index: 1009;
+  pointer-events: none;
+  font-size: 18px;
+}
+
+/* line 44, ../../scss/MobileSCSS/MobileCalendars.scss */
+#timeSelect {
+  display: inline-block;
+  width: 200px;
+  font-size: 25px;
+}
+
+/* Calendars container */
+/* line 51, ../../scss/MobileSCSS/MobileCalendars.scss */
+#CalendarsAndStopContainer {
+  white-space: nowrap;
+  display: none;
+  background-color: black;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: solid 5px white;
+  padding: 3px;
+}
+
+/* line 73, ../../scss/MobileSCSS/MobileCalendars.scss */
+#hideOneDay, #hideOneDayEnd {
+  padding: 0px;
+  margin: 0px;
+  display: inline;
+}
+
+/*holds the start calendar  */
+/* line 80, ../../scss/MobileSCSS/MobileCalendars.scss */
+div.startDateCal {
+  float: left;
+  display: inline-block;
+}
+
+/*holds the end calendar  */
+/* line 87, ../../scss/MobileSCSS/MobileCalendars.scss */
+div.endDateCal {
+  float: right;
+  display: inline-block;
+}

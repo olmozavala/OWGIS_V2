@@ -17,6 +17,42 @@ owgis.layers.getMainLayer = function(){
 }
 
 /**
+ * Makes a synchronous request and saves the dates into the "allFrames" array.
+ */
+owgis.layers.getTimesForDay = function(layer, time, allFrames){
+	var mainLayer = layer;
+	var mainSource = mainLayer.getSource();
+	var mainParams = mainSource.getParams();
+	var layerName = mainParams.LAYERS;
+	
+	if(mainSource.getUrls){
+		owgis.ncwms.animation.currUrl = mainSource.getUrls()[0];//Get url for 
+	}else{
+		owgis.ncwms.animation.currUrl = mainSource.getUrl();//Get url for 
+	}
+	
+	var animParams = { 
+		REQUEST: "GetMetadata",
+		item: "timesteps",
+		layerName: layerName,
+		day: time,
+	};
+	
+	var url = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+	
+	jQuery.ajax({
+		url: url,
+		success: function(timesAsJson) {
+			for(var i = 0; i < timesAsJson.timesteps.length; i++){
+				allFrames.push(time+"T"+timesAsJson.timesteps[i]);
+			}
+		},
+		async:false
+	});
+	
+}
+
+/**
  * Returns the current CQL_FILTER or undefinded
  */
 owgis.layers.getCQLFilter= function(){

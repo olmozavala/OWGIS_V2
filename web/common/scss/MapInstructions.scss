@@ -33,8 +33,9 @@ $border-select: 6px;
 // Style for the hover window
 .commonHover{
     position:absolute;
-	border:1px solid;
-    padding: $defPadding;
+	/*border:1px solid;*/
+	border: none;
+    padding: $defPadding $defPadding*2;
     font-size: $f_small;
 	color:$invColor;
 	background-image: none;
@@ -42,7 +43,7 @@ $border-select: 6px;
     z-index:1009;
 	top: $helpDefTop;
 	left: $helpDefLeft;
-	@include opacity($defOpacity - .02);
+	@include opacity($defOpacity + .05);
 	@include border-radius(5px,5px);
 	text-align: left;
 	min-width:150px;

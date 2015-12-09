@@ -13,20 +13,21 @@ $btn-default-color:red;
 /* This class has some general properties that make a span
 look like a button */
 .buttonLook{
-    border-style: solid;
-    border-width: 1px;
+    border-style: none;
+    /*border-width: 1px;*/
     background-color:$butBackColor;
-    border-color: $butBorderColor;
+    /*border-color: $butBorderColor;*/
 	padding: $defPadding 2*$defPadding;//TB and RL
 	color: $fontColor;
 	@include border-radius($default-border-radius);
 	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
-	@include box-sizing(content-box);
+	/*@include box-sizing(content-box);*/
 	margin:  $defPadding $defPadding;
 	height: $defFontSize + 10;  //no effect on screen
     display: inline; 
 	vertical-align: middle;
 }
+
 
 /* Buttons style, default style for buttons (used in transparency and xaxis),
 and also the mainMenu dropdown options*/
@@ -41,6 +42,29 @@ and also the mainMenu dropdown options*/
 		background-color:$butBackColorActive;
     }
     cursor: pointer;
+}
+
+.beenUsed{
+	@include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
+	background-color: $butBackColorUsed;
+}
+
+
+.buttonStyleCompressed{
+	padding: 0px;
+	margin: 0px;
+    display: inline; 
+	vertical-align: middle;
+	color: $fontColor;
+    background-color:$butBackColor;
+	@include box-sizing(content-box);
+	height: $defFontSize + 10;  //no effect on screen
+	&:hover{
+		background-color:$butBackColorHover;
+	}
+    &:active{
+		background-color:$butBackColorActive;
+    }
 }
 
 /* This is just a container of buttons in the top menu, specifically

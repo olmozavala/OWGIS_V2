@@ -1,0 +1,166 @@
+/*
+This stylesheet defines styles for the 'Home' page of the viewer. 
+*/
+/* 
+    Created on : Aug 18, 2014, 2:14:42 PM
+    Author     :  Olmo Zavala
+*/
+/*
+* Base configuration, mixings and global variables
+*/
+/* 
+    Created on : Sep 20, 2013, 8:27:12 PM
+    Author     : Olmo Zavala-Romero
+*/
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:48:12 PM
+    Author     : harshulpandav
+*/
+/* 
+ * popup
+ * emailText
+ */
+/* 
+ * MapInstructions::toolTip
+ */
+/* _base::floatingWindow
+ * OL3::lat-long
+ * OptionalLayersMenu::lay-par
+ */
+/* 
+ * OptionalLayersMenu::lay_title
+ */
+/* 
+ * BaseLayers::mainMenu --for drop-downs
+ * Buttons::plus/minus
+ * GeneralStyles::title --for draggableWindows 
+ */
+/* 
+ * Palettes::inputSizePalettes --height
+ */
+/* 
+ * GeneralStyles::mapTitle
+ */
+/*
+* Font variables
+*/
+/* 
+    Created on : May 27, 2014, 3:49:32 PM
+    Author     : harshulpandav
+*/
+/* Left fotter */
+/* line 12, ../scss/HomePage (copy).scss */
+div.leftFoot {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  z-index: 1000;
+  display: inline;
+  color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
+
+/* line 23, ../scss/HomePage (copy).scss */
+#owgislogocont {
+  position: absolute;
+  display: inline;
+  top: 1%;
+  left: 1%;
+  z-index: 1009;
+}
+
+/*Style for the 'contact' text. At the bottom of the page*/
+/* line 32, ../scss/HomePage (copy).scss */
+#emailText {
+  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
+  text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
+  font-size: 11px;
+  color: blue;
+}
+
+/* line 40, ../scss/HomePage (copy).scss */
+#draggable-container {
+  position: absolute;
+  width: 96%;
+  height: 93%;
+  top: 50px;
+  left: 40px;
+  pointer-events: none;
+}
+
+/* Main title of the map */
+/* line 50, ../scss/HomePage (copy).scss */
+.mapTitle {
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  z-index: 1000;
+  display: inline;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* line 62, ../scss/HomePage (copy).scss */
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 0px;
+}
+
+/* Div to display latitude and longitude*/
+/* line 71, ../scss/HomePage (copy).scss */
+.layersLonLat {
+  z-index: 1008;
+  position: absolute;
+  border: solid 1px white;
+  padding: 5px 5px 5px 5px;
+  cursor: move;
+  color: black;
+  font-size: 13px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  bottom: 50px;
+  right: 5%;
+  width: 14em;
+  min-height: 4em;
+  cursor: auto;
+  pointer-events: none;
+  background-image: url("../images/transBack.png");
+  font-weight: bold;
+}
+
+/*Data displayed for JSONP layers above the latitude and longitude*/
+/* line 83, ../scss/HomePage (copy).scss */
+#jsonpdata {
+  z-index: 1008;
+  position: absolute;
+  border: solid 1px white;
+  padding: 5px 5px 5px 5px;
+  cursor: move;
+  color: black;
+  font-size: 13px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  bottom: 50px;
+  left: 3em;
+  min-width: 12em;
+  background-image: url("../images/transBack.png");
+  font-weight: normal;
+  display: none;
+}

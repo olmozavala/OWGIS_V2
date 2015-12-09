@@ -4,6 +4,7 @@
  */
 
 goog.provide('owgis.layouts.draggable');
+goog.require('owgis.ol3');
 
 /** This function saves the positions and other parameters
  * that the user has on the interface to maintain the look
@@ -33,11 +34,16 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
             saveIndividualWindowPosition("pos_calendars", "#CalendarsAndStopContainer");
         }
         if(_mainlayer_zaxisCoord){
-            localStorage.elev_selector_visible= $("#zaxis_selector").css("display") === "none"? false: true;
-            saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector");
+            localStorage.elev_selector_visible= $("#zaxis_selector_parent").css("display") === "none"? false: true;
+            saveIndividualWindowPosition("pos_elev_selector", "#zaxis_selector_parent");
         }
+        if(_mainlayer_streamlines){
+            localStorage.currents_controls_visible = $("#currentsControlsContainer").css("display") === "none"? false: true;
+            saveIndividualWindowPosition("pos_currents_controls", "#currentsControlsContainer");
+		}
     }
 
+	localStorage.server_name = window.location.href;
     localStorage.disable_hover = hoverDisabled;
     
 }
@@ -47,85 +53,101 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
  */
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 {
-    // Repositions the main layers menu
-    repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
-            'mainMenuParent', 'mainMenuMinimize');
+	try{
+		if( localStorage.server_name === window.location.href){
+			// Repositions the main layers menu
+			repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
+			'mainMenuParent', 'mainMenuMinimize');
+			
+			// Repositions the Optional layers menu 
+			repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized,
+			'optionalMenuParent', 'optionalsMinimize');
+			
+			// If the main layer is a netcdf layer then we update the position
+			// of the calendars and palettes windows
+			if (netcdf) {
+				//The palettes window is never minimized
+				repositionWindow(localStorage.pos_palettes, "false",
+				'palettes-div', 'none');
+				repositionWindow(localStorage.pos_color_range, "false",
+				'paletteWindowColorRange', 'none');
+				
+				if(_mainlayer_multipleDates){
+					repositionWindow(localStorage.pos_calendars, localStorage.calendars_minimized,
+					'CalendarsAndStopContainer', 'calendarsMinimize');
+				}
+				
+				if(_mainlayer_zaxisCoord){
+					repositionWindow(localStorage.pos_elev_selector, "false",
+					'zaxis_selector_parent', 'none');
+				}
+				
+				if(_mainlayer_streamlines){
+					repositionWindow(localStorage.pos_currents_controls, "false",
+					'currentsControlsContainer', 'none');
+				}
+			}
+			
+			// -------- Visibility of windows ----------
+			if (netcdf) {
+				//Check if the palette windows where visible
+				if( localStorage.palette_visible !== undefined &&  localStorage.color_range_visible !== "undefined"){
+					if ( localStorage.palette_visible === "true") $("#palettes-div").show("fade");
+					if ( localStorage.color_range_visible === "true") $("#paletteWindowColorRange").show("fade");
+				}
+				
+				if( localStorage.currents_controls_visible!== undefined){
+					if(_mainlayer_streamlines){
+						if ( localStorage.currents_controls_visible=== "true") $("#currentsControlsContainer").show("fade");
+					}
+				}
+				
+				if( localStorage.elev_selector_visible!== undefined){
+					if(_mainlayer_zaxisCoord){
+						if ( localStorage.elev_selector_visible=== "true") {
+							$("#zaxis_selector_parent").show("fade");
+						}
+					}
+				}
+			}
 
-    // Repositions the Optional layers menu 
-    repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized,
-            'optionalMenuParent', 'optionalsMinimize');
-
-    // If the main layer is a netcdf layer then we update the position
-    // of the calendars and palettes windows
-    if (netcdf) {
-                //The palettes window is never minimized
-        repositionWindow(localStorage.pos_palettes, "false",
-                'palettes-div', 'none');
-        repositionWindow(localStorage.pos_color_range, "false",
-                'paletteWindowColorRange', 'none');
-
-        if(_mainlayer_multipleDates){
-            repositionWindow(localStorage.pos_calendars, localStorage.calendars_minimized,
-                    'CalendarsAndStopContainer', 'calendarsMinimize');
-        }
-
-        if(_mainlayer_zaxisCoord){
-            repositionWindow(localStorage.pos_elev_selector, "false",
-                'zaxis_selector', 'none');
-        }
-    }
-
-   // -------- Visibility of windows ----------
-   if (netcdf) {
-        //Check if the palette windows where visible
-        if( localStorage.palette_visible !== undefined &&  localStorage.color_range_visible !== "undefined"){
-            if ( localStorage.palette_visible === "true") $("#palettes-div").show("fade");
-            if ( localStorage.color_range_visible === "true") $("#paletteWindowColorRange").show("fade");
-        }
-
-        if( localStorage.elev_selector_visible!== undefined){
-            if(_mainlayer_zaxisCoord){
-                if ( localStorage.elev_selector_visible=== "true") {
-                    $("#zaxis_selector").show("fade");
-                }
-            }
-        }
-   }
-
-   // --------------- Map visualization and 
-    if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-    if( localStorage.map_center!== undefined){
-        strCenter = localStorage.map_center.split(",")
-        lat = Number(strCenter[0]);
-        lon = Number(strCenter[1]);
-        ol3view.setCenter([lat,lon]);// Center of the map
-    }
-    if( localStorage.disable_hover === "true"){
-        //Disables the text hovers 
-        owgis.help.tooltips.toggleTooltips();
-    }
-
-   // Finally we test if they fit on the screen
-   owgis.layouts.draggable.repositionDraggablesByScreenSize();
+			//Updates the position of the map as it was previously set
+			owgis.ol3.positionMap();
+			
+			if( localStorage.disable_hover === "true"){
+				//Disables the text hovers 
+				owgis.help.tooltips.toggleTooltips();
+			}
+			
+			// Finally we test if they fit on the screen
+			owgis.layouts.draggable.repositionDraggablesByScreenSize();
+		}		
+	}catch(err){
+		console.log("Error initializing the menus... clearing local storage");
+		localStorage.clear();
+		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}
+	
 }
 
 /**
  *This function moves the draggable windows when the user changes its window size. 
  */
 owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
-
+	
 	moveOneWindowToFitOnScreen("mainMenuParent");
 	moveOneWindowToFitOnScreen("optionalMenuParent");
-
+	
     if (cqlFilter) {
         moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
     }
-
+	
     if (netcdf) {
         moveOneWindowToFitOnScreen("palettes-div");
         moveOneWindowToFitOnScreen("paletteWindowColorRange");
-        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector");
+        if(_mainlayer_zaxisCoord) moveOneWindowToFitOnScreen("zaxis_selector_parent");
         if(_mainlayer_multipleDates) moveOneWindowToFitOnScreen("CalendarsAndStopContainer");
+        if(_mainlayer_streamlines) moveOneWindowToFitOnScreen("currentsControlsContainer");
     }
 }
 
@@ -135,7 +157,7 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
  * @returns {undefined}
  */
 owgis.layouts.draggable.init = function(){
-
+	
     //Only make windows draggable for 'topMenu' design
     if ( mobile === false) {
 		$(".draggableWindow").each( function(index) {
@@ -210,7 +232,7 @@ function repositionWindow(localStorageVariable, localStorage_minimized, windowTo
 function moveOneWindowToFitOnScreen(id)
 {
     var poundId = "#" + id;
-
+	
     //We only check the 'div' if it is visible
     if($(poundId).is(":visible")){
         var windowLeft = $(window).width();
@@ -220,14 +242,14 @@ function moveOneWindowToFitOnScreen(id)
         var idWidth = $(poundId).width();
         var idHeight = $(poundId).height();
         var constant = 10;// Extra space for moving windows
-
+		
         var finalLeft = windowLeft - idWidth - constant; //subtract the width of draggable from the border of the browswer
         var finalTop = windowTop - idHeight - constant;
-
+		
         if (windowLeft < left + idWidth) {
             getElementById(id).style.left= finalLeft+ "px";//move it from the left
         }
-
+		
         if (windowTop < top + idHeight) {
             getElementById(id).style.top = finalTop + "px";//move it from the top
         }

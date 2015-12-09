@@ -34,6 +34,10 @@
         <servlet-name>SimpleAjaxRedirectServlet</servlet-name>
         <servlet-class>com.mapviewer.business.servlets.SimpleAjaxRedirectServlet</servlet-class>
     </servlet>
+          <servlet>
+    <servlet-name>MobileServlet</servlet-name>
+    <servlet-class>com.mapviewer.business.servlets.MobileServlet</servlet-class>
+  </servlet>
     <servlet-mapping>
         <servlet-name>RedirectServersServlet</servlet-name>
         <url-pattern>/redirect</url-pattern>
@@ -58,6 +62,10 @@
         <servlet-name>SimpleAjaxRedirectServlet</servlet-name>
         <url-pattern>/simpleAjaxRedirect</url-pattern>
     </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MobileServlet</servlet-name>
+    <url-pattern>/MobileServlet</url-pattern>
+  </servlet-mapping>
     <session-config>
         <session-timeout>
 			30
