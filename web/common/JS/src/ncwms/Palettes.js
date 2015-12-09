@@ -47,7 +47,7 @@ function setColorRangeFromMinMax(){
         srs: layerDetails['srs']
     };
 
-	var currTime = owgis.ncwms.calendars.getCurrentlySelectedDate('yy-mm-dd');
+	var currTime = owgis.ncwms.calendars.getCurrentDate(true,owgis.constants.startcal,true);
 	if( currTime !== owgis.constants.notimedim ){
         urlParams.time = currTime;
 	}
@@ -82,7 +82,7 @@ owgis.ncwms.palettes.loadPalettes = function(){
     
     if(mappalette === 'default' ||  mappalette === ''){
         mappalette = layerDetails.defaultPalette;
-        $('#imgPalette').attr("src", $('#imgPalette').attr("src").replace(origpalette,mappalette));
+		owgis.layers.updateMainLayerParam('STYLES',lay_style+"/"+mappalette);
     }
 
     //Inserts the optional palettes in a table
@@ -163,17 +163,10 @@ function UpdatePaletteDefault(newPal, maxPal, minPal){
  */
 function DefaultPalette()
 {
-
-    var lookup = /PALETTE=[A-z]*&/g; //use regular expresion to find the default palette
-
     minPalVal = initialMinPal;//reset globals back to defualt values
     maxPalVal = initialMaxPal;
 
-    var match = urlPaletteImg.match(lookup);
-    match = String(match);
-    var equalSign = match.indexOf("=");
-    var ampersand = match.indexOf("&");
-    var defaultColor = match.substring(equalSign+1, ampersand);  
+	defaultColor = layerDetails.defaultPalette
 
     // here we don't use UpdatePalette() becuase that one defualt to the max and min that is currently 
     //selected by the user

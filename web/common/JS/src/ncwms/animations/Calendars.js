@@ -68,8 +68,8 @@ function updateAnimationRange(){
 	//Updates the total number of frames in the time range 
 	var asString = true;
 	var inGMT = true;
-	var startDateTxt = getCurrentDate(asString, owgis.constants.startcal, inGMT);
-	var endDateTxt= getCurrentDate(asString, owgis.constants.endcal, inGMT);
+	var startDateTxt = owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.startcal, inGMT);
+	var endDateTxt= owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.endcal, inGMT);
 	if( !_.isUndefined(startDateTxt) && !_.isUndefined(endDateTxt) ){
 		dispAnimationAjax(startDateTxt, endDateTxt, mainLayer,"getAnimTimes");
 	}
@@ -297,39 +297,8 @@ function updateCalendarOpts(calUpdated){
  * For example if the user has selected only to display weekly or monthly
  */
 owgis.ncwms.calendars.getUserSelectedTimeFrame = function (){
-	if( $('#timeSelect :selected').val() !== null ){
-		return $('#timeSelect :selected').val();
-	}else{
-		//Don't change the following text, it is hardcoded in different places
-		return 'No current date';
-	}
-}
-
-/**
- * This function returns the current selected date
- * from the start Cal. In the requested format.
- * This function is used by the palettes.js
- * @param format - Format for the start date. Example of format: '%Y-%m-%d'
- * @param formatEnd - Format for the end date (if null then it doesn't display it) Example of format: '%Y-%m-%d'
- * @return selected date
- */
-owgis.ncwms.calendars.getCurrentlySelectedDate = function(formatStart, formatEnd){
-	if(calInitialized){
-		
-		if(formatStart!==null)
-			startDateTxt = $.datepicker.formatDate(formatStart, $("#cal-start").datepicker("getDate"));
-		else
-			startDateTxt = $("#cal-start").val();
-		
-		if(typeof datesWithData !== "undefined" && formatEnd !== null){
-			endDateTxt = $.datepicker.formatDate(formatEnd, $("#cal-end").datepicker("getDate"));
-			startDateTxt = startDateTxt+"/"+endDateTxt;
-		}
-		
-		return startDateTxt;
-	}
-	return owgis.constants.notimedim;
-	
+	var fullRange = $("#timeSelect option[fortimeseries]").attr("fortimeseries");
+	return fullRange;
 }
 
 /**
@@ -379,7 +348,7 @@ function getSuggestedDate(actualDate,ahead){
  */ 
 function updateMainLayerDate(){
 	
-    var currTime = getCurrentDate(false, owgis.constants.startcal, true);
+    var currTime = owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
     owgis.layers.updateMainLayerParam('TIME', currTime.toISOString());
 	owgis.kml.updateTitleAndKmlLink();
 	
@@ -422,18 +391,26 @@ function setCurrentTime(cal){
 	var inGMT = true;
 	switch(cal){
 		case owgis.constants.startcal:
-			currStartTime = getCurrentDate(asString, cal, inGMT);
+			currStartTime = owgis.ncwms.calendars.getCurrentDate(asString, cal, inGMT);
 //			console.log("Setting start time to: " + currStartTime);
 			updateMainLayerDate();
 			break;
 		case owgis.constants.endcal:
-			currEndTime = getCurrentDate(asString, cal, inGMT);
+			currEndTime = owgis.ncwms.calendars.getCurrentDate(asString, cal, inGMT);
 //			console.log("Setting end time to: " + currEndTime);
 			break;
 	}
 }
 
-function getCurrentDate(asString, cal, GMT){
+/**
+ * This function returns the current selected date
+ * from the start Cal or the end calendar.
+ * @param asString - Indicates if the return value is a string or a date 
+ * @param cal - The calendar to retrieve, it can be: owgis.constants.startcal, or owgis.constants.endcal
+ * @param inGMT - If the return value should be in GMT Or local time
+ * @return selected date
+ */
+owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	var currDateStr;// Value from selected calendar
 	var currTimeStr;// Value from selected time select
 	var currCal; //Current calendar

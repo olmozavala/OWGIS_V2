@@ -251,12 +251,14 @@ function asyncFillAnimationSelect(responseText) {
 			}else{//If not, it means we are only looking at one day
 				var tempStr = animOpts.timeStrings[0].timeString;//Force daily options
 				fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
-
 			}
+			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
+				'forTimeSeries' : animOpts.timeStrings[0].timeString,
+				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
+		}else{
+			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
+				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
 		}
-
-        $('#timeSelect').append( $('<option>', 
-			{'totFrames': totNum, 'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
     }
 }
 
@@ -265,7 +267,7 @@ function asyncFillAnimationSelect(responseText) {
  *@param responseText - url of dowload data
  */
 function AsyncCompleteEventWCS(responseText) {
-
+	
     window.location = responseText;
 }
 
@@ -280,10 +282,10 @@ function FactoryXMLHttpRequest() {
     else if (window.ActiveXObject) {
         var msxmls = new Array(
                 'Msxml2.XMLHTTP.5.0',
-                'Msxml2.XMLHTTP.4.0',
-                'Msxml2.XMLHTTP.3.0',
-                'Msxml2.XMLHTTP',
-                'Microsoft.XMLHTTP');
+		'Msxml2.XMLHTTP.4.0',
+		'Msxml2.XMLHTTP.3.0',
+		'Msxml2.XMLHTTP',
+		'Microsoft.XMLHTTP');
         for (var i = 0; i < msxmls.length; i++) {
             try {
                 return new ActiveXObject(msxmls[i]);
