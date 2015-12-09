@@ -118,7 +118,7 @@
 					  </select>
 				  </div>
 				  <div class="col-lg-2 blue"  >
-					  <img class="toolTip" onclick="owgis.help.tooltips.toogleTooltips();" 
+					  <img class="toolTip" onclick="owgis.help.tooltips.toggleTooltips();" 
 						   id="helpHoverImg" src="../common/images/Help/Help1.png">
 				  </div>
 			  </div>

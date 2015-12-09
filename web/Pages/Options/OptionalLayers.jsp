@@ -23,7 +23,7 @@ Author     : Olmo Zavala-Romero
 		        ${menuHelper:createOptionalLayersMenu(vectorLayers,language, ".", false)}
 <!-- 		<ul class='opt_lay_list_root' id='optUl0'> -->
 <!-- 			<li class="opt_lay_title" id="optMenu1" -->
-<!-- 				onclick="owgis.optionalLayers.toogleList('#optUl1')">Level 1</li> -->
+<!-- 				onclick="owgis.optionalLayers.toggleList('#optUl1')">Level 1</li> -->
 <!-- 			<ul class='opt_lay_list' id='optUl1'> -->
 <!-- 				<fieldset data-role="controlgroup"> -->
 <!-- 					<input type="checkbox" style= "margin-top:0px" id="checkBox1"> <a style="text-decoration: none; margin-left:35px; width: inherit">US States</a> -->

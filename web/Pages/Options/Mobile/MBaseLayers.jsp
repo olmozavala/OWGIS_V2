@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- This sections generate the menu of optional layers, normally vector layers -->
-<div class="row " onClick="owgis.optionalLayers.toogleList('#baseLayersData')">
+<div class="row " onClick="owgis.optionalLayers.toggleList('#baseLayersData')">
 	<div class="col-xs-9 text-center noShadow title">
 		<fmt:message key="main.base" />
 	</div>
