@@ -13,7 +13,7 @@
 		<!--Transect Tool-->
 		<div class="transect-slider">
 			<select name="flip-1" id="lineToggle" data-role="slider"
-					onChange="toggleControlMob();">
+					onChange="owgis.mobile.closePanels();toggleControlMob();">
 				<option value="off"><fmt:message key='mobile.transoff'/></option>
 				<option value="on"><fmt:message key='mobile.transon'/></option>
 			</select>
@@ -67,7 +67,7 @@
 <%-- Toogle Cesium --%>
 <li>
 	<a class="ui-btn ui-icon-globe ui-btn-icon-left currentsParent " 
-		onclick="owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
+		onclick="owgis.mobile.closePanels();owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
 	   href="#">
 		3D View
 	</a>

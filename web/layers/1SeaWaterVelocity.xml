@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!-- The width and height of the image affects the resolution of the animated gif it is important -->
+<!-- The featureInfo is required, if it doesn't have data then use 'none'		
+By the default, the feature info is the same as the name of the layer -->
+
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <!-- Surface water velocity 2010, 2011, 2012 -->
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+        format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+        tiled="false" ncWMS="true" mincolor="-0.113" maxcolor="2.4" trans_effect="none"
+        width="512" height="512" max_time_range="month">  
+        <layer Menu="omodel,hycom,2015,SeaVel" 
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2015"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2015" name="hycom2015/sea_water_velocity" 
+			   overlaystreamlines="hycom2015/sea_water_velocity" />
+        <layer Menu="omodel,hycom,2014,SeaVel" 
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2014"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2014" name="hycom2014/sea_water_velocity"  
+			   overlaystreamlines="hycom2014/sea_water_velocity" />
+        <layer Menu="omodel,hycom,2013,SeaVel" 
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2013"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2013" name="hycom2013/sea_water_velocity" 
+			   overlaystreamlines="hycom2013/sea_water_velocity" />
+        <layer Menu="omodel,hycom,2012,SeaVel"  
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2012"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2012" name="hycom2012/sea_water_velocity"
+			   overlaystreamlines="hycom2012/sea_water_velocity" />
+        <layer Menu="omodel,hycom,2011,SeaVel"  
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2011" 
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2011" name="hycom2011/sea_water_velocity"   
+			   overlaystreamlines="hycom2011/sea_water_velocity" />
+        <layer Menu="omodel,hycom,2010,SeaVel"  
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2010"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2010" name="hycom2010/sea_water_velocity"  
+			   overlaystreamlines="hycom2010/sea_water_velocity" />
+    </MainLayers>
+</MenuConf>

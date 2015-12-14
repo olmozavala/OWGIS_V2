@@ -143,8 +143,8 @@ function updateDomains(){
 		long_domain = lonDomainRand/2;
 	}
 	latg_domain= latDomainRand/2;
-	console.log("SIZE OF RANDOM: "+latg_domain);
-	console.log("SIZE OF RANDOM: "+long_domain);
+//	console.log("SIZE OF RANDOM: "+latg_domain);
+//	console.log("SIZE OF RANDOM: "+long_domain);
 }
 
 owgis.ncwms.currents.particles.setGrid = function setGrid(grid, idx){
@@ -166,7 +166,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(){
 
 	//This is used internally by OWGIS (leave the 5) if you want a faster speed
 	// modify the XML of the layer
-	var localParticleSpeed = 5*particleSpeed;
+	var localParticleSpeed = 2.5*particleSpeed;
 	var randomFunction;//Identifies which random function will be used 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		randomFunction = randomParticleDenseCenter;
@@ -343,7 +343,6 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(){
 			ctx.lineTo(pixParticle[2], pixParticle[3]);
 		});
 	}
-	ctx.stroke();
 }
 
 /**
@@ -428,7 +427,7 @@ function randomParticle(){
 	var x = limLonMin + randVal*lonDomainRand;
 	var y = limLatMin + Math.random()*latDomainRand;
 	
-	var t = randVal*timeParticle;
+	var t = Math.random()*timeParticle;
 	
 	return [x,y,x,y,t];
 }

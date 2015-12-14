@@ -35,6 +35,7 @@ goog.require('owgis.ncwms.currents');
 goog.require('owgis.ncwms.currents.style');
 goog.require('owgis.layer');
 goog.require('owgis.cesium');
+goog.require('owgis.mobile');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var displayingAnimation = false;//Global variable that helps to disable the palette selection

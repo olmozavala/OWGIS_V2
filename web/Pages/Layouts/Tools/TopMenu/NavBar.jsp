@@ -68,7 +68,7 @@
 			</li>
 			<!-- Toogle Cesium -->
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
-				title="Cesium"	
+				title="<fmt:message key='cesium.mainbutton'/>"	
 				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
@@ -128,7 +128,7 @@
 
 			<!-- Toogle Cesium Minimized-->
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
-				title="Cesium"	
+				title="<fmt:message key='cesium.mainbutton'/>"	
 				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>

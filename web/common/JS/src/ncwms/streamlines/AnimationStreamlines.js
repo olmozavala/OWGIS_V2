@@ -11,8 +11,8 @@ goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
 
-var currentsColor = "rgba(255, 255, 255, .5)";
-var currentsDefColor = "rgba(255, 255, 255, .5)";
+var currentsColor = "rgba(255, 255, 255, .6)";
+var currentsDefColor = "rgba(255, 255, 255, .6)";
 var currAnimSpeed = 120;
 
 // This is the amount of data requested for every 800 pixels
@@ -576,10 +576,19 @@ function loopAnimationCurrents(){
 		//Make previous ones transparent
 		var prev = ctx.globalCompositeOperation;
 		ctx.globalCompositeOperation = "destination-out";
-		ctx.fillStyle = "rgba(255, 255, 255, .2)";
+		ctx.fillStyle = "rgba(255, 255, 255, .1)";
 		ctx.fillRect(0, 0, canvas.width,canvas.height);
 		ctx.globalCompositeOperation = prev;
 		ctx.strokeStyle = currentsColor;
+		if(mobile){
+			if(_.isEmpty(_cesium) || !_cesium.getEnabled()){
+				ctx.lineWidth = 2.5;
+			}else{
+				ctx.lineWidth = 1.2;
+			}
+		}else{
+			ctx.lineWidth = 1.2;
+		}
 		
 		//Update particles positions
 		owgis.ncwms.currents.particles.updateParticles();
