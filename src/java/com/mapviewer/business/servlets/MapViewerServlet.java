@@ -33,13 +33,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mapviewer.business.AccessControls;
 import com.mapviewer.business.LayerMenuManagerSingleton;
 import com.mapviewer.business.NetCDFRequestManager;
 import com.mapviewer.business.OpenLayersManager;
 import com.mapviewer.business.UserRequestManager;
 import com.mapviewer.conf.OpenLayerMapConfig;
 import com.mapviewer.exceptions.XMLFilesException;
+import com.mapviewer.exceptions.XMLLayerException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.PagesNames;
 import com.mapviewer.model.menu.MenuEntry;
@@ -60,12 +60,12 @@ public class MapViewerServlet extends HttpServlet {
 	OpenLayersManager opManager;//OpenLayers Code
 	OpenLayerMapConfig mapConfig;
 	NetCDFRequestManager ncManager;// This object is used to manage the netcdf curr_main_layers
-	AccessControls accessControl;
 	String[] linksVectorialesKmz;
-	XMLFilesException errorOnInit;//Its a flag that indicates there was an error on 
 	String configFilePath;
 
-	private void initializeVariables() throws FileNotFoundException, XMLFilesException{
+	Boolean exceptionInitializingVariables = false;
+
+	private void initializeVariables() throws FileNotFoundException, XMLFilesException, XMLLayerException{
 			mapConfig = OpenLayerMapConfig.getInstance();
 
 			configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
@@ -77,15 +77,12 @@ public class MapViewerServlet extends HttpServlet {
 			String baseLayerMenuOrientation = mapConfig.getProperty("baseLayerMenuOrientation");
 			HtmlMenuBuilder.baseLayerMenuOrientation = baseLayerMenuOrientation;
 
-			LayerMenuManagerSingleton.setLayersFolder(layersFolder);//Initializes all the layers from the XML files
-
-			accessControl = AccessControls.getInstance();
+			LayerMenuManagerSingleton.setLayersFolder(layersFolder);//Set the layers folder
 
 			opManager = new OpenLayersManager();//initialize the OpenLayers
 			ncManager = new NetCDFRequestManager();
-			linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
-			HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
 
+			LayerMenuManagerSingleton.getInstance().refreshTree(true);//Initializes all the layers from the XML files
 	}
 	/**
 	 * Initializes the object that controls the access to the server
@@ -96,7 +93,8 @@ public class MapViewerServlet extends HttpServlet {
 		try {
 			initializeVariables();
 		} catch (XMLFilesException ex) {
-			errorOnInit = ex;//Saving the Exception for later display on error page
+			exceptionInitializingVariables = true;
+			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -125,9 +123,45 @@ public class MapViewerServlet extends HttpServlet {
 			response.setContentType("text/html;charset=iso-8859-1");
 			HttpSession session = request.getSession();//Se obtiene la sesion
 			
-			//obtain the user selected layers from menu
-			TreeNode arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+			TreeNode arbolMenuRasters = null;
+
+			//If there was a problem initializing the variables we try to do it again.
+			// This code catches information about the exception and displays it for the user.
+			if(exceptionInitializingVariables){
+				try {
+					initializeVariables();
+					exceptionInitializingVariables = false;
+				} catch (XMLLayerException ex) {
+						//If an exception happens, we start with the default menu
+					arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+					session.setAttribute("MenuDelUsuario", arbolMenuRasters);
+					//If there is an XMLLayerException exception we just display it as 
+					// warning in the main site
+					StringWriter sw = new StringWriter();
+					ex.printStackTrace(new PrintWriter(sw));
+					String exceptionInfo = ex.getMessage();
+					String exceptionTrace = sw.toString();
+					exceptionTrace = exceptionTrace.substring(0, exceptionTrace.indexOf("\n"));
+					exceptionTrace = exceptionTrace.replace("\"","");
+					exceptionTrace = exceptionTrace.replace("\'","");
+					exceptionInfo = exceptionInfo.replace("\"","");
+					exceptionInfo = exceptionInfo.replace("\'","");
+
+					request.setAttribute("warningText", exceptionInfo);
+					request.setAttribute("warningInfo", exceptionTrace);
+
+					exceptionInitializingVariables = true;
+				} 
+			}else{
+				//obtain the user selected layers from menu
+				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+			}
 			
+			if(linksVectorialesKmz  == null){
+				linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
+				HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
+			}
+
 			//get menu entry
 			MenuEntry[] rasterSelecteLayers = TreeMenuUtils.obtieneMenuSeleccionado(arbolMenuRasters);
 			
@@ -189,7 +223,7 @@ public class MapViewerServlet extends HttpServlet {
 			request.setAttribute("layerTitle", layerTitle);
 			request.setAttribute("titleSize", layerTitle.length());
 			request.setAttribute("totalLayers", opManager.getTotalVisibleLayers());
-			request.setAttribute("idx_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
+			request.setAttribute("_id_first_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
 			request.setAttribute("mainLayer", curr_main_layer.getName());
 			request.setAttribute("style", curr_main_layer.getStyle());
 			request.setAttribute("max_time_range", curr_main_layer.getMaxTimeLayer());
@@ -225,23 +259,24 @@ public class MapViewerServlet extends HttpServlet {
 				request.setAttribute("mobile", "false");
 			}
 			
-		} catch (Exception ex) {
-			request.setAttribute("errorText", "XMLException: " + ex.getMessage());
+		} catch (XMLFilesException ex) {
+			request.setAttribute("errorText", "Unable to parse XML files: " + ex.getMessage());
 			StringWriter sw = new StringWriter();
 			ex.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			request.setAttribute("traceText", exceptionAsString);
+			String exceptionTrace = sw.toString();
+			request.setAttribute("traceText", exceptionTrace);
 
-			try {
-				this.initializeVariables();
-				LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
-				menuManager.refreshTree(true);
-			} catch (Exception ex1) {
-				request.setAttribute("errorText", "Error initializing layers, please verify your XML configuration");
-				request.setAttribute("traceText", "Exception: Can't initialize variables of main servlet");
-			}
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-				}
+
+		} catch (Exception ex) {
+			request.setAttribute("errorText", "Inialization Exception: " + ex.getMessage());
+			StringWriter sw = new StringWriter();
+			ex.printStackTrace(new PrintWriter(sw));
+			String exceptionTrace = sw.toString();
+			request.setAttribute("traceText", exceptionTrace);
+
+			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(nextPage);
 		view.forward(request, response);
@@ -257,8 +292,8 @@ public class MapViewerServlet extends HttpServlet {
 	 * request.setAttribute("errorText", "Exception: " + ex.getMessage());
 	 * StringWriter sw = new StringWriter();
 	 * ex.printStackTrace(new PrintWriter(sw));
-	 * String exceptionAsString = sw.toString();
-	 * request.setAttribute("traceText", exceptionAsString);
+	 * String exceptionTrace = sw.toString();
+	 * request.setAttribute("traceText", exceptionTrace);
 	 *
 	 * Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 	 * }

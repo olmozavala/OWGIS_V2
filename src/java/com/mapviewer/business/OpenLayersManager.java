@@ -292,7 +292,7 @@ public class OpenLayersManager {
 			
 			if (actualLayer.isncWMS()) {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
-					layersScript += ", numcolorbands:250,  colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
+					layersScript += ", colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}
 			}
 			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";

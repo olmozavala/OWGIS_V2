@@ -8,6 +8,12 @@
 		</span>
 		<!--This are always available-->
 		<ul class="horizontal col-lg-4 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
+			<!--
+			<li class="buttonStyle toolTip" title="BACK"> 
+				<a class="maplink" style="text-align:center;" onclick="owgis.backlayers.update('mapquest')" data-role="button">
+				    Back
+				</a>
+			</li> -->
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
@@ -21,67 +27,8 @@
 			</li>
 		</ul>
 			
-		<!--This whole ul is used for the 'large' size-->
-		<ul class="horizontal col-lg-6 text-left visible-lg " style="margin-bottom: 0px">
-			<!--Options to manipulate the style of currents-->
-			<c:if test='${currents}'>
-				<li class="buttonStyle menuHidden toolTip currentsParent" 
-					title="<fmt:message key='ncwms.streamlines.help.streamlines'/>"
-					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');">
-					<fmt:message key='ncwms.streamlines.streamlines'/>
-				</li>
-			</c:if>
-			<c:if test='${ncwms}'>
-				<!-- Palettes -->
-				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
-					title="<fmt:message key='help.tooltip.palettes'/>"
-					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
-				<fmt:message key="ncwms.pal" />
-				</li>
-				<!-- Transect tool-->
-				<li class="buttonStyle menuHidden toolTip lineToggle" 
-					title="<fmt:message key='help.tooltip.transect'/>"
-					onclick="toggleControl(this,'below');owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
-				<fmt:message key="ncwms.transect" />
-				</li>
-			</c:if>
-			<c:if test='${!ncwms}'>
-				<!-- Download data-->
-				<li class="buttonStyle menuHidden toolTip downloadDataParent" 
-					title="<fmt:message key='help.tooltip.download'/>"
-					onclick="downloadData();"  >
-				<fmt:message key="main.download" />
-				</li>
-			</c:if>
-			<!-- Reset view -->
-			<li class="buttonStyle toolTip resetParent" 
-				title="<fmt:message key='help.tooltip.resetview'/>" >
-				<span id="resetText" onclick="resetView();" />
-			<fmt:message key="main.resetView" />
-			</span>
-			</li>
-			<!-- Map Instructions-->
-			<li class="buttonStyle toolTip helpParent" 
-				title="<fmt:message key='help.tooltip.help'/>" id="helpText"
-				onclick="owgis.help.main.displayHelp();owgis.layouts.draggable.topmenu.toogleUse('.helpParent');" >
-				<fmt:message key="main.help" />
-			</li>
-			<!-- Toogle tooltip -->
-			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
-				title="<fmt:message key='help.helpicon'/>"	
-				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
-				<span class="glyphicon glyphicon-question-sign"> </span>
-			</li>
-			<!-- Toogle Cesium -->
-			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
-				title="<fmt:message key='cesium.mainbutton'/>"	
-				onclick="owgis.cesium.toogleCesium();" >
-				<span class="glyphicon glyphicon-globe"> </span>
-			</li>
-		</ul>
-		
 		<!--This whole ul is used for the 'smaller ' sizes-->
-		<ul class="horizontal col-md-4 col-sm-5 text-left hidden-lg " style="margin-bottom: 0px">
+		<ul class="horizontal col-md-4 col-sm-5 text-left " style="margin-bottom: 0px">
 			<!--Options to manipulate the style of currents-->
 			<c:if test='${currents}'>
 				<li class="buttonStyle menuHidden toolTip currentsParent" 
@@ -95,7 +42,7 @@
 				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
 					title="<fmt:message key='help.tooltip.palettes'/>"
 					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
-					<span class="glyphicon glyphicon-picture"> </span>
+					<span class="glyphicon glyphicon-tint"></span>
 				</li>
 				<!-- Transect tool minimized-->
 				<li class="buttonStyle menuHidden toolTip lineToggle" 
@@ -112,12 +59,21 @@
 					<span class="glyphicon glyphicon-download-alt"> </span>
 				</li>
 			</c:if>
+
+			<!-- Toogle Cesium Minimized-->
+			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
+				title="<fmt:message key='cesium.mainbutton'/>"	
+				onclick="owgis.cesium.toogleCesium();" >
+				<span class="glyphicon glyphicon-globe"> </span>
+			</li>
+
 			<!-- Reset view minimized -->
 			<li class="buttonStyle toolTip resetParent" 
 				title="<fmt:message key='help.tooltip.resetview'/>" 
 				onclick="resetView();" >
 				<span id="resetText" class="glyphicon glyphicon-refresh"> </span>
 			</li>
+
 			<!-- Map Instructions minimized-->
 			<li class="buttonStyle toolTip helpParent" 
 				title="<fmt:message key='help.tooltip.help'/>" id="helpText"
@@ -132,12 +88,6 @@
 				<span class="glyphicon glyphicon-question-sign "> </span>
 			</li>
 
-			<!-- Toogle Cesium Minimized-->
-			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
-				title="<fmt:message key='cesium.mainbutton'/>"	
-				onclick="owgis.cesium.toogleCesium();" >
-				<span class="glyphicon glyphicon-globe"> </span>
-			</li>
 		</ul>
 			
 		<!--Languages and tooltip help button-->

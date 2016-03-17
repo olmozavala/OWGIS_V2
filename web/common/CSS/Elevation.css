@@ -53,7 +53,7 @@ Styles for the elevation options.
 */
 /* Defines the position of the draggable window that
 selects the zaxis value*/
-/* line 14, ../scss/Elevation.scss */
+/* line 13, ../scss/Elevation.scss */
 #zaxis_selector_parent {
   min-width: 100px;
   top: 45px;

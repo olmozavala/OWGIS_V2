@@ -54,12 +54,25 @@ if(!mobile && windowWidth <= _mobileScreenThreshold){
 	 }
 
 /**
+ * This function verifies if one exception occured in the parsing of the 
+ * XML layers and displays it as a warning.  
+ * @returns {undefined}
+ */
+function displayPrevExceptions(){
+	if( warningText !== ""){
+		console.log(warningText);
+		console.log(warningInfo);
+		owgis.error.popover.create(warningText);
+	}
+}
+/**
  * Instructions executed when the page is ready
  */
 function owgisMain(){
+	displayPrevExceptions();
 	initOl3();
     addLayers();
-	owgis.layers.initMainLayer(eval('layer'+idx_main_layer));
+	owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
 	initMenus();
 	owgis.help.tooltips.initHelpTexts();
 	modifyInterface();

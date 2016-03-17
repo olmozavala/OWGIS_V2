@@ -66,9 +66,7 @@ This stylesheet defines styles for the 'Currents' related styling
   background-color: white;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
-  -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+  -webkit-border-radius: 7px;
   border-radius: 7px;
 }

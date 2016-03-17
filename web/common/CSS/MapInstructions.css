@@ -77,14 +77,14 @@ and open the template in the editor.
   font-size: 12px;
   color: black;
   background-image: none;
-  background-color: #dbe9e9;
+  background-color: #DBE9E9;
   z-index: 1009;
   top: 1px;
   left: 1px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=95);
   opacity: 0.95;
-  -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
+  -webkit-border-radius: 5px 5px;
   border-radius: 5px / 5px;
   text-align: left;
   min-width: 150px;

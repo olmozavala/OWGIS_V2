@@ -77,7 +77,7 @@ div.leftFoot {
 /* line 32, ../scss/HomePage.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
-  text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
+  text-shadow: #ECF2F8 0 2px 1px, #ECF2F8 2px 0 1px, #ECF2F8 -2px 0 1px, #ECF2F8 0 -2px 1px, #ECF2F8 2px 2px 1px, #ECF2F8 -2px 2px 1px, #ECF2F8 2px -2px 1px, #ECF2F8 -2px -2px 1px;
   font-size: 11px;
   color: blue;
 }
@@ -126,10 +126,8 @@ div.leftFoot {
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+  -webkit-border-radius: 7px;
   border-radius: 7px;
   bottom: 50px;
   right: 5%;
@@ -154,10 +152,8 @@ div.leftFoot {
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+  -webkit-border-radius: 7px;
   border-radius: 7px;
   bottom: 50px;
   left: 3em;

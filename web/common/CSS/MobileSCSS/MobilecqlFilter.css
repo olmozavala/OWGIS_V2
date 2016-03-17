@@ -74,7 +74,7 @@ table.cqlFilterExampleTable td {
   text-align: center;
 }
 
-/* line 67, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+/* line 66, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 .cqlFilterTable {
   /*background-color:black;*/
   z-index: 1008;
@@ -94,7 +94,7 @@ table.cqlFilterExampleTable td {
   width: 500px;
 }
 
-/* line 91, ../../scss/MobileSCSS/MobilecqlFilter.scss */
+/* line 90, ../../scss/MobileSCSS/MobilecqlFilter.scss */
 #cqlhelptext {
   position: absolute;
   top: 400px;

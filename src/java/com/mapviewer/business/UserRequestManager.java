@@ -18,6 +18,7 @@ package com.mapviewer.business;
 
 import com.mapviewer.conf.OpenLayerMapConfig;
 import com.mapviewer.exceptions.XMLFilesException;
+import com.mapviewer.exceptions.XMLLayerException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.menu.TreeNode;
 import com.mapviewer.tools.ConvertionTools;
@@ -66,8 +67,10 @@ public class UserRequestManager {
 
 		String[] selectedValues = ConvertionTools.convertObjectArrayToStringArray(levelsSelected);
 
-		LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
-		boolean update = menuManager.refreshTree(false);//Search for any update on the XML files
+		LayerMenuManagerSingleton menuManager = null;
+		boolean update = false;
+		menuManager = LayerMenuManagerSingleton.getInstance();
+		update = menuManager.refreshTree(false);//Search for any update on the XML files
 
 		//If is the first time the user access the webpage then we 
 		// return the default menu. 

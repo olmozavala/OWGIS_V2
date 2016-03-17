@@ -1,5 +1,5 @@
 /* optional layers such as us state, DeepC, etc*/
-/* line 5, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
+/* line 4, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 #optionalMenuParent {
   top: -20px;
   min-width: 185px;
@@ -67,7 +67,7 @@ table.vectorLayer {
   text-shadow: none;
 }
 
-/* line 72, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
+/* line 71, ../../scss/MobileSCSS/MobileOptionalLayersMenu.scss */
 .optionalImg {
   width: 75px;
   height: 75px;

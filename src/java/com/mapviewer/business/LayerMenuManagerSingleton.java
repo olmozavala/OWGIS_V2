@@ -1,18 +1,18 @@
 /*
 * Copyright (c) 2013 Olmo Zavala
-* Permission is hereby granted, free of charge, to any person obtaining a copy of 
-* this software and associated documentation files (the "Software"), to deal in the 
-* Software without restriction, including without limitation the rights to use, copy, 
-* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
-* to permit persons to whom the Software is furnished to do so, subject to the following conditions: 
-* The above copyright notice and this permission notice shall be included in all copies or substantial 
+* Permission is hereby granted, free of charge, to any person obtaining a copy of
+* this software and associated documentation files (the "Software"), to deal in the
+* Software without restriction, including without limitation the rights to use, copy,
+* modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+* to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+* The above copyright notice and this permission notice shall be included in all copies or substantial
 * portions of the Software.
 *
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-* INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-* PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-* FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
-* ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+* INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+* PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+* FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+* ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /**
  * This class is a singleton class, meaning it only creates one instance of it when
@@ -23,6 +23,7 @@ package com.mapviewer.business;
 
 import com.mapviewer.conf.OpenLayerMapConfig;
 import com.mapviewer.exceptions.XMLFilesException;
+import com.mapviewer.exceptions.XMLLayerException;
 import com.mapviewer.model.BoundaryBox;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.menu.MenuEntry;
@@ -31,6 +32,7 @@ import com.mapviewer.model.menu.TreeNode;
 import com.mapviewer.tools.ConvertionTools;
 import com.mapviewer.tools.FileManager;
 import com.mapviewer.tools.StringAndNumbers;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
@@ -54,7 +56,7 @@ import org.jdom.input.SAXBuilder;
  * tree of LayerMenuManagerSingleton
  */
 public class LayerMenuManagerSingleton {
-
+	
 	private static LayerMenuManagerSingleton instance = null;
 	private TreeNode rootMenu;// Contains the menu of the background and main layers
 	private TreeNode rootVectorMenu;// Contains the menu for the vector or optional layers
@@ -66,7 +68,7 @@ public class LayerMenuManagerSingleton {
 	static String xmlFolder;
 	static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
 	Date lastUpdate;
-
+	
 	/**
 	 * Add layers to the menus from an XML element.
 	 *
@@ -75,32 +77,35 @@ public class LayerMenuManagerSingleton {
 	 * @param {String} layerType - background, main, or vector layer
 	 */
 	private void addLayers(Element layerConf, String layerType) throws XMLFilesException {
-
+		
+		List<String> layerExceptions = new ArrayList<>();
+		
 		//These are the default values
 		Layer deflayer = defaultLayer(); // initialize private constructor
-
+		
 		//Compute the group values for these layers, fill in all values that are in layerConf object
 		Layer groupLayer = updateFields(layerConf, deflayer);//Updates
-
+		
 		List layers = layerConf.getChildren();
-
+		
 		//we iterate through this loop which is going through each child of a layer
 		for (Iterator it = layers.iterator(); it.hasNext();) {
-
+			
+			
+			Element layerElem = (Element) it.next();
+			
+			Layer newLayer = updateFields(layerElem, groupLayer);
+			System.out.println("Adding layer: "+newLayer.getName());
+			
+			String[] layerMenu = null;
+			
 			try {
-
-				Element layerElem = (Element) it.next();
-
-				Layer newLayer = updateFields(layerElem, groupLayer);
-
-				String[] layerMenu = null;
-
 				//For vector and main layers we update the current menu tree
 				if (!layerType.equalsIgnoreCase("BackgroundLayers")) {
 					//Obtains the menu for this layer
 					layerMenu = StringAndNumbers.strArrayFromStringColon(layerElem.getAttributeValue("Menu"));
 				}
-
+				
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 					case "mainlayers":
 						newLayer.setDisplayNames(getDisplayNames(layerElem));
@@ -113,11 +118,11 @@ public class LayerMenuManagerSingleton {
 						newLayer.setIsVectorLayer(true);
 						break;
 				}
-
+				
 				//this is where the server is checked to see if it is online or not.
 				//in the case it it offline and exception is raised and it skips until the catch
 				String layerDetails = NetCDFRequestManager.getLayerDetails(newLayer);
-
+				
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 					case "mainlayers":
 						//Updates the Root Tree menu with this new entry
@@ -125,52 +130,71 @@ public class LayerMenuManagerSingleton {
 						//Assigns the 'Tree' of this menu to the layer
 						newLayer.setIdLayer(searchMenuEntries(layerMenu));
 						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
-						this.mainLayers.add(newLayer);
+						validateLayer(newLayer);
 						break;
 					case "backgroundlayers":
-						//If this is the first background layer then we us its
+						//If this is the first background layer then we use its
 						// projection as the default map projection. In case
 						// we are using another background layer like OpenStreetMap, this
 						//value will be overwritten directly on JavaScript
 						if(this.backgroundLayers.isEmpty()){
-							OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance(); 
+							OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance();
 							mapConfig.updateProperty("mapProjection", newLayer.getProjection());
 						}
 						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
-						this.backgroundLayers.add(newLayer);
+						validateLayer(newLayer);
 						break;
 					case "optionallayers":
 						//Updates the Vector Tree menu with this new entry
 						updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
-
+						
 						//Assigns the 'Tree' of this menu to the layer
 						newLayer.setIdLayer(searchMenuEntries(layerMenu));
 						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
-						this.vectorLayers.add(newLayer);
+						validateLayer(newLayer);
 						break;
 				}
-				validateLayer(newLayer);
-
-//				TreeMenuUtils.traverseTree(this.rootMenu);
-//				System.out.println("END");
-			} catch (Exception ex) {
-				throw new XMLFilesException("Fail to parse XML files:" + ex.getMessage());
+				
+			} catch (XMLLayerException ex) {
+				layerExceptions.add(newLayer.getName());
+				break;//Try the next layer
 			}
+			
+			//If we make it this far, then the layer has been added succesfully (or it should)
+			switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
+				case "mainlayers":
+					this.mainLayers.add(newLayer);
+					break;
+				case "backgroundlayers":
+					this.backgroundLayers.add(newLayer);
+					break;
+				case "optionallayers":
+					this.vectorLayers.add(newLayer);
+					break;
+			}
+		}//For Iterate over layers of a group
+		
+		if(layerExceptions.size() > 0){
+			String exceptionString="";
+			//Saving all the exceptions into one string
+			exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+			throw new XMLLayerException(exceptionString);
 		}
+		
 	}
-
+	
 	/**
 	 * This function validates the final properties of a layer. It validates for example
-	 * that it has a url for the server, etc. 
-	 * @param newLayer 
+	 * that it has a url for the server, etc.
+	 * @param newLayer
 	 */
 	private void validateLayer(Layer newLayer) throws XMLFilesException {
 		if(newLayer.getServer() == null || newLayer.getServer().equals("")){
 			throw new XMLFilesException("Layer '"+newLayer.getName()+"' does not provides a url for the server");
 		}
-
+		
 	}
-
+	
 	/**
 	 * returns the index of a layer or -1 is not found
 	 *
@@ -186,16 +210,16 @@ public class LayerMenuManagerSingleton {
 			}
 			indx++;
 		}
-
+		
 		//In this case we do not increment the index, because we should
-		// have only one main layer. 
+		// have only one main layer.
 		for (int i = 0; i < mainLayers.size(); i++) {
 			Layer currLayer = mainLayers.get(i);
 			if (currLayer.getName().equalsIgnoreCase(name)) {
 				return indx;
 			}
 		}
-
+		
 		for (int i = 0; i < vectorLayers.size(); i++) {
 			Layer currLayer = vectorLayers.get(i);
 			if (currLayer.getName().equalsIgnoreCase(name)) {
@@ -203,11 +227,11 @@ public class LayerMenuManagerSingleton {
 			}
 			indx++;
 		}
-
+		
 		System.out.println("Layer name not found");
 		return -1;
 	}
-
+	
 	/**
 	 * Obtains a layer by its name.
 	 *
@@ -222,7 +246,7 @@ public class LayerMenuManagerSingleton {
 				return currLayer;
 			}
 		}
-
+		
 		itr = vectorLayers.iterator();
 		while (itr.hasNext()) {
 			Layer currLayer = (Layer) itr.next();
@@ -230,7 +254,7 @@ public class LayerMenuManagerSingleton {
 				return currLayer;
 			}
 		}
-
+		
 		itr = backgroundLayers.iterator();
 		while (itr.hasNext()) {
 			Layer currLayer = (Layer) itr.next();
@@ -238,10 +262,10 @@ public class LayerMenuManagerSingleton {
 				return currLayer;
 			}
 		}
-
+		
 		return null;
 	}
-
+	
 	/**
 	 * Gets the singleton object in charge of holding the original menu tree and the list
 	 * of Layers.
@@ -249,15 +273,14 @@ public class LayerMenuManagerSingleton {
 	 * @return
 	 */
 	public static synchronized LayerMenuManagerSingleton getInstance() throws XMLFilesException {
-
+		
 		if (instance == null) {//Only the first time we initialize
 			instance = new LayerMenuManagerSingleton();
-			instance.refreshTree(true);
 		}
-
+		
 		return instance;
 	}
-
+	
 	/**
 	 * This function is called to refresh the Tree using all the XML files inside the
 	 * specified folder.
@@ -267,16 +290,16 @@ public class LayerMenuManagerSingleton {
 	 */
 	public boolean refreshTree(boolean forceXMLreload) throws XMLFilesException {
 		if (xmlFiles == null) {
-			throw new XMLFilesException("XML Layers file is not defined");
+			throw new XMLFilesException("XML Layers file is not defined (no XML files in the layers folder)");
 		}
-
-
+		
+		
 		Date currLastUpdate;
 		boolean update = forceXMLreload;
-
+		
 		Date currDate = new Date();
-		OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance(); 
-
+		OpenLayerMapConfig mapConfig = OpenLayerMapConfig.getInstance();
+		
 		String refreshLayers = mapConfig.getRefreshLayers();
 		long millsSinceLastUpdate = currDate.getTime() - lastUpdate.getTime();
 		switch(refreshLayers.toLowerCase()){
@@ -290,18 +313,18 @@ public class LayerMenuManagerSingleton {
 				if( millsSinceLastUpdate > MILLIS_PER_DAY*30) update = true;
 				break;
 		}
-
-//		If we still haven't decide if we are updating the layers. 
+		
+		//		If we still haven't decide if we are updating the layers.
 		if(!update){
-			//Verifies that there are not more or less xml files in the folder. 
+			//Verifies that there are not more or less xml files in the folder.
 			if (xmlFiles.length != FileManager.numberOfFilesInFolder(xmlFolder)) {
 				LayerMenuManagerSingleton.setLayersFolder(xmlFolder);
 				update = true;
 			} else {
 				for (int i = 0; i < xmlFiles.length; i++) {
 					currLastUpdate = FileManager.lastModification(xmlFiles[i]);
-					//If is the first time we generate the tree or the file has been updated we 
-					// regenerate the tree menu and update the layers. 
+					//If is the first time we generate the tree or the file has been updated we
+					// regenerate the tree menu and update the layers.
 					synchronized (this) {
 						if ( (lastUpdate.getTime() < currLastUpdate.getTime())) {
 							update = true;
@@ -311,8 +334,8 @@ public class LayerMenuManagerSingleton {
 				}
 			}
 		}
-
-		if (update) {//If at least one file was updated we change the lastUpdate date. 
+		
+		if (update) {//If at least one file was updated we change the lastUpdate date.
 			resetVariables();
 			lastUpdate = new Date();
 			instance.createMenuFromXMLfiles();
@@ -323,7 +346,7 @@ public class LayerMenuManagerSingleton {
 	
 	//------------------------ PRIVATE FUNCTIONS ----------------------
 	private LayerMenuManagerSingleton() {
-		lastUpdate = new Date(0);//Initialize the variable 
+		lastUpdate = new Date(0);//Initialize the variable
 		resetVariables();
 	}
 	
@@ -344,24 +367,28 @@ public class LayerMenuManagerSingleton {
 	 * Creates the initial Tree of layers from the specified XML files.
 	 */
 	private void createMenuFromXMLfiles() throws XMLFilesException {
+		List<String> layerExceptions = new ArrayList<>();
 		try {
 			//First search for MenuEntries in all the files
 			for (int i = 0; i < xmlFiles.length; i++) {
 				String fileName = xmlFiles[i];
 				SAXBuilder builder = new SAXBuilder(); //used to read XML
 				Document doc = builder.build(fileName);
+				File tempFile = new File(fileName);
 				
 				// Obtains the root element of the current XML file
 				Element root = doc.getRootElement();
 				List children = root.getChildren();
 				
 				//Obtains the menu entries or the layers
+				System.out.println("Adding menu entries from file: "+tempFile.getName());
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
 					if (curr.getName().equals("Menus")) {
 						addMenuEntries(curr.getChildren());
 					}
 				}
+				System.out.println("Done adding menu entries from file: "+tempFile.getName());
 			}
 			for (int i = 0; i < xmlFiles.length; i++) {
 				String fileName = xmlFiles[i];
@@ -379,26 +406,36 @@ public class LayerMenuManagerSingleton {
 							|| curr.getName().equalsIgnoreCase("MainLayers")
 							|| curr.getName().equalsIgnoreCase("OptionalLayers")) {
 						try{
+							System.out.println("Adding group layers: "+ curr.getName());
 							addLayers(curr, curr.getName());
-						}catch(XMLFilesException ex){
-							throw new XMLFilesException("Error parsing XML file:'"+fileName+"' <br>"
-									+ "Element:" + curr.getName()+ "<br>"
-									+ "More Info:" + ex.getMessage());
+						}catch(XMLLayerException ex){
+							File tempFile = new File(fileName);
+							System.out.println("Adding exception parsing XML layer");
+							layerExceptions.add("<b>Error parsing XML file</b>: <small> "+tempFile.getName()+"</small> <br>"
+									+ "<b>Layers: </b>: <small>" + ex.getMessage() + "</small><br>"
+									+ "<b>Element</b>: <small>" + curr.getName()+ "</small><br>");
 						}
+						catch(XMLFilesException ex){
+							throw new XMLFilesException(ex.getMessage());
+						}
+						
 					}
 				}
-//				System.out.println("----------- Current Main MENU-------------");
-//				TreeMenuUtils.traverseTree(rootMenu);
-//				System.out.println("\n----------- Current Vector MENU-------------");
-//				TreeMenuUtils.traverseTree(rootVectorMenu);
-//				System.out.println("\n");
 			}
+			
 			System.out.println("----------- FINAL Main MENU-------------");
 			TreeMenuUtils.traverseTree(rootMenu);
 			System.out.println("\n----------- FINAL Vector MENU-------------");
 			TreeMenuUtils.traverseTree(rootVectorMenu);
 			System.out.println("\n");
 			
+			if(layerExceptions.size() > 0){
+				String exceptionString="";
+				//Saving all the exceptions into one string
+				exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+				
+				throw new XMLLayerException(exceptionString);
+			}
 			
 		} catch (JDOMException | IOException ex) {
 			Logger.getLogger(LayerMenuManagerSingleton.class.getName()).log(Level.SEVERE, null, ex);
@@ -549,10 +586,10 @@ public class LayerMenuManagerSingleton {
 		
 		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null
 				? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
-
+		
 		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
 				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
-
+		
 		/*
 		String[] cql_cols = null;
 		if(cql_cols_str!=null){
@@ -562,7 +599,7 @@ public class LayerMenuManagerSingleton {
 		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
-				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF, 
+				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
 				max_time_range, boolJsonp,overlayStreamlines,defParticleSpeed);
 		
 		newLayer.setMinColor(minColor);
@@ -593,7 +630,6 @@ public class LayerMenuManagerSingleton {
 	 */
 	private void addMenuEntries(List entries) {
 		try {
-			System.out.println("Adding menu entries");
 			for (Iterator it = entries.iterator(); it.hasNext();) {
 				
 				Element entry = (Element) it.next();
@@ -614,10 +650,10 @@ public class LayerMenuManagerSingleton {
 				}
 				
 //				currMenuEntry.print();
-				menuEntries.put(id, currMenuEntry);
+menuEntries.put(id, currMenuEntry);
 			}
 		} catch (Exception ex) {
-			System.out.println("Exception addin menu entries");
+			System.out.println("Exception adding menu entries");
 		}
 	}
 	

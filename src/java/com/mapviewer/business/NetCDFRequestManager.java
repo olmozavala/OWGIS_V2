@@ -20,6 +20,7 @@
  */
 package com.mapviewer.business;
 
+import com.mapviewer.exceptions.XMLLayerException;
 import com.mapviewer.model.Layer;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -136,7 +137,7 @@ public class NetCDFRequestManager {
 	 * @param {Layer} layer
 	 * @return
 	 */
-	public static String getLayerDetails(Layer layer) throws Exception {
+	public static String getLayerDetails(Layer layer) throws XMLLayerException{
 
 		//For the moment we only obtain the datails for netCDF layers (ncWMS server)
 		if (!layer.isncWMS()) {
@@ -147,7 +148,7 @@ public class NetCDFRequestManager {
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
 		JSONObject layerDetails = new JSONObject();
 
-		int maxTries = 1; //120
+		int maxTries = 2; //Number of tries we willl make to retrieve an specific layer
 		int tryNumber = 0;// Current try
 		boolean accepted = false;
 
@@ -184,8 +185,8 @@ public class NetCDFRequestManager {
 			} catch (JSONException | IOException e) {
 				try {
 					tryNumber++;
-					System.out.println("Layer details try number:" + tryNumber + " Error:"+ e.getMessage());
-					Thread.sleep(1000);//We wait for 1 seconds.
+					System.out.println("Layer details try number:" + tryNumber + " for layer "+ layer.getName() + " Error:"+ e.getMessage());
+					Thread.sleep(500);//We wait for .1 seconds to make the request again.
 				} catch (InterruptedException ex) {
 					System.out.println("Interrupted exception while waiting for layer details:" + ex.getMessage());
 				}
@@ -196,7 +197,7 @@ public class NetCDFRequestManager {
 			System.out.println("layer details: " + layerDetails.toString());
 			return layerDetails.toString();
 		} else {
-			throw new Exception("ERROR: Not able to load layer details for layer:" + layer.getDisplayName("EN"));
+			throw new XMLLayerException("ERROR: Not able to load layer details for layer:" + layer.getDisplayName("EN"));
 		}
 	}
 	

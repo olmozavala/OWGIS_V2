@@ -58,8 +58,8 @@ This file defines the styles for the Base layers
   width: 165px;
   color: black;
   background-color: #909090;
-  -webkit-border-radius: 6px 6px;
   -moz-border-radius: 6px / 6px;
+  -webkit-border-radius: 6px 6px;
   border-radius: 6px / 6px;
   margin: 1px 0px;
 }

@@ -367,9 +367,9 @@ function initstreamlineLayer(){
 	
 	var layersCollection = map.getLayers();
 	if(_.isEmpty(animLayer)){
-		layersCollection.insertAt(parseInt(idx_main_layer)+1,streamlineLayer);//Adds the animation layer just above the main layer
+		layersCollection.insertAt(parseInt(_id_first_main_layer)+1,streamlineLayer);//Adds the animation layer just above the main layer
 	}else{
-		layersCollection.insertAt(parseInt(idx_main_layer)+2,streamlineLayer);//Adds the animation layer just above the main layer
+		layersCollection.insertAt(parseInt(_id_first_main_layer)+2,streamlineLayer);//Adds the animation layer just above the main layer
 	}
 }
 

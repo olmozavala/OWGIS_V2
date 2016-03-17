@@ -101,12 +101,10 @@ for the help text, the optional layers, the depth etc.*/
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+  -webkit-border-radius: 7px;
   border-radius: 7px;
-  color: #ecf2f8;
+  color: #ECF2F8;
   background-color: black;
 }
 
@@ -124,17 +122,15 @@ for the main layers, the color palettes, the calendars etc.*/
   font-size: 13px;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+  -webkit-border-radius: 7px;
   border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* line 48, ../scss/GeneralStyles.scss */
 .defShadow {
-  color: #ecf2f8;
+  color: #ECF2F8;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
   text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
 }
@@ -143,12 +139,12 @@ for the main layers, the color palettes, the calendars etc.*/
 .invShadow {
   color: black;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
-  text-shadow: #ecf2f8 0 2px 1px, #ecf2f8 2px 0 1px, #ecf2f8 -2px 0 1px, #ecf2f8 0 -2px 1px, #ecf2f8 2px 2px 1px, #ecf2f8 -2px 2px 1px, #ecf2f8 2px -2px 1px, #ecf2f8 -2px -2px 1px;
+  text-shadow: #ECF2F8 0 2px 1px, #ECF2F8 2px 0 1px, #ECF2F8 -2px 0 1px, #ECF2F8 0 -2px 1px, #ECF2F8 2px 2px 1px, #ECF2F8 -2px 2px 1px, #ECF2F8 2px -2px 1px, #ECF2F8 -2px -2px 1px;
 }
 
 /* line 53, ../scss/GeneralStyles.scss */
 .noShadow {
-  color: #ecf2f8;
+  color: #ECF2F8;
 }
 
 /* line 55, ../scss/GeneralStyles.scss */
@@ -159,7 +155,7 @@ for the main layers, the color palettes, the calendars etc.*/
 /* This is the default font type for the letters in the page */
 /* line 58, ../scss/GeneralStyles.scss */
 p {
-  color: #ecf2f8;
+  color: #ECF2F8;
 }
 
 /* Default style for the page */
@@ -217,9 +213,10 @@ but the size of the font is larger */
 
 /* line 106, ../scss/GeneralStyles.scss */
 hr {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VjZjJmOCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWNmMmY4Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-size: 100%;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ecf2f8), color-stop(50%, #000000), color-stop(100%, #ecf2f8));
-  background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);
   background-image: -moz-linear-gradient(#ecf2f8, #000000, #ecf2f8);
-  background-image: -o-linear-gradient(#ecf2f8, #000000, #ecf2f8);
+  background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);
   background-image: linear-gradient(#ecf2f8, #000000, #ecf2f8);
 }

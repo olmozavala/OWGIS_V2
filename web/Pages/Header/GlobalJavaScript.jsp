@@ -31,7 +31,7 @@
 		//minPalVal = layerDetails.scaleRange[0];
 		//maxPalVal = layerDetails.scaleRange[1];
 	var max_time_range = '${max_time_range}'; //calendar time range
-	var idx_main_layer = '${idx_main_layer}';// What is the index of the main layer (depending on the number of background layers)
+	var _id_first_main_layer = '${_id_first_main_layer}';// What is the index of the main layer (depending on the number of background layers)
 	var mapConfig = ${mapConfig}; //configurations such as resolution, size, zoom levels, etc...
 	var currentZoom = 0; //This variable is used to avoid removing the 'Loading' text after zooming into the map (When an animation is been loading)
 	var cql_cols = '${cqlcols}'; // Set of columns that can be filtered by CQL
@@ -60,6 +60,10 @@
 	var resolutionMiddle = "<fmt:message key='ncwms.resolutionMiddle'/>";
 	var resolutionLow = "<fmt:message key='ncwms.resolutionLow'/>";
 	
-	//calender date format
+	// Show exceptions that can be managed by OWGIS as warnings
+	var warningText = '${warningText}';
+	var warningInfo = '${warningInfo}';
+
+	//calendar date format
 	var dateFormat = "yy-mm-dd"; 
 </script>

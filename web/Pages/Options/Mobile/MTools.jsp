@@ -51,7 +51,7 @@
 <c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
-		<a class="ui-btn ui-icon-picture-o ui-btn-icon-left " href="#mobPanelPalettes" > Palettes
+		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > Palettes
 		</a>
 	</li>
 	<%-- Calendars --%>
