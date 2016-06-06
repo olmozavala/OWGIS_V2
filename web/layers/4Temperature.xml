@@ -29,6 +29,8 @@ featureInfo = name
     <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
                 format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
                 tiled="true" ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+        <layer Menu="omodel,hycom,2016,Temp" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Temperature 2016"
+               ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Temperatura 2016" name="hycom2016/temperature"  />
         <layer Menu="omodel,hycom,2015,Temp" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Temperature 2015"
                ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Temperatura 2015" name="hycom2015/temperature"  />
         <layer Menu="omodel,hycom,2014,Temp" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Temperature 2014"

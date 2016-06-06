@@ -9,7 +9,9 @@ By the default, the feature info is the same as the name of the layer -->
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				tiled="true" ncWMS="true" mincolor="-.64" maxcolor="0.95" max_time_range="month">  
-		<layer Menu="omodel,hycom,2015,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2015"
+		<layer Menu="omodel,hycom,2016,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2016"
+			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2016" name="hycom2016/ssh"  />
+                <layer Menu="omodel,hycom,2015,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2015"
 			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2015" name="hycom2015/ssh"  />
 		<layer Menu="omodel,hycom,2014,SeaElev" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea Surface Elevation 2014"
 			   ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Elevaci&#180;on superficial del mar 2014" name="hycom2014/ssh"  />

@@ -10,6 +10,11 @@ By the default, the feature info is the same as the name of the layer -->
         format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
         tiled="false" ncWMS="true" mincolor="-0.113" maxcolor="2.4" trans_effect="none"
         width="512" height="512" max_time_range="month">  
+        
+        <layer Menu="omodel,hycom,2016,SeaVel" 
+            EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2016"
+            ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2016" name="hycom2016/sea_water_velocity" 
+			   overlaystreamlines="hycom2016/sea_water_velocity" />
         <layer Menu="omodel,hycom,2015,SeaVel" 
             EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Sea water velocity 2015"
             ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62;  Velocidad 2015" name="hycom2015/sea_water_velocity" 

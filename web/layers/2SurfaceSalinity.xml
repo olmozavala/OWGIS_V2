@@ -4,7 +4,9 @@
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
 				tiled="true" ncWMS="true" mincolor="30" maxcolor="40" max_time_range="month">  
-		<layer Menu="omodel,hycom,2015,Salinity" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Salinity 2015"
+		<layer Menu="omodel,hycom,2016,Salinity" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Salinity 2016"
+								ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Salinidad 2016" name="hycom2016/salinity"  />
+                <layer Menu="omodel,hycom,2015,Salinity" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Salinity 2015"
 								ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Salinidad 2015" name="hycom2015/salinity"  />
 		<layer Menu="omodel,hycom,2014,Salinity" EN="HYCOM + NCODA Gulf of Mexico 1/25&#176; Analysis &#60;br&#62; Salinity 2014"
 								ES="HYCOM + NCODA Golfo de M&#233;xico 1/25&#176;&#60;br&#62; Salinidad 2014" name="hycom2014/salinity"  />
