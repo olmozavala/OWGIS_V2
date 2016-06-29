@@ -78,15 +78,13 @@ function initOl3(){
 		lon = Number(strCenter[0].split("=")[1]);
 	}
 	
-	var changeProj;//Indicates if we need to change the projections
 	var defCenter;
-	var resExtent;
 	
 	if(_map_bk_layer === "wms"){
 		//If the default projection is not 4326 then we need to transform 
 		// the projections to the default map projection
 		if(_map_projection !== 'EPSG:4326'){
-			changeProj = true;
+			defCenter= ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
 		}else{
 			defCenter= [lon,lat];
 		}
@@ -95,16 +93,10 @@ function initOl3(){
 			(_map_bk_layer.indexOf("bing") !== -1) ||  
 			(_map_bk_layer.indexOf("mapquest") !== -1)){
 			_map_projection = 'EPSG:3857';//Force projection for osm background layer
-			changeProj = true;
+			defCenter= ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
 		}
 	}
 	
-	
-	if(changeProj){
-		defCenter = ol.proj.transform([lon, lat], 'EPSG:4326', _map_projection);
-		resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), 'EPSG:4326', _map_projection);
-	}
-
 	//This control is used to display Lat and Lon when the user is moving the mouse over the map
 	var mousePositionControl = new ol.control.MousePosition({
 		coordinateFormat: ol.coordinate.createStringXY(4),
@@ -126,8 +118,8 @@ function initOl3(){
 		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
-		maxResolution: mapConfig.maxResolution
-//		extent: resExtent  // Not working
+		maxResolution: mapConfig.maxResolution,
+		extent: mapConfig.restrictedExtent.split(",")  // Not working
 	});
 
  	map = new ol.Map({

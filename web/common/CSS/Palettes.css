@@ -84,21 +84,23 @@
 
 /* line 46, ../scss/Palettes.scss */
 .optPaletteImg {
-  -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
   border-radius: 1px;
-  -moz-box-shadow: black 2px 2px 4px;
   -webkit-box-shadow: black 2px 2px 4px;
+  -moz-box-shadow: black 2px 2px 4px;
   box-shadow: black 2px 2px 4px;
-  -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   cursor: pointer;
   margin: 0px 1px;
 }
 /* line 53, ../scss/Palettes.scss */
 .optPaletteImg:hover {
-  -moz-box-shadow: #DCC380 2px 2px 6px;
-  -webkit-box-shadow: #DCC380 2px 2px 6px;
-  box-shadow: #DCC380 2px 2px 6px;
+  -webkit-box-shadow: #dcc380 2px 2px 6px;
+  -moz-box-shadow: #dcc380 2px 2px 6px;
+  box-shadow: #dcc380 2px 2px 6px;
 }

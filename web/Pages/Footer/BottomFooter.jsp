@@ -7,17 +7,15 @@
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
 	&nbsp;
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+	<a  href="http://grupo-ioa.atmosfera.unam.mx" target="_blank">
+		<img border="0" src="./common/images/Logos/ioa.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp;
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+	<a  href="http://www.atmosfera.unam.mx/" target="_blank">
+		<img border="0" src="./common/images/Logos/cca.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp 
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+	<a  href="https://www.unam.mx/" target="_blank">
+		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp 
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
 			
 	<a  href="#">
 		<p class="footNote" align="left">

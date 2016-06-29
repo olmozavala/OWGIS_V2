@@ -5,78 +5,37 @@
     Description:
 		CSS For styling the error page.
 */
-/*
-* Base configuration, mixings and global variables
-*/
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : Olmo Zavala-Romero
-*/
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:48:12 PM
-    Author     : harshulpandav
-*/
-/* 
- * popup
- * emailText
- */
-/* 
- * MapInstructions::toolTip
- */
-/* _base::floatingWindow
- * OL3::lat-long
- * OptionalLayersMenu::lay-par
- */
-/* 
- * OptionalLayersMenu::lay_title
- */
-/* 
- * BaseLayers::mainMenu --for drop-downs
- * Buttons::plus/minus
- * GeneralStyles::title --for draggableWindows 
- */
-/* 
- * Palettes::inputSizePalettes --height
- */
-/* 
- * GeneralStyles::mapTitle
- */
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:49:32 PM
-    Author     : harshulpandav
-*/
-/* line 10, ../scss/ErrorPage.scss */
-body {
-  background-color: black;
+
+body{ 
+    display: block;
+	background-attachment: fixed;
+    background-image:url('../images/ErrorPage/Back1.jpg');
+	background-repeat: no-repeat;
+	background-color: black;
+	background-position: center bottom;
 }
 
-/* line 17, ../scss/ErrorPage.scss */
-.navbar-header {
-  text-align: center;
+
+#divErrMsg{
+	left: 30%;
+	position: absolute;
 }
 
-/* line 27, ../scss/ErrorPage.scss */
-#txtHeader {
-  color: #ECF2F8;
+.errorMsg{
+	font-size: x-large;
+	margin: 10px;
 }
 
-/* line 30, ../scss/ErrorPage.scss */
-#txtContact {
-  color: #ECF2F8;
+#txtHeader{
+	color: #B66D1B;
 }
-
-/* line 33, ../scss/ErrorPage.scss */
-#txtException {
-  color: #EC451F;
+#txtContact{
+	color: #9D9D9D;
 }
-
-/* line 36, ../scss/ErrorPage.scss */
-#txtTrace {
-  color: #ECF2F8;
+#txtException{
+	color: #8D1717;
+}
+#txtTrace{
+	color: #2D9948;
+	font-size: medium;
 }

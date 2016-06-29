@@ -56,14 +56,14 @@ and open the template in the editor.
 /* line 14, ../scss/Popup.scss */
 .ol-popup {
   position: absolute;
-  background-color: #ECF2F8;
+  background-color: #ecf2f8;
   font-size: 11px;
-  -moz-box-shadow: black 2px 2px 3px;
   -webkit-box-shadow: black 2px 2px 3px;
+  -moz-box-shadow: black 2px 2px 3px;
   box-shadow: black 2px 2px 3px;
   padding: 14px;
   border-radius: 7px;
-  border: 1px solid #ECF2F8;
+  border: 1px solid #ecf2f8;
   bottom: 12px;
   left: -50px;
   z-index: 1006;
@@ -84,7 +84,7 @@ and open the template in the editor.
 
 /* line 39, ../scss/Popup.scss */
 .ol-popup:after {
-  border-top-color: #ECF2F8;
+  border-top-color: #ecf2f8;
   border-width: 10px;
   left: 48px;
   margin-left: -10px;
@@ -92,7 +92,7 @@ and open the template in the editor.
 
 /* line 46, ../scss/Popup.scss */
 .ol-popup:before {
-  border-top-color: #ECF2F8;
+  border-top-color: #ecf2f8;
   border-width: 11px;
   left: 48px;
   margin-left: -11px;

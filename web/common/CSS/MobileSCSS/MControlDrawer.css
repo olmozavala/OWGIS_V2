@@ -73,27 +73,29 @@
   background-repeat: no-repeat;
   margin: auto;
   cursor: n-resize;
+  -webkit-transition-property: height;
   -moz-transition-property: height;
   -o-transition-property: height;
-  -webkit-transition-property: height;
   transition-property: height;
+  -webkit-transition-duration: 0.55s;
   -moz-transition-duration: 0.55s;
   -o-transition-duration: 0.55s;
-  -webkit-transition-duration: 0.55s;
   transition-duration: 0.55s;
 }
 
 /* line 31, ../../scss/MobileSCSS/MControlDrawer.scss */
 #drawer-pull.flipped {
-  -moz-transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
   transform: rotateX(180deg);
 }
 
 /* line 35, ../../scss/MobileSCSS/MControlDrawer.scss */
 #drawer-content {
   font-size: 12px;
-  color: #ECF2F8;
+  color: #ecf2f8;
   padding: 0 25px;
 }
 

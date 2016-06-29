@@ -11,9 +11,8 @@ var maxValidDate; //last possible day in data range
 var calInitialized = false;//Indicates if the calendars have already been initialized
 var calendarPosLeft = null;//this is used for the program to remember the last calendar position if a layer makes it dissapear
 var severalTimes = false;//Indicates if there is more than one time in the current date.
-var currStartTime;//This variable is always pointing to the current start time
-var currEndTime;// This variable is always pointing to the current end time (including hours minutes and seconds)
-
+var currStartTime;
+var currEndTime;
 //this is becuase when you put a temporal data with one date the calendar disapears so it won't remeber the last
 //position becuase its none existen becuase its display(CSS) is none. So this variables records the position before it actually disapeared 
 //for rendering it into the next layer that does display the map. Other wise it will use the position of the disapeared display and will be an error. 
@@ -225,23 +224,12 @@ function initCalendars(){
 		}//We have more than one day
 		else{//If we only have one day then we hide all the calendar options
 			_mainlayer_multipleDates= false;
-			currStartTime = layerDetails.nearestTimeIso;
 		}
 
 	}
 	else{//If we only have one day then we hide all the calendar options
         _mainlayer_multipleDates= false;
-		currStartTime = layerDetails.nearestTimeIso;
 	}
-}
-
-/**
- * This variable initializes the currStartTime and currEndTime of a layer
- * with only one time step (both are the same) 
- * @returns {undefined}
- */
-function initVariablesForOneTimeLayer(){
-
 }
 
 /**
@@ -427,12 +415,6 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	var currTimeStr;// Value from selected time select
 	var currCal; //Current calendar
 	var requestedDate; //The final requested date
-
-	//If this layer only has one time step, we return what is inside currStartTime
-	// which should be initialized properly with the only time step value
-	if(!_mainlayer_multipleDates){
-		return currStartTime;
-	}
 	switch(cal){
 		case owgis.constants.startcal:
 			//Get date from calendar

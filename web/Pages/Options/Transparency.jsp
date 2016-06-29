@@ -22,9 +22,7 @@ but a service offered by the OpenLayers Library.
 	   onclick="owgis.transparency.increaseTransp();">
 		<span class="glyphicon glyphicon-minus "></span>
 	</a>
-	<!-- Transparency -->
-	<span class="glyphicon glyphicon-eye-close"> </span>
-
+	<span style="cursor: default;" id="transText" ><fmt:message key="ncwms.trans" /></span>
 	<a class="btn btn-default btn-xs" href="#" id="plusButtonTrans"
 	   onclick="owgis.transparency.decreaseTransp();">
 		<span class="glyphicon glyphicon-plus"> </span>

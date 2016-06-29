@@ -35,9 +35,9 @@
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
 		<link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
+		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Elevation.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Animations.css" rel="stylesheet" type="text/css"/>
 	</c:if>

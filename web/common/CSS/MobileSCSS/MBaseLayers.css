@@ -50,8 +50,8 @@
   font-size: 15px;
   width: 235px;
   background-color: #909090;
-  -moz-border-radius: 6px / 6px;
   -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
   border-radius: 6px / 6px;
   margin: 1px 0px;
 }

@@ -373,7 +373,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	currentFrame = 0; //Set to use the first frame
 	//	map.addLayer(animLayer);
 	var layersCollection = map.getLayers();
-	layersCollection.insertAt(parseInt(_id_first_main_layer)+1,animLayer);//Adds the animation layer just above the main layer
+	layersCollection.insertAt(parseInt(idx_main_layer)+1,animLayer);//Adds the animation layer just above the main layer
 	
 }
 

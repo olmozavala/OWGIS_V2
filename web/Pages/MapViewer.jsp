@@ -3,6 +3,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 --%>
 
 <%@page pageEncoding="UTF-8"%>
+<%@page errorPage="Error/ErrorPage.jsp" %>
 <%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>

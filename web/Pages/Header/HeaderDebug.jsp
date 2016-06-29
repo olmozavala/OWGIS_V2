@@ -13,6 +13,7 @@
 
 <%@include file="ExternalJS.jsp" %>  
 
+
 <!--Internal JS-->
 <!--Missing Closure library-->
 <script src="./common/JS/src/utilities/validation.js"> </script>
@@ -31,7 +32,6 @@
 <script src="./common/JS/src/utilities/constants.js"> </script>
 <script src="./common/JS/src/ogcstandards/ogcstandards.js"> </script>
 <script src="./common/JS/src/ol3/mainLayers.js"> </script>
-<script src="./common/JS/src/ol3/backgroundLayers.js"> </script>
 <script src="./common/JS/src/ol3/MainOl3.js"> </script>
 <script src="./common/JS/src/ol3/PopUp.js"> </script>
 <script src="./common/JS/src/helpTexts/MainHelp.js"> </script>
