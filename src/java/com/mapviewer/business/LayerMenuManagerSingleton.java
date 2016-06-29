@@ -156,7 +156,7 @@ public class LayerMenuManagerSingleton {
 				}
 				
 			} catch (XMLLayerException ex) {
-				layerExceptions.add(newLayer.getName());
+				layerExceptions.add(ex.getMessage());
 				break;//Try the next layer
 			}
 			
@@ -177,7 +177,8 @@ public class LayerMenuManagerSingleton {
 		if(layerExceptions.size() > 0){
 			String exceptionString="";
 			//Saving all the exceptions into one string
-			exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+			//exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+			exceptionString = layerExceptions.get(0).toString();
 			throw new XMLLayerException(exceptionString);
 		}
 		
@@ -432,7 +433,8 @@ public class LayerMenuManagerSingleton {
 			if(layerExceptions.size() > 0){
 				String exceptionString="";
 				//Saving all the exceptions into one string
-				exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+//				exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+				exceptionString = layerExceptions.get(0).toString();
 				
 				throw new XMLLayerException(exceptionString);
 			}
@@ -519,6 +521,7 @@ public class LayerMenuManagerSingleton {
 		
 		float maxColor = layerConf.getAttributeValue("maxcolor") != null
 				? Float.parseFloat(layerConf.getAttributeValue("maxcolor")) : layer.getMaxColor();
+
 		
 		// Defines if a layer is a vector layer. It is used
 		// to modify the way KML links are created and for the 'Download data' feature
@@ -548,13 +551,17 @@ public class LayerMenuManagerSingleton {
 		
 		String netCDF = layerConf.getAttributeValue("ncWMS");
 		boolean boolnetCDF = netCDF != null ? Boolean.parseBoolean(netCDF) : layer.isncWMS();
+
+		String ncWMStwo = layerConf.getAttributeValue("ncWMStwo");
+		boolean boolnetCDFtwo= ncWMStwo!= null ? Boolean.parseBoolean(ncWMStwo) : layer.isNcwmstwo();
+
+		//If it is ncWMStwo, then it has to be ncWMS
+		if(boolnetCDFtwo){
+			boolnetCDF = true;
+		}
 		
 		String style = layerConf.getAttributeValue("style");
 		style = style != null ? style : layer.getStyle();
-		
-		if (boolnetCDF) {//If it is a netcdf layer, the default style is boxfill
-			style = style.equals("") ? "boxfill" : style;
-		}
 		
 		String name = layerConf.getAttributeValue("name");
 		name = name != null ? name : layer.getName();
@@ -608,6 +615,7 @@ public class LayerMenuManagerSingleton {
 		newLayer.setTransEffect(transEffect);
 		newLayer.setCql(cql);
 		newLayer.setCql_cols(cql_cols);
+		newLayer.setNcwmstwo(boolnetCDFtwo);
 		
 		return newLayer;
 	}

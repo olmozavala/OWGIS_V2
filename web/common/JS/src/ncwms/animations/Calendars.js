@@ -433,42 +433,44 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	if(!_mainlayer_multipleDates){
 		return currStartTime;
 	}
+
+	var currTimeCal;
 	switch(cal){
 		case owgis.constants.startcal:
-			//Get date from calendar
-			currDateStr = $("#cal-start").val();
-			currTimeStr = $("#startTimeCalendar option:selected").attr("value");
 			currCal = $("#cal-start");
-			
-			//Get hours from select and update date
-			if( !_.isUndefined(currTimeStr) ){
-				requestedDate = new Date(currCal.val()+"T"+currTimeStr);
-			}else{
-				requestedDate = new Date(currDateStr);
-			}
+			currTimeCal = "startTimeCalendar";
 			break;
 		case owgis.constants.endcal:
-			currDateStr = $("#cal-end").val();
-			currTimeStr = $("#endTimeCalendar option:selected").attr("value");
 			currCal = $("#cal-end");
-			
-			//Get hours from select and update date
-			if( !_.isUndefined(currTimeStr) ){
-				requestedDate = new Date(currCal.val()+"T"+currTimeStr);
-			}else{
-				requestedDate = new Date(currDateStr);
-			}
+			currTimeCal = "endTimeCalendar";
 			break;
 	}
-
-/*
+	//Get date from calendar
+	currDateStr = currCal.val();
+	//We need to verify that we have the time information
+	currTimeStr = $("#"+currTimeCal);
+	if(currTimeStr.length > 1){
+		currTimeStr = $("#"+currTimeCal+" option:selected").attr("value");
+	}else{
+		currTimeStr = "00:00:00.000Z";
+	}
+	
+	//Get hours from select and update date
+	if( !_.isUndefined(currTimeStr) ){
+		requestedDate = new Date(currCal.val()+"T"+currTimeStr);
+	}else{
+		requestedDate = new Date(currDateStr);
+	}
+	
+	
+	/*
 	if(GMT){
 		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 
 						requestedDate.getUTCDate(),  requestedDate.getUTCHours(), 
 						requestedDate.getUTCMinutes(), requestedDate.getUTCSeconds());
-						
+	
 	}
-	*/
+	 */
 	
 	if(asString){
 		return requestedDate.toISOString();

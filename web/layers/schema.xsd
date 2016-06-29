@@ -23,7 +23,7 @@
 									<xs:attribute name="AR" type="xs:string" ></xs:attribute>
 									<xs:attribute name="RU" type="xs:string" ></xs:attribute>
 									<xs:attribute name="HI_IN" type="xs:string" ></xs:attribute>
-                                    <!-- For validating other languages is necessary to add them here -->
+									<!-- For validating other languages is necessary to add them here -->
 								</xs:complexType>                 
 							</xs:element>       
 						</xs:sequence>  
@@ -76,6 +76,14 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
+									<xs:attribute name="ncWMStwo">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="true" /> 
+												<xs:enumeration value="false" />                                                           
+											</xs:restriction> 
+										</xs:simpleType>
+									</xs:attribute>                      
 									<xs:attribute name="style" type="xs:string" /> 
 								</xs:complexType>
                   
@@ -117,14 +125,22 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute> 
+						<xs:attribute name="ncWMStwo">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
+
 						<xs:attribute name="style" type="xs:string" />  
 					</xs:complexType>
 				</xs:element> <!--End of BackgroundLayer -->
    
-				<xs:element name="VectorLayers" minOccurs="0"> <!--VectorLayers (root's child) level -->
+				<xs:element name="OptionalLayers" minOccurs="0"> <!--OptionalLayers (root's child) level -->
        
 					<xs:complexType mixed="true">
-                  
 						<xs:sequence maxOccurs="unbounded">
        
 							<xs:element name="layer" minOccurs="1"> <!--Menuconf/BackgroundLayers/layer -->
@@ -176,13 +192,22 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
+									<xs:attribute name="ncWMStwo">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="true" /> 
+												<xs:enumeration value="false" />                                                           
+											</xs:restriction> 
+										</xs:simpleType>
+									</xs:attribute>                      
+
 									<xs:attribute name="style" type="xs:string" /> 
 								</xs:complexType>
                   
-							</xs:element><!-- End of Menuconf/VectorLayers/layer -->
+							</xs:element><!-- End of Menuconf/OptionalLayers/layer -->
        
 						</xs:sequence>
-						<!-- Attributes of VectorLayers -->
+						<!-- Attributes of OptionalLayers -->
 						<xs:attribute name="BBOX" type="xs:string" />
 						<xs:attribute name="vectorLayer">
 							<xs:simpleType>
@@ -217,18 +242,26 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute> 
+						<xs:attribute name="ncWMStwo">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
+
 						<xs:attribute name="style" type="xs:string" />  
 					</xs:complexType>
-				</xs:element> <!--End of VectorLayer -->
+				</xs:element> <!--End of OptionalLayers -->
    
    
 				<xs:element name="MainLayers" minOccurs="0"> <!--MainLayers (root's child) level -->
-       
 					<xs:complexType mixed="true">
-                        <xs:sequence maxOccurs="unbounded"><!-- There can be multiple MainLayers element on the xml file -->
+						<xs:sequence maxOccurs="unbounded"><!-- There can be multiple MainLayers element on the xml file -->
 							<xs:element name="layer" minOccurs="1"> <!--Internal element of Main layers is a layer -->
 								<xs:complexType mixed="true">
-                                    <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
 									<xs:attribute name="Menu" type="xs:string"></xs:attribute>
 									<xs:attribute name="featureInfo" type="xs:string"></xs:attribute>
 									<xs:attribute name="title" type="xs:string"></xs:attribute>
@@ -270,6 +303,14 @@
 										</xs:simpleType>
 									</xs:attribute>                      
 									<xs:attribute name="ncWMS">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="true" /> 
+												<xs:enumeration value="false" />                                                           
+											</xs:restriction> 
+										</xs:simpleType>
+									</xs:attribute>                      
+									<xs:attribute name="ncWMStwo">
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:enumeration value="true" /> 
@@ -330,6 +371,14 @@
 								</xs:restriction> 
 							</xs:simpleType>
 						</xs:attribute> 
+						<xs:attribute name="ncWMStwo">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="true" /> 
+									<xs:enumeration value="false" />                                                           
+								</xs:restriction> 
+							</xs:simpleType>
+						</xs:attribute>                      
 						<xs:attribute name="style" type="xs:string" />  
 						<xs:attribute name="selected">
 							<xs:simpleType>

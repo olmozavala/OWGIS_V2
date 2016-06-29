@@ -196,10 +196,10 @@ public class NetCDFAnimationServlet extends HttpServlet {
 				case "generatekmzlink":
 					dispAnimation(request, response, out, true);
 					break;
-				case "getanimtimes":
+				case "getanimtimes"://This is the set of days for a range of data
 					getAnimationOptions(request, response, out);
 					break;
-				case "gettimesteps":
+				case "gettimesteps"://This obtains the times for an specific day
 					getTimeSteps(request, response, out);
 					break;
 			}

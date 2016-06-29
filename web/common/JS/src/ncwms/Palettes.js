@@ -47,6 +47,12 @@ function setColorRangeFromMinMax(){
         srs: layerDetails['srs']
     };
 
+	//There are some differences for ncWMS two: we need to add the style
+	if(layerDetails['ncwmstwo']){
+		urlParams.styles = layerDetails['supportedStyles'][0];
+        urlParams.version = owgis.ogc.wmsversionncwms2;
+	}
+
 	var currTime = owgis.ncwms.calendars.getCurrentDate(true,owgis.constants.startcal,true);
 	if( currTime !== owgis.constants.notimedim ){
         urlParams.time = currTime;

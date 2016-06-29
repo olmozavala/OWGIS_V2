@@ -75,7 +75,8 @@ public class Layer {
 	private String overlayStreamlines;//Stores the name of the layer used to display streamlines
 	private float defParticleSpeed;//Variable used to modify the default particle speed
 	
-	private boolean ncwms;//Indicates if the layer is a ncwms (contains temporal data)
+	private boolean ncwms;//Indicates if the layer is a ncwms 
+	private boolean ncwmstwo;//Indicates if the layer is served from an  ncwms 2 server
 	private boolean zaxis;// Indicates if the layer has zaxis values
 	private boolean multipleDates;// Indicates if the layer has multiple dates
 	
@@ -131,6 +132,7 @@ public class Layer {
 		this.featureInfoLayer = null;
 		this.tiled = true;
 		this.ncwms = false;
+		this.ncwmstwo = false;
 		this.layout = "";
 		this.layerDisplayNames = null;
 		this.displayTitle = true;
@@ -280,6 +282,12 @@ public class Layer {
 				this.zaxis = true;
 			}
 			
+			//If the style is not defined in the XML file. Then we use the first one
+			// inside the layerDetails option 'supportedStyles' from ncWMS
+			// This should be: boxfill for ncwms 1 and default-scalar for ncWMS 2
+			if(layerDetails.has("supportedStyles") && this.style.equals("")){
+				this.style = (String) (((JSONArray) layerDetails.get("supportedStyles")).get(0));
+			}
 			/*
 			if(layerDetails.has("nearestTimeIso") ){
 				String closestDate = layerDetails.getString("nearestTimeIso");
@@ -313,6 +321,8 @@ public class Layer {
 			}
 			//Adds the default streamline speed
 			layerDetails.accumulate("defParticleSpeed", this.defParticleSpeed);
+			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
+			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
 			
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -344,6 +354,11 @@ public class Layer {
 	}
 	
 	public String getStyle() {
+		if( style.equals("") ){
+			if(this.isNcwmstwo()){
+				return "default/default";
+			}
+		}
 		return style;
 	}
 	
@@ -607,6 +622,14 @@ public class Layer {
 
 	public void setMultipleDates(boolean multipleDates) {
 		this.multipleDates = multipleDates;
+	}
+
+	public boolean isNcwmstwo() {
+		return ncwmstwo;
+	}
+
+	public void setNcwmstwo(boolean ncwmstwo) {
+		this.ncwmstwo = ncwmstwo;
 	}
 	
 	

@@ -218,12 +218,15 @@ public class OpenLayersManager {
 
 		String URLscript = "";
 
+
 		URLscript += "\t\tif(typeof(layer" + layerNumber + ") !== 'undefined'){\n";
 		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
+		URLscript += "\t\t\t\towgis.features.punctual.getVerticalProfile(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
+		URLscript += "\t\t\t\towgis.features.punctual.getTimeSeries(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
 		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
 
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
-		URLscript += "STYLES=&"
+		URLscript += "STYLES=" + actualLayer.getStyle() + "&"
 				+ "WIDTH=\"+ map.getSize()[0] +\"&"
 				+ "HEIGHT=\"+ map.getSize()[1] +\"&"
 				+ "SRS=\"+ _map_projection+ \"&"
@@ -259,10 +262,10 @@ public class OpenLayersManager {
 		URLscript += "FEATURE_COUNT=50\";\n";
 		URLscript +=  "\t\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
 				+ "\t\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
-//				+ "\t\t\t alert(url" + layerNumber + ");\n"
 				+ "\t\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
 				+ "\t\t\t}\n"
 				+ "\t\t}\n";
+
 		return URLscript;
 	}
 
@@ -294,6 +297,12 @@ public class OpenLayersManager {
 				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
 				}
+				layersScript += ", ncwms:'true'";
+			}
+
+			//These are some specific configurations for ncWMS 2.0 >
+			if (actualLayer.isNcwmstwo()) {
+					layersScript += ", ncwmstwo:'true', bgcolor:'transparent' ";
 			}
 			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
 			

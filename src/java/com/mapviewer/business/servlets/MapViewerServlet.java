@@ -65,6 +65,12 @@ public class MapViewerServlet extends HttpServlet {
 
 	Boolean exceptionInitializingVariables = false;
 
+	/**
+	 * Initiliazes the varibles of the Servlet 
+	 * @throws FileNotFoundException
+	 * @throws XMLFilesException
+	 * @throws XMLLayerException 
+	 */
 	private void initializeVariables() throws FileNotFoundException, XMLFilesException, XMLLayerException{
 			mapConfig = OpenLayerMapConfig.getInstance();
 
@@ -127,41 +133,40 @@ public class MapViewerServlet extends HttpServlet {
 
 			//If there was a problem initializing the variables we try to do it again.
 			// This code catches information about the exception and displays it for the user.
-			if(exceptionInitializingVariables){
-				try {
+			try {
+				if(exceptionInitializingVariables){
 					initializeVariables();
-					exceptionInitializingVariables = false;
-				} catch (XMLLayerException ex) {
-						//If an exception happens, we start with the default menu
-					arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
-					session.setAttribute("MenuDelUsuario", arbolMenuRasters);
-					//If there is an XMLLayerException exception we just display it as 
-					// warning in the main site
-					StringWriter sw = new StringWriter();
-					ex.printStackTrace(new PrintWriter(sw));
-					String exceptionInfo = ex.getMessage();
-					String exceptionTrace = sw.toString();
-					exceptionTrace = exceptionTrace.substring(0, exceptionTrace.indexOf("\n"));
-					exceptionTrace = exceptionTrace.replace("\"","");
-					exceptionTrace = exceptionTrace.replace("\'","");
-					exceptionInfo = exceptionInfo.replace("\"","");
-					exceptionInfo = exceptionInfo.replace("\'","");
-
-					request.setAttribute("warningText", exceptionInfo);
-					request.setAttribute("warningInfo", exceptionTrace);
-
-					exceptionInitializingVariables = true;
-				} 
-			}else{
-				//obtain the user selected layers from menu
+				}
 				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+				exceptionInitializingVariables = false;
+			} catch (XMLLayerException ex) {
+				//If an exception happens, we start with the default menu
+				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+				session.setAttribute("MenuDelUsuario", arbolMenuRasters);
+				//If there is an XMLLayerException exception we just display it as
+				// warning in the main site
+				StringWriter sw = new StringWriter();
+				ex.printStackTrace(new PrintWriter(sw));
+				String exceptionInfo = ex.getMessage();
+				String exceptionTrace = sw.toString();
+				exceptionTrace = exceptionTrace.substring(0, exceptionTrace.indexOf("\n"));
+				exceptionTrace = exceptionTrace.replace("\"","");
+				exceptionTrace = exceptionTrace.replace("\'","");
+				exceptionInfo = exceptionInfo.replace("\"","");
+				exceptionInfo = exceptionInfo.replace("\'","");
+				
+				request.setAttribute("warningText", exceptionInfo);
+				request.setAttribute("warningInfo", exceptionTrace);
+				
+				exceptionInitializingVariables = true;
 			}
+			
 			
 			if(linksVectorialesKmz  == null){
 				linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
 				HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
 			}
-
+			
 			//get menu entry
 			MenuEntry[] rasterSelecteLayers = TreeMenuUtils.obtieneMenuSeleccionado(arbolMenuRasters);
 			
@@ -265,16 +270,16 @@ public class MapViewerServlet extends HttpServlet {
 			ex.printStackTrace(new PrintWriter(sw));
 			String exceptionTrace = sw.toString();
 			request.setAttribute("traceText", exceptionTrace);
-
+			
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-
+			
 		} catch (Exception ex) {
 			request.setAttribute("errorText", "Inialization Exception: " + ex.getMessage());
 			StringWriter sw = new StringWriter();
 			ex.printStackTrace(new PrintWriter(sw));
 			String exceptionTrace = sw.toString();
 			request.setAttribute("traceText", exceptionTrace);
-
+			
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		

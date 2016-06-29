@@ -467,8 +467,10 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 	// This loops starts 'n' number of parallel requests for animation
 	// images.
+	console.log("START");
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
+		console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
@@ -476,6 +478,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		eval("imageNumber"+i+".addEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel);");
 		eval("imageNumber"+i+".addEventListener('error', errorFunction);");
 	}
+	console.log("END");
 	
 	//For the link to download the GIF
 	animParams.FORMAT = "image/gif";

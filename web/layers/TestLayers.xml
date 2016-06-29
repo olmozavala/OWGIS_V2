@@ -11,10 +11,9 @@
 		<Menu ID="ncwmvelocity" EN="ncWMS velocity field" ES="ESP ncWMS velocity field"/>
 		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
 		<Menu ID="ncwmsMultDateMultDepthCurr" EN="GoM Temperature With Currents " ES="Golfo con corrientes"/>
+		<Menu ID="ncwmsMultTimes" EN="ncWMS Multiple Times per day" ES="ncWMS multiples horas"/>
 		<Menu ID="worldTempCurrents" EN="World Temperature w Currents " ES="Temperatura y corrientes"/>
-		<Menu ID="worldTempCurrentsLocal" EN="Localhost World Temperature w Currents " ES="Temperatura y corrientes"/>
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
-		<Menu ID="localwinds" EN="Region Winds" ES="Vientos por zona"/>
 
 		<Menu ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
 		<Menu ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
@@ -23,20 +22,50 @@
 		<Menu ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/>
 		<Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/>
 		<Menu ID="test" EN="Testing" />
+		<Menu ID="testncwms2" EN="Testing ncWMS 2" />
 	</Menus>
 
-	<!--<BackgroundLayers BBOX="-180,90,-90,180"  proj=""
-  server="http://svs.gsfc.nasa.gov/cgi-bin/wms">
-		<layer name="3185_21913" /> 
-	</BackgroundLayers>-->
-	
-	<!--This layer is a free WMS from GEBGO--> 
-<!--
+	<!--
+    <BackgroundLayers BBOX="-180,90,-90,180"  proj="" server="http://svs.gsfc.nasa.gov/cgi-bin/wms">
+            <layer name="3185_21913" /> 
+    </BackgroundLayers>
+    -->
+    <!--
 	<BackgroundLayers server="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv"
 				BBOX="-180,90,-90,180" > 
 			<layer name="GEBCO_LATEST" featureInfo="none"/> 
 	</BackgroundLayers>
---> 
+    -->
+    <!--
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="maps:dark" featureInfo="none" /> 
+	</BackgroundLayers>-->
+	<!--CHECK THIS ONE http://demo.opengeo.org/geoserver/wms?request=GetCapabilities-->
+	<!--
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:ne" featureInfo="none" /> 
+	</BackgroundLayers>
+    -->
+    <!--
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="osm:osm" featureInfo="none" /> 
+	</BackgroundLayers>
+	-->
+	<!--
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:NE1_HR_LC_SR_W_DR" featureInfo="none" /> 
+	</BackgroundLayers>
+	-->
+	<!--
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="maps:OB_LR_ti_ov" featureInfo="none" /> 
+	</BackgroundLayers>
+    --> 
 	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
@@ -52,14 +81,14 @@
 	</OptionalLayers>
 
 	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  
-				 server="http://localhost:8080/ncWMS_2015/wms"
+				 server="http://localhost:8080/ncWMS2/wms"
 				ncWMS="true" >  
 
-		<!--
-		<layer Menu="test" EN="winds" name="test/wind"  max_time_range="month"
+		<layer Menu="testncwms2" EN="Currents" name="vel/u:v-mag"  max_time_range="month"
+			   ncWMStwo="true"/>
+               <!--
 			   defParticleSpeed=".05"
-			   overlaystreamlines="test/wind" ncwms="true"/>-->
-
+			   overlaystreamlines="vel/u:v-mag" ncWMStwo="true"/>-->
 	</MainLayers> 
 
 	<MainLayers BBOX="-180,-90,180,90"
@@ -76,14 +105,15 @@
 			   EN="World Currents"
 			   name="global_uv_2015/sea_water_velocity" 
 			   defParticleSpeed=".9"
+			   style="boxfill"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
-<!--
-		<layer Menu="ncwms,localwinds" 
+
+		<layer Menu="ncwms,ncwmsMultTimes" 
 			   EN="Wind speed at 10m"
-			   name="atm_forecast_latest/wind" 
-			   overlaystreamlines="atm_forecast_latest/wind" 
+			   ES="Vientos a 10 m"
+			   name="ncfd1/WS10"
+			   overlaystreamlines="ncfd1/viento"
 			   defParticleSpeed=".03"/> 
-			   -->
 	</MainLayers> 
 
 
@@ -136,7 +166,10 @@
 			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
 			   HI_IN="ncWMS गति परत का प्रदर्शन. मैक्सिको की खाड़ी के समुद्र धाराओं"
 			   name="gulf_vel/sea_water_velocity" 
+			   style="boxfill"
 			   overlaystreamlines="gulf_vel/sea_water_velocity" />
+
+			   <!--style="boxfill | contour | vector | barb | arrows"-->
 	</MainLayers>
 
 	<!-- ncWMS with one depth-->

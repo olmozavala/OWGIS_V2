@@ -22,18 +22,6 @@
         <servlet-class>com.mapviewer.business.servlets.MapViewerServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AccessInfoservlet</servlet-name>
-        <servlet-class>com.mapviewer.business.servlets.AccessInfoservlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RedirectServersServlet</servlet-name>
-        <servlet-class>com.mapviewer.business.servlets.RedirectServersServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PaletteServlet</servlet-name>
-        <servlet-class>com.mapviewer.business.servlets.NetCDFPalettes</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>WCSServlet</servlet-name>
         <servlet-class>com.mapviewer.business.servlets.WCSServlet</servlet-class>
     </servlet>
@@ -50,20 +38,12 @@
     <servlet-class>com.mapviewer.business.servlets.MobileServlet</servlet-class>
   </servlet>
     <servlet-mapping>
-        <servlet-name>RedirectServersServlet</servlet-name>
-        <url-pattern>/redirect</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>WCSServlet</servlet-name>
         <url-pattern>/WCSServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MapViewerServlet</servlet-name>
         <url-pattern>/mapviewer</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PaletteServlet</servlet-name>
-        <url-pattern>/getpalette</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NetCDFAnimationServlet</servlet-name>

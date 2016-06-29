@@ -120,6 +120,7 @@ function getVerticalTransect(event){
 		coordsTxt+= coords[i].toString().replace(',',' ');
 	}
 	
+	var time;
     try{
         time = calStart.selection.get();//get the selected time in the start calendar
         time = Calendar.intToDate(time);    
@@ -138,9 +139,16 @@ function getVerticalTransect(event){
 	}else{
 		url = mainSource.getUrl().toString();
 	}
-    url = url + '?REQUEST=GetTransect&LAYER=';
+	if(layerDetails['ncwmstwo']){
+		url = url + '?REQUEST=GetTransect&LAYERS=';
+	}else{
+		url = url + '?REQUEST=GetTransect&LAYER=';
+	}
+
+	var colorrange=owgis.layers.getMainLayer().getSource().getParams().colorscalerange;
+
     url = url + mainSource.getParams().LAYERS + "&CRS=" + _map_projection + "&TIME=" + time;
-    url = url +"&LINESTRING=" + coordsTxt + "&FORMAT=image/png&COLORSCALERANGE=auto";
+    url = url +"&LINESTRING=" + coordsTxt + "&FORMAT=image/png&COLORSCALERANGE=" +colorrange;
     url = url + "&NUMCOLORBANDS=250&LOGSCALE=false&PALETTE=" + mappalette;
 	
     owgis.utils.popUp(url,400,600);

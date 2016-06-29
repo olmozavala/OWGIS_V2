@@ -102,6 +102,7 @@ public class NetCDFRequestManager {
 
 		try {
 			ncReq = new URL(urlRequest);
+			System.out.println("URL: "+urlRequest);
 			ncReq.openConnection();
 			InputStreamReader input = new InputStreamReader(ncReq.openStream());
 			BufferedReader in = new BufferedReader(input);
@@ -110,6 +111,7 @@ public class NetCDFRequestManager {
 			while ((inputLine = in.readLine()) != null) {
 				if (!inputLine.trim().equalsIgnoreCase("")) {// TODO check for errros
 					timeSteps = new JSONObject(inputLine);
+					System.out.println("Results: "+inputLine);
 
 //					datesWithData = (JSONObject) layerDetails.get("datesWithData");
 					/*
@@ -125,7 +127,7 @@ public class NetCDFRequestManager {
 
 		} catch (JSONException | IOException e) {
 			System.out.println("Error MapViewer en RedirectServer en generateRedirect" + e.getMessage());
-			return "Error getting the layerDetials:" + e.getMessage();
+			return "Error getting the layer Time Steps:" + e.getMessage();
 		}
 		return timeSteps.toString();
 	}
@@ -165,13 +167,15 @@ public class NetCDFRequestManager {
 
 				BufferedReader in = new BufferedReader(input);
 				String inputLine;
+				String layerDetailsSTR ="";
 
 				while ((inputLine = in.readLine()) != null) {
 					if (!inputLine.trim().equalsIgnoreCase("")) {// TODO check for errros
-                                            //System.out.println("AKI" + inputLine);
-						layerDetails = new JSONObject(inputLine);
+						layerDetailsSTR += inputLine;
 					}
 				}
+				//Convert output to jsonObject
+				layerDetails = new JSONObject(layerDetailsSTR);
 
 				// If minColor and maxColor are set in the xml file, we replace 
 				// the JSONObject of LayerDetails
@@ -197,7 +201,7 @@ public class NetCDFRequestManager {
 			System.out.println("layer details: " + layerDetails.toString());
 			return layerDetails.toString();
 		} else {
-			throw new XMLLayerException("ERROR: Not able to load layer details for layer:" + layer.getDisplayName("EN"));
+			throw new XMLLayerException("ERROR: Not able to load layer details for layer:" + layer.getName());
 		}
 	}
 	
