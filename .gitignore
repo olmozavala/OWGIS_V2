@@ -1,0 +1,6 @@
+*.swp
+/nbproject/
+/nbproject/private/
+/build/
+/dist/
+/web/common/.sass-cache/
