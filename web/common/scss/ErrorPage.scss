@@ -1,0 +1,38 @@
+/* 
+    Document   : ErrorPage
+    Created on : Apr 2, 2013, 5:09:43 PM
+    Author     : Olmo Zavala-Romero
+    Description:
+		CSS For styling the error page.
+*/
+@import "base";
+
+body{ 
+	background-color: $htmlBodyBackColor;
+}
+
+img{
+}
+
+.navbar-header{
+	text-align: center;
+}
+
+#divErrMsg{
+}
+
+.errorMsg{
+}
+
+#txtHeader{
+	color: $fontColor;
+}
+#txtContact{
+	color: $fontColor;
+}
+#txtException{
+	color: $warningColor;
+}
+#txtTrace{
+	color: $fontColor;
+}
