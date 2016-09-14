@@ -87,7 +87,6 @@ in the map as well as the look of the website by following the
 documentation at [owgis.org](http://owgis.org).
 
 ## Mobile Interface
-(Work in progress)
 The mobile interface for OWGIS_V2 can be triggered by deploying the project and accessing 
 the above mentioned URL through the web browser of your Mobile Phone.
 
