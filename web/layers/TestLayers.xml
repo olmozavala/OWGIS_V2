@@ -69,6 +69,7 @@
 	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
+        
 
 	<!-- Optional layers -->
 	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
@@ -108,14 +109,11 @@
 			   style="boxfill"
 			   overlaystreamlines="global_uv_2015/sea_water_velocity" />
 
-		<!--
+
 		<layer Menu="ncwms,ncwmsMultTimes" 
-			   EN="Wind speed at 10m"
-			   ES="Vientos a 10 m"
-			   name="ncfd1/WS10"
-			   overlaystreamlines="ncfd1/viento"
-			   defParticleSpeed=".03"/> 
-			   -->
+			   EN="Temperature"
+			   name="gfs_forecast/temp_surf" />
+
 	</MainLayers> 
 
 
