@@ -81,20 +81,30 @@
 		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises" />
 	</OptionalLayers>
 
+               <!--
 	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  
 				 server="http://localhost:8080/ncWMS2/wms"
 				ncWMS="true" >  
 
-               <!--
 		<layer Menu="testncwms2" EN="Currents" name="vel/u:v-mag"  max_time_range="month"
 			   ncWMStwo="true"/>
 			   defParticleSpeed=".05"
-			   overlaystreamlines="vel/u:v-mag" ncWMStwo="true"/>-->
+			   overlaystreamlines="vel/u:v-mag" ncWMStwo="true"/>
 	</MainLayers> 
+	-->
+
+	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  
+				 server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				 localAddress="http://localhost:8080/ncWMS_2015/wms"
+				ncWMS="true" >  
+
+		<layer Menu="testncwms2" EN="Currents" name="gfs_forecast/temp_surf"/>
+	</MainLayers> 
+
 
 	<MainLayers BBOX="-180,-90,180,90"
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
-				ncWMS="true" max_time_range="month">  
+				ncWMS="true" max_time_range="month" >  
 
 		<layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
@@ -111,8 +121,9 @@
 
 
 		<layer Menu="ncwms,ncwmsMultTimes" 
-			   EN="Temperature"
-			   name="gfs_forecast/temp_surf" />
+			   EN="Forecast temperature"
+			   name="hycom_forecast_ts/water_temp" 
+			   defParticleSpeed=".9"/>
 
 	</MainLayers> 
 

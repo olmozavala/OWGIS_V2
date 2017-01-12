@@ -462,7 +462,6 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 		requestedDate = new Date(currDateStr);
 	}
 	
-	
 	/*
 	if(GMT){
 		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 

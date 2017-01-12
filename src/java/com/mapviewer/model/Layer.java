@@ -79,6 +79,9 @@ public class Layer {
 	private boolean ncwmstwo;//Indicates if the layer is served from an  ncwms 2 server
 	private boolean zaxis;// Indicates if the layer has zaxis values
 	private boolean multipleDates;// Indicates if the layer has multiple dates
+
+	// ---- To bypass routers which block local address for DNS Rebinding Attacks
+	private String localAddress;// Indicate the local addresss of the server (to request layer details)
 	
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -245,6 +248,7 @@ public class Layer {
 		this.multipleDates = false;
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
+		this.localAddress = null;
 	}
 	//Geters
 	
@@ -631,6 +635,14 @@ public class Layer {
 	public void setNcwmstwo(boolean ncwmstwo) {
 		this.ncwmstwo = ncwmstwo;
 	}
+
+	public String getLocalAddress() {
+		return localAddress;
+	}
+
+	public void setLocalAddress(String localAddress) {
+		this.localAddress = localAddress;
+	}
 	
-	
+		
 }
