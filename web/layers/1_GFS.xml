@@ -1,0 +1,59 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!--GFS-->	
+	<!--server="http://localhost:8080/ncWMS_2015/wms"-->
+	 <!--server="http://132.248.8.238:8080/ncWMS_2015/wms"-->
+
+	<MainLayers BBOX="-180,-90,180,90"
+				 server="http://pronostico.meteorologico.unam.mx:8080/ncWMS_2015/wms"
+				 format="jpg"
+				ncWMS="true" >
+
+		<layer Menu="gfs,wind,abvgrnd" EN="Wind above ground"
+				   						ES="Viento en superficie"
+			   name="gfs_forecast/wind_abvgrd" 
+			   defParticleSpeed=".05"
+			   style="boxfill"
+			   overlaystreamlines="gfs_forecast/wind_abvgrd"  />
+
+		<layer Menu="gfs,wind,isobar" EN="Isobaric wind" 
+										ES="Viento isobárico" 
+			   name="gfs_forecast/wind_iso" 
+			   defParticleSpeed=".010"
+			   style="boxfill"
+			   overlaystreamlines="gfs_forecast/wind_iso" />
+
+		<layer Menu="gfs,ts,surf" EN="Surface temperature" 
+			   				      ES="Temperatura en superficie" name="gfs_forecast/temp_surf" />
+		<layer Menu="gfs,ts,abvgrnd" EN="Temperature above ground" 
+				   					 ES="Temperatura sobre superficie" name="gfs_forecast/temp_abvgrd" />
+		<layer Menu="gfs,ts,isobar" EN="Isobaric temperature" 
+			   						ES="Temperatura isobarica" name="gfs_forecast/temp_isobar" />
+		<layer Menu="gfs,hum,twom" EN="Humidity at 2 mts"
+						   			ES="Humedad a 2 mts" name="gfs_forecast/humidity_twom" />
+		<layer Menu="gfs,hum,isobar" EN="Isobaric humidity"
+						  		 	 ES="Humedad isobarica" name="gfs_forecast/humidity_isobar" />
+		<layer Menu="gfs,prec" EN="Precipitation" 
+			   					ES="Precipitación" name="gfs_forecast/prec_water" />
+		<layer Menu="gfs,vor" EN="Vorticity"
+			   					ES="Vorticidad" name="gfs_forecast/abs_vort" />
+		<layer Menu="gfs,pres,grnd" EN="Ground pressure"
+			   						ES="Presión" name="gfs_forecast/pres_grd" />
+		<layer Menu="gfs,pres,msl" EN="MSL pressure"
+									ES="Presión MSL" name="gfs_forecast/pres_msl" />
+		<layer Menu="gfs,geo" EN="Geo potential height" 
+								ES="Altura geo potencial "
+								name="gfs_forecast/geo_height_isobar" />
+		<layer Menu="gfs,plan" EN="Planetary height"
+								ES="Altura planetaria" name="gfs_forecast/plan_height" />
+		<layer Menu="gfs,conv" EN="Potential energy"
+								ES="Energía potencial" name="gfs_forecast/conv_en" />
+		<layer Menu="gfs,suri" EN="Surface lifted index"
+								name="gfs_forecast/surf_idx" />
+		<layer Menu="gfs,ozone" EN="Total ozone"
+								ES="Ozono total" name="gfs_forecast/tot_ozone" />
+		<layer Menu="gfs,tic" EN="Ice cover"
+								ES="Hielo" name="gfs_forecast/tot_ice_cov" />
+		<layer Menu="gfs,sun" EN="Sunshine time"
+								ES="Tiempo de sol" name="gfs_forecast/sun_dur" />
+	</MainLayers> 
+</MenuConf>

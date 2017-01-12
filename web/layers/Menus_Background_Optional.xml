@@ -1,0 +1,59 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="hycom" EN="HYCOM" ES="HYCOM"/>
+		<Menu ID="gfs" EN="GFS" ES="GFS"/>
+		<Menu ID="countries"  EN="Contries" ES="Paises" />
+
+		<Menu ID="abvgrnd"  EN="Above Ground" ES="Sobre Tierra" />
+		<Menu ID="grnd"  EN="Ground" ES="En Tierra" />
+		<Menu ID="geo"  EN="Geo Potential H." ES="Altura Geopot." />
+		<Menu ID="cur"  EN="Currents" ES="Corrientes" />
+		<Menu ID="cld"  EN="Cloud" ES="Nubes" />
+		<Menu ID="ccov"  EN="Cloud Cover" ES="Covertura Nubes" />
+		<Menu ID="conv"  EN="Potential Energy" ES="Energia Potencial" />
+		<Menu ID="hum"  EN="Humidity" ES="Humedad" />
+		<Menu ID="isobar"  EN="Isobaric" ES="Isobarica" />
+		<Menu ID="msl"  EN="MSL" ES="MSL" />
+		<Menu ID="ozone"  EN="Total Ozone" ES="Ozono Total" />
+		<Menu ID="prec"  EN="Prec. Water" ES="Agua Prec" />
+		<Menu ID="pres"  EN="Pressure" ES="Presion" />
+		<Menu ID="plan"  EN="Planetary Height" ES="Altura Planetaria" />
+		<Menu ID="surf"  EN="At Surface" ES="En Superficie" />
+		<Menu ID="suri"  EN="Surface lifted idx." ES="Indice superficial" />
+		<Menu ID="sun"  EN="Sunshine time" ES="Duracion sol" />
+		<Menu ID="sal"  EN="Salinity" ES="Salinidad" />
+		<Menu ID="ssh"  EN="Elevation" ES="Altura" />
+		<Menu ID="tic"  EN="Ice Cover" ES="Hielo" />
+		<Menu ID="twom"  EN="Two Meters" ES="A 2 metros" />
+		<Menu ID="ts"  EN="Temperature" ES="Temperatura" />
+		<Menu ID="wind"  EN="Wind" ES="Viento" />
+		<Menu ID="vor"  EN="Vorticity" ES="Vorticidad" />
+	</Menus>
+
+	<!-- This are the menus that are available to display entries -->
+	<!--
+	<BackgroundLayers server="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv"
+				BBOX="-180,90,-90,180" > 
+			<layer name="GEBCO_LATEST" featureInfo="none"/> 
+	</BackgroundLayers>
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:ne" featureInfo="none" /> 
+	</BackgroundLayers>
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:NE1_HR_LC_SR_W_DR" featureInfo="none" /> 
+	</BackgroundLayers>
+    --> 
+	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
+		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	</BackgroundLayers>
+
+	<!-- Optional layers -->
+	<OptionalLayers BBOX="-180,-90,180,90"
+					server="http://132.248.8.238:8080/geoserver/wms"
+					vectorLayer="true"> 
+		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" selected="true"/>
+	</OptionalLayers>
+</MenuConf>
