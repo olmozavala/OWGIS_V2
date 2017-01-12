@@ -508,6 +508,9 @@ public class LayerMenuManagerSingleton {
 		
 		String transEffect = layerConf.getAttributeValue("trans_effect");
 		transEffect = transEffect != null ? transEffect : layer.getTransEffect();
+
+		String localAddress = layerConf.getAttributeValue("localAddress");
+		localAddress = localAddress != null ? localAddress : layer.getLocalAddress();
 		
 		int width = layerConf.getAttributeValue("width") != null
 				? Integer.parseInt(layerConf.getAttributeValue("width")) : layer.getWidth();
@@ -616,6 +619,7 @@ public class LayerMenuManagerSingleton {
 		newLayer.setCql(cql);
 		newLayer.setCql_cols(cql_cols);
 		newLayer.setNcwmstwo(boolnetCDFtwo);
+		newLayer.setLocalAddress(localAddress);
 		
 		return newLayer;
 	}

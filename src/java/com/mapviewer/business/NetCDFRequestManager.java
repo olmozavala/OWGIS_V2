@@ -238,6 +238,12 @@ public class NetCDFRequestManager {
 	 */
 	private static String buildRequest(Layer layer, String request, String item) {
 		String server = layer.getServer();
+
+		String localAddress = layer.getLocalAddress();
+		if(localAddress != null){
+			server = localAddress;
+		} 
+
 		String layerName = layer.getName();
 		
 		String httpReq = server + "?";

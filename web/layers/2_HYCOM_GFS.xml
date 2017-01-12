@@ -3,6 +3,7 @@
 				<!--format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"-->
 	<MainLayers BBOX="-180,-90,180,90"
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				 localAddress="http://192.168.1.103:8080/ncWMS_2015/wms"
 				ncWMS="true" max_time_range="month">  
 
 		<layer Menu="hycom,ts" 

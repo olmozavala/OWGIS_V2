@@ -448,7 +448,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	//Get date from calendar
 	currDateStr = currCal.val();
 	//We need to verify that we have the time information
-	currTimeStr = $("#"+currTimeCal);
+	currTimeStr = $("#"+currTimeCal+" option");
 	if(currTimeStr.length > 1){
 		currTimeStr = $("#"+currTimeCal+" option:selected").attr("value");
 	}else{
@@ -461,7 +461,6 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	}else{
 		requestedDate = new Date(currDateStr);
 	}
-	
 	
 	/*
 	if(GMT){

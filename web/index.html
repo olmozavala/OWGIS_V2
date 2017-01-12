@@ -9,7 +9,13 @@ and open the template in the editor.
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript"  >
-			var newPath = location.href.substr(0,location.href.lastIndexOf("/"));
+			// We redirect to the mapviewer servlet
+			var newPath = "";
+			if( (location.href.length-1) === location.href.lastIndexOf("/") ){
+				newPath = location.href.substr(0,location.href.lastIndexOf("/"));
+			}else{
+				newPath = location.href;
+			}
 			window.open (newPath+'/mapviewer','_self',false);
 		</script>
 	</head>

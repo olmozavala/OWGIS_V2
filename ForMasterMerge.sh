@@ -6,6 +6,19 @@ git checkout --ours web/common/CSS/
 echo "git add --all web/common/CSS"
 git add --all web/common/CSS
 
+
+#---------- Menus from us
+echo "git checkout --ours src/java/com/mapviewer/messages"
+git checkout --theirs src/java/com/mapviewer/messages
+echo "git add --all src/java/com/mapviewer/messages"
+git add --all src/java/com/mapviewer/messages
+
+#---------- XML from us
+echo "git checkout --ours web/layers/*.xml"
+git checkout --ours  web/layers/*.xml
+echo "git add --all web/layers/*.xml"
+git add --all web/layers/*.xml
+
 #---------- All the Java code from theirs---- 
 echo "git checkout --theirs src"
 git checkout --theirs src
@@ -24,9 +37,6 @@ git checkout --ours web/META-INF/context.xml
 git add web/META-INF/context.xml
 
 #---------- Interface dependent from us
-echo "git checkout --ours web/common/JS/src/mapDisplay/InterfaceDependent.js"
-git checkout --ours web/common/JS/src/mapDisplay/InterfaceDependent.js
-git add web/common/JS/src/mapDisplay/InterfaceDependent.js
 
 #---------- All the rest of the JS code from theirs---- 
 echo "git checkout --theirs web/common/JS/src/"
@@ -39,17 +49,9 @@ git checkout --theirs web/WEB-INF/TLD/htmlStaticFunctions.tld
 git add  web/WEB-INF/TLD/htmlStaticFunctions.tld
 
 #-------- JSP files that should be the same
-echo "git checkout --theirs web/Pages/NcWMSOptions.jsp"
-git checkout --theirs web/Pages/NcWMSOptions.jsp
-git add  web/Pages/NcWMSOptions.jsp
-
 echo "git checkout --theirs web/Pages/Options/KmlLink.jsp"
 git checkout --theirs web/Pages/Options/KmlLink.jsp
 git add  web/Pages/Options/KmlLink.jsp
-
-echo "git checkout --theirs web/Pages/Options/MapInstructionsLatest.jsp"
-git checkout --theirs web/Pages/Options/MapInstructionsLatest.jsp
-git add  web/Pages/Options/MapInstructionsLatest.jsp
 
 echo "git checkout --theirs web/Pages/Options/Palettes.jsp"
 git checkout --theirs web/Pages/Options/Palettes.jsp
@@ -60,4 +62,4 @@ git add  web/Pages/Options/Palettes.jsp
 #git checkout --theirs web/common/scss/
 #git add --all web/common/scss
 
-
+rm web/layers/TestLayers.xml
