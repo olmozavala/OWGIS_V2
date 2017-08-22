@@ -103,6 +103,22 @@ owgis.ncwms.currents.particles.getDefaultParticlesLifeTime= function getDefaultP
 	return defTimeParticle;
 }
 
+owgis.ncwms.currents.particles.initDataNcWMSTwo = function initDataNcWMSTwo(GridInfo,currentE){
+//	console.log("initData for particles");
+	
+	canvas = document.getElementById("currentsCanvas");
+	ctx = canvas.getContext('2d');
+	
+	gridInfo = GridInfo;
+	currentExtent = currentE;
+	
+	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
+	latDomain = Math.abs(currentExtent[1] - currentExtent[3]);
+
+	updateDomains();
+	initParticles();
+}
+
 owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 //	console.log("initData for particles");
 	
