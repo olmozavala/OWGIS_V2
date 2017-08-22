@@ -4,6 +4,7 @@ goog.require('ol.source.ImageCanvas');
 goog.require('ol.renderer.canvas.ImageLayer');
 goog.require('goog.events');
 goog.require('owgis.ncwms.currents.particles');
+goog.require('owgis.ncwms.ncwmstwo');
 goog.require('owgis.ncwms.animation.status');
 goog.require('owgis.interf');
 goog.require('owgis.transparency');
@@ -188,6 +189,12 @@ function getDefaultLayer(){
 			bbox: layerDetails.bbox.join(","),
 			origbbox: layerDetails.bbox.join(",")
 		}); 
+
+	//If this layer is being server by ncWMS V2 or higher, then we 
+	// need to replace the format attribute
+	if(layerDetails.ncwmstwo){
+		defLayer.set("format","application/prs.coverage+json");
+	}	
 	//If the layer has the whole longitude space (-180, 180) we modify
 	// the original extent to -360,360 in order to be able to visualize
 	// currents in the middle
@@ -420,14 +427,14 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 * @returns {undefined}
 */
 function abortPrevious(){
-if(!_.isEmpty(readDataPremises)){
-	_.each(readDataPremises, function(premise,id){
-		//		console.log("The premise "+id+" has been aborted");
-		if(!_.isEmpty(premise)){
-			premise.abort();
-		}
-	});
-}
+	if(!_.isEmpty(readDataPremises)){
+		_.each(readDataPremises, function(premise,id){
+			//		console.log("The premise "+id+" has been aborted");
+			if(!_.isEmpty(premise)){
+				premise.abort();
+			}
+		});
+	}
 }
 
 /**
@@ -448,62 +455,140 @@ function updateData(){
 	owgis.interf.loadingatmap(true,0,"Currents");
 	
 	totalFiles = times.length;
+
+	var uData = new Array();
+	var vData = new Array();
 	
-	_.each(times, function(time, idx){
-		layerTemplate.set("time",time);	
-		readDataPremises = new Array();
-		//		console.log(layerTemplate.getURL());
-		readDataPremises[idx] = d3.json( layerTemplate.getURL(), function(error, file){
-					if(error){
-						console.log("Not possible to read JSON data: "+error.statusText);
-					}else{
-						//				console.log("Data has been received: "+idx);
-						var uData = file[0].data;
-						var vData = file[1].data;
-						
-						//We set the gridInfo only for the first time frame 
-						
-						var gridInfo = file[0].header;
-						//TODO I don't know why latitude ranges come flipped
-						var temp = gridInfo.la1;
-						gridInfo.la1 = gridInfo.la2;
-						gridInfo.la2 = temp;
-						
-						//We only initialize the loop and the headers for the first request
-						if(loadedRequests === 0){
-							owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-							startAnimationLoopCurrents();
-						}
-						
-						// We read the data and create the grid
-						var grid = new Array();
-						for (j = 0, p = 0; j < gridInfo.ny; j++) {
-							var row = [];
-							for (i = 0; i < gridInfo.nx; i++, p++) {
-								row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+	abortPrevious();//Abort any previous premises we have
+	readDataPremises = new Array();
+	if(layerDetails.ncwmstwo){
+		// Iterate over all the times we are displaying (only one, unless we have animations)
+		_.each(times, function(time, idx){
+			layerTemplate.set("time",time);	
+//			console.log(layerTemplate.getURL());
+
+			//We obtain the request URLs for each vector field U and V
+			var compositeLayers = layerTemplate.get("layers");
+			var tempULayer = layerTemplate.clone();
+			var tempVLayer = layerTemplate.clone();
+			tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
+			tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
+			
+			uData[idx] = new Array();
+			vData[idx] = new Array();
+			if(_.isUndefined(readDataPremises[idx])){
+				readDataPremises[idx] = new Array();
+			}
+
+			readDataPremises[readDataPremises.length] = d3.json( tempULayer.getURL(), function(error, file){
+						if(error){
+							console.log("Not possible to read JSON data for U: "+error.statusText);
+						}else{
+			//				console.log("Data has been received: "+idx);
+							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
+							uData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
+							//We only initialize the loop and the headers for the first request
+							if(loadedRequests === 0){
+								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 							}
-							grid[j] = row;
+							
+							if(loadedRequests === 1){
+								var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+								startAnimationLoopCurrents();
+								owgis.ncwms.currents.particles.setGrid(grid,idx);
+							}
+
+							loadedRequests++;
+							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
+							if(loadedRequests === (totalRequests*2)){
+								owgis.interf.loadingatmap(false,0);
+							}
 						}
-						owgis.ncwms.currents.particles.setGrid(grid,idx);
-						
-						loadedRequests++;
-						owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
-						//				owgis.interf.loadingatmouse(true);
-						if(loadedRequests === totalRequests){
-							owgis.interf.loadingatmap(false,0);
+					});
+
+			readDataPremises[readDataPremises.length] = d3.json( tempVLayer.getURL(), function(error, file){
+						if(error){
+							console.log("Not possible to read JSON data for V: "+error.statusText);
+						}else{
+							//We set the gridInfo only for the first time frame 
+							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
+							vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
+
+							//We only initialize the loop and the headers for the first request
+							if(loadedRequests === 0){
+								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+							}
+							
+							if(loadedRequests >= 1){
+								var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+								startAnimationLoopCurrents();
+								owgis.ncwms.currents.particles.setGrid(grid,idx);
+							}
+							
+							loadedRequests++;
+							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
+							if(loadedRequests === (totalRequests*2)){
+								owgis.interf.loadingatmap(false,0);
+							}
 						}
+					});
+			});
+	}else{
+		// Iterate over all the times we are displaying (only one, unless we have animations)
+		_.each(times, function(time, idx){
+			layerTemplate.set("time",time);	
+			//		console.log(layerTemplate.getURL());
+			readDataPremises[idx] = d3.json( layerTemplate.getURL(), function(error, file){
+						if(error){
+							console.log("Not possible to read JSON data: "+error.statusText);
+						}else{
+							//				console.log("Data has been received: "+idx);
+							var uData = file[0].data;
+							var vData = file[1].data;
+							
+							//We set the gridInfo only for the first time frame 
+							
+							var gridInfo = file[0].header;
+							//TODO I don't know why latitude ranges come flipped
+							var temp = gridInfo.la1;
+							gridInfo.la1 = gridInfo.la2;
+							gridInfo.la2 = temp;
+							
+							//We only initialize the loop and the headers for the first request
+							if(loadedRequests === 0){
+								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+								startAnimationLoopCurrents();
+							}
+							
+							// We read the data and create the grid
+							var grid = new Array();
+							for (j = 0, p = 0; j < gridInfo.ny; j++) {
+								var row = [];
+								for (i = 0; i < gridInfo.nx; i++, p++) {
+									row[gridInfo.nx-1-i] = [uData[p], vData[p]];
+								}
+								grid[j] = row;
+							}
+							owgis.ncwms.currents.particles.setGrid(grid,idx);
+							
+							loadedRequests++;
+							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
+							//				owgis.interf.loadingatmouse(true);
+							if(loadedRequests === totalRequests){
+								owgis.interf.loadingatmap(false,0);
+							}
+						}
+					});
+					
+					//This function is used to display the progress of the download, only used when
+					// we have one time
+					if(times.length === 1){
+						readDataPremises[idx].on("progress",function(){
+							owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
+						});
 					}
 				});
-				
-				//This function is used to display the progress of the download, only used when
-				// we have one time
-				if(times.length === 1){
-					readDataPremises[idx].on("progress",function(){
-						owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
-					});
-				}
-			});
-			
+	}
 }
 
 /**

@@ -29,13 +29,12 @@ owgis.kml.KMZDownAlert = function() {
         alert("Your download will beggin shortly.");
 }
 
-/** This function obtain the proper values
+/** This function obtains the proper values
  * for the current date and the zaxis value (depth) 
  * and send them to updateTitle() and owgis.kml.updateKmlLink()
  */
 owgis.kml.updateTitleAndKmlLink = function() {
     if (netcdf) {
-		
         var dateText = '';
 		
         var currElevation = '';
@@ -52,8 +51,11 @@ owgis.kml.updateTitleAndKmlLink = function() {
 		var dateText =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
 		
         owgis.kml.updateKmlLink(dateText, currElevation, '');
-		var dateForTitle = dateText.substring(0,dateText.indexOf("T"))
-		+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));
+		var dateForTitle = "";
+		if(!_.isUndefined(dateText)){
+			dateForTitle = dateText.substring(0,dateText.indexOf("T"))
+			+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));
+		}
         updateTitle(dateForTitle, currElevationTxt);
     }
 }
