@@ -1,24 +1,6 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="lev1" EN="Cloud Cover" ES="Cobertura nubosa"/>
-		
-		<!-- Tais menu that are available to display entries IOA OWGIS-->
-		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
-		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
-		<Menu ID="DivisionMx" EN="Political Division " ES="División Política " />
-		<Menu ID="HidroMx" EN="Hydrography Mx" ES="Hidrografía MX" />
-		<Menu ID="riosMX" EN="MX Rivers" ES="Rios MX" />
-		<Menu ID="cuencasMX" EN="MX Rivers" ES="Cuencas Hidrográficas MX" />
-		<Menu ID="paises" EN="Countries" ES="Paises" />
-		
-		<!-- <Menu ID="colonias" EN="Colonies Mx" ES="Colonias Mx" /> -->
-		<Menu ID="nubesIR" EN="Cloud Cover IR" ES="Cobertura Nubosa IR" />
-		
-		<Menu ID="nubesV" EN="Cloud Cover Visible" ES="Cobertura Nubosa Visible" />
-		<Menu ID="VaporA" EN="Steam Water" ES="Vapor de Agua" />
-		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
-		
 		<Menu ID="Dom1" EN="Mexico" ES="Republica Mexicana"/>
 		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de Mexico"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento" />
@@ -30,14 +12,11 @@
 		<Menu ID="Temp2" EN="Temperature at 2 meters" ES="Temperatura a 2 metros"/>
 		<Menu ID="Prec" EN="Precipitation" ES="Precipitación"/>
 		<Menu ID="PA" EN="Atmospheric Pressure" ES="Presión Atmosférica reducida a nivel del mar"/>
-	
 		<MenuEntry ID="Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación acumulada  cada 3 horas"/>
 		<MenuEntry ID="Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación acumulada  cada 6 horas"/> 
 		<MenuEntry ID="PrecTot" EN="Total Precipitation Acumulated" ES="Precipitacion Total"/>
 		<MenuEntry ID="PrecHor" EN="Hourly Precipitation " ES="Precipitación Horaria"/>
-		
 		<!-- Tais menu that are available to display entries IOA OWGIS-->
-
 	</Menus>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
@@ -49,19 +28,6 @@
 		<layer name="OSM-WMS"  featureInfo="none" /> 
 	</BackgroundLayers>
         -->
-
-        <!-- Optional layers -->
-        <OptionalLayers BBOX="-120,15,-80,32" server="http://10.20.12.161:8080/geoserver/wms" vectorLayer="true"> 
-                
-		<layer Menu="DivisionMx,estadosMX" name="Estado:MEX_adm1" EN="MX States" ES="Estados MX" tiled="false" featureInfo="OWGIS_data:Paises_CB" />
-		<layer Menu="DivisionMx,municipiosMX" name="municipio:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
-                
-                <!--
-                <layer Menu="DivisionMx,paises" name="OWGIS_data:Paises_CB" EN="Countries" ES="Paises" tiled="false" />
-		<layer Menu="bat" name="OWGIS_data:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
-		-->
-	</OptionalLayers>
-        
 	<!-- Dominio 1 -->
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" 
                     server="http://10.20.12.147:8080/ncWMS2/wms" >
@@ -73,7 +39,7 @@
                      
 		<layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
 			style="default-vector/speed" name="wrf_dom1/Uat250:Vat250-group" ncWMStwo="true"
-			defParticleSpeed="0.1" overlaystreamlines="wrf_dom1/Uat250:wrf_dom1/Vat250"/>                              
+			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat250:wrf_dom1/Vat250"/>                              
                 
 	
 		<layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
@@ -87,7 +53,7 @@
 
 		<layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
                        name="wrf_dom1/Uat850:Vat850-group" ncWMStwo="true"                
-                overlaystreamlines="wrf_dom1/Uat850:wrf_dom1/Vat850" defParticleSpeed=".1" style="default-vector/speed" 
+                overlaystreamlines="wrf_dom1/Uat850:wrf_dom1/Vat850" defParticleSpeed="0.03" style="default-vector/speed" 
                 />
 
 		<layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
@@ -122,7 +88,7 @@
             
 		<layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
 			style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			name="wrf_dom2/Uat10:Vat10-group" defParticleSpeed=".1" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
+			name="wrf_dom2/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
 
 		<layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
 				style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"

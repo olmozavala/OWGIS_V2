@@ -1,0 +1,25 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="lev1" EN="Cloud Cover" ES="Cobertura nubosa"/>
+		
+		<!-- Tais menu that are available to display entries IOA OWGIS-->
+		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
+		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
+		<Menu ID="DivisionMx" EN="Political Division " ES="División Política " />
+		<Menu ID="paises" EN="Countries" ES="Paises" />
+		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
+        </Menus>        
+        <!-- Optional layers -->
+        <OptionalLayers BBOX="-120,15,-80,32" server="http://10.20.12.161:8080/geoserver/wms" vectorLayer="true"> 
+                
+		<layer Menu="DivisionMx,estadosMX" name="Estado:MEX_adm1" EN="MX States" ES="Estados MX" tiled="false" featureInfo="OWGIS_data:Paises_CB" />
+		<layer Menu="DivisionMx,municipiosMX" name="municipio:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
+                
+                <!--
+                <layer Menu="DivisionMx,paises" name="OWGIS_data:Paises_CB" EN="Countries" ES="Paises" tiled="false" />
+		<layer Menu="bat" name="OWGIS_data:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
+		-->
+	</OptionalLayers>
+        
+</MenuConf>
