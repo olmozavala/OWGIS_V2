@@ -13,8 +13,8 @@
         <!-- Optional layers -->
         <OptionalLayers BBOX="-120,15,-80,32" server="http://10.20.12.161:8080/geoserver/wms" vectorLayer="true"> 
                 
-		<layer Menu="DivisionMx,estadosMX" name="Estado:MEX_adm1" EN="MX States" ES="Estados MX" tiled="false" featureInfo="OWGIS_data:Paises_CB" />
-		<layer Menu="DivisionMx,municipiosMX" name="municipio:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
+		<layer Menu="DivisionMx,estadosMX" name="CENAPRED:Estados" EN="MX States" ES="Estados MX" tiled="false" featureInfo="OWGIS_data:Paises_CB" />
+		<layer Menu="DivisionMx,municipiosMX" name="CENAPRED:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
                 
                 <!--
                 <layer Menu="DivisionMx,paises" name="OWGIS_data:Paises_CB" EN="Countries" ES="Paises" tiled="false" />
