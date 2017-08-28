@@ -30,102 +30,102 @@
         -->
 	<!-- Dominio 1 -->
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" 
-                    server="http://10.20.12.147:8080/ncWMS2/wms" >
+                    server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMS="true" >
                    
 		<layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
-                    style="default-vector/speed" name="wrf_dom1/Uat10:Vat10-group" ncWMStwo="true" mincolor="0" maxcolor="200"
-                    overlaystreamlines="wrf_dom1/Uat10:wrf_dom1/Vat10" defParticleSpeed=".1"
+                    style="boxfill/speed" name="wrf1_dom1/WS10" mincolor="0" maxcolor="200"
+                    overlaystreamlines="wrf1_dom1/wind_ten_velocity" defParticleSpeed="0.03"
                 />
                      
 		<layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-			style="default-vector/speed" name="wrf_dom1/Uat250:Vat250-group" ncWMStwo="true" mincolor="0" maxcolor="200"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat250:wrf_dom1/Vat250"/>                              
+			style="boxfill/speed" name="wrf1_dom1/WSat250" mincolor="0" maxcolor="200"
+			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/wind_250"/>                              
                 
 	
 		<layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-			style="default-vector/speed" name="wrf_dom1/Uat500:Vat500-group" ncWMStwo="true" mincolor="0" maxcolor="200"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat500:wrf_dom1/Vat500"/>
+			style="boxfill/speed" name="wrf1_dom1/WSat500" mincolor="0" maxcolor="200"
+			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/wind_500"/>
 
 		<layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"  
-			style="default-vector/speed" name="wrf_dom1/Uat700:Vat700-group" ncWMStwo="true" mincolor="0" maxcolor="200"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat700:wrf_dom1/Vat700" />
+			style="boxfill/speed" name="wrf1_dom1/WSat700" mincolor="0" maxcolor="200"
+			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/wind_700" />
                         
 
 		<layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-                       name="wrf_dom1/Uat850:Vat850-group" ncWMStwo="true" mincolor="0" maxcolor="200"
-                overlaystreamlines="wrf_dom1/Uat850:wrf_dom1/Vat850" defParticleSpeed="0.03" style="default-vector/speed" 
+                       name="wrf1_dom1/WSat850" mincolor="0" maxcolor="200"
+                overlaystreamlines="wrf1_dom1/wind_850" defParticleSpeed="0.03" style="boxfill/speed" 
                 />
 
 		<layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-			style="default-scalar/thermal" ncWMStwo="true" mincolor="-15" maxcolor="25"
-			   name="wrf_dom1/T2C"  />
+			style="boxfill/thermal" mincolor="-5" maxcolor="45"
+			   name="wrf1_dom1/T2C"  />
                 
 		<!--<layer Menu="Dom1,PA" EN="reduce Atmospheric Pressure at level of sea" ES="Presion Atmosférica reducida al nivel del mar"
 			   name="wrf_dom1_forecast_d1/SLP"  />--> 
                     
 		<layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-			style="default-scalar/deep" mincolor="0" maxcolor="500"
-			   name="wrf_dom1/PRECH" ncWMStwo="true" />
+			style="boxfill/deep" mincolor="0" maxcolor="500"
+			   name="wrf1_dom1/PRECH" />
 
 		<layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="default-scalar/dense" mincolor="0" maxcolor="500"
-			   name="wrf_dom1/PREC2" ncWMStwo="true" />
+				style="boxfill/dense" mincolor="0" maxcolor="500"
+			   name="wrf1_dom1/PREC2" />
 
 		<layer Menu="Dom1,Prec,Prec3h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep"  mincolor="0" maxcolor="500"
-			   name="wrf_dom1/PRECA3" ncWMStwo="true" />
+				style="boxfill/deep"  mincolor="0" maxcolor="500"
+			   name="wrf1_dom1/PRECA3" />
 
 		<layer Menu="Dom1,Prec,Prec6h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" mincolor="0" maxcolor="500"
-			   name="wrf_dom1/PRECA6" ncWMStwo="true" />
+				style="boxfill/deep" mincolor="0" maxcolor="500"
+			   name="wrf1_dom1/PRECA6" />
                 
 	</MainLayers>
 
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" 
-		format="image/gif"  server="http://10.20.12.147:8080/ncWMS2/wms" >
+		format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMS="true" >
             
 		<layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-			style="default-vector/speed" mincolor="0" maxcolor="200" ncWMStwo="true"
-			name="wrf_dom2/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
+			style="boxfill/speed" mincolor="0" maxcolor="200"
+			name="wrf_dom2/WS10" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/wind_ten_velocity"/>
 
 		<layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="200" ncWMStwo="true"
-			   name="wrf_dom2/Uat250:Vat250-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat250:wrf_dom2/Vat250"/>
+				style="boxfill/speed" mincolor="0" maxcolor="200" 
+			   name="wrf_dom2/WSat250" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/wind_250"/>
 	
 		<layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="200" ncWMStwo="true"
-			   name="wrf_dom2/Uat500:Vat500-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat500:wrf_dom2/Vat500"/>
+				style="boxfill/speed" mincolor="0" maxcolor="200" 
+			   name="wrf_dom2/WSat500" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/wind_500"/>
 
 		<layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="200" ncWMStwo="true"
-			   name="wrf_dom2/Uat700:Vat700-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat700:wrf_dom2/Vat700" />
+				style="boxfill/speed" mincolor="0" maxcolor="200" 
+			   name="wrf_dom2/WSat700" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/wind_700" />
 
 		<layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="200" ncWMStwo="true"
-			   name="wrf_dom2/Uat850:Vat850-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat850:wrf_dom2/Vat850"/>
+				style="boxfill/speed" mincolor="0" maxcolor="200" 
+			   name="wrf_dom2/WSat850" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/wind_850"/>
 
 		<layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-				style="default-scalar/thermal" mincolor="270" maxcolor="320" ncWMStwo="true"
+				style="boxfill/thermal" mincolor="270" maxcolor="320"
 			   name="wrf_dom2/T2"  />
 
 		<layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-				style="default-scalar/deep" mincolor="0" maxcolor="500" ncWMStwo="true"
+				style="boxfill/dense" mincolor="0" maxcolor="500" 
 			   name="wrf_dom2/PRECH"  />
 
 		<layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="default-scalar/deep" mincolor="0" maxcolor="500" ncWMStwo="true"
+				style="boxfill/deep" mincolor="0" maxcolor="500"
 			   name="wrf_dom2/PREC2"  />
 
 		<layer Menu="Dom2,Prec,Prec3h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" mincolor="0" maxcolor="500" ncWMStwo="true"
+				style="boxfill/deep" mincolor="0" maxcolor="500" 
 			   name="wrf_dom2/PRECA3"  />
 
 		<layer Menu="Dom2,Prec,Prec6h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" mincolor="0" maxcolor="500" ncWMStwo="true"
+				style="boxfill/deep" mincolor="0" maxcolor="500" 
 			   name="wrf_dom2/PRECA6"  />
 	</MainLayers>
 </MenuConf>
