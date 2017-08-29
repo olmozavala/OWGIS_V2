@@ -78,48 +78,48 @@
 					 localAddress="http://192.168.1.103:8080/ncWMS_2015/wms" ncWMS="true">
 
 		<layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d1/WS10" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/wind_ten_velocity"/>
 
 		<layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d1/WSat250" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/wind_250"/>
 	
 		<layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d1/WSat500" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/wind_500"/>
 
 		<layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"  
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d1/WSat700" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/wind_700" />
 
 		<layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d1/WSat850" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/wind_850"/>
 
 		<layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-				style="boxfill/temp" mincolor="-15" maxcolor="55"
+				style="boxfill/thermal" mincolor="-15" maxcolor="55"
 			   name="wrf_forecast_d1/T2C"  />
 
 		<!--<layer Menu="Dom1,PA" EN="reduce Atmospheric Pressure at level of sea" ES="Presion Atmosférica reducida al nivel del mar"
 			   name="wrf_forecast_d1/SLP"  />--> 
 
 		<layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/deep" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d1/PRECH"  />
 
 		<layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/deep" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d1/PREC2"  />
 
 		<layer Menu="Dom1,Prec,Prec3h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/dense" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d1/PRECA3"  />
 
 		<layer Menu="Dom1,Prec,Prec6h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/dense" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d1/PRECA6"  />
 	</MainLayers>
 
@@ -128,48 +128,48 @@
 					 localAddress="http://192.168.1.103:8080/ncWMS_2015/wms" ncWMS="true">
 
 		<layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d2/WS10" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/wind_ten_velocity"/>
 
 		<layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d2/WSat250" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/wind_250"/>
 	
 		<layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d2/WSat500" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/wind_500"/>
 
 		<layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d2/WSat700" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/wind_700" />
 
 		<layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-				style="boxfill/wind" mincolor="0" maxcolor="252"
+				style="boxfill/speed" mincolor="0" maxcolor="252"
 			   name="wrf_forecast_d2/WSat850" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/wind_850"/>
 
 		<layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-				style="boxfill/temp" mincolor="-15" maxcolor="55"
+				style="boxfill/thermal" mincolor="-15" maxcolor="55"
 			   name="wrf_forecast_d2/T2C"  />
 
 		<!--<layer Menu="Dom2,PA" EN="reduce Atmospheric Pressure at level of sea" ES="Presion Atmosférica reducida al nivel del mar"
 			   name="wrf_forecast_d2/SLP"  />--> 
 
 		<layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/deep" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d2/PRECH"  />
 
 		<layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/deep" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d2/PREC2"  />
 
 		<layer Menu="Dom2,Prec,Prec3h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/dense" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d2/PRECA3"  />
 
 		<layer Menu="Dom2,Prec,Prec6h" 
 			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="boxfill/prec" mincolor="0" maxcolor="400"
+				style="boxfill/dense" mincolor="0" maxcolor="400"
 			   name="wrf_forecast_d2/PRECA6"  />
 	</MainLayers>
 </MenuConf>
