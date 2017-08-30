@@ -15,14 +15,16 @@ $border-select: 6px;
 .mainMenu {
     font-size: $f_larger;
     width: $containerSize - 15;
-    color: $dropDownColor;
-	background-color: $dropDownBackColor;
+   /* color: $dropDownColor;
+	background-color: $dropDownBackColor;*/
 	@include border-radius($border-select, $border-select);
 	&:hover{
 		background-color: $dropDownHover;
 	}
     //padding: 2px 11px;
     margin: 1px 0px;
+    color: #eee;
+    background-color: #333333;
 }
 
 /* The 'MainMenu'(base layers dropdowns) container */

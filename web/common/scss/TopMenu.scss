@@ -17,7 +17,8 @@ and open the template in the editor.
 	left:0;
 	width: 100%;
 	z-index:1008;
-    background-image:url('../images/transBack.png');
+    /*background-image:url('../images/transBack.png');*/
+    background: rgba(0,0,0,0.5);
     border-bottom:$fontColor + 20 1px solid;
     padding: $defPadding*2 0px;
 }

@@ -8,13 +8,13 @@
 <div id="leftFooter" class="leftFoot">
 	&nbsp;
 	<a  href="https://www.unam.mx/">
-		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="30" height="30" /></a>
+		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp;
 	<a  href="https://www.atmosfera.unam.mx/">
-		<img border="0" src="./common/images/Logos/logo.png" alt="Logo" width="30" height="30" /></a>
+		<img border="0" src="./common/images/Logos/cca.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp 
 	<a  href="https://www.gob.mx/cenapred">
-		<img border="0" src="./common/images/Logos/logocenapred.png" alt="Logo" width="30" height="30" /></a>
+		<img border="0" src="./common/images/Logos/cenapred.png" alt="Logo" width="50" height="50" /></a>
 	&nbsp 
 			
 	<!--a  href="#">

@@ -69,4 +69,13 @@ and open the template in the editor.
 #selectedLanguage {
   padding-bottom: 0px;
   padding-top: 0px;
+  background: #000000;
+  border: none;
+  color: #eeeeee;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: #707070 2px 2px 6px;
+  -webkit-box-shadow: #707070 2px 2px 6px;
+  box-shadow: #707070 2px 2px 6px;
 }

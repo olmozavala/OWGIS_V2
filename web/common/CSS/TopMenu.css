@@ -62,8 +62,19 @@ and open the template in the editor.
   width: 100%;
   z-index: 1008;
   background-image: url("../images/transBack.png");
-  border-bottom: white 1px solid;
+  /*border-bottom: white 1px solid;*/
   padding: 10px 0px;
+  border-bottom: #000000 1px solid;
+}
+
+.topMenu:after {
+    content:"";
+    position:absolute;
+    width:100%;
+    bottom:1px;
+    z-index:-1;
+    /*transform:scale(.9);*/
+    box-shadow: 0px 0px 8px 2px #000000;
 }
 
 /* line 25, ../scss/TopMenu.scss */

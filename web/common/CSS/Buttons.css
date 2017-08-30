@@ -58,77 +58,77 @@ look like a button */
 .buttonLook, .buttonStyle, .buttonContainer {
   border-style: none;
   /*border-width: 1px;*/
-  background-color: #555555;
+  background-color: #110D0E;
   /*border-color: $butBorderColor;*/
   padding: 5px 10px;
-  color: #ECF2F8;
+  color: #eeeeee;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
-  -moz-box-shadow: #80CCDC 2px 2px 6px;
-  -webkit-box-shadow: #80CCDC 2px 2px 6px;
-  box-shadow: #80CCDC 2px 2px 6px;
+  -moz-box-shadow: #707070 2px 2px 6px;
+  -webkit-box-shadow: #707070 2px 2px 6px;
+  box-shadow: #707070 2px 2px 6px;
   /*@include box-sizing(content-box);*/
   margin: 5px 5px;
-  height: 23px;
+  height: 22px;
   display: inline;
   vertical-align: middle;
 }
 
 /* Buttons style, default style for buttons (used in transparency and xaxis),
 and also the mainMenu dropdown options*/
-/* line 34, ../scss/Buttons.scss */
+/* line 33, ../scss/Buttons.scss */
 .buttonStyle {
   cursor: pointer;
 }
-/* line 36, ../scss/Buttons.scss */
+/* line 35, ../scss/Buttons.scss */
 .buttonStyle:hover {
-  background-color: #3c3c3c;
-  -moz-box-shadow: #DCC380 2px 2px 12px;
-  -webkit-box-shadow: #DCC380 2px 2px 12px;
-  box-shadow: #DCC380 2px 2px 12px;
+  background-color: black;
+  -moz-box-shadow: #E8E8E8 2px 2px 12px;
+  -webkit-box-shadow: #E8E8E8 2px 2px 12px;
+  box-shadow: #E8E8E8 2px 2px 12px;
 }
-/* line 40, ../scss/Buttons.scss */
+/* line 39, ../scss/Buttons.scss */
 .buttonStyle:active {
-  -moz-box-shadow: #efe3c4 2px 2px 12px;
-  -webkit-box-shadow: #efe3c4 2px 2px 12px;
-  box-shadow: #efe3c4 2px 2px 12px;
-  background-color: #4d4d4d;
+  -moz-box-shadow: white 2px 2px 12px;
+  -webkit-box-shadow: white 2px 2px 12px;
+  box-shadow: white 2px 2px 12px;
+  background-color: #140f11;
 }
 
-/* line 47, ../scss/Buttons.scss */
+/* line 46, ../scss/Buttons.scss */
 .beenUsed {
-  -moz-box-shadow: #80CCDC 2px 2px 6px;
-  -webkit-box-shadow: #80CCDC 2px 2px 6px;
-  box-shadow: #80CCDC 2px 2px 6px;
-  background-color: #1A7979;
+  -moz-box-shadow: #707070 2px 2px 6px;
+  -webkit-box-shadow: #707070 2px 2px 6px;
+  box-shadow: #707070 2px 2px 6px;
+  background-color: #333333;
 }
 
-/* line 52, ../scss/Buttons.scss */
+/* line 51, ../scss/Buttons.scss */
 .buttonStyleCompressed {
   padding: 0px;
   margin: 0px;
   display: inline;
   vertical-align: middle;
-  color: #ECF2F8;
-  background-color: #555555;
+  color: #eeeeee;
+  background-color: #110D0E;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  height: 23px;
+  height: 22px;
 }
-/* line 61, ../scss/Buttons.scss */
+/* line 60, ../scss/Buttons.scss */
 .buttonStyleCompressed:hover {
-  background-color: #3c3c3c;
+  background-color: black;
 }
-/* line 64, ../scss/Buttons.scss */
+/* line 63, ../scss/Buttons.scss */
 .buttonStyleCompressed:active {
-  background-color: #4d4d4d;
+  background-color: #140f11;
 }
 
 /* This is just a container of buttons in the top menu, specifically
 for transparency and depth*/
-/* line 71, ../scss/Buttons.scss */
+/* line 70, ../scss/Buttons.scss */
 .buttonContainer {
   background-color: transparent;
   background-image: url("../images/transBack.png");
@@ -138,7 +138,7 @@ for transparency and depth*/
 /* This are also plus and minus buttons, but are
 smaller and doesn't have background. Currently are used
 for transparency in the optional layers. */
-/* line 81, ../scss/Buttons.scss */
+/* line 80, ../scss/Buttons.scss */
 .minusButtonSmall, .plusButtonSmall {
   vertical-align: top;
   margin: 0px;
@@ -150,7 +150,7 @@ for transparency in the optional layers. */
   font-weight: bolder;
 }
 
-/* line 90, ../scss/Buttons.scss */
+/* line 88, ../scss/Buttons.scss */
 .closeButton {
   float: right;
 }
