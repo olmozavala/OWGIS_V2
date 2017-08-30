@@ -6,13 +6,12 @@
     Author     : harshulpandav
 */
 
-
 //htmlBody
 //$htmlBodyBackColor: #06122C;
-$htmlBodyBackColor: black;
+$htmlBodyBackColor: #000000;
 
 // Main font and shadow colors
-$fontColor: #ECF2F8; // Main font color and secondary shadow color
+$fontColor: #eeeeee; // Main font color and secondary shadow color
 $backColor:black; // Main shadow color and secondary font color
 
 // Inverted font and shadow colors
@@ -26,16 +25,16 @@ $leftFooterColor: black;
 $emailTextColor: blue;
 
 //MapInstructions --tooltip
-$backHelpHoverColor:#DBE9E9;
+$backHelpHoverColor:#eeeeee;
 
 //buttons
-$butBackColor:#555555; //Default internal background color of the buttons
+$butBackColor:#110D0E; //Default internal background color of the buttons
 $butBackColorHover: darken($butBackColor,10); 
 $butBackColorActive: lighten($butBackColorHover, 7); // Background color when the button is pressed
-$butBackColorUsed: #1A7979; //When a button is being used
+$butBackColorUsed: #333333; //When a button is being used
 
-$butShadowColor: #80CCDC;
-$butShadowColorHover: #DCC380; 
+$butShadowColor: #707070;
+$butShadowColorHover: #E8E8E8; 
 $butShadowColorActive: lighten($butShadowColorHover, 17); // Shadow when a button is pressed
 $butBorderColor: $backColor; 
 
