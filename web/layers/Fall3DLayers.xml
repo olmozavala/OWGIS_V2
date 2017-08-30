@@ -1,13 +1,21 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="Fall1" EN="Fall3D 3m" ES="Fall3D 3m"/>
-		<Menu ID="Fall2" EN="Fall3D 5m" ES="Fall3D 5m"/>
-		<Menu ID="Fall3" EN="Fall3D 10m" ES="Fall3D 10m" />
-		<Menu ID="PM05" EN="Density PM05" ES="Densidad PM05"/>
-		<Menu ID="PM10" EN="Density PM10" ES="Densidad PM10"/>
-		<Menu ID="PM20" EN="Density PM20" ES="Densidad PM20"/>
-		<Menu ID="con" EN="Consentration" ES="Concentracion"/>
+		<Menu ID="Fall1" EN="Volcan - 3m" ES="Volcan 3m"/>
+		<Menu ID="Fall2" EN="Volcan - 5m" ES="Volcan 5m"/>
+		<Menu ID="Fall3" EN="Volcan - 10m" ES="Volcan 10m" />
+		<Menu ID="PM05" EN="PM05" ES="PM05"/>
+		<Menu ID="PM10" EN="PM10" ES="PM10"/>
+		<Menu ID="PM20" EN="PM20" ES="Concentracion de particulas PM20"/>
+		<Menu ID="con1" EN="at ground" ES="en superficie"/>
+                <Menu ID="con2" EN="50" ES="50"/>
+                <Menu ID="con3" EN="100" ES="100"/>
+                <Menu ID="con4" EN="150" ES="150"/>
+                <Menu ID="con5" EN="200" ES="200"/>
+                <Menu ID="con6" EN="250" ES="250"/>
+                <Menu ID="con7" EN="300" ES="300"/>
+                <Menu ID="con8" EN="350" ES="350"/>
+                <Menu ID="con9" EN="400" ES="400"/>
 	</Menus>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
@@ -28,21 +36,45 @@
                     overlaystreamlines="wrf_dom1/Uat10:wrf_dom1/Vat10" defParticleSpeed=".1"
                 /-->
 
-		<layer Menu="Fall1,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_03m/PM05" />
-		<layer Menu="Fall1,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_03m/PM10" />
-		<layer Menu="Fall1,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_03m/PM20" />
-		<layer Menu="Fall1,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_03m/consentration_GRND" />
+		<layer Menu="Fall1,PM05" EN="PM05 Particle concentration" ES="Concentracion de particulas PM05" style="boxfill/dense" name="FALL3D_03m/PM05" />
+		<layer Menu="Fall1,PM10" EN="PM10 Particle concentration" ES="Concentracion de particulas PM10" style="boxfill/dense" name="FALL3D_03m/PM10" />
+		<layer Menu="Fall1,PM20" EN="PM20 Particle concentration" ES="Concentracion de particulas PM20" style="boxfill/dense" name="FALL3D_03m/PM20" />
+		<layer Menu="Fall1,con1" EN="Particle concentration at ground " ES="Concentracion de particulas en superficie" style="boxfill/dense" name="FALL3D_03m/consentration_GRND" />
+		<layer Menu="Fall1,con2" EN="Particle concentration 50" ES="Concentracion de particulas 50" style="boxfill/dense" name="FALL3D_03m/consentration_50" />
+		<layer Menu="Fall1,con3" EN="Particle concentration 100" ES="Concentracion de particulas 100" style="boxfill/dense" name="FALL3D_03m/consentration_100" />
+		<layer Menu="Fall1,con4" EN="Particle concentration 150" ES="Concentracion de particulas 150" style="boxfill/dense" name="FALL3D_03m/consentration_150" />
+		<layer Menu="Fall1,con5" EN="Particle concentration 200" ES="Concentracion de particulas 200" style="boxfill/dense" name="FALL3D_03m/consentration_200" />
+		<layer Menu="Fall1,con6" EN="Particle concentration 250" ES="Concentracion de particulas 250" style="boxfill/dense" name="FALL3D_03m/consentration_250" />
+		<layer Menu="Fall1,con7" EN="Particle concentration 300" ES="Concentracion de particulas 300" style="boxfill/dense" name="FALL3D_03m/consentration_300" />
+		<layer Menu="Fall1,con8" EN="Particle concentration 350" ES="Concentracion de particulas 350" style="boxfill/dense" name="FALL3D_03m/consentration_350" />
+		<layer Menu="Fall1,con9" EN="Particle concentration 400" ES="Concentracion de particulas 400" style="boxfill/dense" name="FALL3D_03m/consentration_400" />
                 
-                <layer Menu="Fall2,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_05m/PM05" />
-		<layer Menu="Fall2,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_05m/PM10" />
-		<layer Menu="Fall2,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_05m/PM20" />
-		<layer Menu="Fall2,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_05m/consentration_GRND" />
+                <layer Menu="Fall2,PM05" EN="PM05 Particle concentration" ES="Concentracion de particulas PM05" style="boxfill/dense" name="FALL3D_05m/PM05" />
+		<layer Menu="Fall2,PM10" EN="PM10 Particle concentration" ES="Concentracion de particulas PM10" style="boxfill/dense" name="FALL3D_05m/PM10" />
+		<layer Menu="Fall2,PM20" EN="PM20 Particle concentration" ES="Concentracion de particulas PM20" style="boxfill/dense" name="FALL3D_05m/PM20" />
+		<layer Menu="Fall2,con1" EN="Particle concentration at ground " ES="Concentracion de particulas en superficie" style="boxfill/dense" name="FALL3D_05m/consentration_GRND" />
+		<layer Menu="Fall2,con2" EN="Particle concentration 50" ES="Concentracion de particulas 50" style="boxfill/dense" name="FALL3D_05m/consentration_50" />
+		<layer Menu="Fall2,con3" EN="Particle concentration 100" ES="Concentracion de particulas 100" style="boxfill/dense" name="FALL3D_05m/consentration_100" />
+		<layer Menu="Fall2,con4" EN="Particle concentration 150" ES="Concentracion de particulas 150" style="boxfill/dense" name="FALL3D_05m/consentration_150" />
+		<layer Menu="Fall2,con5" EN="Particle concentration 200" ES="Concentracion de particulas 200" style="boxfill/dense" name="FALL3D_05m/consentration_200" />
+		<layer Menu="Fall2,con6" EN="Particle concentration 250" ES="Concentracion de particulas 250" style="boxfill/dense" name="FALL3D_05m/consentration_250" />
+		<layer Menu="Fall2,con7" EN="Particle concentration 300" ES="Concentracion de particulas 300" style="boxfill/dense" name="FALL3D_05m/consentration_300" />
+		<layer Menu="Fall2,con8" EN="Particle concentration 350" ES="Concentracion de particulas 350" style="boxfill/dense" name="FALL3D_05m/consentration_350" />
+		<layer Menu="Fall2,con9" EN="Particle concentration 400" ES="Concentracion de particulas 400" style="boxfill/dense" name="FALL3D_05m/consentration_400" />
                 
                 
-                <layer Menu="Fall3,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_10m/PM05" />
-		<layer Menu="Fall3,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_10m/PM10" />
-		<layer Menu="Fall3,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_10m/PM20" />
-		<layer Menu="Fall3,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_10m/consentration_GRND" />
+                <layer Menu="Fall3,PM05" EN="PM05 Particle concentration" ES="Concentracion de particulas PM05" style="boxfill/dense" name="FALL3D_10m/PM05" />
+		<layer Menu="Fall3,PM10" EN="PM10 Particle concentration" ES="Concentracion de particulas PM10" style="boxfill/dense" name="FALL3D_10m/PM10" />
+		<layer Menu="Fall3,PM20" EN="PM20 Particle concentration" ES="Concentracion de particulas PM20" style="boxfill/dense" name="FALL3D_10m/PM20" />
+		<layer Menu="Fall3,con1" EN="Particle concentration at ground " ES="concentracion" style="boxfill/dense" name="FALL3D_10m/consentration_GRND" />
+		<layer Menu="Fall3,con2" EN="Particle concentration 50" ES="Concentracion de particulas 50" style="boxfill/dense" name="FALL3D_10m/consentration_50" />
+		<layer Menu="Fall3,con3" EN="Particle concentration 100" ES="Concentracion de particulas 100" style="boxfill/dense" name="FALL3D_10m/consentration_100" />
+		<layer Menu="Fall3,con4" EN="Particle concentration 150" ES="Concentracion de particulas 150" style="boxfill/dense" name="FALL3D_10m/consentration_150" />
+		<layer Menu="Fall3,con5" EN="Particle concentration 200" ES="Concentracion de particulas 200" style="boxfill/dense" name="FALL3D_10m/consentration_200" />
+		<layer Menu="Fall3,con6" EN="Particle concentration 250" ES="Concentracion de particulas 250" style="boxfill/dense" name="FALL3D_10m/consentration_250" />
+		<layer Menu="Fall3,con7" EN="Particle concentration 300" ES="Concentracion de particulas 300" style="boxfill/dense" name="FALL3D_10m/consentration_300" />
+		<layer Menu="Fall3,con8" EN="Particle concentration 350" ES="Concentracion de particulas 350" style="boxfill/dense" name="FALL3D_10m/consentration_350" />
+		<layer Menu="Fall3,con9" EN="Particle concentration 400" ES="Concentracion de particulas 400" style="boxfill/dense" name="FALL3D_10m/consentration_400" />
                 
 	</MainLayers>
 
