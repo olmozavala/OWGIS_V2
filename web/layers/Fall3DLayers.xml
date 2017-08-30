@@ -1,22 +1,13 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="Dom1" EN="Mexico" ES="Republica Mexicana"/>
-		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de Mexico"/>
-		<Menu ID="Viento" EN="Wind" ES="Viento" />
-		<Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
-		<Menu ID="Vto250hP" EN="Wind in 250 hPa" ES="Viento en 250 hPa"/>
-		<Menu ID="Vto500hP" EN="Wind in 500 hPa" ES="Viento en 500 hPa"/>
-		<Menu ID="Vto700hP" EN="Wind in 700 hPa" ES="Viento en 700 hPa"/>
-		<Menu ID="Vto850hP" EN="Wind in 850 hPa" ES="Viento en 850 hPa"/>
-		<Menu ID="Temp2" EN="Temperature at 2 meters" ES="Temperatura a 2 metros"/>
-		<Menu ID="Prec" EN="Precipitation" ES="Precipitación"/>
-		<Menu ID="PA" EN="Atmospheric Pressure" ES="Presión Atmosférica reducida a nivel del mar"/>
-		<MenuEntry ID="Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación acumulada  cada 3 horas"/>
-		<MenuEntry ID="Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación acumulada  cada 6 horas"/> 
-		<MenuEntry ID="PrecTot" EN="Total Precipitation Acumulated" ES="Precipitacion Total"/>
-		<MenuEntry ID="PrecHor" EN="Hourly Precipitation " ES="Precipitación Horaria"/>
-		<!-- Tais menu that are available to display entries IOA OWGIS-->
+		<Menu ID="Fall1" EN="Fall3D 3m" ES="Fall3D 3m"/>
+		<Menu ID="Fall2" EN="Fall3D 5m" ES="Fall3D 5m"/>
+		<Menu ID="Fall3" EN="Fall3D 10m" ES="Fall3D 10m" />
+		<Menu ID="PM05" EN="Density PM05" ES="Densidad PM05"/>
+		<Menu ID="PM10" EN="Density PM10" ES="Densidad PM10"/>
+		<Menu ID="PM20" EN="Density PM20" ES="Densidad PM20"/>
+		<Menu ID="con" EN="Consentration" ES="Concentracion"/>
 	</Menus>
 
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
@@ -30,102 +21,29 @@
         -->
 	<!-- Dominio 1 -->
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" 
-                    server="http://10.20.12.147:8080/ncWMS2/wms" >
+                    server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMS="true" >
                    
-		<layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
-                    style="default-vector/speed" name="wrf_dom1/Uat10:Vat10-group" ncWMStwo="true"
+		<!-- layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
+                    style="default-vector/speed" name="wrf_dom1/Uat10:Vat10-group" 
                     overlaystreamlines="wrf_dom1/Uat10:wrf_dom1/Vat10" defParticleSpeed=".1"
-                />
-                     
-		<layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-			style="default-vector/speed" name="wrf_dom1/Uat250:Vat250-group" ncWMStwo="true"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat250:wrf_dom1/Vat250"/>                              
+                /-->
+
+		<layer Menu="Fall1,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_03m/PM05" />
+		<layer Menu="Fall1,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_03m/PM10" />
+		<layer Menu="Fall1,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_03m/PM20" />
+		<layer Menu="Fall1,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_03m/consentration_GRND" />
                 
-	
-		<layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-			style="default-vector/speed" name="wrf_dom1/Uat500:Vat500-group" ncWMStwo="true"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat500:wrf_dom1/Vat500"/>
-
-		<layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"  
-			style="default-vector/speed" name="wrf_dom1/Uat700:Vat700-group" ncWMStwo="true"
-			defParticleSpeed="0.03" overlaystreamlines="wrf_dom1/Uat700:wrf_dom1/Vat700" />
-                        
-
-		<layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-                       name="wrf_dom1/Uat850:Vat850-group" ncWMStwo="true"                
-                overlaystreamlines="wrf_dom1/Uat850:wrf_dom1/Vat850" defParticleSpeed="0.03" style="default-vector/speed" 
-                />
-
-		<layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-			style="default-scalar/thermal" ncWMStwo="true"
-			   name="wrf_dom1/T2C"  />
+                <layer Menu="Fall2,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_05m/PM05" />
+		<layer Menu="Fall2,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_05m/PM10" />
+		<layer Menu="Fall2,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_05m/PM20" />
+		<layer Menu="Fall2,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_05m/consentration_GRND" />
                 
-		<!--<layer Menu="Dom1,PA" EN="reduce Atmospheric Pressure at level of sea" ES="Presion Atmosférica reducida al nivel del mar"
-			   name="wrf_dom1_forecast_d1/SLP"  />--> 
-                    
-		<layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-			style="default-scalar/deep" 
-			   name="wrf_dom1/PRECH" ncWMStwo="true" />
-
-		<layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="default-scalar/dense" 
-			   name="wrf_dom1/PREC2" ncWMStwo="true" />
-
-		<layer Menu="Dom1,Prec,Prec3h" 
-			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" 
-			   name="wrf_dom1/PRECA3" ncWMStwo="true" />
-
-		<layer Menu="Dom1,Prec,Prec6h" 
-			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep"
-			   name="wrf_dom1/PRECA6" ncWMStwo="true" />
+                
+                <layer Menu="Fall3,PM05" EN="PM05 " ES="PM05" style="boxfill/dense" name="FALL3D_10m/PM05" />
+		<layer Menu="Fall3,PM10" EN="PM10 " ES="PM10" style="boxfill/dense" name="FALL3D_10m/PM10" />
+		<layer Menu="Fall3,PM20" EN="PM20 " ES="PM20" style="boxfill/dense" name="FALL3D_10m/PM20" />
+		<layer Menu="Fall3,con" EN="concentration " ES="concentracion" style="boxfill/dense" name="FALL3D_10m/consentration_GRND" />
                 
 	</MainLayers>
 
-	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" 
-		format="image/gif"  server="http://10.20.12.147:8080/ncWMS2/wms" ncWMStwo="true" >
-            
-		<layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-			style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			name="wrf_dom2/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
-
-		<layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			   name="wrf_dom2/Uat250:Vat250-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat250:wrf_dom2/Vat250"/>
-	
-		<layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			   name="wrf_dom2/Uat500:Vat500-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat500:wrf_dom2/Vat500"/>
-
-		<layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			   name="wrf_dom2/Uat700:Vat700-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat700:wrf_dom2/Vat700" />
-
-		<layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-				style="default-vector/speed" mincolor="0" maxcolor="252" ncWMStwo="true"
-			   name="wrf_dom2/Uat850:Vat850-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat800:wrf_dom2/Vat800"/>
-
-		<layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
-				style="default-scalar/thermal" mincolor="-15" maxcolor="55" ncWMStwo="true"
-			   name="wrf_dom2/T2"  />
-
-		<!--layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" 
-				style="default-scalar/deep" mincolor="0" maxcolor="400" ncWMStwo="true"
-			   name="wrf_dom2/PRECH"  /-->
-
-		<!--layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" 
-				style="default-scalar/deep" mincolor="0" maxcolor="400" ncWMStwo="true"
-			   name="wrf_dom2/PREC2"  /-->
-
-		<!--layer Menu="Dom2,Prec,Prec3h" 
-			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" mincolor="0" maxcolor="400" ncWMStwo="true"
-			   name="wrf_dom2/PRECA3"  /-->
-
-		<!--layer Menu="Dom2,Prec,Prec6h" 
-			   EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." 
-				style="default-scalar/deep" mincolor="0" maxcolor="400" ncWMStwo="true"
-			   name="wrf_dom2/PRECA6"  /-->
-	</MainLayers>
 </MenuConf>
