@@ -56,20 +56,22 @@ This file defines the styles for the Base layers
 .mainMenu {
   font-size: 15px;
   width: 165px;
-  color: black;
-  background-color: #909090;
+   /* color: $dropDownColor;
+	background-color: $dropDownBackColor;*/
   -moz-border-radius: 6px / 6px;
   -webkit-border-radius: 6px 6px;
   border-radius: 6px / 6px;
   margin: 1px 0px;
+  color: #eee;
+  background-color: #333333;
 }
 /* line 21, ../scss/BaseLayers.scss */
 .mainMenu:hover {
-  background-color: #777777;
+  background-color: #443438;
 }
 
 /* The 'MainMenu'(base layers dropdowns) container */
-/* line 29, ../scss/BaseLayers.scss */
+/* line 31, ../scss/BaseLayers.scss */
 #mainMenuParent {
   top: 60px;
   left: 50px;
@@ -77,13 +79,13 @@ This file defines the styles for the Base layers
 }
 
 /* Table that contains the menu for the base layers*/
-/* line 36, ../scss/BaseLayers.scss */
+/* line 38, ../scss/BaseLayers.scss */
 #t_mainMenu {
   margin: .5em 0 .5em 0;
   background-color: transparent;
 }
 
-/* line 42, ../scss/BaseLayers.scss */
+/* line 44, ../scss/BaseLayers.scss */
 #mainMenuParentHover {
   left: 200px;
 }

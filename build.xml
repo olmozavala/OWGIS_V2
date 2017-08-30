@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="OWGISV2_C_WRF" default="default" basedir=".">
-    <description>Builds, tests, and runs the project OWGISV2_C_WRF.</description>
+<project name="OWGIS_CENAPRED_WRF" default="default" basedir=".">
+    <description>Builds, tests, and runs the project OWGIS_CENAPRED_WRF.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
