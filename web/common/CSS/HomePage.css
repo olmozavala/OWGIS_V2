@@ -77,7 +77,7 @@ div.leftFoot {
 /* line 32, ../scss/HomePage.scss */
 #emailText {
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
-  text-shadow: #ECF2F8 0 2px 1px, #ECF2F8 2px 0 1px, #ECF2F8 -2px 0 1px, #ECF2F8 0 -2px 1px, #ECF2F8 2px 2px 1px, #ECF2F8 -2px 2px 1px, #ECF2F8 2px -2px 1px, #ECF2F8 -2px -2px 1px;
+  text-shadow: #eeeeee 0 2px 1px, #eeeeee 2px 0 1px, #eeeeee -2px 0 1px, #eeeeee 0 -2px 1px, #eeeeee 2px 2px 1px, #eeeeee -2px 2px 1px, #eeeeee 2px -2px 1px, #eeeeee -2px -2px 1px;
   font-size: 11px;
   color: blue;
 }
@@ -134,13 +134,14 @@ div.leftFoot {
   width: 14em;
   min-height: 4em;
   cursor: auto;
+  color: white;
   pointer-events: none;
   background-image: url("../images/transBack.png");
   font-weight: bold;
 }
 
 /*Data displayed for JSONP layers above the latitude and longitude*/
-/* line 83, ../scss/HomePage.scss */
+/* line 84, ../scss/HomePage.scss */
 #jsonpdata {
   z-index: 1008;
   position: absolute;

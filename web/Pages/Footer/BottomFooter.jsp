@@ -12,10 +12,10 @@
 	&nbsp;
 	<a  href="https://www.atmosfera.unam.mx/">
 		<img border="0" src="./common/images/Logos/cca.png" alt="Logo" width="50" height="50" /></a>
-	&nbsp 
+	&nbsp; 
 	<a  href="https://www.gob.mx/cenapred">
 		<img border="0" src="./common/images/Logos/cenapred.png" alt="Logo" width="50" height="50" /></a>
-	&nbsp 
+	&nbsp; 
 			
 	<!--a  href="#">
 		<p class="footNote" align="left">
