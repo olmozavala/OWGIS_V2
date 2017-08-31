@@ -25,16 +25,16 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Pom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="boxfill/amp" name="wwiii_pom/hs"
+                    style="boxfill" palette="amp" name="wwiii_pom/hs"
                 />
                      
 		<layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
-			style="boxfill/speed" name="wwiii_pom/wind_ten_velocity" 
+			style="boxfill" palette="speed" name="wwiii_pom/wind_ten_velocity" 
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/wind_ten_velocity"
                 />                              
                 
 		<layer Menu="Pom,Periodo" EN="Period" ES="Periodo" 
-			style="boxfill/tempo" name="wwiii_pom/t01"
+			style="boxfill" palette="tempo" name="wwiii_pom/t01"
                 />
                 
 	</MainLayers>
@@ -43,16 +43,16 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Gom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="boxfill/amp" name="wwiii_gom/hs" 
+                    style="boxfill" palette="amp" name="wwiii_gom/hs" 
                 />
                      
 		<layer Menu="Gom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
-			style="boxfill/speed" name="wwiii_gom/wind_ten_velocity"
+			style="boxfill" palette="speed" name="wwiii_gom/wind_ten_velocity"
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_gom/wind_ten_velocity"
                 />                              
                 
 		<layer Menu="Gom,Periodo" EN="Period" ES="Periodo" 
-			style="boxfill/tempo" name="wwiii_gom/t01" 
+			style="boxfill" palette="tempo" name="wwiii_gom/t01" 
                 />
                 
 	</MainLayers>
@@ -61,16 +61,16 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Wo,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="boxfill/amp" name="wwiii_wo/hs" 
+                    style="boxfill" palette="amp" name="wwiii_wo/hs" 
                 />
                      
 		<layer Menu="Wo,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
-			style="boxfill/speed" name="wwiii_wo/wind_ten_velocity"
+			style="boxfill" palette="speed" name="wwiii_wo/wind_ten_velocity"
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_wo/wind_ten_velocity"
                 />                              
                 
 		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" 
-			style="boxfill/tempo" name="wwiii_wo/t01"
+			style="boxfill" palette="tempo" name="wwiii_wo/t01"
                 />
                 
 	</MainLayers>
