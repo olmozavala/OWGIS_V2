@@ -325,6 +325,10 @@ public class Layer {
 			}
 			//Adds the default streamline speed
 			layerDetails.accumulate("defParticleSpeed", this.defParticleSpeed);
+                        
+                        //Verificar que la capa es ncwms
+                        layerDetails.put("defaultPalette", this.palette);
+
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
 			
