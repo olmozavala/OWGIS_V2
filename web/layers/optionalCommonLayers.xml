@@ -11,15 +11,20 @@
 		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
         </Menus>        
         <!-- Optional layers -->
-        <OptionalLayers BBOX="-120,15,-80,32" server="http://10.20.12.161:8080/geoserver/wms" vectorLayer="true"> 
+        <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
                 
-		<layer Menu="DivisionMx,estadosMX" name="Estado:MEX_adm1" EN="MX States" ES="Estados MX" tiled="false" featureInfo="OWGIS_data:Paises_CB" />
-		<layer Menu="DivisionMx,municipiosMX" name="municipio:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
-                
-                <!--
-                <layer Menu="DivisionMx,paises" name="OWGIS_data:Paises_CB" EN="Countries" ES="Paises" tiled="false" />
-		<layer Menu="bat" name="OWGIS_data:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
+		<layer Menu="DivisionMx,estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="false"  />
+		<layer Menu="DivisionMx,municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
+                <layer Menu="DivisionMx,paises" name="cen:paises" EN="Countries" ES="Paises" tiled="false" />
+		<!--<layer Menu="bat" name="OWGIS_data:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
 		-->
 	</OptionalLayers>
+        
+        <OptionalLayers BBOX="-120,15,-80,32" server="http://10.20.12.161:8080/geoserver/wms" > 
+                
+		<layer Menu="DivisionMx,bat" name="CENAPRED:Batimetria" EN="MX Batimetria" ES="MX Batimetria" tiled="false"  />
+        </OptionalLayers>
+        
+            
         
 </MenuConf>

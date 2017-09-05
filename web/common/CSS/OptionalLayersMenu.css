@@ -57,6 +57,7 @@
   top: 70px;
   left: 73%;
   transition: width 2s;
+  height: auto !important;
 }
 
 /* line 16, ../scss/OptionalLayersMenu.scss */
@@ -88,17 +89,17 @@
   font-size: 14px;
   margin: 5px 0px 0px 0px;
   cursor: pointer;
-  color: #80CCDC;
+  color: #707070;
 }
 
 /* line 47, ../scss/OptionalLayersMenu.scss */
 .opt_lay_title:hover {
-  color: #35a9c1;
+  color: #3d3d3d;
 }
 
 /* line 48, ../scss/OptionalLayersMenu.scss */
 .opt_lay_title:active {
-  color: #1f6371;
+  color: #0a0a0a;
 }
 
 /*Default format for each menu as paragraph*/
