@@ -22,6 +22,6 @@
 			&nbsp; 
 			&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
 		</p></a>
-	<a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
+	<!--a id="emailText" href="#"> <fmt:message key="main.contact" /></a-->
 </div>
 

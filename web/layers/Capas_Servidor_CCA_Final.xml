@@ -86,23 +86,23 @@
 					format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true">
 
 		<layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-				style="default-vector" mincolor="0" maxcolor="252" palette="wind2" ncWMStwo="true"
+				style="default-vector"  palette="wind2"
 			   name="wrf_forecast_d1/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/Uat10:wrf_forecast_d1/Vat10"/>
 
 		<layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-				style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+				style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d1/Uat250:Vat250-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/Uat250:wrf_forecast_d1/Vat250"/>
 	
 		<layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d1/Uat500:Vat500-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/Uat500:wrf_forecast_d1/Vat500"/>
 
 		<layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"  
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d1/Uat700:Vat700-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/Uat700:wrf_forecast_d1/Vat700" />
 
 		<layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d1/Uat850:Vat850-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d1/Uat850:wrf_forecast_d1/Vat850"/>
 
 		<layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
@@ -132,26 +132,26 @@
 	</MainLayers>
 
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" 
-					format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"  ncWMStwo="true">
+					format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true">
 
 		<layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d2/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/Uat10:wrf_forecast_d2/Vat10"/>
 
 		<layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d2/Uat250:Vat250-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/Uat250:wrf_forecast_d2/Vat250"/>
 	
 		<layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d2/Uat500:Vat500-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/Uat500:wrf_forecast_d2/Vat500"/>
 
 		<layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d2/Uat700:Vat700-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/Uat700:wrf_forecast_d2/Vat700" />
 
 		<layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
-			style="default-vector" palette="wind2" mincolor="0" maxcolor="252"
+			style="default-vector" palette="wind2" 
 			   name="wrf_forecast_d2/Uat850:Vat850-group" defParticleSpeed="0.03" overlaystreamlines="wrf_forecast_d2/Uat850:wrf_forecast_d2/Vat850"/>
 
 		<layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" 
