@@ -226,8 +226,7 @@ public class OpenLayersManager {
 		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
 
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
-		URLscript += "STYLES=" + actualLayer.getStyle() + "&"
-				+ "WIDTH=\"+ map.getSize()[0] +\"&"
+		URLscript += "WIDTH=\"+ map.getSize()[0] +\"&"
 				+ "HEIGHT=\"+ map.getSize()[1] +\"&"
 				+ "SRS=\"+ _map_projection+ \"&"
 				+ "FORMAT=" + actualLayer.getFormat() + "&"
@@ -252,9 +251,11 @@ public class OpenLayersManager {
 					+ "TIME=\"+owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true)+\"&"
 					+ "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
 					+ "INFO_FORMAT=text/xml&"
+                                        + "STYLES=" + actualLayer.getStyle() + "/" + actualLayer.getPalette() +"&"
 					+ "NETCDF=true&";
 		} else {
-			URLscript += "INFO_FORMAT=text/html&"
+			URLscript += "STYLES=" + actualLayer.getStyle() + "&" +
+                                      "INFO_FORMAT=text/html&"
 					+ "NETCDF=false&";
 		}
 
@@ -302,9 +303,16 @@ public class OpenLayersManager {
 
 			//These are some specific configurations for ncWMS 2.0 >
 			if (actualLayer.isNcwmstwo()) {
-					layersScript += ", ncwmstwo:'true', bgcolor:'transparent' ";
+                            layersScript += ", ncwmstwo:'true', bgcolor:'transparent' ";                        
 			}
-			layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
+                        
+                        
+                        if (actualLayer.isNcwmstwo() || actualLayer.isncWMS()){
+                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
+                        }else{
+                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
+                        }
+			
 			
 			layersScript += ", SRS: _map_projection";
 			
