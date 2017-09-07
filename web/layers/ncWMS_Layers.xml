@@ -1,0 +1,76 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
+		<Menu ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
+		<Menu ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
+		<Menu ID="ncwmvelocity" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDates"/>
+		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
+		<Menu ID="worldTempCurrents" EN="World Temperature w Currents " ES="Temperatura y corrientes"/>
+		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
+	</Menus>
+
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				 ncWMStwo="true" >  
+
+		<!-- ncWMS with one date multiple Z-->
+		<layer Menu="ncwms,ncwmsOneDateMultZ" 
+			   EN="Demo of an ncWMS layer with only one day. World eastward wind."
+			   ES="Ejemplo de una capa ncWMS con multiples z-axis. Vientos hacia el este." 
+			   HI_IN="केवल एक दिन का ncWMS परत प्रदर्शन. दुनिया के पूर्व की ओर हवा"
+			   name="world_temp/ua"  />
+
+		<!-- ncWMS with one depth-->
+		<layer Menu="ncwms,ncwmsOneDepthOneZ" 
+			   EN="Demo of an ncWMS layer with only one depth. World precipitation flux."
+			   ES="Ejemplo de una capa ncWMS con solo una elevacion. Flujo de precipitacion." 
+			   HI_IN="केवल एक ही गहराई के साथ ncWMS परत का प्रदर्शन. दुनिया की तेज़ी प्रवाह"
+			   name="world_temp/pr"  />
+
+		<!-- ncWMS mulitple Z multiple date/ velocity-->
+		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS velocity layer. Ocean currents of the Gulf of Mexico" 
+			   ES="Ejemplo de una capa de velocidad de servidor ncWMS. Velocidad de corrientes del Gulfo de Mexico" 
+			   HI_IN="ncWMS गति परत का प्रदर्शन. मैक्सिको की खाड़ी के समुद्र धाराओं"
+			   name="gulf_vel/u:v-mag" 
+				ncWMStwo="true"   
+			   style="default-scalar" palette="default" 
+			   overlaystreamlines="gulf_vel/u:gulf_vel/v" />
+			   <!--style="default-scalar | colored-contours | contours | raster "-->
+	</MainLayers>
+
+
+    <!-- ncWMS  World temperatures with currents and currents -->
+	<MainLayers BBOX="-180,-90,180,90"
+				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				ncWMS="true" max_time_range="month" ncWMStwo="true" >  
+
+		<layer Menu="ncwms,worldTempCurrents" 
+			   EN="Gulf of Mexico Temperatures and currents"
+			   defParticleSpeed=".9"
+			   name="global_ts_2015/water_temp" 
+			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
+
+		<layer Menu="ncwms,worldCurrents" 
+			   EN="World Currents"
+			   name="global_uv_2015/water_u:water_v-mag" 
+			   defParticleSpeed=".9"
+			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
+	</MainLayers> 
+
+
+
+	<!-- ncWMS all -->
+	<!--
+	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+		<layer Menu="ncwms,ncwmsMultDateMultDepth" EN="Gulf of Mexico Temperature 2014"
+			   ES="Golfo de M&#233;xico Temperatura 2014" 
+			   name="gulf_temp/temperature" 
+			   HI_IN="वर्ष 2014 में मैक्सिको की खाड़ी का तापमान" />
+
+	</MainLayers> 
+	-->
+
+</MenuConf>
