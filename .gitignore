@@ -6,3 +6,5 @@
 /test/
 /web/test/
 /web/common/.sass-cache/
+build.xml
+/libraries/CopyLibs/
