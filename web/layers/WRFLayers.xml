@@ -37,7 +37,7 @@
             
             <layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf1_dom1/T2C" />
             
-            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" name="wrf1_dom1/PRECH"  mincolor="0" maxcolor="400" />
+            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" name="wrf1_dom1/PRECH"  mincolor="1" belowmincolor="transparent" maxcolor="400" />
 
             <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" name="wrf1_dom1/PREC2"  mincolor="0" maxcolor="400" />
                 
@@ -46,23 +46,23 @@
             <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitacion Acumulada cada 6 horas." style="default-scalar" palette="prec2" name="wrf1_dom1/PRECA6"  mincolor="0" maxcolor="400" />
             
             <layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
-                    style="default-vector" palette="wind2" name="wrf1_dom1/Uat10:Vat10-group"
+                    style="default-vector" palette="wind2" name="wrf1_dom1/Uat10:Vat10-mag"
                     overlaystreamlines="wrf1_dom1/Uat10:wrf1_dom1/Vat10" defParticleSpeed="0.03"
             />
                      
             <layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
-			style="default-vector" palette="wind2" name="wrf1_dom1/Uat250:Vat250-group" 
+			style="default-vector" palette="wind2" name="wrf1_dom1/Uat250:Vat250-mag" 
 			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/Uat250:wrf1_dom1/Vat250"/>                              
                 
             <layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
-			style="default-vector" palette="wind2" name="wrf1_dom1/Uat500:Vat500-group" 
+			style="default-vector" palette="wind2" name="wrf1_dom1/Uat500:Vat500-mag" 
 			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/Uat500:wrf1_dom1/Vat500"/>
 
             <layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"  
-			style="default-vector" palette="wind2" name="wrf1_dom1/Uat700:Vat700-group" 
+			style="default-vector" palette="wind2" name="wrf1_dom1/Uat700:Vat700-mag" 
 			defParticleSpeed="0.03" overlaystreamlines="wrf1_dom1/Uat700:wrf1_dom1/Vat700" />
                         
-            <layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" name="wrf1_dom1/Uat850:Vat850-group" 
+            <layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" name="wrf1_dom1/Uat850:Vat850-mag" 
                       overlaystreamlines="wrf1_dom1/Uat850:wrf1_dom1/Vat850" defParticleSpeed="0.03" style="default-vector" palette="wind2" />
 
             <layer Menu="Dom1,relh" EN="Relative humidity" ES="Humedad" name="wrf1_dom1/RH" style="default-scalar" palette="seq-Blues" mincolor="0" maxcolor="100" />
@@ -88,30 +88,29 @@
             
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
 			style="default-vector" palette="wind2" ncWMStwo="true"
-			name="wrf_dom2/Uat10:Vat10-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
+			name="wrf_dom2/Uat10:Vat10-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat10:wrf_dom2/Vat10"/>
 
             <layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
 			style="default-vector" palette="wind2" 
-			   name="wrf_dom2/Uat250:Vat250-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat250:wrf_dom2/Vat250"/>
+			   name="wrf_dom2/Uat250:Vat250-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat250:wrf_dom2/Vat250"/>
 	
             <layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
 			style="default-vector" palette="wind2" 
-			   name="wrf_dom2/Uat500:Vat500-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat500:wrf_dom2/Vat500"/>
+			   name="wrf_dom2/Uat500:Vat500-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat500:wrf_dom2/Vat500"/>
 
             <layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
 			style="default-vector" palette="wind2" 
-			   name="wrf_dom2/Uat700:Vat700-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat700:wrf_dom2/Vat700" />
+			   name="wrf_dom2/Uat700:Vat700-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat700:wrf_dom2/Vat700" />
 
             <layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
 			style="default-vector" palette="wind2" 
-			   name="wrf_dom2/Uat850:Vat850-group" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat850:wrf_dom2/Vat850" />
-            
+			   name="wrf_dom2/Uat850:Vat850-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_dom2/Uat850:wrf_dom2/Vat850" />
             
             <layer Menu="Dom2,relh" EN="Relative humidity" ES="Humedad" name="wrf_dom2/RH" style="default-scalar" palette="seq-Blues" mincolor="0" maxcolor="100" />
             
             <layer Menu="Dom2,nubesIR" EN="Cloud coverage" ES="Nubes" name="wrf_dom2/QCLOUD" style="default-scalar" palette="seq-BlueHeat" mincolor="0" maxcolor="1" />
                 
-            <layer Menu="Dom2,vape" EN="Evaporation" ES="Evaporacion"  name="wrf_dom2/QVAPOR" style="default-scalar" palette="seq-BlueHeat" mincolor="0" maxcolor="1" />
+            <layer Menu="Dom2,vape" EN="Evaporation" ES="Evaporacion"  name="wrf_dom2/QFX" style="default-scalar" palette="seq-BlueHeat" mincolor="0" maxcolor="1" />
             
 	</MainLayers>
 	
