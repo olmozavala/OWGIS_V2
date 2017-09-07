@@ -37,7 +37,7 @@
             
             <layer Menu="Dom1,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf1_dom1/T2C" />
             
-            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" name="wrf1_dom1/PRECH"  mincolor="1" belowmincolor="transparent" maxcolor="400" />
+            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" name="wrf1_dom1/PRECH"  mincolor="1" belowMinColor="transparent" maxcolor="400" />
 
             <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" name="wrf1_dom1/PREC2"  mincolor="0" maxcolor="400" />
                 

@@ -65,6 +65,7 @@ public class Layer {
 	//Define the transition effect used by OpenLayers when zoom is used.
 	// Currently it can be 'none' or 'resize' (default)
 	private String transEffect;
+	private String belowMinColor; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
 	//------- CQL
 	private String cql;
@@ -145,7 +146,7 @@ public class Layer {
 		this.selected = false;//By default none of the optional layers is selected
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = false;
-		
+		this.belowMinColor = null;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -210,7 +211,8 @@ public class Layer {
 			String palette,
 			boolean ncwms, String maxTimeLayer,
 			boolean jsonp,
-			String overlayStreamlines,
+			String overlayStreamlines, 
+                        String belowMinColor,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -249,6 +251,7 @@ public class Layer {
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
 		this.localAddress = null;
+                this.belowMinColor = belowMinColor;
 	}
 	//Geters
 	
@@ -331,6 +334,9 @@ public class Layer {
 
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
+                        
+                        //Adds an indicationf if a color for when below min color
+			layerDetails.accumulate("belowMinColor", this.belowMinColor);
 			
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -587,6 +593,10 @@ public class Layer {
 	public void setCql_cols(String cql_cols) {
 		this.cql_cols = cql_cols;
 	}
+        
+        public void setBelowMinColor(String belowMinColor) {
+		this.belowMinColor = belowMinColor;
+	}
 	
 	public boolean isJsonp() {
 		return jsonp;
@@ -642,6 +652,10 @@ public class Layer {
 
 	public String getLocalAddress() {
 		return localAddress;
+	}
+        
+        public String getBelowMinColor() {
+		return belowMinColor;
 	}
 
 	public void setLocalAddress(String localAddress) {

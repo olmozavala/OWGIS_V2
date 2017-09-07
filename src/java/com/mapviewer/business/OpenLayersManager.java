@@ -241,7 +241,7 @@ public class OpenLayersManager {
 		if (!actualLayer.getCql().equals("")) {
 			URLscript += "CQL_FILTER=" + actualLayer.getCql() + "&";
 		}
-
+                
 		//In this case we also need the time information
 		if (actualLayer.isncWMS()) {
 			// The two variables: elevation and startDate have to match
@@ -311,6 +311,10 @@ public class OpenLayersManager {
                             layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
                         }else{
                             layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
+                        }
+                        
+                        if (actualLayer.getBelowMinColor() != null) {
+                            layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
                         }
 			
 			
