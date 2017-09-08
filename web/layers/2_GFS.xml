@@ -5,9 +5,6 @@
 			 server="http://132.248.8.238:8080/ncWMS_2015/wms"
 				 format="jpg" ncWMStwo="true" >
 
-		<layer Menu="gfs,plan" EN="Planetary height"
-								ES="Altura planetaria" name="gfs_forecast/plan_height" />
-
 		<layer Menu="gfs,wind,abvgrnd" EN="Wind above ground" ES="Viento en superficie"
 			   name="gfs_forecast/v_abvgrd:u_abvgrd-mag" defParticleSpeed=".05"
 			   overlaystreamlines="gfs_forecast/v_abvgrd:gfs_forecast/u_abvgrd"  />
