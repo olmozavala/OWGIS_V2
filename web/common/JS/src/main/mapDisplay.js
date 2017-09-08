@@ -221,38 +221,23 @@ function disbleEnterKey()
 function updateTitle(dateText, elevText) {
 	
     //This symbol indicates when does the date and elevation text start
-    separationSymbol = "--";
-	
-    var currTitle = $('#pTitleText').text();
-	
-    currTitleLC = currTitle.toLowerCase();
-	
-    //Removing date and elevation (search and remove -- )
-    startSymbol = currTitleLC.indexOf(separationSymbol);
-	
-    // Remove everything until second br
-    if (startSymbol !== -1) {
-        // The -4 is because we need to delete also the <br> part.
-        currTitle = currTitle.substring(0, startSymbol);
-    }
 	
     if ((dateText !== "") || (elevText !== "")) {
 		
         var endDate = " ";
 		
         if (typeof calEnd !== 'undefined') {
-            locendSel = calEnd.selection.get();
-            locendDate = Calendar.intToDate(locendSel);
+            var locendSel = calEnd.selection.get();
+            varrlocendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
 		
         if(!(owgis.ncwms.animation.animStatus === "none") )//falta hacer lo de resolution langauge y end date
         {
-			
-            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + endDate + elevText + separationSymbol);
+            $('#pTitleSubText').html(dateText + endDate + elevText);
         }
         else {
-            $('#pTitleText').html(currTitle + '<br>' + separationSymbol + dateText + elevText + separationSymbol);
+            $('#pTitleSubText').html(dateText + elevText);
         }
     }
 }

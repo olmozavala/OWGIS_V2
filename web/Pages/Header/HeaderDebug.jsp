@@ -45,6 +45,7 @@
 <script src="./common/JS/src/layouts/draggableWindows/WindowPositions.js"> </script>
 <script src="./common/JS/src/layouts/draggableWindows/NavBar.js"> </script>
 <script src="./common/JS/src/main/layer.js"> </script>
+<script src="./common/JS/src/ncwms/streamlines/NcWMSTwo.js"> </script>
 
 <!--This require some libraries defined above-->
 <script src="./common/JS/src/ncwms/streamlines/particles.js"> </script>
