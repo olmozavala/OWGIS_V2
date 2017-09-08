@@ -519,6 +519,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
             };
         } else {
             animParams = { 
+	
 		TIME:allFrames[0],
 		LAYERS: layerName,
 		BBOX: bbox.toString(),

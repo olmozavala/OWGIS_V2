@@ -8,11 +8,27 @@
 		<Menu ID="ncwmsMultDateMultDepth" EN="ncWMS MultZ MultDate" ES="ESP ncWMS MultZ MultDate"/>
 		<Menu ID="worldTempCurrents" EN="World Temperature w Currents " ES="Temperatura y corrientes"/>
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
+		<Menu ID="ncwmsMultTimes" EN="ncWMS MultTimes" ES="ESP ncWMS MultTimes"/>
+		<Menu ID="oldncwms" EN="ncWMS V1" ES="ESP ncWMS V1"/>
 	</Menus>
 
 	<MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
 				 ncWMStwo="true" >  
+
+	<!-- ncWMS  World temperatures with currents and currents -->
+
+		<layer Menu="ncwms,worldTempCurrents" 
+			   EN="Gulf of Mexico Temperatures and currents"
+			   defParticleSpeed=".9"
+			   name="global_ts_2015/water_temp" 
+			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
+
+		<layer Menu="ncwms,worldCurrents" 
+			   EN="World Currents"
+			   name="global_uv_2015/water_u:water_v-mag" 
+			   defParticleSpeed=".9"
+			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
 
 		<!-- ncWMS with one date multiple Z-->
 		<layer Menu="ncwms,ncwmsOneDateMultZ" 
@@ -34,31 +50,26 @@
 			   HI_IN="ncWMS गति परत का प्रदर्शन. मैक्सिको की खाड़ी के समुद्र धाराओं"
 			   name="gulf_vel/u:v-mag" 
 				ncWMStwo="true"   
-			   style="default-scalar" palette="default" 
-			   overlaystreamlines="gulf_vel/u:gulf_vel/v" />
+			   style="default-scalar" palette="default" />
+			   <!--overlaystreamlines="gulf_vel/u:gulf_vel/v" />-->
 			   <!--style="default-scalar | colored-contours | contours | raster "-->
+
+		<!-- ncWMS mulitple Z multiple date multip time/ temperature-->
+		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS temperature layer. " 
+			   ES="Ejemplo de una capa de temperatura de servidor ncWMS 2" 
+			   name="gulf_vel/u:v-mag" 
+				ncWMStwo="true"   
+			   style="default-scalar" palette="default" />
+
+	   <layer Menu="ncwms,ncwmsMultTimes" EN="Surface temperature" 
+			   ES="Temperatura en superficie" name="gfs_forecast/temp_surf" />
 	</MainLayers>
 
-
-    <!-- ncWMS  World temperatures with currents and currents -->
-	<MainLayers BBOX="-180,-90,180,90"
-				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
-				ncWMS="true" max_time_range="month" ncWMStwo="true" >  
-
-		<layer Menu="ncwms,worldTempCurrents" 
-			   EN="Gulf of Mexico Temperatures and currents"
-			   defParticleSpeed=".9"
-			   name="global_ts_2015/water_temp" 
-			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
-
-		<layer Menu="ncwms,worldCurrents" 
-			   EN="World Currents"
-			   name="global_uv_2015/water_u:water_v-mag" 
-			   defParticleSpeed=".9"
-			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
-	</MainLayers> 
-
-
+    <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+                format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"
+                tiled="true" ncWMS="true" mincolor="10" maxcolor="34" max_time_range="month">  
+        <layer Menu="ncwms,oldncwms" EN="HYCOM " ES="HYCOM + " name="hycom2010/temperature"   />
+    </MainLayers>
 
 	<!-- ncWMS all -->
 	<!--
