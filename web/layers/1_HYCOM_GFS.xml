@@ -1,0 +1,28 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!--HYCOM-->
+	<MainLayers BBOX="-180,-90,180,90"
+				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
+				ncWMStwo="true" max_time_range="month">  
+
+		<layer Menu="hycom,cur" 
+			   EN="Forecast currents"
+			   name="hycom_forecast_uv/water_u:water_v-mag" 
+			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+
+		<layer Menu="hycom,ts" 
+			   EN="Forecast temperature"
+			   name="hycom_forecast_ts/water_temp" 
+			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+
+		<layer Menu="hycom,sal" 
+			   EN="Forecast salinity"
+			   name="hycom_forecast_ts/salinity" 
+			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+
+		<layer Menu="hycom,ssh" 
+			   EN="Forecast sea surface height"
+			   name="hycom_forecast_ssh/surf_el" 
+			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+
+	</MainLayers> 
+</MenuConf>
