@@ -289,12 +289,32 @@ function updateAnimationStatus(newStatus){
  * @returns {undefined}
  */
 function obtainSelectedDates(){
+
+	//------- Specifically for ncWMS 2--------
+	//Example:
+	//http://132.248.8.238:8080/ncWMS_2015/wms?REQUEST=GetMetadata&item=animationTimesteps&layerName=gfs_forecast/temp_surf&start=2017-09-08T00:00:00.000Z&end=2017-09-18T00:00:00.000Z
+	//Result:
+	//{"timeStrings":[
+	//		{"timeString":"2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z", "title":"Full (41 frames)"},
+	//		{"timeString":"2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z/P1D", "title":"Daily (11 frames)"},
+	//		{"timeString":"2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z/P7D", "title":"Weekly (2 frames)"}]}
+	//The dates are sent in the following way:
+	// Full: 2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z
+	// Daily: 2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z/P1D
+	// Weekly: 2017-09-08T00:00:00.000Z/2017-09-18T00:00:00.000Z/P7D
 	
 	//Reads all the days selected
 	allFrames =  $('#timeSelect :selected').attr('timestring').split(",");
 	var key =  $('#timeSelect :selected').attr('key');
 	totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
 
+	// Verify we are ncWMS2
+	if(layerDetails['ncwmstwo']){
+		//In this case we need to create the array of dates from the 'range string'
+		var datesRange = moment.range(allFrames[0]);
+		var allDates =  Array.from(datesRange.by('day'));
+		allFrames = allDates.map(m => m.utc().format());
+	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
 		//Total number of frames in 'daily' mode
@@ -443,8 +463,10 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		owgis.ncwms.animation.currUrl = mainSource.getUrl();//Get url for 
 	}
 	
+//		TIME: allFrames[0],
+	// Creating dhe default parameters for the images
 	animParams = { 
-		TIME: allFrames[0],
+		TIME:allFrames[0],
 		LAYERS: layerName,
 		BBOX: bbox.toString(),
 		REQUEST: "GetMap",
