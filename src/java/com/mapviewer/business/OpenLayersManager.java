@@ -316,7 +316,10 @@ public class OpenLayersManager {
                         if (actualLayer.getBelowMinColor() != null) {
                             layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
                         }
-			
+                        
+			if (actualLayer.getAboveMaxColor() != null) {
+                            layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
+                        }
 			
 			layersScript += ", SRS: _map_projection";
 			

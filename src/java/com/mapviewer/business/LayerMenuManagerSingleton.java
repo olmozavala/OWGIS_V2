@@ -602,6 +602,9 @@ public class LayerMenuManagerSingleton {
                 
                 String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null
 				? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
+                
+                String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null
+				? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
 		
 		/*
 		String[] cql_cols = null;
@@ -613,10 +616,11 @@ public class LayerMenuManagerSingleton {
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
-				max_time_range, boolJsonp,overlayStreamlines,belowMinColor,defParticleSpeed);
+				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, defParticleSpeed);
 		
 		newLayer.setMinColor(minColor);
-                newLayer.setBelowMinColor(belowMinColor);
+                //newLayer.setBelowMinColor(belowMinColor);
+                //newLayer.setAboveMaxColor(aboveMaxColor);
 		newLayer.setMaxColor(maxColor);
 		newLayer.setSelected(selected);
 		newLayer.setTransEffect(transEffect);
