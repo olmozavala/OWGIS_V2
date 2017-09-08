@@ -39,11 +39,11 @@
             
             <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" name="wrf1_dom1/PRECH"  mincolor="1" belowMinColor="transparent" maxcolor="400" />
 
-            <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" name="wrf1_dom1/PREC2"  mincolor="0" maxcolor="400" />
+            <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" name="wrf1_dom1/PREC2"  mincolor="1" belowMinColor="transparent" maxcolor="400" />
                 
-            <layer Menu="Dom1,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitacion Acumulada cada 3 horas." style="default-scalar" palette="prec2" name="wrf1_dom1/PRECA3"  mincolor="0" maxcolor="400" />
+            <layer Menu="Dom1,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitacion Acumulada cada 3 horas." style="default-scalar" palette="prec2" name="wrf1_dom1/PRECA3" mincolor="1" belowMinColor="transparent" maxcolor="400" />
 
-            <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitacion Acumulada cada 6 horas." style="default-scalar" palette="prec2" name="wrf1_dom1/PRECA6"  mincolor="0" maxcolor="400" />
+            <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitacion Acumulada cada 6 horas." style="default-scalar" palette="prec2" name="wrf1_dom1/PRECA6" mincolor="1" belowMinColor="transparent" maxcolor="400" />
             
             <layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
                     style="default-scalar" palette="wind2" name="wrf1_dom1/Uat10:Vat10-mag"
@@ -78,13 +78,13 @@
                 
             <layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf_dom2/T2C" />
             
-            <layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" mincolor="0" maxcolor="400" name="wrf_dom2/PRECH"  />
+            <layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation each hour" ES="Precipitacion Horaria a cada hora" style="default-scalar" palette="prec2" mincolor="1" belowMinColor="transparent" maxcolor="400" name="wrf_dom2/PRECH"  />
 
-            <layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" mincolor="0" maxcolor="400" name="wrf_dom2/PREC2"  />
+            <layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitacion Total" style="default-scalar" palette="prec2" mincolor="1" belowMinColor="transparent" maxcolor="400" name="wrf_dom2/PREC2"  />
 
-            <layer Menu="Dom2,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitacion Acumulada cada 3 horas." style="default-scalar" palette="prec2" mincolor="0" maxcolor="400" name="wrf_dom2/PRECA3"  />
+            <layer Menu="Dom2,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitacion Acumulada cada 3 horas." style="default-scalar" palette="prec2" mincolor="1" belowMinColor="transparent" maxcolor="400" name="wrf_dom2/PRECA3"  />
 
-            <layer Menu="Dom2,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitacion Acumulada cada 6 horas." style="default-scalar" palette="prec2" mincolor="0" maxcolor="400" name="wrf_dom2/PRECA6"  />
+            <layer Menu="Dom2,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitacion Acumulada cada 6 horas." style="default-scalar" palette="prec2" mincolor="1" belowMinColor="transparent" maxcolor="400" name="wrf_dom2/PRECA6"  />
             
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
 			style="default-scalar" palette="wind2" ncWMStwo="true"
