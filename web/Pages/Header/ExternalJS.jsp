@@ -4,6 +4,8 @@
 	<script src="./common/JS/vendor/minimized/underscore-min.js"></script>
 	<script src="./common/JS/vendor/minimized/backbone-min.js"></script>
 	<script src="./common/JS/vendor/minimized/d3.min.js"></script>
+	<script src="./common/JS/vendor/minimized/moment.min.js"></script>
+	<script src="./common/JS/vendor/minimized/moment-range.min.js"></script>
 	<c:if test='${currents}'>
 		<script src="./common/JS/vendor/minimized/spectrum.min.js"></script>
 	</c:if>
