@@ -28,10 +28,10 @@
                     style="default-scalar" palette="oleaje" name="wwiii_pom/hs"
                 />
                      
-		<layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
+		<!--layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
 			style="default-vector" palette="wind2" name="wwiii_pom/U:V-group" 
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/U:wwiii_pom/V"
-                />                              
+                /-->                              
                 
 		<layer Menu="Pom,Periodo" EN="Period" ES="Periodo" 
 			style="default-scalar" palette="periodo" name="wwiii_pom/t01"
@@ -46,10 +46,10 @@
                     style="default-scalar" palette="oleaje" name="wwiii_gom/hs" 
                 />
                      
-		<layer Menu="Gom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
+		<!--layer Menu="Gom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
 			style="default-vector" palette="wind2" name="wwiii_gom/U:V-group"
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_gom/U:wwiii_gom/V"
-                />                              
+                /-->                              
                 
 		<layer Menu="Gom,Periodo" EN="Period" ES="Periodo" 
 			style="default-scalar" palette="periodo" name="wwiii_gom/t01" 
@@ -64,10 +64,10 @@
                     style="default-scalar" palette="oleaje" name="wwiii_wo/hs" 
                 />
                      
-		<layer Menu="Wo,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
+		<!--layer Menu="Wo,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
 			style="default-vector" palette="wind2" name="wwiii_wo/U:V-group"
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
-                />                              
+                /-->                              
                 
 		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" 
 			style="default-scalar" palette="periodo" name="wwiii_wo/t01"
