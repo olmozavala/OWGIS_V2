@@ -43,6 +43,8 @@ var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
 var _mobileScreenThreshold = 750;
 
+// Add the moment-range library
+window['moment-range'].extendMoment(moment);
 
 //Redirect any https request to http
 if (window.location.protocol !== "http:") {
