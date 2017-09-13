@@ -12,16 +12,19 @@
 		<layer Menu="hycom,ts" 
 			   EN="Forecast temperature"
 			   name="hycom_forecast_ts/water_temp" 
+			   style="default-scalar" palette="psu-inferno"
 			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
 
 		<layer Menu="hycom,sal" 
 			   EN="Forecast salinity"
 			   name="hycom_forecast_ts/salinity" 
+			   style="default-scalar" palette="seq-cubeYF"
 			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
 
 		<layer Menu="hycom,ssh" 
 			   EN="Forecast sea surface height"
 			   name="hycom_forecast_ssh/surf_el" 
+			   style="default-scalar" palette="seq-YlGnBu"
 			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
 
 	</MainLayers> 
