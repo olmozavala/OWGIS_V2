@@ -21,8 +21,8 @@
 			<table id="palettesTable"></table>
 		</div>
 	</div>
-        
-	<div class="row doubleRowSpace">
+
+        <div class="row doubleRowSpace">
 		<div class="col-xs-12 col-xs-offset-2">
                     <a class="btn btn-default btn-xs btn-inverse" href="javascript:prevPage()" id="btn_prev" style="display: inline-block;"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		    <span class="buttonStyle " id="defaultColorRangeButton" onclick="DefaultPalette();"> Default </span>

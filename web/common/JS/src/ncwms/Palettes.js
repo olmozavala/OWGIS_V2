@@ -65,7 +65,7 @@ function setColorRangeFromMinMax(){
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
-//	console.log(url);
+	//console.log(url);
 	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
@@ -170,13 +170,12 @@ owgis.ncwms.palettes.loadPalettes = function(){
 
         var td = document.createElement('td');
         td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-        td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
+        td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
         tableRow.appendChild(td);
     }
     */
     
     owgis.ncwms.palettes.updateHorizontalPalette();
-    
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
     
@@ -188,10 +187,10 @@ owgis.ncwms.palettes.loadPalettes = function(){
  */
 owgis.ncwms.palettes.updateHorizontalPalette = function(){
 	// This code currently only works for ncwmsTwo server
-	if(layerDetails['ncwmstwo'] && !mobile){
+	if(layerDetails['ncwmstwo']){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
-
+                //console.log('mmmmmmmmmmm......');
 		var barWidth = Math.ceil($(window).width()*.4);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
@@ -209,7 +208,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 		var imageObj = new Image();
 		imageObj.src = finalUrl;
-//		console.log(finalUrl);
+		//console.log(finalUrl);
 
 		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
 		//------ Modifying the size of the canvas container
@@ -232,12 +231,12 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			var totNumbers = 8;
 			var minVal = parseFloat(minPalVal);
 			var maxVal = parseFloat(maxPalVal);
-//			console.log("-----",minVal,"-",maxVal);
+			//console.log("-----",minVal,"-",maxVal);
 			var values = d3.ticks(minVal,maxVal,totNumbers);
 			//We need to substract 20 because if not the last number
 			// goes outside the canvas.
 			var step = (barWidth-20)/(values.length-1);
-//			console.log(values);
+			//console.log(values);
 
 			var idx = 0;
 			//Write the units first
@@ -287,8 +286,8 @@ function UpdatePalette(newPal){
 		clearLoopHandler();
 		owgis.ncwms.animation.dispAnimation();
 	}
-
-	owgis.ncwms.palettes.updateHorizontalPalette();
+        
+        owgis.ncwms.palettes.updateHorizontalPalette();
 }
 
 /**
