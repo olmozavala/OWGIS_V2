@@ -465,7 +465,6 @@ function updateData(){
 		// Iterate over all the times we are displaying (only one, unless we have animations)
 		_.each(times, function(time, idx){
 			layerTemplate.set("time",time);	
-//			console.log(layerTemplate.getURL());
 
 			//We obtain the request URLs for each vector field U and V
 			var compositeLayers = layerTemplate.get("layers");
@@ -474,16 +473,21 @@ function updateData(){
 			tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
 			tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
 			
-			uData[idx] = new Array();
-			vData[idx] = new Array();
-			if(_.isUndefined(readDataPremises[idx])){
-				readDataPremises[idx] = new Array();
-			}
 
-			readDataPremises[readDataPremises.length] = d3.json( tempULayer.getURL(), function(error, file){
+			//Our premises are going to be 
+			// (idx-1)*2 + 0 for u         and
+			// (idx-1)*2 + 1 for v
+			var uidx = idx*2 + 0;
+			var vidx = idx*2 + 1;
+
+			readDataPremises[uidx] = d3.json( tempULayer.getURL(), function(error, file){
 						if(error){
 							console.log("Not possible to read JSON data for U: "+error.statusText);
 						}else{
+							//TODO we need to be certain that this will work every case,
+							// the problem is that updateParticles gets called more than one time
+							// for each animation.
+							uData[idx] = new Array();//Clear the array for this specific location
 			//				console.log("Data has been received: "+idx);
 							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
 							uData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
@@ -492,24 +496,33 @@ function updateData(){
 								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 							}
 							
-							if(loadedRequests === 1){
-								var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
-								startAnimationLoopCurrents();
-								owgis.ncwms.currents.particles.setGrid(grid,idx);
+							if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
+								if( uData[idx].length > 0 && vData[idx].length){
+									var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+//									console.log("Set grid for: ",idx);
+									owgis.ncwms.currents.particles.setGrid(grid,idx);
+								}
 							}
 
 							loadedRequests++;
 							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
-							if(loadedRequests === (totalRequests*2)){
+
+							//Start the animation when 90% of the frames have been loaded
+							if( (loadedRequests/(totalRequests*2)) > .9){
 								owgis.interf.loadingatmap(false,0);
+								startAnimationLoopCurrents();
 							}
 						}
 					});
 
-			readDataPremises[readDataPremises.length] = d3.json( tempVLayer.getURL(), function(error, file){
+			readDataPremises[vidx] = d3.json( tempVLayer.getURL(), function(error, file){
 						if(error){
 							console.log("Not possible to read JSON data for V: "+error.statusText);
 						}else{
+							//TODO we need to be certain that this will work every case,
+							// the problem is that updateParticles gets called more than one time
+							// for each animation.
+							vData[idx] = new Array();
 							//We set the gridInfo only for the first time frame 
 							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
 							vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
@@ -518,17 +531,22 @@ function updateData(){
 							if(loadedRequests === 0){
 								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 							}
-							
-							if(loadedRequests >= 1){
-								var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
-								startAnimationLoopCurrents();
-								owgis.ncwms.currents.particles.setGrid(grid,idx);
+
+							if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
+								if( uData[idx].length > 0 && vData[idx].length){
+									var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+//									console.log("Set grid for: ",idx);
+									owgis.ncwms.currents.particles.setGrid(grid,idx);
+								}
 							}
 							
 							loadedRequests++;
 							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
-							if(loadedRequests === (totalRequests*2)){
+
+							//Start the animation when 90% of the frames have been loaded
+							if( (loadedRequests/(totalRequests*2)) > .9){
 								owgis.interf.loadingatmap(false,0);
+								startAnimationLoopCurrents();
 							}
 						}
 					});

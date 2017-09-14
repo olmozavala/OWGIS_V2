@@ -492,7 +492,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	console.log("START");
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-		console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
+//		console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
@@ -659,9 +659,11 @@ function loopAnimation(){
 	
 	if(_mainlayer_streamlines){
 		owgis.ncwms.currents.particles.setCurrentGrid(currentFrame);
+		// IF WE WANT TO CLEAR THE PARTICLES WHEN THE ANIMATION STARTS AGAIN
+		/*
 		if(currentFrame === 0){
 			owgis.ncwms.currents.clearCurrentsCanvas();
-		}
+		}*/
 	}
 	
 	clearCanvas();
