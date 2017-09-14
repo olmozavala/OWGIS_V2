@@ -21,6 +21,10 @@
 			<table id="palettesTable"></table>
 		</div>
 	</div>
+        <div class="row defRowSpace palpags">
+            <a href="javascript:prevPage()" id="btn_prev">Prev</a>
+            <a href="javascript:nextPage()" id="btn_next">Next</a>
+        </div>
 	<div class="row doubleRowSpace">
 		<div class="col-xs-4 col-xs-offset-3 ">
 			<span class="buttonStyle " id="defaultColorRangeButton"
