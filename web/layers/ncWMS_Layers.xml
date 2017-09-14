@@ -17,7 +17,6 @@
 				 ncWMStwo="true" >  
 
 	<!-- ncWMS  World temperatures with currents and currents -->
-
 		<layer Menu="ncwms,worldTempCurrents" 
 			   EN="Gulf of Mexico Temperatures and currents"
 			   defParticleSpeed=".9"
@@ -26,9 +25,10 @@
 
 		<layer Menu="ncwms,worldCurrents" 
 			   EN="World Currents"
-			   name="global_uv_2015/water_u:water_v-mag" 
+			   name="hycom_forecast_uv/water_u:water_v-mag" 
 			   defParticleSpeed=".9"
-			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
+			   overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+
 
 		<!-- ncWMS with one date multiple Z-->
 		<layer Menu="ncwms,ncwmsOneDateMultZ" 
