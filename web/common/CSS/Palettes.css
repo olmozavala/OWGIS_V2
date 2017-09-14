@@ -102,3 +102,17 @@
   -webkit-box-shadow: #DCC380 2px 2px 6px;
   box-shadow: #DCC380 2px 2px 6px;
 }
+
+.palpags{
+    text-align: center;
+}
+
+.palpags a{
+    color: #545454;
+    text-decoration: none;
+}
+
+.palpags a:hover{
+    color: #a8a8a8;
+    text-decoration: underline;
+}
