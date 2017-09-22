@@ -103,16 +103,22 @@
   box-shadow: #DCC380 2px 2px 6px;
 }
 
-.palpags{
-    text-align: center;
-}
-
-.palpags a{
-    color: #545454;
+.btn-inverse{
+    border-style: none;
+    /* border-width: 1px; */
+    background-color: #110D0E;
+    color: #eeeeee;
+    -moz-box-shadow: #707070 2px 2px 6px;
+    -webkit-box-shadow: #707070 2px 2px 6px;
+    box-shadow: #707070 2px 2px 6px;
+    display: inline;
+    vertical-align: middle;
     text-decoration: none;
 }
 
-.palpags a:hover{
+.btn-inverse:hover{
     color: #a8a8a8;
     text-decoration: underline;
+    background-color: #110D0E;
+    border-style: none;
 }
