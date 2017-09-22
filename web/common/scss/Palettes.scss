@@ -26,6 +26,24 @@
     display:none;
 }
 
+
+/* Div of the optional palettes div */
+#div-palette-horbar{
+    left: 1%;
+    position:absolute;
+	bottom: 10px;
+	display: none;
+}
+/* Div of the optional palettes div */
+#img-palette-horbar{
+	display: none;
+}
+
+#canvas-palette-horbar{
+	@include border-radius($default-border-radius - 2);
+	background-color: black;
+}
+
 //------------ This is for the window with the color range in it -----
 
 /* table that contains current palette and the color range*/
