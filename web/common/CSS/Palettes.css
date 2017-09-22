@@ -144,18 +144,4 @@
     text-decoration: underline;
     background-color: #110D0E;
     border-style: none;
-.palpags{
-    text-align: center;
-}
-
-.palpags a{
-    color: #545454;
-    text-decoration: none;
-}
-
-.btn-inverse:hover{
-    color: #a8a8a8;
-    text-decoration: underline;
-    background-color: #110D0E;
-    border-style: none;
 }

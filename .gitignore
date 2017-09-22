@@ -7,8 +7,5 @@
 /web/test/
 /web/common/.sass-cache/
 build.xml
-<<<<<<< HEAD
 buildTemplate.xml
-=======
->>>>>>> a226139... Modified xml files to read from ncWMS 2 server
 /libraries/CopyLibs/
