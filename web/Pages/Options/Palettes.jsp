@@ -21,14 +21,12 @@
 			<table id="palettesTable"></table>
 		</div>
 	</div>
-        <div class="row defRowSpace palpags">
-            <a href="javascript:prevPage()" id="btn_prev">Prev</a>
-            <a href="javascript:nextPage()" id="btn_next">Next</a>
-        </div>
+        
 	<div class="row doubleRowSpace">
-		<div class="col-xs-4 col-xs-offset-3 ">
-			<span class="buttonStyle " id="defaultColorRangeButton"
-				  onclick="DefaultPalette();"> Default</span>
+		<div class="col-xs-12 col-xs-offset-2">
+                    <a class="btn btn-default btn-xs btn-inverse" href="javascript:prevPage()" id="btn_prev" style="display: inline-block;"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		    <span class="buttonStyle " id="defaultColorRangeButton" onclick="DefaultPalette();"> Default </span>
+                    <a class="btn btn-default btn-xs btn-inverse" href="javascript:nextPage()" id="btn_next" style="display: inline-block;"><span class="glyphicon glyphicon-chevron-right"></span></a>
 		</div>	
 	</div>
 </c:if>
