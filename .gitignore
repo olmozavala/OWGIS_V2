@@ -7,4 +7,5 @@
 /web/test/
 /web/common/.sass-cache/
 build.xml
+buildTemplate.xml
 /libraries/CopyLibs/
