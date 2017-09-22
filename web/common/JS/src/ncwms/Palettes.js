@@ -170,12 +170,13 @@ owgis.ncwms.palettes.loadPalettes = function(){
 
         var td = document.createElement('td');
         td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-        td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
+        td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
         tableRow.appendChild(td);
     }
     */
-    
-    owgis.ncwms.palettes.updateHorizontalPalette();
+
+	owgis.ncwms.palettes.updateHorizontalPalette();
+
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
     
@@ -187,10 +188,10 @@ owgis.ncwms.palettes.loadPalettes = function(){
  */
 owgis.ncwms.palettes.updateHorizontalPalette = function(){
 	// This code currently only works for ncwmsTwo server
-	if(layerDetails['ncwmstwo']){
+	if(layerDetails['ncwmstwo'] && !mobile){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
-                //console.log('mmmmmmmmmmm......');
+
 		var barWidth = Math.ceil($(window).width()*.4);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
@@ -229,9 +230,9 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			// It is not perfect because the ticks function modifies
 			// the size of the array depending its parameters
 			var totNumbers = 8;
-			var minVal = parseFloat(minPalVal);
-			var maxVal = parseFloat(maxPalVal);
-			//console.log("-----",minVal,"-",maxVal);
+			var minVal = minPalVal;
+			var maxVal = maxPalVal;
+//			console.log("-----",minVal,"-",maxVal);
 			var values = d3.ticks(minVal,maxVal,totNumbers);
 			//We need to substract 20 because if not the last number
 			// goes outside the canvas.
