@@ -61,7 +61,7 @@
 		<table>
 			<tr>
 				<td rowspan="3">
-					<img class="optPaletteImg" id="imgPalette" src="${paletteUrl}" onclick="displayOptionalPalettes();" 
+					<img class="optPaletteImg" id="imgPalette" src="${_paletteUrl}" onclick="displayOptionalPalettes();" 
 						 onmouseover="this.style.cursor = 'pointer';"
 						 onmouseout="this.style.cursor = 'crosshair';"/>
 				</td>

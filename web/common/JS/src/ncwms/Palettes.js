@@ -65,7 +65,7 @@ function setColorRangeFromMinMax(){
 
     var url = layerDetails["server"]+"?"+owgis.utils.paramsToUrl(urlParams);
 
-	console.log(url);
+//	console.log(url);
 	owgis.ajax.crossorigin(url,updateMinMaxFromJson);
 }
 
@@ -112,7 +112,7 @@ function changePage(page)
         if(typeof palstr !== "undefined"){
             var td = document.createElement('td');
             td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-            td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
+            td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
             tableRow.appendChild(td);
         }
     }
@@ -168,14 +168,99 @@ owgis.ncwms.palettes.loadPalettes = function(){
 
         var td = document.createElement('td');
         td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-        td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
+        td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
         tableRow.appendChild(td);
     }
     */
+
+	owgis.ncwms.palettes.updateHorizontalPalette();
+
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
     
 }
+
+/**
+ * This function is in charge of creating the color bar in the bottom of the map
+ * @returns {String}
+ */
+owgis.ncwms.palettes.updateHorizontalPalette = function(){
+	// This code currently only works for ncwmsTwo server
+	if(layerDetails['ncwmstwo'] && !mobile){
+		//Adding the colorbar at the bottom to a width of 50%
+		// of the with of the website
+
+		var barWidth = Math.ceil($(window).width()*.4);
+//		var barHeight = Math.ceil(barWidth*.03);
+		var barHeight = 15;
+
+		//------ Modifying the size of the div container
+		$("#div-palette-horbar").css("WIDTH",barWidth+"px");
+		$("#div-palette-horbar").css("HEIGHT",barHeight+"px");
+
+		//------ Modifying the url of the colobar ----------
+		var finalUrl = replaceUrlParam(_paletteUrl,"WIDTH",barWidth);
+		finalUrl= replaceUrlParam(finalUrl,"HEIGHT",barHeight);
+		finalUrl= replaceUrlParam(finalUrl,"VERTICAL","False");
+		finalUrl= replaceUrlParam(finalUrl,"PALETTE",mappalette);
+		// Add the modified url to the img object
+
+		var imageObj = new Image();
+		imageObj.src = finalUrl;
+//		console.log(finalUrl);
+
+		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
+		//------ Modifying the size of the canvas container
+		var spaceForUnits = 40;
+		ctx.canvas.width = barWidth+spaceForUnits;
+		ctx.canvas.height = barHeight;
+
+		imageObj.onload = function(){
+			ctx.globalAlpha = 0.7;
+			ctx.drawImage(imageObj,spaceForUnits,0);
+			ctx.globalAlpha = 1;
+			$("#div-palette-horbar").show();
+			ctx.fillStyle = '#FFFFFF'; //Define color to use
+			var pixBellowText = 3;// How many pixels bellow text
+			ctx.font= (barHeight-pixBellowText)+"px Arial";
+
+			//How many numbers do we want in the color bar	
+			// It is not perfect because the ticks function modifies
+			// the size of the array depending its parameters
+			var totNumbers = 8;
+			var minVal = minPalVal;
+			var maxVal = maxPalVal;
+//			console.log("-----",minVal,"-",maxVal);
+			var values = d3.ticks(minVal,maxVal,totNumbers);
+			//We need to substract 20 because if not the last number
+			// goes outside the canvas.
+			var step = (barWidth-20)/(values.length-1);
+//			console.log(values);
+
+			var idx = 0;
+			//Write the units first
+			ctx.fillText(layerDetails.units,2,Math.ceil(barHeight-pixBellowText));
+			for (var pos = 2; pos <=  barWidth; pos+=step){
+				ctx.fillText(values[idx],pos+spaceForUnits,Math.ceil(barHeight-pixBellowText));
+				idx++;
+			}
+		};
+
+		// Move the div container of the palette into the center. 
+//		$('#div-palette-horbar').css('left', Math.ceil(($(window).width()-barWidth)/2));
+	}
+}
+
+function replaceUrlParam(url, paramName, paramValue) {
+	if (paramValue === null)
+		paramValue = '';
+	var pattern = new RegExp('\\b(' + paramName + '=).*?(&|$)')
+	if (url.search(pattern) >= 0) {
+		return url.replace(pattern, '$1' + paramValue + '$2');
+	}
+	return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue
+}
+
 
 /**
  * Replaces the image of the palette used
@@ -200,6 +285,8 @@ function UpdatePalette(newPal){
 		clearLoopHandler();
 		owgis.ncwms.animation.dispAnimation();
 	}
+
+	owgis.ncwms.palettes.updateHorizontalPalette();
 }
 
 /**
