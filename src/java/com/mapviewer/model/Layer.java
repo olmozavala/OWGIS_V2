@@ -375,7 +375,7 @@ public class Layer {
 	public String getStyle() {
 		if( style.equals("") ){
 			if(this.isNcwmstwo()){
-				return "default/default";
+				return "default";
 			}
 		}
 		return style;
