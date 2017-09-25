@@ -66,6 +66,28 @@
   position: absolute;
   display: none;
 }
+/* Div of the optional palettes div */
+/* line 31, ../scss/Palettes.scss */
+#div-palette-horbar {
+  left: 1%;
+  position: absolute;
+  bottom: 10px;
+  display: none;
+}
+
+/* Div of the optional palettes div */
+/* line 38, ../scss/Palettes.scss */
+#img-palette-horbar {
+  display: none;
+}
+
+/* line 42, ../scss/Palettes.scss */
+#canvas-palette-horbar {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: black;
+}
 
 /* table that contains current palette and the color range*/
 /* line 32, ../scss/Palettes.scss */

@@ -37,3 +37,8 @@
 	</div>
 	<%@include file="../../../Options/ColorRange.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 </div>
+
+<!-- Div to show the color palette -->
+<div id="div-palette-horbar" >
+	<canvas id="canvas-palette-horbar" ></canvas>
+</div>

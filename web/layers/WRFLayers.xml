@@ -74,7 +74,7 @@
 	</MainLayers>
                 
         <!-- Dominio 2 -->
-        <MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
+        <!--MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
                 
             <layer Menu="Dom2,Temp2" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf_dom2/T2C" />
             
@@ -112,6 +112,6 @@
                 
             <layer Menu="Dom2,vape" EN="Evaporation" ES="Evaporacion"  name="wrf_dom2/QFX" style="default-scalar" palette="seq-BlueHeat" mincolor="0" maxcolor="1" />
             
-	</MainLayers>
+	</MainLayers-->
 	
 </MenuConf>
