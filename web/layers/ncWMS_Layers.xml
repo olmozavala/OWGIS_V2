@@ -21,6 +21,7 @@
 			   EN="Gulf of Mexico Temperatures and currents"
 			   defParticleSpeed=".9"
 			   name="global_ts_2015/water_temp" 
+				style="default-scalar" palette="wind2"
 			   overlaystreamlines="global_uv_2015/water_u:global_uv_2015/water_v" />
 
 		<layer Menu="ncwms,worldCurrents" 
