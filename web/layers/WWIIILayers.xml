@@ -25,7 +25,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Pom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="default-scalar" palette="oleaje" name="wwiii_pom/hs"
+                     name="wwiii_pom/hs" style="default-scalar" palette="oleaje"
                 />
                      
 		<!--layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
