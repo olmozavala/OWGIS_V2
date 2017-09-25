@@ -228,8 +228,8 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			// It is not perfect because the ticks function modifies
 			// the size of the array depending its parameters
 			var totNumbers = 8;
-			var minVal = minPalVal;
-			var maxVal = maxPalVal;
+			var minVal = parseFloat(minPalVal);
+			var maxVal = parseFloat(maxPalVal);
 //			console.log("-----",minVal,"-",maxVal);
 			var values = d3.ticks(minVal,maxVal,totNumbers);
 			//We need to substract 20 because if not the last number
