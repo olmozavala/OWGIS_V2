@@ -1,9 +1,9 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="Dom1" EN="Pacific" ES="Pacifico"/>
-		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de Mexico"/>
-		<Menu ID="ele" EN="Elevation" ES="Elevacion" />
+		<Menu ID="Dom1" EN="Pacific" ES="Pacífico"/>
+		<Menu ID="Dom2" EN="Gulf of Mexico" ES="Golfo de México"/>
+		<Menu ID="ele" EN="Elevation" ES="Elevación" />
 		<!-- Tais menu that are available to display entries IOA OWGIS-->
 	</Menus>
 
