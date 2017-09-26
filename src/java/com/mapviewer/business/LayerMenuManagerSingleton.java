@@ -304,6 +304,9 @@ public class LayerMenuManagerSingleton {
 		String refreshLayers = mapConfig.getRefreshLayers();
 		long millsSinceLastUpdate = currDate.getTime() - lastUpdate.getTime();
 		switch(refreshLayers.toLowerCase()){
+                        case "hourly":
+				if( millsSinceLastUpdate > (MILLIS_PER_DAY/24)) update = true;
+				break;
 			case "daily":
 				if( millsSinceLastUpdate > MILLIS_PER_DAY) update = true;
 				break;
