@@ -177,6 +177,7 @@ owgis.ncwms.palettes.loadPalettes = function(){
 
 	owgis.ncwms.palettes.updateHorizontalPalette();
 
+    
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
     
