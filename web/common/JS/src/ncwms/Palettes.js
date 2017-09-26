@@ -140,7 +140,9 @@ function numPages()
  */
 owgis.ncwms.palettes.loadPalettes = function(){
     
-    changePage(1);
+    if(layerDetails['ncwmstwo'] && !mobile){
+        changePage(1);
+    }
     
     //Copied from loadDefault
     urlPaletteImg = $('#imgPalette').attr("src");
@@ -173,7 +175,9 @@ owgis.ncwms.palettes.loadPalettes = function(){
     }
 
     */
-	owgis.ncwms.palettes.updateHorizontalPalette();
+    
+    owgis.ncwms.palettes.updateHorizontalPalette();
+    
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 
     $('#maxPal').val( parseFloat(maxPalVal).toPrecision(4));
     
