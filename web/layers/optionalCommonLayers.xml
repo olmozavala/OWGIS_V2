@@ -16,8 +16,8 @@
 		<layer Menu="DivisionMx,estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="false"  />
 		<layer Menu="DivisionMx,municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
                 <layer Menu="DivisionMx,paises" name="cen:paises" EN="Countries" ES="Paises" tiled="false" />
-		<!--<layer Menu="bat" name="OWGIS_data:Municipios" EN="MX Counties" ES="Municipios" tiled="false"  />
-		-->
-	</OptionalLayers>
+		<layer Menu="bat" name="cen:batimetria" EN="MX Batimetria" ES="MX Batimetria" tiled="false" />
+
+        </OptionalLayers>
         
 </MenuConf>
