@@ -112,7 +112,7 @@ function changePage(page)
         if(typeof palstr !== "undefined"){
             var td = document.createElement('td');
             td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-            td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
+            td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
             tableRow.appendChild(td);
         }
     }
@@ -190,7 +190,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 	if(layerDetails['ncwmstwo'] && !mobile){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
-                console.log('mmmmmmmmmmm......');
+                //console.log('mmmmmmmmmmm......');
 		var barWidth = Math.ceil($(window).width()*.4);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
@@ -208,7 +208,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 		var imageObj = new Image();
 		imageObj.src = finalUrl;
-		console.log(finalUrl);
+		//console.log(finalUrl);
 
 		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
 		//------ Modifying the size of the canvas container
@@ -231,12 +231,12 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			var totNumbers = 8;
 			var minVal = parseFloat(minPalVal);
 			var maxVal = parseFloat(maxPalVal);
-			console.log("-----",minVal,"-",maxVal);
+			//console.log("-----",minVal,"-",maxVal);
 			var values = d3.ticks(minVal,maxVal,totNumbers);
 			//We need to substract 20 because if not the last number
 			// goes outside the canvas.
 			var step = (barWidth-20)/(values.length-1);
-			console.log(values);
+			//console.log(values);
 
 			var idx = 0;
 			//Write the units first
