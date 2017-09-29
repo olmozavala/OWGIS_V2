@@ -3,7 +3,7 @@
 
 	<MainLayers BBOX="-180,-90,180,90"
 			 server="http://132.248.8.238:8080/ncWMS_2015/wms"
-				 format="jpg" ncWMStwo="true" >
+				 format="image/gif" ncWMStwo="true" >
 
 		<layer Menu="gfs,wind,abvgrnd" EN="Wind above ground" ES="Viento en superficie"
 			   name="gfs_forecast/v_abvgrd:u_abvgrd-mag" defParticleSpeed=".05"
@@ -15,7 +15,7 @@
 		
 
 	   <layer Menu="gfs,ts,surf" EN="Surface temperature" 
-			   ES="Temperatura en superficie" name="gfs_forecast/temp_surf" />
+			   ES="Temperatura en superficie" name="gfs_forecast/temp_surf"  mincolor="-10" maxcolor="50" />
 	   <layer Menu="gfs,ts,abvgrnd" EN="Temperature above ground" 
 			  ES="Temperatura sobre superficie" name="gfs_forecast/temp_abvgrd" />
 	   <layer Menu="gfs,ts,isobar" EN="Isobaric temperature" 
@@ -47,5 +47,6 @@
 			  ES="Hielo" name="gfs_forecast/tot_ice_cov" />
 	   <layer Menu="gfs,sun" EN="Sunshine time"
 			  ES="Tiempo de sol" name="gfs_forecast/sun_dur" />
+                          
 	</MainLayers> 
 </MenuConf>

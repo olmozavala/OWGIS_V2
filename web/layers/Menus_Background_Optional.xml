@@ -3,7 +3,7 @@
 	<Menus>
 		<Menu ID="hycom" EN="HYCOM" ES="HYCOM"/>
 		<Menu ID="gfs" EN="GFS" ES="GFS"/>
-		<Menu ID="countries"  EN="Contries" ES="Paises" />
+		<Menu ID="countries"  EN="Countries" ES="Paises" />
 
 		<Menu ID="abvgrnd"  EN="Above Ground" ES="Sobre Tierra" />
 		<Menu ID="grnd"  EN="Ground" ES="En Tierra" />

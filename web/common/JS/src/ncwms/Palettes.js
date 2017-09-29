@@ -140,7 +140,7 @@ function numPages()
  */
 owgis.ncwms.palettes.loadPalettes = function(){
     
-    if(layerDetails['ncwmstwo'] && !mobile){
+    if(!mobile){
         changePage(1);
     }
     
