@@ -21,11 +21,11 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Dom1,ele" EN="Water surface elevation above geoid (m)" ES="Elevación del nivel del agua (m)" 
-                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcirc"
+                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3"
                 />
                      
 		<layer Menu="Dom2,ele" EN="Water surface elevation above geoid (m)" ES="Elevación del nivel del agua (m)" 
-                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcirc"
+                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3"
 		/>                              
                 
 	</MainLayers>
