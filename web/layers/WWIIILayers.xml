@@ -25,7 +25,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Pom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                     name="wwiii_pom/hs" style="default-scalar" palette="oleaje"
+                     name="wwiii_pom/hs" style="default-scalar" palette="oleaje" mincolor="0" maxcolor="16"
                 />
                      
 		<!--layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
@@ -34,7 +34,7 @@
                 /-->                              
                 
 		<layer Menu="Pom,Periodo" EN="Period" ES="Periodo" 
-			style="default-scalar" palette="periodo" name="wwiii_pom/t01"
+			style="default-scalar" palette="periodo" name="wwiii_pom/t01" mincolor="0" maxcolor="16"
                 />
                 
 	</MainLayers>
@@ -43,7 +43,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Gom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="default-scalar" palette="oleaje" name="wwiii_gom/hs" 
+                    style="default-scalar" palette="oleaje" name="wwiii_gom/hs" mincolor="0" maxcolor="16"
                 />
                      
 		<!--layer Menu="Gom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
@@ -52,7 +52,7 @@
                 /-->                              
                 
 		<layer Menu="Gom,Periodo" EN="Period" ES="Periodo" 
-			style="default-scalar" palette="periodo" name="wwiii_gom/t01" 
+			style="default-scalar" palette="periodo" name="wwiii_gom/t01" mincolor="0" maxcolor="16"
                 />
                 
 	</MainLayers>
@@ -61,7 +61,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Wo,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="default-scalar" palette="oleaje" name="wwiii_wo/hs" 
+                    style="default-scalar" palette="oleaje" name="wwiii_wo/hs" mincolor="0" maxcolor="16"
                 />
                      
 		<!--layer Menu="Wo,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
@@ -69,7 +69,7 @@
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
                 /-->                              
                 
-		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" 
+		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" mincolor="0" maxcolor="16"
 			style="default-scalar" palette="periodo" name="wwiii_wo/t01"
                 />
                 
