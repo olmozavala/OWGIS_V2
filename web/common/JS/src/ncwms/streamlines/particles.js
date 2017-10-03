@@ -543,12 +543,12 @@ function initParticles(){
 		//avoid computing this value for every particle
 		half_lon_domain =  (limLonMin + lonDomainRand/2);
 		half_lat_domain =  (limLatMin + latDomainRand/2);
-		console.log("Using dense random");
+//		console.log("Using dense random");
 		for(i = 0; i < numparticles; i++){
 			particlesArray[i] = randomParticleDenseCenter();
 		}
 	}else{
-		console.log("Using Normal random");
+//		console.log("Using Normal random");
 		for(i = 0; i < numparticles; i++){
 			particlesArray[i] = randomParticle();
 		}

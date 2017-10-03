@@ -57,6 +57,9 @@ echo "git checkout --theirs web/Pages/Options/Palettes.jsp"
 git checkout --theirs web/Pages/Options/Palettes.jsp
 git add  web/Pages/Options/Palettes.jsp
 
+echo "git rm web/layers/ncWMS_Layers.xml"
+git rm web/layers/ncWMS_Layers.xml
+
 #---------- ONLY IF YOU HAVEN'T CHANGE ANY STYLING---
 #echo "git checkout --theirs web/common/scss/"
 #git checkout --theirs web/common/scss/

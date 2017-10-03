@@ -7,7 +7,7 @@
 	var layerDetails = ${layerDetails}; //layer details such as title, server, ect in a json object. 
 	var mainLayer = '${mainLayer}'; //main layer title
 	var mappalette = '${palette}'; // palette color
-	var paletteUrl = '${paletteUrl}'; //palette server url
+	var _paletteUrl = '${paletteUrl}'; //palette server url
 	var basepath = "/"+window.location.pathname.split("/")[1]; //url base path
 	var lay_style = '${style}'; //layer color style, part of the url to request the pallete.
 	var map = 'empty map'; //map variable that contains the OpenLayers map
