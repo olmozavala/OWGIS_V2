@@ -173,9 +173,8 @@ owgis.ncwms.palettes.loadPalettes = function(){
         td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
         tableRow.appendChild(td);
     }
-
     */
-    
+
     owgis.ncwms.palettes.updateHorizontalPalette();
     
     $('#minPal').val( parseFloat(minPalVal).toPrecision(4)); 

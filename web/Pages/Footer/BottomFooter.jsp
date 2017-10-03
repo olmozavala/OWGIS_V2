@@ -8,22 +8,14 @@
 <div id="leftFooter" class="leftFoot">
 	&nbsp;
 	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
+		<img border="0" src="./common/images/Logos/logo.png" alt="Logo" width="30" height="30" /></a>
 	&nbsp;
 	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
-	&nbsp 
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
-	&nbsp 
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
-			
-	<a  href="#">
+		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="30" height="30" /></a>
+	&nbsp; 
 		<p class="footNote" align="left">
-			&nbsp 
-			&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
-		</p></a>
-	<a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
+			&nbsp; 
+			Investigación realizada gracias al Programa UNAM-DGAPA-PAPIIT IA103917 &nbsp;
+		</p>
 </div>
 

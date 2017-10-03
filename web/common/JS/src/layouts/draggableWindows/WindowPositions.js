@@ -67,7 +67,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 			// of the calendars and palettes windows
 			if (netcdf) {
 				//The palettes window is never minimized
-				repositionWindow(localStorage.pos_palettes, "false",
+				repositionWindow('450,245', "false",
 				'palettes-div', 'none');
 				repositionWindow(localStorage.pos_color_range, "false",
 				'paletteWindowColorRange', 'none');

@@ -9,3 +9,5 @@
 build.xml
 buildTemplate.xml
 /libraries/CopyLibs/
+buil*.xml
+/web/META-INF/context.xml
