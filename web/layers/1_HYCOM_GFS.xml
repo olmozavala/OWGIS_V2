@@ -24,7 +24,7 @@
 		<layer Menu="hycom,ssh" 
 			   EN="Forecast sea surface height"
 			   name="hycom_forecast_ssh/surf_el" 
-			   style="default-scalar" palette="seq-YlGnBu"
+			   style="default-scalar" palette="seq-YlOrRd"
 			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
 
 	</MainLayers> 
