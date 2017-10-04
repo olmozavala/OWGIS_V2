@@ -13,8 +13,8 @@
         <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
                 
 		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="false" selected="true" />
-		<layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false" />
-                <layer Menu="paises" name="cen:paises" EN="Countries" ES="Paises" tiled="false" />
+		<layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false" selected="true" />
+                <layer Menu="paises" name="cen:paises" EN="Countries" ES="Paises" tiled="false" selected="true" />
 		<layer Menu="bat" name="cen:batimetria" EN="MX Batimetria" ES="MX Batimetria" tiled="false" />
 		
 	</OptionalLayers>
