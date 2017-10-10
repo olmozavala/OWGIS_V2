@@ -1,8 +1,8 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="Pom" EN="Pacific" ES="Pacifico"/>
-		<Menu ID="Gom" EN="Center of Mexico" ES="Centro de Mexico"/>
+		<Menu ID="Pom" EN="Pacific" ES="Pacífico"/>
+		<Menu ID="Gom" EN="Gulf of Mexico" ES="Golfo de México"/>
 		<Menu ID="Wo" EN="World" ES="Global"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento" />
 		<Menu ID="Altura" EN="Significant height" ES="Altura"/>
@@ -25,7 +25,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Pom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                     name="wwiii_pom/hs" style="default-scalar" palette="oleaje" mincolor="0" maxcolor="12"
+                     name="wwiii_pom/hs" style="default-scalar" palette="alturamx" mincolor="0" maxcolor="12"
                 />
                      
 		<!--layer Menu="Pom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
@@ -43,7 +43,7 @@
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
 		<layer Menu="Gom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
-                    style="default-scalar" palette="oleaje" name="wwiii_gom/hs" mincolor="0" maxcolor="12"
+                    style="default-scalar" palette="alturamx" name="wwiii_gom/hs" mincolor="0" maxcolor="12"
                 />
                      
 		<!--layer Menu="Gom,Viento" EN="Wind speed at 10 hPa" ES="Viento en 10 hPa" 
@@ -52,7 +52,7 @@
                 /-->                              
                 
 		<layer Menu="Gom,Periodo" EN="Period" ES="Periodo" 
-			style="default-scalar" palette="periodo" name="wwiii_gom/t01" mincolor="0" maxcolor="13"
+			style="default-scalar" palette="periodogo" name="wwiii_gom/t01" mincolor="0" maxcolor="13"
                 />
                 
 	</MainLayers>
