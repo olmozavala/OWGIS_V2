@@ -24,7 +24,7 @@
 	<MainLayers BBOX="-180,90,-90,180" format="image/gif" ncWMStwo="true"
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
-		<layer Menu="Pom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
+		<layer Menu="Pom,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
                      name="wwiii_pom/hs" style="default-scalar" palette="alturamx" mincolor="0" maxcolor="12"
                 />
                      
@@ -42,7 +42,7 @@
         <MainLayers BBOX="-180,90,-90,180" format="image/gif" ncWMStwo="true"
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
-		<layer Menu="Gom,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
+		<layer Menu="Gom,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
                     style="default-scalar" palette="alturamx" name="wwiii_gom/hs" mincolor="0" maxcolor="12"
                 />
                      
@@ -60,7 +60,7 @@
         <MainLayers BBOX="-180,90,-90,180" format="image/gif" ncWMStwo="true"
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
                    
-		<layer Menu="Wo,Altura" EN="significant height of wind and swell waves (m)" ES="Altura significante del viento" 
+		<layer Menu="Wo,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
                     style="default-scalar" palette="oleaje" name="wwiii_wo/hs" mincolor="0" maxcolor="16"
                 />
                      
