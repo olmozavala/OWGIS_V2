@@ -7,8 +7,8 @@
 		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
 		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
 		<Menu ID="DivisionMx" EN="Political Division " ES="División Política " />
-		<Menu ID="paises" EN="Countries" ES="Paises" />
-		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
+		<Menu ID="paises" EN="Countries" ES="Países" />
+		<Menu ID="bat" EN="Bathymetry Model" ES="Modelo Batimetría" />
         </Menus>        
         <!-- Optional layers -->
         <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
