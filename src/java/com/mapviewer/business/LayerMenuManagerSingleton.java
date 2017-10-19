@@ -602,6 +602,9 @@ public class LayerMenuManagerSingleton {
 		
 		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
 				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
+                
+                String numColorBands = layerConf.getAttributeValue("numcolorbands") != null
+				? layerConf.getAttributeValue("numcolorbands") : layer.getnumColorBands();
 		
 		/*
 		String[] cql_cols = null;
@@ -613,8 +616,9 @@ public class LayerMenuManagerSingleton {
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
-				max_time_range, boolJsonp,overlayStreamlines,defParticleSpeed);
+				max_time_range, boolJsonp,overlayStreamlines,numColorBands,defParticleSpeed);
 		
+                newLayer.setnumColorBands(numColorBands);
 		newLayer.setMinColor(minColor);
 		newLayer.setMaxColor(maxColor);
 		newLayer.setSelected(selected);

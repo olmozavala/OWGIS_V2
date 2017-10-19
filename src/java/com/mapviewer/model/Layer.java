@@ -66,6 +66,7 @@ public class Layer {
 	// Currently it can be 'none' or 'resize' (default)
 	private String transEffect;
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
+        private String numColorBands;
 	//------- CQL
 	private String cql;
 	private String cql_cols;
@@ -145,7 +146,7 @@ public class Layer {
 		this.selected = false;//By default none of the optional layers is selected
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = false;
-		
+		this.numColorBands = null;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -211,6 +212,7 @@ public class Layer {
 			boolean ncwms, String maxTimeLayer,
 			boolean jsonp,
 			String overlayStreamlines,
+                        String numColorBands,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -234,7 +236,7 @@ public class Layer {
 		this.selected = false;//By default none of the optional layers is selected
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = jsonp;
-		
+                this.numColorBands = numColorBands;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -331,6 +333,8 @@ public class Layer {
 
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
+                        
+                        layerDetails.accumulate("numColorBands", this.numColorBands);
 			
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -647,6 +651,14 @@ public class Layer {
 	public void setLocalAddress(String localAddress) {
 		this.localAddress = localAddress;
 	}
+        
+        public void setnumColorBands(String numColorBands) {
+ 		this.numColorBands = numColorBands;
+ 	}
+        
+        public String getnumColorBands() {
+ 		return numColorBands;
+ 	}
 	
 		
 }

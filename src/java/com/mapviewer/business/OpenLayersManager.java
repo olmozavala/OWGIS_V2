@@ -313,6 +313,9 @@ public class OpenLayersManager {
                             layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
                         }
 			
+                        if (actualLayer.getnumColorBands() != null) {
+                             layersScript += ", NUMCOLORBANDS: '" + actualLayer.getnumColorBands() + "'";
+                       }
 			
 			layersScript += ", SRS: _map_projection";
 			
