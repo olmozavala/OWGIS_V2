@@ -123,23 +123,66 @@ function initOl3(){
 	ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
+                zoom: mapConfig.zoom,
 		maxZoom: mapConfig.zoomLevels,
-		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
 		maxResolution: mapConfig.maxResolution
 //		extent: resExtent  // Not working
 	});
 
  	map = new ol.Map({
+                interactions: ol.interaction.defaults({mouseWheelZoom:false}),/*.extend([
+                    new ol.interaction.MouseWheelZoom({
+                      constrainResolution: true, // force zooming to a integer zoom
+                      duration: 1000, timeout: 500
+                    })
+                  ]),*/ //This is what I use to prevent the scroll wheel from zooming all the way in or out too rapidly. 
 		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
-        renderer: 'canvas', // ['canvas','dom','webgl']
+                renderer: 'canvas', // ['canvas','dom','webgl']
 		logo: false,
 		view: ol3view
 	});
-	
+        
+	var numInFlightTiles = 0;
+        map.getLayers().forEach(function (layer) {
+            var source = layer.getSource();
+            if (source instanceof ol.source.TileImage) {
+                source.on('tileloadstart', function () {++numInFlightTiles})
+                source.on('tileloadend', function () {--numInFlightTiles})
+            }
+        })
 
+        map.on('postrender', function (evt) {
+            if (!evt.frameState)
+                return;
+
+            var numHeldTiles = 0;
+            var wanted = evt.frameState.wantedTiles;
+            for (var layer in wanted)
+                if (wanted.hasOwnProperty(layer))
+                    numHeldTiles += Object.keys(wanted[layer]).length;
+
+            var ready = numInFlightTiles === 0 && numHeldTiles === 0;
+            if (map.get('ready') !== ready){
+                map.set('ready', ready);
+                
+                map.addInteraction(new ol.interaction.MouseWheelZoom({
+                    constrainResolution: true, duration: 300, timeout: 100 // force zooming to a integer zoom
+                }));
+                
+            }
+        });
+
+        map.set('ready', false);
+
+        function whenMapIsReady(callback) {
+            if (map.get('ready'))
+                callback();
+            else
+                map.once('change:ready', whenMapIsReady.bind(null, callback));
+        }
 }
 
 //TODO clean and document this function
