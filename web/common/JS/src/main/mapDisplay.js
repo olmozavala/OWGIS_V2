@@ -166,7 +166,7 @@ function initMenus() {
 				owgis.ncwms.currents.startSingleDateAnimation();
 			}
 		}
-	
+
 		//Try to update the position of the horizontal palette (only for ncWMStwo)
 		owgis.ncwms.palettes.updateHorizontalPalette();
 

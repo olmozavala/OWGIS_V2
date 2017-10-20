@@ -14,7 +14,7 @@
 </div>
 
 <!-- This div contains all the map --> 
-<div id="map"> </div>      
+<div id="map"> </div>    
 <div class="layersLonLat">
 	<fmt:message key="main.lon" />:&nbsp;&nbsp;<fmt:message key="main.lat" />: &nbsp;
 	<div id="location" ></div>
