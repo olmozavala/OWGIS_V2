@@ -16,11 +16,13 @@
 		<Menu ID="PrecTot" EN="Total Precipitation Acumulated" ES="Precipitación Total"/>
 		<Menu ID="PrecHor" EN="Hourly Precipitation " ES="Precipitación Horaria"/>
                 
-                <Menu ID="nubesIR" EN="Cloud Cover" ES="Cobertura nubosa" />
+                <Menu ID="nubesIR" EN="Cloud Cover" ES="Nubosidad" />
+                <!--
                 <Menu ID="nubesIR200" EN="Cloud Cover IR 200hPa" ES="Cobertura nubosa 200hPa" />
                 <Menu ID="nubesIR500" EN="Cloud Cover IR 500hPa" ES="Cobertura nubosa 500hPa" />
                 <Menu ID="nubesIR700" EN="Cloud Cover IR 700hPa" ES="Cobertura nubosa 700hPa" />
                 <Menu ID="nubesIR850" EN="Cloud Cover IR 850hPa" ES="Cobertura nubosa 850hPa" />
+                -->
 
                 <Menu ID="vape" EN="Evaporation" ES="Evaporación" />
                 
@@ -41,43 +43,40 @@
             
             <layer Menu="Dom1,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom1/T2C" mincolor="-15" maxcolor="50" />
             
-            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="prec2alpha" name="wrf_Dom1/PRECH"  mincolor="1" belowMinColor="transparent" maxcolor="500" />
+            <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECH"  mincolor="1" belowMinColor="transparent" maxcolor="500" />
 
-            <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" style="default-scalar" palette="prec2alpha" name="wrf_Dom1/PREC2" mincolor="1" belowMinColor="transparent" maxcolor="500" />
+            <layer Menu="Dom1,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PREC2" mincolor="1" belowMinColor="transparent" maxcolor="500" />
                 
-            <layer Menu="Dom1,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." style="default-scalar" palette="prec2alpha" name="wrf_Dom1/PRECA3" mincolor="1" belowMinColor="transparent" maxcolor="500" />
+            <layer Menu="Dom1,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECA3" mincolor="1" belowMinColor="transparent" maxcolor="500" />
 
-            <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="prec2alpha" name="wrf_Dom1/PRECA6"  mincolor="1" belowMinColor="transparent" maxcolor="500" />
+            <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECA6"  mincolor="1" belowMinColor="transparent" maxcolor="500" />
             
             <layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="250"
                     style="default-scalar" palette="wind2" name="wrf_Dom1/Uat10:Vat10-mag"
-                    overlaystreamlines="wrf_Dom1/Uat10:wrf_Dom1/Vat10" defParticleSpeed="0.03"
+                    overlaystreamlines="wrf_Dom1/Uat10:wrf_Dom1/Vat10" defParticleSpeed="0.01"
             />
                      
             <layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" mincolor="0" maxcolor="250"
 			style="default-scalar" palette="windintensity" name="wrf_Dom1/Uat250:Vat250-mag" 
-			defParticleSpeed="0.03" overlaystreamlines="wrf_Dom1/Uat250:wrf_Dom1/Vat250"/>                              
+			defParticleSpeed="0.01" overlaystreamlines="wrf_Dom1/Uat250:wrf_Dom1/Vat250"/>                              
                 
             <layer Menu="Dom1,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa"  mincolor="0" maxcolor="250"
 			style="default-scalar" palette="windintensity" name="wrf_Dom1/Uat500:Vat500-mag" 
-			defParticleSpeed="0.03" overlaystreamlines="wrf_Dom1/Uat500:wrf_Dom1/Vat500"/>
+			defParticleSpeed="0.01" overlaystreamlines="wrf_Dom1/Uat500:wrf_Dom1/Vat500"/>
 
             <layer Menu="Dom1,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa"   mincolor="0" maxcolor="250"
 			style="default-scalar" palette="windintensity" name="wrf_Dom1/Uat700:Vat700-mag" 
-			defParticleSpeed="0.03" overlaystreamlines="wrf_Dom1/Uat700:wrf_Dom1/Vat700" />
+			defParticleSpeed="0.01" overlaystreamlines="wrf_Dom1/Uat700:wrf_Dom1/Vat700" />
                         
             <layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" name="wrf_Dom1/Uat850:Vat850-mag" mincolor="0" maxcolor="250"
-                      overlaystreamlines="wrf_Dom1/Uat850:wrf_Dom1/Vat850" defParticleSpeed="0.03" style="default-scalar" palette="windintensity" />
+                      overlaystreamlines="wrf_Dom1/Uat850:wrf_Dom1/Vat850" defParticleSpeed="0.01" style="default-scalar" palette="windintensity" />
 
             <layer Menu="Dom1,relh,relh200" EN="Relative humidity 200hPa" ES="Humedad Relativa 200hPa" name="wrf_Dom1/RHat200" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom1,relh,relh500" EN="Relative humidity 500hPa" ES="Humedad Relativa 500hPa" name="wrf_Dom1/RHat500" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom1,relh,relh700" EN="Relative humidity 800hPa" ES="Humedad Relativa 700hPa" name="wrf_Dom1/RHat700" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom1,relh,relh850" EN="Relative humidity 850hPa" ES="Humedad Relativa 850hPa" name="wrf_Dom1/RHat850" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             
-            <layer Menu="Dom1,nubesIR,nubesIR200" EN="Cloud coverage 200hPa" ES="Cobertura nubosa 200hPa" name="wrf_Dom1/cloud_liquid_water_mixing_ratio_at_200" style="default-scalar" palette="seq-Greys-inv" mincolor="0" maxcolor="100" />
-            <layer Menu="Dom1,nubesIR,nubesIR500" EN="Cloud coverage 500hPa" ES="Cobertura nubosa 500hPa" name="wrf_Dom1/cloud_liquid_water_mixing_ratio_at_500" style="default-scalar" palette="seq-Greys-inv" />
-            <layer Menu="Dom1,nubesIR,nubesIR700" EN="Cloud coverage 700hPa" ES="Cobertura nubosa 700hPa" name="wrf_Dom1/cloud_liquid_water_mixing_ratio_at_700" style="default-scalar" palette="seq-Greys-inv" />
-            <layer Menu="Dom1,nubesIR,nubesIR850" EN="Cloud coverage 850hPa" ES="Cobertura nubosa 850hPa" name="wrf_Dom1/cloud_liquid_water_mixing_ratio_at_850" style="default-scalar" palette="seq-Greys-inv" />
+            <layer Menu="Dom1,nubesIR" EN="Cloud coverage" ES="Nubosidad" name="wrf_Dom1/QCLOUD2" style="default-scalar" palette="seq-Greys-inv" mincolor="0" maxcolor="100" />
                               
             <layer Menu="Dom1,vape" EN="Evaporation" ES="Evaporación"  name="wrf_Dom1/QFX" style="default-scalar" palette="seq-BlueHeat"  />            
             
@@ -88,43 +87,40 @@
                 
             <layer Menu="Dom2,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom2/T2C" mincolor="-15" maxcolor="50" />
             
-            <layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="prec2alpha"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECH"  />
+            <layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECH"  />
 
-            <layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" style="default-scalar" palette="prec2alpha"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PREC2"  />
+            <layer Menu="Dom2,Prec,PrecTot" EN="Total Precipitation" ES="Precipitación Total" style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PREC2"  />
 
-            <layer Menu="Dom2,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." style="default-scalar" palette="prec2alpha"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECA3"  />
+            <layer Menu="Dom2,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECA3"  />
 
-            <layer Menu="Dom2,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="prec2alpha"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECA6"  />
+            <layer Menu="Dom2,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECA6"  />
             
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
 			style="default-scalar" palette="wind2" ncWMStwo="true" mincolor="0" maxcolor="250"
-			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
+			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
 
             <layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" 
 			style="default-scalar" palette="windintensity"  mincolor="0" maxcolor="250"
-			   name="wrf_Dom2/Uat250:Vat250-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat250:wrf_Dom2/Vat250"/>
+			   name="wrf_Dom2/Uat250:Vat250-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat250:wrf_Dom2/Vat250"/>
 	
             <layer Menu="Dom2,Viento,Vto500hP" EN="Wind speed in 500 hPa." ES="Viento en 500 hPa" 
 			style="default-scalar" palette="windintensity" mincolor="0" maxcolor="250"
-			   name="wrf_Dom2/Uat500:Vat500-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat500:wrf_Dom2/Vat500"/>
+			   name="wrf_Dom2/Uat500:Vat500-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat500:wrf_Dom2/Vat500"/>
 
             <layer Menu="Dom2,Viento,Vto700hP" EN="Wind speed in 700 hPa." ES="Viento en 700 hPa" 
 			style="default-scalar" palette="windintensity" mincolor="0" maxcolor="250"
-			   name="wrf_Dom2/Uat700:Vat700-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat700:wrf_Dom2/Vat700" />
+			   name="wrf_Dom2/Uat700:Vat700-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat700:wrf_Dom2/Vat700" />
 
             <layer Menu="Dom2,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" 
 			style="default-scalar" palette="windintensity" mincolor="0" maxcolor="250"
-			   name="wrf_Dom2/Uat850:Vat850-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat850:wrf_Dom2/Vat850" />
+			   name="wrf_Dom2/Uat850:Vat850-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat850:wrf_Dom2/Vat850" />
             
             <layer Menu="Dom2,relh,relh200" EN="Relative humidity 200hPa" ES="Humedad Relativa 200hPa" name="wrf_Dom2/RHat200" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom2,relh,relh500" EN="Relative humidity 500hPa" ES="Humedad Relativa 500hPa" name="wrf_Dom2/RHat500" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom2,relh,relh700" EN="Relative humidity 800hPa" ES="Humedad Relativa 700hPa" name="wrf_Dom2/RHat700" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom2,relh,relh850" EN="Relative humidity 850hPa" ES="Humedad Relativa 850hPa" name="wrf_Dom2/RHat850" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             
-            <layer Menu="Dom2,nubesIR,nubesIR200" EN="Cloud coverage 200hPa" ES="Cobertura nubosa 200hPa" name="wrf_Dom2/cloud_liquid_water_mixing_ratio_at_200" style="default-scalar" palette="seq-Greys-inv" />
-            <layer Menu="Dom2,nubesIR,nubesIR500" EN="Cloud coverage 500hPa" ES="Cobertura nubosa 500hPa" name="wrf_Dom2/cloud_liquid_water_mixing_ratio_at_500" style="default-scalar" palette="seq-Greys-inv" />
-            <layer Menu="Dom2,nubesIR,nubesIR700" EN="Cloud coverage 700hPa" ES="Cobertura nubosa 700hPa" name="wrf_Dom2/cloud_liquid_water_mixing_ratio_at_700" style="default-scalar" palette="seq-Greys-inv" />
-            <layer Menu="Dom2,nubesIR,nubesIR850" EN="Cloud coverage 850hPa" ES="Cobertura nubosa 850hPa" name="wrf_Dom2/cloud_liquid_water_mixing_ratio_at_850" style="default-scalar" palette="seq-Greys-inv" />
+            <layer Menu="Dom2,nubesIR" EN="Cloud coverage" ES="Nubosidad" name="wrf_Dom2/QCLOUD2" style="default-scalar" palette="seq-Greys-inv" mincolor="0" maxcolor="100" />
                 
             <layer Menu="Dom2,vape" EN="Evaporation" ES="Evaporación"  name="wrf_Dom2/QFX" style="default-scalar" palette="seq-BlueHeat" />
             
