@@ -133,13 +133,18 @@ public class RedirectServersServlet extends HttpServlet {
 
 			elevation = request.getParameter("ELEVATION");
 			time = request.getParameter("TIME");
-			finalRequest += "&ELEVATION=" + elevation;
+			if( elevation != "" && elevation != null ){
+                            finalRequest += "&ELEVATION=" + elevation;
+                        }
 			if (!time.equals("No current date")) {
 				finalRequest += "&TIME=" + time;
 
 				timeSeriesUrl = server + "?LAYERS=" + layers + "&STYLES=" + styles + "&WIDTH=" + width + "&HEIGHT=" + height + "&SRS=" + srs
-						+ "&ELEVATION=" + elevation + "&FORMAT=image/png&SERVICE=" + service + "&VERSION=" + version
+						+ "&FORMAT=image/png&SERVICE=" + service + "&VERSION=" + version
 						+ "&REQUEST=" + req + "&BBOX=" + bbox + "&x=" + x + "&y=" + y + "&INFO_FORMAT=image/png&QUERY_LAYERS=" + queryLayers;
+                                if(elevation != null){
+                                    timeSeriesUrl += "&ELEVATION=" + elevation ;
+                                }
 			}
 		}
 
