@@ -102,7 +102,9 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			url += "&INFO_FORMAT=image/png";
 
 			if( _mainlayer_zaxisCoord){
+                            if(layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter] != null &&  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter] != "null"){
 				url += "&ELEVATION="+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
+                            }
 			}
 			
 			var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
