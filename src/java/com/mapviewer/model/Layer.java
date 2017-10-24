@@ -65,6 +65,8 @@ public class Layer {
 	//Define the transition effect used by OpenLayers when zoom is used.
 	// Currently it can be 'none' or 'resize' (default)
 	private String transEffect;
+	private String belowMinColor; //set to trans for values that are below the color range stablished
+	private String aboveMaxColor; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
         private String numColorBands;
 	//------- CQL
@@ -147,6 +149,8 @@ public class Layer {
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = false;
 		this.numColorBands = null;
+		this.belowMinColor = null;
+                this.aboveMaxColor = null;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -213,6 +217,7 @@ public class Layer {
 			boolean jsonp,
 			String overlayStreamlines,
                         String numColorBands,
+                        String belowMinColor, String aboveMaxColor,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -251,6 +256,8 @@ public class Layer {
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
 		this.localAddress = null;
+                this.belowMinColor = belowMinColor;
+                this.aboveMaxColor = aboveMaxColor;
 	}
 	//Geters
 	
@@ -335,6 +342,10 @@ public class Layer {
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
                         
                         layerDetails.accumulate("numColorBands", this.numColorBands);
+                        //Adds an indicationf if a color for when below min color
+			layerDetails.accumulate("belowMinColor", this.belowMinColor);
+                        //Adds an indicationf if a color for when above max color
+			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
 			
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -591,6 +602,14 @@ public class Layer {
 	public void setCql_cols(String cql_cols) {
 		this.cql_cols = cql_cols;
 	}
+        
+        public void setBelowMinColor(String belowMinColor) {
+		this.belowMinColor = belowMinColor;
+	}
+        
+        public void setAboveMaxColor(String aboveMaxColor) {
+		this.aboveMaxColor = aboveMaxColor;
+	}
 	
 	public boolean isJsonp() {
 		return jsonp;
@@ -646,6 +665,14 @@ public class Layer {
 
 	public String getLocalAddress() {
 		return localAddress;
+	}
+        
+        public String getBelowMinColor() {
+		return belowMinColor;
+	}
+        
+        public String getAboveMaxColor() {
+		return aboveMaxColor;
 	}
 
 	public void setLocalAddress(String localAddress) {
