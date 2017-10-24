@@ -313,7 +313,14 @@ public class OpenLayersManager {
                             layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
                         }
 			
-			
+			if (actualLayer.getBelowMinColor() != null) {
+                            layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
+                        }
+                         
+ 			if (actualLayer.getAboveMaxColor() != null) {
+                            layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
+                        }
+ 
 			layersScript += ", SRS: _map_projection";
 			
 			layersScript += "}\n\t\t\t})\n";
