@@ -465,7 +465,60 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 //		TIME: allFrames[0],
 	// Creating dhe default parameters for the images
-	animParams = { 
+	if( layerDetails.aboveMaxColor[1] != null && layerDetails.belowMinColor[1] != null ){
+            animParams = { 
+                    TIME:allFrames[0],
+                    LAYERS: layerName,
+                    BBOX: bbox.toString(),
+                    REQUEST: "GetMap",
+                    VERSION: owgis.ogc.wmsversion,
+                    STYLES: lay_style+"/"+mappalette,
+                    FORMAT: "image/png",
+                    TRANSPARENT: "TRUE",
+                    WIDTH: imgWidth,
+                    HEIGHT: imgHeight,
+                    NUMCOLORBANDS: 250,
+                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+                    CRS: _map_projection,
+                    BELOWMINCOLOR: layerDetails.belowMinColor[1],
+                    ABOVEMAXCOLOR: layerDetails.aboveMaxColor[1]
+            };
+        } else if(layerDetails.belowMinColor[1] != null){
+            animParams = { 
+                    TIME:allFrames[0],
+                    LAYERS: layerName,
+                    BBOX: bbox.toString(),
+                    REQUEST: "GetMap",
+                    VERSION: owgis.ogc.wmsversion,
+                    STYLES: lay_style+"/"+mappalette,
+                    FORMAT: "image/png",
+                    TRANSPARENT: "TRUE",
+                    WIDTH: imgWidth,
+                    HEIGHT: imgHeight,
+                    NUMCOLORBANDS: 250,
+                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+                    CRS: _map_projection,
+                    BELOWMINCOLOR: layerDetails.belowMinColor[1]
+            };
+        } else if(layerDetails.aboveMaxColor[1] != null){
+            animParams = { 
+                    TIME:allFrames[0],
+                    LAYERS: layerName,
+                    BBOX: bbox.toString(),
+                    REQUEST: "GetMap",
+                    VERSION: owgis.ogc.wmsversion,
+                    STYLES: lay_style+"/"+mappalette,
+                    FORMAT: "image/png",
+                    TRANSPARENT: "TRUE",
+                    WIDTH: imgWidth,
+                    HEIGHT: imgHeight,
+                    NUMCOLORBANDS: 250,
+                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+                    CRS: _map_projection,
+                    ABOVEMAXCOLOR: layerDetails.aboveMaxColor[1]
+            };
+        } else {
+            animParams = { 
 		TIME:allFrames[0],
 		LAYERS: layerName,
 		BBOX: bbox.toString(),
@@ -479,7 +532,8 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		NUMCOLORBANDS: 250,
 		COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
 		CRS: _map_projection
-	};
+            };
+        }
 	
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
