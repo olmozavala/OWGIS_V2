@@ -9,3 +9,4 @@
 build.xml
 buildTemplate.xml
 /libraries/CopyLibs/
+/web/META-INF/*
