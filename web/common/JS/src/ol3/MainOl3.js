@@ -131,7 +131,8 @@ function initOl3(){
 	});
 
  	map = new ol.Map({
-                interactions: ol.interaction.defaults({mouseWheelZoom:false}),/*.extend([
+                //interactions: ol.interaction.defaults({mouseWheelZoom:false}),
+                /*.extend([
                     new ol.interaction.MouseWheelZoom({
                       constrainResolution: true, // force zooming to a integer zoom
                       duration: 1000, timeout: 500
@@ -154,6 +155,7 @@ function initOl3(){
             }
         })
 
+        /*
         map.on('postrender', function (evt) {
             if (!evt.frameState)
                 return;
@@ -183,6 +185,7 @@ function initOl3(){
             else
                 map.once('change:ready', whenMapIsReady.bind(null, callback));
         }
+        */
 }
 
 //TODO clean and document this function
