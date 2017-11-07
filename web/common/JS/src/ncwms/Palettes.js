@@ -112,7 +112,7 @@ function changePage(page)
         if(typeof palstr !== "undefined"){
             var td = document.createElement('td');
             td.setAttribute('onclick',"UpdatePalette('"+palstr+"');");
-            td.innerHTML = "<img class='optPaletteImg' src='"+paletteUrl.replace(origpalette,palstr)+"' /></td>";
+            td.innerHTML = "<img class='optPaletteImg' src='"+_paletteUrl.replace(origpalette,palstr)+"' /></td>";
             tableRow.appendChild(td);
         }
     }
