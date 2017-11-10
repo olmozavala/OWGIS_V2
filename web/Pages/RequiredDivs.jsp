@@ -21,8 +21,9 @@
 </div>    
 	
 <!--It is used as the popup of the punctual data feature-->
-<div id="popup" class="ol-popup">
-	<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+
+<div id="popup" class="ol-popup" style="display:none;" >
+	<a href="#" id="popup-closer" class="ol-popup-closer"><span class="glyphicon glyphicon-remove"> </span></a>
 	<div id="popup-content"></div>
 </div>
 

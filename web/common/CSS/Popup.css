@@ -107,6 +107,6 @@ and open the template in the editor.
 }
 
 /* line 60, ../scss/Popup.scss */
-.ol-popup-closer:after {
+/*.ol-popup-closer:after {
   content: "x";
-}
+}*/
