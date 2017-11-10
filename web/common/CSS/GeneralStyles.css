@@ -220,3 +220,11 @@ hr {
   background-image: -webkit-linear-gradient(#ecf2f8, #000000, #ecf2f8);
   background-image: linear-gradient(#ecf2f8, #000000, #ecf2f8);
 }
+
+/*fixed depth close button*/
+#zaxis_selector_parent>div>div>a.btn.btn-default.btn-xs {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+}
