@@ -339,5 +339,5 @@ function getZaxisText(){
 		return  depthText; 
     }
     else
-        return "UNDEFINED";
+        return depthText;
 }
