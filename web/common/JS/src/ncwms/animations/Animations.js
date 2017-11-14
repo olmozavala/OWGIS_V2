@@ -515,7 +515,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	//For the link to download the GIF
 	animParams.FORMAT = "image/gif";
 	animParams.TIME = allFrames.join(",");
-	var gifLink = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams);
+	var gifLink = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+'&ANIMATION=TRUE';
 	if(mobile){
 		$('#animControls [class*=save]').attr("href",gifLink);
 	}else{
