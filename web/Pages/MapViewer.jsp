@@ -24,7 +24,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 		<title><fmt:message key="header.title"/></title>
     </head>
 	
-    <body id="bodyClass" >
+    <body id="bodyClass" class="loadingCursor" >
 		
 		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
         <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
