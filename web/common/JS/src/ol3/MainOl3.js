@@ -138,8 +138,49 @@ function initOl3(){
 		logo: false,
 		view: ol3view
 	});
-	
+        
+	var numInFlightTiles = 0;
+        map.getLayers().forEach(function (layer) {
+            var source = layer.getSource();
+            if (source instanceof ol.source.TileImage) {
+                source.on('tileloadstart', function () {++numInFlightTiles})
+                source.on('tileloadend', function () {--numInFlightTiles})
+            }
+        })
 
+        
+        map.on('postrender', function (evt) {
+            if (!evt.frameState)
+                return;
+
+            var numHeldTiles = 0;
+            var wanted = evt.frameState.wantedTiles;
+            for (var layer in wanted)
+                if (wanted.hasOwnProperty(layer))
+                    numHeldTiles += Object.keys(wanted[layer]).length;
+
+            var ready = numInFlightTiles === 0 && numHeldTiles === 0;
+            if (map.get('ready') !== ready){
+                map.set('ready', ready);
+                
+                /*map.addInteraction(new ol.interaction.MouseWheelZoom({
+                    constrainResolution: true, duration: 300, timeout: 100 // force zooming to a integer zoom
+                }));
+                */
+               $("body").css("cursor", "default");
+
+            }
+        });
+
+        map.set('ready', false);
+
+        function whenMapIsReady(callback) {
+            if (map.get('ready'))
+                callback();
+            else
+                map.once('change:ready', whenMapIsReady.bind(null, callback));
+        }
+        
 }
 
 //TODO clean and document this function
