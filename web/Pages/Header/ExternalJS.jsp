@@ -1,4 +1,5 @@
-	<!--Debug mode-->
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--Debug mode-->
 
 	<script src="./common/JS/vendor/minimized/jquery-2.1.4.min.js"></script>
 	<script src="./common/JS/vendor/minimized/underscore-min.js"></script>
@@ -22,3 +23,6 @@
 		<script> $.widget.bridge('uitooltip', $.ui.tooltip); </script>	
 		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 	</c:if>
+        <c:if test='${language.equals("ES")}'>
+            <script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script>
+        </c:if>
