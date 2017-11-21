@@ -188,7 +188,7 @@ function initOl3(){
             lastTime = currenTime;
         };
 
-        /*
+        
         map.on('postrender', function (evt) {
             if (!evt.frameState)
                 return;
@@ -203,10 +203,12 @@ function initOl3(){
             if (map.get('ready') !== ready){
                 map.set('ready', ready);
                 
-                map.addInteraction(new ol.interaction.MouseWheelZoom({
+                /*map.addInteraction(new ol.interaction.MouseWheelZoom({
                     constrainResolution: true, duration: 300, timeout: 100 // force zooming to a integer zoom
                 }));
-                
+                */
+               $("body").css("cursor", "default");
+
             }
         });
 
@@ -218,7 +220,7 @@ function initOl3(){
             else
                 map.once('change:ready', whenMapIsReady.bind(null, callback));
         }
-        */
+        
 }
 
 //TODO clean and document this function
