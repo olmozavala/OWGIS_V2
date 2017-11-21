@@ -38,7 +38,7 @@
 					
 				<!-- Buttons on the navbar  -->
 				<div id="header" data-role="header" data-theme="b">
-					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#mobPanelMainTools" >Tools</a>
+					<a id="bars-button_left" class="ui-btn ui-btn-left ui-icon-gear ui-btn-icon-left" href="#mobPanelMainTools" ><fmt:message key="mobile.tools" /></a>
 					<span class="ui-title"></span>
 					<%--
 					<div data-type="horizontal" data-role="controlgroup" class="ui-btn-right">					
@@ -49,7 +49,7 @@
 							<!--It gets initialized by languages.js-->
 						</ul>
 					</div>--%>
-					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#mobPanelLayers" >Layers</a>
+					<a id="bars-button_right" class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-right" href="#mobPanelLayers" ><fmt:message key="mobile.layers" /></a>
 				</div>
 					
 				<div role="main" class="ui-content">
@@ -72,8 +72,7 @@
 							<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
 						</c:if>
 					</c:if>
-						
-					<!--Adding extra canvas for animations and currents if necessary-->
+                                        <!--Adding extra canvas for animations and currents if necessary-->
 					<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
 						<c:if test='${ncwms}'> 
 						<canvas id="animationCanvas"></canvas>

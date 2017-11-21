@@ -312,8 +312,13 @@ function obtainSelectedDates(){
 	if(layerDetails['ncwmstwo']){
 		//In this case we need to create the array of dates from the 'range string'
 		var datesRange = moment.range(allFrames[0]);
-		var allDates =  Array.from(datesRange.by('day'));
-		allFrames = allDates.map(m => m.utc().format());
+                var allDates = [];
+                var arrTemp = datesRange.by('day');
+                for(var val in  arrTemp) {
+                    allDates.push(artTemp[val])
+                }
+                console.log(allDates.lenght);
+                allFrames = allDates.map(function(m) { return m.utc().format() });
 	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
