@@ -65,7 +65,7 @@ owgis.utilities.mathgeo.cross = function (a, b){
 
 /**
  * This function transforms sphere coordinates into 3D cartesian coordinates
- * Assuming it is in radians
+ * Assuming it is in radiansTime
  */
 owgis.utilities.mathgeo.spheretocart = function (lon, lat){
 	var res = [Math.sin(lon)*Math.cos(lat),
