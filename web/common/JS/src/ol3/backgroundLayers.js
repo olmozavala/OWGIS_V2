@@ -52,12 +52,12 @@ function blueMarble(){
 		format: "image/jpeg",
 		projection: projection,
 		tileGrid: new ol.tilegrid.WMTS({
-			origin: ol.extent.getTopLeft(projectionExtent),
+                origin: ol.extent.getTopLeft(projectionExtent),
 			resolutions: resolutions,
 			matrixIds: matrixIds,
 			tileSize: 512
 		}),
-		//				extent: nasa_layers[i].extent,
+		//extent: nasa_layers[i].extent,
 		extent: projectionExtent,
 		style: ''
 	});
