@@ -180,12 +180,11 @@ function initOl3(){
             }
             var view = map.getView();
             var delta = zoom_in < 1 ? 1 : -1;
-            if(currenTime - lastTime < (timeOutWheel + waitWheel) || view.getZoom() + delta < 0) {
+            if(currenTime - lastTime < (timeOutWheel * 2 + waitWheel) || view.getZoom() + delta < 0) {
                 return;
             }
             var newResolution = view.getResolutionForZoom(view.getZoom() + delta);
-            view.animate({zoom: view.getZoom() + delta, center: coordinates, easing: ol.easing.easeIn});
-            view.setResolution(newResolution);
+            view.animate({center: map.getView().getCenter(), easing: ol.easing.easeIn, duration : timeOutWheel}, {zoom: view.getZoom() + delta, center: coordinates, easing: ol.easing.easeIn, duration : timeOutWheel}, {resolution: newResolution});
             lastTime = currenTime;
         };
 
