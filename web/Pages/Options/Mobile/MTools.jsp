@@ -81,3 +81,63 @@
 </li>
 
 </ul>
+<!-- languajes movil -->
+<div data-type="horizontal" data-role="controlgroup" class="">					
+    <button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 5px; height: 25px">
+    <!--It gets initialized by languages.js-->
+    </button>
+    <ul id="langDropDown" class="dropdown-menu" role="menu">
+    <!--It gets initialized by languages.js-->
+    </ul>
+</div>
+
+<!-- functions and styles for drop menu, because jquery movil don't work -->
+<script type="text/javascript">
+    var dropMenu = document.getElementById("selectedLanguage");
+    dropMenu.addEventListener("click", function() {
+        var list = document.getElementById("langDropDown");
+        if(this.getAttribute("aria-expanded") == "false") {
+            list.classList.add("openLangDropDown");
+            this.setAttribute("aria-expanded", "true");
+        } else {
+            list.classList.remove("openLangDropDown");
+            this.setAttribute("aria-expanded", "false");
+        }
+    }, false);
+</script>
+<style type="text/css">
+    #selectedLanguage {
+        border: none;
+    }
+
+    #langDropDown {
+        position: relative;
+        left: -22px;
+        top: 10px;
+        max-height: 0px;
+        border: none;
+        text-align: left;
+        font-size: 0.8em;
+    }
+
+    #langDropDown a {
+        display: block;
+    }
+
+    #langDropDown img {
+        display: inline-block;
+    }
+
+    #langDropDown img, #langDropDown a {
+        max-height: 0px;
+        overflow: hidden;
+        -webkit-transition: all 1s; /* Safari */
+        transition: all 1s;
+        margin: 0;
+    }
+
+    .openLangDropDown img, .openLangDropDown a {
+        max-height: 40px !important;
+        overflow: visible !important;
+    }
+</style>
