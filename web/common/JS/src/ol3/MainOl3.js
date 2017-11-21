@@ -16,6 +16,11 @@ var startDate;
 // panned the map
 var isOnlyClick = false; 
 
+//zoom function vars
+var enlapseTime = 0;
+var timeOutWheel = 500;
+var waitWheel = 800;
+
 //Creates 100 layer objects
 for (var i = 0; i < 100; i++) {
 	eval("var layer" + i);
@@ -119,7 +124,11 @@ function initOl3(){
 	//This is the control for the scale line at the bottom of the map
 	var scaleLineControl = new ol.control.ScaleLine();
 	var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows
-	
+	//Se configura para correcta visualizacion en el movil
+        if(mobile) {
+            mapConfig.zoom = 0;
+            defCenter = [-106.9468908519838, 20.069659432985887];//default center
+        }
 	ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
@@ -137,7 +146,14 @@ function initOl3(){
         renderer: 'canvas', // ['canvas','dom','webgl']
 		logo: false,
 		view: ol3view
-	});
+        });
+        
+        /*
+         * Custom listener for mouse wheel
+         */
+        map.on('wheel', function(mouseWheel){
+            zoom(mouseWheel.map, mouseWheel.originalEvent.deltaY, mouseWheel.coordinate, mouseWheel.originalEvent.timeStamp);
+        });
         
 	var numInFlightTiles = 0;
         map.getLayers().forEach(function (layer) {
@@ -146,7 +162,26 @@ function initOl3(){
                 source.on('tileloadstart', function () {++numInFlightTiles})
                 source.on('tileloadend', function () {--numInFlightTiles})
             }
-        })
+        });
+       
+        /*
+         * Custom efect zoom because a default zoom in open layer 3/4 presents problems
+         */
+        zoom = function(map, zoom_in, coordinates, currenTime){
+            if(lastTime = 0) {
+                lastTime = currenTime;
+            }
+            var view = map.getView();
+            var delta = zoom_in < 1 ? 1 : -1;
+            if(currenTime - lastTime < (timeOutWheel + waitWheel) || view.getZoom() + delta < 0) {
+                return;
+            }
+            var newResolution = view.getResolutionForZoom(view.getZoom() + delta);
+            view.animate({zoom: view.getZoom() + delta, center: coordinates, easing: ol.easing.easeIn});
+            view.setResolution(newResolution);
+            lastTime = currenTime;
+        };
+
         
         map.on('postrender', function (evt) {
             if (!evt.frameState)
