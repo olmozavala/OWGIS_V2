@@ -38,7 +38,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 			url += "?REQUEST=GetVerticalProfile&STYLES=default/default"
 			url += "&VERSION="+owgis.ogc.wmsversionncwms2;
 			url += "&SRS=" + _map_projection;
-			url += "&INFO_FORMAT=image/png";
+			url += "&INFO_FORMAT=text/csv";
 			url += "&QUERY_LAYERS="+currSource.getParams().LAYERS+"";
 			url += "&LAYERS="+currSource.getParams().LAYERS;
 			url += "&BBOX="+currBBOX;
@@ -47,7 +47,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 		}else{
 			url += "?REQUEST=GetVerticalProfile";
 			url += "&CRS=CRS:84";
-			url += "&FORMAT=image/png";
+			url += "&FORMAT=text/csv";
 			url += "&LAYER="+currSource.getParams().LAYERS;
 			var coords = event.coordinate;
 			url += "&POINT="+coords[0]+" "+coords[1];
@@ -55,8 +55,91 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 		
 		url += "&TIME=" + time;
 		
-		var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
-		currPopupText += dataLink;
+                $.ajax({
+                    url: url,
+                    async: false,
+                    cache: false,
+                    success: function(data) {
+
+                      Highcharts.chart('containerChartsVP', {
+                        title: {
+                          text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
+                        },
+                        data: {
+                          csv: data
+                        },
+                        chart: {
+                            type: 'spline',
+                            inverted: true
+                        },
+                        yAxis: {
+                          lineWidth: 1
+                        },
+                        xAxis: {
+                          title: {
+                            text: data.split('\n')[2].split(',')[0]
+                          },
+                          lineWidth: 1
+                        },
+                        plotOptions: {
+                          series: {
+                            marker: {
+                              enabled: false
+                            }
+                          }
+                        },
+                        series: [{
+                          lineWidth: 1,
+                          //color: '#c4392d'
+                        }]
+                      }, function(chart) {
+                        
+                        showVertProf = function(){
+                        //open a new window with the highchart
+                        var options = chart.userOptions,
+                            container = chart.renderTo,
+                            w,
+                            html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="display:none;min-width: 310px; height: 400px; margin: 0 auto"></div>',
+                            s1 = document.createElement('script'),
+                            s2 = document.createElement('script'),
+                            s3 = document.createElement('script'),
+                            s4 = document.createElement('script');
+                            s5 = document.createElement('link');
+                          t = document.createTextNode('Highcharts.chart("containerChartsVP", ' + JSON.stringify(options) + ');');
+                          s3.setAttribute('type', 'text/javascript');
+                          s3.appendChild(t);
+                          s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
+                          s5.setAttribute('rel',"stylesheet");
+                          s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+                          s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
+                          s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
+                          w = window.open('', '_blank', "height=420,width=520");
+
+                          w.document.getElementsByTagName('head')[0].appendChild(s5);
+                          w.document.getElementsByTagName('head')[0].appendChild(s4);
+                          setTimeout(function() {
+                            w.document.getElementsByTagName('head')[0].appendChild(s1);
+                            w.document.body.innerHTML=html;
+                            setTimeout(function() {
+                              w.document.getElementsByTagName('head')[0].appendChild(s2);
+                              w.document.getElementsByTagName('body')[0].appendChild(s3);
+                              w.document.getElementById('loader').style.display = 'none';
+                              w.document.getElementById('containerChartsVP').style.display = "block";
+                            }, 3000)
+                          }, 300);
+                        }
+                      });
+                      
+                    },
+                    error: function(ex) {
+                      console.log(ex);
+                      console.log('NOT!');
+                    }
+                  });
+		//var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                var dataLink = "<b>Vertical profile: </b> <button id='newVerticalProfile' onclick='showVertProf()' class='btn btn-default btn-xs' > show </button><br>";
+		
+                currPopupText += dataLink;
 		$("#popup-content").html(currPopupText);
 	}//Only for ncwms layers
 }
@@ -86,7 +169,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 				url += "&FORMAT=image/png";
 			}else{
 				url += "?REQUEST=GetFeatureInfo";
-				url += "&FORMAT=image/png";
+				url += "&FORMAT=text/csv";
 				var coords = event.coordinate;
 				url += "&POINT="+coords[0]+" "+coords[1];
 				url += "&TIME=" + time;
@@ -99,7 +182,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			url += "&X="+x+"&Y="+y;
 			url += "&BBOX="+currBBOX;
 			url += "&WIDTH="+ map.getSize()[0] +"&HEIGHT="+ map.getSize()[1];
-			url += "&INFO_FORMAT=image/png";
+			url += "&INFO_FORMAT=text/csv";
 
 			if( _mainlayer_zaxisCoord){
                             if(layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter] != null &&  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter] != "null"){
@@ -107,7 +190,91 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                             }
 			}
 			
-			var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                   $.ajax({
+                    url: url,
+                    async: false,
+                    cache: false,
+                    success: function(data) {
+
+                      Highcharts.chart('containerChartsTS', {
+                        title: {
+                          text: 'Time Series'
+                        },
+                        yAxis: {
+                          title: {
+                            text: data.split('\n')[2].split(',')[1]
+                          },
+                          lineWidth: 1
+                        },
+                        xAxis: {
+                          title: {
+                            text: data.split('\n')[2].split(',')[0]
+                          },
+                          lineWidth: 1
+                        },
+                        data: {
+                          csv: data
+                        },
+                        plotOptions: {
+                          series: {
+                            marker: {
+                              enabled: false
+                            }
+                          }
+                        },
+                        series: [{
+                          lineWidth: 1,
+                          //color: '#c4392d'
+                        }]
+                      }, function(chart) {
+                        
+                        showTimeSeries = function(){
+                        //open a new window with the highchart
+                        var options = chart.userOptions,
+                            container = chart.renderTo,
+                            w,
+                            html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+                            s1 = document.createElement('script'),
+                            s2 = document.createElement('script'),
+                            s3 = document.createElement('script'),
+                            s4 = document.createElement('script');
+                            s5 = document.createElement('link');
+                          t = document.createTextNode('Highcharts.chart("containerChartsTS", ' + JSON.stringify(options) + ');');
+                          s3.setAttribute('type', 'text/javascript');
+                          s3.appendChild(t);
+                          s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
+                          s5.setAttribute('rel',"stylesheet");
+                          s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+                          s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
+                          s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
+                          w = window.open('', '_blank', "height=420,width=520");
+                          
+                          w.document.getElementsByTagName('head')[0].appendChild(s5);
+                          w.document.getElementsByTagName('head')[0].appendChild(s4);
+                          setTimeout(function() {
+                            w.document.getElementsByTagName('head')[0].appendChild(s1);
+                            w.document.body.innerHTML=html;
+                            setTimeout(function() {
+                              w.document.getElementsByTagName('head')[0].appendChild(s2);
+                              w.document.getElementsByTagName('body')[0].appendChild(s3);
+                              w.document.getElementById('loader').style.display = 'none';
+                              w.document.getElementById('containerChartsTS').style.display = "block";
+                              
+                            }, 1500)
+                          }, 300);
+                        }
+                      });
+                      
+                    },
+                    error: function(ex) {
+                      console.log(ex);
+                      console.log('NOT!');
+                    }
+                  });
+                  
+			//var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                        var dataLink = "<b>Time series plot: </b> <button id='newTimeSeries' onclick='showTimeSeries()' class='btn btn-default btn-xs' > show </button><br>";
+
 			currPopupText += dataLink;
 			$("#popup-content").html(currPopupText);
 		}//Only for ncwms layers
