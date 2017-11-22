@@ -18,8 +18,8 @@ function validateWebGL(){
 		// the browser doesn't even know what WebGL is
 		pass = false;
 	} else {
-		var canvas = getElementById('testWebGLCanvas');    
-		var context = canvas.getContext("webgl");
+		var canvas = getElementById('testWebGLCanvas');
+                var context = canvas? canvas.getContext("webgl") : false;
 		if (!context) {
 			// browser supports WebGL but initialization failed.
 			pass = false;
@@ -29,7 +29,8 @@ function validateWebGL(){
 	if(!pass){
 		owgis.error.popover.create(owgis.error.texts._NO_WEBGL,
 		"http://get.webgl.org/troubleshooting");
-		return false;
+		console.log("error");
+                return false;
 	}else{
 		return true;
 	}
@@ -114,12 +115,13 @@ function startCesium(wasEnabled){
  * the switching from Ol3 when is already initialized.  
  * @returns {undefined}
  */
-owgis.cesium.toogleCesium= function toogleCesium(){
+owgis.cesium.toogleCesium = function toogleCesium(){
 	// In this case is the first time the button has been clicked
-	console.log("Toggle Cesium");
-	owgis.interf.loadingallscreen(true);
-	if(_.isEmpty(_cesium)){
-		if(validateWebGL()){
+    console.log("Toggle Cesium");
+    owgis.interf.loadingallscreen(true);
+    console.log("Toggle Cesium");	
+    if(_.isEmpty(_cesium)){
+            if(validateWebGL()){
 			$.getScript( CESIUM_BASE_URL+"Cesium.js")
 					.done(function( data, textStatus) {
 						if( typeof ocl !== 'undefined'){
@@ -136,8 +138,11 @@ owgis.cesium.toogleCesium= function toogleCesium(){
 			})//Second done
 					.fail(function( jqxhr, settings, exception){
 						console.log("Fail to load Cesium.js: "+exception);
-				owgis.error.popover.create(owgis.error.texts._CESIUM); });
-		}//Validate WebGL
+				owgis.error.popover.create(owgis.error.texts._CESIUM); owgis.interf.loadingallscreen(false);});
+		} else {
+                    console.log("error webGl fail");
+                    owgis.interf.loadingallscreen(false);
+                }//Validate WebGL
 	}else{
 		var wasEnabled = _cesium.getEnabled();
 		startCesium(wasEnabled);
