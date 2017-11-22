@@ -54,13 +54,15 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 		}
 		
 		url += "&TIME=" + time;
-		
+                var ajaxCan;
                 $.ajax({
                     url: url,
                     async: false,
                     cache: false,
                     success: function(data) {
-
+                      
+                      ajaxCan = true;
+                      
                       Highcharts.chart('containerChartsVP', {
                         title: {
                           text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
@@ -134,11 +136,15 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                     error: function(ex) {
                       console.log(ex);
                       console.log('NOT!');
+                      ajaxCan = false; 
                     }
                   });
-		//var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
-                var dataLink = "<b>Vertical profile: </b> <button id='newVerticalProfile' onclick='showVertProf()' class='btn btn-default btn-xs' > show </button><br>";
-		
+                if(!mobile && ajaxCan){
+                    //var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                    var dataLink = "<b>Vertical profile: </b> <button id='newVerticalProfile' onclick='showVertProf()' class='btn btn-default btn-xs' > show </button><br>";
+                } else {
+                    var dataLink = "";
+                }
                 currPopupText += dataLink;
 		$("#popup-content").html(currPopupText);
 	}//Only for ncwms layers
