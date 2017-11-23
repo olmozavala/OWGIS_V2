@@ -81,7 +81,8 @@ function toggleTransect(transectStatus){
 		draw.on("drawend",getVerticalTransect);
 		
 		// Do nothing with single click
-		map.unByKey(singleClickKey);
+                ol.Observable.unByKey(singleClickKey);
+		//map.unByKey(singleClickKey);
 		map.addLayer(transectLayer);
 		map.addInteraction(draw);
     } else {
