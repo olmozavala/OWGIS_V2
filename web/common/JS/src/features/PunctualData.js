@@ -64,6 +64,8 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         success: function(data) {
 
                           ajaxCan = true;
+                          
+                          data = data.replace(/^.*null.*$/mg, "");
 
                           Highcharts.chart('containerChartsVP', {
                             title: {
@@ -209,11 +211,15 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                             }
 			}
 			if(currLayer.getSource().getParams().ncwmstwo){
+                            var ajaxCan;
                             $.ajax({
                                 url: url,
                                 async: false,
                                 cache: false,
                                 success: function(data) {
+                                    
+                                  data = data.replace(/^.*null.*$/mg, "");
+                                  ajaxCan = true;
 
                                   Highcharts.chart('containerChartsTS', {
                                     title: {
@@ -289,12 +295,17 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 
                                 },
                                 error: function(ex) {
+                                  ajaxCan = false;
                                   console.log(ex);
                                   console.log('NOT!');
                                 }
                             });
-                  
-                            var dataLink = "<b>Time series plot: </b> <button id='newTimeSeries' onclick='showTimeSeries()' class='btn btn-default btn-xs' > show </button><br>";
+                            if( ajaxCan ){
+                                var dataLink = "<b>Time series plot: </b> <button id='newTimeSeries' onclick='showTimeSeries()' class='btn btn-default btn-xs' > show </button><br>";
+                            } else {
+                                var dataLink = '';
+                            }
+                            
                         } else if(!currLayer.getSource().getParams().ncwmstwo && !mobile) {
                             var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
                         } else {
