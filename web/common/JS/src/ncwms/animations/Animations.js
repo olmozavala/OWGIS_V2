@@ -312,13 +312,15 @@ function obtainSelectedDates(){
 	if(layerDetails['ncwmstwo']){
 		//In this case we need to create the array of dates from the 'range string'
 		var datesRange = moment.range(allFrames[0]);
-                var allDates = [];
+                /*var allDates = [];
                 var arrTemp = datesRange.by('day');
                 for(var val in  arrTemp) {
                     allDates.push(artTemp[val])
                 }
                 console.log(allDates.lenght);
-                allFrames = allDates.map(function(m) { return m.utc().format() });
+                allFrames = allDates.map(function(m) { return m.utc().format() });*/
+                var allDates =  Array.from(datesRange.by('day'));
+		allFrames = allDates.map(m => m.utc().format());
 	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
@@ -469,77 +471,35 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	}
 	
 //		TIME: allFrames[0],
-	// Creating dhe default parameters for the images
-        if( layerDetails.aboveMaxColor[1] != null && layerDetails.belowMinColor[1] != null ){
-            animParams = { 
-                    TIME:allFrames[0],
-                    LAYERS: layerName,
-                    BBOX: bbox.toString(),
-                    REQUEST: "GetMap",
-                    VERSION: owgis.ogc.wmsversion,
-                    STYLES: lay_style+"/"+mappalette,
-                    FORMAT: "image/png",
-                    TRANSPARENT: "TRUE",
-                    WIDTH: imgWidth,
-                    HEIGHT: imgHeight,
-                    NUMCOLORBANDS: 250,
-                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
-                    CRS: _map_projection,
-                    BELOWMINCOLOR: layerDetails.belowMinColor[1],
-                    ABOVEMAXCOLOR: layerDetails.aboveMaxColor[1]
-            };
-        } else if(layerDetails.belowMinColor[1] != null){
-            animParams = { 
-                    TIME:allFrames[0],
-                    LAYERS: layerName,
-                    BBOX: bbox.toString(),
-                    REQUEST: "GetMap",
-                    VERSION: owgis.ogc.wmsversion,
-                    STYLES: lay_style+"/"+mappalette,
-                    FORMAT: "image/png",
-                    TRANSPARENT: "TRUE",
-                    WIDTH: imgWidth,
-                    HEIGHT: imgHeight,
-                    NUMCOLORBANDS: 250,
-                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
-                    CRS: _map_projection,
-                    BELOWMINCOLOR: layerDetails.belowMinColor[1]
-            };
-        } else if(layerDetails.aboveMaxColor[1] != null){
-            animParams = { 
-                    TIME:allFrames[0],
-                    LAYERS: layerName,
-                    BBOX: bbox.toString(),
-                    REQUEST: "GetMap",
-                    VERSION: owgis.ogc.wmsversion,
-                    STYLES: lay_style+"/"+mappalette,
-                    FORMAT: "image/png",
-                    TRANSPARENT: "TRUE",
-                    WIDTH: imgWidth,
-                    HEIGHT: imgHeight,
-                    NUMCOLORBANDS: 250,
-                    COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
-                    CRS: _map_projection,
-                    ABOVEMAXCOLOR: layerDetails.aboveMaxColor[1]
-            };
-        } else {
-            animParams = { 
-		TIME:allFrames[0],
-		LAYERS: layerName,
-		BBOX: bbox.toString(),
-		REQUEST: "GetMap",
-		VERSION: owgis.ogc.wmsversion,
-		STYLES: lay_style+"/"+mappalette,
-		FORMAT: "image/png",
-		TRANSPARENT: "TRUE",
-		WIDTH: imgWidth,
-		HEIGHT: imgHeight,
-		NUMCOLORBANDS: 250,
-		COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
-		CRS: _map_projection
-            };
-        }
+
+	// Setting the default parameters for the layers being requested in the animation
+	animParams = { 
+				TIME:allFrames[0],
+				LAYERS: layerName,
+				BBOX: bbox.toString(),
+				REQUEST: "GetMap",
+				VERSION: owgis.ogc.wmsversion,
+				STYLES: lay_style+"/"+mappalette,
+				FORMAT: "image/png",
+				TRANSPARENT: "TRUE",
+				WIDTH: imgWidth,
+				HEIGHT: imgHeight,
+				NUMCOLORBANDS: 250,
+				COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
+				CRS: _map_projection,
+		};
 	
+        if(typeof layerDetails.aboveMaxColor != "undefined" || typeof layerDetails.belowMinColor != "undefined" ){
+            if( layerDetails.aboveMaxColor[1] !== null && layerDetails.belowMinColor[1] !== null ){
+                animParams.BELOWMINCOLOR = layerDetails.belowMinColor[1];
+                animParams.ABOVEMAXCOLOR = layerDetails.aboveMaxColor[1];
+            } else if(layerDetails.belowMinColor[1] !== null){
+                animParams.BELOWMINCOLOR = layerDetails.belowMinColor[1];
+            } else if(layerDetails.aboveMaxColor[1] !== null){
+                animParams.ABOVEMAXCOLOR = layerDetails.aboveMaxColor[1];
+            }	
+        }
+
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
 	}
