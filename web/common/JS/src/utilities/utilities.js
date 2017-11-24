@@ -266,3 +266,13 @@ owgis.utils.days_between = function (date1, date2) {
     // Convert back to days and return
     return Math.round(difference_ms/ONE_DAY);
 }
+
+/*
+ * This function checks if a whole array is empty strings
+ * @param {Array} x
+ */
+owgis.utils.check_empty_array = function (x) {
+    return x.every(function (i) {
+        return i === ""
+    });
+}
