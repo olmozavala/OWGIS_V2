@@ -6,6 +6,7 @@ goog.require('owgis.calendars');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.source.Vector');
+goog.require('owgis.utils');
 
 owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,layerNumber) {
 	var currLayer = eval('layer'+layerNumber);
@@ -66,7 +67,9 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           ajaxCan = true;
                           
                           data = data.replace(/^.*null.*$/mg, "");
-
+                          
+                          ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
+                          
                           Highcharts.chart('containerChartsVP', {
                             title: {
                               text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
@@ -220,6 +223,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     
                                   data = data.replace(/^.*null.*$/mg, "");
                                   ajaxCan = true;
+                                  ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
 
                                   Highcharts.chart('containerChartsTS', {
                                     title: {
