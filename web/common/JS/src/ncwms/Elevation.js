@@ -209,7 +209,7 @@ function changeElev(value)
 
 	//TODO next line is controvertial, do we want to update the 
 	// color range when whe change the depth?
-	setColorRangeFromMinMax();
+	//setColorRangeFromMinMax();
 
     owgis.kml.updateTitleAndKmlLink();
 	if(_mainlayer_streamlines){
