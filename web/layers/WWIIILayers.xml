@@ -53,12 +53,12 @@
                    
 		<layer Menu="Wo,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
                     style="default-scalar" palette="oleaje" name="wwiii_wo/hs" mincolor="0" maxcolor="16" aboveMaxColor="transparent" belowMinColor="transparent"
-                    defParticleSpeed="0.03" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
+                    defParticleSpeed="0.01" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
                 />                          
                 
 		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" mincolor="1" maxcolor="22" aboveMaxColor="transparent" belowMinColor="transparent"
 			style="default-scalar" palette="periodo" name="wwiii_wo/t01"
-                        defParticleSpeed="0.03" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
+                        defParticleSpeed="0.01" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
                 />
                 
 	</MainLayers>
