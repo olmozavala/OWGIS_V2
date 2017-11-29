@@ -15,4 +15,13 @@
 			<%@include file="../../../Options/ColorRange.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 		</ul>
 	</div>
+        <!-- Div to show the color palette -->
+        <div id="div-palette-horbar" >
+            <canvas id="canvas-palette-horbar" ></canvas>
+        </div>
+        <script type="text/javascript">
+            var divPaletteHorbar = document.getElementById("div-palette-horbar");
+            var windHeight = $(window).height();
+            divPaletteHorbar.style.top = (windHeight - 40) + "px";
+        </script>
 </c:if>
