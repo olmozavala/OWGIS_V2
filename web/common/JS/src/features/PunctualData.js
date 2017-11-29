@@ -91,7 +91,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                               lineWidth: 1
                             },
                             tooltip: {
-                                pointFormat: data.split('\n')[2].split(',')[1]+": {point.y:.2f}"
+                                pointFormat: "{point.y:.2f} "+ layerDetails.units
                             },
                             plotOptions: {
                               series: {
@@ -229,7 +229,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     },
                                     yAxis: {
                                       title: {
-                                        text: data.split('\n')[2].split(',')[1]
+                                        text: layerTitle.innerText.split('\n')[0] //data.split('\n')[2].split(',')[1]
                                       },
                                       lineWidth: 1
                                     },
@@ -243,7 +243,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       csv: data
                                     },
                                     tooltip: {
-                                        pointFormat: data.split('\n')[2].split(',')[1]+": {point.y:.2f}"
+                                        pointFormat: "{point.y:.2f} " + layerDetails.units
                                     },
                                     plotOptions: {
                                       series: {
