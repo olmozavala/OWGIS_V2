@@ -17,9 +17,8 @@ var startDate;
 var isOnlyClick = false; 
 
 //zoom function vars
-var enlapseTime = 0;
-var timeOutWheel = 500;
-var waitWheel = 800;
+var zoomLock = 0;
+var zoomDuration = 250;//in milisecons
 
 //Creates 100 layer objects
 for (var i = 0; i < 100; i++) {
@@ -147,12 +146,13 @@ function initOl3(){
 		logo: false,
 		view: ol3view
         });
-        
+
         /*
          * Custom listener for mouse wheel
          */
-        map.on('wheel', function(mouseWheel){
-            zoom(mouseWheel.map, mouseWheel.originalEvent.deltaY, mouseWheel.coordinate, mouseWheel.originalEvent.timeStamp);
+        map.on('wheel', function(mouseWheel) {
+            mouseWheel.preventDefault();
+            zoom(mouseWheel.map, mouseWheel.originalEvent.deltaY, mouseWheel.coordinate);
         });
         
 	var numInFlightTiles = 0;
@@ -168,18 +168,17 @@ function initOl3(){
         /*
          * Custom efect zoom because a default zoom in open layer 3/4 presents problems
          */
-        zoom = function(map, zoom_in, coordinates, currenTime){
-            if(lastTime = 0) {
-                lastTime = currenTime;
-            }
+        zoom = function(map, zoom_in, coordinate) {
             var view = map.getView();
             var delta = zoom_in < 1 ? 1 : -1;
-            if(currenTime - lastTime < (timeOutWheel * 2 + waitWheel) || view.getZoom() + delta < 0) {
+            if(zoomLock || view.getZoom() + delta < 0) {
+                console.log("wait to load");
                 return;
             }
-            var newResolution = view.getResolutionForZoom(view.getZoom() + delta);
-            view.animate({center: map.getView().getCenter(), easing: ol.easing.easeIn, duration : timeOutWheel}, {zoom: view.getZoom() + delta, center: coordinates, easing: ol.easing.easeIn, duration : timeOutWheel}, {resolution: newResolution});
-            lastTime = currenTime;
+            zoomLock = 1;
+            newResolution = view.getResolutionForZoom(view.getZoom() + delta);
+            view.animate({zoom: view.getZoom() + delta, resolution: newResolution, center: (coordinate - view.getCenter()) / 2, duration: zoomDuration});
+            map.render();
         };
 
         map.on('postrender', function (evt) {
@@ -201,8 +200,8 @@ function initOl3(){
                 }));
                 */
                $("body").css("cursor", "default");
-
             }
+            zoomLock = 0;//unlock zoom
         });
 
         map.set('ready', false);
