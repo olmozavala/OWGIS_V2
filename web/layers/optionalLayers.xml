@@ -1,0 +1,20 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<!-- Tais menu that are available to display entries IOA OWGIS-->
+		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
+		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
+		<Menu ID="paises" EN="Countries" ES="Paises" />
+		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
+        </Menus>        
+        <!-- Optional layers -->
+        <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
+                
+		<layer Menu="bat" name="cen:batimetria" EN="MX Batimetria" ES="MX Batimetria" tiled="false"  />                
+                <layer Menu="paises" name="cen:paises" EN="Countries" ES="Paises" tiled="false" selected="true" />
+		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="false" selected="true" />
+		<layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false" selected="true" />
+                
+	</OptionalLayers>
+        
+</MenuConf>
