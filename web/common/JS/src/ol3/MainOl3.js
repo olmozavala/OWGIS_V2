@@ -16,6 +16,10 @@ var startDate;
 // panned the map
 var isOnlyClick = false; 
 
+//zoom function vars
+var zoomLock = 0;
+var zoomDuration = 250;//in milisecons
+
 //Creates 100 layer objects
 for (var i = 0; i < 100; i++) {
 	eval("var layer" + i);
@@ -144,7 +148,16 @@ function initOl3(){
                 renderer: 'canvas', // ['canvas','dom','webgl']
 		logo: false,
 		view: ol3view
-	});
+
+        });
+
+        /*
+         * Custom listener for mouse wheel
+         */
+        map.on('wheel', function(mouseWheel) {
+            mouseWheel.preventDefault();
+            zoom(mouseWheel.map, mouseWheel.originalEvent.deltaY, mouseWheel.coordinate);
+        });
         
 	var numInFlightTiles = 0;
         map.getLayers().forEach(function (layer) {
@@ -153,9 +166,24 @@ function initOl3(){
                 source.on('tileloadstart', function () {++numInFlightTiles})
                 source.on('tileloadend', function () {--numInFlightTiles})
             }
-        })
+        });
+       
+        /*
+         * Custom efect zoom because a default zoom in open layer 3/4 presents problems
+         */
+        zoom = function(map, zoom_in, coordinate) {
+            var view = map.getView();
+            var delta = zoom_in < 1 ? 1 : -1;
+            if(zoomLock || view.getZoom() + delta < 0) {
+                console.log("wait to load");
+                return;
+            }
+            zoomLock = 1;
+            newResolution = view.getResolutionForZoom(view.getZoom() + delta);
+            view.animate({zoom: view.getZoom() + delta, resolution: newResolution, center: (coordinate - view.getCenter()) / 2, duration: zoomDuration});
+            map.render();
+        };
 
-        
         map.on('postrender', function (evt) {
             if (!evt.frameState)
                 return;
@@ -175,8 +203,8 @@ function initOl3(){
                 }));
                 */
                $("body").css("cursor", "default");
-
             }
+            zoomLock = 0;//unlock zoom
         });
 
         map.set('ready', false);
