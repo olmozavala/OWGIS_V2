@@ -189,7 +189,7 @@ owgis.ncwms.palettes.loadPalettes = function(){
  */
 owgis.ncwms.palettes.updateHorizontalPalette = function(){
 	// This code currently only works for ncwmsTwo server
-	if(layerDetails['ncwmstwo'] && !mobile){
+	if(layerDetails['ncwmstwo']){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
 
