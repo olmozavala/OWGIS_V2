@@ -67,8 +67,13 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           ajaxCan = true;
                           
                           data = data.replace(/^.*null.*$/mg, "");
+                          data = data.replace(/^\s*\n/gm, "");
                           
                           ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
+                          
+                          if(mobile){
+                            document.getElementById("containerChartsVP").style.width = screen.width+"px";
+                          }
                           
                           Highcharts.chart('containerChartsVP', {
                             title: {
@@ -107,38 +112,46 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           }, function(chart) {
 
                             showVertProf = function(){
-                            //open a new window with the highchart
-                            var options = chart.userOptions,
-                                container = chart.renderTo,
-                                w,
-                                html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="display:none;min-width: 310px; height: 400px; margin: 0 auto"></div>',
-                                s1 = document.createElement('script'),
-                                s2 = document.createElement('script'),
-                                s3 = document.createElement('script'),
-                                s4 = document.createElement('script');
-                                s5 = document.createElement('link');
-                              t = document.createTextNode('Highcharts.chart("containerChartsVP", ' + JSON.stringify(options) + ');');
-                              s3.setAttribute('type', 'text/javascript');
-                              s3.appendChild(t);
-                              s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
-                              s5.setAttribute('rel',"stylesheet");
-                              s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-                              s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
-                              s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
-                              w = window.open('', '_blank', "height=420,width=520");
+                                if(mobile){
+                                    //create highcharts inside popup
+                                    document.getElementById("popup-content").innerHTML= "";
+                                    document.getElementById("popup").style.width = screen.width+"px";
+                                    document.getElementById("containerChartsVP").style.width = screen.width+"px";
+                                    document.getElementById("containerChartsVP").style.display = 'block';
+                                } else {
+                                    //open a new window with the highchart
+                                    var options = chart.userOptions,
+                                    container = chart.renderTo,
+                                    w,
+                                    html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="display:none;min-width: 310px; height: 400px; margin: 0 auto"></div>',
+                                    s1 = document.createElement('script'),
+                                    s2 = document.createElement('script'),
+                                    s3 = document.createElement('script'),
+                                    s4 = document.createElement('script');
+                                    s5 = document.createElement('link');
+                                    t = document.createTextNode('Highcharts.chart("containerChartsVP", ' + JSON.stringify(options) + ');');
+                                    s3.setAttribute('type', 'text/javascript');
+                                    s3.appendChild(t);
+                                    s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
+                                    s5.setAttribute('rel',"stylesheet");
+                                    s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+                                    s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
+                                    s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
+                                    w = window.open('', '_blank', "height=420,width=520");
 
-                              w.document.getElementsByTagName('head')[0].appendChild(s5);
-                              w.document.getElementsByTagName('head')[0].appendChild(s4);
-                              setTimeout(function() {
-                                w.document.getElementsByTagName('head')[0].appendChild(s1);
-                                w.document.body.innerHTML=html;
-                                setTimeout(function() {
-                                  w.document.getElementsByTagName('head')[0].appendChild(s2);
-                                  w.document.getElementsByTagName('body')[0].appendChild(s3);
-                                  w.document.getElementById('loader').style.display = 'none';
-                                  w.document.getElementById('containerChartsVP').style.display = "block";
-                                }, 3000)
-                              }, 300);
+                                    w.document.getElementsByTagName('head')[0].appendChild(s5);
+                                    w.document.getElementsByTagName('head')[0].appendChild(s4);
+                                    setTimeout(function() {
+                                      w.document.getElementsByTagName('head')[0].appendChild(s1);
+                                      w.document.body.innerHTML=html;
+                                      setTimeout(function() {
+                                        w.document.getElementsByTagName('head')[0].appendChild(s2);
+                                        w.document.getElementsByTagName('body')[0].appendChild(s3);
+                                        w.document.getElementById('loader').style.display = 'none';
+                                        w.document.getElementById('containerChartsVP').style.display = "block";
+                                      }, 3000)
+                                    }, 300);
+                                }
                             }
                           });
 
@@ -150,14 +163,27 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         }
                       });
                       
-                      if(!mobile && ajaxCan){
+                      if(ajaxCan){
                         var dataLink = "<b>Vertical profile: </b> <button id='newVerticalProfile' onclick='showVertProf()' class='btn btn-default btn-xs' > show </button><br>";
                       } else {
                           var dataLink = "";
                       }
                 }
                 else if(!layerDetails['ncwmstwo']){
-                    var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                    if(mobile){
+                                showImgVP = function(url){
+                                    img1 = document.createElement('img');
+                                    img1.src= url;
+                                    img1.style.width = screen.width+"px";
+                                    document.getElementById("containerChartsVP").appendChild(img1);
+                                    document.getElementById("popup-content").innerHTML= "";
+                                    document.getElementById("popup").style.width = screen.width+"px";
+                                    document.getElementById("containerChartsVP").style.display = 'block';
+                                };
+                                var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > show </a><br>";
+                            } else {
+                                var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                            }
                 }else {
                     var dataLink = "";
                 }
@@ -222,8 +248,19 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 success: function(data) {
                                     
                                   data = data.replace(/^.*null.*$/mg, "");
+                                  data = data.replace(/^\s*\n/gm, "");
                                   ajaxCan = true;
                                   ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
+                                  
+                                  if(typeof layerTitle != "undefined"){
+                                      titulo=layerTitle.innerText.split('\n')[0];
+                                  } else{
+                                      titulo = data.split('\n')[2].split(',')[1];
+                                  }
+                                  
+                                  if(mobile){
+                                      document.getElementById("containerChartsTS").style.width = screen.width+"px";
+                                  }
 
                                   Highcharts.chart('containerChartsTS', {
                                     title: {
@@ -231,7 +268,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     },
                                     yAxis: {
                                       title: {
-                                        text: layerTitle.innerText.split('\n')[0] //data.split('\n')[2].split(',')[1]
+                                        text:  data.split('\n')[2].split(',')[1]
                                       },
                                       lineWidth: 1
                                     },
@@ -260,9 +297,15 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     }]
                                   }, function(chart) {
 
-                                    showTimeSeries = function(){
-                                    //open a new window with the highchart
-                                    var options = chart.userOptions,
+                                  showTimeSeries = function(){
+                                    if(mobile){
+                                        //create highcharts inside popup
+                                          document.getElementById("popup-content").innerHTML= "";
+                                          document.getElementById("popup").style.width = screen.width+"px";
+                                          document.getElementById("containerChartsTS").style.display = 'block';
+                                    } else {
+                                        //open a new window with the highchart
+                                        var options = chart.userOptions,
                                         container = chart.renderTo,
                                         w,
                                         html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
@@ -271,29 +314,30 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                         s3 = document.createElement('script'),
                                         s4 = document.createElement('script');
                                         s5 = document.createElement('link');
-                                      t = document.createTextNode('Highcharts.chart("containerChartsTS", ' + JSON.stringify(options) + ');');
-                                      s3.setAttribute('type', 'text/javascript');
-                                      s3.appendChild(t);
-                                      s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
-                                      s5.setAttribute('rel',"stylesheet");
-                                      s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-                                      s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
-                                      s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
-                                      w = window.open('', '_blank', "height=420,width=520");
+                                        t = document.createTextNode('Highcharts.chart("containerChartsTS", ' + JSON.stringify(options) + ');');
+                                        s3.setAttribute('type', 'text/javascript');
+                                        s3.appendChild(t);
+                                        s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
+                                        s5.setAttribute('rel',"stylesheet");
+                                        s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+                                        s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
+                                        s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
+                                        w = window.open('', '_blank', "height=420,width=520");
 
-                                      w.document.getElementsByTagName('head')[0].appendChild(s5);
-                                      w.document.getElementsByTagName('head')[0].appendChild(s4);
-                                      setTimeout(function() {
-                                        w.document.getElementsByTagName('head')[0].appendChild(s1);
-                                        w.document.body.innerHTML=html;
+                                        w.document.getElementsByTagName('head')[0].appendChild(s5);
+                                        w.document.getElementsByTagName('head')[0].appendChild(s4);
                                         setTimeout(function() {
-                                          w.document.getElementsByTagName('head')[0].appendChild(s2);
-                                          w.document.getElementsByTagName('body')[0].appendChild(s3);
-                                          w.document.getElementById('loader').style.display = 'none';
-                                          w.document.getElementById('containerChartsTS').style.display = "block";
+                                          w.document.getElementsByTagName('head')[0].appendChild(s1);
+                                          w.document.body.innerHTML=html;
+                                          setTimeout(function() {
+                                            w.document.getElementsByTagName('head')[0].appendChild(s2);
+                                            w.document.getElementsByTagName('body')[0].appendChild(s3);
+                                            w.document.getElementById('loader').style.display = 'none';
+                                            w.document.getElementById('containerChartsTS').style.display = "block";
 
-                                        }, 1500)
-                                      }, 300);
+                                          }, 1500)
+                                        }, 300);
+                                      } 
                                     }
                                   });
 
@@ -310,8 +354,21 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 var dataLink = '';
                             }
                             
-                        } else if(!currLayer.getSource().getParams().ncwmstwo && !mobile) {
-                            var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                        } else if(!currLayer.getSource().getParams().ncwmstwo) {
+                            if(mobile){
+                                showImgTS = function(url){
+                                    img1 = document.createElement('img');
+                                    img1.src= url;
+                                    img1.style.width = screen.width+"px";
+                                    document.getElementById("containerChartsTS").appendChild(img1);
+                                    document.getElementById("popup-content").innerHTML= "";
+                                    document.getElementById("popup").style.width = screen.width+"px";
+                                    document.getElementById("containerChartsTS").style.display = 'block';
+                                };
+                                var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > show </a><br>";
+                            } else {
+                                var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                            }
                         } else {
                             var dataLink = "";
                         }
