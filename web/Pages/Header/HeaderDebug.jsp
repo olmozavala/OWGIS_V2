@@ -9,7 +9,7 @@
 
 <!--External JS Debug -->
 <script src="./common/JS/vendor/debug/closure-lite.js"></script>
-<script src="./common/JS/vendor/minimized/ol.js"></script>
+<script src="./common/JS/vendor/minimized/ol3cesium.js"></script>
 
 <%@include file="ExternalJS.jsp" %>  
 
