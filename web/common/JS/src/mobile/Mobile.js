@@ -107,5 +107,12 @@ owgis.mobile.closePanels = function(){
 	if(mobile){
 		console.log("Closing panels...");
 		$(".ui-panel").panel("close");
-	}
+	
+                document.getElementById("containerChartsTS").innerHTML = "";
+                document.getElementById("containerChartsVP").innerHTML = "";
+                document.getElementById("containerChartsTS").style.display = 'none';
+                document.getElementById("containerChartsVP").style.display = 'none';
+                
+                document.getElementById("popup").style.width = "200px";
+        }
 }
