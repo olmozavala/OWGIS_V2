@@ -25,7 +25,12 @@
 		<div class="loader"></div>
 		<div id="popup" class="ol-popup">
 			<a href="#" id="popup-closer" class="ol-popup-closer"></a>
-			<div id="popup-content"></div>
+                        <div id="popup-content">
+                            
+                        </div>
+                        <!-- These divs are required for highcharts -->
+                        <div id="containerChartsVP" style="display:none;"></div>
+                        <div id="containerChartsTS" style="display:none;"></div>
 		</div>
 		
 		<%-- Contains the title of the layer and the div that hold the whole map --%>
