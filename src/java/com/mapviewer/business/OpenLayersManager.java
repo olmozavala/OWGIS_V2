@@ -291,7 +291,7 @@ public class OpenLayersManager {
 				layersScript += "\t\t extent: [\n" + actualLayer.getBbox().toString() +"],";
 			}
 			layersScript += "\t\t url: '"+ actualLayer.getServer() + "',\n"
-//				+ "\t\t crossOrigin: 'null',\n"
+				+ "\t\t crossOrigin: null,\n"
 					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "'";
 			
 			if (actualLayer.isncWMS()) {
