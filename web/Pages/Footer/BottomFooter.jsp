@@ -5,8 +5,6 @@
 --%>
 	
 <!-- Foot page --> 
-<div id="containerChartsVP" style="display:none;"></div>
-<div id="containerChartsTS" style="display:none;"></div>
 <div id="leftFooter" class="leftFoot">
 	&nbsp;
 	<a  href="#">

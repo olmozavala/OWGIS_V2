@@ -71,6 +71,9 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 					owgisMain();
 				});
 		</script>
+                <!-- These divs are required for highcharts -->
+                <div id="containerChartsVP" style="display:none;"></div>
+                <div id="containerChartsTS" style="display:none;"></div>
 			
     </body>
 </html>
