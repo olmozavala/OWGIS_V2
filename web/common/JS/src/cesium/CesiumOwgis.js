@@ -124,9 +124,9 @@ owgis.cesium.toogleCesium = function toogleCesium(){
             if(validateWebGL()){
 			$.getScript( CESIUM_BASE_URL+"Cesium.js")
 					.done(function( data, textStatus) {
-						if( typeof ocl !== 'undefined'){
+						//if( typeof ocl !== 'undefined'){
 							initCesium();
-				}else{
+				/*}else{
 					$.getScript("./common/JS/vendor/minimized/ol3cesium.js")
 							.done(function( data, textStatus) {
 								initCesium();
@@ -134,7 +134,7 @@ owgis.cesium.toogleCesium = function toogleCesium(){
 							.fail(function( jqxhr, settings, exception){
 								console.log("Fail to load ol3cesium.js: "+exception);
 						owgis.error.popover.create(owgis.error.texts._OL3CESIUM); });
-				}//Else
+				}//Else*/
 			})//Second done
 					.fail(function( jqxhr, settings, exception){
 						console.log("Fail to load Cesium.js: "+exception);
