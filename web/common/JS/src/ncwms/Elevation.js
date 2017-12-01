@@ -189,19 +189,25 @@ function changeElev(value)
 		//change the + sign in the menu
 		if(owgis.ncwms.zaxis.globcounter  === 0)
 			//getElementById('plusButtonElevation').disabled = true;
-			$(plusButtonElevation).hide();
+			//$(plusButtonElevation).hide();
+                        $(plusButtonElevation).addClass("disabled");
 		else
 			//getElementById('plusButtonElevation').disabled = false;
-			$(plusButtonElevation).show();
+			//$(plusButtonElevation).show();
+                        $(plusButtonElevation).removeClass("disabled");
 		
+               
 		//change the - sign in the menu
+                
 		if(owgis.ncwms.zaxis.globcounter  === array_len -1)
 			//getElementById('minusButtonElevation').disabled = true;
-			$(minusButtonElevation).hide();
+                        $(minusButtonElevation).addClass("disabled");
 		else
 			//getElementById('minusButtonElevation').disabled= false;
-			$(minusButtonElevation).show();
+			$(minusButtonElevation).removeClass("disabled");
+                
 	}else{
+        //if(mobile){
 		owgis.mobile.closePanels();
 	}
 	
