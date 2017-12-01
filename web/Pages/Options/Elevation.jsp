@@ -16,7 +16,7 @@ There is 3 options. Either '-' or '+' or click the button to choose the disired 
 	<span class="buttonStyle" id="elevationText"  onclick ="owgis.ncwms.zaxis.displayElevationSelector() " >
 		<fmt:message key="ncwms.depth" /></span>
 			
-	<a class="btn btn-default btn-xs " href="#" id="plusButtonElevation"
+	<a class="btn btn-default btn-xs disabled" href="#" id="plusButtonElevation"
 	   onclick="changeElevation('+');">
 		<span class="glyphicon glyphicon-plus"> </span>
 	</a>
