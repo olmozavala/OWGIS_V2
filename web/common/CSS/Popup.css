@@ -110,3 +110,48 @@ and open the template in the editor.
 /*.ol-popup-closer:after {
   content: "x";
 }*/
+
+.modal-header {
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+.modal-header button.close {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
+h5#modalLabelVertProf, h5#modalLabelTimeSeries {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+@media (max-width: 450px) {
+    .modal-dialog{
+        top: 0px;
+        position: fixed;
+        background-color: #ffffff;
+        z-index: 1050;
+            width: 100%;
+
+        height: 100%;
+    }
+    h5#modalLabelVertProf, h5#modalLabelTimeSeries {
+        font-size: 1rem;
+    }
+}
