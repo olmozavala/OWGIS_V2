@@ -58,6 +58,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 
                 if(currLayer.getSource().getParams().ncwmstwo){
                     var ajaxCan;
+                    var latlon;
                     $.ajax({
                         url: url,
                         async: false,
@@ -65,7 +66,10 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         success: function(data) {
 
                           ajaxCan = true;
-                          
+                          var templat = data.split('\n').slice(0,1)[0];
+                          var templon = data.split('\n').slice(0,2)[1];
+                          latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
+                                  
                           data = data.replace(/^.*null.*$/mg, "");
                           data = data.replace(/^\s*\n/gm, "");
                           
@@ -109,51 +113,8 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                               lineWidth: 1,
                               //color: '#c4392d'
                             }]
-                          }, function(chart) {
-
-                            showVertProf = function(){
-                                if(mobile){
-                                    //create highcharts inside popup
-                                    document.getElementById("popup-content").innerHTML= "";
-                                    document.getElementById("popup").style.width = screen.width+"px";
-                                    document.getElementById("containerChartsVP").style.width = screen.width+"px";
-                                    document.getElementById("containerChartsVP").style.display = 'block';
-                                } else {
-                                    //open a new window with the highchart
-                                    var options = chart.userOptions,
-                                    container = chart.renderTo,
-                                    w,
-                                    html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="display:none;min-width: 310px; height: 400px; margin: 0 auto"></div>',
-                                    s1 = document.createElement('script'),
-                                    s2 = document.createElement('script'),
-                                    s3 = document.createElement('script'),
-                                    s4 = document.createElement('script');
-                                    s5 = document.createElement('link');
-                                    t = document.createTextNode('Highcharts.chart("containerChartsVP", ' + JSON.stringify(options) + ');');
-                                    s3.setAttribute('type', 'text/javascript');
-                                    s3.appendChild(t);
-                                    s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
-                                    s5.setAttribute('rel',"stylesheet");
-                                    s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-                                    s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
-                                    s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
-                                    w = window.open('', '_blank', "height=420,width=520");
-
-                                    w.document.getElementsByTagName('head')[0].appendChild(s5);
-                                    w.document.getElementsByTagName('head')[0].appendChild(s4);
-                                    setTimeout(function() {
-                                      w.document.getElementsByTagName('head')[0].appendChild(s1);
-                                      w.document.body.innerHTML=html;
-                                      setTimeout(function() {
-                                        w.document.getElementsByTagName('head')[0].appendChild(s2);
-                                        w.document.getElementsByTagName('body')[0].appendChild(s3);
-                                        w.document.getElementById('loader').style.display = 'none';
-                                        w.document.getElementById('containerChartsVP').style.display = "block";
-                                      }, 3000)
-                                    }, 300);
-                                }
-                            }
-                          });
+                          }
+                        );
 
                         },
                         error: function(ex) {
@@ -164,7 +125,11 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                       });
                       
                       if(ajaxCan){
-                        var dataLink = "<b>Vertical profile: </b> <button id='newVerticalProfile' onclick='showVertProf()' class='btn btn-default btn-xs' > show </button><br>";
+                        document.getElementById("modalLabelVertProf").innerHTML = latlon;
+                        var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
+                        if(mobile){
+                            document.getElementById("containerChartsVP").style.display = 'block';
+                        }
                       } else {
                           var dataLink = "";
                       }
@@ -172,18 +137,25 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 else if(!layerDetails['ncwmstwo']){
                     if(mobile){
                                 showImgVP = function(url){
+                                    document.getElementById("containerChartsVP").innerHTML = "";
                                     img1 = document.createElement('img');
                                     img1.src= url;
-                                    img1.style.width = screen.width+"px";
+                                    img1.style.width = "100%";
                                     document.getElementById("containerChartsVP").appendChild(img1);
-                                    document.getElementById("popup-content").innerHTML= "";
-                                    document.getElementById("popup").style.width = screen.width+"px";
                                     document.getElementById("containerChartsVP").style.display = 'block';
+                                    $('#showVertProf').modal('toggle');
                                 };
                                 var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > show </a><br>";
-                            } else {
-                                var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
-                            }
+                    } else {
+                                //var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                                document.getElementById("containerChartsVP").innerHTML = "";
+                                img1 = document.createElement('img');
+                                img1.src= url;
+                                img1.style.width = "100%";
+                                document.getElementById("containerChartsVP").appendChild(img1);
+                                //document.getElementById("showVertProf").firstChild.style.width = "520px";
+                                var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
+                    }
                 }else {
                     var dataLink = "";
                 }
@@ -241,12 +213,17 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			}
 			if(currLayer.getSource().getParams().ncwmstwo){
                             var ajaxCan;
+                            var latlon;
                             $.ajax({
                                 url: url,
                                 async: false,
                                 cache: false,
                                 success: function(data) {
-                                    
+                                  
+                                  var templat = data.split('\n').slice(0,1)[0];
+                                  var templon = data.split('\n').slice(0,2)[1];
+                                  latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1,18);
+
                                   data = data.replace(/^.*null.*$/mg, "");
                                   data = data.replace(/^\s*\n/gm, "");
                                   ajaxCan = true;
@@ -295,51 +272,8 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       lineWidth: 1,
                                       //color: '#c4392d'
                                     }]
-                                  }, function(chart) {
-
-                                  showTimeSeries = function(){
-                                    if(mobile){
-                                        //create highcharts inside popup
-                                          document.getElementById("popup-content").innerHTML= "";
-                                          document.getElementById("popup").style.width = screen.width+"px";
-                                          document.getElementById("containerChartsTS").style.display = 'block';
-                                    } else {
-                                        //open a new window with the highchart
-                                        var options = chart.userOptions,
-                                        container = chart.renderTo,
-                                        w,
-                                        html = '<div class="loader" id="loader" style="display: block;"></div> <div id="' + container.id + '" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
-                                        s1 = document.createElement('script'),
-                                        s2 = document.createElement('script'),
-                                        s3 = document.createElement('script'),
-                                        s4 = document.createElement('script');
-                                        s5 = document.createElement('link');
-                                        t = document.createTextNode('Highcharts.chart("containerChartsTS", ' + JSON.stringify(options) + ');');
-                                        s3.setAttribute('type', 'text/javascript');
-                                        s3.appendChild(t);
-                                        s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
-                                        s5.setAttribute('rel',"stylesheet");
-                                        s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-                                        s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
-                                        s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
-                                        w = window.open('', '_blank', "height=420,width=520");
-
-                                        w.document.getElementsByTagName('head')[0].appendChild(s5);
-                                        w.document.getElementsByTagName('head')[0].appendChild(s4);
-                                        setTimeout(function() {
-                                          w.document.getElementsByTagName('head')[0].appendChild(s1);
-                                          w.document.body.innerHTML=html;
-                                          setTimeout(function() {
-                                            w.document.getElementsByTagName('head')[0].appendChild(s2);
-                                            w.document.getElementsByTagName('body')[0].appendChild(s3);
-                                            w.document.getElementById('loader').style.display = 'none';
-                                            w.document.getElementById('containerChartsTS').style.display = "block";
-
-                                          }, 1500)
-                                        }, 300);
-                                      } 
-                                    }
-                                  });
+                                  }
+                                );
 
                                 },
                                 error: function(ex) {
@@ -349,7 +283,12 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 }
                             });
                             if( ajaxCan ){
-                                var dataLink = "<b>Time series plot: </b> <button id='newTimeSeries' onclick='showTimeSeries()' class='btn btn-default btn-xs' > show </button><br>";
+                                document.getElementById("modalLabelTimeSeries").innerHTML = latlon;
+                                var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
+                                
+                                if(mobile){
+                                    document.getElementById("containerChartsTS").style.display = 'block';
+                                }
                             } else {
                                 var dataLink = '';
                             }
@@ -357,17 +296,24 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                         } else if(!currLayer.getSource().getParams().ncwmstwo) {
                             if(mobile){
                                 showImgTS = function(url){
+                                    document.getElementById("containerChartsTS").innerHTML = "";
                                     img1 = document.createElement('img');
                                     img1.src= url;
-                                    img1.style.width = screen.width+"px";
+                                    img1.style.width = "100%";
                                     document.getElementById("containerChartsTS").appendChild(img1);
-                                    document.getElementById("popup-content").innerHTML= "";
-                                    document.getElementById("popup").style.width = screen.width+"px";
                                     document.getElementById("containerChartsTS").style.display = 'block';
+                                    $('#showTimeSeries').modal('toggle');
                                 };
                                 var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > show </a><br>";
                             } else {
-                                var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                                //var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
+                                document.getElementById("containerChartsTS").innerHTML="";
+                                img1 = document.createElement('img');
+                                img1.src= url;
+                                img1.style.width = "100%";
+                                document.getElementById("containerChartsTS").appendChild(img1);
+                                //document.getElementById("showTimeSeries").firstChild.style.width = "520px";
+                                var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                             }
                         } else {
                             var dataLink = "";

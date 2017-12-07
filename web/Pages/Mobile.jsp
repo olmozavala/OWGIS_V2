@@ -29,8 +29,8 @@
                             
                         </div>
                         <!-- These divs are required for highcharts -->
-                        <div id="containerChartsVP" style="display:none;"></div>
-                        <div id="containerChartsTS" style="display:none;"></div>
+                        <!--<div id="containerChartsVP" style="display:none;"></div>
+                        <div id="containerChartsTS" style="display:none;"></div>-->
 		</div>
 		
 		<%-- Contains the title of the layer and the div that hold the whole map --%>
@@ -108,5 +108,34 @@
 		</script>
 
 		<div class="loadingMobile"></div>
+                
+                <!-- These divs are required for highcharts -->
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showVertProf" style="display: none;">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelVertProf"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div id="containerChartsVP" ></div>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showTimeSeries" style="display: none;">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelTimeSeries"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div id="containerChartsTS" ></div>
+                      </div>
+                    </div>
+                </div>
 	</body>
 </html>
