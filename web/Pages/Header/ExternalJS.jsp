@@ -16,19 +16,18 @@
 		<script src="./common/JS/vendor/minimized/jquery.mobile.min.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery.slidePanel.js"></script>
 		<script src="./common/JS/vendor/minimized/jquery_ui_datepicker/jquery-ui.min.js"></script>
-                <script src="./common/JS/vendor/minimized/highcharts.js"></script>
-                <script src="./common/JS/vendor/minimized/data.js"></script>
-                <script src="./common/JS/vendor/minimized/exporting.js"></script>
+                <script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
 		<script src="./common/JS/vendor/minimized/jquery-ui.min.js"></script>
 		<script> $.widget.bridge('uitooltip', $.ui.tooltip); </script>	
 		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
-                <script src="./common/JS/vendor/minimized/highcharts.js"></script>
-                <script src="./common/JS/vendor/minimized/data.js"></script>
-                <script src="./common/JS/vendor/minimized/exporting.js"></script>
 	</c:if>
         <c:if test='${language.equals("ES")}'>
             <script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script>
         </c:if>
+            
+        <script src="./common/JS/vendor/minimized/highcharts.js"></script>
+        <script src="./common/JS/vendor/minimized/data.js"></script>
+        <script src="./common/JS/vendor/minimized/exporting.js"></script>

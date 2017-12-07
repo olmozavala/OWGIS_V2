@@ -72,8 +72,33 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 				});
 		</script>
                 <!-- These divs are required for highcharts -->
-                <div id="containerChartsVP" style="display:none;"></div>
-                <div id="containerChartsTS" style="display:none;"></div>
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showVertProf">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelVertProf"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div id="containerChartsVP" ></div>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showTimeSeries">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabelTimeSeries"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        <div id="containerChartsTS" ></div>
+                      </div>
+                    </div>
+                </div>
 			
     </body>
 </html>
