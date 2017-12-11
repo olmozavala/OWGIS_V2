@@ -79,6 +79,17 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             document.getElementById("containerChartsVP").style.width = screen.width+"px";
                           }
                           
+                          if(typeof document.getElementById('modalVertProf') != "undefined"){
+                                lewidth= document.getElementById('modalVertProf').offsetWidth-30;
+                                leheight = document.getElementById('modalVertProf').offsetHeight-30-60;
+                                if(leheight == 0){
+                                    leheight = 400;
+                                }
+                          } else {
+                                lewidth=568;
+                                leheight=400;
+                          }
+                          
                           Highcharts.chart('containerChartsVP', {
                             title: {
                               text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
@@ -124,6 +135,28 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         }
                       });
                       
+                    $('.modal-content').resizable({
+                                //alsoResize: ".modal-dialog",
+                                minHeight: 300,
+                                minWidth: 500,
+                                resize: function( event, ui ) {
+                                    if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
+                                        $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+                                    }
+                                    if (typeof $("#containerChartsTS").highcharts() != 'undefined'){
+                                        $("#containerChartsTS").highcharts().setSize(document.getElementById('modalTimeSeries').offsetWidth-30, document.getElementById('modalTimeSeries').offsetHeight-60-30, doAnimation = true);
+                                    }
+                                }
+                    });
+                        
+                    $('.modal-dialog').draggable();
+                        
+                    /*$('#showVertProf').on('show.bs.modal', function () {
+                       $(this).find('.modal-body').css({
+                            'max-height':'100%'
+                        });
+                    });*/
+
                       if(ajaxCan){
                         document.getElementById("modalLabelVertProf").innerHTML = latlon;
                         var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
@@ -238,8 +271,21 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                   if(mobile){
                                       document.getElementById("containerChartsTS").style.width = screen.width+"px";
                                   }
+                                  
+                                  if(typeof document.getElementById('modalTimeSeries') != "undefined"){
+                                      lewidth= document.getElementById('modalTimeSeries').offsetWidth-30;
+                                      leheight = document.getElementById('modalTimeSeries').offsetHeight-30-60;
+                                      if(leheight == 0){
+                                          leheight = 400;
+                                      }
+                                  } else {
+                                      lewidth=568;
+                                      leheight=400;
+                                  }
 
                                   Highcharts.chart('containerChartsTS', {
+                                    width:lewidth,
+                                    height:leheight,
                                     title: {
                                       text: 'Time Series'
                                     },
@@ -282,10 +328,32 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                   console.log('NOT!');
                                 }
                             });
+                            
+                            $('.modal-content').resizable({
+                                //alsoResize: ".modal-dialog",
+                                minHeight: 300,
+                                minWidth: 500,
+                                resize: function( event, ui ) {
+                                    if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
+                                        $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+                                    }
+                                    if (typeof $("#containerChartsTS").highcharts() != 'undefined'){
+                                        $("#containerChartsTS").highcharts().setSize(document.getElementById('modalTimeSeries').offsetWidth-30, document.getElementById('modalTimeSeries').offsetHeight-60-30, doAnimation = true);
+                                    }
+                                }
+                            });
+
+                            $('.modal-dialog').draggable();
+
+                            /*$('#showTimeSeries').on('show.bs.modal', function () {
+                               $(this).find('.modal-body').css({
+                                    'max-height':'100%'
+                                });
+                            });
+                            */
                             if( ajaxCan ){
                                 document.getElementById("modalLabelTimeSeries").innerHTML = latlon;
                                 var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
-                                
                                 if(mobile){
                                     document.getElementById("containerChartsTS").style.display = 'block';
                                 }
