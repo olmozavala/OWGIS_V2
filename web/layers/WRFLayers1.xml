@@ -4,12 +4,15 @@
 		<Menu ID="Dom1" EN="Mexico" ES="República Mexicana"/>
 		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de México"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento" />
-		<Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
+                <Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
 		<Menu ID="Vto250hP" EN="Wind in 250 hPa" ES="Viento en 250 hPa"/>
                 <Menu ID="Vto500hP" EN="Wind in 500 hPa" ES="Viento en 500 hPa"/>
 		<Menu ID="Vto700hP" EN="Wind in 700 hPa" ES="Viento en 700 hPa"/>
 		<Menu ID="Vto850hP" EN="Wind in 850 hPa" ES="Viento en 850 hPa"/>
+		<Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
 		<Menu ID="Temp2" EN="Temperature" ES="Temperatura a 2 metros"/>
+		<Menu ID="Percentil" EN="Warnings" ES="Alerta horaria"/>
+		<Menu ID="PercentilT" EN="Warnings" ES="Alerta"/>
 		<Menu ID="Prec" EN="Precipitation" ES="Precipitación"/>
 		<Menu ID="Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación acumulada cada 3 horas"/>
 		<Menu ID="Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación acumulada cada 6 horas"/> 
@@ -42,7 +45,10 @@
         <!-- Dominio 1 -->
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
             
-            <layer Menu="Dom1,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom1/T2C" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom1,Temp,Percentil" EN="Temperature Warnings" ES="Alertas de temperatura horaria" style="default-scalar" palette="percentiles" name="t2_dom1_perc/T2" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom1,Temp,PercentilT" EN="Temperature Warnings" ES="Alertas de temperatura total" style="default-scalar" palette="percentiles" name="t2_dom1_perc/T2A" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent" />
+
+            <layer Menu="Dom1,Temp,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom1/T2C" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" />
             
             <layer Menu="Dom1,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECH"  mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" />
 
@@ -51,6 +57,13 @@
             <layer Menu="Dom1,Prec,Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación Acumulada cada 3 horas." style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECA3" mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" />
 
             <layer Menu="Dom1,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="precipitacionGrad" name="wrf_Dom1/PRECA6"  mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" />
+            
+            <layer Menu="Dom1,Viento,Percentil" EN="Warnings" ES="Alerta de viento" mincolor="-3" maxcolor="3" palette="percentiles"
+                    style="default-scalar" name="viento_dom1_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent"
+            />
+            <layer Menu="Dom1,Viento,PercentilT" EN="Warnings" ES="Alerta de viento"  mincolor="-3" maxcolor="3" palette="percentiles"
+                    style="default-scalar" name="viento_dom1_perc/VIENTOA" belowMinColor="transparent" aboveMaxColor="transparent"
+            />
             
             <layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="250"
                     style="default-scalar" palette="wind2" name="wrf_Dom1/Uat10:Vat10-mag"
@@ -88,8 +101,10 @@
                 
         <!-- Dominio 2 -->
         <MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
-                
-            <layer Menu="Dom2,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom2/T2C" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom2,Temp,Percentil" EN="Temperature Warnings" ES="Alertas de temperatura horaria" style="default-scalar" palette="percentiles" name="t2_dom2_perc/T2" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom2,Temp,PercentilT" EN="Temperature Warnings" ES="Alertas de temperatura total" style="default-scalar" palette="percentiles" name="t2_dom2_perc/T2A" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent" />
+    
+            <layer Menu="Dom2,Temp,Temp2" EN="Temperature" ES="Temperatura a 2 metros" style="default-scalar" palette="temperatura" name="wrf_Dom2/T2C" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" />
             
             <layer Menu="Dom2,Prec,PrecHor" EN="Hourly Precipitation" ES="Precipitación Horaria" style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECH" aboveMaxColor="transparent" />
 
@@ -99,6 +114,12 @@
 
             <layer Menu="Dom2,Prec,Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación Acumulada cada 6 horas." style="default-scalar" palette="precipitacionGrad"  mincolor="1" belowMinColor="transparent" maxcolor="500" name="wrf_Dom2/PRECA6" aboveMaxColor="transparent" />
             
+            <layer Menu="Dom2,Viento,Percentil" EN="Warnings" ES="Alerta de viento" mincolor="-3" maxcolor="3" palette="percentiles"
+                    style="default-scalar" name="viento_dom2_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent"
+            />
+            <layer Menu="Dom2,Viento,PercentilT" EN="Warnings" ES="Alerta de viento"  mincolor="-3" maxcolor="3" palette="percentiles"
+                    style="default-scalar" name="viento_dom2_perc/VIENTOA" belowMinColor="transparent" aboveMaxColor="transparent"
+            />
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros" 
 			style="default-scalar" palette="wind2" ncWMStwo="true" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
 			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
