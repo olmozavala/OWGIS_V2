@@ -123,26 +123,27 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         }
                       });
                       
-                    $('#modalVertProf').resizable({
-                                //alsoResize: ".modal-dialog",
-                                minHeight: 500,
-                                minWidth: 600,
-                                resize: function( event, ui ) {
-                                    if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
-                                        $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+                    if(!mobile && ajaxCan){
+                        $('#modalVertProf').resizable({
+                                    //alsoResize: ".modal-dialog",
+                                    minHeight: 500,
+                                    minWidth: 600,
+                                    resize: function( event, ui ) {
+                                        if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
+                                            $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+                                        }
                                     }
-                                }
-                    });
-                        
-                    $('.modal-dialog').draggable();
-                        
-                    $('#showVertProf').on('show.bs.modal', function () {
-                       $(this).find('.modal-body').css({
-                            'max-height':'100%'
                         });
-                    });
 
-                      if(ajaxCan){
+                        $('.modal-dialog').draggable();
+
+                        $('#showVertProf').on('show.bs.modal', function () {
+                           $(this).find('.modal-body').css({
+                                'max-height':'100%'
+                            });
+                        });
+                    }
+                    if(ajaxCan){
                         document.getElementById("modalLabelVertProf").innerHTML = latlon;
                         var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
                         if(mobile){
@@ -298,25 +299,26 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 }
                             });
                             
-                            $('#modalTimeSeries').resizable({
-                                //alsoResize: ".modal-dialog",
-                                minHeight: 500,
-                                minWidth: 600,
-                                resize: function( event, ui ) {
-                                    if (typeof $("#containerChartsTS").highcharts() != 'undefined'){
-                                        $("#containerChartsTS").highcharts().setSize(document.getElementById('modalTimeSeries').offsetWidth-30, document.getElementById('modalTimeSeries').offsetHeight-60-30, doAnimation = true);
+                            if(!mobile && ajaxCan){
+                                $('#modalTimeSeries').resizable({
+                                    //alsoResize: ".modal-dialog",
+                                    minHeight: 500,
+                                    minWidth: 600,
+                                    resize: function( event, ui ) {
+                                        if (typeof $("#containerChartsTS").highcharts() != 'undefined'){
+                                            $("#containerChartsTS").highcharts().setSize(document.getElementById('modalTimeSeries').offsetWidth-30, document.getElementById('modalTimeSeries').offsetHeight-60-30, doAnimation = true);
+                                        }
                                     }
-                                }
-                            });
-
-                            $('.modal-dialog').draggable();
-
-                            $('#showTimeSeries').on('show.bs.modal', function () {
-                               $(this).find('.modal-body').css({
-                                    'max-height':'100%'
                                 });
-                            });
-                            
+
+                                $('.modal-dialog').draggable();
+
+                                $('#showTimeSeries').on('show.bs.modal', function () {
+                                   $(this).find('.modal-body').css({
+                                        'max-height':'100%'
+                                    });
+                                });
+                            }
                             if( ajaxCan ){
                                 document.getElementById("modalLabelTimeSeries").innerHTML = latlon;
                                 var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
