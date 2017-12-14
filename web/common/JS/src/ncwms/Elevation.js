@@ -79,19 +79,20 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
 
         inner_text += "<tr><td>";
         while(i < elev_counter && iCurrPage < totByPage)
-        {	
+        {
+            txtVal =  parseFloat(Math.round(parseFloat(layerDetails.zaxis.values[i]) * 100) / 100).toFixed(2);
             //when the current height is reached(index) then make the radio button checked
             if(i === owgis.ncwms.zaxis.globcounter)
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" 
-                + layerDetails.zaxis.values[i] + "' checked> " + layerDetails.zaxis.values[i] + 
+                + layerDetails.zaxis.values[i] + "' checked> " + txtVal + 
                 "&nbsp;&nbsp; " + layerDetails.zaxis.units + "<BR/>";
                 selectedLink = page;
             }
             else//all other are just printed without being checked. 
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" + 
-                layerDetails.zaxis.values[i] + "'> " + layerDetails.zaxis.values[i] + 
+                layerDetails.zaxis.values[i] + "'> " + txtVal + 
                 "&nbsp;&nbsp;" + layerDetails.zaxis.units +"<BR/>";
             }
             i++;
