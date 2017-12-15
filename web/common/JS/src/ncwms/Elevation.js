@@ -79,19 +79,20 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
 
         inner_text += "<tr><td>";
         while(i < elev_counter && iCurrPage < totByPage)
-        {	
+        {
+            txtVal =  parseFloat(Math.round(parseFloat(layerDetails.zaxis.values[i]) * 100) / 100).toFixed(2);
             //when the current height is reached(index) then make the radio button checked
             if(i === owgis.ncwms.zaxis.globcounter)
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" 
-                + layerDetails.zaxis.values[i] + "' checked> " + layerDetails.zaxis.values[i] + 
+                + layerDetails.zaxis.values[i] + "' checked> " + txtVal + 
                 "&nbsp;&nbsp; " + layerDetails.zaxis.units + "<BR/>";
                 selectedLink = page;
             }
             else//all other are just printed without being checked. 
             {
                 inner_text += "<input id='zaxisCheckbox"+i+"' onclick='changeElev(" + i + ")' type='radio' name='elev_select' value='" + 
-                layerDetails.zaxis.values[i] + "'> " + layerDetails.zaxis.values[i] + 
+                layerDetails.zaxis.values[i] + "'> " + txtVal + 
                 "&nbsp;&nbsp;" + layerDetails.zaxis.units +"<BR/>";
             }
             i++;
@@ -189,19 +190,25 @@ function changeElev(value)
 		//change the + sign in the menu
 		if(owgis.ncwms.zaxis.globcounter  === 0)
 			//getElementById('plusButtonElevation').disabled = true;
-			$(plusButtonElevation).hide();
+			//$(plusButtonElevation).hide();
+                        $(plusButtonElevation).addClass("disabled");
 		else
 			//getElementById('plusButtonElevation').disabled = false;
-			$(plusButtonElevation).show();
+			//$(plusButtonElevation).show();
+                        $(plusButtonElevation).removeClass("disabled");
 		
+               
 		//change the - sign in the menu
+                
 		if(owgis.ncwms.zaxis.globcounter  === array_len -1)
 			//getElementById('minusButtonElevation').disabled = true;
-			$(minusButtonElevation).hide();
+                        $(minusButtonElevation).addClass("disabled");
 		else
 			//getElementById('minusButtonElevation').disabled= false;
-			$(minusButtonElevation).show();
+			$(minusButtonElevation).removeClass("disabled");
+                
 	}else{
+        //if(mobile){
 		owgis.mobile.closePanels();
 	}
 	

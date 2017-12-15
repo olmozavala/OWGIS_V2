@@ -370,6 +370,8 @@ function showPalettes()
  * @param amount - amount to change or update to 
  */
 function increaseMaxColorRange(amount){
+    if( (layerDetails.scaleRange[0] < 1 && layerDetails.scaleRange[0] > 0) || (layerDetails.scaleRange[1] < 1 && layerDetails.scaleRange[1] > 0) ){ amount = amount*0.1; } else { amount = amount*1; }
+
     $('#maxPal').val( eval(parseFloat($('#maxPal').val()).toPrecision(4)) + parseFloat(amount));
     UpdatePalette(mappalette);
 }
@@ -379,6 +381,8 @@ function increaseMaxColorRange(amount){
  * @param amount - amount to change or update to 
  */
 function decreaseMinColorRange(amount){
+    if( (layerDetails.scaleRange[0] < 1 && layerDetails.scaleRange[0] > 0) || (layerDetails.scaleRange[1] < 1 && layerDetails.scaleRange[1] > 0) ){ amount = amount*0.1; } else { amount = amount*1; }
+
     $('#minPal').val( eval(parseFloat($('#minPal').val()).toPrecision(4)) - parseFloat(amount));
     UpdatePalette(mappalette);
 }
