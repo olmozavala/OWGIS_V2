@@ -156,3 +156,6 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
     }
 }
 
+.modal-header {
+    cursor: move;
+}
