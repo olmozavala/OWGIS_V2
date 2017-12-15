@@ -18,7 +18,9 @@ var isOnlyClick = false;
 
 //zoom function vars
 var zoomLock = 0;
-var zoomDuration = 250;//in milisecons
+var zoomDuration = 300;//in milisecons
+var center = [-106.9468908519838, 20.069659432985887];//default center
+var mouseMove = 0;
 
 //Creates 100 layer objects
 for (var i = 0; i < 100; i++) {
@@ -126,7 +128,7 @@ function initOl3(){
 	//Se configura para correcta visualizacion en el movil
         if(mobile) {
             mapConfig.zoom = 0;
-            defCenter = [-106.9468908519838, 20.069659432985887];//default center
+            defCenter = center;//default center
         }
 	ol3view = new ol.View({
 		projection: _map_projection,
@@ -177,15 +179,31 @@ function initOl3(){
         zoom = function(map, zoom_in, coordinate) {
             var view = map.getView();
             var delta = zoom_in < 1 ? 1 : -1;
-            if(zoomLock || view.getZoom() + delta < 0) {
+            if(zoomLock) {
                 console.log("wait to load");
+                owgis.interf.loadingallscreen(true);
+                return;
+            }
+            if(view.getZoom() + delta < 0) {
+                console.log("min zoom");
                 return;
             }
             zoomLock = 1;
             newResolution = view.getResolutionForZoom(view.getZoom() + delta);
-            view.animate({zoom: view.getZoom() + delta, resolution: newResolution, center: (coordinate - view.getCenter()) / 2, duration: zoomDuration});
+            if(mouseMove) {
+                //var x = 3 * (coordinate[0] - view.getCenter()[0]) / 4;
+                //var y = 3 * (coordinate[1] - view.getCenter()[1]) / 4;
+                center = view.getCenter();//[parseInt(center[0] + x), parseInt(center[1] + y)];
+                //console.log("aplicando nuevo centro");
+            }
+            view.animate({zoom: view.getZoom() + delta, resolution: newResolution, center: center, duration: zoomDuration, easing: ol.easing.linear});
             map.render();
         };
+
+        map.on('pointermove', function () {
+            mouseMove = 1;
+            center = map.getView().getCenter();
+        });
 
         map.on('postrender', function (evt) {
             if (!evt.frameState)
@@ -207,7 +225,9 @@ function initOl3(){
                 */
                $("body").css("cursor", "default");
             }
+            mouseMove = 0;
             zoomLock = 0;//unlock zoom
+            owgis.interf.loadingallscreen(false);
         });
 
         map.set('ready', false);

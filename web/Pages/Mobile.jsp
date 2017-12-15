@@ -22,9 +22,11 @@
 		<title></title>
 	</head>
 	<body>
-		<div class="loader"></div>
+            <div class="loader"><!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw fa-6x"></i>--></div>
 		<div id="popup" class="ol-popup">
-			<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <a href="#" id="popup-closer" class="ol-popup-closer">
+                        <i class="fa fa-remove"></i>
+                    </a>
                         <div id="popup-content">
                             
                         </div>

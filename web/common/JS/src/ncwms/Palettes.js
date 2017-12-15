@@ -193,7 +193,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
 
-		var barWidth = Math.ceil($(window).width()*.4);
+		var barWidth = !mobile ? Math.ceil($(window).width()*.4) : Math.ceil($(window).width()*.85);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
 
