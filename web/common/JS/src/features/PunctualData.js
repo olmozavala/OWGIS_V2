@@ -130,6 +130,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                     minWidth: 600,
                                     resize: function( event, ui ) {
                                         if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
+                                            $('#modalVertProf').center();
                                             $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
                                         }
                                     }
@@ -306,6 +307,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     minWidth: 600,
                                     resize: function( event, ui ) {
                                         if (typeof $("#containerChartsTS").highcharts() != 'undefined'){
+                                            $('#modalTimeSeries').center();
                                             $("#containerChartsTS").highcharts().setSize(document.getElementById('modalTimeSeries').offsetWidth-30, document.getElementById('modalTimeSeries').offsetHeight-60-30, doAnimation = true);
                                         }
                                     }
@@ -358,4 +360,11 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			$("#popup-content").html(currPopupText);
 		}//Only for ncwms layers
 	}
+}
+
+jQuery.fn.center = function() {
+    var container = $(window);
+    //var top = -this.height() / 2;
+    var left = -this.width() / 2;
+    return this.css('position', 'absolute').css({ 'margin-left': left + 'px', 'left': '50%' }); //, 'top': '50%'
 }
