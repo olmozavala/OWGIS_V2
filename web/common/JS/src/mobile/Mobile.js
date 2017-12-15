@@ -1,3 +1,5 @@
+/* global owgis */
+
 goog.provide('owgis.mobile');
 
 goog.require('owgis.ol3.popup');
@@ -7,13 +9,18 @@ var isDrawerOpen=false;
 var reduceNumberStreamLinesBy = 2;// n times less particles than non cesium
 
 owgis.mobile.openDrawer = function openDrawer(){
-	console.log("Opening Drawer");
+        console.log("Opening Drawer");
 	$("#drawer").animate({
 		bottom: 0
 	}, 200);
 
 	$("#drawer-pull").attr('class', 'flipped');
 	isDrawerOpen =true;
+        var palette = document.getElementById("canvas-palette-horbar");
+        if(palette) {
+            palette.classList.remove("transformV");
+            palette.classList.add("transformH");
+        }
 }
 
 /**
@@ -28,12 +35,18 @@ function onTooglePanelEvents(){
 }
 
 owgis.mobile.closeDrawer = function closeDrawer(){
-	console.log("Closing Drawer");
+        console.log("Closing Drawer");
 	$("#drawer").animate({
 				bottom: -92
 			}, 200);
 	$("#drawer-pull").attr('class', '');
 	isDrawerOpen =false;
+        var palette = document.getElementById("canvas-palette-horbar");
+        if(palette) {
+            palette.classList.remove("transformH");
+            palette.classList.add("transformV");
+        }
+			
 }
 
 owgis.mobile.initMobile = function initMobile(){
@@ -66,10 +79,10 @@ owgis.mobile.initMobile = function initMobile(){
 	 * Bottom drawer for Animation controls
 	 */
 	$("div#drawer-pull").bind('click', function(e){
-		if (!isDrawerOpen){ 
-			owgis.mobile.openDrawer(); 
+                if (!isDrawerOpen){ 
+			owgis.mobile.openDrawer();
 		} else{ 
-			owgis.mobile.closeDrawer(); 
+                        owgis.mobile.closeDrawer(); 
 		}
 	});
 	
@@ -116,3 +129,21 @@ owgis.mobile.closePanels = function(){
                 document.getElementById("popup").style.width = "200px";
         }
 }
+
+/*
+ * set a drop function for language menu
+ */
+$(document).ready(function() { 
+    var dropMenu = document.getElementById("selectedLanguage");
+    dropMenu.addEventListener("click", function() {
+    var list = document.getElementById("langDropDown");
+        if(this.getAttribute("aria-expanded") === "false") {
+            list.classList.add("openLangDropDown");
+            this.setAttribute("aria-expanded", "true");
+        } else {
+            list.classList.remove("openLangDropDown");
+            this.setAttribute("aria-expanded", "false");
+        }
+    }, false);
+    owgis.mobile.closeDrawer();
+});

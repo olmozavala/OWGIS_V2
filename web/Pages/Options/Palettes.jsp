@@ -9,11 +9,12 @@
 		<table id="palettesTable"></table>
 	</li>
 	<li>
-		<a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" 
-		   id="defaultColorRangeButton"
-				  onclick="DefaultPalette();"> Default</a>
-
+            <i id="paletteMobilPrev" href="javascript:prevPage()" class="fa fa-chevron-left" aria-hidden="true"></i></a>
+            <i id="paletteMobilNext" href="javascript:nextPage()" class="fa fa-chevron-right" aria-hidden="true"></i></a>
 	</li>
+        <li>
+            <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" id="defaultColorRangeButton" onclick="DefaultPalette();"> Default</a>
+        </li>
 </c:if>
 <c:if test='${!mobile}'>
 	<div class="row defRowSpace">
@@ -30,3 +31,6 @@
 		</div>	
 	</div>
 </c:if>
+<script type="text/javascript">
+    javascript:nextPage();
+</script>

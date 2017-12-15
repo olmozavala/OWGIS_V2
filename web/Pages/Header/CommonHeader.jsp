@@ -31,6 +31,7 @@
 		<link href="./common/CSS/MobileSCSS/MPanels.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/MobileSCSS/MElevation.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/vendor/dd.css" rel="stylesheet" type="text/css"/>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
