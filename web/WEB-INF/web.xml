@@ -6,7 +6,7 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/Pages/Error/DefaultErrorPage.jsp</location>
     </error-page>
-    <filter>
+    <!--filter>
         <filter-name>monitoring</filter-name>
         <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
         <async-supported>true</async-supported>
@@ -19,7 +19,7 @@
     </filter-mapping>
     <listener>
 	<listener-class>net.bull.javamelody.SessionListener</listener-class>
-    </listener>
+    </listener-->
     <servlet>
         <servlet-name>MapViewerServlet</servlet-name>
         <servlet-class>com.mapviewer.business.servlets.MapViewerServlet</servlet-class>
