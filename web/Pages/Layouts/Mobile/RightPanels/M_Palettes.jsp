@@ -22,6 +22,6 @@
         <script type="text/javascript">
             var divPaletteHorbar = document.getElementById("div-palette-horbar");
             var windHeight = $(window).height();
-            divPaletteHorbar.style.top = (windHeight - 40) + "px";
+            divPaletteHorbar.style.top = (windHeight - 30) + "px";
         </script>
 </c:if>
