@@ -51,14 +51,15 @@
 <c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
-		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > Palettes
+		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > 
+                        <fmt:message key='mobile.palettes'/>
 		</a>
 	</li>
 	<%-- Calendars --%>
 	<c:if test='${multipleDates}'>
 		<li>
 			<a class="ui-btn ui-icon-calendar ui-btn-icon-left " href="#mobPanelCalendars" >
-				Calendars
+				<fmt:message key='mobile.animations'/>
 			</a>
 		</li>
 	</c:if>
@@ -69,7 +70,7 @@
 	<a class="ui-btn ui-icon-globe ui-btn-icon-left currentsParent " 
 		onclick="owgis.mobile.closePanels();owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
 	   href="#">
-		3D View
+		<fmt:message key='mobile.3d'/>
 	</a>
 </li>
 
@@ -81,7 +82,7 @@
 </li>
 
 </ul>
-<!-- languajes movil -->
+<!-- languages Mobil -->
 <div data-type="horizontal" data-role="controlgroup" class="">					
     <button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 5px; height: 25px">
     <!--It gets initialized by languages.js-->
@@ -90,54 +91,3 @@
     <!--It gets initialized by languages.js-->
     </ul>
 </div>
-
-<!-- functions and styles for drop menu, because jquery movil don't work -->
-<script type="text/javascript">
-    var dropMenu = document.getElementById("selectedLanguage");
-    dropMenu.addEventListener("click", function() {
-        var list = document.getElementById("langDropDown");
-        if(this.getAttribute("aria-expanded") == "false") {
-            list.classList.add("openLangDropDown");
-            this.setAttribute("aria-expanded", "true");
-        } else {
-            list.classList.remove("openLangDropDown");
-            this.setAttribute("aria-expanded", "false");
-        }
-    }, false);
-</script>
-<style type="text/css">
-    #selectedLanguage {
-        border: none;
-    }
-
-    #langDropDown {
-        position: relative;
-        left: -22px;
-        top: 10px;
-        max-height: 0px;
-        border: none;
-        text-align: left;
-        font-size: 0.8em;
-    }
-
-    #langDropDown a {
-        display: block;
-    }
-
-    #langDropDown img {
-        display: inline-block;
-    }
-
-    #langDropDown img, #langDropDown a {
-        max-height: 0px;
-        overflow: hidden;
-        -webkit-transition: all 1s; /* Safari */
-        transition: all 1s;
-        margin: 0;
-    }
-
-    .openLangDropDown img, .openLangDropDown a {
-        max-height: 40px !important;
-        overflow: visible !important;
-    }
-</style>
