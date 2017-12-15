@@ -51,14 +51,15 @@
 <c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
-		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > Palettes
+		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > 
+                        <fmt:message key='mobile.palettes'/>
 		</a>
 	</li>
 	<%-- Calendars --%>
 	<c:if test='${multipleDates}'>
 		<li>
 			<a class="ui-btn ui-icon-calendar ui-btn-icon-left " href="#mobPanelCalendars" >
-				Calendars
+				<fmt:message key='mobile.animations'/>
 			</a>
 		</li>
 	</c:if>
@@ -69,7 +70,7 @@
 	<a class="ui-btn ui-icon-globe ui-btn-icon-left currentsParent " 
 		onclick="owgis.mobile.closePanels();owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
 	   href="#">
-		3D View
+		<fmt:message key='mobile.3d'/>
 	</a>
 </li>
 
@@ -81,3 +82,12 @@
 </li>
 
 </ul>
+<!-- languages Mobil -->
+<div data-type="horizontal" data-role="controlgroup" class="">					
+    <button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 5px; height: 25px">
+    <!--It gets initialized by languages.js-->
+    </button>
+    <ul id="langDropDown" class="dropdown-menu" role="menu">
+    <!--It gets initialized by languages.js-->
+    </ul>
+</div>

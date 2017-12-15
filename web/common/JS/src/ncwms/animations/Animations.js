@@ -267,6 +267,11 @@ function updateAnimationStatus(newStatus){
 			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(false);//Play the currents animation
 			}
+                        var palette = document.getElementById("canvas-palette-horbar");
+                        if(palette) {
+                            palette.classList.remove("transformH");
+                            palette.classList.add("transformV");
+                        }
 			break;
 		case owgis.ncwms.animation.status.paused: 
 			//Pause the currents animation
