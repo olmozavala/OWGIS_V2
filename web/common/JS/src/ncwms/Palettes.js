@@ -190,8 +190,8 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 	if(layerDetails['ncwmstwo']){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
-                //console.log('mmmmmmmmmmm......');
-		var barWidth = Math.ceil($(window).width()*.4);
+
+		var barWidth = !mobile ? Math.ceil($(window).width()*.4) : Math.ceil($(window).width()*.85);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
 
