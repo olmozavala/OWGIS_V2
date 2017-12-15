@@ -88,3 +88,158 @@ html {
 .transect-slider .ui-slider-switch {
   width: 10em;
 }
+
+
+/* Add movil css */
+
+/* Language custom css */
+#selectedLanguage {
+    border: none;
+}
+
+#langDropDown {
+    position: relative;
+    left: -22px;
+    max-height: 0px;
+    border: none;
+    text-align: left;
+    font-size: 0.8em;
+    width: 62px;
+    top: 10px;
+}
+
+#langDropDown :first-child {
+    margin-bottom: 13px;
+}
+
+#langDropDown :first-child>a{
+    width: 65px;
+}
+
+
+#langDropDown li {
+    height: 28px !important;
+    width: 65px;
+    margin-bottom: 2px;
+}
+
+#langDropDown img, #langDropDown a {
+    display: inline-block;
+    max-height: 0px;
+    overflow: hidden;
+    -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;
+    margin: 0;
+}
+
+.openLangDropDown img, .openLangDropDown a {
+    max-height: 40px !important;
+    overflow: visible !important;
+}
+
+/*  Top menu */
+#home>#header {
+    background: rgba(215, 255, 255, 0.3);
+    box-shadow: 2px 0px 5px rgba(88,88,88,0.2);
+    z-index: 99;
+}
+
+#home>#header a {
+    background: rgba(3, 3, 3, 0.5);
+    box-shadow: 1px 1px 1px #000000;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    margin-top: -2px;
+}
+
+/* main layer map set in all page*/
+#home .ui-content {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    top: -41px;
+    left: 0;
+}
+
+/* left menu css */
+#baseLayersData [id^="dropDownLevels"][id$="button"] {
+    background-color: rgba(255, 255, 255, 0.4);
+    text-shadow: 0 1px 0 #000;
+    color: black;
+    min-width: 100px;
+    max-width: 140px;
+    margin-left: -8px;
+    text-align: center;
+}
+
+#baseLayersData .mainMenu {
+    color: white;
+    background-color: transparent;
+    font-weight: 500;
+}
+
+#mobPanelLayers {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1 !important;
+}
+
+#mainMenuOption {
+    color: black;
+}
+
+/* hidden scale */
+.ol-scale-line-inner, .ol-scale-line {
+    display: none;
+}
+
+/* transform controls*/
+.transformH {
+    transform: matrix(0,-1,1,0,-230,-270);
+    -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;
+}
+
+.transformV {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;
+}
+
+/*palettes control*/
+#paletteMobilPrevNext {
+    list-style: none outside none;
+}
+
+#paletteMobilPrev {
+    display: inline-block;
+    left: 10px;
+    float: left;
+    padding: 10px;
+}
+
+#paletteMobilNext {
+    display: inline-block;
+    right: 10px;
+    float: right;
+    padding: 10px;
+}
+
+#paletteMobilPrev:hover, #paletteMobilNext:hover {
+    cursor: pointer;
+}
+
+/*change loader
+.loader {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.center {
+    margin: -25%;
+    width: 150px;
+    height: 150px;
+}
+
+.center i {
+    font-size: 200px;
+    margin: 50%;
+}*/
