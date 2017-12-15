@@ -106,11 +106,6 @@ and open the template in the editor.
   right: 8px;
 }
 
-/* line 60, ../scss/Popup.scss */
-.ol-popup-closer:after {
-  content: "x";
-}
-
 .modal-header {
     display: flex;
     -ms-flex-align: start;
