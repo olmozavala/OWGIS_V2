@@ -167,6 +167,7 @@ public class OpenLayersManager {
 		int layerCount = 0;
 		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+= 
+                "\t\t if(!mobile){document.getElementById('map').style.cursor = 'progress';}"+
 				"\t\t if(mobile){owgis.mobile.closePanels();"
 				+ "\t\t\t owgis.interf.loadingatmap(true);}\n" +
 				"\t\t var coordinate = evt.coordinate;\n" +
