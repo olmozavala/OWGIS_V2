@@ -193,11 +193,6 @@ function initOl3(){
             var ready = numInFlightTiles === 0 && numHeldTiles === 0;
             if (map.get('ready') !== ready){
                 map.set('ready', ready);
-                
-                /*map.addInteraction(new ol.interaction.MouseWheelZoom({
-                    constrainResolution: true, duration: 300, timeout: 100 // force zooming to a integer zoom
-                }));
-                */
                $("body").css("cursor", "default");
             }
             zoomLock = 0;//unlock zoom
@@ -234,13 +229,13 @@ function detectMapLayersStatus(){
 }
 
 owgis.ol3.positionMap = function(){
-	// --------------- Map visualization and hover texts
-	if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-	if( localStorage.map_center!== undefined){
-		var strCenter = localStorage.map_center.split(",")
-		var lat = Number(strCenter[0]);
-		var lon = Number(strCenter[1]);
-		ol3view.setCenter([lat,lon]);// Center of the map
-	}
-	
+    // --------------- Map visualization and hover texts
+    console.log('repositioning map to how it was last time');
+    if( localStorage.zoom !== undefined ) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+    if( localStorage.map_center !== undefined ){
+	var strCenter = localStorage.map_center.split(",")
+	var lat = Number(strCenter[0]);
+	var lon = Number(strCenter[1]);
+	ol3view.setCenter([lat,lon]);// Center of the map
+    }
 }
