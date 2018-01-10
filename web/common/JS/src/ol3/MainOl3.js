@@ -127,10 +127,10 @@ function initOl3(){
 	var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows
 
 	//Se configura para correcta visualizacion en el movil
-        if(mobile) {
+        /*if(mobile) {
             mapConfig.zoom = 0;
             defCenter = center;//default center
-        }
+        }*/
 
         ol3view = new ol.View({
 		projection: _map_projection,
