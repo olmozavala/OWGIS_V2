@@ -13,6 +13,13 @@ goog.require('owgis.ol3');
 owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(){
     localStorage.zoom = ol3view.getResolution();// Zoom of map
     localStorage.map_center =  ol3view.getCenter();// Center of the map
+    
+    localStorage.language = _curr_language;
+    
+    var radioButtons = $('input[name^="elev_select"]:checked');
+    if(typeof radioButtons[0] !== 'undefined'){ localStorage.depth = radioButtons[0].value; }
+    if(typeof _cesium !== 'undefined'){ localStorage.cesium = _cesium.getEnabled(); }
+    localStorage.transparency_layer = owgis.transparency.getTransp();
 
     localStorage.opt_menu_minimized =  $("#optionalsMinimize").css("display") === "none"? false: true;
     localStorage.main_menu_minimized = $("#mainMenuMinimize").css("display") === "none"? false: true;
@@ -24,7 +31,8 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
     if (netcdf) {        
         saveIndividualWindowPosition("pos_palettes", "#palettes-div");
         saveIndividualWindowPosition("pos_color_range", "#paletteWindowColorRange");
-
+        
+        localStorage.map_palette = mappalette;
         localStorage.palette_visible = $("#palettes-div").css("display") === "none"? false: true;
         localStorage.color_range_visible= $("#paletteWindowColorRange").css("display") === "none"? false: true;
 
@@ -32,6 +40,8 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
         if(_mainlayer_multipleDates){
             localStorage.calendars_minimized =  $("#calendarsMinimize").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_calendars", "#CalendarsAndStopContainer");
+            var radioButtons1 = $('input[name="video_res"]:checked');
+            if(typeof radioButtons1[0] !== 'undefined'){ localStorage.animation_res = radioButtons1[0].value; }
         }
         if(_mainlayer_zaxisCoord){
             localStorage.elev_selector_visible= $("#zaxis_selector_parent").css("display") === "none"? false: true;
@@ -40,10 +50,14 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
         if(_mainlayer_streamlines){
             localStorage.currents_controls_visible = $("#currentsControlsContainer").css("display") === "none"? false: true;
             saveIndividualWindowPosition("pos_currents_controls", "#currentsControlsContainer");
-		}
+            localStorage.particles_num = owgis.ncwms.currents.particles.getNumParticles();
+            localStorage.particles_speed = owgis.ncwms.currents.particles.getParticleSpeed();
+            localStorage.particles_lifetime = owgis.ncwms.currents.particles.getParticlesLifeTime();
+            localStorage.particles_color = owgis.ncwms.currents.getColor();
+        }
     }
 
-	localStorage.server_name = window.location.href;
+    localStorage.server_name = window.location.href;
     localStorage.disable_hover = hoverDisabled;
     
 }
@@ -53,81 +67,80 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
  */
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 {
-	try{
-		if( localStorage.server_name === window.location.href){
-			// Repositions the main layers menu
-			repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
-			'mainMenuParent', 'mainMenuMinimize');
-			
-			// Repositions the Optional layers menu 
-			repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized,
-			'optionalMenuParent', 'optionalsMinimize');
-			
-			// If the main layer is a netcdf layer then we update the position
-			// of the calendars and palettes windows
-			if (netcdf) {
-				//The palettes window is never minimized
-				repositionWindow(localStorage.pos_palettes, "false",
-				'palettes-div', 'none');
-				repositionWindow(localStorage.pos_color_range, "false",
-				'paletteWindowColorRange', 'none');
-				
-				if(_mainlayer_multipleDates){
-					repositionWindow(localStorage.pos_calendars, localStorage.calendars_minimized,
-					'CalendarsAndStopContainer', 'calendarsMinimize');
-				}
-				
-				if(_mainlayer_zaxisCoord){
-					repositionWindow(localStorage.pos_elev_selector, "false",
-					'zaxis_selector_parent', 'none');
-				}
-				
-				if(_mainlayer_streamlines){
-					repositionWindow(localStorage.pos_currents_controls, "false",
-					'currentsControlsContainer', 'none');
-				}
-			}
-			
-			// -------- Visibility of windows ----------
-			if (netcdf) {
-				//Check if the palette windows where visible
-				if( localStorage.palette_visible !== undefined &&  localStorage.color_range_visible !== "undefined"){
-					if ( localStorage.palette_visible === "true") $("#palettes-div").show("fade");
-					if ( localStorage.color_range_visible === "true") $("#paletteWindowColorRange").show("fade");
-				}
-				
-				if( localStorage.currents_controls_visible!== undefined){
-					if(_mainlayer_streamlines){
-						if ( localStorage.currents_controls_visible=== "true") $("#currentsControlsContainer").show("fade");
-					}
-				}
-				
-				if( localStorage.elev_selector_visible!== undefined){
-					if(_mainlayer_zaxisCoord){
-						if ( localStorage.elev_selector_visible=== "true") {
-							$("#zaxis_selector_parent").show("fade");
-						}
-					}
-				}
-			}
+    try{
+        if( localStorage.server_name === window.location.href){
+            console.log('repositioning windows ...');
+            // Repositions the main layers menu
+            repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
 
-			//Updates the position of the map as it was previously set
-			owgis.ol3.positionMap();
+            // Repositions the Optional layers menu 
+            repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized, 'optionalMenuParent', 'optionalsMinimize');
 			
-			if( localStorage.disable_hover === "true"){
-				//Disables the text hovers 
-				owgis.help.tooltips.toggleTooltips();
+            // If the main layer is a netcdf layer then we update the position
+            // of the calendars and palettes windows
+            if (netcdf) {
+                console.log('is a netcdf, repositioning calendars and palettes windows ...');
+		//The palettes window is never minimized
+		repositionWindow(localStorage.pos_palettes, "false", 'palettes-div', 'none');
+		repositionWindow(localStorage.pos_color_range, "false", 'paletteWindowColorRange', 'none');
+		
+                if(_mainlayer_multipleDates){
+                    repositionWindow(localStorage.pos_calendars, localStorage.calendars_minimized, 'CalendarsAndStopContainer', 'calendarsMinimize');
+		}
+		
+                if(_mainlayer_zaxisCoord){
+                    repositionWindow(localStorage.pos_elev_selector, "false", 'zaxis_selector_parent', 'none');
+		}
+				
+		if(_mainlayer_streamlines){
+                    repositionWindow(localStorage.pos_currents_controls, "false", 'currentsControlsContainer', 'none');
+		}
+			
+                // -------- Visibility of windows ----------
+		//Check if the palette windows where visible
+		if( localStorage.palette_visible !== undefined &&  localStorage.color_range_visible !== "undefined"){
+                    if ( localStorage.palette_visible === "true") $("#palettes-div").show("fade");
+                    if ( localStorage.color_range_visible === "true") $("#paletteWindowColorRange").show("fade");
+		}
+				
+                if( localStorage.currents_controls_visible!== undefined){
+                    if(_mainlayer_streamlines){
+			if ( localStorage.currents_controls_visible=== "true") $("#currentsControlsContainer").show("fade");
+                    }
+		}
+				
+		if( localStorage.elev_selector_visible!== undefined){
+                    if(_mainlayer_zaxisCoord){
+			if ( localStorage.elev_selector_visible=== "true") {
+                            $("#zaxis_selector_parent").show("fade");
 			}
+                    }
+		}
+            }
+
+            //Updates the position of the map as it was previously set
+            owgis.ol3.positionMap();
 			
-			// Finally we test if they fit on the screen
-			owgis.layouts.draggable.repositionDraggablesByScreenSize();
-		}		
-	}catch(err){
-		console.log("Error initializing the menus... clearing local storage");
-		localStorage.clear();
-		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-	}
-	
+            if( localStorage.disable_hover === "true"){
+		//Disables the text hovers 
+                console.log('disable hover');
+		owgis.help.tooltips.toggleTooltips();
+                owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');
+            }
+            
+            //set animation resolution 
+            if(typeof localStorage.animation_res !== 'undefined' ){
+                $("input[name=video_res][value=" + localStorage.animation_res + "]").attr('checked', 'checked');
+            }
+            // Finally we test if they fit on the screen
+            owgis.layouts.draggable.repositionDraggablesByScreenSize();
+                        
+	}		
+    }catch(err){
+	console.log("Error initializing the menus... clearing local storage");
+	localStorage.clear();
+	owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+    }
 }
 
 /**

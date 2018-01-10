@@ -141,13 +141,6 @@ function initOl3(){
 	});
 
  	map = new ol.Map({
-                //interactions: ol.interaction.defaults({mouseWheelZoom:false}),
-                /*.extend([
-                    new ol.interaction.MouseWheelZoom({
-                      constrainResolution: true, // force zooming to a integer zoom
-                      duration: 1000, timeout: 500
-                    })
-                  ]),*/ //This is what I use to prevent the scroll wheel from zooming all the way in or out too rapidly. 
 		controls:ol.control.defaults().extend([mousePositionControl, scaleLineControl]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
@@ -218,11 +211,6 @@ function initOl3(){
             var ready = numInFlightTiles === 0 && numHeldTiles === 0;
             if (map.get('ready') !== ready){
                 map.set('ready', ready);
-                
-                /*map.addInteraction(new ol.interaction.MouseWheelZoom({
-                    constrainResolution: true, duration: 300, timeout: 100 // force zooming to a integer zoom
-                }));
-                */
                $("body").css("cursor", "default");
             }
             mouseMove = 0;
@@ -261,13 +249,13 @@ function detectMapLayersStatus(){
 }
 
 owgis.ol3.positionMap = function(){
-	// --------------- Map visualization and hover texts
-	if( localStorage.zoom !== undefined) ol3view.setResolution(localStorage.zoom);// Zoom of map 
-	if( localStorage.map_center!== undefined){
-		var strCenter = localStorage.map_center.split(",")
-		var lat = Number(strCenter[0]);
-		var lon = Number(strCenter[1]);
-		ol3view.setCenter([lat,lon]);// Center of the map
-	}
-	
+    // --------------- Map visualization and hover texts
+    console.log('repositioning map to how it was last time');
+    if( localStorage.zoom !== undefined ) ol3view.setResolution(localStorage.zoom);// Zoom of map 
+    if( localStorage.map_center !== undefined ){
+	var strCenter = localStorage.map_center.split(",")
+	var lat = Number(strCenter[0]);
+	var lon = Number(strCenter[1]);
+	ol3view.setCenter([lat,lon]);// Center of the map
+    }
 }
