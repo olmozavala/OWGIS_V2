@@ -102,9 +102,9 @@ function owgisMain(){
     //check if last depth selected by user also exists in this layer                    
     isthereelev = noElevation();
     if(!isthereelev && typeof localStorage.depth !== 'undefined'){
-        if( $(":radio[value="+localStorage.depth+"]")[0] !== undefined){
-            $(":radio[value="+localStorage.depth+"]")[0].onclick();
-            $( "#"+$(":radio[value="+localStorage.depth+"]")[0].id).attr('checked',true);
+        if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
+            $(":radio[value='"+localStorage.depth+"']")[0].onclick();
+            $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
         }
     }
     //set transparency

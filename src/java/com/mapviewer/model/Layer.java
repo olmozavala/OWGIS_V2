@@ -332,17 +332,22 @@ public class Layer {
 			//Adds the default streamline speed
 			layerDetails.accumulate("defParticleSpeed", this.defParticleSpeed);
                         
-                        //Verificar que la capa es ncwms
-                        layerDetails.put("defaultPalette", this.palette);
+            //Verificar que la capa es ncwms
+            layerDetails.put("defaultPalette", this.palette);
 
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
                         
-                        //Adds an indicationf if a color for when below min color
+            //Adds an indicationf if a color for when below min color
 			layerDetails.accumulate("belowMinColor", this.belowMinColor);
-                        //Adds an indicationf if a color for when above max color
+            
+            //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
-			
+            
+            //add FeatureInfo
+            if( !this.featureInfoLayer.equals(name) ){
+                layerDetails.accumulate("featureInfo", this.featureInfoLayer);
+            }
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
 		}

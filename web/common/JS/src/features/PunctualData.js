@@ -40,8 +40,13 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 			url += "&VERSION="+owgis.ogc.wmsversionncwms2;
 			url += "&SRS=" + _map_projection;
 			url += "&INFO_FORMAT=text/csv";
-			url += "&QUERY_LAYERS="+currSource.getParams().LAYERS+"";
-			url += "&LAYERS="+currSource.getParams().LAYERS;
+                        if( typeof layerDetails.featureInfo !== 'undefined' ){
+                            url += "&QUERY_LAYERS="+layerDetails.featureInfo+"";
+                            url += "&LAYERS="+layerDetails.featureInfo;
+                        } else {
+                            url += "&QUERY_LAYERS="+currSource.getParams().LAYERS+"";
+                            url += "&LAYERS="+currSource.getParams().LAYERS;
+                        }
 			url += "&BBOX="+currBBOX;
 			url += "&X="+x+"&Y="+y;
 			url += "&WIDTH="+ map.getSize()[0] +"&HEIGHT="+ map.getSize()[1];
@@ -49,7 +54,11 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 			url += "?REQUEST=GetVerticalProfile";
 			url += "&CRS=CRS:84";
 			url += "&FORMAT=image/png";
-			url += "&LAYER="+currSource.getParams().LAYERS;
+                        if( typeof layerDetails.featureInfo !== 'undefined' ){
+                            url += "&LAYER="+layerDetails.featureInfo;
+                        } else {
+                            url += "&LAYER="+currSource.getParams().LAYERS;
+                        }
 			var coords = event.coordinate;
 			url += "&POINT="+coords[0]+" "+coords[1];
 		}
@@ -218,8 +227,14 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			}
 			
 			url += "&VERSION="+owgis.ogc.wmsversionncwms2;
-			url += "&LAYERS="+currSource.getParams().LAYERS;
-			url += "&QUERY_LAYERS="+currSource.getParams().LAYERS;
+                        
+                        if( typeof layerDetails.featureInfo !== 'undefined' ){
+                            url += "&LAYERS="+layerDetails.featureInfo;
+                            url += "&QUERY_LAYERS="+layerDetails.featureInfo;
+                        } else {
+                            url += "&LAYERS="+currSource.getParams().LAYERS;
+                            url += "&QUERY_LAYERS="+currSource.getParams().LAYERS;
+                        }
 			url += "&SRS=" + _map_projection;
                         url += "&WIDTH="+ map.getSize()[0] +"&HEIGHT="+ map.getSize()[1];
 			url += "&X="+x+"&Y="+y;
