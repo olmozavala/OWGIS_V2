@@ -27,7 +27,9 @@ function noElevation(){
     }
 
     if(!hasElevation){
-        getElementById('elevationParent').style.display = "none";
+        if(typeof getElementById('elevationParent') !== 'undefined'){
+            getElementById('elevationParent').style.display = "none";
+        }
     }
 	
     return !hasElevation;
@@ -143,36 +145,6 @@ function dispElevPage(num, total){
  */
 owgis.ncwms.zaxis.displayElevationSelector = function displayElevationSelector(){
     $("#zaxis_selector_parent").fadeToggle();
-}
-
-/**
- this function checks to see if the layer has elevation or not
-this function is called by the init() in the OpenLayersConfig.jsp
-*/
-function noElevation()
-{	
-    var check =	layerDetails.zaxis;		//check to see if it has elevation at all
-    var hasElevation = true;
-
-    //this means zaxis object exist, now we gotta check the amount of days it has
-    if(check !== undefined)
-    {
-        var heights = layerDetails.zaxis.values.length;
-		
-        //In this case it only has one elevation
-        if(heights === 1)
-            hasElevation = false;
-    }
-    else//this means there is absolutely no hieght. 
-    {		
-        hasElevation = false;
-    }
-
-    if(!hasElevation){
-        getElementById('elevationParent').style.display = "none";
-    }
-	
-    return !hasElevation;
 }
 
 /**
