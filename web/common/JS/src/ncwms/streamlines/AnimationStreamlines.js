@@ -12,7 +12,7 @@ goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
 
-var currentsColor = (localStorage.particles_color !== "NaN" && localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
+var currentsColor = (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
 var currAnimSpeed = 80;
 var defLineWidth = 1.7;
@@ -665,7 +665,7 @@ function startAnimationLoopCurrents(){
 	clearLoopHandlerCurrents();
 	owgis.ncwms.currents.particles.setInternalAnimationSpeed(currAnimSpeed);
 	intervalHandlerCurrents = setInterval(loopAnimationCurrents,currAnimSpeed);
-        if(localStorage.particles_speed !== 'undefined' && localStorage.particles_speed !== 'NaN'){
+        if(typeof localStorage.particles_speed !== 'undefined' && localStorage.particles_speed !== 'NaN'){
             console.log('set last speed.');
             owgis.ncwms.currents.particles.setParticleSpeed(parseFloat(localStorage.particles_speed));
         }
