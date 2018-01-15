@@ -4,12 +4,12 @@ goog.require('owgis.layer');
 
 var particlesArray  = new Array();
 var defNumParticles = 20000;// Used to reset the number of particles	
-var numparticles = (localStorage.particles_num !== "NaN" && localStorage.particles_num !== 'undefined') ? parseInt(localStorage.particles_num) : defNumParticles;//Initial number of particles
-var defParticleSpeed = parseFloat(layerDetails.defParticleSpeed);
-var particleSpeed = (localStorage.particles_speed !== "NaN" && localStorage.particles_speed !== 'undefined') ? parseFloat(localStorage.particles_speed) : defParticleSpeed;
+var numparticles = (localStorage.particles_num !== "NaN" && typeof localStorage.particles_num !== 'undefined') ? parseInt(localStorage.particles_num) : defNumParticles;//Initial number of particles
+var defParticleSpeed = (typeof layerDetails.defParticleSpeed !== 'undefined') ? parseFloat(layerDetails.defParticleSpeed) : 0.0003;
+var particleSpeed = (localStorage.particles_speed !== "NaN" && typeof localStorage.particles_speed !== 'undefined') ? parseFloat(localStorage.particles_speed) : defParticleSpeed;
 var currentResolutionParticleSpeed = particleSpeed;
 var defTimeParticle = 80; // Deault Number of frames a particle is alive in the animation
-var timeParticle = (localStorage.particles_lifetime !== "NaN" && localStorage.particles_lifetime !== 'undefined') ? parseInt(localStorage.particles_lifetime) : defTimeParticle; // Number of frames a particle is alive in the animation
+var timeParticle = (localStorage.particles_lifetime !== "NaN" && typeof localStorage.particles_lifetime !== 'undefined') ? parseInt(localStorage.particles_lifetime) : defTimeParticle; // Number of frames a particle is alive in the animation
 
 //These two variables are used in the trilinear interpolation,
 // they indicate the animation speed of the particles and the 'main' animation
