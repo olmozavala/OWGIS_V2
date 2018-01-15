@@ -29,11 +29,16 @@
 		<layer Menu="Fall1,PM20" EN="PM20 Particle concentration" ES="Concentración de partículas PM20" style="default-scalar" palette="volcan" name="FALL3D_03m/PM20" />
 		<layer Menu="Fall1,con1" EN="Particle concentration at ground " ES="Concentración de partículas en superficie" style="default-scalar" palette="volcansuperficie" name="FALL3D_03m/consentracion" />
                 -->
-                
+                <!--
                 <layer Menu="Fall2,PM05" EN="PM05 Particle concentration" ES="Concentración de partículas PM05" style="default-scalar" palette="volcan" name="FALL3D_m/PM05" mincolor="0.0000001" maxcolor="0.2" belowMinColor="transparent" aboveMaxColor="transparent" />
 		<layer Menu="Fall2,PM10" EN="PM10 Particle concentration" ES="Concentración de partículas PM10" style="default-scalar" palette="volcan" name="FALL3D_m/PM10" mincolor="0.0000001" maxcolor="0.2" belowMinColor="transparent" aboveMaxColor="transparent" />
 		<layer Menu="Fall2,PM20" EN="PM20 Particle concentration" ES="Concentración de partículas PM20" style="default-scalar" palette="volcan" name="FALL3D_m/PM20" mincolor="0.0000001" maxcolor="0.2" belowMinColor="transparent" aboveMaxColor="transparent" />
 		<layer Menu="Fall2,con1" EN="Particle concentration at ground " ES="Concentración de partículas en superficie" style="default-scalar" palette="volcansuperficie" mincolor="0.00001" maxcolor="0.2" belowMinColor="transparent" aboveMaxColor="transparent" name="FALL3D_m/consentracion" />
+                -->
+                <layer Menu="Fall2,PM05" EN="PM05 Particle concentration" ES="Concentración de partículas PM05" style="default-scalar" palette="volcan" name="FALL3D_m/PM05"  />
+		<layer Menu="Fall2,PM10" EN="PM10 Particle concentration" ES="Concentración de partículas PM10" style="default-scalar" palette="volcan" name="FALL3D_m/PM10" />
+		<layer Menu="Fall2,PM20" EN="PM20 Particle concentration" ES="Concentración de partículas PM20" style="default-scalar" palette="volcan" name="FALL3D_m/PM20" />
+		<layer Menu="Fall2,con1" EN="Particle concentration at ground " ES="Concentración de partículas en superficie" style="default-scalar" palette="volcansuperficie" name="FALL3D_m/consentracion" />
                 
                 <!--
                 <layer Menu="Fall3,PM05" EN="PM05 Particle concentration" ES="Concentración de partículas PM05" style="default-scalar" palette="volcan" name="FALL3D_10m/PM05" />
