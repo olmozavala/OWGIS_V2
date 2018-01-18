@@ -75,7 +75,7 @@ public class OpenLayersManager {
 		return ConvertionTools.convertObjectArrayToIntArray(resultado.toArray());
 	}
 
-	public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
+    public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
 
 		if (menuSelected.length == 0) {//if not entry return null
 			return null;
@@ -85,7 +85,6 @@ public class OpenLayersManager {
 		Layer tempLayer = null;
 		for (int index = 0; index < layersManager.getVectorLayers().size(); index++) {//loop each vector layer
 			tempLayer = layersManager.getVectorLayers().get(index);//temp variable 
-
 			//each tree value has to be send separately. 
 			//becuase the vector layers are all on one level of the tree
 			for (int menuNumber = 0; menuNumber < menuSelected.length; menuNumber++) {

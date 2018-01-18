@@ -90,7 +90,7 @@ public class Layer {
 	 *
 	 * @param {MenuEntry} selectedIndex MenuEntry[]Array that has the optons of the wanted
 	 * menus
-	 * @return boolean depending if the slected index has the menu entry.
+	 * @return boolean depending if the selected index has the menu entry.
 	 */
 	public boolean isThisLayer(MenuEntry[] selectedIndex) {
 		boolean thisIsTheLayer = true;
@@ -107,15 +107,16 @@ public class Layer {
 	}
 	
 	public boolean isThisLayer(String[] selectedIndex) {
-		boolean thisIsTheLayer = true;
+		boolean thisIsTheLayer = false;
 		if (selectedIndex.length == 0) {
 			thisIsTheLayer = false;
 		}
 		for (int nivelMenu = 0; nivelMenu < idLayer.length; nivelMenu++) {
-			
-			if (!idLayer[nivelMenu].getId().equals(selectedIndex[nivelMenu])) {
-				return false;
-			}
+            for (int selnum = 0; selnum < selectedIndex.length; selnum++) {
+                if (idLayer[nivelMenu].getId().equals(selectedIndex[selnum])) {
+                    return true;
+                }
+            }
 		}
 		return thisIsTheLayer;
 	}
