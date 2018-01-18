@@ -113,7 +113,7 @@ public class UserRequestManager {
 			//if the request is not wcs we need to obtain the user selection. 
 			layersSelected = request.getParameterValues("vectorLayersSelected");
 		}
-
+        
 		LayerMenuManagerSingleton menuManager = LayerMenuManagerSingleton.getInstance();
 		TreeNode vectorLayerOptions = menuManager.getRootVectorMenu();
 
@@ -126,7 +126,7 @@ public class UserRequestManager {
 		if (selectedValues== null) {
 			selectedValues = menuManager.getDefVectorLayers();
 		}
-
+        
 		vectorLayerOptions = HtmlTools.actualizaOpcionesVectoriales(selectedValues, vectorLayerOptions);
 		session.setAttribute("vectorLayers", vectorLayerOptions);
 		return selectedValues;

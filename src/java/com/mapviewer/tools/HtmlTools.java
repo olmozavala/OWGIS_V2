@@ -81,26 +81,38 @@ public class HtmlTools {
 
 			for (int k = 0; k < currenMenu.length; k++) {
 				found = false;
-
-				for (int j = 0; j < actualRoot.getChilds().size(); j++) {
-					//check to see if seelcted value if of the node currently viewing
-					if (currenMenu[k].equals(actualRoot.getChilds().get(j).getNode().getId())) {
-
-						//Check childs
-						if (actualRoot.getChilds().get(j).getHasChilds()) {
-							actualRoot = actualRoot.getChilds().get(j);
-							found = true;
-							break;
-						} else {
-							actualRoot.getChilds().get(j).setSelected(true);
-							found = true;
-							break;
-						}
-					}
-				}
-				if (!found) {
-					throw new Exception("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree");
-				}
+                
+                if( actualRoot.getChilds() != null){
+                    int len = actualRoot.getChilds().size();
+                    for (int j = 0; j < len ; j++) {
+                        //check to see if selected value if of the node currently viewing
+                        if (currenMenu[k].equals(actualRoot.getChilds().get(j).getNode().getId())) {
+                            //Check childs
+                            if (actualRoot.getChilds().get(j).getHasChilds()) {
+                                actualRoot = actualRoot.getChilds().get(j);
+                                found = true;
+                                break;
+                            } else {
+                                actualRoot.getChilds().get(j).setSelected(true);
+                                found = true;
+                                break;
+                            }
+                        }else if( actualRoot.getChilds().get(j).getChilds() != null ){
+                            for (int jj = 0; jj < actualRoot.getChilds().get(j).getChilds().size(); jj++) {
+                                if (currenMenu[k].equals(actualRoot.getChilds().get(j).getChilds().get(jj).getNode().getId())) {
+                                    actualRoot.getChilds().get(j).getChilds().get(jj).setSelected(true);
+                                    found = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (!found) {
+                        throw new Exception("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree");
+                    }
+                } else {
+                    throw new Exception("Exception The menu: " + StringAndNumbers.arrregloSeparadoPorComas(currenMenu) + " was not found on the menu tree!!!");
+                }
 			}
 		}
 		return updatedMenu;
