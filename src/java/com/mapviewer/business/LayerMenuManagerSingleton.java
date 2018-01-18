@@ -95,8 +95,6 @@ public class LayerMenuManagerSingleton {
 			Element layerElem = (Element) it.next();
 			
 			Layer newLayer = updateFields(layerElem, groupLayer);
-			System.out.println("Adding layer: "+newLayer.getName());
-			
 			String[] layerMenu = null;
 			
 			try {
@@ -122,7 +120,7 @@ public class LayerMenuManagerSingleton {
 				//this is where the server is checked to see if it is online or not.
 				//in the case it it offline and exception is raised and it skips until the catch
 				String layerDetails = NetCDFRequestManager.getLayerDetails(newLayer);
-				
+        
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 					case "mainlayers":
 						//Updates the Root Tree menu with this new entry
@@ -597,20 +595,16 @@ public class LayerMenuManagerSingleton {
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
 		
-		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null
-				? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
+		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null ? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
 		
-		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
-				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
+		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null ? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
                 
                 String numColorBands = layerConf.getAttributeValue("numcolorbands") != null
 				? layerConf.getAttributeValue("numcolorbands") : layer.getnumColorBands();
 
-                String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null
-				? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
+        String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null ? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
                 
-                String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null
-				? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
+        String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null ? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
 		
 		/*
 		String[] cql_cols = null;
@@ -677,7 +671,7 @@ public class LayerMenuManagerSingleton {
 				}
 				
 //				currMenuEntry.print();
-menuEntries.put(id, currMenuEntry);
+                menuEntries.put(id, currMenuEntry);
 			}
 		} catch (Exception ex) {
 			System.out.println("Exception adding menu entries");
@@ -755,7 +749,7 @@ menuEntries.put(id, currMenuEntry);
 	private void updateVectorMenu(String[] allMenus, TreeNode currNode, int currMenu,boolean selected, String layerName) throws XMLFilesException {
 		MenuEntry menuEntry = menuEntries.get(allMenus[currMenu]);
 		menuEntry.setLayername(layerName);
-		
+		        
 		//Throw an exception if the menu was not found.
 		if (menuEntry == null) {
 			throw new XMLFilesException("The menu entry: " + allMenus[currMenu] + " was not found");
@@ -862,6 +856,13 @@ menuEntries.put(id, currMenuEntry);
 			throw new XMLFilesException("There are not optional layers defined.");
 		}
 		for (int j = 0; j < rootVectorMenu.getChilds().size(); j++) {
+            if( rootVectorMenu.getChilds().get(j).getChilds() != null ){
+                for (int i = 0; i < rootVectorMenu.getChilds().get(j).getChilds().size(); i++) {
+                    if (rootVectorMenu.getChilds().get(j).getChilds().get(i).isSelected()) {
+                        selOptional.add(rootVectorMenu.getChilds().get(j).getChilds().get(i).getNode().getId());
+                    }
+                }
+            }
 			if (rootVectorMenu.getChilds().get(j).isSelected()) {
 				selOptional.add(rootVectorMenu.getChilds().get(j).getNode().getId());
 			}
