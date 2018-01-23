@@ -2,7 +2,7 @@
  */
 goog.provide('owgis.features.punctual');
 
-goog.require('owgis.calendars');
+goog.require('owgis.ncwms.calendars');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.source.Vector');

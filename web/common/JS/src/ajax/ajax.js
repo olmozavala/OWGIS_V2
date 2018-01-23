@@ -11,7 +11,7 @@ goog.provide('owgis.ajax');
 
 goog.require('owgis.ogc');
 goog.require('owgis.constants');
-goog.require('owgis.calendars');
+goog.require('owgis.ncwms.calendars');
 
 /**
  * This function is used to call a url without the crossorigin problems.
