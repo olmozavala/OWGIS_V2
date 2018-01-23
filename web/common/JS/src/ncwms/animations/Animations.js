@@ -491,7 +491,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 				HEIGHT: imgHeight,
 				NUMCOLORBANDS: 250,
 				COLORSCALERANGE:  minPalVal + ',' + maxPalVal,
-				CRS: _map_projection,
+				CRS: _map_projection
 		};
 	
         if(typeof layerDetails.aboveMaxColor != "undefined" || typeof layerDetails.belowMinColor != "undefined" ){

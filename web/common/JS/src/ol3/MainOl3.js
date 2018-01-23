@@ -143,7 +143,7 @@ function initOl3(){
 		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
-		maxResolution: mapConfig.maxResolution,
+		maxResolution: mapConfig.maxResolution
 		//extent: resExtent  // Not working
 	});
 

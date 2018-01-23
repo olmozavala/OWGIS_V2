@@ -1,14 +1,11 @@
-/* 
- */
 goog.provide('owgis.features.punctual');
-
-goog.require('owgis.calendars');
+goog.require('owgis.ncwms.calendars');
 goog.require('ol.Map');
 goog.require('ol.View');
 goog.require('ol.source.Vector');
 goog.require('owgis.utils');
 
-owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,layerNumber) {
+owgis.features.punctual.getVerticalProfile = function(event,layerNumber) {
 	var currLayer = eval('layer'+layerNumber);
 	var currSource = currLayer.getSource();
 	
@@ -193,7 +190,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 	}//Only for ncwms layers
 }
 
-owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNumber) {
+owgis.features.punctual.getTimeSeries= function(event,layerNumber) {
 	var currLayer = eval('layer'+layerNumber);
 	var currSource = currLayer.getSource();
 	
