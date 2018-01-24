@@ -17,7 +17,7 @@
 		<%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<%@include file="Header/GlobalJavaScript.jsp"%>
 		<%-- contains all the css links and javascript links --%>
-		<%@include file="Header/HeaderDebug.jsp"%>
+		<%@include file="Header/Header.jsp"%>
 		<%--<%@include file="Header/Header.jsp"%>--%>
 		<title></title>
 	</head>
