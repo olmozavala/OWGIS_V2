@@ -214,7 +214,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
 		//------ Modifying the size of the canvas container
-		var spaceForUnits = 40;
+		var spaceForUnits = 40;// Space between the black part for units and the rest
 		ctx.canvas.width = barWidth+spaceForUnits;
 		ctx.canvas.height = barHeight;
 
@@ -231,22 +231,37 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			// It is not perfect because the ticks function modifies
 			// the size of the array depending its parameters
 			var totNumbers = 8;
-			var minVal = parseFloat(minPalVal);
-			var maxVal = parseFloat(maxPalVal);
+			var minVal = Number(minPalVal);
+			var maxVal = Number(maxPalVal);
 //			console.log("-----",minVal,"-",maxVal);
-			var values = d3.ticks(minVal,maxVal,totNumbers);
-			//We need to substract 20 because if not the last number
-			// goes outside the canvas.
-			var step = (barWidth-20)/(values.length-1);
-//			console.log(values);
+//			var values = d3.ticks(minVal,maxVal,totNumbers);
+//			
+			//This linear scale is used to obtain the numbers
+			// that are written above the color palette
+			var linScale = d3.scaleLinear()
+					.domain([minVal, maxVal])
+					.range([0, 1]);
 
-			var idx = 0;
+			//This linear scale is used to obtain the positions
+			// where we will writhe the numbers 
+			var linScalePos = d3.scaleLinear()
+					.domain([minVal, maxVal])
+					.range([0, barWidth]);
+
+			// Obtains the numbers we will write in the color palette
+			var myNumbers = linScale.ticks(totNumbers);
+
 			//Write the units first
 			ctx.fillText(layerDetails.units,2,Math.ceil(barHeight-pixBellowText));
-			for (var pos = 2; pos <=  barWidth; pos+=step){
-				ctx.fillText(values[idx],pos+spaceForUnits,Math.ceil(barHeight-pixBellowText));
-				idx++;
-			}
+
+			//Write the rest of the numbers from the ticks and the positions 
+			myNumbers.forEach(function(number){
+							console.log(number);
+							console.log(linScalePos(number)); 
+							// The -14 is just to move the letters in the middle
+							ctx.fillText(number,linScalePos(number)+spaceForUnits-14,Math.ceil(barHeight-pixBellowText));
+							 }) ;
+
 		};
 
 		// Move the div container of the palette into the center. 
