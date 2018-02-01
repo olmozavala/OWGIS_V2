@@ -40,22 +40,7 @@
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
 	</BackgroundLayers>
-        <!-- ALERTAS -->
-	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
-            
-            <layer Menu="Dom1,alerta,Temp2" EN="Temperature Warnings" ES="Alertas de temperatura" style="default-scalar" palette="percentiles" 
-                   name="t2_dom1_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/T2C" />
-            
-            <layer Menu="Dom1,alerta,Viento" EN="Wind Warnings" ES="Alertas de viento" style="default-scalar" palette="percentiles" 
-                   mincolor="0.1" maxcolor="99.9" name="viento_dom1_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/Uat10:Vat10-mag" />
-            
-            <layer Menu="Dom2,alerta,Temp2" EN="Temperature Warnings" ES="Alerta de temperatura" style="default-scalar" palette="percentiles" featureInfo="wrf_Dom2/T2C" name="t2_dom2_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
-
-            <layer Menu="Dom2,alerta,Viento" EN="Warnings" ES="Alerta de viento" mincolor="0.1" maxcolor="99.9" palette="percentiles"
-                    style="default-scalar" name="viento_dom2_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom2/Uat10:Vat10-mag"
-            />
-
-        </MainLayers>
+        
         <!-- Dominio 1 -->
 	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
 	<!--MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://10.2.233.169:8080/ncWMS2/wms" ncWMStwo="true" -->
@@ -172,5 +157,22 @@
             <layer Menu="Dom2,vape" EN="Evaporation" ES="Evaporación"  name="wrf_Dom2/QFX" style="default-scalar" palette="seq-BlueHeat" />
             
 	</MainLayers>
+        
+        <!-- ALERTAS -->
+	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
+            
+            <layer Menu="Dom1,alerta,Temp2" EN="Temperature Warnings" ES="Alertas de temperatura" style="default-scalar" palette="percentiles" 
+                   name="t2_dom1_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/T2C" />
+            
+            <layer Menu="Dom1,alerta,Viento" EN="Wind Warnings" ES="Alertas de viento" style="default-scalar" palette="percentiles" 
+                   mincolor="0.1" maxcolor="99.9" name="viento_dom1_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/Uat10:Vat10-mag" />
+            
+            <layer Menu="Dom2,alerta,Temp2" EN="Temperature Warnings" ES="Alerta de temperatura" style="default-scalar" palette="percentiles" featureInfo="wrf_Dom2/T2C" name="t2_dom2_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
+
+            <layer Menu="Dom2,alerta,Viento" EN="Warnings" ES="Alerta de viento" mincolor="0.1" maxcolor="99.9" palette="percentiles"
+                    style="default-scalar" name="viento_dom2_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom2/Uat10:Vat10-mag"
+            />
+
+        </MainLayers>
 	
 </MenuConf>
