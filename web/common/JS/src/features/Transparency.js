@@ -5,9 +5,12 @@ goog.require('owgis.ncwms.animation.status');
 
 var maxOpacity = 1;
 var minOpacity = 0.1;
-var opacity = (localStorage.transparency_layer !== "NaN" && localStorage.transparency_layer !== 'undefined') ? localStorage.transparency_layer : .95 ; //.95;//Default opacity
+var opacity = 0.95; //Default opacity
 var incStep = .05;//Increment step of the transparency
 
+if(typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer != "NaN"){ 
+    opacity = localStorage.transparency_layer; 
+}
 /**
  * Returns the current transparency value
  */

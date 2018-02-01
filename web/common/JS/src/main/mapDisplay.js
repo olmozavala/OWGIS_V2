@@ -108,8 +108,9 @@ function owgisMain(){
         }
     }
     //set transparency
-    if(localStorage.transparency_layer !== 'NaN' && localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== .95 ){
+    if(localStorage.transparency_layer !== 'NaN' && typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== 0.95 ){
         owgis.transparency.changeTransp(localStorage.transparency_layer);
+        console.log('woot');
     }
     //if 3d was set, make it 3d
     if(typeof localStorage.cesium !== 'undefined'){
