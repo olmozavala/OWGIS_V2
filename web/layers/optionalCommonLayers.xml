@@ -11,6 +11,7 @@
 		<Menu ID="bat" EN="Bathymetry Model" ES="Modelo Batimetría" />
         </Menus>        
         <!-- Optional layers -->
+        <!--OptionalLayers BBOX="-120,15,-80,32" server="http://10.2.233.169:8080/geoserver/wms" vectorLayer="true"--> 
         <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
                 
 		<layer Menu="bat" name="cen:batimetria" EN="MX Batimetria" ES="MX Batimetria" tiled="true" />
