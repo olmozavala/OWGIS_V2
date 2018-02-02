@@ -9,7 +9,7 @@ var opacity = 0.95; //Default opacity
 var incStep = .05;//Increment step of the transparency
 
 if(typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer != "NaN"){ 
-    opacity = localStorage.transparency_layer; 
+    opacity = parseFloat(localStorage.transparency_layer); 
 }
 /**
  * Returns the current transparency value
