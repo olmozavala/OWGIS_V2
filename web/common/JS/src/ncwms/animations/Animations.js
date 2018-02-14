@@ -78,7 +78,7 @@ function updateMenusDisplayVisibility(status){
 				//Sets the current transparency into the animation
 				owgis.transparency.changeTransp(owgis.transparency.getTransp());
 				// Hides the current main layer
-				owgis.layers.getMainLayer().setVisible(false);
+				//owgis.layers.getMainLayer().setVisible(false);
                 break;
             case owgis.ncwms.animation.status.loading:
                 $('#CalendarsAndStopContainer').hide("fade");
@@ -262,7 +262,7 @@ function updateAnimationStatus(newStatus){
 			}
 			
 			//Show main layer
-			owgis.layers.getMainLayer().setVisible(true);
+			//owgis.layers.getMainLayer().setVisible(true);
 			//IF we had currents then start the animation
 			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(false);//Play the currents animation
