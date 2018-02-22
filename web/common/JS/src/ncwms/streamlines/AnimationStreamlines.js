@@ -665,6 +665,11 @@ function startAnimationLoopCurrents(){
 	clearLoopHandlerCurrents();
 	owgis.ncwms.currents.particles.setInternalAnimationSpeed(currAnimSpeed);
 	intervalHandlerCurrents = setInterval(loopAnimationCurrents,currAnimSpeed);
+
+        /*if(typeof localStorage.particles_speed !== 'undefined' && localStorage.particles_speed !== 'NaN'){
+            console.log('set last speed.');
+            owgis.ncwms.currents.particles.setParticleSpeed(parseFloat(localStorage.particles_speed));
+        }*/
 }
 
 /**
