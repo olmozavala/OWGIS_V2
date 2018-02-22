@@ -307,20 +307,21 @@ public class OpenLayersManager {
                             layersScript += ", ncwmstwo:'true', bgcolor:'transparent' ";                        
 			}
                         
-                        
-                        if (actualLayer.isNcwmstwo() || actualLayer.isncWMS()){
-                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
-                        }else{
-                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
-                        }
-                        
-                        if (actualLayer.getBelowMinColor() != null) {
-                            layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
-                        }
-                        
+            if (actualLayer.isNcwmstwo() || actualLayer.isncWMS()){
+                layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
+            }else{
+                layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
+            }
+            if (actualLayer.getBelowMinColor() != null) {
+                layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
+            }
 			if (actualLayer.getAboveMaxColor() != null) {
-                            layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
-                        }
+                layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
+            }
+            
+            if ( actualLayer.getNumColorBands() != 250 ) {
+                layersScript += ", NUMCOLORBANDS: "+ actualLayer.getNumColorBands();
+            }
 			
 			layersScript += ", SRS: _map_projection";
 			

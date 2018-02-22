@@ -67,6 +67,7 @@ public class Layer {
 	private String transEffect;
 	private String belowMinColor; //set to trans for values that are below the color range stablished
 	private String aboveMaxColor; //set to trans for values that are below the color range stablished
+	private int numColorBands; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
 	//------- CQL
 	private String cql;
@@ -148,7 +149,8 @@ public class Layer {
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = false;
 		this.belowMinColor = null;
-                this.aboveMaxColor = null;
+        this.aboveMaxColor = null;
+        this.numColorBands = 250;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -214,7 +216,8 @@ public class Layer {
 			boolean ncwms, String maxTimeLayer,
 			boolean jsonp,
 			String overlayStreamlines, 
-                        String belowMinColor, String aboveMaxColor,
+            String belowMinColor, String aboveMaxColor, 
+            int numColorBands,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -253,8 +256,9 @@ public class Layer {
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
 		this.localAddress = null;
-                this.belowMinColor = belowMinColor;
-                this.aboveMaxColor = aboveMaxColor;
+        this.belowMinColor = belowMinColor;
+        this.aboveMaxColor = aboveMaxColor;
+        this.numColorBands = numColorBands;
 	}
 	//Geters
 	
@@ -343,6 +347,8 @@ public class Layer {
             
             //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
+            
+            layerDetails.accumulate("numColorBands", this.numColorBands);
             
             //add FeatureInfo
             if( !this.featureInfoLayer.equals(name) ){
@@ -604,11 +610,15 @@ public class Layer {
 		this.cql_cols = cql_cols;
 	}
         
-        public void setBelowMinColor(String belowMinColor) {
+    public void setBelowMinColor(String belowMinColor) {
 		this.belowMinColor = belowMinColor;
 	}
-        
-        public void setAboveMaxColor(String aboveMaxColor) {
+
+    public void setNumColorBands(int numColorBands){
+        this.numColorBands = numColorBands;
+    }
+    
+    public void setAboveMaxColor(String aboveMaxColor) {
 		this.aboveMaxColor = aboveMaxColor;
 	}
 	
@@ -668,11 +678,15 @@ public class Layer {
 		return localAddress;
 	}
         
-        public String getBelowMinColor() {
+    public String getBelowMinColor() {
 		return belowMinColor;
 	}
-        
-        public String getAboveMaxColor() {
+    
+    public int getNumColorBands(){
+        return numColorBands;
+    }
+    
+    public String getAboveMaxColor() {
 		return aboveMaxColor;
 	}
 

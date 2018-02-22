@@ -147,17 +147,21 @@ public class NetCDFAnimationServlet extends HttpServlet {
 				finalRequest+= "STYLES="+layer.getStyle()+"/"+palette+"&";
 			}
                         
-                        if( !layer.getBelowMinColor().equals("") ){
+            if( !layer.getBelowMinColor().equals("") ){
 				//If we are animating vectors into lower resolutions we don't
 				// display the vectors, they look bad.
 				finalRequest+= "BELOWMINCOLOR="+layer.getBelowMinColor()+"&";
 			}
-                        if( !layer.getAboveMaxColor().equals("") ){
+            if( !layer.getAboveMaxColor().equals("") ){
 				//If we are animating vectors into lower resolutions we don't
 				// display the vectors, they look bad.
 				finalRequest+= "ABOVEMAXCOLOR="+layer.getAboveMaxColor()+"&";
 			}
-
+            if( layer.getNumColorBands() != 250 ){
+                finalRequest+= "NUMCOLORBANDS="+layer.getNumColorBands()+"&";
+            } else {
+                finalRequest+= "NUMCOLORBANDS=250&";
+            }
 //			finalRequest+= "WIDTH="+animRes+"&";//width and height of the image
 //			finalRequest+= "HEIGHT="+animRes+"&";
 

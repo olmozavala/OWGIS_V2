@@ -603,11 +603,14 @@ public class LayerMenuManagerSingleton {
 		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
 				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
                 
-                String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null
+        String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null
 				? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
                 
-                String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null
+        String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null
 				? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
+        
+        int numColorBands = layerConf.getAttributeValue("numColorBands") != null 
+                ?  Integer.parseInt(layerConf.getAttributeValue("numColorBands")) : layer.getNumColorBands();
 		
 		/*
 		String[] cql_cols = null;
@@ -619,11 +622,9 @@ public class LayerMenuManagerSingleton {
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
-				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, defParticleSpeed);
+				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed);
 		
 		newLayer.setMinColor(minColor);
-                //newLayer.setBelowMinColor(belowMinColor);
-                //newLayer.setAboveMaxColor(aboveMaxColor);
 		newLayer.setMaxColor(maxColor);
 		newLayer.setSelected(selected);
 		newLayer.setTransEffect(transEffect);

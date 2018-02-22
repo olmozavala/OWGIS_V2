@@ -18,7 +18,7 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
     <head>
         <%@include file="Header/GlobalJavaScript.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<!--contains all the css links and javascript links--> 
-        <%@include file="Header/Header.jsp" %>  
+        <%@include file="Header/HeaderDebug.jsp" %>  
         <%--<%@include file="Header/Header.jsp" %>--%>  
 		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
 		<title><fmt:message key="header.title"/></title>

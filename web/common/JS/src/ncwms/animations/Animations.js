@@ -504,6 +504,14 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
                 animParams.ABOVEMAXCOLOR = layerDetails.aboveMaxColor[1];
             }	
         }
+        
+        if(typeof layerDetails.numColorBands != "undefined"){
+            if(layerDetails.numColorBands != 250){
+                animParams.NUMCOLORBANDS = layerDetails.numColorBands[1];
+            } else {
+                animParams.NUMCOLORBANDS = 250;
+            }
+        }
 
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
