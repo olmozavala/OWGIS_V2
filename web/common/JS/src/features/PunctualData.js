@@ -83,10 +83,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           data = data.replace(/^\s*\n/gm, "");
                           
                           ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
-                          
-                          if(mobile){
-                            document.getElementById("containerChartsVP").style.width = screen.width+"px";
-                          }                        
+                                          
                           Highcharts.chart('containerChartsVP', {
                             title: {
                               text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
@@ -199,6 +196,12 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         
                         var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
                         if(mobile){
+                            
+                            $( window ).on( "orientationchange", function( event ) {
+                                console.log("mm", screen.width, screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight());
+                                $("#containerChartsVP").highcharts().setSize(screen.width-15, screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-40, doAnimation = true);
+                            });
+                            
                             document.getElementById("containerChartsVP").style.display = 'block';
                         }
                     } else {
@@ -218,13 +221,11 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                 };
                                 var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > show </a><br>";
                     } else {
-                                //var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
                                 document.getElementById("containerChartsVP").innerHTML = "";
                                 img1 = document.createElement('img');
                                 img1.src= url;
                                 img1.style.width = "100%";
                                 document.getElementById("containerChartsVP").appendChild(img1);
-                                //document.getElementById("showVertProf").firstChild.style.width = "520px";
                                 var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
                     }
                 }else {
@@ -312,9 +313,6 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       titulo = data.split('\n')[2].split(',')[1];
                                   }
                                   
-                                  if(mobile){
-                                      document.getElementById("containerChartsTS").style.width = screen.width+"px";
-                                  }                  
                                   Highcharts.chart('containerChartsTS', {
                                     title: {
                                       text: 'Time Series'
@@ -422,6 +420,10 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 document.getElementById("modalLabelTimeSeries").innerHTML = latlon+" "+popuplink;
                                 var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                                 if(mobile){
+                                    $( window ).on( "orientationchange", function( event ) {
+                                        $("#containerChartsTS").highcharts().setSize(screen.width-15, screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-40, doAnimation = true);
+                                    });
+                                    
                                     document.getElementById("containerChartsTS").style.display = 'block';
                                 }
                             } else {
@@ -441,13 +443,11 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 };
                                 var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > show </a><br>";
                             } else {
-                                //var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"owgis.utils.popUp('" + url + "',520,420)\" > show </a><br>";
                                 document.getElementById("containerChartsTS").innerHTML="";
                                 img1 = document.createElement('img');
                                 img1.src= url;
                                 img1.style.width = "100%";
                                 document.getElementById("containerChartsTS").appendChild(img1);
-                                //document.getElementById("showTimeSeries").firstChild.style.width = "520px";
                                 var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                             }
                         } else {

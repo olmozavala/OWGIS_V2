@@ -256,8 +256,8 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 			//Write the rest of the numbers from the ticks and the positions 
 			myNumbers.forEach(function(number){
-							console.log(number);
-							console.log(linScalePos(number)); 
+							//console.log(number);
+							//console.log(linScalePos(number)); 
 							// The -14 is just to move the letters in the middle
 							ctx.fillText(number,linScalePos(number)+spaceForUnits-14,Math.ceil(barHeight-pixBellowText));
 							 }) ;
