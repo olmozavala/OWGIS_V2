@@ -83,8 +83,28 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           data = data.replace(/^\s*\n/gm, "");
                           
                           ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
-                                          
+                          
+                          if(mobile){
+                              
+                              if( screen.width > screen.height){
+                                    el_width = screen.width-50;
+                                    el_height = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
+                                } else{
+                                    el_width = screen.width-20;
+                                    el_height = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                                }
+                                                                                        
+                          }else{
+                                    el_width = null;
+                                    el_height = 400;
+                          }
+			console.log(el_width, el_height);			
+                        //Create the plot
                           Highcharts.chart('containerChartsVP', {
+                            chart: {
+                                width: el_width,
+				height: el_height
+                            },
                             title: {
                               text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
                             },
@@ -199,7 +219,14 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             
                             $( window ).on( "orientationchange", function( event ) {
                                 console.log("mm", screen.width, screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight());
-                                $("#containerChartsVP").highcharts().setSize(screen.width-15, screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-40, doAnimation = true);
+                                if( screen.width > screen.height){
+                                    twidth = screen.width-50;
+                                    theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
+                                } else{
+                                    twidth = screen.width-10;
+                                    theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                                }
+                                $("#containerChartsVP").highcharts().setSize(twidth, theight, doAnimation = true);
                             });
                             
                             document.getElementById("containerChartsVP").style.display = 'block';
@@ -313,7 +340,26 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       titulo = data.split('\n')[2].split(',')[1];
                                   }
                                   
-                                  Highcharts.chart('containerChartsTS', {
+                                 if(mobile){
+                                    if( screen.width > screen.height){
+                                            el_width = screen.width-50;
+                                            el_height = screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
+                                    } else{
+                                            el_width = screen.width-20;
+                                            el_height = screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                                    }
+                                 
+                                 }else{
+                                    el_width = null;
+                                    el_height = 400;
+                                 }
+				console.log(el_width, el_height);	
+				 //Create the plots
+				 Highcharts.chart('containerChartsTS', {
+				    chart: {
+					width: el_width,
+					height: el_height
+                                    },
                                     title: {
                                       text: 'Time Series'
                                     },
@@ -421,7 +467,16 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                                 if(mobile){
                                     $( window ).on( "orientationchange", function( event ) {
-                                        $("#containerChartsTS").highcharts().setSize(screen.width-15, screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-40, doAnimation = true);
+                                        
+                                        if( screen.width > screen.height){
+                                            twidth = screen.width-50;
+                                            theight = screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
+                                        } else{
+                                            twidth = screen.width-10;
+                                            theight = screen.height-$("#showTimeSeries > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                                        }
+                                
+                                        $("#containerChartsTS").highcharts().setSize(twidth, theight , doAnimation = true);
                                     });
                                     
                                     document.getElementById("containerChartsTS").style.display = 'block';
