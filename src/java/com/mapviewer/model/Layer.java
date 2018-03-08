@@ -41,6 +41,7 @@ public class Layer {
 	//This layer helps to display data from other layer. For example we can
 	//show an RGB map and obtain data from other layer
 	private String featureInfoLayer;
+	private String featureInfoUnits; //feat info units 
 	private boolean displayTitle;//This variable indicate if we whould display the name of the layer
 	private String layout;//indicates if the layer should load with additional information.
 	private boolean vectorLayer;//check to see if it a vector layer type
@@ -136,6 +137,7 @@ public class Layer {
 		this.width = 512;
 		this.height = 512;
 		this.featureInfoLayer = null;
+        this.featureInfoUnits = null;
 		this.tiled = true;
 		this.ncwms = false;
 		this.ncwmstwo = false;
@@ -208,6 +210,7 @@ public class Layer {
 			int width,
 			int height,
 			String featureInfoLayer,
+            String featureInfoUnits,
 			boolean isTiled,
 			boolean displayTitle,
 			String layout,
@@ -231,6 +234,7 @@ public class Layer {
 		this.width = width;
 		this.height = height;
 		this.featureInfoLayer = featureInfoLayer;
+        this.featureInfoUnits = featureInfoUnits;
 		this.tiled = isTiled;
 		this.displayTitle = displayTitle;
 		this.layout = layout;
@@ -353,6 +357,7 @@ public class Layer {
             //add FeatureInfo
             if( !this.featureInfoLayer.equals(name) ){
                 layerDetails.accumulate("featureInfo", this.featureInfoLayer);
+                layerDetails.accumulate("featureInfoUnits", this.featureInfoUnits);
             }
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -395,6 +400,10 @@ public class Layer {
 	public String getFeatureInfoLayer() {
 		return featureInfoLayer;
 	}
+    
+    public String getFeatureInfoUnits(){
+        return featureInfoUnits;
+    }
 	
 	public int getHeight() {
 		return height;
@@ -490,6 +499,10 @@ public class Layer {
 	public void setFeatureInfoLayer(String featureInfoLayer) {
 		this.featureInfoLayer = featureInfoLayer;
 	}
+    
+    public void setFeatureInfoUnits(String featureInfoUnits){
+        this.featureInfoUnits = featureInfoUnits;
+    }
 	
 	public void setName(String val) {
 		this.name = val;

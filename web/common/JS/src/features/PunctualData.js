@@ -80,6 +80,8 @@ owgis.features.punctual.getVerticalProfile = function(event,layerNumber) {
                           data = data.replace(/^\s*\n/gm, "");
                           
                           ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
+                          
+                          var unidades = (typeof layerDetails.featureInfoUnits !== "undefined") ? layerDetails.featureInfoUnits : layerDetails.units;
                                           
                           Highcharts.chart('containerChartsVP', {
                             title: {
@@ -105,7 +107,7 @@ owgis.features.punctual.getVerticalProfile = function(event,layerNumber) {
                               lineWidth: 1
                             },
                             tooltip: {
-                                pointFormat: "{point.y:.2f} "+ layerDetails.units
+                                pointFormat: "{point.y:.2f} "+ unidades
                             },
                             plotOptions: {
                               series: {
@@ -307,7 +309,8 @@ owgis.features.punctual.getTimeSeries= function(event,layerNumber) {
                                   } else{
                                       titulo = data.split('\n')[2].split(',')[1];
                                   }
-                                  
+                                  var unidades = (typeof layerDetails.featureInfoUnits !== "undefined") ? layerDetails.featureInfoUnits : layerDetails.units;
+
                                   Highcharts.chart('containerChartsTS', {
                                     title: {
                                       text: 'Time Series'
@@ -331,7 +334,7 @@ owgis.features.punctual.getTimeSeries= function(event,layerNumber) {
                                       csv: data
                                     },
                                     tooltip: {
-                                        pointFormat: "{point.y:.2f} " + layerDetails.units
+                                        pointFormat: "{point.y:.2f} " + unidades
                                     },
                                     plotOptions: {
                                       series: {

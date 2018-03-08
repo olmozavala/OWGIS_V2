@@ -581,6 +581,10 @@ public class LayerMenuManagerSingleton {
 			//By default (if nothing) then we request for the feature info of the same layer.
 			featureInfo = name;
 		}
+        
+        //featureInfoUnits
+        String featureInfoUnits = layerConf.getAttributeValue("featureInfoUnits") != null 
+            ? layerConf.getAttributeValue("featureInfoUnits") : layer.getFeatureInfoUnits();
 		
 		String max_time_range = layerConf.getAttributeValue("max_time_range") != null
 				? layerConf.getAttributeValue("max_time_range") : layer.getMaxTimeLayer();
@@ -620,7 +624,7 @@ public class LayerMenuManagerSingleton {
 		}*/
 		
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
-				proj, layer.getIdLayer(), server, width, height, featureInfo,
+				proj, layer.getIdLayer(), server, width, height, featureInfo, featureInfoUnits,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
 				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed);
 		

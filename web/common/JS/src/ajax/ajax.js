@@ -206,7 +206,11 @@ Asynchronous.prototype.call = Asynchronous_call;
  *@param responseText - parameter passed in by the OpenLayersManager.java
  */
 function AsyncPunctualData(responseText) {
-    responseText = responseText.replace("ADD_UNITS",layerDetails.units);
+    if(typeof layerDetails.featureInfoUnits !== 'undefined'){
+        responseText = responseText.replace("ADD_UNITS",layerDetails.featureInfoUnits);        
+    } else {
+        responseText = responseText.replace("ADD_UNITS",layerDetails.units);
+    }
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();

@@ -116,6 +116,7 @@ function initCalendars(){
 	var maxDay = -1;
 	
 	if(typeof datesWithData !== "undefined"){
+                console.log("initializing Calendars");
 		for (var year in datesWithData) {
 			if (typeof datesWithData[year] !== 'function') { // avoid built-in functions
 				if (year < minYear) minYear = year;
