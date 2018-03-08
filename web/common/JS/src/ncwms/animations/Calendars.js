@@ -28,16 +28,17 @@ var calendarPosTop = null;
  */
 owgis.ncwms.calendars.updatehours = function(hours, cal){
 	var totHours = hours.timesteps.length;
+        console.log(totHours);
 	var currSelect;
 	if(cal === owgis.constants.startcal){
 		currSelect = $("#startTimeCalendar");
 	}else{
-		currSelect = $("#endTimeCalendar");;
+		currSelect = $("#endTimeCalendar");
 	}
 
 	//If there are more than one time value, then we need to show the
 	// corresponding select, as well as filling the options.
-	if(totHours > 1){
+	if(totHours >= 1){
 		severalTimes = true;//Indicates that we have more than one possible time
 		//Clear select
 		currSelect.find('option')
@@ -116,6 +117,8 @@ function initCalendars(){
 	var maxDay = -1;
 	
 	if(typeof datesWithData !== "undefined"){
+                console.log("initializing Calendars");
+            
 		for (var year in datesWithData) {
 			if (typeof datesWithData[year] !== 'function') { // avoid built-in functions
 				if (year < minYear) minYear = year;
@@ -152,8 +155,8 @@ function initCalendars(){
 		var minValidDate = new Date(minYear,minMonth, minDay);
 		var maxValidDate = new Date(maxYear,maxMonth, maxDay);
 
-//		console.log("--------- UTC ---------")
-//		console.log(minValidDate +" --- " + maxValidDate);
+		console.log("--------- UTC ---------")
+		console.log(minValidDate +" --- " + maxValidDate);
 
 		var locCurrDate = new Date(minValidDate);
 
@@ -161,6 +164,7 @@ function initCalendars(){
 		var hoursForFirstDay = new Array();
 
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
+                console.log(hoursForFirstDay);
 
 		//We verify that we have more than one day
 		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
@@ -178,7 +182,9 @@ function initCalendars(){
 				}
 				locCurrDate.setDate( locCurrDate.getDate() + 1);
 			}
-		
+                        
+                        //
+                        
 			$("#cal-start").datepicker({
 				minDate: minValidDate,
 				maxDate: maxValidDate,
@@ -186,6 +192,8 @@ function initCalendars(){
 				dateFormat: dateFormat,
 				onSelect: updateCalendarStart
 			});
+                        
+                        if($.datepicker._getInst($('#cal-start')[0]) != null){ console.log(minValidDate, maxValidDate); }
 			
 			$("#cal-end").datepicker({
 				minDate: minValidDate,
@@ -213,8 +221,9 @@ function initCalendars(){
 			}
 
 			var startDate = new Date(layerDetails.nearestTimeIso);
+                        console.log("startDate "+startDate+" maxValidDate "+maxValidDate);
 			$("#cal-start").datepicker("setDate",startDate);
-			$("#cal-end").datepicker("setDate",maxValidDate);
+                        $("#cal-end").datepicker("setDate",maxValidDate);                        
 			
 			displayCalendars(true);
 			
@@ -230,8 +239,8 @@ function initCalendars(){
 
 	}
 	else{//If we only have one day then we hide all the calendar options
-        _mainlayer_multipleDates= false;
-		currStartTime = layerDetails.nearestTimeIso;
+            _mainlayer_multipleDates= false;
+            currStartTime = layerDetails.nearestTimeIso;
 	}
 }
 
@@ -290,7 +299,6 @@ function updateCalendarOpts(calUpdated){
 			}
 			
 		}else if(calUpdated ===  owgis.constants.endcal){
-
 			dispAnimationAjax(endDateTxt, null, 
 						mainLayer,"getTimeSteps", owgis.constants.endcal);
 
@@ -409,7 +417,7 @@ function setCurrentTime(cal){
 			break;
 		case owgis.constants.endcal:
 			currEndTime = owgis.ncwms.calendars.getCurrentDate(asString, cal, inGMT);
-//			console.log("Setting end time to: " + currEndTime);
+			//console.log("Setting end time to: " + currEndTime);
 			break;
 	}
 }
@@ -433,7 +441,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	if(!_mainlayer_multipleDates){
 		return currStartTime;
 	}
-
+        console.log(asString, cal, GMT);
 	var currTimeCal;
 	switch(cal){
 		case owgis.constants.startcal:
@@ -449,8 +457,13 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	currDateStr = currCal.val();
 	//We need to verify that we have the time information
 	currTimeStr = $("#"+currTimeCal+" option");
-	if(currTimeStr.length > 1){
+        console.log(currTimeStr, currTimeStr.length);
+	if(currTimeStr.length >= 1){
+            if(cal ==  owgis.constants.endcal && $( "#"+currTimeCal ).parent().css('display') == 'none' ){
+                currTimeStr = "00:00:00.000Z";
+            } else {
 		currTimeStr = $("#"+currTimeCal+" option:selected").attr("value");
+            }
 	}else{
 		currTimeStr = "00:00:00.000Z";
 	}
@@ -461,16 +474,16 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	}else{
 		requestedDate = new Date(currDateStr);
 	}
-	
+        
 	/*
 	if(GMT){
 		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 
 						requestedDate.getUTCDate(),  requestedDate.getUTCHours(), 
 						requestedDate.getUTCMinutes(), requestedDate.getUTCSeconds());
 	
-	}
-	 */
-	
+	}*/
+        
+	console.log(cal, requestedDate, currDateStr, currTimeStr, currCal.val());
 	if(asString){
 		return requestedDate.toISOString();
 	}else{

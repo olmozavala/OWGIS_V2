@@ -55,23 +55,24 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
 	url3 += '&request=' + req;
 
 	switch (req) {
-        case "getAnimTimes":
-            url3 += '&startDate=' + startDate;
-            url3 += '&endDate=' + endDate;
-            asynchronous5.complete = asyncFillAnimationSelect;
-            asynchronous5.call(url3);
-        case "getTimeSteps":
-            url3 += '&day=' + startDate;
-			switch (cal) {
-				case owgis.constants.startcal:
-					asynchronous5.complete = asyncFillTimeStepsStart;
-					break;
-				case owgis.constants.endcal:
-					asynchronous5.complete = asyncFillTimeStepsEnd;
-					break;
-			}
-			asynchronous5.call(url3);
-    }
+            case "getAnimTimes":
+                url3 += '&startDate=' + startDate;
+                url3 += '&endDate=' + endDate;
+                asynchronous5.complete = asyncFillAnimationSelect;
+                asynchronous5.call(url3);
+            case "getTimeSteps":
+                url3 += '&day=' + startDate;
+                            switch (cal) {
+                                    case owgis.constants.startcal:
+                                            asynchronous5.complete = asyncFillTimeStepsStart;
+                                            break;
+                                    case owgis.constants.endcal:
+                                            asynchronous5.complete = asyncFillTimeStepsEnd;
+                                            break;
+                            }
+                            console.log("url3 ====== "+url3);
+                            asynchronous5.call(url3);
+        }
 
     finishedLoading = false;
 }
@@ -229,13 +230,16 @@ function updateKmzLink(responseText) {
  *@param responseText - basically it contains all the date ranges of the calendar
  */
 function asyncFillAnimationSelect(responseText) {
-
-    var animOpts = jQuery.parseJSON(responseText);
-
+    
+    console.log("responseText ******** "+responseText, typeof responseText, !!(responseText));
+    if(responseText){
+        var animOpts = jQuery.parseJSON(responseText);
+    } else {
+        var animOpts = '{"timeStrings":[]}';
+    }
     $('#timeSelect').find('option').remove().end();
 
-	//Get the total number of frames in "Full" 
-	
+    //Get the total number of frames in "Full" 	
     for (var key in animOpts.timeStrings) {
         var title = animOpts.timeStrings[key].title;
         var fullStr = animOpts.timeStrings[key].timeString;
@@ -250,14 +254,15 @@ function asyncFillAnimationSelect(responseText) {
 				fullStr = animOpts.timeStrings[1].timeString;//Force daily options
 			}else{//If not, it means we are only looking at one day
 				var tempStr = animOpts.timeStrings[0].timeString;//Force daily options
-				fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
+				fullStr = tempStr.substring(0,tempStr.lastIndexOf("T"))+"T24:00:00.000Z";
+                                //fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
 			}
 			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
 				'forTimeSeries' : animOpts.timeStrings[0].timeString,
 				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
 		}else{
 			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
-				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
+				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select //aqui me quede checando
 		}
     }
 }

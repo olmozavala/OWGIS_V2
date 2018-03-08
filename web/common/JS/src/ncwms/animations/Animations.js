@@ -326,6 +326,7 @@ function obtainSelectedDates(){
                 allFrames = allDates.map(function(m) { return m.utc().format() });*/
                 var allDates =  Array.from(datesRange.by('day'));
 		allFrames = allDates.map(m => m.utc().format());
+                console.log(datesRange,allDates,allFrames);
 	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
@@ -474,6 +475,8 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	}else{
 		owgis.ncwms.animation.currUrl = mainSource.getUrl();//Get url for 
 	}
+        
+        console.log(allFrames);
 	
 //		TIME: allFrames[0],
 	// Creating dhe default parameters for the images
@@ -628,6 +631,7 @@ owgis.ncwms.animation.imageHasBeenLoadedParallel = function(e){
 					animParams.TIME = allFrames[nextImage];
 					
 					eval("imageNumber"+nextImage+".belongs = "+currentAnimation+";");//Attach an animation 'counter'
+                                        console.log(nextImage, "imageNumber"+nextImage+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'",animParams, owgis.ncwms.animation.currUrl);
 					eval("imageNumber"+nextImage+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 					eval("imageNumber"+nextImage+".id = "+nextImage+";");
 					eval("imageNumber"+nextImage+".addEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel);");
