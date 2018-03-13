@@ -45,6 +45,7 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
 					.remove()
 					.end()
 		
+                console.log(currSelect);
 		//Fill select
 		for(var i=0; i < totHours; i++){
 			var hour = hours.timesteps[i];
@@ -184,16 +185,21 @@ function initCalendars(){
 			}
                         
                         //
+                       
+                        $("#cal-start").datepicker({
+                                    minDate: minValidDate,
+                                    maxDate: maxValidDate,
+                                    defaultDate: minValidDate,
+                                    dateFormat: dateFormat,
+                                    onSelect: updateCalendarStart
+                        });
                         
-			$("#cal-start").datepicker({
-				minDate: minValidDate,
-				maxDate: maxValidDate,
-				defaultDate: minValidDate,
-				dateFormat: dateFormat,
-				onSelect: updateCalendarStart
-			});
-                        
-                        if($.datepicker._getInst($('#cal-start')[0]) != null){ console.log(minValidDate, maxValidDate); }
+                        if ($("#cal-start").hasClass("hasDatepicker")) {
+                            // datepicker is open. you need the second condition because it starts off as visible but empty
+                            console.log(minValidDate, maxValidDate);
+                        } else {
+                            console.log("NO WAY B");
+                        }
 			
 			$("#cal-end").datepicker({
 				minDate: minValidDate,

@@ -56,13 +56,13 @@
 		</a>
 	</li>
 	<%-- Calendars --%>
-	<c:if test='${multipleDates}'>
+	<!--c:if test='${multipleDates}'-->
 		<li>
 			<a class="ui-btn ui-icon-calendar ui-btn-icon-left " href="#mobPanelCalendars" >
 				<fmt:message key='mobile.animations'/>
 			</a>
 		</li>
-	</c:if>
+	<!--/c:if-->
 </c:if>
 
 <%-- Toogle Cesium --%>

@@ -22,8 +22,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 " id="cal-start"> </div>
-		<div class="col-xs-6 " id="cal-end"> </div>
+		<div class="col-xs-6 " id="cal-start"> </div> <div class="col-xs-6 " id="cal-end"> </div>
+                <!--input type="text" data-role="date" id="cal-start" readonly='true' data-mini="true">
+                <input type="text" data-role="date" id="cal-end" readonly='true' data-mini="true">-->
+		
 	</div>
 	<div class="row">
 		<div class="col-xs-6 " style="text-align: center">
