@@ -47,6 +47,7 @@ import com.mapviewer.model.menu.TreeMenuUtils;
 import com.mapviewer.model.menu.TreeNode;
 import com.mapviewer.tools.HtmlMenuBuilder;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 /**
  * Servelet to process all the request of the user and incharge of presenting the client

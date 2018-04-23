@@ -383,3 +383,4 @@ owgis.ol3.geolocation.getPosition = function(element) {
         }
     }
 }
+

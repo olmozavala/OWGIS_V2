@@ -106,7 +106,28 @@ function owgisMain(){
             if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
                 owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
             }
-        }); 
+        });
+        //*configure map to look just like last time*//
+        //check if last depth selected by user also exists in this layer                    
+        isthereelev = noElevation();
+        if(!isthereelev && typeof localStorage.depth !== 'undefined'){
+            if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
+                $(":radio[value='"+localStorage.depth+"']")[0].onclick();
+                $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
+            }
+        }
+        //set transparency
+        if(localStorage.transparency_layer !== 'NaN' && typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== .95 ){
+            owgis.transparency.changeTransp(parseFloat(localStorage.transparency_layer));
+        }
+        //if 3d was set, make it 3d
+        if(typeof localStorage.cesium !== 'undefined'){
+            if(localStorage.cesium == "true"){
+                owgis.cesium.toogleCesium();
+            }
+        }
+        
+        
     }, 5);
 }
 
@@ -117,7 +138,6 @@ function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
 	owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
-
     disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
@@ -137,7 +157,8 @@ function initMenus() {
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
 	if(mobile === false){
-		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+            console.log('not mobile so reposition menus');
+            owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}
 	else{
 		owgis.ol3.positionMap();
@@ -145,7 +166,6 @@ function initMenus() {
 		//window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
-	
 	
 	//This is the resize function
 	$(window).resize(function() {
@@ -180,7 +200,6 @@ function initMenus() {
 
 		//Try to update the position of the horizontal palette (only for ncWMStwo)
 		owgis.ncwms.palettes.updateHorizontalPalette();
-
 	});
 }
 
@@ -268,12 +287,22 @@ function updateTitle(dateText, elevText) {
 function MapViewersubmitForm() {
     if (map !== null) {
     	if(!mobile){
-	        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
     	else{ 
     	    localStorage.zoom = ol3view.getResolution();// Zoom of map
     	    localStorage.map_center =  ol3view.getCenter();// Center of the map
-    		getElementById("mobile").value = mobile;
+            localStorage.language = _curr_language;
+            localStorage.map_palette = mappalette;
+            var radioButtons = $('input[name^="elev_select"]:checked');
+            if(typeof radioButtons[0] !== 'undefined'){ localStorage.depth = radioButtons[0].value; }
+            if(typeof _cesium !== 'undefined'){ localStorage.cesium = _cesium.getEnabled(); }
+            localStorage.transparency = owgis.transparency.getTransp();
+            localStorage.particles_num = owgis.ncwms.currents.particles.getNumParticles();
+            localStorage.particles_speed = owgis.ncwms.currents.particles.getParticleSpeed();
+            localStorage.particles_lifetime = owgis.ncwms.currents.particles.getParticlesLifeTime();
+            localStorage.particles_color = owgis.ncwms.currents.getColor();
+            getElementById("mobile").value = mobile;
     	}
         submitForm();
     }

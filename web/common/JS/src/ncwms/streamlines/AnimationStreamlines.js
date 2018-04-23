@@ -14,7 +14,7 @@ goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
 
-var currentsColor = "rgba(255, 255, 255, .6)";
+var currentsColor = (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
 var currAnimSpeed = 80;
 var defLineWidth = 1.7;
@@ -379,8 +379,7 @@ function initstreamlineLayer(){
 		projection: _map_projection
 	});
 	
-	streamlineLayer = new ol.layer.Image({
-		source: animSource});
+	streamlineLayer = new ol.layer.Image({source: animSource});
 	
 	var layersCollection = map.getLayers();
     if(_.isEmpty(animLayer)){
@@ -549,6 +548,7 @@ function updateData(){
 						}
 					});
 			});
+                        
 	}else{
         // Iterate over all the times we are displaying (only one, unless we have animations)
 		_.each(times, function(time, idx){
@@ -661,6 +661,10 @@ function startAnimationLoopCurrents(){
 	clearLoopHandlerCurrents();
 	owgis.ncwms.currents.particles.setInternalAnimationSpeed(currAnimSpeed);
 	intervalHandlerCurrents = setInterval(loopAnimationCurrents,currAnimSpeed);
+        /*if(typeof localStorage.particles_speed !== 'undefined' && localStorage.particles_speed !== 'NaN'){
+            console.log('set last speed.');
+            owgis.ncwms.currents.particles.setParticleSpeed(parseFloat(localStorage.particles_speed));
+        }*/
 }
 
 /**

@@ -599,17 +599,13 @@ public class LayerMenuManagerSingleton {
 		String jsonp = layerConf.getAttributeValue("jsonp");
 		boolean boolJsonp= jsonp != null ? Boolean.parseBoolean(jsonp) : layer.isJsonp();
 		
-		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null
-				? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
+		String overlayStreamlines = layerConf.getAttributeValue("overlaystreamlines") != null ? layerConf.getAttributeValue("overlaystreamlines") : layer.getoverlayStreamlines();
 		
-		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null
-				? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
+		float defParticleSpeed = layerConf.getAttributeValue("defParticleSpeed") != null ? Float.parseFloat(layerConf.getAttributeValue("defParticleSpeed")) : layer.getDefParticleSpeed();
                 
-                String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null
-				? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
+        String belowMinColor = layerConf.getAttributeValue("belowMinColor") != null ? layerConf.getAttributeValue("belowMinColor") : layer.getBelowMinColor();
                 
-                String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null
-				? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
+        String aboveMaxColor = layerConf.getAttributeValue("aboveMaxColor") != null ? layerConf.getAttributeValue("aboveMaxColor") : layer.getAboveMaxColor();
 		
 		/*
 		String[] cql_cols = null;
@@ -870,6 +866,13 @@ public class LayerMenuManagerSingleton {
 			throw new XMLFilesException("There are not optional layers defined.");
 		}
 		for (int j = 0; j < rootVectorMenu.getChilds().size(); j++) {
+            if( rootVectorMenu.getChilds().get(j).getChilds() != null ){
+                for (int i = 0; i < rootVectorMenu.getChilds().get(j).getChilds().size(); i++) {
+                    if (rootVectorMenu.getChilds().get(j).getChilds().get(i).isSelected()) {
+                        selOptional.add(rootVectorMenu.getChilds().get(j).getChilds().get(i).getNode().getId());
+                    }
+                }
+            }
 			if (rootVectorMenu.getChilds().get(j).isSelected()) {
 				selOptional.add(rootVectorMenu.getChilds().get(j).getNode().getId());
 			}

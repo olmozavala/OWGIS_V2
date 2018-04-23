@@ -74,7 +74,7 @@ public class OpenLayersManager {
 		return ConvertionTools.convertObjectArrayToIntArray(resultado.toArray());
 	}
 
-	public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
+    public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
 
 		if (menuSelected.length == 0) {//if not entry return null
 			return null;
@@ -84,7 +84,6 @@ public class OpenLayersManager {
 		Layer tempLayer = null;
 		for (int index = 0; index < layersManager.getVectorLayers().size(); index++) {//loop each vector layer
 			tempLayer = layersManager.getVectorLayers().get(index);//temp variable 
-
 			//each tree value has to be send separately. 
 			//becuase the vector layers are all on one level of the tree
 			for (int menuNumber = 0; menuNumber < menuSelected.length; menuNumber++) {
@@ -175,7 +174,7 @@ public class OpenLayersManager {
                 "\t if(mobile){owgis.mobile.closePanels();\n" +
 				"\t\t owgis.interf.loadingatmap(true);}\n" +
                 "\t var coordinate = evt.coordinate;\n" +
-                "\t var newCoordinate = ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');\n" +
+                "\t var newCoordinate = ol.proj.transform(coordinate, _map_projection, EPSG_4326);\n" +
                 "\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t $('#popup').hide();\n" +
                 "\t currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'\n" +

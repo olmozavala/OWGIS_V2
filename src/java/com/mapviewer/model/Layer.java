@@ -94,7 +94,7 @@ public class Layer {
 	 *
 	 * @param {MenuEntry} selectedIndex MenuEntry[]Array that has the optons of the wanted
 	 * menus
-	 * @return boolean depending if the slected index has the menu entry.
+	 * @return boolean depending if the selected index has the menu entry.
 	 */
 	public boolean isThisLayer(MenuEntry[] selectedIndex) {
 		boolean thisIsTheLayer = true;
@@ -111,15 +111,16 @@ public class Layer {
 	}
 	
 	public boolean isThisLayer(String[] selectedIndex) {
-		boolean thisIsTheLayer = true;
+		boolean thisIsTheLayer = false;
 		if (selectedIndex.length == 0) {
 			thisIsTheLayer = false;
 		}
 		for (int nivelMenu = 0; nivelMenu < idLayer.length; nivelMenu++) {
-			
-			if (!idLayer[nivelMenu].getId().equals(selectedIndex[nivelMenu])) {
-				return false;
-			}
+            for (int selnum = 0; selnum < selectedIndex.length; selnum++) {
+                if (idLayer[nivelMenu].getId().equals(selectedIndex[selnum])) {
+                    return true;
+                }
+            }
 		}
 		return thisIsTheLayer;
 	}
@@ -342,15 +343,16 @@ public class Layer {
 			//Adds the default streamline speed
 			layerDetails.accumulate("defParticleSpeed", this.defParticleSpeed);
                         
-                        //Verificar que la capa es ncwms
-                        layerDetails.put("defaultPalette", this.palette);
+            //Verificar que la capa es ncwms
+            layerDetails.put("defaultPalette", this.palette);
 
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
                         
-                        //Adds an indicationf if a color for when below min color
+            //Adds an indicationf if a color for when below min color
 			layerDetails.accumulate("belowMinColor", this.belowMinColor);
-                        //Adds an indicationf if a color for when above max color
+            
+            //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
 
             //Add zoom and center
