@@ -26,6 +26,7 @@ import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.exceptions.XMLLayerException;
 import com.mapviewer.model.BoundaryBox;
 import com.mapviewer.model.Layer;
+import com.mapviewer.model.Point;
 import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.model.menu.TreeMenuUtils;
 import com.mapviewer.model.menu.TreeNode;
@@ -42,6 +43,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @param {LayerMenuManagerSingleton} - instance - initialize a singleton of this class
@@ -96,7 +99,6 @@ public class LayerMenuManagerSingleton {
 			
 			Layer newLayer = updateFields(layerElem, groupLayer);
 			System.out.println("Adding layer: "+newLayer.getName());
-			
 			String[] layerMenu = null;
 			
 			try {
@@ -122,7 +124,6 @@ public class LayerMenuManagerSingleton {
 				//this is where the server is checked to see if it is online or not.
 				//in the case it it offline and exception is raised and it skips until the catch
 				String layerDetails = NetCDFRequestManager.getLayerDetails(newLayer);
-				
 				switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 					case "mainlayers":
 						//Updates the Root Tree menu with this new entry
@@ -146,20 +147,22 @@ public class LayerMenuManagerSingleton {
 						break;
 					case "optionallayers":
 						//Updates the Vector Tree menu with this new entry
-						updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
-						
-						//Assigns the 'Tree' of this menu to the layer
-						newLayer.setIdLayer(searchMenuEntries(layerMenu));
-						newLayer.setLayerDetails(layerDetails);//It has to be called at the end
-						validateLayer(newLayer);
-						break;
+                        HashMap<String, String> map = new HashMap();
+                        map.put("zoom", String.valueOf(newLayer.getZoom()));
+                        map.put("center", newLayer.getCenter().toString());
+                        MenuEntry menu = updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
+                        menu.addAll(map);
+                        //Assigns the 'Tree' of this menu to the layer
+                        newLayer.setIdLayer(searchMenuEntries(layerMenu));
+                        newLayer.setLayerDetails(layerDetails);//It has to be called at the end
+                        validateLayer(newLayer);
+                        break;
 				}
 				
 			} catch (XMLLayerException ex) {
 				layerExceptions.add(ex.getMessage());
 				break;//Try the next layer
-			}
-			
+            }
 			//If we make it this far, then the layer has been added succesfully (or it should)
 			switch (layerType.toLowerCase()) {// Change the attributes that differ from layeres
 				case "mainlayers":
@@ -169,16 +172,15 @@ public class LayerMenuManagerSingleton {
 					this.backgroundLayers.add(newLayer);
 					break;
 				case "optionallayers":
-					this.vectorLayers.add(newLayer);
+                    this.vectorLayers.add(newLayer);
 					break;
 			}
-		}//For Iterate over layers of a group
-		
+        }//For Iterate over layers of a group
 		if(layerExceptions.size() > 0){
 			String exceptionString="";
 			//Saving all the exceptions into one string
 			//exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
-			exceptionString = layerExceptions.get(0).toString();
+			exceptionString = layerExceptions.get(0);
 			throw new XMLLayerException(exceptionString);
 		}
 		
@@ -304,8 +306,8 @@ public class LayerMenuManagerSingleton {
 		String refreshLayers = mapConfig.getRefreshLayers();
 		long millsSinceLastUpdate = currDate.getTime() - lastUpdate.getTime();
 		switch(refreshLayers.toLowerCase()){
-                        case "hourly":
-				if( millsSinceLastUpdate > (MILLIS_PER_DAY/24) ) update = true;
+            case "hourly":
+				if( millsSinceLastUpdate > (MILLIS_PER_DAY/24)) update = true;
 				break;
 			case "daily":
 				if( millsSinceLastUpdate > MILLIS_PER_DAY) update = true;
@@ -437,7 +439,7 @@ public class LayerMenuManagerSingleton {
 				String exceptionString="";
 				//Saving all the exceptions into one string
 //				exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
-				exceptionString = layerExceptions.get(0).toString();
+				exceptionString = layerExceptions.get(0);
 				
 				throw new XMLLayerException(exceptionString);
 			}
@@ -631,8 +633,16 @@ public class LayerMenuManagerSingleton {
 		newLayer.setCql_cols(cql_cols);
 		newLayer.setNcwmstwo(boolnetCDFtwo);
 		newLayer.setLocalAddress(localAddress);
-		
-		return newLayer;
+        
+        //add zoom, lat, long to Layer
+		String zoom = layerConf.getAttributeValue("zoom");
+        Byte zoomLayer = zoom != null ? Byte.parseByte(zoom) : null;
+		Point center = new Point(layerConf.getAttributeValue("center"));
+        
+        newLayer.setZoom(zoomLayer);
+        newLayer.setCenter(center);
+
+        return newLayer;
 	}
 	
 	/**
@@ -671,9 +681,8 @@ public class LayerMenuManagerSingleton {
 						currMenuEntry.addText(atrib.getName(), atrib.getValue());
 					}
 				}
-				
-//				currMenuEntry.print();
-menuEntries.put(id, currMenuEntry);
+                //currMenuEntry.print();
+                menuEntries.put(id, currMenuEntry);
 			}
 		} catch (Exception ex) {
 			System.out.println("Exception adding menu entries");
@@ -747,17 +756,17 @@ menuEntries.put(id, currMenuEntry);
 	 * @param {TreeNode} currNode TreeNode Current node on the tree
 	 * @param {boolean} selected boolean Indicates if the optional layer should be
 	 * selected by default adding
+     * @param layerName name of layer
+     * @param layerDetails details of layer
 	 */
-	private void updateVectorMenu(String[] allMenus, TreeNode currNode, int currMenu,boolean selected, String layerName) throws XMLFilesException {
-		MenuEntry menuEntry = menuEntries.get(allMenus[currMenu]);
-		menuEntry.setLayername(layerName);
-		
-		//Throw an exception if the menu was not found.
-		if (menuEntry == null) {
-			throw new XMLFilesException("The menu entry: " + allMenus[currMenu] + " was not found");
+	private MenuEntry updateVectorMenu(String[] allMenus, TreeNode currNode, int currMenu, boolean selected, String layerName) throws XMLFilesException {
+        MenuEntry menuEntry = menuEntries.get(allMenus[currMenu]);
+        //Throw an exception if the menu was not found.
+        if (menuEntry == null) {
+            throw new XMLFilesException("The menu entry: " + allMenus[currMenu] + " was not found");
 		}
-		
-		TreeNode newNode;
+        menuEntry.setLayername(layerName);
+        TreeNode newNode;
 		if (currNode.getHasChilds()) {
 			//If this level has menus then search for the current one
 			ArrayList<TreeNode> childs = currNode.getChilds();
@@ -766,16 +775,19 @@ menuEntries.put(id, currMenuEntry);
 				newNode = new TreeNode(false, menuEntry, null, selected);
 				currNode.addChild(newNode);
 			}
+
 		} else {
 			//If this level doesn't have more menus then we need to add one extra level
 			//By default the first layer is the one selected. (ATTENTION HERE)
-			newNode = new TreeNode(false, menuEntries.get(allMenus[currMenu]), null, selected);
+            MenuEntry nmenuEntry = menuEntries.get(allMenus[currMenu]);
+            newNode = new TreeNode(false, nmenuEntry, null, selected);
 			currNode.addChild(newNode);
 		}
-		
+        
 		if ((currMenu + 1) < allMenus.length) {
-			updateVectorMenu(allMenus, newNode, currMenu + 1, selected, layerName);
+			return updateVectorMenu(allMenus, newNode, currMenu + 1, selected, layerName);
 		}
+        return menuEntry;
 	}
 	
 	/**

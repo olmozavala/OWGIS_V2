@@ -1,3 +1,5 @@
+/* global _map_projection */
+
 goog.provide('owgis.ncwms.currents');
 
 goog.require('ol.source.ImageCanvas');
@@ -42,7 +44,6 @@ var animationPaused = false;
 // running. Afther all the images have been loaded the the particles data is reloaded
 var isRunningUnderMainAnimation = false;
 var isFirstTime = true;//Only important when been run under main animation
-
 // ------------------ Cesium related -------------
 var c_move = false;//Used to detect movement of the mouse
 var c_leftdown = false;//Used to detect a left click of the mouse
@@ -50,6 +51,9 @@ var c_x = 0.0350; // Used to increase the longitude angle
 var c_y = -0.75;// Used to increase the longitude angle
 var c_scene;
 var c_handler;
+
+
+var _cesi = null;
 
 window['owgis.ncwms.currents.setColor'] = owgis.ncwms.currents.setColor;
 owgis.ncwms.currents.setColor= function setColor(color){
@@ -182,12 +186,14 @@ owgis.ncwms.currents.clearCurrentsCanvas= function clearCurrentsCanvas(){
  * @returns {owgis.layer.model}
  */
 function getDefaultLayer(){
-
-	var defLayer = new owgis.layer.model({
+    var bbox = layerDetails.bbox;
+    bbox = bbox.map(function(x) {return Number(x)});
+    /* change the projection if is necessary*/
+    var defLayer = new owgis.layer.model({
 			server: layerDetails.server,
 			layers: layerDetails.streamlineLayer,
-			bbox: layerDetails.bbox.join(","),
-			origbbox: layerDetails.bbox.join(",")
+			bbox: bbox.join(","),
+			origbbox: bbox.join(",")
 		}); 
 
 	//If this layer is being server by ncWMS V2 or higher, then we 
@@ -198,12 +204,12 @@ function getDefaultLayer(){
 	//If the layer has the whole longitude space (-180, 180) we modify
 	// the original extent to -360,360 in order to be able to visualize
 	// currents in the middle
-	var origBBOX = defLayer.get("origbbox").split(',');
-	if(Number(origBBOX[0]) === -180 && Number(origBBOX[2]) === 180 ){
-		origBBOX[0] = -360;
-		origBBOX[2] = 360;
+	if(bbox[0] === -180 && bbox[2] === 180 ){
+    	bbox[0] = -360;
+		bbox[2] = 360;
 	}
-	defLayer.set("origbbox",origBBOX.join(","));	
+    bbox = ol.proj.transformExtent(bbox, PROJ_4326, _map_projection);
+    defLayer.set("origbbox",bbox);	
 
 	return defLayer;
 }
@@ -281,6 +287,7 @@ function initstreamlineLayerCesium(){
 	
 }
 
+//--here the problem fixed
 /**
  * This function is in charge of updating the extents in Cesium 
  * @param {type} event
@@ -289,17 +296,20 @@ function initstreamlineLayerCesium(){
 function updateCurrentsCesium(event){
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
+    var oheighty = 180;
+    var nty = 90;
 
-	var cam_rad = c_scene.camera.positionCartographic;
-	var c_center = {
-		longitude:cam_rad.longitude*180/Math.PI,
-		latitude:cam_rad.latitude*180/Math.PI};
+        var cam_rad = c_scene.camera.positionCartographic;
+         _cesi = cam_rad;
+    var c_center = {
+		longitude:cam_rad.longitude*oheighty/Math.PI,
+		latitude:cam_rad.latitude*oheighty/Math.PI};
 
 	//This is the hight were the user see at most 70 degrees from each direction
 	var def_max_angle = 70;
 	var hight_for_max_angle = 8000000; 
 
-	//The proportion of the window affects how much the user can sees but
+    //The proportion of the window affects how much the user can sees but
 	// it also should take into account how far are we
 
 	var win_prop = canvas.width/canvas.height;
@@ -310,19 +320,19 @@ function updateCurrentsCesium(event){
 	//In this case we have to load all the space in the longitude
 	// The 20 degrees indicates when we start requesting the whole 180
 	// degrees, in this case if the camera is above view_angle_lat - 20
-	if( (Math.abs(c_center.latitude) + view_angle_lat - 20) > 90){
+	if( (Math.abs(c_center.latitude) + view_angle_lat - 20) > nty){
 //		console.log("Max lat: " + (Math.abs(c_center.latitude) + view_angle_lat + 10));
-		currentExtent = [c_center.longitude-180,
-						Math.max(-90, c_center.latitude-view_angle_lat),
-						c_center.longitude+180,
-						Math.min(90, c_center.latitude+view_angle_lat)];
+		currentExtent = [c_center.longitude-oheighty,
+						Math.max(-nty, c_center.latitude-view_angle_lat),
+						c_center.longitude+oheighty,
+						Math.min(nty, c_center.latitude+view_angle_lat)];
 	}else{
 		currentExtent = [ c_center.longitude-view_angle_lon,
 						c_center.latitude-view_angle_lat,
 						c_center.longitude+view_angle_lon,
 						c_center.latitude+view_angle_lat];
 	}
-
+    //currentExtent = ol.proj.transformExtent(currentExtent, PROJ_4326, _map_projection);
 /*
 	console.log(cam_rad.height);
 	console.log("****************************************************************");
@@ -338,9 +348,10 @@ function updateCurrentsCesium(event){
 		if(updateURL()){
 			//Trying to match the resolution obtained with the non-cesium version.
 			// This is just to modify the the speed of the particles when zooming in/out
-			var resolution = cam_rad.height/200000000;
+            var res = 50000000;
+			var resolution = cam_rad.height/res;
 			console.log("Computes res: "+resolution);
-			owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
+            owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
 			updateData();
 		}
 	}else{
@@ -358,7 +369,6 @@ function updateCurrentsCesium(event){
 }
 
 function initstreamlineLayer(){
-	
 	if(streamlineLayer !== null){//If the layer already existed, we remove it
 		map.removeLayer(streamlineLayer);
 	}
@@ -366,13 +376,13 @@ function initstreamlineLayer(){
 	//This is the source of the new map layer
 	var animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationCurrents,
-		projection: layerDetails.srs
+		projection: _map_projection
 	});
 	
 	streamlineLayer = new ol.layer.Image({source: animSource});
 	
 	var layersCollection = map.getLayers();
-	if(_.isEmpty(animLayer)){
+    if(_.isEmpty(animLayer)){
 		layersCollection.insertAt(parseInt(_id_first_main_layer)+1,streamlineLayer);//Adds the animation layer just above the main layer
 	}else{
 		layersCollection.insertAt(parseInt(_id_first_main_layer)+2,streamlineLayer);//Adds the animation layer just above the main layer
@@ -390,30 +400,26 @@ function initstreamlineLayer(){
  * @returns {Element|canvas}
  */
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
-	
 //	console.log("Update currents view and data");
 	canvas = document.getElementById("currentsCanvas");
-	ctx = canvas.getContext('2d');
-	
+    ctx = canvas.getContext('2d');
+
 	var canvasWidth = size[0];
-	var canvasHeight = size[1];        
+	var canvasHeight = size[1];
 	
 	canvas.width = canvasWidth;
-	canvas.height = canvasHeight;   	
-	
-	currentExtent = extent;
-	
-	if(!isRunningUnderMainAnimation){
+	canvas.height = canvasHeight;
+    currentExtent = extent;
+    if(!isRunningUnderMainAnimation){
 		if(updateURL()){
-			owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
-			updateData();
+            owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+            updateData();
 		}
 	}else{
 		if(isFirstTime){
 			if(updateURL()){
-				owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
-				updateData();
-			}
+                owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+				updateData();			}
 			isFirstTime = false;
 		}
 	}
@@ -444,7 +450,6 @@ function abortPrevious(){
 function updateData(){
 	// Clears previous animations
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
-
 	var computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
 	
 	var totalRequests = times.length;	
@@ -459,9 +464,9 @@ function updateData(){
 	var vData = new Array();
 	
 	abortPrevious();//Abort any previous premises we have
-	readDataPremises = new Array();
-	if(layerDetails.ncwmstwo){
-		// Iterate over all the times we are displaying (only one, unless we have animations)
+    readDataPremises = new Array();
+    if(layerDetails.ncwmstwo){
+        // Iterate over all the times we are displaying (only one, unless we have animations)
 		_.each(times, function(time, idx){
 			layerTemplate.set("time",time);	
 
@@ -472,25 +477,22 @@ function updateData(){
 			tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
 			tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
 			
-
 			//Our premises are going to be 
 			// (idx-1)*2 + 0 for u         and
 			// (idx-1)*2 + 1 for v
 			var uidx = idx*2 + 0;
 			var vidx = idx*2 + 1;
-
-			readDataPremises[uidx] = d3.json( tempULayer.getURL(), function(error, file){
+            readDataPremises[uidx] = d3.json( tempULayer.getURL(), function(error, file){
 						if(error){
-							console.log("Not possible to read JSON data for U: "+error.statusText);
+                            console.log("Not possible to read JSON data for U: "+error.statusText);
 						}else{
-							//TODO we need to be certain that this will work every case,
+                            //TODO we need to be certain that this will work every case,
 							// the problem is that updateParticles gets called more than one time
 							// for each animation.
 							uData[idx] = new Array();//Clear the array for this specific location
-			//				console.log("Data has been received: "+idx);
-							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
+							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
 							uData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
-							//We only initialize the loop and the headers for the first request
+                            //We only initialize the loop and the headers for the first request
 							if(loadedRequests === 0){
 								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 							}
@@ -498,7 +500,6 @@ function updateData(){
 							if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
 								if( uData[idx].length > 0 && vData[idx].length){
 									var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
-//									console.log("Set grid for: ",idx);
 									owgis.ncwms.currents.particles.setGrid(grid,idx);
 								}
 							}
@@ -513,7 +514,6 @@ function updateData(){
 							}
 						}
 					});
-
 			readDataPremises[vidx] = d3.json( tempVLayer.getURL(), function(error, file){
 						if(error){
 							console.log("Not possible to read JSON data for V: "+error.statusText);
@@ -523,10 +523,9 @@ function updateData(){
 							// for each animation.
 							vData[idx] = new Array();
 							//We set the gridInfo only for the first time frame 
-							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file);
-							vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
-
-							//We only initialize the loop and the headers for the first request
+							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
+                            vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
+                            //We only initialize the loop and the headers for the first request
 							if(loadedRequests === 0){
 								owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 							}
@@ -534,7 +533,6 @@ function updateData(){
 							if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
 								if( uData[idx].length > 0 && vData[idx].length){
 									var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
-//									console.log("Set grid for: ",idx);
 									owgis.ncwms.currents.particles.setGrid(grid,idx);
 								}
 							}
@@ -552,7 +550,7 @@ function updateData(){
 			});
                         
 	}else{
-		// Iterate over all the times we are displaying (only one, unless we have animations)
+        // Iterate over all the times we are displaying (only one, unless we have animations)
 		_.each(times, function(time, idx){
 			layerTemplate.set("time",time);	
 			//		console.log(layerTemplate.getURL());
@@ -560,7 +558,7 @@ function updateData(){
 						if(error){
 							console.log("Not possible to read JSON data: "+error.statusText);
 						}else{
-							//				console.log("Data has been received: "+idx);
+                            console.log("-----------------aqui-----------");
 							var uData = file[0].data;
 							var vData = file[1].data;
 							
@@ -615,25 +613,24 @@ function updateData(){
  * @returns {undefined}
  */
 function updateURL(){
-	var origBBOX = layerTemplate.get("origbbox").split(',');
-	// Validate that the user is viewing some area of the data
-	if( (currentExtent[0] > origBBOX[2]) ||
+    var origBBOX = layerTemplate.get("origbbox");
+    if((currentExtent[0] > origBBOX[2]) ||
 			(currentExtent[2] < origBBOX[0]) ||
 			(currentExtent[1] > origBBOX[3]) ||
 			(currentExtent[3] < origBBOX[1]) ){
 		//In this case the current map view is outside the limits of the data
-		return false;
+        return false;
 	}else{
 		// Updating current BBOX
-		limLonMin = Math.max(currentExtent[0], origBBOX[0]);
-		limLatMin = Math.max(currentExtent[1], origBBOX[1]);
+		var limLonMin = Math.max(currentExtent[0], origBBOX[0]);
+		var limLatMin = Math.max(currentExtent[1], origBBOX[1]);
 		
 		var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
 		var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
-		
-		var newbbox = limLonMin+","+limLatMin+","+limLonMax+","+limLatMax;
-		layerTemplate.set("bbox",newbbox);	
-		
+		var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        layerTemplate.set("extbbox", newbbox);//auxiliar extent map
+        newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
+        layerTemplate.set("bbox",newbbox.toString());	
 		// Updating current zaxis
 		if( !_.isEmpty(layerDetails.zaxis)){
 			var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
@@ -641,9 +638,8 @@ function updateURL(){
 		}else{
 			layerTemplate.set("elevation",null);	
 		}
-		
 		layerTemplate = updateWidthAndHeight(layerTemplate);
-		return true;
+        return true;
 	}
 }
 
@@ -677,7 +673,8 @@ function startAnimationLoopCurrents(){
  * @returns {undefined}
  */
 function loopAnimationCurrents(){
-	//When the animation is 'playing' it loops on all the frames
+	start = Date.now();
+    //When the animation is 'playing' it loops on all the frames
 	if(!animationPaused){
 		
 		ctx.beginPath();
@@ -691,23 +688,21 @@ function loopAnimationCurrents(){
 		ctx.strokeStyle = currentsColor;
 		if(mobile){
 			if(_.isEmpty(_cesium) || !_cesium.getEnabled()){
-				//When Cesium is enabled
-				ctx.lineWidth = defLineWidthCesium;
-			}else{
 				//When not Cesium and mobile
 				ctx.lineWidth = defLineWidth;
+			}else{
+                //When Cesium is enabled
+				ctx.lineWidth = defLineWidthCesium;
 			}
 		}else{
 			ctx.lineWidth = defLineWidth;
 		}
-		
-		//Update particles positions
-		owgis.ncwms.currents.particles.updateParticles();
-		// Render again
-		owgis.ncwms.currents.particles.drawParticles();
-		
-		ctx.stroke();
-		
-		map.render();
-	}
+        if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
+            return;
+        }
+        owgis.ncwms.currents.particles.updateParticles(0, particlesArray.length);
+        owgis.ncwms.currents.particles.drawParticles(0, particlesArray.length);
+        ctx.stroke();
+        map.render();
+    }
 }

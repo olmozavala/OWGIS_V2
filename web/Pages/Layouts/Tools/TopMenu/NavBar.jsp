@@ -7,13 +7,12 @@
 			</a>
 		</span>
 		<!--This are always available-->
-		<ul class="horizontal col-lg-4 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
-			<!--
-			<li class="buttonStyle toolTip" title="BACK"> 
-				<a class="maplink" style="text-align:center;" onclick="owgis.backlayers.update('mapquest')" data-role="button">
-				    Back
-				</a>
-			</li> -->
+		<ul class="horizontal col-lg-6 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
+			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"> 
+				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
+                    <!--It gets initialized by backgroundLayers.js-->
+                </select>
+			</li>
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
@@ -24,6 +23,9 @@
 			<!-- Depth or elevation-->
 			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
 				<%@include file="../../../Options/Elevation.jsp" %>
+			</li>
+            <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
+                <i class="glyphicon glyphicon-screenshot"></i>
 			</li>
 		</ul>
 			

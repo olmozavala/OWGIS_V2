@@ -56,9 +56,10 @@ owgis.ncwms.currents.style.reset = function reset(){
 		owgis.ncwms.currents.particles.setParticlesLifeTime(
 			owgis.ncwms.currents.particles.getDefaultParticlesLifeTime() ); 
 	}
-	
-	$("#currentsColor").spectrum({color: owgis.ncwms.currents.getDefColor()});
-	owgis.ncwms.currents.setColor(owgis.ncwms.currents.getDefColor());
+        //set background color, spectrum do not work
+	var spp = document.getElementsByClassName("sp-preview-inner");
+	spp[0].style.backgroundColor = owgis.ncwms.currents.getDefColor();
+        owgis.ncwms.currents.setColor(owgis.ncwms.currents.getDefColor());
 }
 
 owgis.ncwms.currents.style.init = function init(){
@@ -79,7 +80,6 @@ owgis.ncwms.currents.style.updateParticleSpeedFromResolution = function updatePa
 	
 //	console.log("Resolution non Cesium: "+resolution);
 	var newParticleSpeed = (Math.pow(resolution,1.01)) * owgis.ncwms.currents.particles.getDefaultParticleSpeed();
-	
 	//This indicates at what percentage from 0 to 100 the default
 	// value will be in the slider
 	speedIncrement = 30/newParticleSpeed;

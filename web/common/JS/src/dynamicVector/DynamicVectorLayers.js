@@ -87,7 +87,7 @@ owgis.vector.manager.requestJSONLayer = function( layer, layerId, visible ){
 	
 	// Adds the 'mousemove' event into the map
 	if(!viewportInitialized){
-		
+		//funcion obsoleta ver como cambiar a la nueva
 		featureOverlay = new ol.FeatureOverlay({
 			map: map,
 			style: highlightStyleFunction

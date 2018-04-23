@@ -251,7 +251,9 @@
 							</xs:simpleType>
 						</xs:attribute>                      
 
-						<xs:attribute name="style" type="xs:string" />  
+						<xs:attribute name="style" type="xs:string" />
+                        <xs:attribute name="zoom" type="xs:string" />
+                        <xs:attribute name="center" type="xs:string" />  
 					</xs:complexType>
 				</xs:element> <!--End of OptionalLayers -->
    
@@ -330,7 +332,9 @@
 											</xs:restriction> 
 										</xs:simpleType>
 									</xs:attribute>                      
-								</xs:complexType>
+                                    <xs:attribute name="zoom" type="xs:string" />
+                                    <xs:attribute name="center" type="xs:string" />
+                                </xs:complexType>
                   
 							</xs:element><!-- End of Menuconf/MainLayers/layer -->
        
@@ -397,8 +401,7 @@
 									<xs:enumeration value="year" />                                                           
 								</xs:restriction> 
 							</xs:simpleType>
-						</xs:attribute>   
-       
+                    </xs:attribute>
 					</xs:complexType>
 				</xs:element> <!--End of MainLayer -->
    
