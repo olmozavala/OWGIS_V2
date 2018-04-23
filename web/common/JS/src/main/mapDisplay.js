@@ -82,7 +82,7 @@ function owgisMain(){
         initOl3();
         addLayers();
         owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
-    }, 5);
+    }, 10);
     //menus
     var intervalMenus = setInterval(function(){
        clearInterval(intervalMenus);
@@ -107,8 +107,29 @@ function owgisMain(){
             if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
                 owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
             }
-        }); 
-    }, 5);
+        });
+        //*configure map to look just like last time*//
+        //check if last depth selected by user also exists in this layer                    
+        isthereelev = noElevation();
+        if(!isthereelev && typeof localStorage.depth !== 'undefined'){
+            if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
+                $(":radio[value='"+localStorage.depth+"']")[0].onclick();
+                $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
+            }
+        }
+        //set transparency
+        if(localStorage.transparency_layer !== 'NaN' && typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== .95 ){
+            owgis.transparency.changeTransp(parseFloat(localStorage.transparency_layer));
+        }
+        //if 3d was set, make it 3d
+        if(typeof localStorage.cesium !== 'undefined'){
+            if(localStorage.cesium == "true"){
+                owgis.cesium.toogleCesium();
+            }
+        }
+        
+        
+    }, 10);
 }
 
 /**
