@@ -21,7 +21,6 @@ import com.mapviewer.exceptions.XMLFilesException;
 import com.mapviewer.model.Layer;
 import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.tools.ConvertionTools;
-import com.mapviewer.tools.HtmlTools;
 import com.mapviewer.tools.StringAndNumbers;
 import java.util.ArrayList;
 
@@ -107,24 +106,27 @@ public class OpenLayersManager {
 	 * que se muestran/array with ids of the main layers
 	 * @param {int[]} extraLayers Arreglo de las capas extras o vectoriales/array of
 	 * vector layers
+     * @param String language, current language display
+     * @param String backgroundLayer, current background layer display
 	 * @return String Regresa toda la configuracion de OpenLayers como una cadena/returns
 	 * the configuration in a string form.
 	 */
-	public String createOpenLayConfig(int[] idsBaseLayers, int[] extraLayers, String language) {
+	public String createOpenLayConfig(int[] idsBaseLayers, int[] extraLayers, String language, String backgroundLayer) {
 		this.language = language;//Sets the language of the configuration
 		if (extraLayers == null)//Evitamos que extraLayers sea nulo
 		{
 			extraLayers = new int[0];
 		}
-		if (idsBaseLayers == null)//Evitamos que baseLayers sea nulo
+     	if (idsBaseLayers == null)//Evitamos que baseLayers sea nulo
 		{
-			idsBaseLayers = new int[0];
+            idsBaseLayers = new int[0];
 		}
 		String result = "";//Esta variable contiene toda la configuracion de OpenLayers
 
-		result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
-		result += "\nfunction addLayers(){\n";
-		result += this.createInitFunction(idsBaseLayers, extraLayers) + "\n";//Esta funcion crea la configuracion central de OpenLayers
+		//result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
+		result += this.agregaURLparaTraerDatos();
+        result += "\nfunction addLayers(){\n";
+		result += this.createInitFunction(idsBaseLayers, extraLayers, backgroundLayer) + "\n";//Esta funcion crea la configuracion central de OpenLayers
 		result += "\t if(netcdf){ \n\t map.addLayer(transectLayer); \n "
 				+ ""
 				+ "} \n\n";
@@ -139,14 +141,15 @@ public class OpenLayersManager {
 	 * @param idsBaseLayers int[] Arreglo con los identificadores de las capas raster
 	 * seleccionadas
 	 * @param extraLayers int[] Arreglo de capas extras o vectoriales
+     * @param String backgroundLayer a background layer
 	 * @return String Cadena que contiene al configuracion de OpenLayers en la funcion
 	 * init()
 	 */
-	private String createInitFunction(int[] idsBaseLayers, int[] extraLayers) {
+	private String createInitFunction(int[] idsBaseLayers, int[] extraLayers, String backgroundLayer) {
 		String initFunction = "\n";
 
 		//Configures each layer using OpenLayers 3
-		initFunction += this.createSeparateLayerScript(idsBaseLayers, extraLayers);
+		initFunction += this.createSeparateLayerScript(idsBaseLayers, extraLayers, backgroundLayer);
 		// Relates the singleClick event with the request of punctualData ("identify feature")
 		initFunction += "\t singleClickKey = map.on('singleclick', punctualData);";
 
@@ -160,20 +163,23 @@ public class OpenLayersManager {
 	 * @param {int} baseLayer
 	 *
 	 */
-	private String agregaURLparaTraerDatos(int baseLayer) {
+	//private String agregaURLparaTraerDatos(int baseLayer) {
+    private String agregaURLparaTraerDatos() {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
-		layersScript = "\n\tfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
-		layersScript+= 
-                "\t\t if(!mobile){document.getElementById('map').style.cursor = 'progress';}"+
-				"\t\t if(mobile){owgis.mobile.closePanels();"
-				+ "\t\t\t owgis.interf.loadingatmap(true);}\n" +
-				"\t\t var coordinate = evt.coordinate;\n" +
-                "\t\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
-				"\t\t $('#popup').hide();\n" +
-				"\t\t currPopupText = '<b>Lon: </b>'+coordinate[0].toFixed(2)+ ' <b>Lat: </b>'+coordinate[1].toFixed(2)+'<br>'\n" +
-				"\t\t ol_popup.setPosition(coordinate);\n";
+
+		layersScript = "\nfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
+		layersScript+=
+                "\t var compleFun = paintClircleOnMap(evt.originalEvent.clientY, evt.originalEvent.clientX, AsyncPunctualData);\n" +
+                "\t if(mobile){owgis.mobile.closePanels();\n" +
+				"\t\t owgis.interf.loadingatmap(true);}\n" +
+                "\t var coordinate = evt.coordinate;\n" +
+                "\t var newCoordinate = ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');\n" +
+                "\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
+				"\t $('#popup').hide();\n" +
+                "\t currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'\n" +
+				"\t ol_popup.setPosition(coordinate);\n";
 
 		//En este for agrega las capas que son de fondo
 		for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
@@ -184,12 +190,12 @@ public class OpenLayersManager {
 			layerCount++;
 		}
 		//Se agrega el URL de la capa base
-		actualLayer = layersManager.getMainLayers().get(baseLayer);
-		if (actualLayer.getFeatureInfoLayer() != null) {
-			layersScript += generateURLhelper(actualLayer, layerCount);
-		}//If layer  featureInfo  not null
+		//actualLayer = layersManager.getMainLayers().get(baseLayer);
+		//if (actualLayer.getFeatureInfoLayer() != null) {
+			//layersScript += generateURLhelper(actualLayer, layerCount);
+		//}//If layer  featureInfo  not null
 
-		layerCount++;//Increment current layer (for  javascript, 'layer0' or 'layer1'....
+		//layerCount++;//Increment current layer (for  javascript, 'layer0' or 'layer1'....
 
 		for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
 			actualLayer = layersManager.getVectorLayers().get(i);
@@ -262,7 +268,7 @@ public class OpenLayersManager {
 		URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "FEATURE_COUNT=50\";\n";
 		URLscript +=  "\t\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
-				+ "\t\t\t\t asynchronous" + layerNumber + ".complete = AsyncPunctualData;\n"
+				+ "\t\t\t\t asynchronous" + layerNumber + ".complete = compleFun;\n"
 				+ "\t\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
 				+ "\t\t\t}\n"
 				+ "\t\t}\n";
@@ -345,7 +351,24 @@ public class OpenLayersManager {
 		}
 		return layersScript;
 	}
-	
+
+	/**
+	 * Creates an WMS layer
+	 * @param currentConf String Is the current configuration of OpenLayers
+	 * @param actualLayer int Is the number of the current layer
+	 */
+	private String addWMS(String currentConf, int actualLayer){
+		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+                "\t\tsource: new ol.source.TileWMS({\n"+
+                "\t\t\turl: 'http://ncwms.coaps.fsu.edu/geoserver/wms',\n"+
+                "\t\t\tcrossOrigin: null,\n"+
+                "\t\t\tparams: {LAYERS: 'comm:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
+                "\t\t})"+
+                "\t});";
+		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
+		return currentConf;
+	}
+
 	/**
 	 * Creates an OpenStreetMapLayer
 	 * @param currentConf String Is the current configuration of OpenLayers
@@ -363,44 +386,65 @@ public class OpenLayersManager {
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
 	 */
-	private String addMapQuest(String currentConf, int actualLayer, String layerType){
-		String layerMapQuest = "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
-				" \t\t source: new ol.source.MapQuest({\n";
-		switch(layerType){
-			case "mapquesta":
-				layerMapQuest += "\t\t\tlayer: 'sat' })});\n";
-				break;
-			case "mapquestr":
-				layerMapQuest += "\t\t\tlayer: 'osm' })});\n";
-				break;
-			case "mapquesth":
-				layerMapQuest = "\t layer"+actualLayer+" = new ol.layer.Group({\n "+
-								"\t\t style: 'AerialWithLabels',\n "+
-								"\t\t layers: [\n "+
-								"\t\t 	new ol.layer.Tile({\n "+
-								"\t\t		source: new ol.source.MapQuest({\n "+
-								"\t\t		layer: 'sat'}) }),\n "+
-								"\t\t	new ol.layer.Tile({\n "+
-								"\t\t		source: new ol.source.MapQuest({\n "+
-								"\t\t		layer: 'hyb' }) }) \n " +
-								"\t\t ] });\n ";
-						break;
-		}
-		layerMapQuest += "\tmap.addLayer(layer" + actualLayer + ");\n";
-		currentConf += layerMapQuest;
+//	private String addMapQuest(String currentConf, int actualLayer, String layerType){
+//		String layerMapQuest = "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
+//				" \t\t source: new ol.source.MapQuest({\n";
+//		switch(layerType){
+//			case "mapquesta":
+//				layerMapQuest += "\t\t\tlayer: 'sat' })});\n";
+//				break;
+//			case "mapquestr":
+//				layerMapQuest += "\t\t\tlayer: 'osm' })});\n";
+//				break;
+//			case "mapquesth":
+//				layerMapQuest = "\t layer"+actualLayer+" = new ol.layer.Group({\n "+
+//								"\t\t style: 'AerialWithLabels',\n "+
+//								"\t\t layers: [\n "+
+//								"\t\t 	new ol.layer.Tile({\n "+
+//								"\t\t		source: new ol.source.MapQuest({\n "+
+//								"\t\t		layer: 'sat'}) }),\n "+
+//								"\t\t	new ol.layer.Tile({\n "+
+//								"\t\t		source: new ol.source.MapQuest({\n "+
+//								"\t\t		layer: 'hyb' }) }) \n " +
+//								"\t\t ] });\n ";
+//						break;
+//		}
+//		layerMapQuest += "\tmap.addLayer(layer" + actualLayer + ");\n";
+//		currentConf += layerMapQuest;
+//		return currentConf;
+//	}
+
+    /**
+	 * Creates a MapQuest OSM map
+	 * @param currentConf String Is the current configuration of OpenLayers
+	 * @param actualLayer int Is the number of the current layer
+     * @param kind google map 
+	 */
+	private String addGoogle(String currentConf, int actualLayer, String kind){
+        String layerGoogle = "\tlayer"+actualLayer+" = new ol.layer.Tile({\n "+
+				" \t\t source: new ol.source.TileImage({\n";
+                if(kind.equals("earth")) {
+                    layerGoogle += " \t\t\t url: 'http://khm{0-3}.googleapis.com/kh?v=742&hl=pl&&x={x}&y={y}&z={z}',\n";
+                } else {
+                    layerGoogle += " \t\t\t url: 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}',\n";
+                }
+                layerGoogle += " \t\t\t wrapX: true})\n \t\t});\n" +
+                "\tmap.addLayer(layer" + actualLayer + ");\n";
+		currentConf += layerGoogle;
 		return currentConf;
 	}
-	
+
 	/**
 	 * Creates an BingMap layer
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
+     * @param style kind of bing map
 	 */
 	private String addBingLayer(String currentConf, int actualLayer,String style){
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
 				" \t\t preload: Infinity,	\n"+
 				" \t\t source: new ol.source.BingMaps({\n"+
-				" \t\t\t key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',\n"+
+				" \t\t\t key: 'yt4dgwztJFpmE5DetITs~rTgRmqOu_XWb0NQ590a9Qg~AtYZD4RML_s3-mV5HebwkaHKJynVyAZOvCDWGzEdWWDMllPirXHQOAGxi1_YVVRv',\n"+ //" \t\t\t key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',\n"+
 				" \t\t\t imagerySet: '"+style+"'})\n \t\t});\n";
 		
 		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
@@ -413,25 +457,25 @@ public class OpenLayersManager {
 	 *
 	 * @param idsBaseLayers
 	 * @param idsExtraLayers
+     * @param String backgroundLayer current background layer
 	 * @return
 	 */
-	private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers) {
+	private String createSeparateLayerScript(int[] idsBaseLayers, int[] idsExtraLayers, String backgroundLayer) {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
 		
-		String backgroundLayer = mapConfig.getProperty("backgroundLayer");
-		
 		switch (backgroundLayer){
-			case "wms"://Read the background layer from xml file
-				//add the layers that are the background.
-				for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-					actualLayer = layersManager.getBackgroundLayers().get(i);
-					if (actualLayer.getName() != null) {
-						layersScript += layerHelper(actualLayer, layerCount, true);
-						layerCount++;
-					}//If layer not null
-				}
+			case "wms":
+				//for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
+					//actualLayer = layersManager.getBackgroundLayers().get(i);
+					//if (actualLayer.getName() != null) {
+						//layersScript += layerHelper(actualLayer, layerCount, true);
+						//layerCount++;
+					//}//If layer not null
+				//}
+                layersScript += addWMS(layersScript, layerCount);
+				layerCount++;
 				break;
 			case "osm": //Add OpenStreetMap as the background layer
 				layersScript += addOpenStreetMapLayer(layersScript, layerCount);
@@ -449,10 +493,12 @@ public class OpenLayersManager {
 				layersScript += addBingLayer(layersScript, layerCount,"AerialWithLabels");
 				layerCount++;
 				break;
-			case "mapquesta": //Add MapQuest as the background layer
-			case "mapquestr": //Add MapQuest as the background layer
-			case "mapquesth": //Add MapQuest as the background layer
-				layersScript += addMapQuest(layersScript, layerCount, backgroundLayer);
+			case "google": //Add google earth as the background layer
+				layersScript += addGoogle(layersScript, layerCount, "earth");
+				layerCount++;
+				break;
+            case "googler": //Add google roads as the background layer
+				layersScript += addGoogle(layersScript, layerCount, "roads");
 				layerCount++;
 				break;
 		}
@@ -466,8 +512,7 @@ public class OpenLayersManager {
 				layerCount++;
 			}//If layer not null
 		}
-
-		for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
+        for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
 			actualLayer = layersManager.getVectorLayers().get(i);
 			if (StringAndNumbers.intArrayContains(idsExtraLayers, i)) {//Si esta en los seleccionados lo mostramos
 				//Si no no

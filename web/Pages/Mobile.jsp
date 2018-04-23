@@ -17,15 +17,15 @@
 		<%-- Sets all the javascript global variables that are initiated by the java application --%>
 		<%@include file="Header/GlobalJavaScript.jsp"%>
 		<%-- contains all the css links and javascript links --%>
-		<%@include file="Header/Header.jsp"%>
+		<%@include file="Header/HeaderDebug.jsp"%>
 		<%--<%@include file="Header/Header.jsp"%>--%>
 		<title></title>
 	</head>
 	<body>
-            <div class="loader"><!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw fa-6x"></i>--></div>
+        <div class="loader"><!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw fa-6x"></i>--></div>
 		<div id="popup" class="ol-popup">
                     <a href="#" id="popup-closer" class="ol-popup-closer">
-                        <i class="fa fa-remove"></i>
+                        <span class="glyphicon glyphicon-remove"> </span>
                     </a>
                         <div id="popup-content">
                             
@@ -95,7 +95,7 @@
 				
 			<%-- Parameter set true in JS if accessed from mobile --%>
 			<input type="hidden" id="_locale" name="_locale" value="" />
-			<input type="hidden" id="_locale" value="" />
+			<!--<input type="hidden" id="_locale" value="" /> -->
 			<input type="hidden" id="mobile" name="mobile" value="" />
 				
 		</form>

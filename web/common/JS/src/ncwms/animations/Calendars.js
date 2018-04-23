@@ -32,7 +32,7 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
 	if(cal === owgis.constants.startcal){
 		currSelect = $("#startTimeCalendar");
 	}else{
-		currSelect = $("#endTimeCalendar");;
+		currSelect = $("#endTimeCalendar");
 	}
 
 	//If there are more than one time value, then we need to show the
@@ -106,8 +106,7 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-	
-	var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
+    var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
 	var minMonth = 13;

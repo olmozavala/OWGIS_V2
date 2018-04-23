@@ -37,7 +37,7 @@
 	var cql_cols = '${cqlcols}'; // Set of columns that can be filtered by CQL
 	var cqlFilter = ${cqlfilter}; //Indicates if the base layer uses CQL filtering
     var _map_projection = mapConfig.mapProjection;// This is the default map projection
-    var _map_bk_layer = mapConfig.backgroundLayer;// This is the background layer we are using
+    var _map_bk_layer = '${backgroundLayer}';// This is the background layer we are using
 	var _curr_language = '${language}';
 
 	// For popup
