@@ -25,13 +25,14 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
     </head>
 	
     <body id="bodyClass" class="loadingCursor" >
-		
-		<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
+        	<%@include file="RequiredDivs.jsp" %> <%-- Contains the title of the layer and the div that hold the whole map --%>
         <form id="baseForm" class="form-inline" name="baseForm" action=".${names.acdmServlet}" method="post">
 			<!--Features menu-->
 			<%@include file="Layouts/Tools/TopMenu/NavBar.jsp" %> <%-- Sets all the javascript global variables that are initiated by the java application --%>
-			<%@include file="Layouts/DraggableWindows/Layers/MainLayers.jsp" %> <%-- Main layers as draggable windows --%>
-			<%@include file="Layouts/DraggableWindows/Layers/OptionalLayers.jsp" %> <%-- Optional layers as draggable windows --%>
+			<c:if test='${mainLayer != null}'>
+                <%@include file="Layouts/DraggableWindows/Layers/MainLayers.jsp" %> <%-- Main layers as draggable windows --%>
+            </c:if>
+            <%@include file="Layouts/DraggableWindows/Layers/OptionalLayers.jsp" %> <%-- Optional layers as draggable windows --%>
 			<%@include file="Layouts/DraggableWindows/HelpTexts/MapInstructions.jsp" %>  <%-- This page has all the calendars, the animaton divs  --%>
 			
 			<c:if test='${ncwms}'>
@@ -56,17 +57,16 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 			</c:if>
 
 			<input type="hidden" id="_locale" name="_locale" value="" />
-			<input type="hidden" id="mobile" name="mobile" value="" />
-			<input type="hidden" id="_locale" value="" />
+            <input type="hidden" id="mobile" name="mobile" value="" />
+			<!--<input type="hidden" id="_locale" value="" /> -->
 				
 			<%@include file="Footer/BottomFooter.jsp" %>
 			<!-- minimizable windows file -->
 			<%@include file="Options/MinimizeWindows.jsp" %>
 			<%@include file="Error/ErrorPopup.jsp" %>
 		</form>
-			
 		<script>
-			${openLayerConfig}
+            ${openLayerConfig}
 				jQuery(document).ready(function() {
 					owgisMain();
 				});

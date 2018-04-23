@@ -64,6 +64,13 @@ public class MenuEntry {
 		texts.put(language, text);
 	}
 
+   /**
+     *@param details
+     */
+	public void addAll(Map<String, String> details){
+		texts.putAll(details);
+	}
+
 	public String getText(String language){
 		return texts.get(language);
 	}

@@ -122,13 +122,16 @@ public class UserRequestManager {
 
 		//in case nothing is selected or doesnt exist then the object vactorLayers in session just returns 
 		//the initial menu. 
-
-		if (selectedValues== null) {
-			selectedValues = menuManager.getDefVectorLayers();
-		}
-
-		vectorLayerOptions = HtmlTools.actualizaOpcionesVectoriales(selectedValues, vectorLayerOptions);
-		session.setAttribute("vectorLayers", vectorLayerOptions);
+        try {
+            if (selectedValues== null) {
+                selectedValues = menuManager.getDefVectorLayers();
+            }
+            
+        } catch (XMLFilesException ex) {
+            selectedValues = new String[0];
+        }
+        vectorLayerOptions = HtmlTools.actualizaOpcionesVectoriales(selectedValues, vectorLayerOptions);
+        session.setAttribute("vectorLayers", vectorLayerOptions);
 		return selectedValues;
 	}
 
@@ -186,7 +189,7 @@ public class UserRequestManager {
 	 * @return
 	 */
 	public static String getKmlLink(OpenLayersManager opManager, int[] selectedBaseLayers, String selectedPalette) {
-		Layer tempLayer = opManager.getRasterLayers().get(selectedBaseLayers[0]);
+		Layer tempLayer = (selectedBaseLayers == null || selectedBaseLayers.length == 0) ? null : opManager.getRasterLayers().get(selectedBaseLayers[0]);
 		return UserRequestManager.buildKmlLink(tempLayer, selectedPalette);
 	}
 
@@ -198,6 +201,9 @@ public class UserRequestManager {
 	 * @return
 	 */
 	private static String buildKmlLink(Layer layer, String palette) {
+        if(layer == null) {
+            return "";
+        }
 		String server = layer.getServer();
 		String layerName = layer.getName();
 		String kmlLink = "";
@@ -286,7 +292,7 @@ public class UserRequestManager {
 	 */
 	public static String getTitleOfLayer(OpenLayersManager opManager, int[] selectedBaseLayers,
 			int[] selectedVectorLayers, String language) {
-		String layerTitle = opManager.getRasterLayers().get(selectedBaseLayers[0]).
+		String layerTitle = (selectedBaseLayers == null || selectedBaseLayers.length == 0) ? "" : opManager.getRasterLayers().get(selectedBaseLayers[0]).
 				getDisplayName(language);
 		if (selectedVectorLayers != null) {
 			Arrays.sort(selectedVectorLayers);//Sort the array of vector layers. The layers should be in order so, the first one is the one that

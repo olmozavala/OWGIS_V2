@@ -37,21 +37,24 @@ function validateWebGL(){
 }
 
 function initCesium(){
-	_cesium = new olcs.OLCesium({map: map});
-	_cesium.setEnabled(true);
+    var interval = setInterval(function(){
+        clearInterval(interval);
+        _cesium = new olcs.OLCesium({map: map});
+        _cesium.setEnabled(true);
 
-	var c_scene = _cesium.getCesiumScene();
-	// Don't show the border of the world
-	c_scene.skyAtmosphere.show = false;
-	// Don't allow tilt with the camera
-	c_scene.screenSpaceCameraController.enableTilt = false;
-	
-	//Set the view depending on the current resolution
-	var res = map.getView().getResolution();
-	var cam = _cesium.getCamera();
-	cam.setAltitude(res*200000000);
-	
-	startCesium(false);
+        var c_scene = _cesium.getCesiumScene();
+        // Don't show the border of the world
+        c_scene.skyAtmosphere.show = false;
+        // Don't allow tilt with the camera
+        c_scene.screenSpaceCameraController.enableTilt = false;
+
+        //Set the view depending on the current resolution
+        //var res = map.getView().getResolution();
+        var res = 1000000;//default resolution for cecium
+        var cam = _cesium.getCamera();
+        cam.setAltitude(res);
+        startCesium(false);
+    }, 10);
 }
 
 function cesiumParticles(wasEnabled){
@@ -80,11 +83,9 @@ function cesiumParticles(wasEnabled){
 function startCesium(wasEnabled){
 	_cesium.setEnabled(!wasEnabled);
 	cesiumParticles(wasEnabled);
-
 	if(!wasEnabled){ //In this case we are enabeling Cesium
 		owgis.layouts.draggable.topmenu.isUsed('.cesiumSpan');
-
-		if(netcdf){
+        if(netcdf){
 			//Disable end data
 			$("#animRes").hide();
 			$("#animDisp").hide();
@@ -98,6 +99,7 @@ function startCesium(wasEnabled){
 			owgis.error.popover.create(owgis.error.texts._ANIMCESIUM);
 		}
 	}else{
+
 		owgis.layouts.draggable.topmenu.isNotUsed('.cesiumSpan');
 		if(netcdf){
 			$("#animRes").show();
@@ -124,8 +126,7 @@ owgis.cesium.toogleCesium = function toogleCesium(){
             if(validateWebGL()){
 			$.getScript( CESIUM_BASE_URL+"Cesium.js")
 					.done(function( data, textStatus) {
-						//if( typeof ocl !== 'undefined'){
-							initCesium();
+                        initCesium();
 				/*}else{
 					$.getScript("./common/JS/vendor/minimized/ol3cesium.js")
 							.done(function( data, textStatus) {

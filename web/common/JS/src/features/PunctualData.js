@@ -5,15 +5,15 @@ goog.require('ol.View');
 goog.require('ol.source.Vector');
 goog.require('owgis.utils');
 
-owgis.features.punctual.getVerticalProfile = function(event,layerNumber) {
-	var currLayer = eval('layer'+layerNumber);
-	var currSource = currLayer.getSource();
+owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,layerNumber) {
+    var currLayer = eval('layer'+layerNumber);
+    var currSource = currLayer.getSource();
 	
 	// Verifies that this layer has zaxis data and that comes from an ncWMS server
-	if(currLayer.getSource().getParams().ncwms && _mainlayer_zaxisCoord){
+	if("getParams" in currSource && _mainlayer_zaxisCoord){
 		var x = Math.floor(event.pixel[0]);
 		var y = Math.floor(event.pixel[1]);
-		
+        
 		var time;
 		try{
 			var gmtVal = true;
@@ -62,7 +62,7 @@ owgis.features.punctual.getVerticalProfile = function(event,layerNumber) {
 		
 		url += "&TIME=" + time;
                 
-                if(currLayer.getSource().getParams().ncwmstwo){
+                if(currSource.getParams().ncwmstwo){
                     var ajaxCan;
                     var latlon;
                     $.ajax({
@@ -239,7 +239,7 @@ owgis.features.punctual.getTimeSeries= function(event,layerNumber) {
 	var currLayer = eval('layer'+layerNumber);
 	var currSource = currLayer.getSource();
 	
-	if(currLayer.getSource().getParams().ncwms){
+	if("getParams" in currSource && currSource.getParams().ncwms){
 		var x = Math.floor(event.pixel[0]);
 		var y = Math.floor(event.pixel[1]);
 		
