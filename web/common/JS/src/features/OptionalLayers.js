@@ -23,9 +23,12 @@ owgis.optionalLayers.toggleList = function(id){
 /** Changes visibility of optional layers
  * 
  */
-owgis.optionalLayers.showOptionalLayer = function(selectedLayer,visibility){
+owgis.optionalLayers.showOptionalLayer = function(selectedLayer,visibility, zoom, center){
     owgis.layers.showLayer(selectedLayer, visibility);
-	owgis.ol3.popup.closePopUp();
+    if(zoom !== null && center[0] !== null && center[1] !== null) {
+        animatePositionMap(zoom, center);
+    }
+    owgis.ol3.popup.closePopUp();
 }
 
 /**

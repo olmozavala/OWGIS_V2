@@ -9,8 +9,8 @@
 		<table id="palettesTable"></table>
 	</li>
 	<li>
-            <i id="paletteMobilPrev" href="javascript:prevPage()" class="fa fa-chevron-left" aria-hidden="true"></i></a>
-            <i id="paletteMobilNext" href="javascript:nextPage()" class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <i id="btn_prev" onclick="prevPage()" class="paletteMobilPrev glyphicon glyphicon-chevron-left" aria-hidden="true" ></i>
+            <i id="btn_next" onclick="nextPage()" class="paletteMobilNext glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
 	</li>
         <li>
             <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" id="defaultColorRangeButton" onclick="DefaultPalette();"> Default</a>

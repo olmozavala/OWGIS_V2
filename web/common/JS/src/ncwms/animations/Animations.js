@@ -387,7 +387,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 	//This is the source of the new map layer
 	animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationFunction,
-		projection: layerDetails.srs
+		projection: _map_projection
 	});
 	
 	animLayer = new ol.layer.Image({
@@ -458,7 +458,6 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		extent = tempExtent;
 	}
 	
-	bbox = extent;
 	var animResolution = owgis.ncwms.animation.status.getResolutionRatio();
 	var imgWidth = Math.ceil(canvasWidth*animResolution);
 	var imgHeight = Math.ceil(canvasHeight*animResolution);
@@ -481,7 +480,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	animParams = { 
 				TIME:allFrames[0],
 				LAYERS: layerName,
-				BBOX: bbox.toString(),
+				BBOX: extent.toString(),
 				REQUEST: "GetMap",
 				VERSION: owgis.ogc.wmsversion,
 				STYLES: lay_style+"/"+mappalette,

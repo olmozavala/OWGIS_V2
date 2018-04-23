@@ -42,6 +42,9 @@ var displayingAnimation = false;//Global variable that helps to disable the pale
 var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
 var _mobileScreenThreshold = 750;
+/////////constants
+var PROJ_4326 = 'EPSG:4326';
+var PROJ_3857 = 'EPSG:3857';
 
 // Add the moment-range library
 window['moment-range'].extendMoment(moment);
@@ -72,32 +75,39 @@ function displayPrevExceptions(){
  */
 function owgisMain(){
 	displayPrevExceptions();
-	initOl3();
-    addLayers();
-	owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
-	initMenus();
-	owgis.help.tooltips.initHelpTexts();
-	modifyInterface();
-	if(mobile){
-		owgis.mobile.initMobile();
-	}
-	//Start the currents animation of 'static' day.
-	if(_mainlayer_streamlines){
-		owgis.ncwms.currents.startSingleDateAnimation();
-	}
-	//Enables the 'close' behaviour of some windows. 
-	$(".glyphicon-remove").parent().on("click",function(event){
-		if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
-			owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
-		}
-		if($(event.currentTarget).parents("#paletteWindowColorRange").length > 0){
-			owgis.layouts.draggable.topmenu.toogleUse(".palettesMenuParent");
-		}
-		if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
-			owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
-		}
-	});
-
+    //maps
+	var intervalOL3 = setInterval(function(){
+        clearInterval(intervalOL3);
+        initOl3();
+        addLayers();
+        owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
+    }, 5);
+    //menus
+    var intervalMenus = setInterval(function(){
+       clearInterval(intervalMenus);
+       initMenus();
+        owgis.help.tooltips.initHelpTexts();
+        modifyInterface();
+        if(mobile){
+            owgis.mobile.initMobile();
+        }
+        //Start the currents animation of 'static' day.
+        if(_mainlayer_streamlines){
+            owgis.ncwms.currents.startSingleDateAnimation();
+        }
+        //Enables the 'close' behaviour of some windows. 
+        $(".glyphicon-remove").parent().on("click",function(event){
+            if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
+                owgis.layouts.draggable.topmenu.toogleUse(".currentsParent");
+            }
+            if($(event.currentTarget).parents("#paletteWindowColorRange").length > 0){
+                owgis.layouts.draggable.topmenu.toogleUse(".palettesMenuParent");
+            }
+            if($(event.currentTarget).parents(".helpInstructionsParentTable").length > 0){
+                owgis.layouts.draggable.topmenu.toogleUse(".helpParent");
+            }
+        }); 
+    }, 5);
 }
 
 /**
@@ -106,7 +116,8 @@ function owgisMain(){
 function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
-	
+	owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
+
     disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
@@ -131,7 +142,7 @@ function initMenus() {
 	else{
 		owgis.ol3.positionMap();
 		//if user changes the window size
-		window.addEventListener('orientationchange', doOnOrientationChange);
+		//window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
 	
@@ -310,3 +321,25 @@ function getElementById(id){
 
 goog.exportSymbol('owgis',owgis);
 
+/*
+ * This function paint a circle in map
+ * the funcion returned remove the circle
+ * from the map.
+ */
+function paintClircleOnMap(posY, posX, fun) {
+    var mapElement = document.getElementById("map");
+    var clickElement = document.createElement("div");
+    clickElement.style.top = posY + "px";
+    clickElement.style.left = posX + "px";
+    clickElement.classList.add("click");
+    var done = function(param) {
+        if(clickElement.parentNode === mapElement) {
+            mapElement.removeChild(clickElement);
+        }
+        if(typeof(fun) === "function") {
+            fun(param);
+        }
+    };
+    mapElement.appendChild(clickElement);
+    return done;
+}

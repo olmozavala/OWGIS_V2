@@ -4,9 +4,9 @@
 					server="http://132.248.8.238:8080/geoserver/wms"
 					vectorLayer="true"> 
 		<!--<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>-->
-		<layer Menu="lev1,states" name="demo:us_states" featureInfo="demo:world_countries" EN="US States" ES="Estados US"  />
-		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" />
-		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises" />
+		<layer Menu="lev1,states" name="demo:us_states" featureInfo="demo:world_countries" EN="US States" ES="Estados US"/>
+		<layer Menu="count" name="demo:world_countries" EN="Countries" ES="Paises" zoom="1" center="-100,22"/>
+		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises"/>
 	</OptionalLayers>
 
 </MenuConf>

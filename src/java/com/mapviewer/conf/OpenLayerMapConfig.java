@@ -119,7 +119,7 @@ public class OpenLayerMapConfig {
 				lastUpdate = currLastUpdate;
 				try {
 					//If we are updating the file then we save the previous map projection
-					String mapProjection = "";
+					String mapProjection = "EPSG:4326";
 					if(prop != null){
 						mapProjection = prop.getProperty("mapProjection");
 					}
@@ -151,13 +151,13 @@ public class OpenLayerMapConfig {
 	 */
 	public void initializeVariables() {
 		
-		center = getProperty("mapcenter");
+        center = getProperty("mapcenter");
 		zoom = getProperty("zoom");
-		zoomLevels = Integer.parseInt(getProperty("zoomLevels"));
+        zoomLevels = Integer.parseInt(getProperty("zoomLevels"));
 		zoomFactor = Float.parseFloat(getProperty("zoomFactor"));
 		maxResolution = Float.parseFloat(getProperty("maxResolution"));
 		restrictedExtent = getProperty("maxExtent");
-		mapProj=getProperty("mapProjection");
+        mapProj=getProperty("mapProjection");
 		refreshLayers=getProperty("refreshLayers");
 	}
 	

@@ -215,7 +215,7 @@ public class NetCDFRequestManager {
 	 */
 	public static String getPaletteUrl(Layer layer, String palette) {
 		
-		if (!layer.isncWMS()) {
+		if (layer == null || !layer.isncWMS()) {
 			return "";
 		}
 		

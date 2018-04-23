@@ -8,7 +8,10 @@
 		<Menu ID="vector" EN="Vector Layers" ES="Vectoriales" HI_IN="वेक्टर परते"/>
 		<Menu ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
 		<Menu ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
-		<Menu ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/> <Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/> <Menu ID="test" EN="Testing" />
+		<Menu ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/> 
+        <Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/> 
+        <Menu ID="count" EN="Countries" ES="Paises" HI_IN="देशों"/> 
+        <Menu ID="test" EN="Testing" />
 	</Menus>
 
     <!-- GEBCO LAYER working properly but slow and heavy Jun/2017 -->
@@ -27,14 +30,16 @@
 				server="http://132.248.8.238:8080/geoserver/wms"
 				vectorLayer="true">
 		<layer Menu='vector,vectest' EN='Vector layer demo. World big cities. ' 
-			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' />
+			   ES='Ejemplo de una capa vectorial. Grandes ciudades del mundo' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='demo:world_cities' 
+               zoom="1"
+               center="-100,22"/>
 	</MainLayers>
 
 	<!-- Vector CQL layer -->
 	<MainLayers BBOX="-175.22056447761656,-41.29997393927641,179.21664709402887,64.15002361973922"
 				server="http://132.248.8.238:8080/geoserver/wms"
 				vectorLayer="true"
-				cqlcols="NAME" >
+				cqlcols="NAME">
 		<layer Menu="vector,veccqltest" name="demo:world_cities" 
 			   EN="Demo CQL filtering. Estimated population in 2010 more 2 million" 
 			   ES="Ejemplo de filtrado con CQL. Grandes ciudades con mas de 2 millones de personas en 2010"
