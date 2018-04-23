@@ -78,7 +78,7 @@ public class MapViewerServlet extends HttpServlet {
 			configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
 
 			mapConfig.updateProperties(configFilePath);
-
+            
 			//Obtains the folder where XML layers file is stored.
 			String layersFolder = getServletContext().getRealPath("/layers/");
 			String baseLayerMenuOrientation = mapConfig.getProperty("baseLayerMenuOrientation");
@@ -88,8 +88,7 @@ public class MapViewerServlet extends HttpServlet {
 
 			opManager = new OpenLayersManager();//initialize the OpenLayers
 			ncManager = new NetCDFRequestManager();
-
-			LayerMenuManagerSingleton.getInstance().refreshTree(true);//Initializes all the layers from the XML files
+            LayerMenuManagerSingleton.getInstance().refreshTree(true);//Initializes all the layers from the XML files
 	}
 	/**
 	 * Initializes the object that controls the access to the server
@@ -119,6 +118,7 @@ public class MapViewerServlet extends HttpServlet {
 	 * @throws ServletException if a servlet-specific error occurs
 	 * @throws IOException if an I/O error occurs
 	 */
+    @SuppressWarnings("UnusedAssignment")
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -131,22 +131,22 @@ public class MapViewerServlet extends HttpServlet {
 			HttpSession session = request.getSession();//Se obtiene la sesion
 			
 			TreeNode arbolMenuRasters = null;
-
-			//If there was a problem initializing the variables we try to do it again.
+            //If there was a problem initializing the variables we try to do it again.
 			// This code catches information about the exception and displays it for the user.
 			try {
+                
 				if(exceptionInitializingVariables){
-					initializeVariables();
-				}
+                    initializeVariables();
+                }
 				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
 				exceptionInitializingVariables = false;
-			} catch (XMLLayerException ex) {
-				//If an exception happens, we start with the default menu
+			} catch (XMLFilesException ex) {
+                //If an exception happens, we start with the default menu
 				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
 				session.setAttribute("MenuDelUsuario", arbolMenuRasters);
 				//If there is an XMLLayerException exception we just display it as
 				// warning in the main site
-				StringWriter sw = new StringWriter();
+                StringWriter sw = new StringWriter();
 				ex.printStackTrace(new PrintWriter(sw));
 				String exceptionInfo = ex.getMessage();
 				String exceptionTrace = sw.toString();
@@ -161,8 +161,7 @@ public class MapViewerServlet extends HttpServlet {
 				
 				exceptionInitializingVariables = true;
 			}
-			
-			
+            
 			if(linksVectorialesKmz  == null){
 				linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
 				HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
@@ -170,43 +169,85 @@ public class MapViewerServlet extends HttpServlet {
 			
 			//get menu entry
 			MenuEntry[] rasterSelecteLayers = TreeMenuUtils.obtieneMenuSeleccionado(arbolMenuRasters);
-			
+            
 			//obtain layer index
 			int[] baseLayers = opManager.obtainArrayIndexOfLayers(rasterSelecteLayers);
+            Layer curr_main_layer = null;
+            //this variables are then read by the GlobalJavascript.jsp
+            //The next variable is used to decide if the layer has
+            // a custom CQL filter
+            request.setAttribute("cqlfilter", false);
+            if(baseLayers != null) {
+                curr_main_layer = opManager.getRasterLayers().get(baseLayers[0]); //get main layer of user
+                request.setAttribute("ncwms", curr_main_layer.isncWMS());
+                request.setAttribute("currents", curr_main_layer.isoverlayStreamlines());
+                request.setAttribute("layerDetails", curr_main_layer.getLayerDetails());
+                request.setAttribute("zaxis", curr_main_layer.isZaxis());
+                request.setAttribute("multipleDates", curr_main_layer.isMultipleDates());
+                request.setAttribute("mainLayer", curr_main_layer.getName());
+                request.setAttribute("style", curr_main_layer.getStyle());
+                request.setAttribute("max_time_range", curr_main_layer.getMaxTimeLayer());
+                request.setAttribute("cqlcols", curr_main_layer.getCql_cols());
+                if (!curr_main_layer.getCql_cols().equals("")) {
+                    request.setAttribute("cqlfilter", true);
+                }
+            } else {
+                request.setAttribute("ncwms", false);
+                request.setAttribute("currents", null);
+                request.setAttribute("layerDetails", "{}");
+                request.setAttribute("zaxis", null);
+                request.setAttribute("multipleDates", "null");
+                request.setAttribute("mainLayer", null);
+                request.setAttribute("style", null);
+                request.setAttribute("max_time_range", null);
+                request.setAttribute("cqlcols", null);
+            }
 			
-			Layer curr_main_layer = opManager.getRasterLayers().get(baseLayers[0]); //get main layer of user
-			
-			//this variables are then read by the GlobalJavascript.jsp
-			
-			request.setAttribute("ncwms", curr_main_layer.isncWMS());
-			request.setAttribute("currents", curr_main_layer.isoverlayStreamlines());
-			request.setAttribute("layerDetails", curr_main_layer.getLayerDetails());
-			request.setAttribute("zaxis", curr_main_layer.isZaxis());
-			request.setAttribute("multipleDates", curr_main_layer.isMultipleDates());
-			
-			//Obtains the selection of the vector layers of the user.
-			
+			//Obtains and set a lenguage.
 			
 			String defaultLang=mapConfig.getProperty("defaultLanguage");
 			String availableLanguages=mapConfig.getProperty("availableLanguages");
 			
 			request.setAttribute("defaultLanguage", defaultLang);
 			request.setAttribute("availableLanguages", availableLanguages);
-			
-			String[] selectedVectorLayers = UserRequestManager.manageVectorLayersOptions(request, session);
-			int[] vectorLayers = opManager.obtainIndexForOptionalLayers(selectedVectorLayers);
-			
-			//Setting the locale gotten from the one seleted by the user on the website
+            
+            //Setting the locale gotten from the one seleted by the user on the website
 			String language=request.getParameter("_locale");
 			
 			//setting Default locale from the properties file on first time page load
 			if(language==null || "".equals(language)){
 				language=defaultLang;
 			}
-			
+
+            //get and set background layers
+            
+            String defaultBackgroundLayer = mapConfig.getProperty("backgroundLayer");
+			String backgroundLayer = request.getParameter("backgroundLayer");
+            backgroundLayer =  (backgroundLayer == null || "".equals(backgroundLayer)) ? defaultBackgroundLayer : backgroundLayer;
+            //get the resolution for a selected background layer
+            if(! backgroundLayer.equals(defaultBackgroundLayer)) {
+                String[] amr = mapConfig.getProperty("availableMaxResolution").split(";");
+                String[] abl = mapConfig.getProperty("availableBackgroundLayers").split(";");
+                int i;
+                for(i = 1; i < amr.length; i++) {
+                    if(backgroundLayer.equals(abl[i])) {
+                        mapConfig.updateProperty("maxResolution", amr[i]);
+                        break;
+                    }
+                }
+            } else {
+                mapConfig.updateProperty("maxResolution", mapConfig.getMaxResolution() + "");
+            }
+			request.setAttribute("backgroundLayer", backgroundLayer);
+
+            //Obtains the selection of the vector layers of the user.
+
+			String[] selectedVectorLayers = UserRequestManager.manageVectorLayersOptions(request, session);
+			int[] vectorLayers = opManager.obtainIndexForOptionalLayers(selectedVectorLayers);
+
 			//openlayers configuration of javascript.
-			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language);
-			
+			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language, backgroundLayer);
+
 			//This is for the configuration of the page, this are read by the javascript throuhg jsp.
 			
 			request.setAttribute("openLayerConfig", openLayerConfig);
@@ -214,9 +255,9 @@ public class MapViewerServlet extends HttpServlet {
 			//add the link of the vactor layers the one with the checkboxes.
 			request.setAttribute("sizeVectLayers", opManager.getVectorLayers().size());
 			request.setAttribute("linksKmzVect", linksVectorialesKmz);
-			
+            
 			String palette = request.getParameter("paletteSelect");
-			if (palette == null) {
+			if (palette == null && curr_main_layer != null) {
 				palette = curr_main_layer.getPalette();
 			}
 			request.setAttribute("palette", palette);
@@ -230,31 +271,22 @@ public class MapViewerServlet extends HttpServlet {
 			request.setAttribute("titleSize", layerTitle.length());
 			request.setAttribute("totalLayers", opManager.getTotalVisibleLayers());
 			request.setAttribute("_id_first_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
-			request.setAttribute("mainLayer", curr_main_layer.getName());
-			request.setAttribute("style", curr_main_layer.getStyle());
-			request.setAttribute("max_time_range", curr_main_layer.getMaxTimeLayer());
+			
+            
 			request.setAttribute("newSession", session.isNew());//Inidicates if is the first time the map was loaded
 			
 			request.setAttribute("paletteUrl", NetCDFRequestManager.getPaletteUrl(curr_main_layer, palette));
 			
 			//Contains configuration of the Map like zoom, center, origin, etc.
-			request.setAttribute("mapConfig", mapConfig.toJSONObject());
-			
-			request.setAttribute("cqlcols", curr_main_layer.getCql_cols());
-			//The next variable is used to decide if the layer has
-			// a custom CQL filter
-			if (curr_main_layer.getCql_cols().equals("")) {
-				request.setAttribute("cqlfilter", false);
-			} else {
-				request.setAttribute("cqlfilter", true);
-			}
-			
+            request.setAttribute("mapConfig", mapConfig.toJSONObject());
+
 			//Setting the animation URL if any
 			String animUrl = request.getParameter("animationURL");
 			request.setAttribute("animationURL", animUrl == null ? "" : animUrl);
 			
+            //----verificar si llega hasta aqui
 			//redirect the page.
-			nextPage = PagesNames.MAIN_PAGE;
+            nextPage = PagesNames.MAIN_PAGE;
 			//Detect Mobile Browser
 			String mobileGet = request.getParameter("mobile");
 			String ua = request.getHeader("User-Agent").toLowerCase();
@@ -289,7 +321,6 @@ public class MapViewerServlet extends HttpServlet {
 			
 			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
 		RequestDispatcher view = request.getRequestDispatcher(nextPage);
 		view.forward(request, response);
 	}

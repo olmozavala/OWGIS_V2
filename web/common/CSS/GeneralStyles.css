@@ -229,3 +229,9 @@ hr {
     border: none;
     padding: 0;
 }
+
+/*custom loading class*/
+.overload {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}

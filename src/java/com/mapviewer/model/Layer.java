@@ -86,7 +86,11 @@ public class Layer {
 
 	// ---- To bypass routers which block local address for DNS Rebinding Attacks
 	private String localAddress;// Indicate the local addresss of the server (to request layer details)
-	
+
+    // ---- zoom and position options
+    private Byte zoom;//zoom in map
+    private Point center;//longitude
+
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
 	 *
@@ -164,6 +168,10 @@ public class Layer {
 		this.cql_cols = "";// By default the layers doe not have cql columns
 		this.overlayStreamlines = "";
 		this.defParticleSpeed = 1.0f;//By default we don't change it
+        
+        //default zoom and center position is null
+        this.zoom = null;
+        this.center = null;
 	}
 	/**
 	 *
@@ -261,6 +269,9 @@ public class Layer {
                 this.belowMinColor = belowMinColor;
                 this.aboveMaxColor = aboveMaxColor;
                 this.numColorBands = numColorBands;
+        //default zoom and center position is null
+        this.zoom = null;
+        this.center = null;
 	}
 	//Geters
 	
@@ -276,7 +287,6 @@ public class Layer {
 	 * @param {String} layerDetails
 	 */
 	public void setLayerDetails(String layerDetailsStr) {
-		
 		// In this case we have to update the min and max color with the
 		// default color range of the layer.
 		// We add the 'server' and the 'name' into the layer Details
@@ -298,7 +308,7 @@ public class Layer {
 				this.zaxis = true;
 			}
 			
-			//If the style is not defined in the XML file. Then we use the first one
+			//If the style is not defined in the XML file. Then we use the first
 			// inside the layerDetails option 'supportedStyles' from ncWMS
 			// This should be: boxfill for ncwms 1 and default-scalar for ncWMS 2
 			if(layerDetails.has("supportedStyles") && this.style.equals("")){
@@ -349,8 +359,14 @@ public class Layer {
                         //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
             layerDetails.accumulate("numColorBands", this.numColorBands);
+
+            //Add zoom and center
+            String strZoom = String.valueOf(this.zoom);
+            String strCenter = this.center.toString();
+            layerDetails.accumulate("zoom", strZoom);
+            layerDetails.accumulate("center", strCenter);
             
-		} catch (JSONException ex) {
+        } catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
 		}
 	}
@@ -450,6 +466,23 @@ public class Layer {
 		return vectorLayer;
 	}
 	
+    
+    public Byte getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(Byte zoom) {
+        this.zoom = zoom;
+    }
+
+    public Point getCenter() {
+        return this.center;
+    }
+
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+
 	public void setLayout(String layout) {
 		this.layout = layout;
 	}

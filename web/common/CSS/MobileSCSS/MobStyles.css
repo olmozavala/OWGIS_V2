@@ -18,6 +18,9 @@ html, body {
   height: 100%;
   z-index: 9999;
   background: url("../../images/loading/009.gif") 50% 50% no-repeat #f9f9f9;
+  background-color: rgba(0, 0, 0, 0.2);
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
 
 /* line 20, ../../scss/MobileSCSS/MobStyles.scss */
@@ -93,48 +96,43 @@ html {
 /* Add movil css */
 
 /* Language custom css */
+
 #selectedLanguage {
     border: none;
 }
 
 #langDropDown {
     position: relative;
-    left: -22px;
-    max-height: 0px;
     border: none;
     text-align: left;
     font-size: 0.8em;
-    width: 62px;
-    top: 10px;
+    top: 23px;
+    max-height: 0px;
+    float: none;
+    min-width: 110px;
+    display: block;
+    padding: 0;
 }
-
-#langDropDown :first-child {
-    margin-bottom: 13px;
-}
-
-#langDropDown :first-child>a{
-    width: 65px;
-}
-
 
 #langDropDown li {
-    height: 28px !important;
-    width: 65px;
-    margin-bottom: 2px;
+    top: -3px;
+    position: relative;
+}
+
+.openLangDropDown {
+    max-height: 140px !important;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
 }
 
 #langDropDown img, #langDropDown a {
-    display: inline-block;
-    max-height: 0px;
-    overflow: hidden;
     -webkit-transition: all 1s; /* Safari */
     transition: all 1s;
-    margin: 0;
+    opacity: 0;
 }
 
 .openLangDropDown img, .openLangDropDown a {
-    max-height: 40px !important;
-    overflow: visible !important;
+    opacity: 1 !important;
 }
 
 /*  Top menu */
@@ -161,14 +159,18 @@ html {
     left: 0;
 }
 
+.ui-header{
+    min-height: 2.5em;
+}
+
 /* left menu css */
 #baseLayersData [id^="dropDownLevels"][id$="button"] {
     background-color: rgba(255, 255, 255, 0.4);
     text-shadow: 0 1px 0 #000;
     color: black;
     min-width: 100px;
-    max-width: 140px;
-    margin-left: -8px;
+    max-width: 187px;
+    margin-left: 5px;
     text-align: center;
 }
 
@@ -181,6 +183,7 @@ html {
 #mobPanelLayers {
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 1 !important;
+    top: 40px !important;
 }
 
 #mainMenuOption {
@@ -190,6 +193,15 @@ html {
 /* hidden scale */
 .ol-scale-line-inner, .ol-scale-line {
     display: none;
+}
+
+/* rigth panel*/
+#zaxis_selector_parent .ui-panel-inner {
+    padding: 0px 20px !important;
+}
+
+input.ui-slider-input {
+    width: 60px;
 }
 
 /* transform controls*/
@@ -206,26 +218,27 @@ html {
 }
 
 /*palettes control*/
-#paletteMobilPrevNext {
-    list-style: none outside none;
-}
 
-#paletteMobilPrev {
+.paletteMobilPrev {
     display: inline-block;
     left: 10px;
     float: left;
     padding: 10px;
 }
 
-#paletteMobilNext {
+.paletteMobilNext {
     display: inline-block;
     right: 10px;
     float: right;
     padding: 10px;
 }
 
-#paletteMobilPrev:hover, #paletteMobilNext:hover {
+.paletteMobilPrev:hover, .paletteMobilNext:hover {
     cursor: pointer;
+}
+
+.ui-icon-tint::after {
+    background-position: right;
 }
 
 /*change loader
@@ -243,3 +256,4 @@ html {
     font-size: 200px;
     margin: 50%;
 }*/
+

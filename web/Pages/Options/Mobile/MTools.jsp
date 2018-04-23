@@ -20,6 +20,13 @@
 		</div>
 	</li>
 	<li>
+    <!-- change backgroundlayer -->
+    <li>
+		<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
+            <!--It gets initialized by backgroundLayers.js-->
+        </select>
+	</li>
+            
 		<!--Depth selection-->
 	<c:if test='${zaxis}'>
 		<li>
@@ -51,7 +58,7 @@
 <c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
-		<a class="ui-btn ui-icon-tint-o ui-btn-icon-left " href="#mobPanelPalettes" > 
+		<a class="ui-btn ui-icon-tint ui-btn-icon-left" href="#mobPanelPalettes" > 
                         <fmt:message key='mobile.palettes'/>
 		</a>
 	</li>
@@ -84,7 +91,7 @@
 </ul>
 <!-- languages Mobil -->
 <div data-type="horizontal" data-role="controlgroup" class="">					
-    <button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right: 5px; height: 25px">
+    <button id="selectedLanguage" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
     <!--It gets initialized by languages.js-->
     </button>
     <ul id="langDropDown" class="dropdown-menu" role="menu">

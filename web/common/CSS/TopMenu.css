@@ -79,3 +79,10 @@ ul#horizontal {
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
+
+/**/
+#backLayersDropDown {
+    background: transparent;
+    border: none;
+    font-size: 12px;
+}

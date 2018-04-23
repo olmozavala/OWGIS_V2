@@ -7,17 +7,26 @@ goog.provide('owgis.ncwms.ncwmstwo');
  * @param {type} data is the JSON file returned by ncWMS 2 
  * @returns {buildGridInfo.gridInfo} Is an object that contains the summary of the data
  */
-owgis.ncwms.ncwmstwo.buildGridInfo = function buildGridInfo(data){
+owgis.ncwms.ncwmstwo.buildGridInfo = function buildGridInfo(data, layer){
 	var gridInfo = {};
 	
-	// Set min and max latitudes
-	gridInfo.la1 = data.domain.axes.y.start; 
-	gridInfo.la2 = data.domain.axes.y.stop; 
+    var ext = layer.get("extbbox");
+    var fext = [data.domain.axes.x.start, data.domain.axes.y.start, data.domain.axes.x.stop, data.domain.axes.y.stop];
+    fext = fext.map(function(x){return ol.proj.transform([x, null], PROJ_4326, _map_projection)[0]});
+    var fac = map.getView().getZoom() >= 3 ? 0.45 : 0.1 * map.getView().getZoom();//loss of accuracy with min zoom
+    var err = Array.from(ext.keys()).map(function(i){ return (ext[i] - fext[i]) * fac});
+    fext = Array.from(err.keys()).map(function(i){ return fext[i] + err[i]});
+    
+    
+    // Set min and max latitudes
+	gridInfo.la1 = fext[1]; 
+	gridInfo.la2 = fext[3];
 	
+
 	// Set min and max longitudes
-	gridInfo.lo1 = data.domain.axes.x.start; 
-	gridInfo.lo2 = data.domain.axes.x.stop; 
-	
+	gridInfo.lo1 = fext[0];
+	gridInfo.lo2 = fext[2]; 
+
 	// Set number of cells in the grid
 	gridInfo.ny = data.domain.axes.y.num;
 	gridInfo.nx = data.domain.axes.x.num;
@@ -25,7 +34,7 @@ owgis.ncwms.ncwmstwo.buildGridInfo = function buildGridInfo(data){
 	// Set the delta x and delta y of the cells
 	gridInfo.dy = (gridInfo.la2 - gridInfo.la1)/gridInfo.ny;
 	gridInfo.dx = (gridInfo.lo2 - gridInfo.lo1)/gridInfo.nx;
-	
+
 	return gridInfo;
 }
 
@@ -45,7 +54,7 @@ owgis.ncwms.ncwmstwo.buildGrid = function buildGrid(gridInfo, uData, vData){
 			row[i] = [uData[p], vData[p]];
 		}
 		grid[gridInfo.ny-1-j] = row;
-	}
+    }
 	
 	return grid;
 }

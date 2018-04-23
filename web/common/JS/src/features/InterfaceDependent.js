@@ -52,8 +52,10 @@ owgis.interf.loadingallscreen = function(loading){
 	if(mobile){
 		if(loading){
 			$(".loader").fadeIn("slow");
+            $("#map").addClass("overload");
 		}else{
 			$(".loader").fadeOut("slow");
+            $("#map").removeClass("overload");
 		}
 	}else{
 		if(loading){

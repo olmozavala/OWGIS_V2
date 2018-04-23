@@ -3,7 +3,9 @@
     Created on : Sep 18, 2014, 4:24:47 PM
     Author     : Olmo Zavala Romero
 --%>
-	
+<%@ taglib prefix="menuHelper"
+	uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
+
 <!-- These are the dropdowns for the base layer-->
 <div class="transDraggableWindow toolTip  container-fluid" id="mainMenuParent" 
 	 title="<fmt:message key='help.tooltip.mainlayers' />">

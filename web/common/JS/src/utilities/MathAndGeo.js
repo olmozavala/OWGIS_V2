@@ -130,7 +130,7 @@ owgis.utilities.mathgeo.radtodeg= function (a){
  * @returns {undefined}
  */
 owgis.utilities.mathgeo.degtorad= function (a){
-	var res = new Array();
+    var res = new Array();
 	if(a.length){
 		for(var i = 0; i < a.length; i++){
 			res[i] = Math.PI*a[i]/180 ;
