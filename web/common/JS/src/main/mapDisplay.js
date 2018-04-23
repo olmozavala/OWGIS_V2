@@ -81,7 +81,7 @@ function owgisMain(){
         initOl3();
         addLayers();
         owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
-    }, 5);
+    }, 10);
     //menus
     var intervalMenus = setInterval(function(){
        clearInterval(intervalMenus);
@@ -128,7 +128,7 @@ function owgisMain(){
         }
         
         
-    }, 5);
+    }, 10);
 }
 
 /**
