@@ -119,7 +119,7 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
     inner_text += "</td></tr></table>";
       
     $('#zaxis_selector').html(inner_text);
-    
+    if(!mobile) {initializeElevation();} //not sure about this
 }
 
 /**
@@ -303,7 +303,7 @@ function initializeElevation()
 function getZaxisText(){
     var units;
     
-    if(layerDetails.zaxis !== undefined)
+    if(layerDetails.zaxis !== undefined){
         units= layerDetails.zaxis.units.toLowerCase();
 	
 	//TODO we can't use the corrent name from the properties because the text
@@ -317,6 +317,14 @@ function getZaxisText(){
     {
 		return  depthText; 
     }
-    else
-        return "UNDEFINED";
+    else if(units === 'pa' || units === "pressure" || units === "bar" || units === "at" || units === "atm" || units === "torr" ) {
+            return presText;
+        } else if( (units === 'm') || (units === 'meter') || (units === 'km') || (units === 'ft') || (units === 'mi') ) {
+            return  depthText; 
+        } else {
+            return  depthText+" / "+presText; 
+        }
+    } else {
+         return "UNDEFINED";
+    }
 }
