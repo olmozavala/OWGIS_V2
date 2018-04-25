@@ -14,7 +14,7 @@
 
 	<!--External CSS -->
 	<link href="./common/CSS/vendor/ol.css" rel="stylesheet"  type="text/css"/>
-    <link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	<c:if test='${currents}'>
 		<link href="./common/CSS/vendor/spectrum.css" rel="stylesheet" type="text/css"/>
 	</c:if>
