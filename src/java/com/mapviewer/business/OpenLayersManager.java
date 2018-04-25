@@ -123,8 +123,8 @@ public class OpenLayersManager {
 		}
 		String result = "";//Esta variable contiene toda la configuracion de OpenLayers
 
-		//result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
-		result += this.agregaURLparaTraerDatos();
+		result += this.agregaURLparaTraerDatos(idsBaseLayers[0]);
+		//result += this.agregaURLparaTraerDatos();
         result += "\nfunction addLayers(){\n";
 		result += this.createInitFunction(idsBaseLayers, extraLayers, backgroundLayer) + "\n";//Esta funcion crea la configuracion central de OpenLayers
 		result += "\t if(netcdf){ \n\t map.addLayer(transectLayer); \n "
@@ -164,7 +164,7 @@ public class OpenLayersManager {
 	 *
 	 */
 	//private String agregaURLparaTraerDatos(int baseLayer) {
-    private String agregaURLparaTraerDatos() {
+    private String agregaURLparaTraerDatos(int baseLayer) {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
@@ -174,7 +174,7 @@ public class OpenLayersManager {
                 "\t if(mobile){owgis.mobile.closePanels();\n" +
 				"\t\t owgis.interf.loadingatmap(true);}\n" +
                 "\t var coordinate = evt.coordinate;\n" +
-                "\t var newCoordinate = ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');\n" +
+                "\t var newCoordinate =  ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');\n" +
                 "\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t $('#popup').hide();\n" +
                 "\t currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'\n" +
@@ -189,12 +189,12 @@ public class OpenLayersManager {
 			layerCount++;
 		}
 		//Se agrega el URL de la capa base
-		//actualLayer = layersManager.getMainLayers().get(baseLayer);
-		//if (actualLayer.getFeatureInfoLayer() != null) {
-			//layersScript += generateURLhelper(actualLayer, layerCount);
-		//}//If layer  featureInfo  not null
+		actualLayer = layersManager.getMainLayers().get(baseLayer);
+		if (actualLayer.getFeatureInfoLayer() != null) {
+			layersScript += generateURLhelper(actualLayer, layerCount);
+		}//If layer  featureInfo  not null
 
-		//layerCount++;//Increment current layer (for  javascript, 'layer0' or 'layer1'....
+		layerCount++;//Increment current layer (for  javascript, 'layer0' or 'layer1'....
 
 		for (int i = 0; i < layersManager.getVectorLayers().size(); i++) {
 			actualLayer = layersManager.getVectorLayers().get(i);
