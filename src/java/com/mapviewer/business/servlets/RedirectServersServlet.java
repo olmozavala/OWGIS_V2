@@ -157,7 +157,7 @@ public class RedirectServersServlet extends HttpServlet {
 				try {
 					acdm.openConnection(); //we connect ot eh server. 
 				} catch (MalformedURLException e) {
-					System.out.println("Error MapViewer en RedirectServer en generateRedirect" + e.getMessage());
+					System.out.println("Error MapViewer en RedirectServer en generateRedirect url: "+finalRequest + e.getMessage());
 				}
                 System.out.println(" RedirectServer en generateRedirect is trying url: "+finalRequest );
 				//repeat process until we obtain data. 
@@ -279,7 +279,7 @@ public class RedirectServersServlet extends HttpServlet {
 				in.close();//close the connection with the server. 
 				input.close();
 			} catch (IOException ex) {
-				Logger.getLogger(RedirectServersServlet.class.getName()).log(Level.SEVERE, "Error MapViewer en RedirectServer en generateRedirect" + ex.getMessage(), ex);
+				Logger.getLogger(RedirectServersServlet.class.getName()).log(Level.SEVERE, "Error MapViewer en RedirectServer en generateRedirect url: "+finalRequest + ex.getMessage(), ex);
 				finish = false;
 			}
 		}

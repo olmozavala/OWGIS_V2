@@ -118,9 +118,8 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
     inner_text += "</td></tr></table>";
       
     $('#zaxis_selector').html(inner_text);
-    
-    initializeElevation();
-    
+
+    if(!mobile) {initializeElevation();} //not sure about this
 }
 
 /**
@@ -319,4 +318,5 @@ function getZaxisText(){
     } else {
         return " ";
     }
+
 }
