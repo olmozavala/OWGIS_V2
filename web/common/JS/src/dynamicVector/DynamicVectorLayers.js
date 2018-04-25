@@ -25,8 +25,10 @@ owgis.vector.manager.processJSON = function(geoJSONdata, layerId, visible) {
 	
 	//Creates the vector source from the data and the projection
 	var vectorSource = new ol.source.Vector({
-		object: data ,
-		projection: projection});
+                features: (new ol.format.GeoJSON()).readFeatures(data)
+                /*object: data ,
+		projection: projection*/
+            });
 
 	// These two lines are required for the Closure compiler to be able to 
 	// relate to the probler layer id
@@ -88,10 +90,22 @@ owgis.vector.manager.requestJSONLayer = function( layer, layerId, visible ){
 	// Adds the 'mousemove' event into the map
 	if(!viewportInitialized){
 		//funcion obsoleta ver como cambiar a la nueva
-		featureOverlay = new ol.FeatureOverlay({
+		/*featureOverlay = new ol.FeatureOverlay({
 			map: map,
 			style: highlightStyleFunction
+		});*/
+                featureOverlay = new ol.layer.Vector({
+			map: map,
+                        source: new ol.source.Vector({
+                            //features: collection,
+                            useSpatialIndex: false // optional, might improve performance
+                        }),
+			style: highlightStyleFunction,
+                        updateWhileAnimating: true, // optional, for instant visual feedback
+                        updateWhileInteracting: true // optional, for instant visual feedback
 		});
+                
+                map.addLayer(featureOverlay);
 
 		//For each 'mousemove' event it calls displayFeatureInfo, to
 		// draw features on map
@@ -155,10 +169,10 @@ var displayFeatureInfo = function(pixel) {
 
 	if (feature !== highlight) {
 		if (highlight) {
-			featureOverlay.removeFeature(highlight);
+			featureOverlay.getSource().removeFeature(highlight);
 		}
 		if (feature) {
-			featureOverlay.addFeature(feature);
+			featureOverlay.getSource().addFeature(feature);
 		}
 		highlight = feature;
 	}

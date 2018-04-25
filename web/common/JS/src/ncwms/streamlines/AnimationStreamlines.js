@@ -413,6 +413,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     if(!isRunningUnderMainAnimation){
 		if(updateURL()){
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+            console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
 		}
 	}else{

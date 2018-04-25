@@ -147,9 +147,16 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
         position: fixed;
         background-color: #ffffff;
         z-index: 1050;
-            width: 100%;
-
+        width: 100%;
         height: 100%;
+        margin: 0;
+        border: none;
+    }
+    .modal-content {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        -webkit-box-shadow: none;
     }
     h5#modalLabelVertProf, h5#modalLabelTimeSeries {
         font-size: 10px;
@@ -166,6 +173,14 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
         z-index: 1050;
         width: 100%;
         height: 100%;
+        margin: 0;
+        border: none;
+    }
+    .modal-content {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        -webkit-box-shadow: none;
     }
     h5#modalLabelVertProf, h5#modalLabelTimeSeries {
         font-size: 10px;
