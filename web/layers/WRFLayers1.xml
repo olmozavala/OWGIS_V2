@@ -4,7 +4,7 @@
 		<Menu ID="Dom1" EN="Mexico" ES="República Mexicana"/>
 		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de México"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento" />
-		<Menu ID="VientoTot" EN="Wind" ES="Viento total" />
+		<Menu ID="VientoTot" EN="Wind" ES="Viento máxima" />
                 <Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
 		<Menu ID="Vto250hP" EN="Wind in 250 hPa" ES="Viento en 250 hPa"/>
                 <Menu ID="Vto500hP" EN="Wind in 500 hPa" ES="Viento en 500 hPa"/>
@@ -12,9 +12,9 @@
 		<Menu ID="Vto850hP" EN="Wind in 850 hPa" ES="Viento en 850 hPa"/>
 		<Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
 		<Menu ID="Temp2" EN="Temperature" ES="Temperatura a 2 metros"/>
-		<Menu ID="Temp21" EN="Temperature" ES="Temperatura a 2 metros total"/>
+		<Menu ID="Temp21" EN="Temperature" ES="Temperatura a 2 metros mínima/máxima"/>
 		<Menu ID="Prec" EN="Precipitation" ES="Precipitación"/>
-		<Menu ID="PrecT" EN="Precipitation" ES="Precipitación total"/>
+		<Menu ID="PrecT" EN="Precipitation" ES="Precipitación máxima"/>
 		<Menu ID="Prec3h" EN="Precipitation Acumulated each 3 hours" ES="Precipitación acumulada cada 3 horas"/>
 		<Menu ID="Prec6h" EN="Precipitation Acumulated each 6 hours" ES="Precipitación acumulada cada 6 horas"/> 
 		<Menu ID="PrecTot" EN="Total Precipitation Acumulated" ES="Precipitación Total"/>
@@ -170,38 +170,38 @@
             <layer Menu="Dom1,alerta,Temp2" EN="Temperature Warnings" ES="Alertas de temperatura" style="default-scalar" palette="percentiles" 
                    name="t2_dom1_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/T2C" featureInfoUnits="C" />
             
-            <layer Menu="Dom1,alerta,Temp21" EN="Temperature Warnings" ES="Alertas de temperatura total" style="default-scalar" palette="percentiles" name="t2_dom1_perc/T2A" featureInfo="wrf_Dom1/T2C" featureInfoUnits="C" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom1,alerta,Temp21" EN="Temperature Warnings" ES="Alertas de temperatura mínima/máxima" style="default-scalar" palette="percentiles" name="t2_dom1_perc/T2A" featureInfo="wrf_Dom1/T2C" featureInfoUnits="C" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
             
             <layer Menu="Dom1,alerta,Viento" EN="Wind Warnings" ES="Alertas de viento" style="default-scalar" palette="percentilesViento" 
                    mincolor="95" maxcolor="99.9" name="viento_dom1_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/Uat10:Vat10-mag" featureInfoUnits="km/h" />
             
-            <layer Menu="Dom1,alerta,VientoTot" EN="Warnings" ES="Alerta de viento"  mincolor="95" maxcolor="99.9" palette="percentilesViento"
+            <layer Menu="Dom1,alerta,VientoTot" EN="Warnings" ES="Alerta de viento máxima"  mincolor="95" maxcolor="99.9" palette="percentilesViento"
                     style="default-scalar" name="viento_dom1_perc/VIENTOA" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/Uat10:Vat10-mag" featureInfoUnits="km/h"
             />  
             
-            <layer Menu="Dom1,alerta,Prec" EN="Wind Warnings" ES="Alertas de precipitacion" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom1/PRECH" featureInfoUnits="mm"
+            <layer Menu="Dom1,alerta,Prec" EN="Wind Warnings" ES="Alertas de precipitación" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom1/PRECH" featureInfoUnits="mm"
                    mincolor="95" maxcolor="99.9" name="prec_dom1_alertas/PREC" belowMinColor="transparent" aboveMaxColor="transparent" />
             
-            <layer Menu="Dom1,alerta,PrecT" EN="Wind Warnings" ES="Alertas de precipitacion" style="default-scalar" palette="percentilesViento"  featureInfo="wrf_Dom1/PRECH" featureInfoUnits="mm"
+            <layer Menu="Dom1,alerta,PrecT" EN="Wind Warnings" ES="Alertas de precipitación máxima" style="default-scalar" palette="percentilesViento"  featureInfo="wrf_Dom1/PRECH" featureInfoUnits="mm"
                    mincolor="95" maxcolor="99.9" name="prec_dom1_alertas/PRECA" belowMinColor="transparent" aboveMaxColor="transparent" />
             
             
             <layer Menu="Dom2,alerta,Temp2" EN="Temperature Warnings" ES="Alerta de temperatura" style="default-scalar" palette="percentiles" featureInfo="wrf_Dom2/T2C" featureInfoUnits="C" name="t2_dom2_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
 
-            <layer Menu="Dom2,alerta,Temp21" EN="Temperature Warnings" ES="Alertas de temperatura total" style="default-scalar" palette="percentiles" name="t2_dom2_perc/T2A" featureInfo="wrf_Dom2/T2C" featureInfoUnits="C" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
+            <layer Menu="Dom2,alerta,Temp21" EN="Temperature Warnings" ES="Alertas de temperatura mínima/máxima" style="default-scalar" palette="percentiles" name="t2_dom2_perc/T2A" featureInfo="wrf_Dom2/T2C" featureInfoUnits="C" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" />
             
             <layer Menu="Dom2,alerta,Viento" EN="Warnings" ES="Alerta de viento" mincolor="95" maxcolor="99.9" palette="percentilesViento"
                     style="default-scalar" name="viento_dom2_perc/VIENTO" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom2/Uat10:Vat10-mag" featureInfoUnits="km/h"
             />
             
-            <layer Menu="Dom2,alerta,VientoTot" EN="Warnings" ES="Alerta de viento"  mincolor="95" maxcolor="99.9" palette="percentilesViento"
+            <layer Menu="Dom2,alerta,VientoTot" EN="Warnings" ES="Alerta de viento máxima"  mincolor="95" maxcolor="99.9" palette="percentilesViento"
                     style="default-scalar" name="viento_dom2_perc/VIENTOA" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom2/Uat10:Vat10-mag" featureInfoUnits="km/h"
             />  
             
-            <layer Menu="Dom2,alerta,Prec" EN="Wind Warnings" ES="Alertas de precipitacion" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom2/PRECH" featureInfoUnits="mm"
+            <layer Menu="Dom2,alerta,Prec" EN="Wind Warnings" ES="Alertas de precipitación" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom2/PRECH" featureInfoUnits="mm"
                    mincolor="95" maxcolor="99.9" name="prec_dom2_alertas/PREC" belowMinColor="transparent" aboveMaxColor="transparent" />
             
-            <layer Menu="Dom2,alerta,PrecT" EN="Wind Warnings" ES="Alertas de precipitacion" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom2/PRECH" featureInfoUnits="mm"
+            <layer Menu="Dom2,alerta,PrecT" EN="Wind Warnings" ES="Alertas de precipitación máxima" style="default-scalar" palette="percentilesViento" featureInfo="wrf_Dom2/PRECH" featureInfoUnits="mm"
                    mincolor="95" maxcolor="99.9" name="prec_dom2_alertas/PRECA" belowMinColor="transparent" aboveMaxColor="transparent" />
             
 

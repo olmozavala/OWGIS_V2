@@ -61,8 +61,8 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
 	
     var totByPage = 10;//Total number of element for each 'page'
 		
-	//Update the title of the container
-	$("#zaxis_title").text(getZaxisText());
+    //Update the title of the container
+    $("#zaxis_title").text(getZaxisText());
     var inner_text = "<table>";
     inner_text += "<tr><td align='left'>";
 		
@@ -118,6 +118,8 @@ owgis.ncwms.zaxis.createElevationSelector = function createElevationSelector(){
     inner_text += "</td></tr></table>";
       
     $('#zaxis_selector').html(inner_text);
+    
+    initializeElevation();
     
 }
 
@@ -302,20 +304,19 @@ function initializeElevation()
 function getZaxisText(){
     var units;
     
-    if(layerDetails.zaxis !== undefined)
+    if(layerDetails.zaxis !== undefined){
         units= layerDetails.zaxis.units.toLowerCase();
-	
+        //console.log("ZUNITS:",units);
 	//TODO we can't use the corrent name from the properties because the text
 	// is being filled by javascript but it has to be a better way
-
-    if(units === 'pa') {
-		return presText;
-
+        if(units === 'pa' || units === "pressure" || units === "bar" || units === "at" || units === "atm" || units === "torr" ) {
+            return presText;
+        } else if( (units === 'm') || (units === 'meter')) {
+            return  depthText; 
+        } else {
+            return  depthText+" / "+presText; 
+        }
+    } else {
+        return " ";
     }
-    else if( (units === 'm') || (units === 'meter'))
-    {
-		return  depthText; 
-    }
-    else
-        return depthText;
 }

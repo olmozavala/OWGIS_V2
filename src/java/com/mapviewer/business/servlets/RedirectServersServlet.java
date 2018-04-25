@@ -159,6 +159,7 @@ public class RedirectServersServlet extends HttpServlet {
 				} catch (MalformedURLException e) {
 					System.out.println("Error MapViewer en RedirectServer en generateRedirect" + e.getMessage());
 				}
+                System.out.println(" RedirectServer en generateRedirect is trying url: "+finalRequest );
 				//repeat process until we obtain data. 
 				retry++; //increment tryies. 
 				finish = true; //by default we supose data is good. 
