@@ -68,6 +68,8 @@ public class Layer {
 	private String belowMinColor; //set to trans for values that are below the color range stablished
 	private String aboveMaxColor; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
+    private int numColorBands; //set to trans for values that are below the color range stablished
+
 	//------- CQL
 	private String cql;
 	private String cql_cols;
@@ -150,6 +152,7 @@ public class Layer {
 		this.jsonp = false;
 		this.belowMinColor = null;
                 this.aboveMaxColor = null;
+                this.numColorBands = 250;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -216,6 +219,7 @@ public class Layer {
 			boolean jsonp,
 			String overlayStreamlines, 
                         String belowMinColor, String aboveMaxColor,
+                        int numColorBands,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -256,6 +260,7 @@ public class Layer {
 		this.localAddress = null;
                 this.belowMinColor = belowMinColor;
                 this.aboveMaxColor = aboveMaxColor;
+                this.numColorBands = numColorBands;
 	}
 	//Geters
 	
@@ -343,7 +348,8 @@ public class Layer {
 			layerDetails.accumulate("belowMinColor", this.belowMinColor);
                         //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
-			
+            layerDetails.accumulate("numColorBands", this.numColorBands);
+            
 		} catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
 		}
@@ -468,6 +474,14 @@ public class Layer {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+    
+    public void setNumColorBands(int numColorBands){
+        this.numColorBands = numColorBands;
+    }
+    
+    public int getNumColorBands(){
+        return numColorBands;
+    }
 	
 	public void setWidth(int width) {
 		this.width = width;
