@@ -4,19 +4,25 @@
 		<Menu ID="PromD" EN="Daily avarage" ES="Promedios Diarios"/>
 		<Menu ID="PromM" EN="Monthly avarage" ES="Promedios Mensuales"/>
 		<Menu ID="PromHM" EN="Month-hourly avarage" ES="Promedios Horarios Mensuales"/>
-		<Menu ID="PromMAD" EN="AbsMax daily avarage" ES="Promedios Máximos Absolutos Diarios"/>
-		<Menu ID="PromMAM" EN="AbsMax daily avarage" ES="Promedios Máximos Absolutos Mensuales"/>
-		<Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
+		<Menu ID="PromMAD" EN="AbsMax daily avarage" ES="Máximos Absolutos Diarios"/>
+		<Menu ID="PromMAM" EN="AbsMax monthly avarage" ES="Promedios Máximos Absolutos Mensuales"/>
+		<Menu ID="MAM" EN="AbsMax monthly" ES="Máximos Absolutos Mensuales"/>
+		<Menu ID="PromMinM" EN="AbsMin monthly avarage" ES="Promedios Mínimos Mensuales"/>
+		<Menu ID="MinAM" EN="AbsMin monthly " ES="Mínimas Absolutas Mensuales"/>
+
+                <Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
 		<Menu ID="Prec" EN="Prec" ES="Precipitación"/>
-		<Menu ID="PBLH" EN="PBLH" ES="PBLH"/>
+		<Menu ID="PBLH" EN="PBLH" ES="Altura de capa límite"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento"/>
 		<Menu ID="SWDOWN" EN="SWDOWN" ES="SWDOWN"/>
 		<Menu ID="GLW" EN="GLW" ES="GLW"/>
+		<Menu ID="QFX" EN="Evaporation" ES="Evaporación"/>
                 <Menu ID="Percentil" EN="Warnings" ES="Alerta"/>
 		<Menu ID="PercentilT" EN="Warnings" ES="Alerta total"/>
                 <Menu ID="PercentilH" EN="Warnings" ES="Alerta horaria"/>
                 
                 <Menu ID="Perci" EN="Percentil" ES="Percentiles"/>
+                <Menu ID="Perci01" EN="Percentil" ES="Percentiles 0.1%"/>
                 <Menu ID="Perci1" EN="Percentil" ES="Percentiles 1%"/>
                 <Menu ID="Perci5" EN="Percentil" ES="Percentiles 5%"/>
                 <Menu ID="Perci10" EN="Percentil" ES="Percentiles 10%"/>
@@ -27,6 +33,19 @@
                 <Menu ID="Perci95" EN="Percentil" ES="Percentiles 95%"/>
                 <Menu ID="Perci99" EN="Percentil" ES="Percentiles 99%"/>
                 <Menu ID="Perci999" EN="Percentil" ES="Percentiles 99.9%"/>
+                
+                <Menu ID="M01" EN="January" ES="Enero"/>
+                <Menu ID="M02" EN="February" ES="Febrero"/>
+                <Menu ID="M03" EN="March" ES="Marzo"/>
+                <Menu ID="M04" EN="April" ES="Abril"/>
+                <Menu ID="M05" EN="May" ES="Mayo"/>
+                <Menu ID="M06" EN="June" ES="Junio"/>
+                <Menu ID="M07" EN="July" ES="Julio"/>
+                <Menu ID="M08" EN="August" ES="Agosto"/>
+                <Menu ID="M09" EN="September" ES="Septiembre"/>
+                <Menu ID="M10" EN="October" ES="Octubre"/>
+                <Menu ID="M11" EN="November" ES="Noviembre"/>
+                <Menu ID="M12" EN="December" ES="Diciembre"/>
                 
 	</Menus>
         
@@ -45,47 +64,63 @@
                     style="default-scalar" name="viento_dom1_perc/VIENTOA" belowMinColor="transparent" aboveMaxColor="transparent"
                 />-->
                 <!-- Percentiles -->
-                <layer Menu="Perci,Temp,Perci1" EN="Temperature Percentil" ES="Percentil 1% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci5" EN="Temperature Percentil" ES="Percentil 5% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_5" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci10" EN="Temperature Percentil" ES="Percentil 10% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_10" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci25" EN="Temperature Percentil" ES="Percentil 25% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_25" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci50" EN="Temperature Percentil" ES="Percentil 50% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_50" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci75" EN="Temperature Percentil" ES="Percentil 75% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_75" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci90" EN="Temperature Percentil" ES="Percentil 90% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_90" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci95" EN="Temperature Percentil" ES="Percentil 95% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_95" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci99" EN="Temperature Percentil" ES="Percentil 99% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
-                <layer Menu="Perci,Temp,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99_9" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"/>
+                <layer Menu="Perci,Temp,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_0_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3" />
+                <layer Menu="Perci,Temp,Perci1" EN="Temperature Percentil" ES="Percentil 1% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3" />
+                <layer Menu="Perci,Temp,Perci5" EN="Temperature Percentil" ES="Percentil 5% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_5" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci10" EN="Temperature Percentil" ES="Percentil 10% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_10" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci25" EN="Temperature Percentil" ES="Percentil 25% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_25" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci50" EN="Temperature Percentil" ES="Percentil 50% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_50" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci75" EN="Temperature Percentil" ES="Percentil 75% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_75" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci90" EN="Temperature Percentil" ES="Percentil 90% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_90" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci95" EN="Temperature Percentil" ES="Percentil 95% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_95" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci99" EN="Temperature Percentil" ES="Percentil 99% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Temp,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99_9" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
 
-                <layer Menu="Perci,Viento,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_5"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_10"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_25"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_50"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_75"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_90"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_95"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
-                <layer Menu="Perci,Viento,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99_9" mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent"/>
+                <layer Menu="Perci,Viento,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_0_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_5"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_10"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_25"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_50"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_75"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_90"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_95"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Viento,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99_9" mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
 
+                <layer Menu="Perci,Prec,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_0_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_5"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_10"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_25"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_50"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_75"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_90"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_95"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Perci,Prec,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99_9" mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
                 
                 <!-- Promedios diarios -->
 		<layer Menu="PromD,Temp" 
 			   EN="Temperature" ES="Temperatura a 2 metros"
-			   name="atlas_diario/T2" 
+			   name="atlas_diario/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
-                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromD,Prec" 
 			   EN="Total Precipitation" ES="Precipitación Total"
 			   name="atlas_diario/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromD,PBLH" 
 			   EN="Boundary layer height" ES="Altura de la capa límite"
 			   name="atlas_diario/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromD,Viento" 
@@ -93,38 +128,36 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
                 />
-
-		<layer Menu="PromD,SWDOWN" EN="Shortwave radiation" 
-			   ES="Radiación de onda corta" 
-			   name="atlas_diario/SWDOWN" 
-			   style="default-scalar" 
-                />
-
-		<layer Menu="PromD,GLW" EN="Longwave radiation" 
-			   ES="Radiación de onda larga" 
-			   name="atlas_diario/GLW" 
-			   style="default-scalar" 
+                
+                <layer Menu="PromD,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_diario/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
                 />
                 
                 <!-- Promedios mensuales -->
                 <layer Menu="PromM,Temp" 
 			   EN="Temperature" ES="Temperatura a 2 metros"
-			   name="atlas_mensuales/T2" 
+			   name="atlas_mensuales/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromM,Prec" 
 			   EN="Total Precipitation" ES="Precipitación Total"
 			   name="atlas_mensuales/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromM,PBLH" 
-			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   EN="Boundary layer height" ES="Altura de capa límite"
 			   name="atlas_mensuales/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromM,Viento" 
@@ -132,38 +165,30 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
                 />
 
-		<layer Menu="PromM,SWDOWN" EN="Shortwave radiation" 
-			   ES="Radiación de onda corta" 
-			   name="atlas_mensuales/SWDOWN" 
-			   style="default-scalar"  mincolor="60" maxcolor="300"
-                />
-
-		<layer Menu="PromM,GLW" EN="Longwave radiation" 
-			   ES="Radiación de onda larga" 
-			   name="atlas_mensuales/GLW" 
-			   style="default-scalar" 
+		<layer Menu="PromM,QFX" EN="Evaporation" 
+			   ES="Evaporación" 
+			   name="atlas_mensuales/QFX" 
+			   style="default-scalar"
+                           center="-92,23" zoom="3" 
                 />
                 
-                <!-- Promedios maximos absolutos diarios -->
+                <!-- Maximos absolutos diarios -->
                 <layer Menu="PromMAD,Temp" 
 			   EN="Temperature" ES="Temperatura a 2 metros"
 			   name="atlas_maxs_abs_diarios/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="temperatura" numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromMAD,Prec" 
 			   EN="Total Precipitation" ES="Precipitación Total"
 			   name="atlas_maxs_abs_diarios/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                />
-
-		<layer Menu="PromMAD,PBLH" 
-			   EN="Boundary layer height" ES="Altura de la capa límite"
-			   name="atlas_maxs_abs_diarios/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromMAD,Viento" 
@@ -171,96 +196,531 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                />
-
-		<layer Menu="PromMAD,SWDOWN" EN="Shortwave radiation" 
-			   ES="Radiación de onda corta" 
-			   name="atlas_maxs_abs_diarios/SWDOWN" 
-			   style="default-scalar"  mincolor="60" maxcolor="300"
-                />
-
-		<layer Menu="PromMAD,GLW" EN="Longwave radiation" 
-			   ES="Radiación de onda larga" 
-			   name="atlas_maxs_abs_diarios/GLW" 
-			   style="default-scalar" 
+                           center="-92,23" zoom="3"
                 />
                 
                 <!-- Promedios maximos absolutos mensuales -->
                 <layer Menu="PromMAM,Temp" 
 			   EN="Temperature" ES="Temperatura a 2 metros"
-			   name="atlas_maxs_abs_mensuales/T2" 
-			   style="default-scalar" palette="temperatura"
+			   name="atlas_promedios_maxs_abs_mensuales/T2" 
+			   style="default-scalar" palette="temperatura"  numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
                 />
 
 		<layer Menu="PromMAM,Prec" 
 			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_promedios_maxs_abs_mensuales/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="PromMAM,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- PromediosHorariosMes -->
+                <!-- Enero -->
+                <layer Menu="PromHM,M01,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_enero/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M01,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_enero/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M01,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M01,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_enero/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M01,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Febrero -->
+                <layer Menu="PromHM,M02,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_febrero/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M02,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_febrero/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M02,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M02,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M02,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Marzo -->
+                <layer Menu="PromHM,M03,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_marzo/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M03,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_marzo/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M03,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M03,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_marzo/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M03,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Abril -->
+                <layer Menu="PromHM,M04,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_abril/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M04,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_abril/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M04,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M04,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_abril/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M04,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Mayo -->
+                <layer Menu="PromHM,M05,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_mayo/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M05,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_mayo/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M05,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M05,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M05,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                 <!-- Junio -->
+                <layer Menu="PromHM,M06,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_junio/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M06,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_junio/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M06,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M06,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M06,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                 <!-- Julio -->
+                <layer Menu="PromHM,M07,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_julio/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M07,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_julio/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M07,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M07,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M07,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Agosto -->
+                <layer Menu="PromHM,M08,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_agosto/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M08,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_agosto/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M08,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M08,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M08,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Sept -->
+                <layer Menu="PromHM,M09,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_septiembre/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M09,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_septiembre/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M09,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M09,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M09,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Octubre -->
+                <layer Menu="PromHM,M10,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_octubre/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M10,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_octubre/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M10,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M10,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M10,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Noviembre -->
+                <layer Menu="PromHM,M11,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_noviembre/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M11,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_noviembre/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M11,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M11,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M11,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Diciembre -->
+                <layer Menu="PromHM,M12,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_horarios_mes_diciembre/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M12,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
+			   name="atlas_horarios_mes_diciembre/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M12,PBLH" 
+			   EN="Boundary layer height" ES="Altura de la capa límite"
+			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
+                           mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="PromHM,M12,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="PromHM,M12,Viento" 
+			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Maximos absolutos mensuales -->
+                <layer Menu="MAM,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_maxs_abs_mensuales/T2" numColorBands="64"
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
+                           center="-92,23" zoom="3"
+                />
+
+		<layer Menu="MAM,Prec" 
+			   EN="Total Precipitation" ES="Precipitación Total"
 			   name="atlas_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
                 />
-
-		<layer Menu="PromMAM,PBLH" 
-			   EN="Boundary layer height" ES="Altura de la capa límite"
-			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
-                />
-
-		<layer Menu="PromMAM,Viento" 
+                
+		<layer Menu="MAM,Viento" 
 			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
 			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                />
-
-		<layer Menu="PromMAM,SWDOWN" EN="Shortwave radiation" 
-			   ES="Radiación de onda corta" 
-			   name="atlas_maxs_abs_mensuales/SWDOWN" 
-			   style="default-scalar"  mincolor="60" maxcolor="300"
-                />
-
-		<layer Menu="PromMAM,GLW" EN="Longwave radiation" 
-			   ES="Radiación de onda larga" 
-			   name="atlas_maxs_abs_mensuales/GLW" 
-			   style="default-scalar" 
+                           center="-92,23" zoom="3"
                 />
                 
-                <!-- -->
-                <layer Menu="PromHM,Temp" 
-			   EN="Temperature" ES="Temperatura a 2 metros"
-			   name="atlas_horarios_mes/T2" 
-			   style="default-scalar" palette="temperatura"
-                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                />
-
-		<layer Menu="PromHM,Prec" 
-			   EN="Total Precipitation" ES="Precipitación Total"
-			   name="atlas_horarios_mes/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                />
-
-		<layer Menu="PromHM,PBLH" 
+                <layer Menu="MAM,PBLH" 
 			   EN="Boundary layer height" ES="Altura de la capa límite"
-			   name="atlas_horarios_mes/PBLH" style="default-scalar"
+			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
+                           center="-92,23" zoom="3"
                 />
-
-		<!--layer Menu="PromHM,Viento" 
-			   EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes/U10:atlas_horarios_mes/V10" defParticleSpeed="0.01"
-                           belowMinColor="transparent" aboveMaxColor="transparent" 
-                /-->
-
-		<layer Menu="PromHM,SWDOWN" EN="Shortwave radiation" 
-			   ES="Radiación de onda corta" 
-			   name="atlas_horarios_mes/SWDOWN" 
-			   style="default-scalar"  mincolor="60" maxcolor="300"
+                
+                <layer Menu="MAM,QFX" 
+			   EN="Evaporation" ES="Evaporación"
+			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar"
+                           center="-92,23" zoom="3"
                 />
-
-		<layer Menu="PromHM,GLW" EN="Longwave radiation" 
-			   ES="Radiación de onda larga" 
-			   name="atlas_horarios_mes/GLW" 
-			   style="default-scalar" 
+                
+                <!-- PromMinM -->
+                <layer Menu="PromMinM,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_promedios_mins_mensuales/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- MinAM -->
+                <layer Menu="MinAM,Temp" 
+			   EN="Temperature" ES="Temperatura a 2 metros"
+			   name="atlas_mins_abs_mensuales/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
                 />
                 
 	</MainLayers>
