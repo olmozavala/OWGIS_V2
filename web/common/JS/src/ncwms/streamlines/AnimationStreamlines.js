@@ -413,7 +413,6 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     if(!isRunningUnderMainAnimation){
 		if(updateURL()){
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
-            console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
 		}
 	}else{
@@ -559,7 +558,6 @@ function updateData(){
 						if(error){
 							console.log("Not possible to read JSON data: "+error.statusText);
 						}else{
-                            console.log("-----------------aqui-----------");
 							var uData = file[0].data;
 							var vData = file[1].data;
 							

@@ -288,13 +288,14 @@ function updateTitle(dateText, elevText) {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-    	if(!mobile){
+    	if(mobile){
             owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
-    	else{ 
-    	    localStorage.zoom = ol3view.getResolution();// Zoom of map
-    	    localStorage.map_center =  ol3view.getCenter();// Center of the map
+    	else{
+    	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
+            localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.language = _curr_language;
+            localStorage.projection = _map_projection;
             localStorage.map_palette = mappalette;
             var radioButtons = $('input[name^="elev_select"]:checked');
             if(typeof radioButtons[0] !== 'undefined'){ localStorage.depth = radioButtons[0].value; }
@@ -304,7 +305,7 @@ function MapViewersubmitForm() {
             localStorage.particles_speed = owgis.ncwms.currents.particles.getParticleSpeed();
             localStorage.particles_lifetime = owgis.ncwms.currents.particles.getParticlesLifeTime();
             localStorage.particles_color = owgis.ncwms.currents.getColor();
-            getElementById("mobile").value = mobile;
+            document.getElementById("mobile").value = mobile;
     	}
         submitForm();
     }

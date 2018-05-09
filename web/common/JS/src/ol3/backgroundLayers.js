@@ -78,7 +78,7 @@ function blueMarble(){
  * @returns {undefined}
  */
 owgis.backlayers.change = function(){
-    resetView();
+    MapViewersubmitForm();
 }
 
 /**

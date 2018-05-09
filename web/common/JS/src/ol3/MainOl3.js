@@ -138,6 +138,7 @@ function initOl3(){
         loadTilesWhileAnimating = true;
         loadTilesWhileInteracting = true;
     }
+    //var defZoom = mapConfig.zoom  
     ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
@@ -236,6 +237,8 @@ function initOl3(){
         else
             map.once('change:ready', whenMapIsReady.bind(null, callback));
     }
+//////////////////////// center and zoom storage
+    owgis.ol3.positionMap();
 
 /////////////////////// custom center, zoom from layer
      var center = layerDetails.center.split(",");
@@ -246,12 +249,8 @@ function initOl3(){
             animatePositionMap(zoom, center, durationAnimation);
         });
      }
-/////////////////////// end custom center
-
 /////////////////////// add marker for geolocation
     owgis.ol3.geolocation.createMarker();
-/////////////////////// end geolocation
-///////////////////////
 }
 
 //TODO clean and document this function
@@ -273,15 +272,15 @@ function detectMapLayersStatus(){
 	}
 }
 
-owgis.ol3.positionMap = function(){
+owgis.ol3.positionMap = function() {
 	// --------------- Map visualization and hover texts
-	var newZoom = localStorage.zoom !== undefined && localStorage.zoom < 15? localStorage.zoom : ol3view.getZoom();// Zoom of map max 17 zoom
+	var newZoom = localStorage.zoom !== undefined && localStorage.zoom <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
 	if( localStorage.map_center!== undefined){
 		var strCenter = localStorage.map_center.split(",")
 		var lat = Number(strCenter[0]);
 		var lon = Number(strCenter[1]);
-		newCenter = [lat,lon];// Center of the map
+		newCenter = ol.proj.transform([lat,lon], localStorage.projection, _map_projection);// Center of the map
 	}
     animatePositionMap(newZoom, newCenter, 0);
 }
