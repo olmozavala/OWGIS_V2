@@ -23,12 +23,12 @@
         <!--MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" 
                     server="http://10.2.233.169:8080/ncWMS2/wms" -->
                    
-		<layer Menu="Dom1,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)" 
-                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent"
+		<layer Menu="Dom1,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)" numColorBands="48"
+                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="transparent" aboveMaxColor="transparent"
                 />
                      
-		<layer Menu="Dom2,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)" 
-                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent"
+		<layer Menu="Dom2,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)"  numColorBands="48"
+                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="transparent" aboveMaxColor="transparent"
 		/>                              
                 
 	</MainLayers>

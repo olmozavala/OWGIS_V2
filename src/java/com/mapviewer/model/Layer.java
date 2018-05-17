@@ -69,6 +69,7 @@ public class Layer {
 	private String aboveMaxColor; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
 	//------- CQL
+	private int numColorBands; //number of bands in palette, for ncWMS2 only
 	private String cql;
 	private String cql_cols;
 	private boolean jsonp;//Itentifies if the layer is a json layer (dynamic vector layer)
@@ -94,7 +95,7 @@ public class Layer {
 	 *
 	 * @param {MenuEntry} selectedIndex MenuEntry[]Array that has the optons of the wanted
 	 * menus
-	 * @return boolean depending if the slected index has the menu entry.
+	 * @return boolean depending if the selected index has the menu entry.
 	 */
 	public boolean isThisLayer(MenuEntry[] selectedIndex) {
 		boolean thisIsTheLayer = true;
@@ -111,15 +112,16 @@ public class Layer {
 	}
 	
 	public boolean isThisLayer(String[] selectedIndex) {
-		boolean thisIsTheLayer = true;
+		boolean thisIsTheLayer = false;
 		if (selectedIndex.length == 0) {
 			thisIsTheLayer = false;
 		}
 		for (int nivelMenu = 0; nivelMenu < idLayer.length; nivelMenu++) {
-			
-			if (!idLayer[nivelMenu].getId().equals(selectedIndex[nivelMenu])) {
-				return false;
-			}
+            for (int selnum = 0; selnum < selectedIndex.length; selnum++) {
+                if (idLayer[nivelMenu].getId().equals(selectedIndex[selnum])) {
+                    return true;
+                }
+            }
 		}
 		return thisIsTheLayer;
 	}
@@ -152,7 +154,8 @@ public class Layer {
 		this.transEffect = "resize";//By default we use the 'resize' effect when zooming
 		this.jsonp = false;
 		this.belowMinColor = null;
-                this.aboveMaxColor = null;
+        this.aboveMaxColor = null;
+        this.numColorBands = 250;
 		// Default min and max color is -1
 		// they have to be modified by external getter and setter.
 		this.minColor = -1;
@@ -223,6 +226,7 @@ public class Layer {
 			boolean jsonp,
 			String overlayStreamlines, 
             String belowMinColor, String aboveMaxColor,
+            int numColorBands,
 			float defParticleSpeed) {
 		
 		this.bbox = bbox;
@@ -266,6 +270,7 @@ public class Layer {
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
+        this.numColorBands = numColorBands;
 	}
 	//Geters
 	
@@ -342,16 +347,19 @@ public class Layer {
 			//Adds the default streamline speed
 			layerDetails.accumulate("defParticleSpeed", this.defParticleSpeed);
                         
-                        //Verificar que la capa es ncwms
-                        layerDetails.put("defaultPalette", this.palette);
+            //Verificar que la capa es ncwms
+            layerDetails.put("defaultPalette", this.palette);
 
 			//Adds an indicationf if the layer is being served from ncWMS 2.0 or higher
 			layerDetails.accumulate("ncwmstwo", this.ncwmstwo);
                         
-                        //Adds an indicationf if a color for when below min color
+            //Adds an indicationf if a color for when below min color
 			layerDetails.accumulate("belowMinColor", this.belowMinColor);
-                        //Adds an indicationf if a color for when above max color
+            
+            //Adds an indicationf if a color for when above max color
 			layerDetails.accumulate("aboveMaxColor", this.aboveMaxColor);
+            
+            layerDetails.accumulate("numColorBands", this.numColorBands);
 
             //Add zoom and center
             String strZoom = String.valueOf(this.zoom);
@@ -651,6 +659,10 @@ public class Layer {
 	public String getoverlayStreamlines() {
 		return overlayStreamlines;
 	}
+    
+    public void setNumColorBands(int numColorBands){
+        this.numColorBands = numColorBands;
+    }
 	
 	public void setoverlayStreamlines(String overlayStreamlines) {
 		this.overlayStreamlines = overlayStreamlines;
@@ -696,9 +708,13 @@ public class Layer {
 		return localAddress;
 	}
         
-        public String getBelowMinColor() {
+    public String getBelowMinColor() {
 		return belowMinColor;
 	}
+            
+    public int getNumColorBands(){
+        return numColorBands;
+    }
         
         public String getAboveMaxColor() {
 		return aboveMaxColor;
