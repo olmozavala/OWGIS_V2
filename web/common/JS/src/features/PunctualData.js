@@ -11,6 +11,9 @@ goog.require('owgis.utils');
 var allData= {};
 var allFrames = [];
 var loopVP;
+var optionsChartVP = {};
+var isPaused = false;
+
 owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,layerNumber) {
     var currLayer = eval('layer'+layerNumber);
     var currSource = currLayer.getSource();
@@ -130,7 +133,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1)); // there is actual data in the response
                         console.log(ajaxCan);                            
                         //Create the plot
-                        Highcharts.chart('containerChartsVP', {
+                        optionsChartVP = {
                             chart: {
                                 width: el_width,
 				height: el_height
@@ -170,12 +173,12 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             series: [{
                               lineWidth: 1
                             }]
-                          }
-                        );
-                
+                        };
+                          
+                        Highcharts.chart('containerChartsVP', optionsChartVP);
+                       
                     }
                 });
-                
                 if(!mobile && ajaxCan){
 
                             $('#modalVertProf').resizable({
@@ -187,10 +190,6 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                                 $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
                                             }
                                         }
-                            });
-                            
-                            $('#modalVertProf .modal-header button.close').click(function(){
-                                clearInterval(loopVP); // se deberia de terminar cuando cierran el popup tmb
                             });
                             
                             $('#showVertProf').on("hidden.bs.modal", function() {
@@ -207,8 +206,21 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 }
                 
                 if(ajaxCan){
-                    document.getElementById("modalLabelVertProf").innerHTML = latlon;
+                    var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick=\"openVertProf(allData, allFrames, '"+latlon+"');\" class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
+                    document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+popuplink+ "&nbsp;<button class='btn btn-default btn-xs' id=\"playVP\"><span class='glyphicon glyphicon-play' ></span> </button>&nbsp;<button class='btn btn-default btn-xs' id=\"pauseVP\"><span class='glyphicon glyphicon-pause' ></span> </button> ";
                     var dataLink = "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allData, allFrames, '"+latlon+"');\">Show</button><br>";
+                    
+                    $('#modalVertProf .modal-header button.close').click(function(){
+                        clearInterval(loopVP); // se deberia de terminar cuando cierran el popup tmb
+                    });
+                    
+                    $( "#pauseVP" ).click(function(){
+                        isPaused = true;
+                    });
+                    
+                    $( "#playVP" ).click(function(){
+                        isPaused = false;
+                    });
                     
                     if(mobile){
                                 //startVPLoop();
@@ -431,11 +443,76 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 	}//Only for ncwms layers
 }
 
+//
+function openVertProf(allData, allFrames, latlon){
+                                //open a new window with the highchart
+                                //var options = chart.userOptions,
+                                //container = chart.renderTo,
+                                var w,
+                                html = '<div class="loader" id="loader" style="display: block;"></div> <div id="containerChartsVP" style="display:none;min-width: 310px; height: 400px; margin: 0 auto"></div> <div id="controls" style="display:none"><button id="playVP"><span class="glyphicon glyphicon-play" ></span> </button><button id="pauseVP"><span class="glyphicon glyphicon-pause" ></span> </button></div>',
+                                s1 = document.createElement('script'),
+                                s2 = document.createElement('script'),
+                                s3 = document.createElement('script'),
+                                s4 = document.createElement('script'),
+                                s41 = document.createElement('script');
+                                s5 = document.createElement('link'),
+                                s6 = document.createElement('link');
+                                t = "Highcharts.chart(\"containerChartsVP\", " + JSON.stringify(optionsChartVP) + ");" +
+                                            "var isPaused = false;"+
+                                            "var allFrames = "+JSON.stringify(allFrames)+"; "+
+                                            "var latlon='"+latlon+"'; var loopVP;" +
+                                            "var allData="+JSON.stringify(allData)+";" +
+                                            "$( \"#pauseVP\" ).click(function(){ isPaused = true; });"+
+                                            "$( \"#playVP\" ).click(function(){ isPaused = false; });"+
+                                            "function letsLoopVP(allData,allFrames, latlon){"+ 
+                                                "var vpCurrentFrame=0; loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } }, 4000); "+
+                                                "function animateVerticalProfile(){"+
+                                                    "vpCurrentFrame = vpCurrentFrame < (allFrames.length-1)? ++vpCurrentFrame: 0; var data_ = allData[allFrames[vpCurrentFrame]].responseText; "+
+                                                    "data_ = data_.replace(/^.*null.*$/mg, ''); data_ = data_.replace(/^\s*\\n/gm, ''); el_height =  400; "+
+                                                    "var lines = data_.split('\\n'); lines.splice(0,3); var new_data_ = lines.join('\\n'); new_data_ = lines;"+ 
+                                                    "new_data_ = new_data_.map(function(element){ return element.split(',').map(Number) ;}); new_data_.splice(-1,1); /*console.log( new_data_);*/"+
+                                                    "Highcharts.chart('containerChartsVP', { title: { text: 'Vertical Profile of '+data_.split('\\n')[2].split(',')[1]+', Date '+allFrames[vpCurrentFrame] },"+
+                                                        " subtitle: {text: latlon}, chart: {type: 'spline', inverted: true}, yAxis: {lineWidth: 1}, xAxis: {title: {text: data_.split('\\n')[2].split(',')[0]},lineWidth: 1}, "+
+                                                        " tooltip: { pointFormat: '{point.y:.2f}' + '"+layerDetails.units+"' }, "+
+                                                        "plotOptions: {series: { marker: { enabled: false }}}, series: [{ data: new_data_ ,lineWidth: 1, name: data_.split('\\n')[2].split(',')[1] }]"+ 
+                                            "});} } "+
+                                            "letsLoopVP(allData,allFrames, latlon);"
+                                            ;
+                                s3.setAttribute('type', 'text/javascript');
+                                s3.innerHTML = t;
+                                s5.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/highcharts.css');
+                                s5.setAttribute('rel',"stylesheet");
+                                s6.setAttribute('href', window.location.origin+window.location.pathname+'/../common/CSS/vendor/bootstrap.min.css');
+                                s6.setAttribute('rel',"stylesheet");
+                                s4.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+                                s41.setAttribute('src', window.location.origin+window.location.pathname+'/../common/JS/vendor/bootstrap.min.js');
+                                s1.setAttribute('src', 'https://code.highcharts.com/highcharts.js');
+                                s2.setAttribute('src', 'https://code.highcharts.com/modules/exporting.js');
+                                w = window.open('', '_blank', "height=420,width=520");
+
+                                w.document.getElementsByTagName('head')[0].appendChild(s5);
+                                w.document.getElementsByTagName('head')[0].appendChild(s6);
+                                w.document.getElementsByTagName('head')[0].appendChild(s4);
+                                setTimeout(function() {
+                                  w.document.getElementsByTagName('head')[0].appendChild(s1);
+                                  w.document.body.innerHTML=html;
+                                  setTimeout(function() {
+                                    w.document.getElementsByTagName('head')[0].appendChild(s2);
+                                    w.document.getElementsByTagName('body')[0].appendChild(s3);
+                                    w.document.getElementsByTagName('head')[0].appendChild(s41);
+                                    w.document.getElementById('loader').style.display = 'none';
+                                    w.document.getElementById('containerChartsVP').style.display = "block";
+                                    w.document.getElementById('controls').style.display = "block";
+                                  }, 3000)
+                                }, 300);
+                                                                
+                        }
+
 //lets create the highcharts animation loop, to start it when the user clicks the button !
 function letsLoopVP(allData,allFrames, latlon){
     var vpCurrentFrame=0;
     
-    loopVP = setInterval(function(){ animateVerticalProfile() }, 4000);
+    loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } }, 4000);
     
     function animateVerticalProfile(){
 
@@ -450,7 +527,7 @@ function letsLoopVP(allData,allFrames, latlon){
                             } else {
                                 el_height =  $("#showVertProf > .modal-dialog > .modal-content ").height()-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").height()-90;
                             }
-                            console.log( el_height , $("#showVertProf > .modal-dialog > .modal-content ").height()); 
+                            //console.log( data_); 
                             $("#containerChartsVP").height(el_height);
                             Highcharts.chart('containerChartsVP', {
                                 title: {
