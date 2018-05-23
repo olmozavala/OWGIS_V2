@@ -62,6 +62,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
             asynchronous5.call(url3);
         case "getTimeSteps":
             url3 += '&day=' + startDate;
+            //console.log(url3);
 			switch (cal) {
 				case owgis.constants.startcal:
 					asynchronous5.complete = asyncFillTimeStepsStart;
@@ -140,7 +141,7 @@ function downloadData() {
 			break;
 	}
 	var url = mainLayerServer +"?"+owgis.utils.paramsToUrl(requestParams);
-	console.log(url);
+	//console.log(url);
 	window.open(url,'_self');
 }
 

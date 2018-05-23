@@ -68,9 +68,9 @@ public class Layer {
 	private String transEffect;
 	private String belowMinColor; //set to trans for values that are below the color range stablished
 	private String aboveMaxColor; //set to trans for values that are below the color range stablished
-	private int numColorBands; //set to trans for values that are below the color range stablished
 	private String maxTimeLayer; //it defines the maximum time range the user can select (week, month, year)
 	//------- CQL
+	private int numColorBands; //number of bands in palette, for ncWMS2 only
 	private String cql;
 	private String cql_cols;
 	private boolean jsonp;//Itentifies if the layer is a json layer (dynamic vector layer)
@@ -227,7 +227,7 @@ public class Layer {
 			boolean ncwms, String maxTimeLayer,
 			boolean jsonp,
 			String overlayStreamlines, 
-            String belowMinColor, String aboveMaxColor, 
+            String belowMinColor, String aboveMaxColor,
             int numColorBands,
 			float defParticleSpeed) {
 		
@@ -274,6 +274,7 @@ public class Layer {
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
+        this.numColorBands = numColorBands;
 	}
 	//Geters
 	
@@ -369,7 +370,6 @@ public class Layer {
                 layerDetails.accumulate("featureInfo", this.featureInfoLayer);
                 layerDetails.accumulate("featureInfoUnits", this.featureInfoUnits);
             }
-
             //Add zoom and center
             String strZoom = String.valueOf(this.zoom);
             String strCenter = this.center.toString();
@@ -660,10 +660,6 @@ public class Layer {
     public void setBelowMinColor(String belowMinColor) {
 		this.belowMinColor = belowMinColor;
 	}
-
-    public void setNumColorBands(int numColorBands){
-        this.numColorBands = numColorBands;
-    }
     
     public void setAboveMaxColor(String aboveMaxColor) {
 		this.aboveMaxColor = aboveMaxColor;
@@ -680,6 +676,10 @@ public class Layer {
 	public String getoverlayStreamlines() {
 		return overlayStreamlines;
 	}
+    
+    public void setNumColorBands(int numColorBands){
+        this.numColorBands = numColorBands;
+    }
 	
 	public void setoverlayStreamlines(String overlayStreamlines) {
 		this.overlayStreamlines = overlayStreamlines;
@@ -732,8 +732,7 @@ public class Layer {
     public int getNumColorBands(){
         return numColorBands;
     }
-    
-    public String getAboveMaxColor() {
+        public String getAboveMaxColor() {
 		return aboveMaxColor;
 	}
 
