@@ -325,7 +325,9 @@ public class OpenLayersManager {
  			if (actualLayer.getAboveMaxColor() != null) {
                             layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
                         }
- 
+            if ( actualLayer.getNumColorBands() != 250 ) {
+                layersScript += ", NUMCOLORBANDS: "+ actualLayer.getNumColorBands();
+            }
 			layersScript += ", SRS: _map_projection";
 			
 			layersScript += "}\n\t\t\t})\n";

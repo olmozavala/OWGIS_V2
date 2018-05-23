@@ -157,7 +157,11 @@ public class NetCDFAnimationServlet extends HttpServlet {
 				// display the vectors, they look bad.
 				finalRequest+= "ABOVEMAXCOLOR="+layer.getAboveMaxColor()+"&";
 			}
-
+            if( layer.getNumColorBands() != 250 ){
+                finalRequest+= "NUMCOLORBANDS="+layer.getNumColorBands()+"&";
+            } else {
+                finalRequest+= "NUMCOLORBANDS=250&";
+            }
 //			finalRequest+= "WIDTH="+animRes+"&";//width and height of the image
 //			finalRequest+= "HEIGHT="+animRes+"&";
 
