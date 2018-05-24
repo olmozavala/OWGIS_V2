@@ -702,8 +702,13 @@ function loopAnimation(){
 	
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-	finalText = finalText.substring(0,finalText.lastIndexOf("."));
-	finalText = finalText.replace("T",' ');
+	if (finalText.lastIndexOf(".") != -1) {
+            finalText = finalText.substring(0,finalText.lastIndexOf("."));
+            finalText = finalText.replace("T",' ');
+        } else {
+            finalText = finalText.substring(0,finalText.lastIndexOf(":"));
+            finalText = finalText.replace("T",' ');
+        }
 	
 	$("#animDate").text(finalText);
 	
