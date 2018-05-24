@@ -9,6 +9,7 @@
 		<Menu ID="MAM" EN="AbsMax monthly" ES="Máxima absoluta por mes"/>
 		<Menu ID="PromMinM" EN="AbsMin monthly avarage" ES="Mínima promedio mensual"/>
 		<Menu ID="MinAM" EN="AbsMin monthly " ES="Mínima absoluta por mes"/>
+		<Menu ID="ANOM" EN="Anomalies " ES="Anomalías mensuales"/>
 
                 <Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
 		<Menu ID="Prec" EN="Prec" ES="Precipitación"/>
@@ -49,7 +50,45 @@
                 <Menu ID="M11" EN="November" ES="Noviembre"/>
                 <Menu ID="M12" EN="December" ES="Diciembre"/>
                 
-	</Menus>
+                <Menu ID="1980" EN="1980" ES="1980"/>
+                <Menu ID="1981" EN="1981" ES="1981"/>
+                <Menu ID="1982" EN="1982" ES="1982"/>
+                <Menu ID="1983" EN="1983" ES="1983"/>
+                <Menu ID="1984" EN="1984" ES="1984"/>
+                <Menu ID="1985" EN="1985" ES="1985"/>
+                <Menu ID="1986" EN="1986" ES="1986"/>
+                <Menu ID="1987" EN="1987" ES="1987"/>
+                <Menu ID="1988" EN="1988" ES="1988"/>
+                <Menu ID="1989" EN="1989" ES="1989"/>
+                <Menu ID="1990" EN="1990" ES="1990"/>
+                <Menu ID="1991" EN="1991" ES="1991"/>
+                <Menu ID="1992" EN="1992" ES="1992"/>
+                <Menu ID="1993" EN="1993" ES="1993"/>
+                <Menu ID="1994" EN="1994" ES="1994"/>
+                <Menu ID="1995" EN="1995" ES="1995"/>
+                <Menu ID="1996" EN="1996" ES="1996"/>
+                <Menu ID="1997" EN="1997" ES="1997"/>
+                <Menu ID="1998" EN="1998" ES="1998"/>
+                <Menu ID="1999" EN="1999" ES="1999"/>
+                <Menu ID="2000" EN="2000" ES="2000"/>
+                <Menu ID="2001" EN="2001" ES="2001"/>
+                <Menu ID="2002" EN="2002" ES="2002"/>
+                <Menu ID="2003" EN="2003" ES="2003"/>
+                <Menu ID="2004" EN="2004" ES="2004"/>
+                <Menu ID="2005" EN="2005" ES="2005"/>
+                <Menu ID="2006" EN="2006" ES="2006"/>
+                <Menu ID="2007" EN="2007" ES="2007"/>
+                <Menu ID="2008" EN="2008" ES="2008"/>
+                <Menu ID="2009" EN="2009" ES="2009"/>
+                <Menu ID="2010" EN="2010" ES="2010"/>
+                <Menu ID="2011" EN="2011" ES="2011"/>
+                <Menu ID="2012" EN="2012" ES="2012"/>
+                <Menu ID="2013" EN="2013" ES="2013"/>
+                <Menu ID="2014" EN="2014" ES="2014"/>
+                <Menu ID="2015" EN="2015" ES="2015"/>
+                <Menu ID="2016" EN="2016" ES="2016"/>
+
+        </Menus>
         
         <BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
@@ -1033,6 +1072,859 @@
 			   name="atlas_mins_abs_mensuales/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <!-- Anomalias -->
+                <!-- 1980 -->
+                <layer Menu="Temp,ANOM,1980" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1980/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1980" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1980/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1980" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1981 -->
+                <layer Menu="Temp,ANOM,1981" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1981/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1981" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1981/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1981" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1982 -->
+                <layer Menu="Temp,ANOM,1982" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1982/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1982" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1982/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1982" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1983 -->
+                <layer Menu="Temp,ANOM,1983" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1983/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1983" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1983/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1983" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1984 -->
+                <layer Menu="Temp,ANOM,1984" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1984/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1984" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1984/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1984" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1985 -->
+                <layer Menu="Temp,ANOM,1985" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1985/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1985" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1985/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1985" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1986 -->
+                <layer Menu="Temp,ANOM,1986" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1986/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1986" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1986/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1986" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1987 -->
+                <layer Menu="Temp,ANOM,1987" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1987/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1987" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1987/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1987" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1988 -->
+                <layer Menu="Temp,ANOM,1988" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1988/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1988" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1988/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1988" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1989 -->
+                <layer Menu="Temp,ANOM,1989" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1989/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1989" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1989/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1989" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1990 -->
+                <layer Menu="Temp,ANOM,1990" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1990/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1990" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1990/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1990" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                 <!-- 1991 -->
+                <layer Menu="Temp,ANOM,1991" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1991/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1991" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1991/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1991" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1992 -->
+                <layer Menu="Temp,ANOM,1992" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1992/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1992" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1992/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1992" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1993 -->
+                <layer Menu="Temp,ANOM,1993" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1993/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1993" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1993/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1993" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1994 -->
+                <layer Menu="Temp,ANOM,1994" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1994/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1994" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1994/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1994" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1995 -->
+                <layer Menu="Temp,ANOM,1995" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1995/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1995" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1995/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1995" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1996 -->
+                <layer Menu="Temp,ANOM,1996" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1996/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1996" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1996/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1996" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1997 -->
+                <layer Menu="Temp,ANOM,1997" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1997/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1997" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1997/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1997" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1998 -->
+                <layer Menu="Temp,ANOM,1998" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1998/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1998" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1998/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1998" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 1999 -->
+                <layer Menu="Temp,ANOM,1999" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_1999/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,1999" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_1999/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,1999" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2000 -->
+                <layer Menu="Temp,ANOM,2000" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2000/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2000" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2000/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2000" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2001 -->
+                <layer Menu="Temp,ANOM,2001" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2001/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2001" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2001/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2001" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2002 -->
+                <layer Menu="Temp,ANOM,2002" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2002/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2002" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2002/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2002" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2003 -->
+                <layer Menu="Temp,ANOM,2003" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2003/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2003" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2003/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2003" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2004 -->
+                <layer Menu="Temp,ANOM,2004" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2004/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2004" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2004/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2004" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2005 -->
+                <layer Menu="Temp,ANOM,2005" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2005/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2005" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2005/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2005" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2006 -->
+                <layer Menu="Temp,ANOM,2006" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2006/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2006" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2006/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2006" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2007 -->
+                <layer Menu="Temp,ANOM,2007" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2007/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2007" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2007/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2007" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2008 -->
+                <layer Menu="Temp,ANOM,2008" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2008/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2008" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2008/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2008" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2009 -->
+                <layer Menu="Temp,ANOM,2009" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2009/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2009" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2009/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2009" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2010 -->
+                <layer Menu="Temp,ANOM,2010" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2010/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2010" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2010/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2010" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2011 -->
+                <layer Menu="Temp,ANOM,2011" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2011/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2011" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2011/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2011" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2012 -->
+                <layer Menu="Temp,ANOM,2012" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2012/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2012" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2012/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2012" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2013 -->
+                <layer Menu="Temp,ANOM,2013" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2013/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2013" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2013/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2013" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2014 -->
+                <layer Menu="Temp,ANOM,2014" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2014/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2014" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2014/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2014" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2015 -->
+                <layer Menu="Temp,ANOM,2015" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2015/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2015" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2015/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2015" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
+                           center="-92,23" zoom="3"
+                />
+                <!-- 2016 -->
+                <layer Menu="Temp,ANOM,2016" 
+			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
+			   name="atlas_anomalias_2016/T2" 
+			   style="default-scalar" palette="temperatura"
+                           mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
+                           center="-92,23" zoom="3"
+                />
+                
+                <layer Menu="Prec,ANOM,2016" 
+			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
+			   name="atlas_anomalias_2016/PREC2" style="default-scalar"
+			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+                           center="-92,23" zoom="3"
+                />
+                
+		<layer Menu="Viento,ANOM,2016" 
+			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
+                           style="default-scalar" palette="wind2" 
+			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.01"
+                           belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3"
                 />
                 
