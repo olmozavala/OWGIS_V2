@@ -299,8 +299,11 @@ public class Layer {
 			} else {
 				this.layerDetails = new JSONObject(layerDetailsStr);
 				if ((this.minColor == -1) && (this.maxColor == -1)) {
-					this.minColor = Float.parseFloat((String) (((JSONArray) layerDetails.get("scaleRange")).get(0)));
-					this.maxColor = Float.parseFloat((String) (((JSONArray) layerDetails.get("scaleRange")).get(1)));
+                        String minicolor = (((JSONArray) layerDetails.get("scaleRange")).get(0)).toString();
+                        this.minColor = Float.parseFloat((String) minicolor);
+                        String maxicolor = (((JSONArray) layerDetails.get("scaleRange")).get(1)).toString();                        
+                        this.maxColor = Float.parseFloat((String) maxicolor);
+					
 				}
 			}
 

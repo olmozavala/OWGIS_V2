@@ -1,18 +1,22 @@
 <section class="container-fluid topMenu">
 	<div class="row">
 		<!--Logo OWGIS-->
-		<span class="col-lg-1 visible-lg " >
-			<a href="http://owgis.org" target="_blank">
+		<span class="col-lg-3 visible-lg " id="titleGOM">
+			<!--<a href="http://owgis.org" target="_blank">
 				<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20"  />
-			</a>
+			</a>-->
+                        Atlas Meteorol&oacute;gico del GoM
 		</span>
 		<!--This are always available-->
-		<ul class="horizontal col-lg-6 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
+		
+                <ul class="horizontal col-lg-4 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
+                <!--
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"> 
-				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
+				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu"> -->
                     <!--It gets initialized by backgroundLayers.js-->
-                </select>
+                <!-- </select>
 			</li>
+                -->
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
@@ -24,9 +28,9 @@
 			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
 				<%@include file="../../../Options/Elevation.jsp" %>
 			</li>
-            <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
-                <i class="glyphicon glyphicon-screenshot"></i>
-			</li>
+                        <!--li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
+                           <i class="glyphicon glyphicon-screenshot"></i>
+			</li-->
 		</ul>
 			
 		<!--This whole ul is used for the 'smaller ' sizes-->

@@ -121,7 +121,7 @@ function initCalendars(){
 				if (year > maxYear) maxYear = year;
 			}
 		}
-		
+		console.log(minYear, maxYear);
 		for (var month in datesWithData[minYear]) {
 			if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
 				if(month < minMonth){
@@ -147,18 +147,23 @@ function initCalendars(){
 
 //		console.log("--------- LOCAL ---------")
 //		console.log(minValidDateLocal +" --- " + maxValidDateLocal);
-
-		var minValidDate = new Date(minYear,minMonth, minDay);
-		var maxValidDate = new Date(maxYear,maxMonth, maxDay);
-
+                
+                var minValidDate = new Date(minYear,minMonth, minDay);
+                var maxValidDate = new Date(maxYear,maxMonth, maxDay);
+                if( minYear == 0 ){
+                    minValidDate.setFullYear(0);
+                } 
+                if(maxYear == 0){
+                    maxValidDate.setFullYear(0);
+                }
 //		console.log("--------- UTC ---------")
-//		console.log(minValidDate +" --- " + maxValidDate);
+		//console.log(minValidDate +" --- " + maxValidDate);
 
 		var locCurrDate = new Date(minValidDate);
 
 		var reqTIME = owgis.utils.getDate("%Y-%m-%d",locCurrDate,true);
 		var hoursForFirstDay = new Array();
-
+                
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
 
 		//We verify that we have more than one day
@@ -172,6 +177,12 @@ function initCalendars(){
 				currMonth = locCurrDate.getUTCMonth();
 				currDay = locCurrDate.getUTCDate();
 				//Be sure the day is available in the layers
+                                /*console.log(currYear,currMonth,currDay);
+                                console.log(datesWithData);
+                                console.log(locCurrDate,minValidDate,maxValidDate);*/
+                                /*if(currYear == 1900){
+                                    currYear = 0;
+                                }*/
 				if(!_.contains(datesWithData[currYear][currMonth],currDay)){
 					datesWithNoData.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate));
 				}
@@ -197,6 +208,7 @@ function initCalendars(){
 			//If there are some days in between max and min data that doesn't
 			// have data then we need to 'disable' them on the calendar
 			if(!_.isEmpty(datesWithNoData)){
+                            //console.log("push to datesWithNoData",datesWithNoData);
 				$('#cal-start').datepicker("option", {
 					beforeShowDay: function(date){
 						var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
@@ -212,8 +224,15 @@ function initCalendars(){
 			}
 
 			var startDate = new Date(layerDetails.nearestTimeIso);
+                        if(minYear == 0){
+                            startDate.setFullYear(0);
+                        }
 			$("#cal-start").datepicker("setDate",startDate);
 			$("#cal-end").datepicker("setDate",maxValidDate);
+                        $("#cal-start").datepicker("option", "prevText", "");
+                        $("#cal-start").datepicker("option", "nextText", "");
+                        $("#cal-end").datepicker("option", "prevText", "");
+                        $("#cal-end").datepicker("option", "nextText", "");
 			
 			displayCalendars(true);
 			
@@ -445,7 +464,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 			break;
 	}
 	//Get date from calendar
-	currDateStr = currCal.val();
+	currDateStr = currCal.val(); //console.log(currDateStr);
 	//We need to verify that we have the time information
 	currTimeStr = $("#"+currTimeCal+" option");
 	if(currTimeStr.length > 1){

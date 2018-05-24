@@ -6,7 +6,7 @@
 	
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
-	&nbsp;
+	<!--&nbsp;
 	<a  href="#">
 		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
 	&nbsp;
@@ -24,6 +24,6 @@
 			&nbsp 
 			&copy; <script language="javascript">document.write(owgis.utils.getDate("%Y"));</script>.  <fmt:message key="main.copyr" /> &nbsp;
 		</p></a>
-	<a id="emailText" href="#"> <fmt:message key="main.contact" /></a>
+	<a id="emailText" href="#"> <fmt:message key="main.contact" /></a>-->
 </div>
 

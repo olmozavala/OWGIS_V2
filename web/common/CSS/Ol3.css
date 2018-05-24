@@ -118,7 +118,6 @@ in most of their text */
 /* Used by open layers to display longitude and latitude */
 /* line 68, ../scss/Ol3.scss */
 .ol-lat-lon {
-  color: #FFFFFF;
   font-size: 13px;
   text-align: center;
   font-weight: normal;

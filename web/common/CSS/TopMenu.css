@@ -62,7 +62,7 @@ and open the template in the editor.
   width: 100%;
   z-index: 1008;
   background-image: url("../images/transBack.png");
-  border-bottom: white 1px solid;
+  /*border-bottom: white 1px solid;*/
   padding: 10px 0px;
 }
 

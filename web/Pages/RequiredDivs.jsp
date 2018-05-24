@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 ">
             <p id="pTitleText"> ${layerTitle} </p> 
-            <p id="pTitleSubText"> </p> 
+            <!--<p id="pTitleSubText"> </p>--> 
         </div>
     </div>
 </div>
@@ -26,8 +26,7 @@
 	<div id="popup-content"></div>
 </div>
 
-<!-- This div is only used to contain the movement of the
-draggable windows -->
+<!-- This div is only used to contain the movement of the draggable windows -->
 <div id="draggable-container"></div>
 
 <!-- This div displays the specific data of the dynamic maps-->
