@@ -610,7 +610,8 @@ public class LayerMenuManagerSingleton {
         
         int numColorBands = layerConf.getAttributeValue("numColorBands") != null 
                 ?  Integer.parseInt(layerConf.getAttributeValue("numColorBands")) : layer.getNumColorBands();
-		
+		//subtitleText
+        String subtitleText = layerConf.getAttributeValue("subtitleText") != null ? layerConf.getAttributeValue("subtitleText") : layer.getSubtitleText();
 		/*
 		String[] cql_cols = null;
 		if(cql_cols_str!=null){
@@ -621,7 +622,7 @@ public class LayerMenuManagerSingleton {
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
-				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed);
+				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed, subtitleText);
 		
 		newLayer.setMinColor(minColor);
                 //newLayer.setBelowMinColor(belowMinColor);

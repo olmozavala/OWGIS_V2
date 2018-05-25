@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 ">
             <p id="pTitleText"> ${layerTitle} </p> 
-            <!--<p id="pTitleSubText"> </p>--> 
+            <p id="pTitleSubText"> </p> 
         </div>
     </div>
 </div>

@@ -147,20 +147,20 @@
 			   name="atlas_diario/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
 
 		<layer Menu="Prec,PromD" 
 			   EN="Total Precipitation" ES="Climatología Diaria de Precipitación Total"
 			   name="atlas_diario/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
 
 		<layer Menu="PBLH,PromD" 
 			   EN="Boundary layer height" ES="Climatología Diaria de Altura de la capa límite"
 			   name="atlas_diario/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" subtitleText="daily"
                            center="-92,23" zoom="3"
                 />
 
@@ -169,34 +169,34 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <layer Menu="QFX,PromD" 
 			   EN="Evaporation" ES="Climatología Diaria de Evaporación"
 			   name="atlas_diario/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <layer Menu="GLW,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda larga" 
 			   name="atlas_diario/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <layer Menu="SWDOWN,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda corta" 
 			   name="atlas_diario/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <layer Menu="RH,PromD" EN="Relative Humidity" 
 			   ES="Climatología Diaria de Humedad relativa" 
 			   name="atlas_diario/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <!-- Promedios mensuales -->
@@ -205,21 +205,21 @@
 			   name="atlas_mensuales/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="Prec,PromM" 
 			   EN="Total Precipitation" ES="Climatología Mensual de Precipitación Total"
 			   name="atlas_mensuales/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="PBLH,PromM" 
 			   EN="Boundary layer height" ES="Climatología Mensual de Altura de capa límite"
 			   name="atlas_mensuales/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="Viento,PromM" 
@@ -227,35 +227,35 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="QFX,PromM" EN="Evaporation" 
 			   ES="Climatología Mensual de Evaporación" 
 			   name="atlas_mensuales/QFX" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="GLW,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda larga" 
 			   name="atlas_mensuales/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="SWDOWN,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda corta" 
 			   name="atlas_mensuales/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="RH,PromM" EN="Relative humidity" 
 			   ES="Climatología Mensual de Humedad relativa" 
 			   name="atlas_mensuales/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <!-- Maximos absolutos diarios -->
@@ -264,14 +264,14 @@
 			   name="atlas_maxs_abs_diarios/T2" 
 			   style="default-scalar" palette="temperatura" numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
 
 		<layer Menu="Prec,PromMAD" 
 			   EN="Total Precipitation" ES="Máxima absoluta diaria de Precipitación Total"
 			   name="atlas_maxs_abs_diarios/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
 
 		<layer Menu="Viento,PromMAD" 
@@ -279,7 +279,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="daily"
                 />
                 
                 <!-- Promedios maximos absolutos mensuales -->
@@ -288,14 +288,14 @@
 			   name="atlas_promedios_maxs_abs_mensuales/T2" 
 			   style="default-scalar" palette="temperatura"  numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="Prec,PromMAM" 
 			   EN="Total Precipitation" ES="Máxima promedio mensual de Precipitación Total"
 			   name="atlas_promedios_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,PromMAM" 
@@ -303,7 +303,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <!-- PromediosHorariosMes -->
@@ -313,27 +313,27 @@
 			   name="atlas_horarios_mes_enero/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M01" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_enero/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M01" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M01" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_enero/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M01" 
@@ -341,28 +341,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_enero/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_enero/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M01" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_enero_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <!-- Febrero -->
@@ -371,27 +371,27 @@
 			   name="atlas_horarios_mes_febrero/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M02" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_febrero/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M02" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M02" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M02" 
@@ -399,12 +399,12 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 <layer Menu="GLW,PromHM,M02" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" subtitleText="hourxmonth"
                            center="-92,23" zoom="3" 
                 />
                 
@@ -412,14 +412,14 @@
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M02" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_febrero_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="hourxmonth"
                 />
                 <!-- Marzo -->
                 <layer Menu="Temp,PromHM,M03" 
@@ -427,27 +427,27 @@
 			   name="atlas_horarios_mes_marzo/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M03" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_marzo/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M03" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M03" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_marzo/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M03" 
@@ -455,28 +455,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_marzo/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M03" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_marzo_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <!-- Abril -->
@@ -485,27 +485,27 @@
 			   name="atlas_horarios_mes_abril/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M04" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_abril/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M04" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M04" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_abril/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M04" 
@@ -513,28 +513,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
-                />
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
+                /> 
                 
                 <layer Menu="GLW,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_abril/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_abril/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="hourxmonth"
                 />
 
                <layer Menu="RH,PromHM,M04" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_abril_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <!-- Mayo -->
@@ -543,27 +543,27 @@
 			   name="atlas_horarios_mes_mayo/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M05" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_mayo/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M05" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           mincolor="0" maxcolor="2000" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M05" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M05" 
@@ -571,28 +571,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_mayo/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="RH,PromHM,M05" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_mayo_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                  <!-- Junio -->
@@ -601,27 +601,27 @@
 			   name="atlas_horarios_mes_junio/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M06" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_junio/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M06" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M06" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M06" 
@@ -629,13 +629,13 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M06" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_junio/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" subtitleText="hourxmonth"
                            center="-92,23" zoom="3" 
                 />
                 
@@ -643,14 +643,14 @@
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_junio/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M06" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_junio_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                  <!-- Julio -->
@@ -659,27 +659,27 @@
 			   name="atlas_horarios_mes_julio/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M07" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_julio/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M07" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M07" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M07" 
@@ -687,28 +687,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_julio/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_julio/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M07" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_julio_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="hourxmonth"
                 />
                 
                 <!-- Agosto -->
@@ -717,27 +717,27 @@
 			   name="atlas_horarios_mes_agosto/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M08" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_agosto/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M08" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M08" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M08" 
@@ -745,28 +745,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_agosto/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
             
                 <layer Menu="RH,PromHM,M08" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_agosto_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <!-- Sept -->
@@ -775,27 +775,27 @@
 			   name="atlas_horarios_mes_septiembre/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M09" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_septiembre/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M09" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M09" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M09" 
@@ -803,28 +803,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_septiembre/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M09" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_septiembre_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <!-- Octubre -->
@@ -833,27 +833,27 @@
 			   name="atlas_horarios_mes_octubre/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M10" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_octubre/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M10" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M10" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M10" 
@@ -861,28 +861,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_octubre/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="RH,PromHM,M10" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_octubre_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <!-- Noviembre -->
@@ -891,27 +891,27 @@
 			   name="atlas_horarios_mes_noviembre/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M11" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_noviembre/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M11" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M11" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M11" 
@@ -919,28 +919,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_noviembre/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M11" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_noviembre_rh/RH" 
 			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 <!-- Diciembre -->
                 <layer Menu="Temp,PromHM,M12" 
@@ -948,27 +948,27 @@
 			   name="atlas_horarios_mes_diciembre/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Prec,PromHM,M12" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_diciembre/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="PBLH,PromHM,M12" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="QFX,PromHM,M12" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
 
 		<layer Menu="Viento,PromHM,M12" 
@@ -976,28 +976,28 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="GLW,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_diciembre/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="RH,PromHM,M12" EN="Relative Humidity" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_diciembre_rh/RH" 
 			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
                 <!-- Maximos absolutos mensuales -->
                 <layer Menu="Temp,MAM" 
@@ -1005,14 +1005,14 @@
 			   name="atlas_maxs_abs_mensuales/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
 
 		<layer Menu="Prec,MAM" 
 			   EN="Total Precipitation" ES="Máxima absoluta por mes de Precipitación Total"
 			   name="atlas_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,MAM" 
@@ -1020,41 +1020,41 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="PBLH,MAM" 
 			   EN="Boundary layer height" ES="Máxima absoluta por mes de Altura de la capa límite"
 			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2000"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="QFX,MAM" 
 			   EN="Evaporation" ES="Máxima absoluta por mes de Evaporación"
 			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="GLW,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda larga" 
 			   name="atlas_maxs_abs_mensuales/GLW" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="monthly"
                 />
                 
                 <layer Menu="SWDOWN,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda corta" 
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="monthly"
                 />
                 
                 <layer Menu="RH,MAM" EN="Relative humidity" 
 			   ES="Máxima absoluta por mes de Humedad relativa"  palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
 			   name="atlas_maxs_abs_mensuales/RH" 
 			   style="default-scalar"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  subtitleText="monthly"
                 />
 
                 <!-- PromMinM -->
@@ -1063,7 +1063,7 @@
 			   name="atlas_promedios_mins_mensuales/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3"  subtitleText="monthly"
                 />
                 
                 <!-- MinAM -->
@@ -1072,7 +1072,7 @@
 			   name="atlas_mins_abs_mensuales/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <!-- Anomalias -->
@@ -1082,14 +1082,14 @@
 			   name="atlas_anomalias_1980/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1980" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1980/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1980" 
@@ -1097,7 +1097,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1981 -->
                 <layer Menu="Temp,ANOM,1981" 
@@ -1105,14 +1105,14 @@
 			   name="atlas_anomalias_1981/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1981" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1981/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1981" 
@@ -1120,7 +1120,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1982 -->
                 <layer Menu="Temp,ANOM,1982" 
@@ -1128,14 +1128,14 @@
 			   name="atlas_anomalias_1982/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1982" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1982/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1982" 
@@ -1143,7 +1143,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1983 -->
                 <layer Menu="Temp,ANOM,1983" 
@@ -1151,14 +1151,14 @@
 			   name="atlas_anomalias_1983/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1983" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1983/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1983" 
@@ -1166,7 +1166,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1984 -->
                 <layer Menu="Temp,ANOM,1984" 
@@ -1174,14 +1174,14 @@
 			   name="atlas_anomalias_1984/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1984" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1984/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1984" 
@@ -1189,7 +1189,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1985 -->
                 <layer Menu="Temp,ANOM,1985" 
@@ -1197,14 +1197,14 @@
 			   name="atlas_anomalias_1985/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1985" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1985/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1985" 
@@ -1212,7 +1212,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1986 -->
                 <layer Menu="Temp,ANOM,1986" 
@@ -1220,14 +1220,14 @@
 			   name="atlas_anomalias_1986/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1986" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1986/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1986" 
@@ -1235,7 +1235,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1987 -->
                 <layer Menu="Temp,ANOM,1987" 
@@ -1243,14 +1243,14 @@
 			   name="atlas_anomalias_1987/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1987" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1987/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1987" 
@@ -1258,7 +1258,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1988 -->
                 <layer Menu="Temp,ANOM,1988" 
@@ -1266,14 +1266,14 @@
 			   name="atlas_anomalias_1988/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1988" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1988/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1988" 
@@ -1281,7 +1281,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1989 -->
                 <layer Menu="Temp,ANOM,1989" 
@@ -1289,14 +1289,14 @@
 			   name="atlas_anomalias_1989/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1989" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1989/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1989" 
@@ -1304,7 +1304,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1990 -->
                 <layer Menu="Temp,ANOM,1990" 
@@ -1312,14 +1312,14 @@
 			   name="atlas_anomalias_1990/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1990" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1990/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1990" 
@@ -1327,7 +1327,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                  <!-- 1991 -->
                 <layer Menu="Temp,ANOM,1991" 
@@ -1335,14 +1335,14 @@
 			   name="atlas_anomalias_1991/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1991" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1991/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1991" 
@@ -1350,7 +1350,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1992 -->
                 <layer Menu="Temp,ANOM,1992" 
@@ -1358,14 +1358,14 @@
 			   name="atlas_anomalias_1992/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1992" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1992/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1992" 
@@ -1373,7 +1373,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1993 -->
                 <layer Menu="Temp,ANOM,1993" 
@@ -1381,14 +1381,14 @@
 			   name="atlas_anomalias_1993/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1993" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1993/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1993" 
@@ -1396,7 +1396,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1994 -->
                 <layer Menu="Temp,ANOM,1994" 
@@ -1404,14 +1404,14 @@
 			   name="atlas_anomalias_1994/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1994" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1994/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1994" 
@@ -1419,7 +1419,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1995 -->
                 <layer Menu="Temp,ANOM,1995" 
@@ -1427,14 +1427,14 @@
 			   name="atlas_anomalias_1995/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1995" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1995/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1995" 
@@ -1442,7 +1442,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1996 -->
                 <layer Menu="Temp,ANOM,1996" 
@@ -1450,14 +1450,14 @@
 			   name="atlas_anomalias_1996/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1996" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1996/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1996" 
@@ -1465,7 +1465,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1997 -->
                 <layer Menu="Temp,ANOM,1997" 
@@ -1473,14 +1473,14 @@
 			   name="atlas_anomalias_1997/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1997" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1997/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1997" 
@@ -1488,7 +1488,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1998 -->
                 <layer Menu="Temp,ANOM,1998" 
@@ -1496,14 +1496,14 @@
 			   name="atlas_anomalias_1998/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1998" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1998/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1998" 
@@ -1511,7 +1511,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 1999 -->
                 <layer Menu="Temp,ANOM,1999" 
@@ -1519,14 +1519,14 @@
 			   name="atlas_anomalias_1999/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1999" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1999/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,1999" 
@@ -1534,7 +1534,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2000 -->
                 <layer Menu="Temp,ANOM,2000" 
@@ -1542,14 +1542,14 @@
 			   name="atlas_anomalias_2000/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2000" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2000/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2000" 
@@ -1557,7 +1557,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2001 -->
                 <layer Menu="Temp,ANOM,2001" 
@@ -1565,14 +1565,14 @@
 			   name="atlas_anomalias_2001/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2001" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2001/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2001" 
@@ -1580,7 +1580,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2002 -->
                 <layer Menu="Temp,ANOM,2002" 
@@ -1588,14 +1588,14 @@
 			   name="atlas_anomalias_2002/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2002" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2002/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2002" 
@@ -1603,7 +1603,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2003 -->
                 <layer Menu="Temp,ANOM,2003" 
@@ -1611,14 +1611,14 @@
 			   name="atlas_anomalias_2003/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2003" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2003/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2003" 
@@ -1626,7 +1626,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2004 -->
                 <layer Menu="Temp,ANOM,2004" 
@@ -1634,14 +1634,14 @@
 			   name="atlas_anomalias_2004/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2004" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2004/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2004" 
@@ -1649,7 +1649,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2005 -->
                 <layer Menu="Temp,ANOM,2005" 
@@ -1657,14 +1657,14 @@
 			   name="atlas_anomalias_2005/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2005" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2005/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2005" 
@@ -1672,7 +1672,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2006 -->
                 <layer Menu="Temp,ANOM,2006" 
@@ -1680,14 +1680,14 @@
 			   name="atlas_anomalias_2006/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2006" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2006/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2006" 
@@ -1695,7 +1695,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2007 -->
                 <layer Menu="Temp,ANOM,2007" 
@@ -1703,14 +1703,14 @@
 			   name="atlas_anomalias_2007/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2007" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2007/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2007" 
@@ -1718,7 +1718,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2008 -->
                 <layer Menu="Temp,ANOM,2008" 
@@ -1726,14 +1726,14 @@
 			   name="atlas_anomalias_2008/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2008" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2008/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2008" 
@@ -1741,7 +1741,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2009 -->
                 <layer Menu="Temp,ANOM,2009" 
@@ -1749,14 +1749,14 @@
 			   name="atlas_anomalias_2009/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2009" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2009/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2009" 
@@ -1764,7 +1764,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2010 -->
                 <layer Menu="Temp,ANOM,2010" 
@@ -1772,14 +1772,14 @@
 			   name="atlas_anomalias_2010/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2010" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2010/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2010" 
@@ -1787,7 +1787,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2011 -->
                 <layer Menu="Temp,ANOM,2011" 
@@ -1795,14 +1795,14 @@
 			   name="atlas_anomalias_2011/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2011" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2011/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2011" 
@@ -1810,7 +1810,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2012 -->
                 <layer Menu="Temp,ANOM,2012" 
@@ -1818,14 +1818,14 @@
 			   name="atlas_anomalias_2012/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2012" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2012/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2012" 
@@ -1833,7 +1833,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2013 -->
                 <layer Menu="Temp,ANOM,2013" 
@@ -1841,14 +1841,14 @@
 			   name="atlas_anomalias_2013/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2013" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2013/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2013" 
@@ -1856,7 +1856,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2014 -->
                 <layer Menu="Temp,ANOM,2014" 
@@ -1864,14 +1864,14 @@
 			   name="atlas_anomalias_2014/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2014" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2014/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2014" 
@@ -1879,7 +1879,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2015 -->
                 <layer Menu="Temp,ANOM,2015" 
@@ -1887,14 +1887,14 @@
 			   name="atlas_anomalias_2015/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2015" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2015/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2015" 
@@ -1902,7 +1902,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 <!-- 2016 -->
                 <layer Menu="Temp,ANOM,2016" 
@@ -1910,14 +1910,14 @@
 			   name="atlas_anomalias_2016/T2" 
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,2016" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2016/PREC2" style="default-scalar"
 			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,ANOM,2016" 
@@ -1925,7 +1925,7 @@
                            style="default-scalar" palette="wind2" 
 			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3"
+                           center="-92,23" zoom="3" subtitleText="monthly"
                 />
                 
 	</MainLayers>

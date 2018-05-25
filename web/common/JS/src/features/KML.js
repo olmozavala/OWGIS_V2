@@ -48,14 +48,29 @@ owgis.kml.updateTitleAndKmlLink = function() {
             currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
         }
 
-		var dateText =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+        var dateText =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+	var curr_date =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
 		
         owgis.kml.updateKmlLink(dateText, currElevation, '');
-		var dateForTitle = "";
-		if(!_.isUndefined(dateText)){
-			dateForTitle = dateText.substring(0,dateText.indexOf("T"))
-			+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));
-		}
+
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        var dateForTitle = "";
+	if(!_.isUndefined(dateText)){
+            if(!_.isUndefined(layerDetails.subtitleText)){
+                if(layerDetails.subtitleText == "daily"){
+                    dateForTitle = curr_date.getUTCDate() +" de "+ meses[curr_date.getUTCMonth()];
+                }else if(layerDetails.subtitleText == "monthly"){
+                    dateForTitle = meses[curr_date.getUTCMonth()];
+                } else if(layerDetails.subtitleText == "hourxmonth"){
+                    dateForTitle = curr_date.getUTCHours() +":00 de "+ meses[curr_date.getUTCMonth()];
+                }
+            } else {
+		dateForTitle = ""; /*dateText.substring(0,dateText.indexOf("T"))
+		+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));*/
+            }
+	}
+        
         updateTitle(dateForTitle, currElevationTxt);
     }
 }

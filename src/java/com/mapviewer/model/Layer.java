@@ -89,6 +89,8 @@ public class Layer {
     // ---- zoom and position options
     private Byte zoom;//zoom in map
     private Point center;//longitude
+    // --- to define how to display the subtitle of the layer
+    private String subtitleText;
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -171,6 +173,7 @@ public class Layer {
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
+        this.subtitleText = null;
 	}
 	/**
 	 *
@@ -227,7 +230,8 @@ public class Layer {
 			String overlayStreamlines, 
             String belowMinColor, String aboveMaxColor,
             int numColorBands,
-			float defParticleSpeed) {
+			float defParticleSpeed, 
+            String subtitleText) {
 		
 		this.bbox = bbox;
 		this.style = style;
@@ -265,13 +269,13 @@ public class Layer {
 		this.overlayStreamlines = overlayStreamlines;
 		this.defParticleSpeed = defParticleSpeed;
 		this.localAddress = null;
-                this.belowMinColor = belowMinColor;
-                this.aboveMaxColor = aboveMaxColor;
-                this.numColorBands = numColorBands;
+        this.belowMinColor = belowMinColor;
+        this.aboveMaxColor = aboveMaxColor;
+        this.numColorBands = numColorBands;
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
-        this.numColorBands = numColorBands;
+        this.subtitleText = subtitleText;
 	}
 	//Geters
 	
@@ -368,6 +372,7 @@ public class Layer {
             String strCenter = this.center.toString();
             layerDetails.accumulate("zoom", strZoom);
             layerDetails.accumulate("center", strCenter);
+            layerDetails.accumulate("subtitleText", this.subtitleText);
             
         } catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -517,6 +522,15 @@ public class Layer {
     
     public int getNumColorBands(){
         return numColorBands;
+    }
+    
+    /*subtitleText*/
+    public void setSubtitleText(String subtitleText){
+        this.subtitleText = subtitleText;
+    }
+    
+    public String getSubtitleText(){
+        return subtitleText;
     }
 	
 	public void setWidth(int width) {

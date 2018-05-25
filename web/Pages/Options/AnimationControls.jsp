@@ -97,10 +97,10 @@
 				<span class="glyphicon glyphicon-fast-forward"></span>
 			</a>
 				
-			<a class="btn btn-default btn-xs " href="#" target="_blank"
+			<!--a class="btn btn-default btn-xs " href="#" target="_blank"
 			   title="<fmt:message key='ncwms.anim.help.save'/>" >
 				<span class="glyphicon glyphicon-floppy-save"></span>
-			</a>
+			</a-->
 				
 			<a class="btn btn-default btn-xs " href="#" target="_blank" id="animSaveAsKml"
 			   title="<fmt:message key='main.googleE'/>" >

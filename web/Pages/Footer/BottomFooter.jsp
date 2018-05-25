@@ -6,10 +6,9 @@
 	
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
-	<!--&nbsp;
-	<a  href="#">
-		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
 	&nbsp;
+		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="30" height="30" />
+	&nbsp;<!--
 	<a  href="#">
 		<img border="0" src="./common/images/Logos/Logo.png" alt="Logo" width="30" height="30" /></a>
 	&nbsp 
