@@ -25,7 +25,7 @@ owgis.optionalLayers.toggleList = function(id){
  */
 owgis.optionalLayers.showOptionalLayer = function(selectedLayer,visibility, zoom, center){
     owgis.layers.showLayer(selectedLayer, visibility);
-    if(zoom !== null && center[0] !== null && center[1] !== null) {
+    if(zoom !== null && center[0] !== null && center[1] !== null && visibility) {
         animatePositionMap(zoom, center);
     }
     owgis.ol3.popup.closePopUp();

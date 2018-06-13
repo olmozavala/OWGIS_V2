@@ -102,7 +102,7 @@ public class NetCDFRequestManager {
 
 		try {
 			ncReq = new URL(urlRequest);
-			System.out.println("URL: "+urlRequest);
+			//System.out.println("URL: "+urlRequest);
 			ncReq.openConnection();
 			InputStreamReader input = new InputStreamReader(ncReq.openStream());
 			BufferedReader in = new BufferedReader(input);
@@ -111,7 +111,7 @@ public class NetCDFRequestManager {
 			while ((inputLine = in.readLine()) != null) {
 				if (!inputLine.trim().equalsIgnoreCase("")) {// TODO check for errros
 					timeSteps = new JSONObject(inputLine);
-					System.out.println("Results: "+inputLine);
+					//System.out.println("Results: "+inputLine);
 
 //					datesWithData = (JSONObject) layerDetails.get("datesWithData");
 					/*
@@ -189,7 +189,7 @@ public class NetCDFRequestManager {
 			} catch (JSONException | IOException e) {
 				try {
 					tryNumber++;
-					System.out.println("Layer details try number:" + tryNumber + " for layer "+ layer.getName() + " Error:"+ e.getMessage());
+					//System.out.println("Layer details try number:" + tryNumber + " for layer "+ layer.getName() + " Error:"+ e.getMessage());
 					Thread.sleep(500);//We wait for .1 seconds to make the request again.
 				} catch (InterruptedException ex) {
 					System.out.println("Interrupted exception while waiting for layer details:" + ex.getMessage());
@@ -198,7 +198,7 @@ public class NetCDFRequestManager {
 		}
 		
 		if (accepted) {
-			System.out.println("layer details: " + layerDetails.toString());
+			//System.out.println("layer details: " + layerDetails.toString());
 			return layerDetails.toString();
 		} else {
 			throw new XMLLayerException("ERROR: Not able to load layer details for layer:" + layer.getName());
