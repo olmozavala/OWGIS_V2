@@ -365,7 +365,7 @@ function updateMainLayerDate(){
 	owgis.kml.updateTitleAndKmlLink();
 	
 	if(_mainlayer_streamlines){
-		owgis.ncwms.currents.startSingleDateAnimation();
+		//owgis.ncwms.currents.startSingleDateAnimation();
 	}
 }
 

@@ -96,4 +96,24 @@ ul#horizontal {
     background: transparent;
     border: none;
     font-size: 12px;
+    color: rgba(0, 0, 0, 0);
+    width: 28px;
+    height: 28px;
+    background-image: url('../images/select/th-large.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+#backLayersDropDown option {
+    display: block;
+    color: black;
+    background-color: white;
+    padding: 4px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+#backLayersDropDown:hover {
+    cursor: pointer;
 }

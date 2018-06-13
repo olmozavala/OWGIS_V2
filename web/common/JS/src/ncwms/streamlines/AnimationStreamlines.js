@@ -108,7 +108,6 @@ owgis.ncwms.currents.playPause = function playPause(pause){
  */
 window['owgis.ncwms.currents.startSingleDateAnimation'] = owgis.ncwms.currents.startSingleDateAnimation;
 owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimation(){
-
 	owgis.transparency.changeTransp(.55);
 	isRunningUnderMainAnimation = false;
 	
@@ -143,7 +142,7 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
  */
 window['owgis.ncwms.currents.startMultipleDateAnimation'] = owgis.ncwms.currents.startMultipleDateAnimation;
 owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnimation(dates){
-	
+	console.log(MuchosID_ada);
 	isRunningUnderMainAnimation = true;
 	isFirstTime = true;
 	//Creates new currents layer model

@@ -54,7 +54,8 @@ function setMouseClickOnMap(){
  * @returns undefined
  */
 function animatePositionMap(zoom, center, duration){
-    duration === undefined ? durationAnimation : duration
+    center = center === undefined ? ol3view.getCenter() : center;
+    duration = duration === undefined ? durationAnimation : duration;
     ol3view.animate({
                         center: center,
                         zoom: zoom,
