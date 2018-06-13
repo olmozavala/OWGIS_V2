@@ -78,7 +78,7 @@ function updateMenusDisplayVisibility(status){
 				//Sets the current transparency into the animation
 				owgis.transparency.changeTransp(owgis.transparency.getTransp());
 				// Hides the current main layer
-				//owgis.layers.getMainLayer().setVisible(false);
+				owgis.layers.getMainLayer().setVisible(false);
                 break;
             case owgis.ncwms.animation.status.loading:
                 $('#CalendarsAndStopContainer').hide("fade");
@@ -262,7 +262,7 @@ function updateAnimationStatus(newStatus){
 			}
 			
 			//Show main layer
-			//owgis.layers.getMainLayer().setVisible(true);
+			owgis.layers.getMainLayer().setVisible(true);
 			//IF we had currents then start the animation
 			if(_mainlayer_streamlines){
 				owgis.ncwms.currents.playPause(false);//Play the currents animation
@@ -503,6 +503,14 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
                 animParams.ABOVEMAXCOLOR = layerDetails.aboveMaxColor[1];
             }	
         }
+        
+        if(typeof layerDetails.numColorBands != "undefined"){
+            if(layerDetails.numColorBands != 250){
+                animParams.NUMCOLORBANDS = layerDetails.numColorBands[1];
+            } else {
+                animParams.NUMCOLORBANDS = 250;
+            }
+        }
 
 	if (layerDetails.zaxis !== undefined) {
 		animParams.elevation =  layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
@@ -694,8 +702,13 @@ function loopAnimation(){
 	
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-	finalText = finalText.substring(0,finalText.lastIndexOf("."));
-	finalText = finalText.replace("T",' ');
+	if (finalText.lastIndexOf(".") != -1) {
+            finalText = finalText.substring(0,finalText.lastIndexOf("."));
+            finalText = finalText.replace("T",' ');
+        } else {
+            finalText = finalText.substring(0,finalText.lastIndexOf(":"));
+            finalText = finalText.replace("T",' ');
+        }
 	
 	$("#animDate").text(finalText);
 	

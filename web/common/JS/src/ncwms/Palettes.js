@@ -206,6 +206,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 		finalUrl= replaceUrlParam(finalUrl,"HEIGHT",barHeight);
 		finalUrl= replaceUrlParam(finalUrl,"VERTICAL","False");
 		finalUrl= replaceUrlParam(finalUrl,"PALETTE",mappalette);
+                if(typeof layerDetails.numColorBands[1] == "number" ){ finalUrl= replaceUrlParam(finalUrl,"NUMCOLORBANDS",layerDetails.numColorBands[1]); }
 		// Add the modified url to the img object
 
 		var imageObj = new Image();
