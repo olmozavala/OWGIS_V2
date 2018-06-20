@@ -204,7 +204,7 @@ function initCalendars(){
 				dateFormat: dateFormat,
 				onSelect: updateCalendarEnd
 			});
-
+                       
 			//If there are some days in between max and min data that doesn't
 			// have data then we need to 'disable' them on the calendar
 			if(!_.isEmpty(datesWithNoData)){
@@ -298,10 +298,9 @@ function updateCalendarOpts(calUpdated){
 		var endDateDays = new Date(endDateTxt);
 		
 		if(calUpdated ===  owgis.constants.startcal){
-			dispAnimationAjax(startDateTxt, null, 
-						mainLayer,"getTimeSteps", owgis.constants.startcal);
+			dispAnimationAjax(startDateTxt,null,mainLayer,"getTimeSteps",owgis.constants.startcal);
 			
-			if(  endDateDays <=  startDateDays){
+			if(endDateDays <=  startDateDays){
 				ahead = true;//Looking suggested time forward in time
 				endDateDays = getSuggestedDate(startDateDays,ahead);
 				$("#cal-end").datepicker("setDate",endDateDays);
@@ -309,8 +308,7 @@ function updateCalendarOpts(calUpdated){
 			
 		}else if(calUpdated ===  owgis.constants.endcal){
 
-			dispAnimationAjax(endDateTxt, null, 
-						mainLayer,"getTimeSteps", owgis.constants.endcal);
+			dispAnimationAjax(endDateTxt, null,mainLayer,"getTimeSteps", owgis.constants.endcal);
 
 			if(  endDateDays <=  startDateDays ){
 				ahead = false;// Suggested time backward in time

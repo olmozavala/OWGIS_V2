@@ -324,8 +324,31 @@ function obtainSelectedDates(){
                 }
                 console.log(allDates.lenght);
                 allFrames = allDates.map(function(m) { return m.utc().format() });*/
-                var allDates =  Array.from(datesRange.by('day'));
-		allFrames = allDates.map(m => m.utc().format());
+                //console.log(datesRange);
+                if(layerDetails.subtitleText == "monthly"){
+                    //var allDates =  Array.from(datesRange.by('month'));
+                    var allDates = [];
+                    locCurrDate = datesRange.start.toDate();
+                    enddate = datesRange.end.toDate();
+                    enddate.setDate(enddate.getDate() + 1);
+                    
+                    while( locCurrDate <= enddate){
+                        currYear = locCurrDate.getUTCFullYear();
+                        currMonth = locCurrDate.getUTCMonth();
+			currDay = locCurrDate.getUTCDate();
+                                
+			if( _.contains(layerDetails.datesWithData[currYear][currMonth],currDay) ){
+			    allDates.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate,true));
+			}
+			locCurrDate.setDate( locCurrDate.getDate() + 1);
+                    }
+                    allFrames = allDates.map(m => m+"T00:00:00Z");
+                } else{
+                    var allDates =  Array.from(datesRange.by('day'));
+                    allFrames = allDates.map(m => m.utc().format());
+                }
+                /*console.log(allDates);
+		console.log(allFrames);*/
 	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
@@ -373,6 +396,8 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 		owgis.mobile.closePanels();
 		owgis.mobile.openDrawer();
 	}
+        console.log(allFrames);
+        console.log(totalNumOfFrames);
 	//Create the required global variables if they don't exist
 	for(var i = 0; i < totalNumOfFrames; i++){
 		try{// Hack to test if the variable already exists
@@ -710,6 +735,7 @@ function loopAnimation(){
             finalText = finalText.replace("T",' ');
         }
 	$("#animDate").text(finalText);
+        $('#pTitleSubText').html(finalText);
 	
 	map.render();
 }
