@@ -91,6 +91,7 @@ public class Layer {
     private Point center;//longitude
     // --- to define how to display the subtitle of the layer
     private String subtitleText;
+    private String windrose;
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -174,6 +175,7 @@ public class Layer {
         this.zoom = null;
         this.center = null;
         this.subtitleText = null;
+        this.windrose = null;
 	}
 	/**
 	 *
@@ -231,7 +233,8 @@ public class Layer {
             String belowMinColor, String aboveMaxColor,
             int numColorBands,
 			float defParticleSpeed, 
-            String subtitleText) {
+            String subtitleText,
+            String windrose) {
 		
 		this.bbox = bbox;
 		this.style = style;
@@ -276,6 +279,7 @@ public class Layer {
         this.zoom = null;
         this.center = null;
         this.subtitleText = subtitleText;
+        this.windrose = windrose;
 	}
 	//Geters
 	
@@ -373,6 +377,7 @@ public class Layer {
             layerDetails.accumulate("zoom", strZoom);
             layerDetails.accumulate("center", strCenter);
             layerDetails.accumulate("subtitleText", this.subtitleText);
+            layerDetails.accumulate("windrose", this.windrose);
             
         } catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -532,7 +537,16 @@ public class Layer {
     public String getSubtitleText(){
         return subtitleText;
     }
-	
+    
+    /*windrose*/
+	public void setWindrose(String windrose){
+        this.windrose = windrose;
+    }
+    
+    public String getWindrose(){
+        return windrose;
+    }
+    
 	public void setWidth(int width) {
 		this.width = width;
 	}

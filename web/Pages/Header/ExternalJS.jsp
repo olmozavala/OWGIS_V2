@@ -28,6 +28,9 @@
             <script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script>
         </c:if>
             
-        <script src="./common/JS/vendor/minimized/highcharts.js"></script>
+        <!--script src="./common/JS/vendor/minimized/highcharts.js"></script-->
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
         <script src="./common/JS/vendor/minimized/data.js"></script>
-        <script src="./common/JS/vendor/minimized/exporting.js"></script>
+        <!--script src="./common/JS/vendor/minimized/exporting.js"></script-->
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>

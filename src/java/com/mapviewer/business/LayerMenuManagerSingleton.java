@@ -612,6 +612,8 @@ public class LayerMenuManagerSingleton {
                 ?  Integer.parseInt(layerConf.getAttributeValue("numColorBands")) : layer.getNumColorBands();
 		//subtitleText
         String subtitleText = layerConf.getAttributeValue("subtitleText") != null ? layerConf.getAttributeValue("subtitleText") : layer.getSubtitleText();
+        //widnrose
+        String windrose = layerConf.getAttributeValue("windrose") != null ? layerConf.getAttributeValue("windrose") : layer.getWindrose();
 		/*
 		String[] cql_cols = null;
 		if(cql_cols_str!=null){
@@ -622,7 +624,7 @@ public class LayerMenuManagerSingleton {
 		Layer newLayer = new Layer(bbox, style, format, name, layer.getDisplayNames(),
 				proj, layer.getIdLayer(), server, width, height, featureInfo,
 				tiled, layer.isDisplayTitle(), layer.getLayout(), vectorLayer, palette, boolnetCDF,
-				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed, subtitleText);
+				max_time_range, boolJsonp,overlayStreamlines,belowMinColor, aboveMaxColor, numColorBands, defParticleSpeed, subtitleText, windrose);
 		
 		newLayer.setMinColor(minColor);
                 //newLayer.setBelowMinColor(belowMinColor);

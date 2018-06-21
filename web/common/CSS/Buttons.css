@@ -58,17 +58,17 @@ look like a button */
 .buttonLook, .buttonStyle, .buttonContainer {
   border-style: none;
   /*border-width: 1px;*/
-  background-color: #555555;
-  /*border-color: $butBorderColor;*/
+  /*background-color: #555555;
+  border-color: $butBorderColor;*/
   padding: 5px 10px;
   color: #ECF2F8;
-  -moz-border-radius: 7px;
+  /*-moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
   -moz-box-shadow: #80CCDC 2px 2px 6px;
   -webkit-box-shadow: #80CCDC 2px 2px 6px;
   box-shadow: #80CCDC 2px 2px 6px;
-  /*@include box-sizing(content-box);*/
+  @include box-sizing(content-box);*/
   margin: 5px 5px;
   height: 23px;
   display: inline;
@@ -83,25 +83,24 @@ and also the mainMenu dropdown options*/
 }
 /* line 36, ../scss/Buttons.scss */
 .buttonStyle:hover {
-  background-color: #3c3c3c;
+  /*background-color: #3c3c3c;
   -moz-box-shadow: #DCC380 2px 2px 12px;
   -webkit-box-shadow: #DCC380 2px 2px 12px;
-  box-shadow: #DCC380 2px 2px 12px;
+  box-shadow: #DCC380 2px 2px 12px;*/
 }
 /* line 40, ../scss/Buttons.scss */
 .buttonStyle:active {
-  -moz-box-shadow: #efe3c4 2px 2px 12px;
+  /*-moz-box-shadow: #efe3c4 2px 2px 12px;
   -webkit-box-shadow: #efe3c4 2px 2px 12px;
   box-shadow: #efe3c4 2px 2px 12px;
-  background-color: #4d4d4d;
+  background-color: #4d4d4d;*/
 }
 
 /* line 47, ../scss/Buttons.scss */
 .beenUsed {
-  -moz-box-shadow: #80CCDC 2px 2px 6px;
-  -webkit-box-shadow: #80CCDC 2px 2px 6px;
-  box-shadow: #80CCDC 2px 2px 6px;
-  background-color: #1A7979;
+  -moz-box-shadow: #eee 2px 2px 6px;
+  -webkit-box-shadow: #eee 2px 2px 6px;
+  box-shadow: #eee 2px 2px 6px;
 }
 
 /* line 52, ../scss/Buttons.scss */
@@ -131,7 +130,7 @@ for transparency and depth*/
 /* line 71, ../scss/Buttons.scss */
 .buttonContainer {
   background-color: transparent;
-  background-image: url("../images/transBack.png");
+  /*background-image: url("../images/transBack.png");*/
   padding: 7px 10px;
 }
 
@@ -153,4 +152,54 @@ for transparency in the optional layers. */
 /* line 90, ../scss/Buttons.scss */
 .closeButton {
   float: right;
+}
+
+.a_demo_four {
+	background-color: #4AAB8C;
+	/*font-family: 'Open Sans', sans-serif;*/
+	font-size:12px;
+	text-decoration:none;
+	color:#fff;
+	position:relative;
+	padding: 5px 10px;
+	background-image: linear-gradient(bottom, rgb(74,171,140) 0%, rgb(64,154,125) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(74,171,140) 0%, rgb(64,154,125) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(74,171,140) 0%, rgb(64,154,125) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(74,171,140) 0%, rgb(64,154,125) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(74,171,140) 0%, rgb(64,154,125) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(74,171,140)),
+	color-stop(1, rgb(64,154,125))
+	);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	/*-webkit-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 5px 0px 0px #326D5A;
+	-moz-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 5px 0px 0px #326D5A;
+	-o-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 5px 0px 0px #326D5A;
+	box-shadow: inset 0px 1px 0px #5DCBA8, 0px 5px 0px 0px #326D5A;*/
+}
+
+.a_demo_four:active {
+	top:3px;
+	background-image: linear-gradient(bottom, rgb(64,154,125) 0%, rgb(74,171,140) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(64,154,125) 0%, rgb(74,171,140) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(64,154,125) 0%, rgb(74,171,140) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(64,154,125) 0%, rgb(74,171,140) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(64,154,125) 0%, rgb(74,171,140) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(64,154,125)),
+	color-stop(1, rgb(74,171,140))
+	);/*
+	-webkit-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 2px 0px 0px #326D5A;
+	-moz-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 2px 0px 0px #326D5A;
+	-o-box-shadow: inset 0px 1px 0px #5DCBA8, 0px 2px 0px 0px #326D5A;
+	box-shadow: inset 0px 1px 0px #5DCBA8, 0px 2px 0px 0px #326D5A;*/
 }

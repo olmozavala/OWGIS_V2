@@ -5,7 +5,7 @@
 			<!--<a href="http://owgis.org" target="_blank">
 				<img border="0" src="./common/images/Logos/owgis.png" alt="OWGIS" height="20"  />
 			</a>-->
-                        Atlas Meteorol&oacute;gico del GoM
+                        Atlas Meteorol&oacute;gico del Golfo de M&eacute;xico
 		</span>
 		<!--This are always available-->
 		
@@ -17,7 +17,7 @@
                 <!-- </select>
 			</li>
                 -->
-			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
+			<li class="buttonStyle toolTip a_demo_four" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
 			<!-- Transparency -->
@@ -37,7 +37,7 @@
 		<ul class="horizontal col-md-4 col-sm-5 text-left " style="margin-bottom: 0px">
 			<!--Options to manipulate the style of currents-->
 			<c:if test='${currents}'>
-				<li class="buttonStyle menuHidden toolTip currentsParent" 
+				<li class="buttonStyle menuHidden toolTip currentsParent a_demo_four" 
 					title="<fmt:message key='ncwms.streamlines.streamlines'/>"
 					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');">
 					<span class="glyphicon glyphicon-random"> </span>
@@ -45,13 +45,13 @@
 			</c:if>
 			<c:if test='${ncwms}'>
 				<!-- Palettes Minimized-->
-				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
+				<li class="buttonStyle menuHidden toolTip palettesMenuParent a_demo_four" 
 					title="<fmt:message key='help.tooltip.palettes'/>"
 					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
 					<span class="glyphicon glyphicon-tint"></span>
 				</li>
 				<!-- Transect tool minimized-->
-				<li class="buttonStyle menuHidden toolTip lineToggle" 
+				<li class="buttonStyle menuHidden toolTip lineToggle a_demo_four" 
 					title="<fmt:message key='help.tooltip.transect'/>"
 					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
 					<span class="glyphicon glyphicon-signal"> </span>
@@ -59,7 +59,7 @@
 			</c:if>
 			<c:if test='${!ncwms}'>
 				<!-- Download minimized -->
-				<li class="buttonStyle menuHidden toolTip downloadDataParent" 
+				<li class="buttonStyle menuHidden toolTip downloadDataParent a_demo_four" 
 					title="<fmt:message key='help.tooltip.download'/>"
 					onclick="downloadData();"  >
 					<span class="glyphicon glyphicon-download-alt"> </span>
@@ -67,28 +67,28 @@
 			</c:if>
 
 			<!-- Toogle Cesium Minimized-->
-			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
+			<li class="buttonStyle menuHidden toolTip cesiumSpan a_demo_four" 
 				title="<fmt:message key='cesium.mainbutton'/>"	
 				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 
 			<!-- Reset view minimized -->
-			<li class="buttonStyle toolTip resetParent" 
+			<li class="buttonStyle toolTip resetParent a_demo_four" 
 				title="<fmt:message key='help.tooltip.resetview'/>" 
 				onclick="resetView();" >
 				<span id="resetText" class="glyphicon glyphicon-refresh"> </span>
 			</li>
 
 			<!-- Map Instructions minimized-->
-			<li class="buttonStyle toolTip helpParent" 
+			<li class="buttonStyle toolTip helpParent a_demo_four" 
 				title="<fmt:message key='help.tooltip.help'/>" id="helpText"
 				onclick="owgis.help.main.displayHelp();owgis.layouts.draggable.topmenu.toogleUse('.helpParent');" >
 				<span id="helpText" class="glyphicon glyphicon-info-sign"> </span>
 			</li>
 
 			<!-- Toogle tooltip Minimized-->
-			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
+			<li class="buttonStyle menuHidden toolTip helpHoverSpan a_demo_four" 
 				title="<fmt:message key='help.helpicon'/>"	
 				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
 				<span class="glyphicon glyphicon-question-sign "> </span>
@@ -99,8 +99,7 @@
 		<!--Languages and tooltip help button-->
 		<div class="col-lg-1 col-md-2 text-left visible-lg visible-md " >
 			<div class="btn-group col-lg-10 col-md-7 col-md-offset-1 hidden-sm hidden-xs ">
-				<button id="selectedLanguage" type="button" 
-						class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				<button id="selectedLanguage" type="button" class="btn dropdown-toggle a_demo_four" data-toggle="dropdown">
 					<!--It gets initialized by languages.js-->
 				</button>
 				<ul id="langDropDown" class="dropdown-menu" role="menu">

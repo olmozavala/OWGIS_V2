@@ -112,7 +112,8 @@
 			   name="atlas_diario/T2" numColorBands="64"
 			   style="default-scalar" palette="temperatura"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
-                           center="-92,23" zoom="3" subtitleText="daily"
+                           center="-92,23" zoom="2" subtitleText="daily"
+                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
 
 		<layer Menu="Prec,PromD" 
@@ -132,7 +133,7 @@
 		<layer Menu="Viento,PromD" 
 			   EN="Wind speed at 10 meters" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
                            style="default-scalar" palette="wind2" 
-			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.01"
+			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="daily"
                 />
@@ -190,7 +191,7 @@
 		<layer Menu="Viento,PromM" 
 			   EN="Wind speed at 10 meters" ES="Climatología Mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.01"
+			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -242,7 +243,7 @@
 		<layer Menu="Viento,PromMAD" 
 			   EN="Wind speed at 10 meters" ES="Máxima absoluta diaria de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.01"
+			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="daily"
                 />
@@ -266,7 +267,7 @@
 		<layer Menu="Viento,PromMAM" 
 			   EN="Wind speed at 10 meters" ES="Máxima promedio mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
+			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -304,7 +305,7 @@
 		<layer Menu="Viento,PromHM,M01" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -362,7 +363,7 @@
 		<layer Menu="Viento,PromHM,M02" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -418,7 +419,7 @@
 		<layer Menu="Viento,PromHM,M03" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -476,7 +477,7 @@
 		<layer Menu="Viento,PromHM,M04" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 /> 
@@ -534,7 +535,7 @@
 		<layer Menu="Viento,PromHM,M05" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -592,7 +593,7 @@
 		<layer Menu="Viento,PromHM,M06" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -650,7 +651,7 @@
 		<layer Menu="Viento,PromHM,M07" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -708,7 +709,7 @@
 		<layer Menu="Viento,PromHM,M08" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -766,7 +767,7 @@
 		<layer Menu="Viento,PromHM,M09" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -824,7 +825,7 @@
 		<layer Menu="Viento,PromHM,M10" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -882,7 +883,7 @@
 		<layer Menu="Viento,PromHM,M11" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -939,7 +940,7 @@
 		<layer Menu="Viento,PromHM,M12" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.01"
+			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                 />
@@ -983,7 +984,7 @@
 		<layer Menu="Viento,MAM" 
 			   EN="Wind speed at 10 meters" ES="Máxima absoluta por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
+			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1060,7 +1061,7 @@
 		<layer Menu="Viento,ANOM,1980" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1083,7 +1084,7 @@
 		<layer Menu="Viento,ANOM,1981" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1106,7 +1107,7 @@
 		<layer Menu="Viento,ANOM,1982" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1129,7 +1130,7 @@
 		<layer Menu="Viento,ANOM,1983" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1152,7 +1153,7 @@
 		<layer Menu="Viento,ANOM,1984" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1175,7 +1176,7 @@
 		<layer Menu="Viento,ANOM,1985" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1198,7 +1199,7 @@
 		<layer Menu="Viento,ANOM,1986" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1221,7 +1222,7 @@
 		<layer Menu="Viento,ANOM,1987" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1244,7 +1245,7 @@
 		<layer Menu="Viento,ANOM,1988" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1267,7 +1268,7 @@
 		<layer Menu="Viento,ANOM,1989" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1290,7 +1291,7 @@
 		<layer Menu="Viento,ANOM,1990" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1313,7 +1314,7 @@
 		<layer Menu="Viento,ANOM,1991" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1336,7 +1337,7 @@
 		<layer Menu="Viento,ANOM,1992" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1359,7 +1360,7 @@
 		<layer Menu="Viento,ANOM,1993" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1382,7 +1383,7 @@
 		<layer Menu="Viento,ANOM,1994" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1405,7 +1406,7 @@
 		<layer Menu="Viento,ANOM,1995" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1428,7 +1429,7 @@
 		<layer Menu="Viento,ANOM,1996" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1451,7 +1452,7 @@
 		<layer Menu="Viento,ANOM,1997" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1474,7 +1475,7 @@
 		<layer Menu="Viento,ANOM,1998" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1497,7 +1498,7 @@
 		<layer Menu="Viento,ANOM,1999" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1520,7 +1521,7 @@
 		<layer Menu="Viento,ANOM,2000" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1543,7 +1544,7 @@
 		<layer Menu="Viento,ANOM,2001" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1566,7 +1567,7 @@
 		<layer Menu="Viento,ANOM,2002" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1589,7 +1590,7 @@
 		<layer Menu="Viento,ANOM,2003" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1612,7 +1613,7 @@
 		<layer Menu="Viento,ANOM,2004" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1635,7 +1636,7 @@
 		<layer Menu="Viento,ANOM,2005" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1658,7 +1659,7 @@
 		<layer Menu="Viento,ANOM,2006" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1681,7 +1682,7 @@
 		<layer Menu="Viento,ANOM,2007" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1704,7 +1705,7 @@
 		<layer Menu="Viento,ANOM,2008" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1727,7 +1728,7 @@
 		<layer Menu="Viento,ANOM,2009" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1750,7 +1751,7 @@
 		<layer Menu="Viento,ANOM,2010" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1773,7 +1774,7 @@
 		<layer Menu="Viento,ANOM,2011" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1796,7 +1797,7 @@
 		<layer Menu="Viento,ANOM,2012" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1819,7 +1820,7 @@
 		<layer Menu="Viento,ANOM,2013" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1842,7 +1843,7 @@
 		<layer Menu="Viento,ANOM,2014" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1865,7 +1866,7 @@
 		<layer Menu="Viento,ANOM,2015" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />
@@ -1888,7 +1889,7 @@
 		<layer Menu="Viento,ANOM,2016" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="wind2" 
-			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.01"
+			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
                 />

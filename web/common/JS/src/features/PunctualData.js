@@ -821,6 +821,79 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 	}
 }
 
+owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
+    var currLayer = eval('layer'+layerNumber);
+    var currSource = currLayer.getSource();
+	
+    if("getParams" in currSource && currSource.getParams().ncwms){
+        
+        var coordinate = event.coordinate;
+        var newCoordinate =  ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');
+        var lon = newCoordinate[0].toFixed(2);
+        var lat = newCoordinate[1].toFixed(2);	
+        var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
+        console.log(time);
+        
+	if(time !== undefined){
+            var url;
+            // check if web service url is defined
+            if(!_.isUndefined(layerDetails.windrose)){
+		url = layerDetails.windrose;
+            }else{
+		return;
+            }
+            
+            var latlon = "Latitude: "+lat+" Longitude: "+lon;
+            var times = time.split("/");
+            var s = Date.parse(times[0]);
+            var sdate = new Date(s);
+            var e = Date.parse(times[1]);
+            var edate = new Date(e);
+
+            var stime =  (sdate.getUTCDate().toString().length == 1 ? "0"+sdate.getUTCDate().toString() : sdate.getUTCDate().toString()) + "-" + ( (sdate.getUTCMonth()+1).toString().length == 1 ? "0"+(sdate.getUTCMonth()+1).toString() : (sdate.getUTCMonth()+1).toString())+ "-" +
+                         sdate.getUTCFullYear()+" "+ (sdate.getUTCHours().toString().length == 1 ? "0"+sdate.getUTCHours().toString() : sdate.getUTCHours().toString())+ ":" +(sdate.getUTCMinutes().toString().length == 1 ? "0"+sdate.getUTCMinutes().toString() : sdate.getUTCMinutes().toString());
+            var etime =  (edate.getUTCDate().toString().length == 1 ? "0"+edate.getUTCDate().toString() : edate.getUTCDate().toString()) + "-" + ((edate.getUTCMonth()+1).toString().length == 1 ? "0"+(edate.getUTCMonth()+1).toString() : (edate.getUTCMonth()+1).toString())+ "-" +
+                         edate.getUTCFullYear()+" "+ (edate.getUTCHours().toString().length == 1 ? "0"+edate.getUTCHours().toString() : edate.getUTCHours().toString())+ ":" +(edate.getUTCMinutes().toString().length == 1 ? "0"+edate.getUTCMinutes().toString() : edate.getUTCMinutes().toString());
+                 
+            url += lat+"/"+lon+"/"+stime+"/"+etime;
+            console.log(url);
+            
+            var ajaxCan;
+            var dataU, dataV;
+            $.ajax({
+                url: url,
+                async: false,
+                cache: false,
+                success: function(data) {
+                    ajaxCan = true;
+                    dataU = data.result.U;
+                    dataV = data.result.V;
+                    console.log(data);	
+                },
+                error: function(ex) {
+                    ajaxCan = false;
+                    console.log(ex);
+                }
+            });
+                            
+            if(ajaxCan){
+                                            
+                //if( mobile ){
+                    var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
+                /*} else {
+                    var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
+                }*/
+		
+            } else {
+                var dataLink = "";
+            }
+            currPopupText += dataLink;
+            $("#popup-content").html(currPopupText);
+	}
+    }
+}
+
+
 jQuery.fn.center = function() {
     var container = $(window);
     //var top = -this.height() / 2;
