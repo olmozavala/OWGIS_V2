@@ -175,6 +175,7 @@ function Asynchronous_call(url) {
 
                 break;
             case 4:
+                
                 instance.complete(instance._xmlhttp.responseText);
                 break;
         }
@@ -239,8 +240,9 @@ function asyncFillAnimationSelect(responseText) {
 	
     for (var key in animOpts.timeStrings) {
         var title = animOpts.timeStrings[key].title;
-        var fullStr = animOpts.timeStrings[key].timeString;
-
+        if(typeof title != 'undefined'){
+            var fullStr = animOpts.timeStrings[key].timeString;
+                //console.log(title);
 		var tempNum= title.match(/[0-9]+/);//Obtain only the number of frames
 		var totNum = parseInt(tempNum);//Parse them as int
 
@@ -260,6 +262,7 @@ function asyncFillAnimationSelect(responseText) {
 			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
 				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
 		}
+        }
     }
 }
 
