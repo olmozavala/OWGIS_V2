@@ -149,7 +149,7 @@ function updateDomains(){
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
     
-    console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
+    //console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		// This one is only used in cesium. It defines the radius
@@ -170,7 +170,7 @@ function updateDomains(){
 			long_domain = Math.min(angle,70);
 			latg_domain =  Math.min(angle,70);
 		}
-        console.log("extencion new domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
+        //console.log("extencion new domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 		console.log("SIZE OF LAT RANDOM: "+latg_domain);
 		console.log("SIZE OF LON RANDOM: "+long_domain);
 	}
