@@ -74,14 +74,7 @@ function displayPrevExceptions(){
  * Instructions executed when the page is ready
  */
 function owgisMain(){
-	if(typeof(Worker) !== "undefined") {
-        w = new Worker("common/JS/src/worker/test.js");
-        w.onmessage = function(e) {
-            console.log('Message received from worker: ' + e.data);
-        }
-        w.postMessage([1,2]);
-    }
-    displayPrevExceptions();
+	displayPrevExceptions();
     //maps
 	var intervalOL3 = setInterval(function(){
         clearInterval(intervalOL3);
@@ -92,23 +85,23 @@ function owgisMain(){
 		//If cesium is enabled check to redraw the streamlines
 		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 			if(_mainlayer_streamlines){
-				//owgis.ncwms.currents.startSingleDateAnimation();
+				owgis.ncwms.currents.startSingleDateAnimation();
 			}
 		}
     }, 10);
     //menus
     var intervalMenus = setInterval(function(){
-        clearInterval(intervalMenus);
-        initMenus();
+       clearInterval(intervalMenus);
+       initMenus();
         owgis.help.tooltips.initHelpTexts();
         modifyInterface();
         if(mobile){
             owgis.mobile.initMobile();
         }
         //Start the currents animation of 'static' day.
-        //if(_mainlayer_streamlines){
-        //    owgis.ncwms.currents.startSingleDateAnimation();
-        //}
+        if(_mainlayer_streamlines){
+            owgis.ncwms.currents.startSingleDateAnimation();
+        }
         //Enables the 'close' behaviour of some windows. 
         $(".glyphicon-remove").parent().on("click",function(event){
             if($(event.currentTarget).parents("#currentsControlsContainer").length > 0){
@@ -172,14 +165,15 @@ function initMenus() {
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
 	if(mobile === false){
-            console.log('not mobile so reposition menus');
-            owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}
 	else{
+		owgis.ol3.positionMap();
 		//if user changes the window size
 		//window.addEventListener('orientationchange', doOnOrientationChange);
 		resizeMobilePanels();
 	}
+	
 	
 	//This is the resize function
 	$(window).resize(function() {
@@ -204,8 +198,17 @@ function initMenus() {
 			owgis.mobile.update();//If is only resizing in mobile then we need to udpate the map
 		}
 		owgis.layouts.draggable.repositionDraggablesByScreenSize();
+
+		//If cesium is enabled check to redraw the streamlines
+		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+			if(_mainlayer_streamlines){
+				owgis.ncwms.currents.startSingleDateAnimation();
+			}
+		}
+
 		//Try to update the position of the horizontal palette (only for ncWMStwo)
 		owgis.ncwms.palettes.updateHorizontalPalette();
+
 	});
 }
 
@@ -363,14 +366,8 @@ goog.exportSymbol('owgis',owgis);
  * from the map.
  */
 function paintClircleOnMap(posY, posX, fun) {
-    idDiv = "circleMapwait";
     var mapElement = document.getElementById("map");
-    var clickElement = document.getElementById(idDiv)
-    if(clickElement) {
-        clickElement.parentNode.removeChild(clickElement);
-    }
-    clickElement = document.createElement("div");
-    clickElement.id = idDiv
+    var clickElement = document.createElement("div");
     clickElement.style.top = posY + "px";
     clickElement.style.left = posX + "px";
     clickElement.classList.add("click");
