@@ -724,16 +724,31 @@ function loopAnimation(){
 	
 	clearCanvas();
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
-	
+	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-        if (finalText.lastIndexOf(".") != -1) {
-            finalText = finalText.substring(0,finalText.lastIndexOf("."));
-            finalText = finalText.replace("T",' ');
+        console.log(finalText);
+        if(!_.isUndefined(layerDetails.subtitleText)){
+            var d = Date.parse(finalText);
+            var dd = new Date(d);
+            if(layerDetails.subtitleText == "daily"){
+                    finalText = dd.getUTCDate() +" de "+ meses[dd.getUTCMonth()];
+            }else if(layerDetails.subtitleText == "monthly"){
+                    finalText = meses[dd.getUTCMonth()];
+            } else if(layerDetails.subtitleText == "hourxmonth"){
+                    finalText = dd.getUTCHours() +":00 de "+ meses[dd.getUTCMonth()];
+            }
         } else {
-            finalText = finalText.substring(0,finalText.lastIndexOf(":"));
-            finalText = finalText.replace("T",' ');
+            if (finalText.lastIndexOf(".") != -1) {
+                finalText = finalText.substring(0,finalText.lastIndexOf("."));
+                finalText = finalText.replace("T",' ');
+            } else {
+                finalText = finalText.substring(0,finalText.lastIndexOf(":"));
+                finalText = finalText.replace("T",' ');
+            }
         }
+            
+        
 	$("#animDate").text(finalText);
         $('#pTitleSubText').html(finalText);
 	
