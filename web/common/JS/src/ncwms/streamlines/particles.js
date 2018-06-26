@@ -139,12 +139,12 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
  * of the map and the limits of the layer.
  */
 function updateDomains(){
-	var extent = layerTemplate.get("extbbox");
-	limLonMin = Math.max(extent[0], gridInfo.lo1);
-	limLatMin = Math.max(extent[1], gridInfo.la1);
+    var bbox = layerTemplate.get("origbbox");
+	limLonMin = Math.max(bbox[0], gridInfo.lo1);
+	limLatMin = Math.max(bbox[1], gridInfo.la1);
 	
-	var limLonMax = Math.min(extent[2], gridInfo.lo2);
-	var limLatMax = Math.min(extent[3], gridInfo.la2);
+	var limLonMax = Math.min(bbox[2], gridInfo.lo2);
+	var limLatMax = Math.min(bbox[3], gridInfo.la2);
 	
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);

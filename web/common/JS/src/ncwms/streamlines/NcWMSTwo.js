@@ -26,7 +26,7 @@ owgis.ncwms.ncwmstwo.buildGridInfo = function buildGridInfo(data){
 	gridInfo.dy = (gridInfo.la2 - gridInfo.la1)/gridInfo.ny;
 	gridInfo.dx = (gridInfo.lo2 - gridInfo.lo1)/gridInfo.nx;
 
-	return gridInfo;
+    return gridInfo;
 }
 
 /**

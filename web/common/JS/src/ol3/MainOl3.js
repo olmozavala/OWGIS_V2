@@ -55,7 +55,7 @@ function setMouseClickOnMap(){
  */
 function animatePositionMap(zoom, center, duration, proj) {
     proj = proj || PROJ_4326;
-    center = center ? ol.proj.transform(center, proj, _map_projection) : ol3view.getCenter();
+    center = center ? proj === _map_projection ? center : ol.proj.transform(center, proj, _map_projection) : ol3view.getCenter();
     duration = duration || durationAnimation;
     ol3view.animate({
                         center: center,
@@ -277,7 +277,7 @@ function detectMapLayersStatus(){
 
 owgis.ol3.positionMap = function(){
 	// --------------- Map visualization and hover texts
-	var newZoom = localStorage.zoom !== undefined && localStorage.zoom < 15? localStorage.zoom : ol3view.getZoom();// Zoom of map max 17 zoom
+	var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
 	if( localStorage.map_center !== undefined){
 		var strCenter = localStorage.map_center.split(",")
