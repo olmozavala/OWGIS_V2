@@ -190,9 +190,9 @@ div.leftFoot {
 .location-screenshot {
     font-size: 30px;
     color: deepskyblue;
-    //animation-name: onmarker;
+    /*//animation-name: onmarker;
     //animation-duration: 3s;
-    //animation-iteration-count: infinite;
+    //animation-iteration-count: infinite;*/
 }
 
 /*click animation
@@ -211,5 +211,5 @@ div.leftFoot {
     left: 1px;
     -webkit-transition: all 1s; /* Safari */
     transition: all 1s;
-    //transform: translate(1px, 1px);
+    /*//transform: translate(1px, 1px);*/
 }
