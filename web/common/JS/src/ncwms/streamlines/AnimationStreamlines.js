@@ -113,6 +113,7 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 	
 	//Creates new currents layer model
 	layerTemplate = getDefaultLayer();
+    layerTemplate.attributes.srs = _map_projection;
 
 	times = new Array();
 	// Updating current date
@@ -150,6 +151,7 @@ owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnim
 
 	//Adds the only model into the available layers
 	layerTemplate = getDefaultLayer();
+    layerTemplate.attributes.srs = _map_projection;
 	//Reads and updates the data
 	initstreamlineLayer();
 }
@@ -192,7 +194,8 @@ function getDefaultLayer(){
 			server: layerDetails.server,
 			layers: layerDetails.streamlineLayer,
 			bbox: bbox.join(","),
-			origbbox: bbox.join(",")
+			origbbox: bbox.join(",")//,
+            //srs: _map_projection
 		}); 
 
 	//If this layer is being server by ncWMS V2 or higher, then we 
@@ -463,11 +466,13 @@ function updateData(){
 	var vData = new Array();
 	
 	abortPrevious();//Abort any previous premises we have
+    layerTemplate.attributes.srs = _map_projection;
+
     readDataPremises = new Array();
     if(layerDetails.ncwmstwo){
         // Iterate over all the times we are displaying (only one, unless we have animations)
-		_.each(times, function(time, idx){
-			layerTemplate.set("time",time);	
+        _.each(times, function(time, idx){
+            layerTemplate.set("time",time);	
 
 			//We obtain the request URLs for each vector field U and V
 			var compositeLayers = layerTemplate.get("layers");
@@ -522,7 +527,7 @@ function updateData(){
 							// for each animation.
 							vData[idx] = new Array();
 							//We set the gridInfo only for the first time frame 
-							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
+							var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempVLayer);
                             vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
                             //We only initialize the loop and the headers for the first request
 							if(loadedRequests === 0){
@@ -626,8 +631,8 @@ function updateURL(){
 		var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
 		var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
 		var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        layerTemplate.set("extbbox", newbbox);//auxiliar extent map
-        newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
+        //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
+        //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	
 		// Updating current zaxis
 		if( !_.isEmpty(layerDetails.zaxis)){
