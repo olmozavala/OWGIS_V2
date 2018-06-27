@@ -55,7 +55,7 @@
 	</div>
 	<div class="row defRowSpace" id="animDisp">
 		<div class="col-xs-6 text-center " id="p-animation">
-			<div class="buttonStyle " onclick="owgis.ncwms.animation.dispAnimation();" > 
+			<div class="buttonStyle a_demo_four" onclick="owgis.ncwms.animation.dispAnimation();" > 
 				<fmt:message key="ncwms.dispanim" />
 			</div> 
 		</div>

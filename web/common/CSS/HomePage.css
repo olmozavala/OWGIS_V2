@@ -108,7 +108,7 @@ div.leftFoot {
 /* line 62, ../scss/HomePage.scss */
 .title {
   font-size: 15px;
-  /*font-weight: bold;*/
+  font-weight: bold;
   text-align: center;
   padding: 5px 0px;
 }

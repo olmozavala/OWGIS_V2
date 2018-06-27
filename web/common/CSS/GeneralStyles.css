@@ -105,7 +105,8 @@ for the help text, the optional layers, the depth etc.*/
   -webkit-border-radius: 7px;
   border-radius: 7px;
   color: #ECF2F8;
-  background-color: black;
+  background-color: #4AAB8C;
+  
 }
 
 /* This is the CSS for a default transparent floating window. It should be used
@@ -125,7 +126,9 @@ for the main layers, the color palettes, the calendars etc.*/
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
-  background-color: rgba(255, 255, 255, 0.2);
+  /*background-color: rgba(255, 255, 255, 0.2);*/
+  background-color: rgba(15, 44, 85, 0.85);
+
 }
 
 /* line 48, ../scss/GeneralStyles.scss */
@@ -137,9 +140,9 @@ for the main layers, the color palettes, the calendars etc.*/
 
 /* line 50, ../scss/GeneralStyles.scss */
 .invShadow {
-  color: black;
+  color: #ffffff;
   /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
-  text-shadow: #ECF2F8 0 2px 1px, #ECF2F8 2px 0 1px, #ECF2F8 -2px 0 1px, #ECF2F8 0 -2px 1px, #ECF2F8 2px 2px 1px, #ECF2F8 -2px 2px 1px, #ECF2F8 2px -2px 1px, #ECF2F8 -2px -2px 1px;
+  /*text-shadow: #ECF2F8 0 2px 1px, #ECF2F8 2px 0 1px, #ECF2F8 -2px 0 1px, #ECF2F8 0 -2px 1px, #ECF2F8 2px 2px 1px, #ECF2F8 -2px 2px 1px, #ECF2F8 2px -2px 1px, #ECF2F8 -2px -2px 1px;*/
 }
 
 /* line 53, ../scss/GeneralStyles.scss */
