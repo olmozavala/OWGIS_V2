@@ -201,7 +201,8 @@ owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
  * @param {string} windowElement Name of the container of the window to save position
  */
 function saveIndividualWindowPosition(localStorageVariable, windowElement){
-    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
+    console.log($(windowElement).css("display"));
+    if( typeof $(windowElement).css("display") !== "undefined" &&  $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
         localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
     }
 }

@@ -901,11 +901,13 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             });
                             
             if(ajaxCan){
-                                            
-                //if( mobile ){
+                 var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";
+                /*
+                if( !mobile ){
                     var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
-                /*} else {
-                    var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
+                } else {
+                    var dataLink = ""; 
+                    //<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
                 }*/
 		
             } else {
