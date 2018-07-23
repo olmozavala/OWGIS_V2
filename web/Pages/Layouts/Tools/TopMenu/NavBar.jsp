@@ -24,9 +24,9 @@
 			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
 				<%@include file="../../../Options/Elevation.jsp" %>
 			</li>
-            <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
-                <i class="glyphicon glyphicon-screenshot"></i>
-			</li>
+                        <!--li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
+                            <i class="glyphicon glyphicon-screenshot"></i>
+			</li-->
 		</ul>
 			
 		<!--This whole ul is used for the 'smaller ' sizes-->
