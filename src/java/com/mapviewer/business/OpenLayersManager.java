@@ -230,7 +230,8 @@ public class OpenLayersManager {
 		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
 		URLscript += "\t\t\t\towgis.features.punctual.getVerticalProfile(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
 		URLscript += "\t\t\t\towgis.features.punctual.getTimeSeries(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
-		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
+		URLscript += "\t\t\t\towgis.features.punctual.getWindRose(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
+        URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
 
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "WIDTH=\"+ map.getSize()[0] +\"&"

@@ -77,6 +77,7 @@
             <layer Menu="Dom1,Viento,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="250"
                     style="default-scalar" palette="wind2" name="wrf_Dom1/Uat10:Vat10-mag"  center="-101,23" zoom="3"
                     overlaystreamlines="wrf_Dom1/Uat10:wrf_Dom1/Vat10" defParticleSpeed="0.01"  belowMinColor="transparent" aboveMaxColor="transparent"
+                    windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/generica/WRF/"
             />
                      
             <layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"

@@ -236,7 +236,8 @@ function updateKmzLink(responseText) {
 function asyncFillAnimationSelect(responseText) {
 
     var animOpts = jQuery.parseJSON(responseText);
-
+    
+    if( responseText != null && typeof responseText != "undefined"){
     $('#timeSelect').find('option').remove().end();
 
 	//Get the total number of frames in "Full" 
@@ -244,7 +245,8 @@ function asyncFillAnimationSelect(responseText) {
     for (var key in animOpts.timeStrings) {
         var title = animOpts.timeStrings[key].title;
         var fullStr = animOpts.timeStrings[key].timeString;
-
+                
+        if( typeof title != "undefined"){
 		var tempNum= title.match(/[0-9]+/);//Obtain only the number of frames
 		var totNum = parseInt(tempNum);//Parse them as int
 
@@ -264,6 +266,8 @@ function asyncFillAnimationSelect(responseText) {
 			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
 				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
 		}
+        }
+    }
     }
 }
 

@@ -90,7 +90,8 @@ public class Layer {
     // ---- zoom and position options
     private Byte zoom;//zoom in map
     private Point center;//longitude
-
+    private String windrose; //windrose web service url
+    
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
 	 *
@@ -172,6 +173,8 @@ public class Layer {
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
+        this.windrose = null;
+
 	}
 	/**
 	 *
@@ -229,7 +232,8 @@ public class Layer {
 			String overlayStreamlines, 
             String belowMinColor, String aboveMaxColor,
             int numColorBands,
-			float defParticleSpeed) {
+			float defParticleSpeed,
+            String windrose) {
 		
 		this.bbox = bbox;
 		this.style = style;
@@ -275,6 +279,7 @@ public class Layer {
         this.zoom = null;
         this.center = null;
         this.numColorBands = numColorBands;
+        this.windrose = windrose;
 	}
 	//Geters
 	
@@ -375,6 +380,7 @@ public class Layer {
             String strCenter = this.center.toString();
             layerDetails.accumulate("zoom", strZoom);
             layerDetails.accumulate("center", strCenter);
+            layerDetails.accumulate("windrose", this.windrose);
             
         } catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
@@ -740,5 +746,13 @@ public class Layer {
 		this.localAddress = localAddress;
 	}
 	
-		
+    /*windrose*/
+	public void setWindrose(String windrose){
+        this.windrose = windrose;
+    }
+    
+    public String getWindrose(){
+        return windrose;
+    }
+    
 }
