@@ -164,16 +164,14 @@ function initMenus() {
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-	if(mobile === false){
-		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-	}
-	else{
-		owgis.ol3.positionMap();
-		//if user changes the window size
-		//window.addEventListener('orientationchange', doOnOrientationChange);
-		resizeMobilePanels();
-	}
-	
+	if(mobile == false){
+            owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}else{
+            owgis.ol3.positionMap();
+            //if user changes the window size
+            //window.addEventListener('orientationchange', doOnOrientationChange);
+            resizeMobilePanels();
+	}	
 	
 	//This is the resize function
 	$(window).resize(function() {
@@ -295,10 +293,8 @@ function updateTitle(dateText, elevText) {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-    	if(mobile){
-            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
-    	}
-    	else{
+        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+    	if(!mobile){ 
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
             localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.language = _curr_language;
