@@ -65,10 +65,9 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 /** Places the draggable windows to where the user last placed them. Also controls if they where
  * visible or minimized. 
  */
-owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
-{
+owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     try{
-        if( localStorage.server_name === window.location.href){
+        if( localStorage ){ //.server_name === window.location.href
             console.log('repositioning windows ...');
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
@@ -201,7 +200,7 @@ owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
  * @param {string} windowElement Name of the container of the window to save position
  */
 function saveIndividualWindowPosition(localStorageVariable, windowElement){
-    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
+    if( typeof $(windowElement).css("display") !== "undefined" && $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
         localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
     }
 }
