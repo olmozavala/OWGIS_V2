@@ -216,7 +216,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 		ctx.canvas.height = barHeight;
 
 		imageObj.onload = function(){
-			ctx.globalAlpha = 0.7;
+			//ctx.globalAlpha = 0.7;
 			ctx.drawImage(imageObj,spaceForUnits,0);
 			ctx.globalAlpha = 1;
 			$("#div-palette-horbar").show();
