@@ -67,7 +67,8 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
  */
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     try{
-        if( localStorage.server_name === window.location.href ){ //.server_name === window.location.href
+
+        if( levenshtein(localStorage.server_name, window.location.href) <= 2 ){ //
             console.log('repositioning windows ...');
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
