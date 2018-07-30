@@ -35,6 +35,7 @@ import java.util.Properties;
  */
 public class OpenLayerMapConfig {
 	
+    private int imageResolution;
 	private String center = null;
 	private String zoom = null;
 	private int zoomLevels;
@@ -150,7 +151,7 @@ public class OpenLayerMapConfig {
 	 * Initializes the required variables for the display of the map
 	 */
 	public void initializeVariables() {
-		
+		imageResolution = Integer.parseInt(getProperty("imageResolution")); 
         center = getProperty("mapcenter");
 		zoom = getProperty("zoom");
         zoomLevels = Integer.parseInt(getProperty("zoomLevels"));
@@ -160,7 +161,15 @@ public class OpenLayerMapConfig {
         mapProj=getProperty("mapProjection");
 		refreshLayers=getProperty("refreshLayers");
 	}
-	
+    
+    public int getimageResolution() {
+		return imageResolution;
+	}
+
+    public void setimageResolution(int imageResolution) {
+		this.imageResolution = imageResolution;
+	}
+
 	public String getCenter() {
 		return center;
 	}
