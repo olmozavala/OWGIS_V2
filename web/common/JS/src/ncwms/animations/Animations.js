@@ -711,6 +711,7 @@ function loopAnimation(){
         }
 	
 	$("#animDate").text(finalText);
+        $('#pTitleSubText').html(finalText);
 	
 	map.render();
 }

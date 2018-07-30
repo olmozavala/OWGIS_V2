@@ -154,3 +154,8 @@ for transparency in the optional layers. */
 .closeButton {
   float: right;
 }
+
+.ol-attribution {
+    /*display: none;*/
+    bottom: 50px;
+}
