@@ -206,7 +206,10 @@ public class MapViewerServlet extends HttpServlet {
 			
 			String defaultLang=mapConfig.getProperty("defaultLanguage");
 			String availableLanguages=mapConfig.getProperty("availableLanguages");
-			
+			int imageResolution = Integer.parseInt(mapConfig.getProperty("imageResolution"));
+            
+            request.setAttribute("imageResolution", imageResolution);
+            
 			request.setAttribute("defaultLanguage", defaultLang);
 			request.setAttribute("availableLanguages", availableLanguages);
             

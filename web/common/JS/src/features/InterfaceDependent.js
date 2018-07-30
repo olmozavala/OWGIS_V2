@@ -74,7 +74,7 @@ owgis.interf.loadingallscreen = function(loading){
  * @param {int} percentage Percentaje of loading displayed. 
  * @returns void
  */
-owgis.interf.loadingatmap = function(loading,percentage,extraText){
+owgis.interf.loadingatmap = function(loading,percentage,extraText,vel){
 	if(loading){
 		if(percentage !== undefined){
 			if(_.isEmpty(extraText)){
@@ -86,9 +86,9 @@ owgis.interf.loadingatmap = function(loading,percentage,extraText){
 			$("#loadperc").text("");
 			$("#loadperc").addClass("loading")
 		}
-		$('#l-animation').show("fade");
+		$('#l-animation').show("fade",vel);
 	}else{
-		$('#l-animation').hide("fade");
+		$('#l-animation').hide("fade",vel);
 	}
 }
 
