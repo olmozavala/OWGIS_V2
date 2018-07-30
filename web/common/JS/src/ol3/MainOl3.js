@@ -29,6 +29,21 @@ for (var i = 0; i < 100; i++) {
 	eval("var layer" + i);
 }
 
+//para cambiar la velocidad de resolucion (solo en el wms ) se necesita descomentar la linea 362 del archivo java OpenLayersManager 
+
+var olWidth = 100;//Math.ceil(($(window).width()/(3*800))*mapConfig.imageResolution);
+var olHeight = 100;//Math.ceil(($(window).height()/(3*800))*mapConfig.imageResolution);
+
+var projExtent = ol.proj.get(_map_projection).getExtent();
+var startResolution = ol.extent.getWidth(projExtent) / olWidth;
+var resolutions = new Array(mapConfig.zoomLevels);
+for (var i = 0, ii = resolutions.length; i < ii; ++i) {
+    resolutions[i] = startResolution / Math.pow(2, i);
+}
+
+var tileGrid = null;
+
+
 /**
  * This function is in charge of displaying the 'progress' cursor
  * when the user has requested some punctual data 
@@ -55,7 +70,9 @@ function setMouseClickOnMap(){
  */
 function animatePositionMap(zoom, center, duration, proj) {
     proj = proj || PROJ_4326;
-    center = center ? proj === _map_projection ? center : ol.proj.transform(center, proj, _map_projection) : ol3view.getCenter();
+    zoom = zoom || ol3view.getZoom();
+    duration = duration || 0;
+    center = center ? (proj === _map_projection ? center : ol.proj.transform(center, proj, _map_projection)) : ol3view.getCenter();
     duration = duration || durationAnimation;
     ol3view.animate({
                         center: center,
@@ -113,10 +130,21 @@ function initOl3(){
 		_map_projection = PROJ_3857;
 		changeProj = true;
 	}
+    resExtent = mapConfig.restrictedExtent.split(",").map(Number);
     if(changeProj){
 		defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
 		resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);//unused var
 	}
+
+    /* importante si se quiere cambiar el tamaño de las imagenes
+     * y optimizar el tiempo en las que se cargan dentro del owgis
+     */
+    tileGrid = new ol.tilegrid.TileGrid({
+        extent: resExtent,
+        resolutions: resolutions,
+        tileSize: [olHeight, olWidth]
+    });
+
     //This control is used to display Lat and Lon when the user is moving the mouse over the map
 	var mousePositionControl = new ol.control.MousePosition({
 		coordinateFormat: ol.coordinate.createStringXY(4),
@@ -284,7 +312,7 @@ owgis.ol3.positionMap = function() {
 		var lon = Number(strCenter[1]);
 		newCenter = [lat,lon];// Center of the map
     }
-    animatePositionMap(newZoom, newCenter, 0, localStorage.projection);
+    animatePositionMap(newZoom, newCenter, 1, localStorage.projection);
 }
 
 /************************
