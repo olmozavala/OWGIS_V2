@@ -53,8 +53,10 @@ function setMouseClickOnMap(){
  * This function animate position and zoom on the map
  * @returns undefined
  */
-function animatePositionMap(zoom, center, duration){
-    duration === undefined ? durationAnimation : duration
+function animatePositionMap(zoom, center, duration, proj) {
+    proj = proj || PROJ_4326;
+    center = center ? ol.proj.transform(center, proj, _map_projection) : ol3view.getCenter();
+    duration = duration || durationAnimation;
     ol3view.animate({
                         center: center,
                         zoom: zoom,
@@ -242,7 +244,7 @@ function initOl3(){
      var center = layerDetails.center.split(",");
      if(center[0] !== "null" && center[1] !== "null") {
         map.once('change:ready', function() {
-            center = ol.proj.transform([parseInt(center[0]), parseInt(center[1])], PROJ_4326, _map_projection);
+            center = [parseInt(center[0]), parseInt(center[1])];
             var zoom = 'zoom' in layerDetails ? parseInt(layerDetails.zoom) : mapConfig.zoom;
             animatePositionMap(zoom, center, durationAnimation);
         });
@@ -274,13 +276,13 @@ owgis.ol3.positionMap = function() {
 	// --------------- Map visualization and hover texts
 	var newZoom = localStorage.zoom !== undefined && localStorage.zoom <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
-	if( localStorage.map_center!== undefined){
+	if( localStorage.map_center !== undefined){
 		var strCenter = localStorage.map_center.split(",")
 		var lat = Number(strCenter[0]);
 		var lon = Number(strCenter[1]);
-		newCenter = ol.proj.transform([lat,lon], localStorage.projection, _map_projection);// Center of the map
-	}
-    animatePositionMap(newZoom, newCenter, 0);
+		newCenter = [lat,lon];// Center of the map
+    }
+    animatePositionMap(newZoom, newCenter, 0, localStorage.projection);
 }
 
 /************************

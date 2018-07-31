@@ -134,8 +134,10 @@ for the main layers, the color palettes, the calendars etc.*/
 /* line 48, ../scss/GeneralStyles.scss */
 .defShadow {
   color: #ECF2F8;
-  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);*/
-  text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;
+  /*@include text-shadow($haloColor 1px 1px 5px, $haloColor -1px 1px 0, $haloColor 1px -1px 0, $haloColor -1px -1px 0);
+  text-shadow: black 0 2px 1px, black 2px 0 1px, black -2px 0 1px, black 0 -2px 1px, black 2px 2px 1px, black -2px 2px 1px, black 2px -2px 1px, black -2px -2px 1px;*/
+  text-shadow: 1px 1px 3px black;
+
 }
 
 /* line 50, ../scss/GeneralStyles.scss */

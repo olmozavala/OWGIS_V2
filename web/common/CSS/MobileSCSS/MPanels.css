@@ -22,6 +22,7 @@
   /*This is one is important, it controls the padding of all the panels. Which
   is an internal paddingk*/
   padding: 0px;
+  background: transparent;
 }
 
 /* line 26, ../../scss/MobileSCSS/MPanels.scss */
@@ -44,4 +45,39 @@
 /* line 39, ../../scss/MobileSCSS/MPanels.scss */
 .rightPanel {
   max-width: 200px;
+}
+
+div#mobPanelMainTools {
+    background: rgba(15, 44, 85, 0.85);
+    width: 55%;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+    background-color: #4AAB8C;
+    /* border-color: #ddd; */
+    color: #eee;
+    text-shadow: 0 1px 0 #1f1f1f;
+    border: transparent;
+    border-radius: .5em;
+    
+}
+
+.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
+    background-color: #4AAB8C;
+    /* border-color: #ddd; */
+    color: #f3f3f3;
+    text-shadow: 0 1px 0 #333;
+    /* border-color: #ddd; */
+    border: none;
+    /* border-color: #ddd; */
+        margin-bottom: 3px;
+
+}
+
+.ui-listview>li {
+    display: block;
+    position: relative;
+    border-radius: .5em;
+    margin-bottom: 0.2em;
+    overflow: visible;
 }

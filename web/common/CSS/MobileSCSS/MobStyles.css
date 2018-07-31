@@ -59,6 +59,11 @@ label {
 /* line 48, ../../scss/MobileSCSS/MobStyles.scss */
 html {
   font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Heebo', sans-serif !important;
+}
+
+a.ui-btn {
+    font-family: 'Heebo', sans-serif;
 }
 
 /* line 52, ../../scss/MobileSCSS/MobStyles.scss */
@@ -140,14 +145,19 @@ html {
     background: rgba(215, 255, 255, 0.3);
     box-shadow: 2px 0px 5px rgba(88,88,88,0.2);
     z-index: 99;
+    background: rgba(15, 44, 85, 0.85);
+
 }
 
 #home>#header a {
-    background: rgba(3, 3, 3, 0.5);
+    /*background: rgba(3, 3, 3, 0.5);
     box-shadow: 1px 1px 1px #000000;
+    border: 2px solid rgba(255, 255, 255, 0.5);*/
     border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
     margin-top: -2px;
+    font-family: 'Heebo', sans-serif;
+    background: #4AAB8C;
+    border: none;
 }
 
 /* main layer map set in all page*/

@@ -547,26 +547,26 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             }
         }
     });*/
-    
-    $('#modalWR').resizable({
-        minHeight: 500,
-        minWidth: 600,
-        resize: function( event, ui ) {
-            if (typeof $("#containerChartsWR").highcharts() != 'undefined'){
-                $('#modalWR').center();
-                $("#containerChartsWR").highcharts().setSize(document.getElementById('modalWR').offsetWidth-30, document.getElementById('modalWR').offsetHeight-60-30, doAnimation = true);
+    if( !mobile ){
+        $('#modalWR').resizable({
+            minHeight: 500,
+            minWidth: 600,
+            resize: function( event, ui ) {
+                if (typeof $("#containerChartsWR").highcharts() != 'undefined'){
+                    $('#modalWR').center();
+                    $("#containerChartsWR").highcharts().setSize(document.getElementById('modalWR').offsetWidth-30, document.getElementById('modalWR').offsetHeight-60-30, doAnimation = true);
+                }
             }
-        }
-    });
-
-    $('.modal-dialog').draggable();
-
-    $('#showWindRose').on('show.bs.modal', function () {
-        $(this).find('.modal-body').css({
-            'max-height':'100%'
         });
-    });
-    
+
+        $('.modal-dialog').draggable();
+
+        $('#showWindRose').on('show.bs.modal', function () {
+            $(this).find('.modal-body').css({
+                'max-height':'100%'
+            });
+        });
+    }
     document.getElementById("modalLabelWR").innerHTML = latlon;
     $('#showWindRose').modal('toggle');
     document.getElementById("containerChartsWR").style.display = 'block';

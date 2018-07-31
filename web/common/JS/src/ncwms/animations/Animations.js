@@ -312,7 +312,10 @@ function obtainSelectedDates(){
 	allFrames =  $('#timeSelect :selected').attr('timestring').split(",");
 	var key =  $('#timeSelect :selected').attr('key');
 	totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
-
+        
+        var step = allFrames[0].split("/")[2];
+        
+        console.log(allFrames, step, totalNumOfFrames);
 	// Verify we are ncWMS2
 	if(layerDetails['ncwmstwo']){
 		//In this case we need to create the array of dates from the 'range string'
@@ -343,9 +346,25 @@ function obtainSelectedDates(){
 			locCurrDate.setDate( locCurrDate.getDate() + 1);
                     }
                     allFrames = allDates.map(m => m+"T00:00:00Z");
-                } else{
-                    var allDates =  Array.from(datesRange.by('day'));
-                    allFrames = allDates.map(m => m.utc().format());
+                } else {
+                    switch(step) {
+                        case "P7D":
+                            var allDates = Array.from(datesRange.by('day', { step: 7 }));
+                            allFrames = allDates.map(m => m.utc().format());
+                            break;
+                        case "P1M":
+                            var allDates = Array.from(datesRange.by('month'));
+                            allFrames = allDates.map(m => m.utc().format());
+                            break;
+                        case "P2M":
+                            //code block
+                            var allDates = Array.from(datesRange.by('month', { step: 2 }));
+                            allFrames = allDates.map(m => m.utc().format());
+                            break;
+                        default:
+                            var allDates = Array.from(datesRange.by('day'));
+                            allFrames = allDates.map(m => m.utc().format());
+                    }
                 }
                 /*console.log(allDates);
 		console.log(allFrames);*/

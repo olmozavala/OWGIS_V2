@@ -106,7 +106,8 @@
 /* line 51, ../../scss/MobileSCSS/MOptionalLayers.scss */
 #optionalLayersWindow {
   padding: 5px;
-  border: 2px solid #a1a1a1;
+  border: 2px solid #0F2C55;
   border-radius: 10px;
   margin: 0.3em 0.2em;
+  background: rgba(15, 44, 85, 0.85);
 }
