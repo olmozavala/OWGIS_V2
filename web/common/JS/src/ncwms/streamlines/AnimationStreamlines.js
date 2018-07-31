@@ -236,9 +236,11 @@ function updateWidthAndHeight(layerTemplate){
 	if( owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none ){ 
 		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatioCurrents();
 	}
+    
+   var factZoom = ol3view.getZoom() < 1 ? 2.5 : 5;
 
-	var width = Math.ceil(($(window).width()/(5*800))*imageRequestResolution*resolutionFactor);
-	var height = Math.ceil(($(window).height()/(5*800))*imageRequestResolution*resolutionFactor);
+	var width = Math.ceil(($(window).width()/(factZoom*800))*imageRequestResolution*resolutionFactor);
+	var height = Math.ceil(($(window).height()/(factZoom*800))*imageRequestResolution*resolutionFactor);
 //	console.log("Requested resolution is: "+width+" x "+height);
 	layerTemplate.set("width",width);	
 	layerTemplate.set("height",height);	
