@@ -145,7 +145,6 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
  */
 window['owgis.ncwms.currents.startMultipleDateAnimation'] = owgis.ncwms.currents.startMultipleDateAnimation;
 owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnimation(dates){
-	console.log(MuchosID_ada);
 	isRunningUnderMainAnimation = true;
 	isFirstTime = true;
 	//Creates new currents layer model
