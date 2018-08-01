@@ -71,7 +71,39 @@
 
 /* line 32, ../scss/Calendars.scss */
 #timeSelect {
+  color: #000; 
+  background-color: #909090e6;
+  border: 2px solid #9ea2a5;
+  border-radius: 6px;
   /*width: $containerSize/2 - 20;*/
+}
+
+#timeSelect:hover {
+    background-color: #777777;
+}
+
+#startTimeCalendar {
+    margin-top: 5px;
+    color: #000;
+    background-color: #909090e6;
+    border: 2px solid #9ea2a5;
+    border-radius: 6px;
+}
+
+#startTimeCalendar:hover {
+    background-color: #777777;
+}
+
+#endTimeCalendar {
+    margin-top: 5px;
+    color: #000;
+    background-color: #909090e6;
+    border: 2px solid #9ea2a5;
+    border-radius: 6px;
+}
+
+#endTimeCalendar:hover {
+    background-color: #777777;
 }
 
 /* line 36, ../scss/Calendars.scss */
