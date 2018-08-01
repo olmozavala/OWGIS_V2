@@ -30,8 +30,32 @@
 
 // Dropdown to select the time frame (day, week, month)
 #timeSelect{
+    color: #000; 
+    background-color: #909090e6;
+    border: 2px solid #9ea2a5;
+    border-radius: 6px;
     /*width: $containerSize/2 - 20;*/
 }
+
+// Dropdown to select the start time
+#startTimeCalendar {
+    margin-top: 5px;
+    color: #000;
+    background-color: #909090e6;
+    border: 2px solid #9ea2a5;
+    border-radius: 6px;
+}
+
+
+// Dropdown to select the end time
+#endTimeCalendar {
+    margin-top: 5px;
+    color: #000;
+    background-color: #909090e6;
+    border: 2px solid #9ea2a5;
+    border-radius: 6px;
+}
+
 
 .ui-widget{
 	/*font-size: $f_tiny;*/

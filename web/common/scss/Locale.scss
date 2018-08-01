@@ -27,9 +27,9 @@ $border-select: 6px;
 #selectedLanguage{
 	padding-bottom: 0px;
 	padding-top: 0px;
-    background: #000000;
-    border: none;
-    color: #eeeeee;
-    @include border-radius($default-border-radius);
-    @include box-shadow($butShadowColor 2px 2px $butBoxShadowSize);
+        background-color: #555;
+        border-color: #555;
+        border-radius: 6px;
+        color: white;
+        box-shadow: #80CCDC 2px 2px 6px;
 }
