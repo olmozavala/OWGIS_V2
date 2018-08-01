@@ -29,8 +29,7 @@ public class PagesNames {
 	}
 
 	public static String MAIN_PAGE = Globals.PAGES_PATH +"MapViewer.jsp";//Principal page of the atlas
-
-        public static String MOBILE_PAGE = Globals.PAGES_PATH + "Mobile.jsp";//Mobile page
+    public static String MOBILE_PAGE = Globals.PAGES_PATH + "Mobile.jsp";//Mobile page
         
 	//Error pages
 	public static String ERROR_PAGE = Globals.PAGES_PATH + "Error/ErrorPage.jsp";//Error page of the atlas

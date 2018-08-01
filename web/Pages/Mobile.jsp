@@ -1,12 +1,11 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
 <%@page errorPage="Error/ErrorPage.jsp"%>
-<%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="names" class="com.mapviewer.model.PagesNames" scope="page"> </jsp:useBean>
 <jsp:useBean id="globals" class="com.mapviewer.model.Globals" scope="page"> </jsp:useBean>
-	
-	<!--This part is used to change the texts depending on the language of the user browser-->
+<!--This part is used to change the texts depending on the language of the user browser-->
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="com.mapviewer.messages.text" />
 <!DOCTYPE html>

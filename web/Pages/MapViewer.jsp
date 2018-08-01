@@ -1,10 +1,7 @@
-<%-- 
-This is the main jsp file that forms the html webpage. It contains the skeleton of the html application. 
---%>
-
+<%--  This is the main jsp file that forms the html webpage. It contains the skeleton of the html application. --%>
 <%@page pageEncoding="UTF-8"%>
-<%@ taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="menuHelper" uri="/WEB-INF/TLD/htmlStaticFunctions.tld" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <jsp:useBean id="names" class="com.mapviewer.model.PagesNames" scope="page"> </jsp:useBean>
 <jsp:useBean id="globals" class="com.mapviewer.model.Globals" scope="page"> </jsp:useBean>
