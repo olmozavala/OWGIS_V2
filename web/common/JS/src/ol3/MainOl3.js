@@ -244,6 +244,19 @@ function initOl3(){
     owgis.ol3.zoom = function(zoom_in, coordinate) {
         var view = ol3view;
         var delta = zoom_in < 1 ? 1 : -1;
+        var zoom_ap = view.getZoom() + delta;                         
+            if(canvas != undefined && layerDetails.bbox[0] != -180 && layerDetails.bbox[1] != -80.03999999999999){
+                if(zoom_ap < 1){
+                    owgis.ncwms.currents.particles.setNumParticles(2000);
+                    owgis.ncwms.currents.style.updateNumberOfParticlesSliders(2000);
+                }else if(zoom_ap >=1 && zoom_ap < 2){
+                    owgis.ncwms.currents.particles.setNumParticles(10000);
+                    owgis.ncwms.currents.style.updateNumberOfParticlesSliders(10000);
+                }else if(zoom_ap >2){
+                    owgis.ncwms.currents.particles.setNumParticles(15000);
+                    owgis.ncwms.currents.style.updateNumberOfParticlesSliders(15000);
+                }  
+            }
         if(owgis.ol3.zoomLock) {
             console.log("wait to load");
             owgis.interf.loadingallscreen(true);

@@ -76,7 +76,6 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             if(typeof localStorage.main_menu_minimized == "undefined" ||  localStorage.main_menu_minimized == "false"){
                 $('#mainMenuParent').show("fade");
             }
-    
             localStorage.language = _curr_language;
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');

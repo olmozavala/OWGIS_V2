@@ -450,7 +450,7 @@ function initstreamlineLayer(){
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
     //console.log("Update currents view and data");
     canvas = document.getElementById("currentsCanvas");
-     var origBBOX = layerTemplate.get("origbbox");   
+     var origBBOX = layerTemplate.get("origbbox");      
     
     ctx = canvas.getContext('2d');
     var canvasWidth = size[0];
@@ -460,7 +460,19 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     canvas.height = canvasHeight;
     currentExtent = extent;
     if(isFirstTime){ // the streamlines are loaded for the first time        
-        if(updateURL(isFirstTime)){            
+        if(updateURL(isFirstTime)){                 
+               if(canvas != undefined && layerDetails.bbox[0] != -180 && layerDetails.bbox[1] != -80.03999999999999){  
+                   if(localStorage.zoom < 2){
+                       owgis.ncwms.currents.particles.setNumParticles(2000); 
+                       owgis.ncwms.currents.style.updateNumberOfParticlesSliders(2000);
+                   }else{
+                    owgis.ncwms.currents.particles.setNumParticles(10000);
+                    owgis.ncwms.currents.style.updateNumberOfParticlesSliders(10000);
+                   }                   
+               }else{
+                   owgis.ncwms.currents.particles.setNumParticles(20000);
+                   owgis.ncwms.currents.style.updateNumberOfParticlesSliders(20000);
+               }
             isFirstTime = false;
             isFirstTime3D = true;
             temp_resolution = resolution;
@@ -472,7 +484,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
         }
     }else{
         if(!isRunningUnderMainAnimation){
-            if(updateURL(isFirstTime)){
+            if(updateURL(isFirstTime)){                
                 if(resolutionHigh == true){ // if you change from high resolution to low resolution
                     isLow = false;
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                    

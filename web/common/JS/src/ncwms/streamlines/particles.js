@@ -81,8 +81,7 @@ owgis.ncwms.currents.particles.getCurrentResolutionParticleSpeed = function getC
 	return currentResolutionParticleSpeed;
 }
 
-owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){
-	console.log("setNumParticles: "+tot);
+owgis.ncwms.currents.particles.setNumParticles = function setNumParticles(tot){	
 	numparticles = tot;
 	initParticles();
 }

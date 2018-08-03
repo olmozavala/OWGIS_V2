@@ -293,7 +293,8 @@ function updateTitle(dateText, elevText) {
  * tell them some changes of the user, like the position of a draggable window or the zoom level of the map
  * 
  */
-function MapViewersubmitForm() {   
+
+function MapViewersubmitForm() {
     if(localStorage.language !== _curr_language){
         $("#_locale").val(localStorage.language);
     }else if(_curr_language == localStorage.language){
