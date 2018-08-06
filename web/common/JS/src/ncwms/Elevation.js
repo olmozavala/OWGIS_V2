@@ -237,22 +237,22 @@ function changeElevationMobile(sign)
     //if we need to add more height
     if (sign === '+')
     {
-        if (owgis.ncwms.zaxis.globcounter !== 0)
-            owgis.ncwms.zaxis.globcounter--;
+        if (owgis.ncwms.zaxis.globcounter !== array_len - 1)
+            owgis.ncwms.zaxis.globcounter++;
         else
             alert('You have reached the highest ' + getZaxisText());
 
     }
     else if (sign === '-')
     {
-        if (owgis.ncwms.zaxis.globcounter !== array_len - 1)
-            owgis.ncwms.zaxis.globcounter++;
+        if (owgis.ncwms.zaxis.globcounter !== 0)
+            owgis.ncwms.zaxis.globcounter--;
         else
             alert('You have reached the lowest elevation');
     }
 
     //change the + sign in the menu
-    if (owgis.ncwms.zaxis.globcounter === 0) {
+    if (owgis.ncwms.zaxis.globcounter === array_len - 1) {
 
         getElementById('plusButtonElevation').disabled = true;
         getElementById('plusButtonElevation').style.cursor = 'default';
@@ -262,8 +262,7 @@ function changeElevationMobile(sign)
     }
 
     //change the - sign in the menu
-
-    if (owgis.ncwms.zaxis.globcounter === array_len - 1) {
+    if (owgis.ncwms.zaxis.globcounter === 0) {
 
         getElementById('minusButtonElevation').disabled = true;
         getElementById('minusButtonElevation').style.cursor = 'default';
