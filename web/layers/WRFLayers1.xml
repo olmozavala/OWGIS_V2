@@ -132,7 +132,7 @@
             />-->
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros"  center="-100,19" zoom="4"
 			style="default-scalar" palette="wind2" ncWMStwo="true" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
-			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.01" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
+			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
 
             <layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa"  center="-100,19" zoom="4"
 			style="default-scalar" palette="windintensity"  mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
