@@ -58,6 +58,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
         case "getAnimTimes":
             url3 += '&startDate=' + startDate;
             url3 += '&endDate=' + endDate;
+            console.log(url3);
             asynchronous5.complete = asyncFillAnimationSelect;
             asynchronous5.call(url3);
         case "getTimeSteps":

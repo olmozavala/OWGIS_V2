@@ -109,6 +109,7 @@ owgis.ncwms.currents.particles.initDataNcWMSTwo = function initDataNcWMSTwo(Grid
 	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
 	gridInfo = GridInfo;
+        console.log(gridInfo);
 	currentExtent = currentE;
 	
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
@@ -126,6 +127,7 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 	
 	gridInfo = GridInfo;
 	currentExtent = currentE;
+        console.log(gridInfo);
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
 	latDomain = Math.abs(currentExtent[1] - currentExtent[3]);
 

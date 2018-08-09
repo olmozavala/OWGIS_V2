@@ -115,16 +115,22 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 	
 	//Creates new currents layer model
 	layerTemplate = getDefaultLayer();
-    layerTemplate.attributes.srs = _map_projection;
+        layerTemplate.attributes.srs = _map_projection;
 
 	times = new Array();
 	// Updating current date
 	var mainLayerParams = owgis.layers.getMainLayer().getSource().getParams();
+        
 	if( !_.isEmpty(mainLayerParams.TIME)){
 		times.push( mainLayerParams.TIME);	
 	}else{
-		times.push( layerDetails.nearestTimeIso );
+		//times.push( layerDetails.nearestTimeIso );
+                d= new Date();
+                d.setHours(0,0,0,0);
+                d.setHours(d.getHours() - 5);
+                times.push( d.toISOString() );
 	}
+        //times.push(owgis.layers.getMainLayer().getSource().getParams().TIME);
 
 	//Reads and updates the data
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
@@ -404,7 +410,7 @@ function initstreamlineLayer(){
  */
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
 //	console.log("Update currents view and data");
-	canvas = document.getElementById("currentsCanvas");
+    canvas = document.getElementById("currentsCanvas");
     ctx = canvas.getContext('2d');
 
 	var canvasWidth = size[0];
@@ -452,6 +458,7 @@ function abortPrevious(){
  */
 function updateData(){
 	// Clears previous animations
+        console.log('sospecho que aqui empieza la animacionm de las corrientes ;3 mmmm .... ');
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
 	var computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
 	
@@ -476,6 +483,7 @@ function updateData(){
         // Iterate over all the times we are displaying (only one, unless we have animations)
         _.each(times, function(time, idx){
             layerTemplate.set("time",time);	
+            console.log('current taim',time);
 
 			//We obtain the request URLs for each vector field U and V
 			var compositeLayers = layerTemplate.get("layers");

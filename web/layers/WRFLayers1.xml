@@ -5,6 +5,7 @@
 		<Menu ID="Dom2" EN="Center of Mexico" ES="Centro de México"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento" />
 		<Menu ID="VientoTot" EN="Wind" ES="Viento máxima" />
+		<Menu ID="VientoToti" EN="Wind" ES="Viento en hPa" />
                 <Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
 		<Menu ID="Vto250hP" EN="Wind in 250 hPa" ES="Viento en 250 hPa"/>
                 <Menu ID="Vto500hP" EN="Wind in 500 hPa" ES="Viento en 500 hPa"/>
@@ -79,7 +80,13 @@
                     overlaystreamlines="wrf_Dom1/Uat10:wrf_Dom1/Vat10" defParticleSpeed="0.03"  belowMinColor="transparent" aboveMaxColor="transparent"
                     windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/generica/WRF/"
             />
-                     
+            
+            <layer Menu="Dom1,Viento,VientoToti" EN="Wind speed at 10 meters" ES="Viento"  mincolor="0" maxcolor="250"
+                    style="default-scalar" palette="windintensity" name="wrf_Dom1/W"  center="-101,23" zoom="3"
+                    overlaystreamlines="wrf_Dom1/U:wrf_Dom1/V" defParticleSpeed="0.03"  belowMinColor="transparent" aboveMaxColor="transparent"
+                    windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/generica/WRF/"
+            />
+            <!--         
             <layer Menu="Dom1,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
 			style="default-scalar" palette="windintensity" name="wrf_Dom1/Uat250:Vat250-mag"  center="-101,23" zoom="3"
 			defParticleSpeed="0.03" overlaystreamlines="wrf_Dom1/Uat250:wrf_Dom1/Vat250"/>                              
@@ -94,7 +101,7 @@
             
             <layer Menu="Dom1,Viento,Vto850hP" EN="Wind speed in 850 hPa" ES="Viento en 850 hPa" name="wrf_Dom1/Uat850:Vat850-mag" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
                       overlaystreamlines="wrf_Dom1/Uat850:wrf_Dom1/Vat850" defParticleSpeed="0.03" style="default-scalar" palette="windintensity"  center="-101,23" zoom="3"/>
-
+            -->
             <layer Menu="Dom1,relh" center="-101,23" zoom="3" EN="Relative humidity" ES="Humedad Relativa" name="wrf_Dom1/RH" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"/>
 
             <!--
@@ -133,7 +140,13 @@
             <layer Menu="Dom2,Viento,VtoSup10" EN="Wind speed at 10 meters." ES="Viento a 10 metros"  center="-100,19" zoom="4"
 			style="default-scalar" palette="wind2" ncWMStwo="true" mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
 			name="wrf_Dom2/Uat10:Vat10-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat10:wrf_Dom2/Vat10"/>
-
+            
+            <layer Menu="Dom2,Viento,VientoToti" EN="Wind speed at 10 meters" ES="Viento"  mincolor="0" maxcolor="250"
+                    style="default-scalar" palette="windintensity" name="wrf_Dom2/W"  center="-101,23" zoom="3"
+                    overlaystreamlines="wrf_Dom2/U:wrf_Dom2/V" defParticleSpeed="0.03"  belowMinColor="transparent" aboveMaxColor="transparent"
+                    windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/generica/WRF/"
+            />
+            <!--
             <layer Menu="Dom2,Viento,Vto250hP" EN="Wind speed at 250 hPa" ES="Viento en 250 hPa"  center="-100,19" zoom="4"
 			style="default-scalar" palette="windintensity"  mincolor="0" maxcolor="250" belowMinColor="transparent" aboveMaxColor="transparent"
 			   name="wrf_Dom2/Uat250:Vat250-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat250:wrf_Dom2/Vat250"/>
@@ -151,7 +164,7 @@
 			   name="wrf_Dom2/Uat850:Vat850-mag" defParticleSpeed="0.03" overlaystreamlines="wrf_Dom2/Uat850:wrf_Dom2/Vat850" />
             
             <layer Menu="Dom2,relh" center="-100,19" zoom="4" EN="Relative humidity" ES="Humedad Relativa" name="wrf_Dom2/RH" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent" />
-            
+            -->
             <!--
             <layer Menu="Dom2,relh,relh200" EN="Relative humidity 200hPa" ES="Humedad Relativa 200hPa" name="wrf_Dom2/RHat200" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
             <layer Menu="Dom2,relh,relh500" EN="Relative humidity 500hPa" ES="Humedad Relativa 500hPa" name="wrf_Dom2/RHat500" style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" />
