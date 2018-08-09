@@ -153,6 +153,7 @@ function initMenus() {
 		if(_mainlayer_streamlines){
 			owgis.ncwms.currents.style.init();
 		}
+        
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
@@ -203,6 +204,9 @@ function initMenus() {
 		owgis.ncwms.palettes.updateHorizontalPalette();
 
 	});
+        
+        $$("start_calendar").refresh();
+        $$("end_calendar").refresh();
 }
 
 function resizeMobilePanels(){

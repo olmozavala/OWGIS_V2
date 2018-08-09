@@ -78,3 +78,7 @@
 .ui-widget {
   /*font-size: $f_tiny;*/
 }
+
+.webix_view.webix_window.webix_popup{
+    z-index: 999999 !important;
+}

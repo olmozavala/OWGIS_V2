@@ -61,7 +61,7 @@
 /* line 19, ../scss/MinimizedWindows.scss */
 .minimizedWindow {
   padding: 5px 10px 20px 10px;
-  background-color: black;
+  background-color: rgba(15, 44, 85, 0.85);
   opacity: 0.7;
   display: none;
   position: relative;

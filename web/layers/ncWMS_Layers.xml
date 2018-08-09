@@ -126,7 +126,7 @@
 
 		<layer Menu="PBLH,PromD" 
 			   EN="Boundary layer height" ES="Climatología Diaria de Altura de la capa límite"
-			   name="atlas_diario/PBLH" style="default-scalar"
+			   name="atlas_diario/PBLH" style="default-scalar" palette="alturacapalimite"
                            mincolor="0" maxcolor="2000" subtitleText="daily"
                            center="-92,23" zoom="3"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
@@ -134,7 +134,7 @@
 
 		<layer Menu="Viento,PromD" 
 			   EN="Wind speed at 10 meters" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="daily"
@@ -143,14 +143,14 @@
                 
                 <layer Menu="QFX,PromD" 
 			   EN="Evaporation" ES="Climatología Diaria de Evaporación"
-			   name="atlas_diario/QFX" style="default-scalar"
+			   name="atlas_diario/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <layer Menu="GLW,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda larga" 
-			   name="atlas_diario/GLW" 
+			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
 			   style="default-scalar"
                            center="-92,23" zoom="3" subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
@@ -159,7 +159,7 @@
                 <layer Menu="SWDOWN,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda corta" 
 			   name="atlas_diario/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
@@ -192,7 +192,7 @@
 
 		<layer Menu="PBLH,PromM" 
 			   EN="Boundary layer height" ES="Climatología Mensual de Altura de capa límite"
-			   name="atlas_mensuales/PBLH" style="default-scalar"
+			   name="atlas_mensuales/PBLH" style="default-scalar"  palette="alturacapalimite"
                            mincolor="0" maxcolor="2000"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
@@ -200,7 +200,7 @@
 
 		<layer Menu="Viento,PromM" 
 			   EN="Wind speed at 10 meters" ES="Climatología Mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -210,14 +210,14 @@
 		<layer Menu="QFX,PromM" EN="Evaporation" 
 			   ES="Climatología Mensual de Evaporación" 
 			   name="atlas_mensuales/QFX" 
-			   style="default-scalar"
+			   style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
                 
                 <layer Menu="GLW,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda larga" 
-			   name="atlas_mensuales/GLW" 
+			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
 			   style="default-scalar"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
@@ -226,7 +226,7 @@
                 <layer Menu="SWDOWN,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda corta" 
 			   name="atlas_mensuales/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar"  palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
@@ -259,7 +259,7 @@
 
 		<layer Menu="Viento,PromMAD" 
 			   EN="Wind speed at 10 meters" ES="Máxima absoluta diaria de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="daily"
@@ -286,7 +286,7 @@
                 
 		<layer Menu="Viento,PromMAM" 
 			   EN="Wind speed at 10 meters" ES="Máxima promedio mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -315,21 +315,21 @@
 		<layer Menu="PBLH,PromHM,M01" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000"  palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M01" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_enero/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_enero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M01" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -339,7 +339,7 @@
                 <layer Menu="GLW,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_enero/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -347,7 +347,7 @@
                 <layer Menu="SWDOWN,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_enero/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -381,21 +381,21 @@
 		<layer Menu="PBLH,PromHM,M02" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M02" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M02" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -405,14 +405,14 @@
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M02" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3"  subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
@@ -445,7 +445,7 @@
 		<layer Menu="PBLH,PromHM,M03" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -453,13 +453,13 @@
                 <layer Menu="QFX,PromHM,M03" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_marzo/QFX" style="default-scalar"
-                           center="-92,23" zoom="3" subtitleText="hourxmonth"
+                           center="-92,23" zoom="3" subtitleText="hourxmonth" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M03" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -469,7 +469,7 @@
                 <layer Menu="GLW,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_marzo/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -477,7 +477,7 @@
                 <layer Menu="SWDOWN,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -511,21 +511,21 @@
 		<layer Menu="PBLH,PromHM,M04" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M04" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_abril/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_abril/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M04" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -535,7 +535,7 @@
                 <layer Menu="GLW,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_abril/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -543,7 +543,7 @@
                 <layer Menu="SWDOWN,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_abril/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3"  subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -577,21 +577,21 @@
 		<layer Menu="PBLH,PromHM,M05" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" 
+                           mincolor="0" maxcolor="2000"  palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M05" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M05" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -601,7 +601,7 @@
                 <layer Menu="GLW,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_mayo/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -609,7 +609,7 @@
                 <layer Menu="SWDOWN,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -643,21 +643,21 @@
 		<layer Menu="PBLH,PromHM,M06" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M06" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M06" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -668,14 +668,14 @@
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_junio/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           center="-92,23" zoom="3" 
+                           center="-92,23" zoom="3"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M06" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_junio/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
@@ -709,21 +709,21 @@
 		<layer Menu="PBLH,PromHM,M07" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M07" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_junio/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M07" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -733,7 +733,7 @@
                 <layer Menu="GLW,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_julio/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -741,7 +741,7 @@
                 <layer Menu="SWDOWN,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_julio/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -775,21 +775,21 @@
 		<layer Menu="PBLH,PromHM,M08" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M08" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M08" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -799,7 +799,7 @@
                 <layer Menu="GLW,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_agosto/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3"  subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -807,7 +807,7 @@
                 <layer Menu="SWDOWN,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -841,21 +841,21 @@
 		<layer Menu="PBLH,PromHM,M09" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M09" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M09" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -865,7 +865,7 @@
                 <layer Menu="GLW,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_septiembre/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -873,7 +873,7 @@
                 <layer Menu="SWDOWN,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -907,21 +907,21 @@
 		<layer Menu="PBLH,PromHM,M10" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M10" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M10" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -931,7 +931,7 @@
                 <layer Menu="GLW,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_octubre/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -939,7 +939,7 @@
                 <layer Menu="SWDOWN,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -973,21 +973,21 @@
 		<layer Menu="PBLH,PromHM,M11" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M11" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M11" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -996,7 +996,7 @@
                 <layer Menu="GLW,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_noviembre/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -1004,7 +1004,7 @@
                 <layer Menu="SWDOWN,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -1037,21 +1037,21 @@
 		<layer Menu="PBLH,PromHM,M12" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M12" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar"
+			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M12" 
 			   EN="Wind speed at 10 meters" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
@@ -1061,7 +1061,7 @@
                 <layer Menu="GLW,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_diciembre/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1069,7 +1069,7 @@
                 <layer Menu="SWDOWN,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1101,7 +1101,7 @@
                 
 		<layer Menu="Viento,MAM" 
 			   EN="Wind speed at 10 meters" ES="Máxima absoluta por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1111,14 +1111,14 @@
                 <layer Menu="PBLH,MAM" 
 			   EN="Boundary layer height" ES="Máxima absoluta por mes de Altura de la capa límite"
 			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
                 
                 <layer Menu="QFX,MAM" 
 			   EN="Evaporation" ES="Máxima absoluta por mes de Evaporación"
-			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar"
+			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3" subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1126,7 +1126,7 @@
                 <layer Menu="GLW,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda larga" 
 			   name="atlas_maxs_abs_mensuales/GLW" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
                            center="-92,23" zoom="3"  subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1134,7 +1134,7 @@
                 <layer Menu="SWDOWN,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda corta" 
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
-			   style="default-scalar"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
                            center="-92,23" zoom="3"  subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1188,7 +1188,7 @@
                 
 		<layer Menu="Viento,ANOM,1980" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1212,7 +1212,7 @@
                 
 		<layer Menu="Viento,ANOM,1981" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1235,7 +1235,7 @@
                 
 		<layer Menu="Viento,ANOM,1982" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1258,7 +1258,7 @@
                 
 		<layer Menu="Viento,ANOM,1983" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1281,7 +1281,7 @@
                 
 		<layer Menu="Viento,ANOM,1984" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1304,7 +1304,7 @@
                 
 		<layer Menu="Viento,ANOM,1985" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1327,7 +1327,7 @@
                 
 		<layer Menu="Viento,ANOM,1986" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1350,7 +1350,7 @@
                 
 		<layer Menu="Viento,ANOM,1987" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1373,7 +1373,7 @@
                 
 		<layer Menu="Viento,ANOM,1988" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1396,7 +1396,7 @@
                 
 		<layer Menu="Viento,ANOM,1989" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1419,7 +1419,7 @@
                 
 		<layer Menu="Viento,ANOM,1990" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1442,7 +1442,7 @@
                 
 		<layer Menu="Viento,ANOM,1991" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1465,7 +1465,7 @@
                 
 		<layer Menu="Viento,ANOM,1992" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1488,7 +1488,7 @@
                 
 		<layer Menu="Viento,ANOM,1993" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1511,7 +1511,7 @@
                 
 		<layer Menu="Viento,ANOM,1994" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1534,7 +1534,7 @@
                 
 		<layer Menu="Viento,ANOM,1995" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1557,7 +1557,7 @@
                 
 		<layer Menu="Viento,ANOM,1996" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1580,7 +1580,7 @@
                 
 		<layer Menu="Viento,ANOM,1997" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1603,7 +1603,7 @@
                 
 		<layer Menu="Viento,ANOM,1998" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1626,7 +1626,7 @@
                 
 		<layer Menu="Viento,ANOM,1999" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1649,7 +1649,7 @@
                 
 		<layer Menu="Viento,ANOM,2000" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1672,7 +1672,7 @@
                 
 		<layer Menu="Viento,ANOM,2001" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1695,7 +1695,7 @@
                 
 		<layer Menu="Viento,ANOM,2002" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1718,7 +1718,7 @@
                 
 		<layer Menu="Viento,ANOM,2003" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1741,7 +1741,7 @@
                 
 		<layer Menu="Viento,ANOM,2004" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1764,7 +1764,7 @@
                 
 		<layer Menu="Viento,ANOM,2005" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1787,7 +1787,7 @@
                 
 		<layer Menu="Viento,ANOM,2006" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1810,7 +1810,7 @@
                 
 		<layer Menu="Viento,ANOM,2007" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1833,7 +1833,7 @@
                 
 		<layer Menu="Viento,ANOM,2008" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1856,7 +1856,7 @@
                 
 		<layer Menu="Viento,ANOM,2009" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1879,7 +1879,7 @@
                 
 		<layer Menu="Viento,ANOM,2010" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1902,7 +1902,7 @@
                 
 		<layer Menu="Viento,ANOM,2011" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1925,7 +1925,7 @@
                 
 		<layer Menu="Viento,ANOM,2012" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1948,7 +1948,7 @@
                 
 		<layer Menu="Viento,ANOM,2013" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1971,7 +1971,7 @@
                 
 		<layer Menu="Viento,ANOM,2014" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -1994,7 +1994,7 @@
                 
 		<layer Menu="Viento,ANOM,2015" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -2017,7 +2017,7 @@
                 
 		<layer Menu="Viento,ANOM,2016" 
 			   EN="Wind speed at 10 meters" ES="Anomalías por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
-                           style="default-scalar" palette="wind2" 
+                           style="default-scalar" palette="windatlas" 
 			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            center="-92,23" zoom="3" subtitleText="monthly"
@@ -2036,17 +2036,17 @@
                 <layer Menu="Temp,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
                 <layer Menu="Temp,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99_9" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" center="-92,23" zoom="3"/>
 
-                <layer Menu="Viento,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_0_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_5"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_10"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_25"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_50"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_75"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_90"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_95"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
-                <layer Menu="Viento,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Viento" style="default-scalar" palette="wind2" name="percentiles/VIENTO_99_9" mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_0_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_5"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_10"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_25"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_50"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_75"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_90"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_95"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_99"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
+                <layer Menu="Viento,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_99_9" mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
 
                 <layer Menu="Prec,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_0_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>
                 <layer Menu="Prec,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" center="-92,23" zoom="3"/>

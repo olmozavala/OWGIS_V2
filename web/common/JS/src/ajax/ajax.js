@@ -62,7 +62,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
             asynchronous5.call(url3);
         case "getTimeSteps":
             url3 += '&day=' + startDate;
-            //console.log(url3);
+            console.log(url3);
 			switch (cal) {
 				case owgis.constants.startcal:
 					asynchronous5.complete = asyncFillTimeStepsStart;

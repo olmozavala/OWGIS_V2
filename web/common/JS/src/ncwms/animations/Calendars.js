@@ -27,7 +27,7 @@ var calendarPosTop = null;
  * @returns {undefined}
  */
 owgis.ncwms.calendars.updatehours = function(hours, cal){
-	var totHours = hours.timesteps.length;
+	/*var totHours = hours.timesteps.length;
 	var currSelect;
 	if(cal === owgis.constants.startcal){
 		currSelect = $("#startTimeCalendar");
@@ -56,7 +56,7 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
 		severalTimes = false;//Indicates that we don't have more than one possible time
 		currSelect.parent().hide();
 	}
-
+        */
 	setCurrentTime(cal);
 	updateAnimationRange();
 }
@@ -67,7 +67,8 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
  */
 function updateAnimationRange(){
 	//Updates the total number of frames in the time range 
-	var asString = true;
+        var asString = true;
+	//if(layerDetails.subtitleText == "hourxmonth"){ asString = false; } 
 	var inGMT = true;
 	var startDateTxt = owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.startcal, inGMT);
 	var endDateTxt= owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.endcal, inGMT);
@@ -97,6 +98,7 @@ function displayCalendars(disp){
 	}
 	$("#cal-start").css("visibility",visib);
 	$("#cal-end").css("visibility",  visib);
+        
 }
 
 /* 
@@ -167,9 +169,8 @@ function initCalendars(){
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
 
 		//We verify that we have more than one day
+                console.log(minValidDate, maxValidDate);
 		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
-			//I don't know why but for the selection the month needs to be increased by one
-			minMonth = minMonth + 1;
 
 			var datesWithNoData = new Array();
 			while(locCurrDate <= maxValidDate){
@@ -188,7 +189,8 @@ function initCalendars(){
 				}
 				locCurrDate.setDate( locCurrDate.getDate() + 1);
 			}
-		
+                        console.log(datesWithNoData);
+                        /*
 			$("#cal-start").datepicker({
 				minDate: minValidDate,
 				maxDate: maxValidDate,
@@ -204,10 +206,11 @@ function initCalendars(){
 				dateFormat: dateFormat,
 				onSelect: updateCalendarEnd
 			});
-                       
+                        */
+
 			//If there are some days in between max and min data that doesn't
 			// have data then we need to 'disable' them on the calendar
-			if(!_.isEmpty(datesWithNoData)){
+			/*if(!_.isEmpty(datesWithNoData)){
                             //console.log("push to datesWithNoData",datesWithNoData);
 				$('#cal-start').datepicker("option", {
 					beforeShowDay: function(date){
@@ -221,25 +224,178 @@ function initCalendars(){
 						return [!_.contains(datesWithNoData, string)];
 					}
 				});
-			}
+			}*/
+                        /*
+                        if(!_.isUndefined(layerDetails.subtitleText)){
+            var d = Date.parse(finalText);
+            var dd = new Date(d);
+            if(layerDetails.subtitleText == "daily"){
+                    finalText = dd.getUTCDate() +" de "+ meses[dd.getUTCMonth()];
+            }else if(layerDetails.subtitleText == "monthly"){
+                    finalText = meses[dd.getUTCMonth()];
+            } else if(layerDetails.subtitleText == "hourxmonth"){
+                    finalText = dd.getUTCHours() +":00 de "+ meses[dd.getUTCMonth()];
+            }
+        }*/
+                        var startDate = new Date(layerDetails.nearestTimeIso);
+                                if(minYear == 0){
+                                    startDate.setFullYear(0);
+                                }
 
-			var startDate = new Date(layerDetails.nearestTimeIso);
-                        if(minYear == 0){
-                            startDate.setFullYear(0);
+                        switch(layerDetails.subtitleText){
+                            case "daily":
+                                webix.ui({
+                                    container:"cal-start",
+                                    view:"calendar",
+                                    id:"start_calendar",
+                                    date: minValidDate,
+                                    minDate: minValidDate,
+                                    maxDate: maxValidDate,
+                                    calendarHeader:"%F",
+                                    weekHeader:true,
+                                    blockDates:function(date){
+                                        if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                            return true;
+                                    },
+                                    width:300,
+                                    height:250
+                                });
+
+                                webix.ui({
+                                    container:"cal-end",
+                                    view:"calendar",
+                                    id:"end_calendar",
+                                    date: minValidDate,
+                                    minDate: minValidDate,
+                                    maxDate: maxValidDate,
+                                    calendarHeader:"%F",
+                                    weekHeader:true,
+                                    blockDates:function(date){
+                                        if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                            return true;
+                                    },
+                                    width:300,
+                                    height:250
+                                });
+                                break;
+                            case "monthly":
+                                minValidDate.setHours(0);
+                                maxValidDate.setHours(0);
+                                webix.ui({   
+                                    container:"cal-start",
+                                    view:"calendar",
+                                    type: "month",
+                                    id:"start_calendar",
+                                    //headerHeight: 0,
+                                    date:minValidDate,
+                                    minDate: minValidDate,
+                                    maxDate: maxValidDate
+                                });
+                                
+                                 webix.ui({   
+                                    container:"cal-end",
+                                    view:"calendar",
+                                    type: "month",
+                                    id:"end_calendar",
+                                    //headerHeight: 0,
+                                    date:minValidDate,
+                                    minDate: minValidDate,
+                                    maxDate: maxValidDate
+                                });
+                                
+                                /*$$("start_calendar").attachEvent("onAfterRender", function(){
+                                    $('.webix_cal_month').css('display','none');
+                                });
+                                
+                                $$("end_calendar").attachEvent("onAfterRender", function(){
+                                    $('.webix_cal_month').css('display','none');
+                                });*/
+                                                                
+                                break;
+                            case "hourxmonth":
+                                minValidDate.setHours(0);
+                                
+                                webix.ui({
+                                    view:"datepicker", 
+                                    type:"time",
+                                    container:"cal-start",
+                                    //view: "calendar",
+                                    //date: minValidDate,
+                                    //calendarHeader:"%F",
+                                    //timepicker: true,
+                                    id: "start_calendar",
+                                    width: 150,
+                                    //minDate: minValidDate,
+                                    //maxDate: maxValidDate,
+                                    value: minValidDate,
+                                    label: " ",
+                                    labelWidth: 0
+                                });
+                                
+                                
+                                webix.ui({
+                                    view:"datepicker", 
+                                    type:"time",
+                                    container:"cal-end",
+                                    width: 150,
+                                    //view: "calendar",
+                                    //date: minValidDate,
+                                    //calendarHeader:"%F",
+                                    //timepicker: true,
+                                    id: "end_calendar",
+                                    //minDate: minValidDate,
+                                    //maxDate: maxValidDate,
+                                    value: minValidDate,
+                                    label: " ",
+                                    labelWidth: 0
+                                });
+                                break;
+                            default:
+                                break;
                         }
-			$("#cal-start").datepicker("setDate",startDate);
+                        if(layerDetails.subtitleText != "hourxmonth"){
+                            $$("start_calendar").selectDate(minValidDate);
+                            $$("start_calendar").showCalendar(minValidDate);
+                            $$("end_calendar").selectDate(maxValidDate);
+                            $$("end_calendar").showCalendar(maxValidDate);
+                            $$('start_calendar').attachEvent("onDateselect", function(date){
+                                updateCalendarStart();
+                            });
+
+                            $$('end_calendar').attachEvent("onDateselect", function(date){
+                                updateCalendarEnd();
+                            });
+                        } else {
+                            $$("start_calendar").setValue(minValidDate);
+                            $$("end_calendar").setValue(maxValidDate);       
+                            $$('start_calendar').attachEvent("onChange", function(date){
+                                updateCalendarStart();
+                            });
+
+                            $$('end_calendar').attachEvent("onChange", function(date){
+                                updateCalendarEnd();
+                            });
+                        }        
+			/*$("#cal-start").datepicker("setDate",startDate);
 			$("#cal-end").datepicker("setDate",maxValidDate);
                         $("#cal-start").datepicker("option", "prevText", "");
                         $("#cal-start").datepicker("option", "nextText", "");
                         $("#cal-end").datepicker("option", "prevText", "");
-                        $("#cal-end").datepicker("option", "nextText", "");
+                        $("#cal-end").datepicker("option", "nextText", "");*/
 			
 			displayCalendars(true);
+                        
+                        
 			
 			calInitialized = true;
 			_mainlayer_multipleDates= true;
 			updateCalendarOpts(owgis.constants.startcal);
 			updateCalendarOpts(owgis.constants.endcal);
+                        
+                        /*$$("start_calendar").refresh();
+                        $$("end_calendar").refresh();
+                        $('.webix_cal_month').css('display','none');*/
+                
 		}//We have more than one day
 		else{//If we only have one day then we hide all the calendar options
 			_mainlayer_multipleDates= false;
@@ -291,32 +447,33 @@ function updateCalendarOpts(calUpdated){
 	//Only do it if the calendars have already beeing initialized
 	if(calInitialized){
 		// These dates are in local time
-		var startDateTxt = $("#cal-start").val();
-		var endDateTxt = $("#cal-end").val();
+		var startDateTxt = $$("start_calendar").getValue();
+		var endDateTxt = $$("end_calendar").getValue();
 		
 		var startDateDays = new Date(startDateTxt);
 		var endDateDays = new Date(endDateTxt);
 		
+                console.log("*****************************************************************************************************************/n",startDateDays.toISOString().split('T')[0],endDateDays);
+                
 		if(calUpdated ===  owgis.constants.startcal){
-			dispAnimationAjax(startDateTxt,null,mainLayer,"getTimeSteps",owgis.constants.startcal);
+			dispAnimationAjax(startDateDays.toISOString().split('T')[0],null,mainLayer,"getTimeSteps",owgis.constants.startcal);
 			
 			if(endDateDays <=  startDateDays){
-				ahead = true;//Looking suggested time forward in time
-				endDateDays = getSuggestedDate(startDateDays,ahead);
-				$("#cal-end").datepicker("setDate",endDateDays);
+				//ahead = true;//Looking suggested time forward in time
+				//endDateDays = getSuggestedDate(startDateDays,ahead);
+				//$$("end_calendar").selectDate(endDateDays);
 			}
 			
 		}else if(calUpdated ===  owgis.constants.endcal){
 
-			dispAnimationAjax(endDateTxt, null,mainLayer,"getTimeSteps", owgis.constants.endcal);
+			dispAnimationAjax(endDateDays.toISOString().split('T')[0], null,mainLayer,"getTimeSteps", owgis.constants.endcal);
 
 			if(  endDateDays <=  startDateDays ){
-				ahead = false;// Suggested time backward in time
-				startDateDays = getSuggestedDate(endDateDays,ahead);
-				$("#cal-start").datepicker("setDate",startDateDays);
+				//ahead = false;// Suggested time backward in time
+				//startDateDays = getSuggestedDate(endDateDays,ahead);
+				//$$("start_calendar").selectDate(startDateDays);
 			}
 		}
-		
 	}
 }
 
@@ -366,6 +523,7 @@ function getSuggestedDate(actualDate,ahead){
 			return minValidDate;
 	}
 	
+        console.log('suggested date is ',end_final)
 	// If we are within the limits return the computed date. 
 	return end_final;
 }
@@ -377,6 +535,9 @@ function getSuggestedDate(actualDate,ahead){
 function updateMainLayerDate(){
 	
     var currTime = owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
+    console.log(currTime,currTime.toISOString());
+    currTime.setHours(currTime.getHours() - 6);
+        console.log("*78*5678*567*876*8*5678*76*8*5678*65*7865*78*678*567*8",currTime,currTime.toISOString());
     owgis.layers.updateMainLayerParam('TIME', currTime.toISOString());
 	owgis.kml.updateTitleAndKmlLink();
 	
@@ -453,31 +614,33 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	var currTimeCal;
 	switch(cal){
 		case owgis.constants.startcal:
-			currCal = $("#cal-start");
-			currTimeCal = "startTimeCalendar";
+			currCal = $$("start_calendar");
+			//currTimeCal = "startTimeCalendar";
 			break;
 		case owgis.constants.endcal:
-			currCal = $("#cal-end");
-			currTimeCal = "endTimeCalendar";
+			currCal = $$("end_calendar");
+			//currTimeCal = "endTimeCalendar";
 			break;
 	}
 	//Get date from calendar
-	currDateStr = currCal.val(); //console.log(currDateStr);
+	currDateStr = currCal.getValue(); 
 	//We need to verify that we have the time information
-	currTimeStr = $("#"+currTimeCal+" option");
+	/*currTimeStr = $("#"+currTimeCal+" option");
 	if(currTimeStr.length > 1){
 		currTimeStr = $("#"+currTimeCal+" option:selected").attr("value");
 	}else{
-		currTimeStr = "00:00:00.000Z";
-	}
-	
+		currTimeStr = 0;
+	}*/
+	console.log(currDateStr);
 	//Get hours from select and update date
-	if( !_.isUndefined(currTimeStr) ){
-		requestedDate = new Date(currCal.val()+"T"+currTimeStr);
+	/*if( !_.isUndefined(currTimeStr) ){
+		requestedDate = new Date(currDateStr);
+                requestedDate.setHours(currTimeStr);
 	}else{
 		requestedDate = new Date(currDateStr);
-	}
-	
+	}*/
+        requestedDate = new Date(currDateStr);    
+	console.log(requestedDate);
 	/*
 	if(GMT){
 		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 
@@ -488,7 +651,12 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	 */
 	
 	if(asString){
-		return requestedDate.toISOString();
+            if(layerDetails.subtitleText == "hourxmonth"){
+                return requestedDate.toISOString(); //.split('T')[0];
+            } else {
+               return requestedDate.toISOString().split('T')[0]; 
+            }
+		
 	}else{
 		return requestedDate;
 	}

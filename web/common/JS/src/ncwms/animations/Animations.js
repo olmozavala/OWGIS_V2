@@ -329,23 +329,31 @@ function obtainSelectedDates(){
                 allFrames = allDates.map(function(m) { return m.utc().format() });*/
                 //console.log(datesRange);
                 if(layerDetails.subtitleText == "monthly"){
-                    //var allDates =  Array.from(datesRange.by('month'));
-                    var allDates = [];
-                    locCurrDate = datesRange.start.toDate();
-                    enddate = datesRange.end.toDate();
-                    enddate.setDate(enddate.getDate() + 1);
-                    
-                    while( locCurrDate <= enddate){
-                        currYear = locCurrDate.getUTCFullYear();
-                        currMonth = locCurrDate.getUTCMonth();
-			currDay = locCurrDate.getUTCDate();
-                                
-			if( _.contains(layerDetails.datesWithData[currYear][currMonth],currDay) ){
-			    allDates.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate,true));
-			}
-			locCurrDate.setDate( locCurrDate.getDate() + 1);
+                    if( step == "P2M"){
+                        var allDates = Array.from(datesRange.by('month', { step: 2 }));
+                        allFrames = allDates.map(m => m.utc().format());
+                    } else if (step == "P6M"){
+                        var allDates = Array.from(datesRange.by('month', { step: 6 }));
+                        allFrames = allDates.map(m => m.utc().format());
+                    }else {
+                        //var allDates =  Array.from(datesRange.by('month'));
+                        var allDates = [];
+                        locCurrDate = datesRange.start.toDate();
+                        enddate = datesRange.end.toDate();
+                        enddate.setDate(enddate.getDate() + 30);
+
+                        while( locCurrDate <= enddate){
+                            currYear = locCurrDate.getUTCFullYear();
+                            currMonth = locCurrDate.getUTCMonth();
+                            currDay = locCurrDate.getUTCDate();
+
+                            if( _.contains(layerDetails.datesWithData[currYear][currMonth],currDay) && allDates.indexOf(owgis.utils.getDate("%Y-%m-%d",locCurrDate,true)) == -1 ){
+                                allDates.push(owgis.utils.getDate("%Y-%m-%d",locCurrDate,true));
+                            }
+                            locCurrDate.setDate( locCurrDate.getDate() + 1);
+                        }
+                        allFrames = allDates.map(m => m+"T00:00:00Z");
                     }
-                    allFrames = allDates.map(m => m+"T00:00:00Z");
                 } else {
                     switch(step) {
                         case "P7D":
@@ -372,13 +380,13 @@ function obtainSelectedDates(){
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
 		//Total number of frames in 'daily' mode
-		var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames'));
+		var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames')); console.log(totFramesDaily);
 		totFramesDaily = _.isNaN(totFramesDaily)? 0:totFramesDaily;
-
+                console.log(totFramesDaily);
 		if(totalNumOfFrames > totFramesDaily){
 			// In this case we have more than one data per day
 			// We need to request the hours for each day
-
+                        console.log("HEHEHEHEHE");
 			var daysStr = new Array();
 			daysStr = allFrames;
 			allFrames = new Array();
@@ -522,7 +530,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	// Creating dhe default parameters for the images
 	// Setting the default parameters for the layers being requested in the animation
 	animParams = { 
-				TIME:allFrames[0],
+				//TIME:allFrames[0],
 				LAYERS: layerName,
 				BBOX: extent.toString(),
 				REQUEST: "GetMap",
@@ -567,7 +575,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	console.log("START");
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-//		console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
+                console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");

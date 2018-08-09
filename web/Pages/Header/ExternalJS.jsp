@@ -25,7 +25,7 @@
 		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
 	</c:if>
         <c:if test='${language.equals("ES")}'>
-            <script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script>
+            <!--script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script-->
         </c:if>
             
         <!--script src="./common/JS/vendor/minimized/highcharts.js"></script-->
@@ -34,3 +34,7 @@
         <script src="./common/JS/vendor/minimized/data.js"></script>
         <!--script src="./common/JS/vendor/minimized/exporting.js"></script-->
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+        <!-- libraries for new calendars -->
+        <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" />
+        <script src="//cdn.webix.com/edge/webix.js"></script>
