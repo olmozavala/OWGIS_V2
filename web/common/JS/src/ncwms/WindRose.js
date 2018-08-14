@@ -19,22 +19,22 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
     V = dataV;
     for(i=0; i < U.length; i++){    	
       //windDirection[i] = Math.atan(V[i]/U[i]) * (180/ Math.PI);
-      T = Math.atan2(U[i],V[i])*(180/(Math.PI))
+      T = Math.atan2(U[i],V[i])*(180/(Math.PI));
       if(T<0){
-      	T = 360+T
+      	T = 360+T;
       }      	
-      windDirection[i] = T
+      windDirection[i] = T;
       windSpeed[i] = Math.sqrt( Math.pow(U[i],2) + Math.pow(V[i],2) );
     } 
-    console.log("*******************************");
+    /*console.log("*******************************");
     console.log(windDirection);
     console.log(windSpeed);
-    
+    */
     windDataJSON = [];
     for (i = 0; i < windDirection.length; i++) {
         windDataJSON.push([ windDirection[i], windSpeed[i] ]);
     }
-    console.log(windDataJSON);
+    //console.log(windDataJSON);
     /*
      * number of freqs = 4
      * 
@@ -49,7 +49,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
         var dist = (maxfreq - minfreq) / 2;
         for (var i = 0; i <= 2; ++i) freqs.push( minfreq + (i*dist) );
     }*/
-    console.log(minfreq, maxfreq);
+    //console.log(minfreq, maxfreq);
     
     var categories = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
     var catdict = {
@@ -346,11 +346,12 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             }
         }
     }
-    console.log(catdict);
+    //console.log(catdict);
+    var unims = " m/s";
     dataseries= [ 
             {
                 "type": "column",
-                "name": (minfreq + (0*dist)).toFixed(2) + " - "+ (minfreq + ((1)*dist)).toFixed(2),
+                "name": (minfreq + (0*dist)).toFixed(2) + " - "+ (minfreq + ((1)*dist)).toFixed(2)+unims,
                 "data" : [
                     ["N", catdict.freq1.N],
                     ["NNE", catdict.freq1.NNE],
@@ -372,7 +373,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             },
             {
                 "type": "column",
-                "name": (minfreq + (1*dist)).toFixed(2) + " - "+ (minfreq + (2*dist)).toFixed(2),
+                "name": (minfreq + (1*dist)).toFixed(2) + " - "+ (minfreq + (2*dist)).toFixed(2)+unims,
                 "data" : [
                     ["N", catdict.freq2.N],
                     ["NNE", catdict.freq2.NNE],
@@ -394,7 +395,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             },
             {
                 "type": "column",
-                "name": (minfreq + (2*dist)).toFixed(2) + " - "+ (minfreq + ((3)*dist)).toFixed(2),
+                "name": (minfreq + (2*dist)).toFixed(2) + " - "+ (minfreq + ((3)*dist)).toFixed(2)+unims,
                 "data" : [
                     ["N", catdict.freq3.N],
                     ["NNE", catdict.freq3.NNE],
@@ -416,7 +417,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             },
             {
                 "type": "column",
-                "name": (minfreq + (3*dist)).toFixed(2) + " - "+ (minfreq + ((4)*dist)).toFixed(2),
+                "name": (minfreq + (3*dist)).toFixed(2) + " - "+ (minfreq + ((4)*dist)).toFixed(2)+unims,
                 "data" : [
                     ["N", catdict.freq4.N],
                     ["NNE", catdict.freq4.NNE],
@@ -437,7 +438,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
                 ]
             }
     ];
-    console.log(dataseries);    
+    //console.log(dataseries);    
     
     if(mobile){
         if( screen.width > screen.height ){

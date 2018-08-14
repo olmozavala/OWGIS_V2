@@ -267,3 +267,15 @@ input.ui-slider-input {
     margin: 50%;
 }*/
 
+
+.ui-mobile label, div.ui-controlgroup-label {
+    font-size: 13px;
+}
+
+div#timeSelect-button {
+    font-size: 11px;
+}
+
+.webix_view.webix_calendar.calendarCustomClass > .webix_cal_month {
+    display: none !important;
+}

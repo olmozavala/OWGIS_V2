@@ -4,14 +4,18 @@
 		<li>
 			<div id="hideOneDay">
 				<label for="cal-start"><fmt:message key="ncwms.cal.start" /></label>
+                                <div class="col-xs-6 " id="cal-start"> </div>
+                                <!--
 				<input type="text" data-role="date" id="cal-start" readonly='true' data-mini="true">
+                                -->
 			</div>
 		</li>
 
 		<li>
 			<div id="hideOneDayEnd">
 				<label for="cal-end"><fmt:message key="ncwms.cal.end" /></label>
-				<input type="text" data-role="date" id="cal-end" readonly='true' data-mini="true">
+                                <div class="col-xs-6 " id="cal-end"> </div>
+				<!--<input type="text" data-role="date" id="cal-end" readonly='true' data-mini="true">-->
 			</div>
 		</li>
 		<li>

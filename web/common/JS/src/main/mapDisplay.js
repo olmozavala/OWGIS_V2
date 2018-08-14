@@ -204,9 +204,10 @@ function initMenus() {
 		owgis.ncwms.palettes.updateHorizontalPalette();
 
 	});
-        
+               
         $$("start_calendar").refresh();
         $$("end_calendar").refresh();
+                
 }
 
 function resizeMobilePanels(){

@@ -242,26 +242,28 @@ function asyncFillAnimationSelect(responseText) {
         var title = animOpts.timeStrings[key].title;
         if(typeof title != 'undefined'){
             var fullStr = animOpts.timeStrings[key].timeString;
-                //console.log(title);
+                console.log(fullStr, title);
 		var tempNum= title.match(/[0-9]+/);//Obtain only the number of frames
 		var totNum = parseInt(tempNum);//Parse them as int
-
-		// We need to initialize the days for the 'full' case
-		if( key === "0"){ 
-			// If we have more than one day, then we copy the days from the 'daily' option
-			if( animOpts.timeStrings.length > 1){
-				fullStr = animOpts.timeStrings[1].timeString;//Force daily options
-			}else{//If not, it means we are only looking at one day
-				var tempStr = animOpts.timeStrings[0].timeString;//Force daily options
-				fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
-			}
-			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
-				'forTimeSeries' : animOpts.timeStrings[0].timeString,
-				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
-		}else{
-			$('#timeSelect').append( $('<option>', {'totFrames': totNum, 
-				'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
-		}
+                var isNeg = title.search(/-[0-9]+/);
+                if(isNeg == -1){
+                    // We need to initialize the days for the 'full' case
+                    if( key === "0"){ 
+                            // If we have more than one day, then we copy the days from the 'daily' option
+                            if( animOpts.timeStrings.length > 1){
+                                    fullStr = animOpts.timeStrings[1].timeString;//Force daily options
+                            }else{//If not, it means we are only looking at one day
+                                    var tempStr = animOpts.timeStrings[0].timeString;//Force daily options
+                                    fullStr = tempStr.substring(0,tempStr.lastIndexOf("/"));
+                            }
+                            $('#timeSelect').append( $('<option>', {'totFrames': totNum, 
+                                    'forTimeSeries' : animOpts.timeStrings[0].timeString,
+                                    'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
+                    }else{
+                            $('#timeSelect').append( $('<option>', {'totFrames': totNum, 
+                                    'timeString' : fullStr, 'key' : key} ).text(title));// Add option into dates range select
+                    }
+                }
         }
     }
 }

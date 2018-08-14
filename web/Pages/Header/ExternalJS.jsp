@@ -38,3 +38,4 @@
         <!-- libraries for new calendars -->
         <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" />
         <script src="//cdn.webix.com/edge/webix.js"></script>
+        <script src="//cdn.webix.com/edge/i18n/es.js"></script>

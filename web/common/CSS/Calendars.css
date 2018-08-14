@@ -82,3 +82,7 @@
 .webix_view.webix_window.webix_popup{
     z-index: 999999 !important;
 }
+
+.webix_view.webix_calendar.calendarCustomClass > .webix_cal_month {
+    display: none !important;
+}

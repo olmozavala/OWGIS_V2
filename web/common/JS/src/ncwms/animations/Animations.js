@@ -315,19 +315,12 @@ function obtainSelectedDates(){
         
         var step = allFrames[0].split("/")[2];
         
-        console.log(allFrames, step, totalNumOfFrames);
+        //console.log(allFrames, step, totalNumOfFrames);
 	// Verify we are ncWMS2
 	if(layerDetails['ncwmstwo']){
 		//In this case we need to create the array of dates from the 'range string'
 		var datesRange = moment.range(allFrames[0]);
-                /*var allDates = [];
-                var arrTemp = datesRange.by('day');
-                for(var val in  arrTemp) {
-                    allDates.push(artTemp[val])
-                }
-                console.log(allDates.lenght);
-                allFrames = allDates.map(function(m) { return m.utc().format() });*/
-                //console.log(datesRange);
+                
                 if(layerDetails.subtitleText == "monthly"){
                     if( step == "P2M"){
                         var allDates = Array.from(datesRange.by('month', { step: 2 }));
@@ -356,6 +349,10 @@ function obtainSelectedDates(){
                     }
                 } else {
                     switch(step) {
+                        case "P6M":
+                            var allDates = Array.from(datesRange.by('month', { step: 6 }));
+                            allFrames = allDates.map(m => m.utc().format());
+                            break;
                         case "P7D":
                             var allDates = Array.from(datesRange.by('day', { step: 7 }));
                             allFrames = allDates.map(m => m.utc().format());
@@ -374,19 +371,34 @@ function obtainSelectedDates(){
                             allFrames = allDates.map(m => m.utc().format());
                     }
                 }
-                /*console.log(allDates);
-		console.log(allFrames);*/
 	}
 	if(key === "0"){//It means we are requesting the 'full' dimension
 		//Total number of frames in 'full' mode
 		//Total number of frames in 'daily' mode
-		var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames')); console.log(totFramesDaily);
+		var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames')); //console.log(totFramesDaily);
 		totFramesDaily = _.isNaN(totFramesDaily)? 0:totFramesDaily;
-                console.log(totFramesDaily);
+                //console.log(totFramesDaily);
 		if(totalNumOfFrames > totFramesDaily){
+                    if(layerDetails.subtitleText == "hourxmonth" ){
+                        daysStr = allFrames;
+                        startdate_ = new Date(daysStr[0]);
+                        allFrames = new Array();
+                        currDate = new Date(daysStr[0]);//Get next day
+			reqTIME = owgis.utils.getDate("%Y-%m-%d",currDate,true);
+                        owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
+                        enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
+                        var allDates = [];
+                        while( currDate <= enddate_){
+                            if( _.contains(allFrames,currDate.toISOString()) ){
+                                allDates.push( currDate.toISOString() ); 
+                            }
+                            currDate.setHours(currDate.getHours()+1); 
+                        }
+                        allFrames = allDates;
+                    } else {
 			// In this case we have more than one data per day
 			// We need to request the hours for each day
-                        console.log("HEHEHEHEHE");
+                        //console.log("HEHEHEHEHE");
 			var daysStr = new Array();
 			daysStr = allFrames;
 			allFrames = new Array();
@@ -400,6 +412,7 @@ function obtainSelectedDates(){
 
 				owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
 			}
+                    }
 		}
 	}
 }
@@ -423,8 +436,8 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
 		owgis.mobile.closePanels();
 		owgis.mobile.openDrawer();
 	}
-        console.log(allFrames);
-        console.log(totalNumOfFrames);
+        //console.log(allFrames);
+        //console.log(totalNumOfFrames);
 	//Create the required global variables if they don't exist
 	for(var i = 0; i < totalNumOfFrames; i++){
 		try{// Hack to test if the variable already exists
@@ -572,10 +585,10 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 	// This loops starts 'n' number of parallel requests for animation
 	// images.
-	console.log("START");
+	//console.log("START");
 	for(var i = 0; i < Math.min(numberOfParallelRquests,totalNumOfFrames); i++){
 		animParams.TIME = allFrames[i];
-                console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
+                //console.log(owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams));
 		eval("imageNumber"+i+".src = '"+owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams)+"'");
 		eval("imageNumber"+i+".id = "+i+";");
 		eval("imageNumber"+i+".errorCount = 0;");
@@ -583,7 +596,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 		eval("imageNumber"+i+".addEventListener('load', owgis.ncwms.animation.imageHasBeenLoadedParallel);");
 		eval("imageNumber"+i+".addEventListener('error', errorFunction);");
 	}
-	console.log("END");
+	//console.log("END");
 	
 	//For the link to download the GIF
 	animParams.FORMAT = "image/gif";
@@ -754,7 +767,7 @@ function loopAnimation(){
 	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
-        console.log(finalText);
+        //console.log(finalText);
         if(!_.isUndefined(layerDetails.subtitleText)){
             var d = Date.parse(finalText);
             var dd = new Date(d);
