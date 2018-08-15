@@ -279,3 +279,11 @@ div#timeSelect-button {
 .webix_view.webix_calendar.calendarCustomClass > .webix_cal_month {
     display: none !important;
 }
+
+.webix_popup {
+    z-index: 9999 !important;
+}
+
+.webix_point_top {
+    z-index: 9999 !important;
+}
