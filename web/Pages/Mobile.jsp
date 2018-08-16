@@ -76,6 +76,7 @@
 							<%@include file="Layouts/Mobile/RightPanels/M_ZAxisSelection.jsp" %> 
 						</c:if>
 						<c:if test='${multipleDates}'>
+                                                    <script> console.log("this is pooospps!!!"); </script>
 							<%@include file="Layouts/Mobile/RightPanels/M_DateSelection.jsp"%>
 						</c:if>
 					</c:if>

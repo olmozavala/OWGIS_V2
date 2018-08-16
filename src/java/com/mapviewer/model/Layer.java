@@ -334,10 +334,18 @@ public class Layer {
 			//Testing for multiple dates inside the layer
 			if(layerDetails.has("datesWithData") ){
 				String[] dateValues = layerDetails.getString("datesWithData").split(",");
+                                Boolean teststring;
+                                teststring = false;
+                                if(layerDetails.has("supportsTimeseries")){
+                                    teststring = (Boolean) (layerDetails.get("supportsTimeseries"));
+                                }
+                                
 				//If it has only 3 values then it means it is only one day
-				if(dateValues.length > 1){
-					this.multipleDates = true;
+				if(dateValues.length > 1 || teststring ){
+                                    this.multipleDates = true;
+                                    //System.out.println("teststring !!!!!");
 				}
+                                
 			}
 			
 			layerDetails.accumulate("server", server);

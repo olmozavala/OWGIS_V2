@@ -99,7 +99,7 @@ public class LayerMenuManagerSingleton {
 			
 			Layer newLayer = updateFields(layerElem, groupLayer);
 
-			System.out.println("Adding layer: "+newLayer.getName());
+			//System.out.println("Adding layer: "+newLayer.getName());
 			String[] layerMenu = null;
 			
 			try {

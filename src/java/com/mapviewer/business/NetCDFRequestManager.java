@@ -198,7 +198,7 @@ public class NetCDFRequestManager {
 		}
 		
 		if (accepted) {
-			System.out.println("layer details: " + layerDetails.toString());
+			//System.out.println("layer details: " + layerDetails.toString());
 			return layerDetails.toString();
 		} else {
 			throw new XMLLayerException("ERROR: Not able to load layer details for layer:" + layer.getName());

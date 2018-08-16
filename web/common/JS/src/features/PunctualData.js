@@ -662,6 +662,22 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                  }
 				console.log(el_width, el_height);	
 				 //Create the plots
+                                 
+                                 hh = data.split("\n");
+                                 hh.splice(0,3);
+                                 hh.splice(1,hh.length-1);
+                                 
+                                 var jj = new Date(hh[0].split(",")[0]);
+                                 var tzO = jj.getTimezoneOffset();
+                                 console.log(jj,tzO);
+                                 
+                                 Highcharts.setOptions({
+                                    time: {
+                                        timezoneOffset: (-tzO)
+                                    }
+                                });
+                                 
+                                 
 				 Highcharts.chart('containerChartsTS', {
 				    chart: {
 					width: el_width,
@@ -683,6 +699,9 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       title: {
                                         text: data.split('\n')[2].split(',')[0]
                                       },
+                                      dateTimeLabelFormats: {
+                                            day: '%e of %b'
+                                        },
                                       lineWidth: 1
                                     },
                                     data: {

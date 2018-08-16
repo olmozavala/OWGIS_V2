@@ -159,7 +159,7 @@
                 <layer Menu="SWDOWN,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda corta" 
 			   name="atlas_diario/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
@@ -226,7 +226,7 @@
                 <layer Menu="SWDOWN,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda corta" 
 			   name="atlas_mensuales/SWDOWN" 
-			   style="default-scalar"  palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar"  palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
@@ -347,7 +347,7 @@
                 <layer Menu="SWDOWN,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_enero/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -412,7 +412,7 @@
                 <layer Menu="SWDOWN,PromHM,M02" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
@@ -477,7 +477,7 @@
                 <layer Menu="SWDOWN,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -543,7 +543,7 @@
                 <layer Menu="SWDOWN,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_abril/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -609,7 +609,7 @@
                 <layer Menu="SWDOWN,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -675,7 +675,7 @@
                 <layer Menu="SWDOWN,PromHM,M06" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_junio/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
@@ -741,7 +741,7 @@
                 <layer Menu="SWDOWN,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_julio/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -807,7 +807,7 @@
                 <layer Menu="SWDOWN,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -873,7 +873,7 @@
                 <layer Menu="SWDOWN,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -939,7 +939,7 @@
                 <layer Menu="SWDOWN,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -1004,7 +1004,7 @@
                 <layer Menu="SWDOWN,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -1069,7 +1069,7 @@
                 <layer Menu="SWDOWN,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda corta" 
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1134,7 +1134,7 @@
                 <layer Menu="SWDOWN,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda corta" 
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                              subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />

@@ -156,7 +156,7 @@ function initMenus() {
         
     } 
 	
-    owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
+    
     updateMenusDisplayVisibility("default");
 	if(mobile === false){
 		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
@@ -203,11 +203,7 @@ function initMenus() {
 		//Try to update the position of the horizontal palette (only for ncWMStwo)
 		owgis.ncwms.palettes.updateHorizontalPalette();
 
-	});
-               
-        $$("start_calendar").refresh();
-        $$("end_calendar").refresh();
-                
+	});                
 }
 
 function resizeMobilePanels(){

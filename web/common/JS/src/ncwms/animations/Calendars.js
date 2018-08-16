@@ -93,6 +93,7 @@ owgis.ncwms.calendars.updateEndHour = function(){
  */
 function displayCalendars(disp){
 	var visib = disp ? "visible" : "hidden";
+        console.log(visib, "wtf dnskjdh jkvsd ");
 	if(mobile){
 		$("#trigger2").css("display",disp?"block":"none");
 	}
@@ -185,221 +186,148 @@ function initCalendars(){
 				locCurrDate.setDate( locCurrDate.getDate() + 1);
 			}
                         console.log(datesWithNoData);
-
+                        
+                        minValidDate.setHours(0);
+                        //maxValidDate.setHours(maxValidDate.getHours() - maxValidDate.getTimezoneOffset()/60 );
+                        var calendars = {
+                            container:"cal-start",
+                            id:"start_calendar",
+                            minDate: minValidDate,
+                            maxDate: maxValidDate,
+                            width:200                            
+                        };
+                        var calendare = {
+                            container:"cal-end",
+                            id:"end_calendar",
+                            minDate: minValidDate,
+                            maxDate: maxValidDate,
+                            width:200
+                        };
+                        
+                        if(mobile){
+                            calendars.view = "datepicker";
+                            calendare.view = "datepicker";
+                            calendars.value = minValidDate;
+                            calendare.value = maxValidDate;
+                        } else {
+                            calendars.view="calendar";
+                            calendars.date = minValidDate;
+                            calendare.view = "calendar";
+                            calendare.date = minValidDate;
+                        }
+                        
                         switch(layerDetails.subtitleText){
                             case "daily":
                                 if(mobile){
-                                    webix.ui({
-                                        container:"cal-start",
-                                        view:"datepicker",
-                                        id:"start_calendar",
-                                        value: minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate,
-                                        calendarHeader:"%F",
-                                        format:"%d de %F",
-                                        blockDates:function(date){
-                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                    
+                                    calendars.calendarHeader = "%F";
+                                    calendars.format = "%d de %F";
+                                    calendars.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
-                                        },
-                                        width:200/*,
-                                        height:200*/
-                                    });
-
-                                    webix.ui({
-                                        container:"cal-end",
-                                        view:"datepicker",
-                                        id:"end_calendar",
-                                        value: maxValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate,
-                                        calendarHeader:"%F",
-                                        format:"%d de %F",
-                                        blockDates:function(date){
-                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                        };
+                                    
+                                    calendare.calendarHeader = "%F";
+                                    calendare.format = "%d de %F";
+                                    calendare.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
-                                        },
-                                        width:200/*,
-                                        height:200*/
-                                    });
+                                        };
+                                    
                                 } else {
-                                    webix.ui({
-                                        container:"cal-start",
-                                        view:"calendar",
-                                        id:"start_calendar",
-                                        date: minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate,
-                                        calendarHeader:"%F",
-                                        weekHeader:true,
-                                        blockDates:function(date){
-                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                    
+                                    calendars.calendarHeader = "%F";
+                                    calendars.weekHeader=true;
+                                    calendars.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
-                                        },
-                                        width:200,
-                                        height:200
-                                    });
-
-                                    webix.ui({
-                                        container:"cal-end",
-                                        view:"calendar",
-                                        id:"end_calendar",
-                                        date: minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate,
-                                        calendarHeader:"%F",
-                                        weekHeader:true,
-                                        blockDates:function(date){
-                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
+                                        };
+                                    calendars.height = 200;
+                                    
+                                    calendare.calendarHeader = "%F";
+                                    calendare.weekHeader = true;
+                                    calendare.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
-                                        },
-                                        width:200,
-                                        height:200
-                                    });
+                                        };
+                                    calendare.height = 200;
                                 }
                                 break;
                             case "monthly":
-                                minValidDate.setHours(0);
                                 maxValidDate.setHours(0);
                                 if(mobile){
-                                    webix.ui({   
-                                        container:"cal-start",
-                                        view:"datepicker",
-                                        css: "calendarCustomClass",
-                                        type: "month",
-                                        format:"%F",
-                                        width: 200,
-                                        id:"start_calendar",
-                                        headerHeight: 0,
-                                        value:minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate
-                                    });
+                                   calendars.css = "calendarCustomClass";
+                                   calendars.type = "month";
+                                   calendars.format = "%F";
+                                   calendars.headerHeight = 0;
 
-                                     webix.ui({   
-                                        container:"cal-end",
-                                        view:"datepicker",
-                                        css: "calendarCustomClass",
-                                        type: "month",
-                                        format:"%F",
-                                        width: 200,
-                                        id:"end_calendar",
-                                        headerHeight: 0,
-                                        value:maxValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate
-                                    });                   
+                                    calendare.css = "calendarCustomClass";
+                                    calendare.type= "month";
+                                    calendare.format="%F";
+                                    calendare.headerHeight = 0;             
                                 } else {
-                                    webix.ui({   
-                                        container:"cal-start",
-                                        view:"calendar",
-                                        css: "calendarCustomClass",
-                                        type: "month",
-                                        height: 150,
-                                        width: 200,
-                                        //cellHeight: 45,
-                                        id:"start_calendar",
-                                        headerHeight: 0,
-                                        date:minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate
-                                    });
+                                    calendars.css ="calendarCustomClass";
+                                    calendars.type = "month";
+                                    calendars.height = 150;
+                                    calendars.headerHeight = 0;
 
-                                     webix.ui({   
-                                        container:"cal-end",
-                                        view:"calendar",
-                                        css: "calendarCustomClass",
-                                        type: "month",
-                                        height: 150,
-                                        width: 200,
-                                        //cellHeight: 45,
-                                        id:"end_calendar",
-                                        headerHeight: 0,
-                                        date:minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate
-                                    });                   
+                                    calendare.css = "calendarCustomClass",
+                                    calendare.type = "month";
+                                    calendare.height = 150;
+                                    calendare.headerHeight = 0;                   
                                 }
                                   
                                 break;
                             default: 
                                 //case "hourxmonth":
-                                minValidDate.setHours(0);
-                                console.log("why", minValidDate);
-                                if(mobile){
-                                    webix.ui({
-                                        container:"cal-start",
-                                        view:"datepicker",
-                                        id:"start_calendar",
-                                        value: minValidDate,
-                                        minDate: minValidDate,
-                                        maxDate: maxValidDate,
-                                        calendarHeader:"%F",
-                                        format:"%d de %F",
-                                        blockDates:function(date){
-                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) != -1)
-                                                return true;
-                                        },
-                                        width:200
-                                    });
-                                    /*
-                                   webix.ui({
-                                        container:"cal-start",
-                                        view:"datepicker", 
-                                        //type:"time",
-                                        id: "start_calendar",
-                                        width: 200,
-                                        value: minValidDate
-                                    });
-                                */
-                                    webix.ui({
-                                        container:"cal-end",
-                                        view:"datepicker", 
-                                        //type:"time",
-                                        width: 200,
-                                        value: minValidDate,
-                                        id: "end_calendar"
-                                    });
-                               } else {
-                                   webix.ui({
-                                        container:"cal-start",
-                                        view:"calendar", 
-                                        type:"time",
-                                        date: minValidDate,
-                                        //calendarHeader:"%F",
-                                        //timepicker: true,
-                                        id: "start_calendar",
-                                        width: 200,
-                                        //minDate: minValidDate,
-                                        //maxDate: maxValidDate,
-                                        value: minValidDate,
-                                        blockTime:function(date){
-                                            if (date.getMinutes() != 0) return true
-                                        }
-                                    });
-
-                                    webix.ui({
-                                        container:"cal-end",
-                                        view:"calendar", 
-                                        type:"time",
-                                        width: 200,
-                                        //view: "datepicker",
-                                        date: minValidDate,
-                                        //calendarHeader:"%F",
-                                        //timepicker: true,
-                                        id: "end_calendar",
-                                        //minDate: minValidDate,
-                                        //maxDate: maxValidDate,
-                                        //value: minValidDate,
-                                        blockTime:function(date){
-                                            if (date.getMinutes() != 0) return true
-                                        }
-                                    });
+                                calendars.type = "time";
+                                calendare.type = "time";
+                                if(!mobile){
+                                    calendare.value=maxValidDate;
+                                    calendars.value=minValidDate;
+                                    //calendars.height = 150;
+                                    calendars.blockTime = function(date){
+                                            if (date.getMinutes() !== 0) return true;
+                                        };
+                                    //calendare.height = 150;
+                                    calendare.blockTime = function(date){
+                                            if (date.getMinutes() !== 0) return true;
+                                        };
                                }
                                 break;
                         }
-                        if(layerDetails.subtitleText != "hourxmonth"){
-                            if(mobile){
+                        
+                        webix.ready(function(){
+                            
+                            webix.ui(calendars);
+                            webix.ui(calendare);
+                            
+                            if(layerDetails.subtitleText !== "hourxmonth"){
+                                if(mobile){
+                                    $$('start_calendar').attachEvent("onChange", function(date){
+                                        updateCalendarStart();
+                                    });
+
+                                    $$('end_calendar').attachEvent("onChange", function(date){
+                                        updateCalendarEnd();
+                                    });
+                                } else {
+                                    $$("start_calendar").selectDate(minValidDate);
+                                    $$("start_calendar").showCalendar(minValidDate);
+                                    $$("end_calendar").selectDate(maxValidDate);
+                                    $$("end_calendar").showCalendar(maxValidDate);
+                                    $$('start_calendar').attachEvent("onDateselect", function(date){
+                                        updateCalendarStart();
+                                    });
+
+                                    $$('end_calendar').attachEvent("onDateselect", function(date){
+                                        updateCalendarEnd();
+                                    });
+                                }
+                            } else {
+                                
+                                $$("start_calendar").setValue(minValidDate);
+                                $$("end_calendar").setValue(maxValidDate);       
                                 $$('start_calendar').attachEvent("onChange", function(date){
                                     updateCalendarStart();
                                 });
@@ -407,30 +335,27 @@ function initCalendars(){
                                 $$('end_calendar').attachEvent("onChange", function(date){
                                     updateCalendarEnd();
                                 });
-                            } else {
-                                $$("start_calendar").selectDate(minValidDate);
-                                $$("start_calendar").showCalendar(minValidDate);
-                                $$("end_calendar").selectDate(maxValidDate);
-                                $$("end_calendar").showCalendar(maxValidDate);
-                                $$('start_calendar').attachEvent("onDateselect", function(date){
-                                    updateCalendarStart();
-                                });
-
-                                $$('end_calendar').attachEvent("onDateselect", function(date){
-                                    updateCalendarEnd();
-                                });
+                            }        
+                            
+                            $('#CalendarsAndStopContainer').show("fade");
+                            
+                            if(!mobile && layerDetails.subtitleText == "hourxmonth"){
+                                    $$("start_calendar").refresh();
+                                    $$("end_calendar").refresh();
                             }
-                        } else {
-                            $$("start_calendar").setValue(minValidDate);
-                            $$("end_calendar").setValue(maxValidDate);       
-                            $$('start_calendar').attachEvent("onChange", function(date){
-                                updateCalendarStart();
-                            });
-
-                            $$('end_calendar').attachEvent("onChange", function(date){
-                                updateCalendarEnd();
-                            });
-                        }        
+                           
+                            displayCalendars(true);
+                            
+                            calInitialized = true;
+                            _mainlayer_multipleDates= true;
+                            updateCalendarOpts(owgis.constants.startcal);
+                            updateCalendarOpts(owgis.constants.endcal);
+                            
+                            owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
+                            
+                        });
+                        
+                        
 			/*$("#cal-start").datepicker("setDate",startDate);
 			$("#cal-end").datepicker("setDate",maxValidDate);
                         $("#cal-start").datepicker("option", "prevText", "");
@@ -438,18 +363,6 @@ function initCalendars(){
                         $("#cal-end").datepicker("option", "prevText", "");
                         $("#cal-end").datepicker("option", "nextText", "");*/
 			
-			displayCalendars(true);
-                        
-                        
-			
-			calInitialized = true;
-			_mainlayer_multipleDates= true;
-			updateCalendarOpts(owgis.constants.startcal);
-			updateCalendarOpts(owgis.constants.endcal);
-                        
-                        /*$$("start_calendar").refresh();
-                        $$("end_calendar").refresh();
-                        $('.webix_cal_month').css('display','none');*/
                 
 		}//We have more than one day
 		else{//If we only have one day then we hide all the calendar options
@@ -707,7 +620,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	
 	if(asString){
             if(layerDetails.subtitleText == "hourxmonth"){
-                requestedDate.setHours(requestedDate.getHours() - 6);
+                requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                 return requestedDate.toISOString(); //.split('T')[0];
             } else {
                return requestedDate.toISOString().split('T')[0]; 
@@ -715,7 +628,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 		
 	}else{
             if(layerDetails.subtitleText == "hourxmonth"){
-                requestedDate.setHours(requestedDate.getHours() - 6);
+                requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                 return requestedDate; //.split('T')[0];
             } else {
                return requestedDate;
