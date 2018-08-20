@@ -216,6 +216,8 @@ function initCalendars(){
                             calendare.date = minValidDate;
                         }
                         
+                        console.log(maxValidDate);
+                        
                         switch(layerDetails.subtitleText){
                             case "daily":
                                 if(mobile){
@@ -631,6 +633,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
                 requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                 return requestedDate; //.split('T')[0];
             } else {
+               requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                return requestedDate;
             }
 		
