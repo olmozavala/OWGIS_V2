@@ -39,7 +39,7 @@ goog.require('owgis.mobile');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
-var hoverDisabled = false; //Used to disable showing the hover texts
+var hoverDisabled = true; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
 var _mobileScreenThreshold = 750;
 /////////constants
@@ -293,6 +293,7 @@ function MapViewersubmitForm() {
             owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
     	else{
+            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
             localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.language = _curr_language;
@@ -306,7 +307,12 @@ function MapViewersubmitForm() {
             localStorage.particles_speed = owgis.ncwms.currents.particles.getParticleSpeed();
             localStorage.particles_lifetime = owgis.ncwms.currents.particles.getParticlesLifeTime();
             localStorage.particles_color = owgis.ncwms.currents.getColor();
-            document.getElementById("mobile").value = mobile;
+            
+            localStorage.server_name = window.location.href;
+            console.log(hoverDisabled);
+            localStorage.disable_hover = hoverDisabled;
+            
+            //document.getElementById("mobile").value = mobile;
     	}
         submitForm();
     }

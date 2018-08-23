@@ -44,7 +44,8 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
     }
 
 	localStorage.server_name = window.location.href;
-    localStorage.disable_hover = hoverDisabled;
+        console.log(hoverDisabled);
+        localStorage.disable_hover = hoverDisabled;
     
 }
 
@@ -54,7 +55,7 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 {
 	try{
-		if( localStorage.server_name === window.location.href){
+		if( localStorage.server_name === window.location.href || typeof localStorage.server_name === "undefined"){
 			// Repositions the main layers menu
 			repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
 			'mainMenuParent', 'mainMenuMinimize');
@@ -113,11 +114,14 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 
 			//Updates the position of the map as it was previously set
 			owgis.ol3.positionMap();
-			
-			if( localStorage.disable_hover === "true"){
-				//Disables the text hovers 
-				owgis.help.tooltips.toggleTooltips();
-			}
+                        
+                        if( typeof localStorage.disable_hover === "undefined" || localStorage.disable_hover === "true"){
+                            //Disables the text hovers 
+                            console.log('disable hover');
+                            owgis.help.tooltips.toggleTooltips();
+                            owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');
+                        }
+
 			
 			// Finally we test if they fit on the screen
 			owgis.layouts.draggable.repositionDraggablesByScreenSize();

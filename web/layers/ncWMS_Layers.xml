@@ -119,7 +119,7 @@
 		<layer Menu="Prec,PromD" 
 			   EN="Total Precipitation" ES="Climatología Diaria de Precipitación Total"
 			   name="atlas_diario/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
@@ -127,7 +127,7 @@
 		<layer Menu="PBLH,PromD" 
 			   EN="Boundary layer height" ES="Climatología Diaria de Altura de la capa límite"
 			   name="atlas_diario/PBLH" style="default-scalar" palette="alturacapalimite"
-                           mincolor="0" maxcolor="2000" subtitleText="daily"
+                           mincolor="0" maxcolor="2800" subtitleText="daily"
                            
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
@@ -150,7 +150,7 @@
                 
                 <layer Menu="GLW,PromD" EN="Long wave radiation" 
 			   ES="Climatología Diaria de Radiacion de onda larga" 
-			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
@@ -185,7 +185,7 @@
 		<layer Menu="Prec,PromM" 
 			   EN="Total Precipitation" ES="Climatología Mensual de Precipitación Total"
 			   name="atlas_mensuales/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
@@ -193,7 +193,7 @@
 		<layer Menu="PBLH,PromM" 
 			   EN="Boundary layer height" ES="Climatología Mensual de Altura de capa límite"
 			   name="atlas_mensuales/PBLH" style="default-scalar"  palette="alturacapalimite"
-                           mincolor="0" maxcolor="2000"
+                           mincolor="0" maxcolor="2800"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
@@ -217,7 +217,7 @@
                 
                 <layer Menu="GLW,PromM" EN="Long wave radiation" 
 			   ES="Climatología Mensual de Radiacion de onda larga" 
-			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
@@ -252,7 +252,7 @@
 		<layer Menu="Prec,PromMAD" 
 			   EN="Total Precipitation" ES="Máxima absoluta diaria de Precipitación Total"
 			   name="atlas_maxs_abs_diarios/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximosAbsolutosDiarios/Maximas_Dia.nc/"
                 />
@@ -279,7 +279,7 @@
 		<layer Menu="Prec,PromMAM" 
 			   EN="Total Precipitation" ES="Máxima promedio mensual de Precipitación Total"
 			   name="atlas_promedios_maxs_abs_mensuales/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -307,7 +307,7 @@
 		<layer Menu="Prec,PromHM,M01" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_enero/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -315,7 +315,7 @@
 		<layer Menu="PBLH,PromHM,M01" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"  palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800"  palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -339,7 +339,7 @@
                 <layer Menu="GLW,PromHM,M01" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_enero/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
@@ -373,7 +373,7 @@
 		<layer Menu="Prec,PromHM,M02" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_febrero/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
@@ -381,7 +381,7 @@
 		<layer Menu="PBLH,PromHM,M02" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
@@ -405,7 +405,7 @@
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+                           palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 
@@ -437,7 +437,7 @@
 		<layer Menu="Prec,PromHM,M03" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_marzo/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -445,7 +445,7 @@
 		<layer Menu="PBLH,PromHM,M03" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -469,7 +469,7 @@
                 <layer Menu="GLW,PromHM,M03" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_marzo/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
@@ -503,7 +503,7 @@
 		<layer Menu="Prec,PromHM,M04" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_abril/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -511,7 +511,7 @@
 		<layer Menu="PBLH,PromHM,M04" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -535,7 +535,7 @@
                 <layer Menu="GLW,PromHM,M04" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_abril/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
@@ -569,7 +569,7 @@
 		<layer Menu="Prec,PromHM,M05" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_mayo/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -577,7 +577,7 @@
 		<layer Menu="PBLH,PromHM,M05" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000"  palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800"  palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -601,7 +601,7 @@
                 <layer Menu="GLW,PromHM,M05" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_mayo/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
@@ -635,7 +635,7 @@
 		<layer Menu="Prec,PromHM,M06" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_junio/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
@@ -643,7 +643,7 @@
 		<layer Menu="PBLH,PromHM,M06" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
@@ -668,7 +668,7 @@
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_junio/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+                           palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
                 />
                 
@@ -701,7 +701,7 @@
 		<layer Menu="Prec,PromHM,M07" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_julio/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -709,7 +709,7 @@
 		<layer Menu="PBLH,PromHM,M07" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -733,7 +733,7 @@
                 <layer Menu="GLW,PromHM,M07" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_julio/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
                 />
@@ -767,7 +767,7 @@
 		<layer Menu="Prec,PromHM,M08" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_agosto/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -775,7 +775,7 @@
 		<layer Menu="PBLH,PromHM,M08" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -799,7 +799,7 @@
                 <layer Menu="GLW,PromHM,M08" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_agosto/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
                 />
@@ -833,7 +833,7 @@
 		<layer Menu="Prec,PromHM,M09" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_septiembre/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -841,7 +841,7 @@
 		<layer Menu="PBLH,PromHM,M09" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -865,7 +865,7 @@
                 <layer Menu="GLW,PromHM,M09" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_septiembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
                 />
@@ -899,7 +899,7 @@
 		<layer Menu="Prec,PromHM,M10" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_octubre/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -907,7 +907,7 @@
 		<layer Menu="PBLH,PromHM,M10" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -931,7 +931,7 @@
                 <layer Menu="GLW,PromHM,M10" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_octubre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
                 />
@@ -965,7 +965,7 @@
 		<layer Menu="Prec,PromHM,M11" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_noviembre/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -973,7 +973,7 @@
 		<layer Menu="PBLH,PromHM,M11" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -996,7 +996,7 @@
                 <layer Menu="GLW,PromHM,M11" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_noviembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
                 />
@@ -1029,7 +1029,7 @@
 		<layer Menu="Prec,PromHM,M12" 
 			   EN="Total Precipitation" ES="Climatología horaria por mes de Precipitación Total"
 			   name="atlas_horarios_mes_diciembre/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1037,7 +1037,7 @@
 		<layer Menu="PBLH,PromHM,M12" 
 			   EN="Boundary layer height" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1061,7 +1061,7 @@
                 <layer Menu="GLW,PromHM,M12" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_diciembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
                 />
@@ -1094,7 +1094,7 @@
 		<layer Menu="Prec,MAM" 
 			   EN="Total Precipitation" ES="Máxima absoluta por mes de Precipitación Total"
 			   name="atlas_maxs_abs_mensuales/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1111,7 +1111,7 @@
                 <layer Menu="PBLH,MAM" 
 			   EN="Boundary layer height" ES="Máxima absoluta por mes de Altura de la capa límite"
 			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2000" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1126,7 +1126,7 @@
                 <layer Menu="GLW,MAM" EN="Long wave radiation" 
 			   ES="Máxima absoluta por mes de Radiacion de onda larga" 
 			   name="atlas_maxs_abs_mensuales/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="10"
+			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
@@ -1181,7 +1181,7 @@
                 <layer Menu="Prec,ANOM,1980" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1980/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/Anomalias/Anomalias_Anio_1980.nc/"
                 />
@@ -1206,7 +1206,7 @@
                 <layer Menu="Prec,ANOM,1981" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1981/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1229,7 +1229,7 @@
                 <layer Menu="Prec,ANOM,1982" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1982/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1252,7 +1252,7 @@
                 <layer Menu="Prec,ANOM,1983" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1983/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1275,7 +1275,7 @@
                 <layer Menu="Prec,ANOM,1984" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1984/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1298,7 +1298,7 @@
                 <layer Menu="Prec,ANOM,1985" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1985/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1321,7 +1321,7 @@
                 <layer Menu="Prec,ANOM,1986" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1986/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1344,7 +1344,7 @@
                 <layer Menu="Prec,ANOM,1987" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1987/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1367,7 +1367,7 @@
                 <layer Menu="Prec,ANOM,1988" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1988/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1390,7 +1390,7 @@
                 <layer Menu="Prec,ANOM,1989" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1989/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1413,7 +1413,7 @@
                 <layer Menu="Prec,ANOM,1990" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1990/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1436,7 +1436,7 @@
                 <layer Menu="Prec,ANOM,1991" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1991/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1459,7 +1459,7 @@
                 <layer Menu="Prec,ANOM,1992" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1992/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1482,7 +1482,7 @@
                 <layer Menu="Prec,ANOM,1993" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1993/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1505,7 +1505,7 @@
                 <layer Menu="Prec,ANOM,1994" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1994/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1528,7 +1528,7 @@
                 <layer Menu="Prec,ANOM,1995" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1995/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1551,7 +1551,7 @@
                 <layer Menu="Prec,ANOM,1996" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1996/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1574,7 +1574,7 @@
                 <layer Menu="Prec,ANOM,1997" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1997/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1597,7 +1597,7 @@
                 <layer Menu="Prec,ANOM,1998" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1998/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1620,7 +1620,7 @@
                 <layer Menu="Prec,ANOM,1999" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_1999/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1643,7 +1643,7 @@
                 <layer Menu="Prec,ANOM,2000" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2000/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1666,7 +1666,7 @@
                 <layer Menu="Prec,ANOM,2001" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2001/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1689,7 +1689,7 @@
                 <layer Menu="Prec,ANOM,2002" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2002/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1712,7 +1712,7 @@
                 <layer Menu="Prec,ANOM,2003" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2003/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1735,7 +1735,7 @@
                 <layer Menu="Prec,ANOM,2004" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2004/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1758,7 +1758,7 @@
                 <layer Menu="Prec,ANOM,2005" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2005/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1781,7 +1781,7 @@
                 <layer Menu="Prec,ANOM,2006" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2006/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1804,7 +1804,7 @@
                 <layer Menu="Prec,ANOM,2007" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2007/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1827,7 +1827,7 @@
                 <layer Menu="Prec,ANOM,2008" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2008/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1850,7 +1850,7 @@
                 <layer Menu="Prec,ANOM,2009" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2009/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1873,7 +1873,7 @@
                 <layer Menu="Prec,ANOM,2010" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2010/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1896,7 +1896,7 @@
                 <layer Menu="Prec,ANOM,2011" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2011/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1919,7 +1919,7 @@
                 <layer Menu="Prec,ANOM,2012" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2012/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1942,7 +1942,7 @@
                 <layer Menu="Prec,ANOM,2013" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2013/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1965,7 +1965,7 @@
                 <layer Menu="Prec,ANOM,2014" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2014/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -1988,7 +1988,7 @@
                 <layer Menu="Prec,ANOM,2015" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2015/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -2011,7 +2011,7 @@
                 <layer Menu="Prec,ANOM,2016" 
 			   EN="Total Precipitation" ES="Anomalías por mes de Precipitación Total"
 			   name="atlas_anomalias_2016/PREC2" style="default-scalar"
-			   mincolor="1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
+			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
                 />
                 
@@ -2048,17 +2048,17 @@
                 <layer Menu="Viento,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_99"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" />
                 <layer Menu="Viento,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_99_9" mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" />
 
-                <layer Menu="Prec,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_0_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_1"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_5"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_10"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_25"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_50"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_75"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_90"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_95"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99"  mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
-                <layer Menu="Prec,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99_9" mincolor="1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_0_1"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_1"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_5"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_10"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_25"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_50"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_75"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_90"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_95"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99"  mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
+                <layer Menu="Prec,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de Precipitación" style="default-scalar" palette="precipitacionGrad" name="percentiles/PREC_99_9" mincolor="0.1" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent" />
                 
                 <!-- Umbrales -->
                 <!-- 1980 -->
