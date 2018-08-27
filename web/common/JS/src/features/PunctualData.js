@@ -74,6 +74,20 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           data = data.replace(/^\s*\n/gm, "");
                           
                           ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
+                          
+                          hh = data.split("\n");
+                                 hh.splice(0,3);
+                                 hh.splice(1,hh.length-1);
+                                 
+                                 var jj = new Date(hh[0].split(",")[0]);
+                                 var tzO = jj.getTimezoneOffset();
+                                 console.log(jj,tzO);
+                                 
+                          Highcharts.setOptions({
+                                    time: {
+                                        timezoneOffset: (-tzO)
+                                    }
+                          });
                                           
                           Highcharts.chart('containerChartsVP', {
                             title: {
