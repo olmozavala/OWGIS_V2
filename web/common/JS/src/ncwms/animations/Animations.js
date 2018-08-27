@@ -776,7 +776,7 @@ function loopAnimation(){
             }else if(layerDetails.subtitleText == "monthly"){
                     finalText = meses[dd.getUTCMonth()];
             } else if(layerDetails.subtitleText == "hourxmonth"){
-                    finalText = dd.getUTCHours() +":00 de "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCHours() +":00 (hora local) de "+ meses[dd.getUTCMonth()];
             }
         } else {
             if (finalText.lastIndexOf(".") != -1) {

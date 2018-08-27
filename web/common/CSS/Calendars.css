@@ -86,3 +86,7 @@
 .webix_view.webix_calendar.calendarCustomClass > .webix_cal_month {
     display: none !important;
 }
+
+.webix_cal_hours:after {
+    content: " (local)";
+}

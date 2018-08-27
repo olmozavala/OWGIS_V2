@@ -671,7 +671,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                  var tzO = jj.getTimezoneOffset();
                                  console.log(jj,tzO);
                                  
-                                 Highcharts.setOptions({
+                                Highcharts.setOptions({
                                     time: {
                                         timezoneOffset: (-tzO)
                                     }
