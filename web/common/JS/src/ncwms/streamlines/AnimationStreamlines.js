@@ -55,8 +55,6 @@ var c_handler;
 
 var _cesi = null;
 
-
-
 window['owgis.ncwms.currents.setColor'] = owgis.ncwms.currents.setColor;
 owgis.ncwms.currents.setColor= function setColor(color){
 	currentsColor = color;
@@ -115,22 +113,16 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
 	
 	//Creates new currents layer model
 	layerTemplate = getDefaultLayer();
-        layerTemplate.attributes.srs = _map_projection;
+    layerTemplate.attributes.srs = _map_projection;
 
 	times = new Array();
 	// Updating current date
 	var mainLayerParams = owgis.layers.getMainLayer().getSource().getParams();
-        
 	if( !_.isEmpty(mainLayerParams.TIME)){
 		times.push( mainLayerParams.TIME);	
 	}else{
-		//times.push( layerDetails.nearestTimeIso );
-                d= new Date();
-                d.setHours(0,0,0,0);
-                d.setHours(d.getHours() - 5);
-                times.push( d.toISOString() );
+		times.push( layerDetails.nearestTimeIso );
 	}
-        //times.push(owgis.layers.getMainLayer().getSource().getParams().TIME);
 
 	//Reads and updates the data
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
@@ -151,6 +143,7 @@ owgis.ncwms.currents.startSingleDateAnimation = function startSingleDateAnimatio
  */
 window['owgis.ncwms.currents.startMultipleDateAnimation'] = owgis.ncwms.currents.startMultipleDateAnimation;
 owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnimation(dates){
+	//console.log(MuchosID_ada);
 	isRunningUnderMainAnimation = true;
 	isFirstTime = true;
 	//Creates new currents layer model
@@ -241,11 +234,9 @@ function updateWidthAndHeight(layerTemplate){
 	if( owgis.ncwms.animation.status.current !== owgis.ncwms.animation.status.none ){ 
 		resolutionFactor *= owgis.ncwms.animation.status.getResolutionRatioCurrents();
 	}
-    
-   var factZoom = ol3view.getZoom() < 1 ? 2.5 : 5;
 
-	var width = Math.ceil(($(window).width()/(factZoom*800))*imageRequestResolution*resolutionFactor);
-	var height = Math.ceil(($(window).height()/(factZoom*800))*imageRequestResolution*resolutionFactor);
+	var width = Math.ceil(($(window).width()/800)*imageRequestResolution*resolutionFactor);
+	var height = Math.ceil(($(window).height()/800)*imageRequestResolution*resolutionFactor);
 //	console.log("Requested resolution is: "+width+" x "+height);
 	layerTemplate.set("width",width);	
 	layerTemplate.set("height",height);	
@@ -343,6 +334,7 @@ function updateCurrentsCesium(event){
 						c_center.longitude+view_angle_lon,
 						c_center.latitude+view_angle_lat];
 	}
+    //currentExtent = ol.proj.transformExtent(currentExtent, PROJ_4326, _map_projection);
 /*
 	console.log(cam_rad.height);
 	console.log("****************************************************************");
@@ -382,6 +374,7 @@ function initstreamlineLayer(){
 	if(streamlineLayer !== null){//If the layer already existed, we remove it
 		map.removeLayer(streamlineLayer);
 	}
+	
 	//This is the source of the new map layer
 	var animSource= new ol.source.ImageCanvas({
 		canvasFunction: canvasAnimationCurrents,
@@ -410,7 +403,7 @@ function initstreamlineLayer(){
  */
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
 //	console.log("Update currents view and data");
-    canvas = document.getElementById("currentsCanvas");
+	canvas = document.getElementById("currentsCanvas");
     ctx = canvas.getContext('2d');
 
 	var canvasWidth = size[0];
@@ -420,8 +413,9 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
 	canvas.height = canvasHeight;
     currentExtent = extent;
     if(!isRunningUnderMainAnimation){
-        if(updateURL()){
+		if(updateURL()){
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+            //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
 		}
 	}else{
@@ -458,7 +452,6 @@ function abortPrevious(){
  */
 function updateData(){
 	// Clears previous animations
-        console.log('sospecho que aqui empieza la animacionm de las corrientes ;3 mmmm .... ');
 	owgis.ncwms.currents.cleanAnimationCurrentsAll();
 	var computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
 	
@@ -475,15 +468,12 @@ function updateData(){
 	
 	abortPrevious();//Abort any previous premises we have
     layerTemplate.attributes.srs = _map_projection;
-    if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
-        layerTemplate.attributes.srs = PROJ_4326;
-    }
+
     readDataPremises = new Array();
     if(layerDetails.ncwmstwo){
         // Iterate over all the times we are displaying (only one, unless we have animations)
         _.each(times, function(time, idx){
             layerTemplate.set("time",time);	
-            console.log('current taim',time);
 
 			//We obtain the request URLs for each vector field U and V
 			var compositeLayers = layerTemplate.get("layers");
@@ -553,11 +543,11 @@ function updateData(){
 							}
 							
 							loadedRequests++;
-							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents","fast");
+							owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
 
 							//Start the animation when 90% of the frames have been loaded
 							if( (loadedRequests/(totalRequests*2)) > .9){
-								owgis.interf.loadingatmap(false,0,null,"fast");
+								owgis.interf.loadingatmap(false,0);
 								startAnimationLoopCurrents();
 							}
 						}
@@ -573,6 +563,7 @@ function updateData(){
 						if(error){
 							console.log("Not possible to read JSON data: "+error.statusText);
 						}else{
+                            console.log("-----------------aqui-----------");
 							var uData = file[0].data;
 							var vData = file[1].data;
 							
@@ -642,6 +633,8 @@ function updateURL(){
 		var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
 		var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
 		var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
+        //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	
 		// Updating current zaxis
 		if( !_.isEmpty(layerDetails.zaxis)){
@@ -685,7 +678,7 @@ function startAnimationLoopCurrents(){
  * @returns {undefined}
  */
 function loopAnimationCurrents(){
-	//start = Date.now();
+	start = Date.now();
     //When the animation is 'playing' it loops on all the frames
 	if(!animationPaused){
 		
@@ -709,6 +702,9 @@ function loopAnimationCurrents(){
 		}else{
 			ctx.lineWidth = defLineWidth;
 		}
+        if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
+            return;
+        }
         owgis.ncwms.currents.particles.updateParticles(0, particlesArray.length);
         owgis.ncwms.currents.particles.drawParticles(0, particlesArray.length);
         ctx.stroke();
