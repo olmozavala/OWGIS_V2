@@ -138,7 +138,8 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
-	owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+        owgis.layouts.draggable.repositionDraggablesByScreenSize();
+	//owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
     }
 }
 
@@ -146,9 +147,8 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
  *This function moves the draggable windows when the user changes its window size. 
  */
 owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
-	
-	moveOneWindowToFitOnScreen("mainMenuParent");
-	moveOneWindowToFitOnScreen("optionalMenuParent");
+    moveOneWindowToFitOnScreen("mainMenuParent");
+    moveOneWindowToFitOnScreen("optionalMenuParent");
 	
     if (cqlFilter) {
         moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
@@ -169,16 +169,16 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
  * @returns {undefined}
  */
 owgis.layouts.draggable.init = function(){
-	
     //Only make windows draggable for 'topMenu' design
     if ( mobile === false) {
-		$(".draggableWindow").each( function(index) {
+        $(".draggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-		$(".transDraggableWindow").each( function(index) {
+        });
+        
+        $(".transDraggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-	}
+	});
+    }
 }
 
 /**
@@ -241,8 +241,7 @@ function repositionWindow(localStorageVariable, localStorage_minimized, windowTo
  *This function moves one window when the browswer is reseized
  *@param id - id of draggable window.
  */
-function moveOneWindowToFitOnScreen(id)
-{
+function moveOneWindowToFitOnScreen(id){
     var poundId = "#" + id;
 	
     //We only check the 'div' if it is visible
