@@ -35,7 +35,7 @@ owgis.layers.getTimesForDay = function(layer, time, allFrames){
 		REQUEST: "GetMetadata",
 		item: "timesteps",
 		layerName: layerName,
-		day: time,
+		day: time
 	};
 	
 	var url = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams);
