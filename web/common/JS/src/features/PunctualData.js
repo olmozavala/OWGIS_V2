@@ -134,17 +134,6 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
 
-                        var hh = data.split("\n");
-                        hh.splice(0,3);
-                        hh.splice(1,hh.length-1);
-                        var jj = new Date(hh[0].split(",")[0]);
-                        var tzO = jj.getTimezoneOffset(); //console.log(jj,tzO);
-                        Highcharts.setOptions({
-                            time: {
-                                timezoneOffset: (-tzO)
-                            }
-                        });
-
                         ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1)); // there is actual data in the response
                         //console.log(ajaxCan);
                         //Create the plot
@@ -670,6 +659,17 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                         ajaxCan = true;
                         ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
                         
+                        var hh = data.split("\n");
+                        hh.splice(0,3);
+                        hh.splice(1,hh.length-1);
+                        var jj = new Date(hh[0].split(",")[0]);
+                        var tzO = jj.getTimezoneOffset(); //console.log(jj,tzO);
+                        Highcharts.setOptions({
+                            time: {
+                                timezoneOffset: (-tzO)
+                            }
+                        });
+                        
                         if(typeof layerTitle != "undefined"){
                             titulo=layerTitle.innerText.split('\n')[0];
                         } else{
@@ -688,7 +688,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                             el_width = null;
                             el_height = 400;
                         }
-                        
+                        //console.log(data);
                         //Create the plots
                         Highcharts.chart('containerChartsTS', {
 				    chart: {
