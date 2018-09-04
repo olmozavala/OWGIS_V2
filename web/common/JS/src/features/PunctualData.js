@@ -133,18 +133,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         var data = allDataVP[allFramesVP[vpCurrentFrame]].responseText; 
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
-
-                        var hh = data.split("\n");
-                        hh.splice(0,3);
-                        hh.splice(1,hh.length-1);
-                        var jj = new Date(hh[0].split(",")[0]);
-                        var tzO = jj.getTimezoneOffset(); //console.log(jj,tzO);
-                        Highcharts.setOptions({
-                            time: {
-                                timezoneOffset: (-tzO)
-                            }
-                        });
-
+                        
                         ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1)); // there is actual data in the response
                         //console.log(ajaxCan);
                         //Create the plot
@@ -217,13 +206,13 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick=\"openVertProf(allDataVP, allFramesVP, '"+latlon+"');\" class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
                 document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+
                                                                           popuplink+
-                                                                          "&nbsp;<button style=\"display:none\" class='btn btn-default btn-xs' id=\"playVP\">"+
+                                                                          " <button style=\"display:none\" class='btn btn-default btn-xs' id=\"playVP\">"+
                                                                           "<span class='glyphicon glyphicon-play' ></span>"+
-                                                                          "</button>&nbsp;"+
+                                                                          "</button>"+
+                                                                          " <button class='btn btn-default btn-xs' id=\"pauseVP\">"+
+                                                                          "<span class='glyphicon glyphicon-pause' ></span> </button> "+
                                                                           "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"prevVP\">"+
                                                                           "<span class='glyphicon glyphicon-step-backward' ></span> </button> "+
-                                                                          "<button class='btn btn-default btn-xs' id=\"pauseVP\">"+
-                                                                          "<span class='glyphicon glyphicon-pause' ></span> </button> "+
                                                                           "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"nextVP\">"+
                                                                           "<span class='glyphicon glyphicon-step-forward' ></span> </button> ";
                 var dataLink = "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allDataVP, allFramesVP, '"+latlon+"');\">Show</button><br>";
@@ -667,6 +656,18 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                         
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
+                        
+                        var hh = data.split("\n");
+                        hh.splice(0,3);
+                        hh.splice(1,hh.length-1);
+                        var jj = new Date(hh[0].split(",")[0]);
+                        var tzO = jj.getTimezoneOffset(); console.log(jj,tzO);
+                        Highcharts.setOptions({
+                            time: {
+                                timezoneOffset: (-tzO)
+                            }
+                        });
+                        
                         ajaxCan = true;
                         ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
                         

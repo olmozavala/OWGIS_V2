@@ -43,9 +43,16 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
                 .remove()
                 .end()
         //Fill select
+        if(mobile){
+            layerDetails.timeSteps = [];
+        }
+        //Fill select
         for(var i=0; i < totHours; i++){
             var hour = hours.timesteps[i];
             currSelect.append( $('<option>',{ 'value' : hour } ).text(hour.substring(0,hour.indexOf("."))));// Displaying UTC hour
+            if(mobile){
+                layerDetails.timeSteps.push(hour);
+            }
         }
         //Show select
         currSelect.parent().show();

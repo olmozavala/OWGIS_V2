@@ -364,9 +364,13 @@ function obtainSelectedDates(){
             var allDates = [];
             console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
             myList = [];
-            $('#startTimeCalendar option').each(function() {
-                myList.push($(this).val());
-            });
+            if( !mobile ){
+                $('#startTimeCalendar option').each(function() {
+                    myList.push($(this).val());
+                });
+            } else {
+                myList = layerDetails.timeSteps;
+            }
             while( currDate <= enddate_){
                 if( _.contains(myList,currDate.toISOString().split("T")[1]) ){
                     allDates.push( currDate.toISOString() ); 
