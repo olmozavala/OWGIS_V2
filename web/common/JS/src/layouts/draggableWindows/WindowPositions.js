@@ -52,10 +52,10 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 /** Places the draggable windows to where the user last placed them. Also controls if they where
  * visible or minimized. 
  */
-owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
-{
+owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
 	try{
-		if( localStorage.server_name === window.location.href || typeof localStorage.server_name === "undefined"){
+		if(typeof localStorage.server_name === "undefined"){
+                    if(  localStorage.server_name.indexOf("atlas") != -1  ){
 			// Repositions the main layers menu
 			repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized,
 			'mainMenuParent', 'mainMenuMinimize');
@@ -125,6 +125,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
 			
 			// Finally we test if they fit on the screen
 			owgis.layouts.draggable.repositionDraggablesByScreenSize();
+                    }
 		}		
 	}catch(err){
 		console.log("Error initializing the menus... clearing local storage");

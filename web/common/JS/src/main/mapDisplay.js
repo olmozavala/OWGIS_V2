@@ -136,8 +136,8 @@ function owgisMain(){
  */
 function initMenus() {
 	
-	owgis.languages.buildselection();//Initializes the dropdown of languages
-	owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
+    owgis.languages.buildselection();//Initializes the dropdown of languages
+    owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
 
     disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.

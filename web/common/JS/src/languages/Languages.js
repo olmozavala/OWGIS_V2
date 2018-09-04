@@ -12,6 +12,7 @@ goog.provide('owgis.languages');
  */
 owgis.languages.setLocale = function (locale){
 	$("#_locale").val(locale);
+        _curr_language = locale;
 	MapViewersubmitForm();
 }
 
@@ -33,6 +34,7 @@ owgis.languages.buildselection = function buildDropDownLanguages(){
 
 
 		if( languages[i] === currLang){
+                        $("#_locale").val(currLang);
 			$("#selectedLanguage").html("");//Clear current selection
 			$("#selectedLanguage").append(img);
 			$("#selectedLanguage").append(langText);

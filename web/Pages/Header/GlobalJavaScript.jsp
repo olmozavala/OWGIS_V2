@@ -38,7 +38,7 @@
 	var cqlFilter = ${cqlfilter}; //Indicates if the base layer uses CQL filtering
     var _map_projection = mapConfig.mapProjection;// This is the default map projection
     var _map_bk_layer = '${backgroundLayer}';// This is the background layer we are using
-	var _curr_language = '${language}';
+	var _curr_language = typeof localStorage.language !== "undefined" ? localStorage.language : '${language}';
 
 	// For popup
 	var ol_popup = null;
