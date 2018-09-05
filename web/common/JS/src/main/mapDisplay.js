@@ -39,7 +39,7 @@ goog.require('owgis.mobile');
 
 var myWCSpopup; //variable for the small pop window that apears when the user clicks. 
 var displayingAnimation = false;//Global variable that helps to disable the palette selection
-var hoverDisabled = true; //Used to disable showing the hover texts
+var hoverDisabled = false; //Used to disable showing the hover texts
 var windowWidth = $(window).width();
 var _mobileScreenThreshold = 750;
 /////////constants
@@ -290,6 +290,7 @@ function updateTitle(dateText, elevText) {
 function MapViewersubmitForm() {
     if (map !== null) {
     	if(mobile){
+            localStorage.language = _curr_language;
             owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	}
     	else{

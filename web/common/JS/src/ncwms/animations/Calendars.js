@@ -93,7 +93,7 @@ owgis.ncwms.calendars.updateEndHour = function(){
  */
 function displayCalendars(disp){
 	var visib = disp ? "visible" : "hidden";
-        console.log(visib, "wtf dnskjdh jkvsd ");
+        //console.log(visib, "wtf dnskjdh jkvsd ");
 	if(mobile){
 		$("#trigger2").css("display",disp?"block":"none");
 	}
@@ -125,7 +125,7 @@ function initCalendars(){
 				if (year > maxYear) maxYear = year;
 			}
 		}
-		console.log(minYear, maxYear);
+		//console.log(minYear, maxYear);
 		for (var month in datesWithData[minYear]) {
 			if(owgis.utils.IsNumeric(month)){//Assume the first month is the minimum
 				if(month < minMonth){
@@ -171,7 +171,7 @@ function initCalendars(){
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
 
 		//We verify that we have more than one day
-                console.log(minValidDate, maxValidDate);
+                //console.log(minValidDate, maxValidDate);
 		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
 
 			var datesWithNoData = new Array();
@@ -185,7 +185,7 @@ function initCalendars(){
 				}
 				locCurrDate.setDate( locCurrDate.getDate() + 1);
 			}
-                        console.log(datesWithNoData);
+                        //console.log(datesWithNoData);
                         
                         minValidDate.setHours(0);
                         //maxValidDate.setHours(maxValidDate.getHours() - maxValidDate.getTimezoneOffset()/60 );
@@ -216,7 +216,7 @@ function initCalendars(){
                             calendare.date = minValidDate;
                         }
                         
-                        console.log(maxValidDate);
+                        //console.log(maxValidDate);
                         
                         switch(layerDetails.subtitleText){
                             case "daily":
@@ -423,7 +423,7 @@ function updateCalendarOpts(calUpdated){
 		var startDateDays = new Date(startDateTxt);
 		var endDateDays = new Date(endDateTxt);
 		
-                console.log("*****************************************************************************************************************/n",startDateDays.toISOString().split('T')[0],endDateDays);
+                //console.log("*****************************************************************************************************************/n",startDateDays.toISOString().split('T')[0],endDateDays);
                 
 		if(calUpdated ===  owgis.constants.startcal){
 			dispAnimationAjax(startDateDays.toISOString().split('T')[0],null,mainLayer,"getTimeSteps",owgis.constants.startcal);
@@ -493,7 +493,7 @@ function getSuggestedDate(actualDate,ahead){
 			return minValidDate;
 	}
 	
-        console.log('suggested date is ',end_final)
+        //console.log('suggested date is ',end_final)
 	// If we are within the limits return the computed date. 
 	return end_final;
 }
@@ -505,7 +505,7 @@ function getSuggestedDate(actualDate,ahead){
 function updateMainLayerDate(){
 	
     var currTime = owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
-    console.log(currTime,currTime.toISOString());
+    //console.log(currTime,currTime.toISOString());
     //currTime.setHours(currTime.getHours() - 6);
     //console.log("*78*5678*567*876*8*5678*76*8*5678*65*7865*78*678*567*8",currTime,currTime.toISOString());
     owgis.layers.updateMainLayerParam('TIME', currTime.toISOString());
@@ -601,7 +601,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	}else{
 		currTimeStr = 0;
 	}*/
-	console.log(currDateStr);
+	//console.log(currDateStr);
 	//Get hours from select and update date
 	/*if( !_.isUndefined(currTimeStr) ){
 		requestedDate = new Date(currDateStr);
@@ -610,7 +610,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 		requestedDate = new Date(currDateStr);
 	}*/
         requestedDate = new Date(currDateStr);    
-	console.log(requestedDate);
+	//console.log(requestedDate);
 	/*
 	if(GMT){
 		requestedDate = new Date(requestedDate.getUTCFullYear(), requestedDate.getUTCMonth(), 

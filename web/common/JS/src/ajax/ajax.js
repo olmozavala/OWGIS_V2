@@ -62,7 +62,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
             asynchronous5.call(url3);
         case "getTimeSteps":
             url3 += '&day=' + startDate;
-            console.log(url3);
+            //console.log(url3);
 			switch (cal) {
 				case owgis.constants.startcal:
 					asynchronous5.complete = asyncFillTimeStepsStart;
@@ -242,7 +242,7 @@ function asyncFillAnimationSelect(responseText) {
         var title = animOpts.timeStrings[key].title;
         if(typeof title != 'undefined'){
             var fullStr = animOpts.timeStrings[key].timeString;
-                console.log(fullStr, title);
+                //console.log(fullStr, title);
 		var tempNum= title.match(/[0-9]+/);//Obtain only the number of frames
 		var totNum = parseInt(tempNum);//Parse them as int
                 var isNeg = title.search(/-[0-9]+/);
