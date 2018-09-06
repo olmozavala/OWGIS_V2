@@ -170,7 +170,7 @@ function initCalendars(){
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
 
 		//We verify that we have more than one day
-                //console.log(minValidDate, maxValidDate);
+                console.log(minValidDate, maxValidDate, hoursForFirstDay);
 		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
 
 			var datesWithNoData = new Array();

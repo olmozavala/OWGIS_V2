@@ -764,7 +764,9 @@ function loopAnimation(){
 	
 	clearCanvas();
 	ctx.drawImage(eval('imageNumber'+currentFrame), 0, 0, canvas.width, canvas.height);
-	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+	//var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 	// Removing the :00:00.000Z from the text
 	var finalText = allFrames[currentFrame];
         //console.log(finalText);
@@ -772,11 +774,11 @@ function loopAnimation(){
             var d = Date.parse(finalText);
             var dd = new Date(d);
             if(layerDetails.subtitleText == "daily"){
-                    finalText = dd.getUTCDate() +", "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCDate() +" "+ meses[dd.getUTCMonth()];
             }else if(layerDetails.subtitleText == "monthly"){
                     finalText = meses[dd.getUTCMonth()];
             } else if(layerDetails.subtitleText == "hourxmonth"){
-                    finalText = dd.getUTCHours() +":00 (local), "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCHours() +":00 (local) "+ meses[dd.getUTCMonth()];
             }
         } else {
             if (finalText.lastIndexOf(".") != -1) {

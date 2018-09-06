@@ -690,8 +690,15 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                         timezoneOffset: (-tzO)
                                     }
                                 });
-                                 
-                                 
+                                
+                                if(_curr_language == "ES"){
+                                    Highcharts.setOptions({
+                                        lang: {
+                                            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                                            shortMonths: ["Enero", "Feb", "Marzo", "Abr", "Mayo", "Jun", "Jul", "Agosto", "Sep", "Oct", "Nov", "Dic"]
+                                        }
+                                    });
+                                }
                                 
                                 var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//console.log(url);
                                 var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
@@ -702,11 +709,11 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
                                     if(!_.isUndefined(layerDetails.subtitleText)){
                                         if(layerDetails.subtitleText == "daily"){
-                                            letime = curr_dates.getUTCDate() +", "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +", "+ meses[curr_datee.getUTCMonth()];
+                                            letime = curr_dates.getUTCDate() +" "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +" "+ meses[curr_datee.getUTCMonth()];
                                         }else if(layerDetails.subtitleText == "monthly"){
                                             letime = meses[curr_dates.getUTCMonth()]+"/"+meses[curr_datee.getUTCMonth()];
                                         } else if(layerDetails.subtitleText == "hourxmonth"){
-                                            letime = curr_dates.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()];
+                                            letime = curr_dates.getUTCHours() +":00 "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00 "+ meses[curr_dates.getUTCMonth()];
                                         }
                                     } else {
                                         letime = ""; 
@@ -738,8 +745,8 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                             second:"%b, %H:%M:%S",
                                             minute:"%b, %H:%M",
                                             hour:"%b, %H:%M",
-                                            day: '%e of %b',
-                                            week: '%e of %b',
+                                            day: '%e %b',
+                                            week: '%e %b ',
                                             month: '%b',
                                             year: '%b'
                                         },
@@ -753,11 +760,11 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                         dateTimeLabelFormats: {
                                             second:"%b, %H:%M:%S",
                                             minute:"%b, %H:%M",
-                                            hour:"%b, %H:%M",
-                                            day: '%e of %b',
-                                            week: '%e of %b',
-                                            month: '%e of %b',
-                                            year: '%e of %b'
+                                            hour:"%e %b, %H:%M",
+                                            day: '%e %b',
+                                            week: '%e %b',
+                                            month: '%e %b',
+                                            year: '%e %b'
                                         }
                                     },
                                     plotOptions: {
@@ -935,11 +942,11 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
                 if(!_.isUndefined(layerDetails.subtitleText)){
                     if(layerDetails.subtitleText == "daily"){
-                        letime = curr_dates.getUTCDate() +", "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +", "+ meses[curr_datee.getUTCMonth()];
+                        letime = curr_dates.getUTCDate() +" "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +" "+ meses[curr_datee.getUTCMonth()];
                     }else if(layerDetails.subtitleText == "monthly"){
                         letime = meses[curr_dates.getUTCMonth()]+"/"+meses[curr_datee.getUTCMonth()];
                     } else if(layerDetails.subtitleText == "hourxmonth"){
-                        letime = curr_dates.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()];
+                        letime = curr_dates.getUTCHours() +":00 "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00 "+ meses[curr_dates.getUTCMonth()];
                     }
                 } else {
                     letime = ""; 

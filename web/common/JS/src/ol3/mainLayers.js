@@ -24,7 +24,7 @@ owgis.layers.getTimesForDay = function(layer, time, allFrames){
 	var mainSource = mainLayer.getSource();
 	var mainParams = mainSource.getParams();
 	var layerName = mainParams.LAYERS;
-	
+	console.log(mainSource.getUrls());
 	if(mainSource.getUrls){
 		owgis.ncwms.animation.currUrl = mainSource.getUrls()[0];//Get url for 
 	}else{
@@ -39,13 +39,16 @@ owgis.layers.getTimesForDay = function(layer, time, allFrames){
 	};
 	
 	var url = owgis.ncwms.animation.currUrl+"?"+owgis.utils.paramsToUrl(animParams);
-	
+	console.log(url);
 	jQuery.ajax({
 		url: url,
 		success: function(timesAsJson) {
+                    console.log(timesAsJson);
+                    if(typeof timesAsJson.timesteps !== "undefined"){
 			for(var i = 0; i < timesAsJson.timesteps.length; i++){
 				allFrames.push(time+"T"+timesAsJson.timesteps[i]);
 			}
+                    }
 		},
 		async:false
 	});
