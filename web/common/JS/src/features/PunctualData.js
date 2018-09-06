@@ -100,7 +100,12 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 }
                 // when all ajax calls are done we need to be able to start animation
                 var ajaxCan = true;
-                var latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+                if(_curr_language == 'ES'){
+                    var latlon = "Latitud: "+(Math.round(coords[0]*100)/100)+" Longitud: "+(Math.round(coords[1]*100)/100);
+                } else if(_curr_language == 'EN'){
+                    var latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+                }
+                
                 $( document ).ajaxStop(function() {
                     // we set first frame as the Vertical Profile current frame
                     var vpCurrentFrame=0;
@@ -139,7 +144,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 				height: el_height
                             },
                             title: {
-                              text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]+', Date '+allFrames[vpCurrentFrame]
+                              text: (_curr_language == 'ES') ? 'Perfil Vertical de '+data.split('\n')[2].split(',')[1]+', Fecha '+allFrames[vpCurrentFrame] : 'Vertical Profile of '+data.split('\n')[2].split(',')[1]+', Date '+allFrames[vpCurrentFrame]
                             },
                             subtitle: {
                               text: latlon
@@ -208,7 +213,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 if(ajaxCan){
                     var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick=\"openVertProf(allData, allFrames, '"+latlon+"');\" class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
                     document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+popuplink+ "&nbsp;<button class='btn btn-default btn-xs' id=\"playVP\"><span class='glyphicon glyphicon-play' ></span> </button>&nbsp;<button class='btn btn-default btn-xs' id=\"pauseVP\"><span class='glyphicon glyphicon-pause' ></span> </button> ";
-                    var dataLink = "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allData, allFrames, '"+latlon+"');\">Show</button><br>";
+                    var dataLink = (_curr_language == "ES") ? "<b>Perfil Vertical: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allData, allFrames, '"+latlon+"');\">Mostrar</button><br>" : "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allData, allFrames, '"+latlon+"');\">Show</button><br>";
                     
                     $('#modalVertProf .modal-header button.close').click(function(){
                         clearInterval(loopVP); // se deberia de terminar cuando cierran el popup tmb
@@ -257,8 +262,12 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                           ajaxCan = true;
                           var templat = data.split('\n').slice(0,1)[0];
                           var templon = data.split('\n').slice(0,2)[1];
-                          latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
-                                  
+                          //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
+                          if(_curr_language == 'ES'){
+                                var latlon = "Latitud: "+(Math.round(coords[0]*100)/100)+" Longitud: "+(Math.round(coords[1]*100)/100);
+                          } else if(_curr_language == 'EN'){
+                                var latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+                            }        
                           data = data.replace(/^.*null.*$/mg, "");
                           data = data.replace(/^\s*\n/gm, "");
                           
@@ -286,7 +295,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
 				height: el_height
                             },
                             title: {
-                              text: 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
+                              text: (_curr_language == "ES") ? 'Perfil Vertical de '+data.split('\n')[2].split(',')[1] : 'Vertical Profile of '+data.split('\n')[2].split(',')[1]
                             },
                             subtitle: {
                               text: latlon
@@ -394,7 +403,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick='showVertProf()' class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button><br>";
                         document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+popuplink;
                         
-                        var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
+                        var dataLink = (_curr_language == "ES") ? "<b>Perfil Vertical: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Mostrar</button><br>" : "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
                         if(mobile){
                             
                             $( window ).on( "orientationchange", function( event ) {
@@ -425,14 +434,14 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                     document.getElementById("containerChartsVP").style.display = 'block';
                                     $('#showVertProf').modal('toggle');
                                 };
-                                var dataLink = "<b>Vertical profile: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > show </a><br>";
+                                var dataLink = (_curr_language == "ES") ? "<b>Perfil Vertical: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > Mostrar </a><br>" : "<b>Vertical profile: </b> <a href='#' onclick=\"showImgVP('" + url + "')\" > show </a><br>";
                     } else {
                                 document.getElementById("containerChartsVP").innerHTML = "";
                                 img1 = document.createElement('img');
                                 img1.src= url;
                                 img1.style.width = "100%";
                                 document.getElementById("containerChartsVP").appendChild(img1);
-                                var dataLink = "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
+                                var dataLink = (_curr_language == "ES") ? "<b>Perfil Vertical: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Mostrar</button><br>" : "<b>Vertical profile: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');\">Show</button><br>";
                     }
                 }else {
                     var dataLink = "";
@@ -577,7 +586,8 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 	if("getParams" in currSource && currSource.getParams().ncwms){
 		var x = Math.floor(event.pixel[0]);
 		var y = Math.floor(event.pixel[1]);
-		
+		var coords = event.coordinate;
+                
 		var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
 		if(time !== undefined){
 			
@@ -597,7 +607,6 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 			}else{
 				url += "?REQUEST=GetFeatureInfo";
 				url += "&FORMAT=image/png";
-				var coords = event.coordinate;
 				url += "&POINT="+coords[0]+" "+coords[1];
 				url += "&TIME=" + time;
                                 url += "&INFO_FORMAT=image/png";
@@ -634,7 +643,12 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                   
                                   var templat = data.split('\n').slice(0,1)[0];
                                   var templon = data.split('\n').slice(0,2)[1];
-                                  latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1,18);
+                                  if(_curr_language == 'ES'){
+                                        latlon = "Latitud: "+(Math.round(coords[0]*100)/100)+" Longitud: "+(Math.round(coords[1]*100)/100);
+                                  } else if(_curr_language == 'EN'){
+                                        latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+                                  }
+                                  //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1,18);
 
                                   data = data.replace(/^.*null.*$/mg, "");
                                   data = data.replace(/^\s*\n/gm, "");
@@ -678,13 +692,34 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 });
                                  
                                  
+                                
+                                var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//console.log(url);
+                                var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+                                var dateTexte =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
+                                var curr_dates =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
+                                var curr_datee =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
+                                var letime = "";
+                                if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
+                                    if(!_.isUndefined(layerDetails.subtitleText)){
+                                        if(layerDetails.subtitleText == "daily"){
+                                            letime = curr_dates.getUTCDate() +", "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +", "+ meses[curr_datee.getUTCMonth()];
+                                        }else if(layerDetails.subtitleText == "monthly"){
+                                            letime = meses[curr_dates.getUTCMonth()]+"/"+meses[curr_datee.getUTCMonth()];
+                                        } else if(layerDetails.subtitleText == "hourxmonth"){
+                                            letime = curr_dates.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()];
+                                        }
+                                    } else {
+                                        letime = ""; 
+                                    }
+                                }
+                                 
 				 Highcharts.chart('containerChartsTS', {
 				    chart: {
 					width: el_width,
 					height: el_height
                                     },
                                     title: {
-                                      text: 'Time Series'
+                                      text: (_curr_language == 'ES') ? "Serie de Tiempo "+letime : 'Time Series '+letime
                                     },
                                     subtitle: {
                                         text: latlon
@@ -700,7 +735,13 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                         text: data.split('\n')[2].split(',')[0]
                                       },
                                       dateTimeLabelFormats: {
-                                            day: '%e of %b'
+                                            second:"%b, %H:%M:%S",
+                                            minute:"%b, %H:%M",
+                                            hour:"%b, %H:%M",
+                                            day: '%e of %b',
+                                            week: '%e of %b',
+                                            month: '%b',
+                                            year: '%b'
                                         },
                                       lineWidth: 1
                                     },
@@ -708,7 +749,16 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       csv: data
                                     },
                                     tooltip: {
-                                        pointFormat: "{point.y:.2f} " + layerDetails.units
+                                        pointFormat: "{point.y:.2f} " + layerDetails.units,
+                                        dateTimeLabelFormats: {
+                                            second:"%b, %H:%M:%S",
+                                            minute:"%b, %H:%M",
+                                            hour:"%b, %H:%M",
+                                            day: '%e of %b',
+                                            week: '%e of %b',
+                                            month: '%e of %b',
+                                            year: '%e of %b'
+                                        }
                                     },
                                     plotOptions: {
                                       series: {
@@ -790,7 +840,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                             if( ajaxCan ){
                                 var popuplink = (mobile) ? "" : "<button id='newTimeSeriesWindow' onclick='showTimeSeries()' class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
                                 document.getElementById("modalLabelTimeSeries").innerHTML = latlon+" "+popuplink;
-                                var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
+                                var dataLink = (_curr_language == "ES") ? "<b>Serie de Tiempo: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Mostrar</button><br>" : "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                                 if(mobile){
                                     $( window ).on( "orientationchange", function( event ) {
                                         
@@ -822,14 +872,14 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     document.getElementById("containerChartsTS").style.display = 'block';
                                     $('#showTimeSeries').modal('toggle');
                                 };
-                                var dataLink = "<b>Time series plot: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > show </a><br>";
+                                var dataLink =(_curr_language == "ES") ? "<b>Serie de tiempo: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > Mostrar </a><br>" : "<b>Time series plot: </b> <a href='#' onclick=\"showImgTS('" + url + "')\" > Mostrar </a><br>";
                             } else {
                                 document.getElementById("containerChartsTS").innerHTML="";
                                 img1 = document.createElement('img');
                                 img1.src= url;
                                 img1.style.width = "100%";
                                 document.getElementById("containerChartsTS").appendChild(img1);
-                                var dataLink = "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
+                                var dataLink = (_curr_language == "ES") ? "<b>Serie de tiempo: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Mostrar</button><br>" : "<b>Time series plot: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"$('#showTimeSeries').modal('toggle');\">Show</button><br>";
                             }
                         } else {
                             var dataLink = "";
@@ -862,7 +912,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
 		return;
             }
             
-            var latlon = "Latitude: "+lat+" Longitude: "+lon;
+            var latlon = (_curr_language == "ES") ? "Latitud: "+lat+" Longitud: "+lon : "Latitude: "+lat+" Longitude: "+lon;
             var times = time.split("/");
             var s = Date.parse(times[0]);
             var sdate = new Date(s);
@@ -875,7 +925,26 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
                          edate.getUTCFullYear()+" "+ (edate.getUTCHours().toString().length == 1 ? "0"+edate.getUTCHours().toString() : edate.getUTCHours().toString())+ ":" +(edate.getUTCMinutes().toString().length == 1 ? "0"+edate.getUTCMinutes().toString() : edate.getUTCMinutes().toString());
                  
             url += lat+"/"+lon+"/"+stime+"/"+etime;
-            console.log(url);
+            var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            //console.log(url);
+            var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+            var dateTexte =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
+            var curr_dates =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
+            var curr_datee =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
+            var letime = "";
+            if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
+                if(!_.isUndefined(layerDetails.subtitleText)){
+                    if(layerDetails.subtitleText == "daily"){
+                        letime = curr_dates.getUTCDate() +", "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCDate() +", "+ meses[curr_datee.getUTCMonth()];
+                    }else if(layerDetails.subtitleText == "monthly"){
+                        letime = meses[curr_dates.getUTCMonth()]+"/"+meses[curr_datee.getUTCMonth()];
+                    } else if(layerDetails.subtitleText == "hourxmonth"){
+                        letime = curr_dates.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()]+"/"+curr_datee.getUTCHours() +":00, "+ meses[curr_dates.getUTCMonth()];
+                    }
+                } else {
+                    letime = ""; 
+                }
+            }
             
             var ajaxCan;
             var dataU, dataV;
@@ -898,7 +967,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             if(ajaxCan){
                                             
                 //if( mobile ){
-                    var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
+                    var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+letime+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+letime+"')\">Show</button><br>";                            
                 /*} else {
                     var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
                 }*/

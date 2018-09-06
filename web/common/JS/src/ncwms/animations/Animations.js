@@ -772,11 +772,11 @@ function loopAnimation(){
             var d = Date.parse(finalText);
             var dd = new Date(d);
             if(layerDetails.subtitleText == "daily"){
-                    finalText = dd.getUTCDate() +" de "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCDate() +", "+ meses[dd.getUTCMonth()];
             }else if(layerDetails.subtitleText == "monthly"){
                     finalText = meses[dd.getUTCMonth()];
             } else if(layerDetails.subtitleText == "hourxmonth"){
-                    finalText = dd.getUTCHours() +":00 (hora local) de "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCHours() +":00 (local), "+ meses[dd.getUTCMonth()];
             }
         } else {
             if (finalText.lastIndexOf(".") != -1) {

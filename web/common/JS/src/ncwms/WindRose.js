@@ -11,7 +11,7 @@ goog.require('ol.View');
 goog.require('ol.source.Vector');
 goog.require('owgis.utils');
 
-owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlon) {
+owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlon, time) {
     var windDataJSON;
     var windDirection = [];
     var windSpeed= [];
@@ -460,7 +460,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             type: 'column'
         },
         title: {
-            text: 'Wind Rose'
+            text: (_curr_language == "ES") ? "Rosa de vientos "+time : 'Wind Rose '+time
         },
         subtitle: {
             text: latlon

@@ -53,17 +53,18 @@ owgis.kml.updateTitleAndKmlLink = function() {
 		
         owgis.kml.updateKmlLink(dateText, currElevation, '');
 
-        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        
+        var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
         var dateForTitle = "";
 	if(!_.isUndefined(dateText)){
             if(!_.isUndefined(layerDetails.subtitleText)){
                 if(layerDetails.subtitleText == "daily"){
-                    dateForTitle = curr_date.getUTCDate() +" de "+ meses[curr_date.getUTCMonth()];
+                    dateForTitle = curr_date.getUTCDate() +", "+ meses[curr_date.getUTCMonth()];
                 }else if(layerDetails.subtitleText == "monthly"){
                     dateForTitle = meses[curr_date.getUTCMonth()];
                 } else if(layerDetails.subtitleText == "hourxmonth"){
-                    dateForTitle = curr_date.getUTCHours() +":00 de "+ meses[curr_date.getUTCMonth()];
+                    dateForTitle = curr_date.getUTCHours() +":00, "+ meses[curr_date.getUTCMonth()];
                 }
             } else {
 		dateForTitle = ""; /*dateText.substring(0,dateText.indexOf("T"))

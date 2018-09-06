@@ -68,7 +68,6 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
 function updateAnimationRange(){
 	//Updates the total number of frames in the time range 
         var asString = true;
-	//if(layerDetails.subtitleText == "hourxmonth"){ asString = false; } 
 	var inGMT = true;
 	var startDateTxt = owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.startcal, inGMT);
 	var endDateTxt= owgis.ncwms.calendars.getCurrentDate(asString, owgis.constants.endcal, inGMT);
@@ -109,7 +108,7 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-    webix.i18n.setLocale("es-ES");
+    if(_curr_language == 'ES'){ webix.i18n.setLocale("es-ES"); } else { webix.i18n.setLocale("en-US"); } 
     var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
@@ -223,14 +222,14 @@ function initCalendars(){
                                 if(mobile){
                                     
                                     calendars.calendarHeader = "%F";
-                                    calendars.format = "%d de %F";
+                                    calendars.format = "%d, %F";
                                     calendars.blockDates = function(date){
                                             if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
                                         };
                                     
                                     calendare.calendarHeader = "%F";
-                                    calendare.format = "%d de %F";
+                                    calendare.format = "%d, %F";
                                     calendare.blockDates = function(date){
                                             if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
                                                 return true;
