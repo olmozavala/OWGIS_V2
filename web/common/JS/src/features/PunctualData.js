@@ -700,7 +700,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     });
                                 }
                                 
-                                var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//console.log(url);
+                                var meses = (_curr_language == "ES") ? ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//console.log(url);
                                 var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
                                 var dateTexte =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
                                 var curr_dates =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
@@ -939,7 +939,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
                          edate.getUTCFullYear()+" "+ (edate.getUTCHours().toString().length == 1 ? "0"+edate.getUTCHours().toString() : edate.getUTCHours().toString())+ ":" +(edate.getUTCMinutes().toString().length == 1 ? "0"+edate.getUTCMinutes().toString() : edate.getUTCMinutes().toString());
                  
             url += lat+"/"+lon+"/"+stime+"/"+etime;
-            var meses = (_curr_language == "ES") ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var meses = (_curr_language == "ES") ? ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             //console.log(url);
             var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
             var dateTexte =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
