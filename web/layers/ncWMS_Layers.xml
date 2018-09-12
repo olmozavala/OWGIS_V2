@@ -17,7 +17,7 @@
 		<Menu ID="PBLH" EN="PBLH" ES="Altura de capa límite"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento"/>
 		<Menu ID="SWDOWN" EN="SWDOWN" ES="Radiación de onda corta"/>
-		<Menu ID="GLW" EN="Long wave radiation" ES="Radiación de onda larga"/>
+		<Menu ID="GLW" EN="Long wave radiation" ES="Radiación de onda larga (neta)"/>
 		<Menu ID="QFX" EN="Evaporation" ES="Evaporación"/>
 		<Menu ID="RH" EN="Relative humidity" ES="Humedad relativa"/>
 

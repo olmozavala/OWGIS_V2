@@ -340,19 +340,19 @@ function initCalendars(){
                             
                             $('#CalendarsAndStopContainer').show("fade");
                             
-                            if(!mobile && layerDetails.subtitleText == "hourxmonth"){
-                                    $$("start_calendar").refresh();
-                                    $$("end_calendar").refresh();
-                            }
-                           
                             displayCalendars(true);
-                            
+                           
                             calInitialized = true;
                             _mainlayer_multipleDates= true;
                             updateCalendarOpts(owgis.constants.startcal);
                             updateCalendarOpts(owgis.constants.endcal);
                             
                             owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
+                            
+                            if(!mobile && layerDetails.subtitleText == "hourxmonth"){
+                                $$("start_calendar").refresh();
+                                $$("end_calendar").refresh();
+                            }
                             
                         });
                         

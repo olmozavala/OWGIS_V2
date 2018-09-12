@@ -67,4 +67,14 @@
   position: relative;
   margin: 5px;
   cursor: default;
+  z-index: 1008;
+  position: absolute;
+  border: none;
+    font-size: 13px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+    opacity: 0.9;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    color: #ECF2F8;
 }
