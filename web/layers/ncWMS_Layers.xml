@@ -110,7 +110,7 @@
 		<layer Menu="Temp,PromD" 
 			   EN="Temperature" ES="Climatología Diaria de Temperatura a 2 metros"
 			   name="atlas_diario/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
@@ -176,7 +176,7 @@
                 <layer Menu="Temp,PromM" 
 			   EN="Temperature" ES="Climatología Mensual de Temperatura a 2 metros"
 			   name="atlas_mensuales/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
@@ -243,7 +243,7 @@
                 <layer Menu="Temp,PromMAD" 
 			   EN="Temperature" ES="Máxima absoluta diaria de Temperatura a 2 metros"
 			   name="atlas_maxs_abs_diarios/T2" 
-			   style="default-scalar" palette="temperatura" numColorBands="64"
+			   style="default-scalar" palette="tempatlas" numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="daily"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximosAbsolutosDiarios/Maximas_Dia.nc/"
@@ -270,7 +270,7 @@
                 <layer Menu="Temp,PromMAM" 
 			   EN="Temperature" ES="Máxima promedio mensual de Temperatura a 2 metros"
 			   name="atlas_promedios_maxs_abs_mensuales/T2" 
-			   style="default-scalar" palette="temperatura"  numColorBands="64"
+			   style="default-scalar" palette="tempatlas"  numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
@@ -298,7 +298,7 @@
                 <layer Menu="Temp,PromHM,M01" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_enero/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
@@ -364,7 +364,7 @@
                 <layer Menu="Temp,PromHM,M02" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_febrero/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
@@ -428,7 +428,7 @@
                 <layer Menu="Temp,PromHM,M03" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_marzo/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
@@ -494,7 +494,7 @@
                 <layer Menu="Temp,PromHM,M04" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_abril/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
@@ -560,7 +560,7 @@
                 <layer Menu="Temp,PromHM,M05" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_mayo/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
@@ -626,7 +626,7 @@
                 <layer Menu="Temp,PromHM,M06" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_junio/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
@@ -692,7 +692,7 @@
                 <layer Menu="Temp,PromHM,M07" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_julio/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
@@ -758,7 +758,7 @@
                 <layer Menu="Temp,PromHM,M08" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_agosto/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
@@ -824,7 +824,7 @@
                 <layer Menu="Temp,PromHM,M09" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_septiembre/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
@@ -890,7 +890,7 @@
                 <layer Menu="Temp,PromHM,M10" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_octubre/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
@@ -956,7 +956,7 @@
                 <layer Menu="Temp,PromHM,M11" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_noviembre/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
@@ -1020,7 +1020,7 @@
                 <layer Menu="Temp,PromHM,M12" 
 			   EN="Temperature" ES="Climatología horaria por mes de Temperatura a 2 metros"
 			   name="atlas_horarios_mes_diciembre/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
@@ -1085,7 +1085,7 @@
                 <layer Menu="Temp,MAM" 
 			   EN="Temperature" ES="Máxima absoluta por mes de Temperatura a 2 metros"
 			   name="atlas_maxs_abs_mensuales/T2" numColorBands="64"
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
@@ -1151,7 +1151,7 @@
                 <layer Menu="Temp,PromMinM" 
 			   EN="Temperature" ES="Mínima promedio mensual de Temperatura a 2 metros"
 			   name="atlas_promedios_mins_mensuales/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                              subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMinimosMensuales/Promedios_Minimas_Mes.nc/"
@@ -1161,7 +1161,7 @@
                 <layer Menu="Temp,MinAM" 
 			   EN="Temperature" ES="Mínima absoluta por mes de Temperatura a 2 metros"
 			   name="atlas_mins_abs_mensuales/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MinimasAbsolutasMensuales/Minimas_Mes.nc/"                           
@@ -1172,7 +1172,7 @@
                 <layer Menu="Temp,ANOM,1980" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1980/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                            windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/Anomalias/Anomalias_Anio_1980.nc/"
@@ -1198,7 +1198,7 @@
                 <layer Menu="Temp,ANOM,1981" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1981/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1221,7 +1221,7 @@
                 <layer Menu="Temp,ANOM,1982" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1982/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1244,7 +1244,7 @@
                 <layer Menu="Temp,ANOM,1983" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1983/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1267,7 +1267,7 @@
                 <layer Menu="Temp,ANOM,1984" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1984/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1290,7 +1290,7 @@
                 <layer Menu="Temp,ANOM,1985" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1985/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1313,7 +1313,7 @@
                 <layer Menu="Temp,ANOM,1986" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1986/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1336,7 +1336,7 @@
                 <layer Menu="Temp,ANOM,1987" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1987/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1359,7 +1359,7 @@
                 <layer Menu="Temp,ANOM,1988" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1988/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1382,7 +1382,7 @@
                 <layer Menu="Temp,ANOM,1989" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1989/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1405,7 +1405,7 @@
                 <layer Menu="Temp,ANOM,1990" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1990/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1428,7 +1428,7 @@
                 <layer Menu="Temp,ANOM,1991" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1991/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1451,7 +1451,7 @@
                 <layer Menu="Temp,ANOM,1992" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1992/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1474,7 +1474,7 @@
                 <layer Menu="Temp,ANOM,1993" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1993/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1497,7 +1497,7 @@
                 <layer Menu="Temp,ANOM,1994" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1994/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1520,7 +1520,7 @@
                 <layer Menu="Temp,ANOM,1995" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1995/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1543,7 +1543,7 @@
                 <layer Menu="Temp,ANOM,1996" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1996/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1566,7 +1566,7 @@
                 <layer Menu="Temp,ANOM,1997" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1997/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1589,7 +1589,7 @@
                 <layer Menu="Temp,ANOM,1998" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1998/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1612,7 +1612,7 @@
                 <layer Menu="Temp,ANOM,1999" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_1999/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1635,7 +1635,7 @@
                 <layer Menu="Temp,ANOM,2000" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2000/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1658,7 +1658,7 @@
                 <layer Menu="Temp,ANOM,2001" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2001/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1681,7 +1681,7 @@
                 <layer Menu="Temp,ANOM,2002" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2002/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1704,7 +1704,7 @@
                 <layer Menu="Temp,ANOM,2003" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2003/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1727,7 +1727,7 @@
                 <layer Menu="Temp,ANOM,2004" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2004/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1750,7 +1750,7 @@
                 <layer Menu="Temp,ANOM,2005" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2005/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1773,7 +1773,7 @@
                 <layer Menu="Temp,ANOM,2006" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2006/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1796,7 +1796,7 @@
                 <layer Menu="Temp,ANOM,2007" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2007/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1819,7 +1819,7 @@
                 <layer Menu="Temp,ANOM,2008" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2008/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1842,7 +1842,7 @@
                 <layer Menu="Temp,ANOM,2009" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2009/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1865,7 +1865,7 @@
                 <layer Menu="Temp,ANOM,2010" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2010/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1888,7 +1888,7 @@
                 <layer Menu="Temp,ANOM,2011" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2011/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1911,7 +1911,7 @@
                 <layer Menu="Temp,ANOM,2012" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2012/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1934,7 +1934,7 @@
                 <layer Menu="Temp,ANOM,2013" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2013/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1957,7 +1957,7 @@
                 <layer Menu="Temp,ANOM,2014" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2014/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -1980,7 +1980,7 @@
                 <layer Menu="Temp,ANOM,2015" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2015/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -2003,7 +2003,7 @@
                 <layer Menu="Temp,ANOM,2016" 
 			   EN="Temperature" ES="Anomalías por mes de Temperatura a 2 metros"
 			   name="atlas_anomalias_2016/T2" 
-			   style="default-scalar" palette="temperatura"
+			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
                 />
@@ -2024,17 +2024,17 @@
                 />
                 
                 <!-- Percentiles -->
-                <layer Menu="Temp,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_0_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"  />
-                <layer Menu="Temp,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"  />
-                <layer Menu="Temp,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_5" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_10" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_25" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_50" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_75" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_90" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_95" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
-                <layer Menu="Temp,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de temperatura" style="default-scalar" palette="temperatura" name="percentiles/T2_99_9" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_0_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"  />
+                <layer Menu="Temp,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_1" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"  />
+                <layer Menu="Temp,Perci,Perci5" EN="Temperature Percentil" ES="Percentil 5% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_5" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci10" EN="Temperature Percentil" ES="Percentil 10% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_10" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci25" EN="Temperature Percentil" ES="Percentil 25% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_25" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci50" EN="Temperature Percentil" ES="Percentil 50% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_50" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci75" EN="Temperature Percentil" ES="Percentil 75% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_75" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci90" EN="Temperature Percentil" ES="Percentil 90% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_90" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci95" EN="Temperature Percentil" ES="Percentil 95% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_95" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci99" EN="Temperature Percentil" ES="Percentil 99% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_99" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
+                <layer Menu="Temp,Perci,Perci999" EN="Temperature Percentil" ES="Percentil 99.9% de temperatura" style="default-scalar" palette="tempatlas" name="percentiles/T2_99_9" mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64" />
 
                 <layer Menu="Viento,Perci,Perci01" EN="Temperature Percentil" ES="Percentil 0.1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_0_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" />
                 <layer Menu="Viento,Perci,Perci1" EN="Temperature Percentil" ES="Percentil 1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="transparent" aboveMaxColor="transparent" />
