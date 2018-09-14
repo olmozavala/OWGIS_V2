@@ -7,8 +7,8 @@
 	uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
 
 <!-- These are the dropdowns for the base layer-->
-<div class="transDraggableWindow toolTip  container-fluid" id="mainMenuParent" 
-	 title="<fmt:message key='help.tooltip.mainlayers' />">
+<div class="transDraggableWindow toolTip container-fluid" id="mainMenuParent" 
+	 title="<fmt:message key='help.tooltip.mainlayers' />" data-intro='<fmt:message key="help.mainLayer" />' data-step="1">
 	 <div class="row ">
 		<div  class="col-xs-9 text-center invShadow title"> 
 			<fmt:message key='main.base' />
@@ -30,7 +30,7 @@
 			<div class="col-xs-12">
 				<span id="ocqlMenuButtonParent">
 					<button type="button" name="type" id="idOcqlMenuButton" class="buttonStyle" 
-							onclick="owgis.cql.toggleCustomFilterTextBox();" ><fmt:message key="cql.custom" /></button>
+							onclick="owgis.cql.toggleCustomFilterTextBox();"><fmt:message key="cql.custom" /></button>
 				</span>
 			</div>
 		</div>

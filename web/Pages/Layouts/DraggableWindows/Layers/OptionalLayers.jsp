@@ -5,7 +5,7 @@
 --%>
 
 <!-- List of optional layers -->
-<div class="draggableWindow toolTipWithImage container-fluid" id="optionalMenuParent" title="optionalLayersParentHover">
+<div class="draggableWindow toolTipWithImage container-fluid" id="optionalMenuParent" title="optionalLayersParentHover" data-intro='<fmt:message key="help.optional" />' data-step='3'>
 	<%@include file="../../../Options/OptionalLayers.jsp" %>
 </div>
 <div id="optionalLayersParentHover" class="commonHover" >

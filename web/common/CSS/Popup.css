@@ -224,3 +224,7 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
 .ui-loading .ui-loader {
     display: none;
 }
+
+.introjs-helperNumberLayer {
+    display:none;
+}

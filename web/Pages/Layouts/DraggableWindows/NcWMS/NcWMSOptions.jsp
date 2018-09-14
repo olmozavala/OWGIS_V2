@@ -6,7 +6,7 @@
 	
 <!-- Divs that hold the start and end calendar plus the related texts -->
 <div class="transDraggableWindow menuHidden toolTip container-fluid" id="CalendarsAndStopContainer"
-	 title="<fmt:message key='help.tooltip.calender'/>" >
+	 title="<fmt:message key='help.tooltip.calender'/>" data-intro='<fmt:message key="help.calendar" />' data-step='2' >
 	<div class="row">
 		<div class="col-xs-6 text-center title "  id="cal-start-title"> 
 			<span class="invShadow"> <fmt:message key="ncwms.cal.start" /></span><br>

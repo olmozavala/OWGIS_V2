@@ -18,6 +18,8 @@
 	<c:if test='${currents}'>
 		<link href="./common/CSS/vendor/spectrum.css" rel="stylesheet" type="text/css"/>
 	</c:if>
+                
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css" rel="stylesheet" type="text/css" />
 
 	<!--This is the mobile case-->
 	<c:if test='${mobile}'>

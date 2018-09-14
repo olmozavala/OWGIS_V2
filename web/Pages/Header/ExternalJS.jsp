@@ -31,3 +31,5 @@
         <script src="./common/JS/vendor/minimized/highcharts.js"></script>
         <script src="./common/JS/vendor/minimized/data.js"></script>
         <script src="./common/JS/vendor/minimized/exporting.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>

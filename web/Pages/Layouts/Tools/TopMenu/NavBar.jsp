@@ -13,19 +13,19 @@
                     <!--It gets initialized by backgroundLayers.js-->
                 </select>
 			</li>
-			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
+			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>" data-intro='<fmt:message key="help.tooltip.googleE" />' data-step='4'> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
 			<!-- Transparency -->
-			<li class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>">
+			<li class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>" data-intro='<fmt:message key="help.transparency" />' data-step='5'> 
 				<%@include file="../../../Options/Transparency.jsp" %>
 			</li>
 			<!-- Depth or elevation-->
-			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" >
+			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" data-intro='<fmt:message key="help.depth" />' data-step='6'>
 				<%@include file="../../../Options/Elevation.jsp" %>
 			</li>
-            <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"> 
-                <i class="glyphicon glyphicon-screenshot"></i>
+                        <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);" > 
+                                <i class="glyphicon glyphicon-screenshot"></i>
 			</li>
 		</ul>
 			
@@ -43,13 +43,13 @@
 				<!-- Palettes Minimized-->
 				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
 					title="<fmt:message key='help.tooltip.palettes'/>"
-					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');">
+					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');" data-intro='<fmt:message key="help.palette" />' data-step='7'>
 					<span class="glyphicon glyphicon-tint"></span>
 				</li>
 				<!-- Transect tool minimized-->
 				<li class="buttonStyle menuHidden toolTip lineToggle" 
 					title="<fmt:message key='help.tooltip.transect'/>"
-					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" >
+					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" data-intro='<fmt:message key="help.transect" />' data-step='8'>
 					<span class="glyphicon glyphicon-signal"> </span>
 				</li>
 			</c:if>
@@ -79,7 +79,7 @@
 			<!-- Map Instructions minimized-->
 			<li class="buttonStyle toolTip helpParent" 
 				title="<fmt:message key='help.tooltip.help'/>" id="helpText"
-				onclick="owgis.help.main.displayHelp();owgis.layouts.draggable.topmenu.toogleUse('.helpParent');" >
+				onclick="owgis.help.main.displayHelp();" >
 				<span id="helpText" class="glyphicon glyphicon-info-sign"> </span>
 			</li>
 
