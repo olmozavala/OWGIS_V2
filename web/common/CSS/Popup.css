@@ -215,18 +215,10 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
             height: 100%;
         }
 }
-
-
 .modal-header {
     cursor: move;
 }
 
-
-
-/*
- * CUSTOM INTRO JS
- *    
-*/
 .ui-loading .ui-loader {
     display: none;
 }
@@ -234,100 +226,3 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
 .introjs-helperNumberLayer {
     display:none;
 }
-.introjs-overlay {
-  background-color: rgba(0,0,0,.70);
-  z-index: 99;
-}
-.introjs-tooltip {
-    padding: 0px 0px 10px 0px;
-    background-color: rgba(12, 12, 12, 0.5);
-    border-top:0px solid #06f;
-    border-radius: 10px;
-    box-shadow: 0px 0px 25px 5px rgba(71, 194, 255, 0.5);
-    max-width: 50%;
-    width: 50%;
-    left: 25% !important;
-    bottom: 50% !important;
-}
-.introjs-helperLayer {
-    border: 0px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px 5px rgba(71, 194, 255, 0.8);
-    background-color: transparent;
-}
-.introjs-tooltiptext {
-    color: white;
-    letter-spacing:.5px;
-    margin: 10px auto 0px auto;
-    text-align: center;
-    padding: 5px 0px;
-    width: 80%;
-}
-.introjs-bullets {
-    width: 100%;
-    right: 0px;
-    bottom: 0px;
-    float: none;
-    position: relative;
-}
-.introjs-bullets ul li {
-
-    margin-left:10px;
-}
-.introjs-bullets ul li a.active {
-    background: #06f;
-}
-.introjs-tooltipbuttons {
-  position: relative;
-  right: 0px;
-}
-.introjs-button {
-    box-shadow:none;
-    padding : .5em 1em;
-    text-shadow: none;
-}
-.introjs-button.introjs-prevbutton {
-    border: 0px;
-    box-shadow:none;
-}
-.introjs-button.introjs-nextbutton {
-    border: 0px;
-    box-shadow:none;
-}
-.introjs-button.introjs-skipbutton {
-    border: 0px;
-    box-shadow:none;
-}
-.introjs-arrow.left {
-  display: none !important;
-}
-.introjs-fixParent {
-  position:relative !important;
-}
-div.splash-forecast {
-  margin-top: 10px;
-}
-div.splash .form-control {
-  margin: 0px;
-}
-div.splash .modal-dialog .modal-content .modal-header {
-  padding: 5px;
-}
-div.splash .modal-dialog .modal-content .modal-header h4.modal-title{
-  margin: 8px 0px;
-}
-div.splash .modal-dialog .modal-content {
-  border-radius: 0px;
-}
-div.splash .modal-dialog .modal-content .modal-body {
-  height: auto;
-}
-div.splash-forecast table tbody tr:last-child {
-  border-bottom: 1px solid #ddd;
-}
-div.splash .modal-dialog .modal-content .modal-body .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
-  vertical-align: middle !important;
-}
-/*
-  END - INTRO-JS CSS COSTUMIZATION
-*/
