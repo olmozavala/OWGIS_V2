@@ -1,4 +1,4 @@
-<section class="container-fluid topMenu">
+<section  class="container-fluid topMenu">
 	<div class="row">
 		<!--Logo OWGIS-->
 		<span class="col-lg-1 visible-lg " >
@@ -8,23 +8,25 @@
 		</span>
 		<!--This are always available-->
 		<ul class="horizontal col-lg-6 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
-			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"> 
+			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"  data-intro='<fmt:message key="help.backgroundlayer" />' > 
 				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
-                    <!--It gets initialized by backgroundLayers.js-->
-                </select>
+                                    <!--It gets initialized by backgroundLayers.js-->
+                                </select>
 			</li>
-			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>" data-intro='<fmt:message key="help.tooltip.googleE" />' data-step='4'> 
+			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>" data-intro='<fmt:message key="help.tooltip.googleE" />' > 
 				<%@include file="../../../Options/KmlLink.jsp" %>
 			</li>
 			<!-- Transparency -->
-			<li class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>" data-intro='<fmt:message key="help.transparency" />' data-step='5'> 
+			<li class="buttonLook toolTip" id="transParent" title="<fmt:message key='help.tooltip.transparency'/>" data-intro='<fmt:message key="help.transparency" />' > 
 				<%@include file="../../../Options/Transparency.jsp" %>
 			</li>
 			<!-- Depth or elevation-->
-			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" data-intro='<fmt:message key="help.depth" />' data-step='6'>
+                        <c:if test='${zaxis}'>
+			<li class="buttonContainer menuHidden toolTip" id="elevationParent" title="<fmt:message key='help.tooltip.depthElevation'/>" data-intro='<fmt:message key="help.depth" />' >
 				<%@include file="../../../Options/Elevation.jsp" %>
 			</li>
-                        <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);" > 
+                        </c:if>
+                        <li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.geolocation'/>" onclick="owgis.ol3.geolocation.getPosition(this);"  data-intro='<fmt:message key="help.geolocation" />'  > 
                                 <i class="glyphicon glyphicon-screenshot"></i>
 			</li>
 		</ul>
@@ -35,7 +37,7 @@
 			<c:if test='${currents}'>
 				<li class="buttonStyle menuHidden toolTip currentsParent" 
 					title="<fmt:message key='ncwms.streamlines.streamlines'/>"
-					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');">
+					onclick="owgis.ncwms.currents.style.togglestyling();owgis.layouts.draggable.topmenu.toogleUse('.currentsParent');"  data-intro='<fmt:message key="help.streamlines" />' >
 					<span class="glyphicon glyphicon-random"> </span>
 				</li>
 			</c:if>
@@ -43,13 +45,13 @@
 				<!-- Palettes Minimized-->
 				<li class="buttonStyle menuHidden toolTip palettesMenuParent" 
 					title="<fmt:message key='help.tooltip.palettes'/>"
-					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');" data-intro='<fmt:message key="help.palette" />' data-step='7'>
+					onclick="showPalettes();owgis.layouts.draggable.topmenu.toogleUse('.palettesMenuParent');" data-intro='<fmt:message key="help.palette" />' >
 					<span class="glyphicon glyphicon-tint"></span>
 				</li>
 				<!-- Transect tool minimized-->
 				<li class="buttonStyle menuHidden toolTip lineToggle" 
 					title="<fmt:message key='help.tooltip.transect'/>"
-					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" data-intro='<fmt:message key="help.transect" />' data-step='8'>
+					onclick="toggleControl(this,'below'); owgis.layouts.draggable.topmenu.toogleUse('.lineToggle');" data-intro='<fmt:message key="help.transect" />' >
 					<span class="glyphicon glyphicon-signal"> </span>
 				</li>
 			</c:if>
@@ -57,7 +59,7 @@
 				<!-- Download minimized -->
 				<li class="buttonStyle menuHidden toolTip downloadDataParent" 
 					title="<fmt:message key='help.tooltip.download'/>"
-					onclick="downloadData();"  >
+					onclick="downloadData();"  data-intro='<fmt:message key="help.tooltip.download" />' >
 					<span class="glyphicon glyphicon-download-alt"> </span>
 				</li>
 			</c:if>
@@ -65,14 +67,14 @@
 			<!-- Toogle Cesium Minimized-->
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="<fmt:message key='cesium.mainbutton'/>"	
-				onclick="owgis.cesium.toogleCesium();" >
+				onclick="owgis.cesium.toogleCesium();"  data-intro='<fmt:message key="help.3d" />'  >
 				<span class="glyphicon glyphicon-globe"> </span>
 			</li>
 
 			<!-- Reset view minimized -->
 			<li class="buttonStyle toolTip resetParent" 
 				title="<fmt:message key='help.tooltip.resetview'/>" 
-				onclick="resetView();" >
+				onclick="resetView();"  data-intro='<fmt:message key="help.resetview" />' >
 				<span id="resetText" class="glyphicon glyphicon-refresh"> </span>
 			</li>
 
@@ -85,7 +87,7 @@
 
 			<!-- Toogle tooltip Minimized-->
 			<li class="buttonStyle menuHidden toolTip helpHoverSpan" 
-				title="<fmt:message key='help.helpicon'/>"	
+				title="<fmt:message key='help.helpicon'/>"	 data-intro='<fmt:message key="help.helpicon" />' 
 				onclick="owgis.help.tooltips.toggleTooltips();owgis.layouts.draggable.topmenu.toogleUse('.helpHoverSpan');" >
 				<span class="glyphicon glyphicon-question-sign "> </span>
 			</li>
@@ -94,7 +96,7 @@
 			
 		<!--Languages and tooltip help button-->
 		<div class="col-lg-1 col-md-2 text-left visible-lg visible-md " >
-			<div class="btn-group col-lg-10 col-md-7 col-md-offset-1 hidden-sm hidden-xs ">
+			<div class="btn-group col-lg-10 col-md-7 col-md-offset-1 hidden-sm hidden-xs " data-intro='<fmt:message key="help.language" />' >
 				<button id="selectedLanguage" type="button" 
 						class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<!--It gets initialized by languages.js-->

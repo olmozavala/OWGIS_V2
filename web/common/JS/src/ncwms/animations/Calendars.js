@@ -361,11 +361,12 @@ function updateMainLayerDate(){
 	
     var currTime = owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
     owgis.layers.updateMainLayerParam('TIME', currTime.toISOString());
-	owgis.kml.updateTitleAndKmlLink();
+    owgis.kml.updateTitleAndKmlLink();
 	
-	if(_mainlayer_streamlines){
-		//owgis.ncwms.currents.startSingleDateAnimation();
-	}
+    if(_mainlayer_streamlines){
+        owgis.ncwms.currents.startSingleDateAnimation();
+    }
+    
 }
 
 /**

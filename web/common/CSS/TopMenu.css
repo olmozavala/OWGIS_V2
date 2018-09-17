@@ -56,7 +56,7 @@ and open the template in the editor.
 /* Main div for user menu options. topmenu */
 /* line 14, ../scss/TopMenu.scss */
 .topMenu {
-  position: absolute;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;

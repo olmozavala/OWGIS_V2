@@ -38,6 +38,7 @@
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
+                <link href="./common/CSS/introjs-royal.css" rel="stylesheet" type="text/css" />
 		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
