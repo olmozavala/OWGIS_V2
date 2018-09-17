@@ -19,7 +19,7 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
     V = dataV;
     for(i=0; i < U.length; i++){    	
       //windDirection[i] = Math.atan(V[i]/U[i]) * (180/ Math.PI);
-      T = Math.atan2(U[i],V[i])*(180/(Math.PI));
+      T = Math.atan2(-U[i],-V[i])*(180/(Math.PI));
       if(T<0){
       	T = 360+T;
       }      	
@@ -347,94 +347,95 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
         }
     }
     //console.log(catdict);
+    //me.round((catdict["freq"+(i+1)]["N"])*100/totalfreqs,1)
     var unims = " m/s";
     dataseries= [ 
             {
                 "type": "column",
                 "name": (minfreq + (0*dist)).toFixed(2) + " - "+ (minfreq + ((1)*dist)).toFixed(2)+unims,
                 "data" : [
-                    ["N", catdict.freq1.N],
-                    ["NNE", catdict.freq1.NNE],
-                    ["NE", catdict.freq1.NE],
-                    ["ENE", catdict.freq1.ENE],
-                    ["E", catdict.freq1.E],
-                    ["ESE", catdict.freq1.ESE],
-                    ["SE", catdict.freq1.SE],
-                    ["SSE", catdict.freq1.SSE],
-                    ["S", catdict.freq1.S],
-                    ["SSW", catdict.freq1.SSW],
-                    ["SW", catdict.freq1.SW],
-                    ["WSW", catdict.freq1.WSW],
-                    ["W", catdict.freq1.W],
-                    ["WNW", catdict.freq1.WNW],
-                    ["NW", catdict.freq1.NW],
-                    ["NNW", catdict.freq1.NNW]
+                    ["N", round( catdict.freq1.N*100/windDirection.length, 1)],
+                    ["NNE", round(catdict.freq1.NNE*100/windDirection.length, 1)],
+                    ["NE", round(catdict.freq1.NE*100/windDirection.length, 1)],
+                    ["ENE", round(catdict.freq1.ENE*100/windDirection.length, 1)],
+                    ["E", round(catdict.freq1.E*100/windDirection.length, 1)],
+                    ["ESE", round(catdict.freq1.ESE*100/windDirection.length, 1)],
+                    ["SE", round(catdict.freq1.SE*100/windDirection.length, 1)],
+                    ["SSE",round( catdict.freq1.SSE*100/windDirection.length, 1)],
+                    ["S",round( catdict.freq1.S*100/windDirection.length, 1)],
+                    ["SSW", round(catdict.freq1.SSW*100/windDirection.length, 1)],
+                    ["SW", round(catdict.freq1.SW*100/windDirection.length, 1)],
+                    ["WSW",round( catdict.freq1.WSW*100/windDirection.length, 1)],
+                    ["W",round( catdict.freq1.W*100/windDirection.length, 1)],
+                    ["WNW", round(catdict.freq1.WNW*100/windDirection.length, 1)],
+                    ["NW", round(catdict.freq1.NW*100/windDirection.length, 1)],
+                    ["NNW", round(catdict.freq1.NNW*100/windDirection.length, 1)]
                 ]
             },
             {
                 "type": "column",
                 "name": (minfreq + (1*dist)).toFixed(2) + " - "+ (minfreq + (2*dist)).toFixed(2)+unims,
                 "data" : [
-                    ["N", catdict.freq2.N],
-                    ["NNE", catdict.freq2.NNE],
-                    ["NE", catdict.freq2.NE],
-                    ["ENE", catdict.freq2.ENE],
-                    ["E", catdict.freq2.E],
-                    ["ESE", catdict.freq2.ESE],
-                    ["SE", catdict.freq2.SE],
-                    ["SSE", catdict.freq2.SSE],
-                    ["S", catdict.freq2.S],
-                    ["SSW", catdict.freq2.SSW],
-                    ["SW", catdict.freq2.SW],
-                    ["WSW", catdict.freq2.WSW],
-                    ["W", catdict.freq2.W],
-                    ["WNW", catdict.freq2.WNW],
-                    ["NW", catdict.freq2.NW],
-                    ["NNW", catdict.freq2.NNW]
+                    ["N", round(catdict.freq2.N*100/windDirection.length, 1)],
+                    ["NNE",round( catdict.freq2.NNE*100/windDirection.length, 1)],
+                    ["NE",round( catdict.freq2.NE*100/windDirection.length, 1)],
+                    ["ENE",round( catdict.freq2.ENE*100/windDirection.length, 1)],
+                    ["E",round( catdict.freq2.E*100/windDirection.length, 1)],
+                    ["ESE", round(catdict.freq2.ESE*100/windDirection.length, 1)],
+                    ["SE", round(catdict.freq2.SE*100/windDirection.length, 1)],
+                    ["SSE", round(catdict.freq2.SSE*100/windDirection.length, 1)],
+                    ["S", round(catdict.freq2.S*100/windDirection.length, 1)],
+                    ["SSW", round(catdict.freq2.SSW*100/windDirection.length, 1)],
+                    ["SW", round(catdict.freq2.SW*100/windDirection.length, 1)],
+                    ["WSW", round(catdict.freq2.WSW*100/windDirection.length, 1)],
+                    ["W", round(catdict.freq2.W*100/windDirection.length, 1)],
+                    ["WNW", round(catdict.freq2.WNW*100/windDirection.length, 1)],
+                    ["NW", round(catdict.freq2.NW*100/windDirection.length, 1)],
+                    ["NNW", round(catdict.freq2.NNW*100/windDirection.length, 1)]
                 ]
             },
             {
                 "type": "column",
                 "name": (minfreq + (2*dist)).toFixed(2) + " - "+ (minfreq + ((3)*dist)).toFixed(2)+unims,
                 "data" : [
-                    ["N", catdict.freq3.N],
-                    ["NNE", catdict.freq3.NNE],
-                    ["NE", catdict.freq3.NE],
-                    ["ENE", catdict.freq3.ENE],
-                    ["E", catdict.freq3.E],
-                    ["ESE", catdict.freq3.ESE],
-                    ["SE", catdict.freq3.SE],
-                    ["SSE", catdict.freq3.SSE],
-                    ["S", catdict.freq3.S],
-                    ["SSW", catdict.freq3.SSW],
-                    ["SW", catdict.freq3.SW],
-                    ["WSW", catdict.freq3.WSW],
-                    ["W", catdict.freq3.W],
-                    ["WNW", catdict.freq3.WNW],
-                    ["NW", catdict.freq3.NW],
-                    ["NNW", catdict.freq3.NNW]
+                    ["N", round(catdict.freq3.N*100/windDirection.length, 1)],
+                    ["NNE", round(catdict.freq3.NNE*100/windDirection.length, 1)],
+                    ["NE", round(catdict.freq3.NE*100/windDirection.length, 1)],
+                    ["ENE", round(catdict.freq3.ENE*100/windDirection.length, 1)],
+                    ["E", round(catdict.freq3.E*100/windDirection.length, 1)],
+                    ["ESE", round(catdict.freq3.ESE*100/windDirection.length, 1)],
+                    ["SE", round(catdict.freq3.SE*100/windDirection.length, 1)],
+                    ["SSE", round(catdict.freq3.SSE*100/windDirection.length, 1)],
+                    ["S", round(catdict.freq3.S*100/windDirection.length, 1)],
+                    ["SSW", round(catdict.freq3.SSW*100/windDirection.length, 1)],
+                    ["SW", round(catdict.freq3.SW*100/windDirection.length, 1)],
+                    ["WSW", round(catdict.freq3.WSW*100/windDirection.length, 1)],
+                    ["W",round( catdict.freq3.W*100/windDirection.length, 1)],
+                    ["WNW", round(catdict.freq3.WNW*100/windDirection.length, 1)],
+                    ["NW", round(catdict.freq3.NW*100/windDirection.length, 1)],
+                    ["NNW",round( catdict.freq3.NNW*100/windDirection.length, 1)]
                 ]
             },
             {
                 "type": "column",
                 "name": (minfreq + (3*dist)).toFixed(2) + " - "+ (minfreq + ((4)*dist)).toFixed(2)+unims,
                 "data" : [
-                    ["N", catdict.freq4.N],
-                    ["NNE", catdict.freq4.NNE],
-                    ["NE", catdict.freq4.NE],
-                    ["ENE", catdict.freq4.ENE],
-                    ["E", catdict.freq4.E],
-                    ["ESE", catdict.freq4.ESE],
-                    ["SE", catdict.freq4.SE],
-                    ["SSE", catdict.freq4.SSE],
-                    ["S", catdict.freq4.S],
-                    ["SSW", catdict.freq4.SSW],
-                    ["SW", catdict.freq4.SW],
-                    ["WSW", catdict.freq4.WSW],
-                    ["W", catdict.freq4.W],
-                    ["WNW", catdict.freq4.WNW],
-                    ["NW", catdict.freq4.NW],
-                    ["NNW", catdict.freq4.NNW]
+                    ["N",round( catdict.freq4.N*100/windDirection.length, 1)],
+                    ["NNE", round(catdict.freq4.NNE*100/windDirection.length, 1)],
+                    ["NE",round( catdict.freq4.NE*100/windDirection.length, 1)],
+                    ["ENE", round(catdict.freq4.ENE*100/windDirection.length, 1)],
+                    ["E", round(catdict.freq4.E*100/windDirection.length, 1)],
+                    ["ESE", round(catdict.freq4.ESE*100/windDirection.length, 1)],
+                    ["SE", round(catdict.freq4.SE*100/windDirection.length, 1)],
+                    ["SSE",round( catdict.freq4.SSE*100/windDirection.length, 1)],
+                    ["S", round(catdict.freq4.S*100/windDirection.length, 1)],
+                    ["SSW",round( catdict.freq4.SSW*100/windDirection.length, 1)],
+                    ["SW",round( catdict.freq4.SW*100/windDirection.length, 1)],
+                    ["WSW", round(catdict.freq4.WSW*100/windDirection.length, 1)],
+                    ["W", round(catdict.freq4.W*100/windDirection.length, 1)],
+                    ["WNW", round(catdict.freq4.WNW*100/windDirection.length, 1)],
+                    ["NW",round( catdict.freq4.NW*100/windDirection.length, 1)],
+                    ["NNW", round(catdict.freq4.NNW*100/windDirection.length, 1)]
                 ]
             }
     ];
@@ -482,7 +483,15 @@ owgis.features.punctual.showWindRose = function showWindRose(dataU, dataV, latlo
             min: 0,
             endOnTick: false,
             showLastLabel: true,
+            labels: {
+                formatter: function () {
+                    return this.value + '%';
+                }
+            },
             reversedStacks: false
+        },
+        tooltip: {
+            valueSuffix: '%'
         },
         plotOptions: {
             series: {
@@ -581,3 +590,12 @@ Array.prototype.max = function() {
 Array.prototype.min = function() {
   return Math.min.apply(null, this);
 };
+
+/*
+   * This is a handy little round function that takes precision
+   * round(12345.6789, 2) // 12345.68
+   */
+ function round(value, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+ }
