@@ -68,7 +68,6 @@
   margin: 5px;
   cursor: default;
   z-index: 1008;
-  position: absolute;
   border: none;
     font-size: 13px;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
@@ -77,4 +76,6 @@
     -webkit-border-radius: 7px;
     border-radius: 7px;
     color: #ECF2F8;
+    color: #FFF;
+
 }

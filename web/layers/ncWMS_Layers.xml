@@ -113,7 +113,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
 
 		<layer Menu="Prec,PromD" 
@@ -121,15 +120,12 @@
 			   name="atlas_diario/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
 
 		<layer Menu="PBLH,PromD" 
 			   EN="Boundary layer height" ES="Climatología Diaria de Altura de la capa límite"
 			   name="atlas_diario/PBLH" style="default-scalar" palette="alturacapalimite"
                            mincolor="0" maxcolor="2800" subtitleText="daily"
-                           
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
 
 		<layer Menu="Viento,PromD" 
@@ -138,14 +134,12 @@
 			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.1"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <layer Menu="QFX,PromD" 
 			   EN="Evaporation" ES="Climatología Diaria de Evaporación"
 			   name="atlas_diario/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <layer Menu="GLW,PromD" EN="Long wave radiation" 
@@ -153,7 +147,6 @@
 			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromD" EN="Long wave radiation" 
@@ -161,7 +154,6 @@
 			   name="atlas_diario/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <layer Menu="RH,PromD" EN="Relative Humidity" 
@@ -169,7 +161,6 @@
 			   name="atlas_diario/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosDiarios/Promedios_Dia.nc/"
                 />
                 
                 <!-- Promedios mensuales -->
@@ -179,7 +170,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
 
 		<layer Menu="Prec,PromM" 
@@ -187,7 +177,6 @@
 			   name="atlas_mensuales/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
 
 		<layer Menu="PBLH,PromM" 
@@ -195,7 +184,6 @@
 			   name="atlas_mensuales/PBLH" style="default-scalar"  palette="alturacapalimite"
                            mincolor="0" maxcolor="2800"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
 
 		<layer Menu="Viento,PromM" 
@@ -204,7 +192,6 @@
 			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.1"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
 
 		<layer Menu="QFX,PromM" EN="Evaporation" 
@@ -212,7 +199,6 @@
 			   name="atlas_mensuales/QFX" 
 			   style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
                 
                 <layer Menu="GLW,PromM" EN="Long wave radiation" 
@@ -220,7 +206,6 @@
 			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromM" EN="Long wave radiation" 
@@ -228,7 +213,6 @@
 			   name="atlas_mensuales/SWDOWN" 
 			   style="default-scalar"  palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
                 
                 <layer Menu="RH,PromM" EN="Relative humidity" 
@@ -236,7 +220,6 @@
 			   name="atlas_mensuales/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMensuales/Promedios_Mes.nc/"
                 />
                 
                 <!-- Maximos absolutos diarios -->
@@ -246,7 +229,6 @@
 			   style="default-scalar" palette="tempatlas" numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximosAbsolutosDiarios/Maximas_Dia.nc/"
                 />
 
 		<layer Menu="Prec,PromMAD" 
@@ -254,7 +236,6 @@
 			   name="atlas_maxs_abs_diarios/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximosAbsolutosDiarios/Maximas_Dia.nc/"
                 />
 
 		<layer Menu="Viento,PromMAD" 
@@ -263,7 +244,6 @@
 			   name="atlas_maxs_abs_diarios/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10:atlas_maxs_abs_diarios/V10" defParticleSpeed="0.02"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="daily"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximosAbsolutosDiarios/Maximas_Dia.nc/"
                 />
                 
                 <!-- Promedios maximos absolutos mensuales -->
@@ -273,7 +253,6 @@
 			   style="default-scalar" palette="tempatlas"  numColorBands="64"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
 
 		<layer Menu="Prec,PromMAM" 
@@ -281,7 +260,6 @@
 			   name="atlas_promedios_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
                 
 		<layer Menu="Viento,PromMAM" 
@@ -290,7 +268,6 @@
 			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
                 />
                 
                 <!-- PromediosHorariosMes -->
@@ -301,7 +278,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
 
 		<layer Menu="Prec,PromHM,M01" 
@@ -309,7 +285,6 @@
 			   name="atlas_horarios_mes_enero/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
 
 		<layer Menu="PBLH,PromHM,M01" 
@@ -317,14 +292,12 @@
 			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800"  palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M01" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_enero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M01" 
@@ -333,7 +306,6 @@
 			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
                 
                 <layer Menu="GLW,PromHM,M01" EN="Long wave radiation" 
@@ -341,7 +313,6 @@
 			   name="atlas_horarios_mes_enero/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M01" EN="Long wave radiation" 
@@ -349,7 +320,6 @@
 			   name="atlas_horarios_mes_enero/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
 
                 <layer Menu="RH,PromHM,M01" EN="Relative Humidity" 
@@ -357,7 +327,6 @@
 			   name="atlas_horarios_mes_enero_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Enero.nc/"
                 />
                 
                 <!-- Febrero -->
@@ -367,7 +336,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
 
 		<layer Menu="Prec,PromHM,M02" 
@@ -375,7 +343,6 @@
 			   name="atlas_horarios_mes_febrero/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
 
 		<layer Menu="PBLH,PromHM,M02" 
@@ -383,14 +350,12 @@
 			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M02" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M02" 
@@ -399,14 +364,12 @@
 			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 <layer Menu="GLW,PromHM,M02" EN="Long wave radiation" 
 			   ES="Climatología horaria por mes de Radiacion de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
                            palette="radiacionondacorta" mincolor="-110" maxcolor="50"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M02" EN="Long wave radiation" 
@@ -414,7 +377,6 @@
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
 
                 <layer Menu="RH,PromHM,M02" EN="Relative Humidity" 
@@ -422,7 +384,6 @@
 			   name="atlas_horarios_mes_febrero_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Febrero.nc/"
                 />
                 <!-- Marzo -->
                 <layer Menu="Temp,PromHM,M03" 
@@ -431,7 +392,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
 		<layer Menu="Prec,PromHM,M03" 
@@ -439,7 +399,6 @@
 			   name="atlas_horarios_mes_marzo/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
 		<layer Menu="PBLH,PromHM,M03" 
@@ -447,14 +406,12 @@
 			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M03" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_marzo/QFX" style="default-scalar"
                            subtitleText="hourxmonth" palette="precipitacionGrad" mincolor="0" maxcolor="500"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M03" 
@@ -463,7 +420,6 @@
 			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
                 
                 <layer Menu="GLW,PromHM,M03" EN="Long wave radiation" 
@@ -471,7 +427,6 @@
 			   name="atlas_horarios_mes_marzo/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M03" EN="Long wave radiation" 
@@ -479,7 +434,6 @@
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
                 <layer Menu="RH,PromHM,M03" EN="Relative Humidity" 
@@ -487,7 +441,6 @@
 			   name="atlas_horarios_mes_marzo_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Marzo.nc/"
                 />
 
                 <!-- Abril -->
@@ -497,7 +450,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
 		<layer Menu="Prec,PromHM,M04" 
@@ -505,7 +457,6 @@
 			   name="atlas_horarios_mes_abril/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
 		<layer Menu="PBLH,PromHM,M04" 
@@ -513,14 +464,12 @@
 			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M04" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_abril/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M04" 
@@ -529,7 +478,6 @@
 			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 /> 
                 
                 <layer Menu="GLW,PromHM,M04" EN="Long wave radiation" 
@@ -537,7 +485,6 @@
 			   name="atlas_horarios_mes_abril/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M04" EN="Long wave radiation" 
@@ -545,7 +492,6 @@
 			   name="atlas_horarios_mes_abril/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
                <layer Menu="RH,PromHM,M04" EN="Relative Humidity" 
@@ -553,7 +499,6 @@
 			   name="atlas_horarios_mes_abril_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Abril.nc/"
                 />
 
                 <!-- Mayo -->
@@ -563,7 +508,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
 
 		<layer Menu="Prec,PromHM,M05" 
@@ -571,7 +515,6 @@
 			   name="atlas_horarios_mes_mayo/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
 
 		<layer Menu="PBLH,PromHM,M05" 
@@ -579,14 +522,12 @@
 			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800"  palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
                 
                 <layer Menu="QFX,PromHM,M05" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
 
 		<layer Menu="Viento,PromHM,M05" 
@@ -595,7 +536,6 @@
 			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
                 
                 <layer Menu="GLW,PromHM,M05" EN="Long wave radiation" 
@@ -603,7 +543,6 @@
 			   name="atlas_horarios_mes_mayo/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M05" EN="Long wave radiation" 
@@ -611,7 +550,6 @@
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
                 
                 <layer Menu="RH,PromHM,M05" EN="Relative Humidity" 
@@ -619,7 +557,6 @@
 			   name="atlas_horarios_mes_mayo_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Mayo.nc/"
                 />
 
                  <!-- Junio -->
@@ -629,7 +566,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M06" 
@@ -637,7 +574,7 @@
 			   name="atlas_horarios_mes_junio/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M06" 
@@ -645,14 +582,14 @@
 			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M06" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M06" 
@@ -661,7 +598,7 @@
 			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M06" EN="Long wave radiation" 
@@ -669,7 +606,7 @@
 			   name="atlas_horarios_mes_junio/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
                            palette="radiacionondacorta" mincolor="-110" maxcolor="50"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M06" EN="Long wave radiation" 
@@ -677,7 +614,7 @@
 			   name="atlas_horarios_mes_junio/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
 
                 <layer Menu="RH,PromHM,M06" EN="Relative Humidity" 
@@ -685,7 +622,7 @@
 			   name="atlas_horarios_mes_junio_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Junio.nc/"
+                            
                 />
 
                  <!-- Julio -->
@@ -695,7 +632,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M07" 
@@ -703,7 +640,7 @@
 			   name="atlas_horarios_mes_julio/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M07" 
@@ -711,14 +648,14 @@
 			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M07" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M07" 
@@ -727,7 +664,7 @@
 			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M07" EN="Long wave radiation" 
@@ -735,7 +672,7 @@
 			   name="atlas_horarios_mes_julio/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M07" EN="Long wave radiation" 
@@ -743,7 +680,7 @@
 			   name="atlas_horarios_mes_julio/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
 
                 <layer Menu="RH,PromHM,M07" EN="Relative Humidity" 
@@ -751,7 +688,7 @@
 			   name="atlas_horarios_mes_julio_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Julio.nc/"
+                            
                 />
                 
                 <!-- Agosto -->
@@ -761,7 +698,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M08" 
@@ -769,7 +706,7 @@
 			   name="atlas_horarios_mes_agosto/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M08" 
@@ -777,14 +714,14 @@
 			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M08" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M08" 
@@ -793,7 +730,7 @@
 			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M08" EN="Long wave radiation" 
@@ -801,7 +738,7 @@
 			   name="atlas_horarios_mes_agosto/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M08" EN="Long wave radiation" 
@@ -809,7 +746,7 @@
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
             
                 <layer Menu="RH,PromHM,M08" EN="Relative Humidity" 
@@ -817,7 +754,7 @@
 			   name="atlas_horarios_mes_agosto_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Agosto.nc/"
+                            
                 />
 
                 <!-- Sept -->
@@ -827,7 +764,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M09" 
@@ -835,7 +772,7 @@
 			   name="atlas_horarios_mes_septiembre/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M09" 
@@ -843,14 +780,14 @@
 			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M09" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M09" 
@@ -859,7 +796,7 @@
 			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M09" EN="Long wave radiation" 
@@ -867,7 +804,7 @@
 			   name="atlas_horarios_mes_septiembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M09" EN="Long wave radiation" 
@@ -875,7 +812,7 @@
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
 
                 <layer Menu="RH,PromHM,M09" EN="Relative Humidity" 
@@ -883,7 +820,7 @@
 			   name="atlas_horarios_mes_septiembre_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Septiembre.nc/"
+                            
                 />
 
                 <!-- Octubre -->
@@ -893,7 +830,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M10" 
@@ -901,7 +838,7 @@
 			   name="atlas_horarios_mes_octubre/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M10" 
@@ -909,14 +846,14 @@
 			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M10" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M10" 
@@ -925,7 +862,7 @@
 			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M10" EN="Long wave radiation" 
@@ -933,7 +870,7 @@
 			   name="atlas_horarios_mes_octubre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M10" EN="Long wave radiation" 
@@ -941,7 +878,7 @@
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
                 
                 <layer Menu="RH,PromHM,M10" EN="Relative Humidity" 
@@ -949,7 +886,7 @@
 			   name="atlas_horarios_mes_octubre_rh/RH" 
 			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Octubre.nc/"
+                            
                 />
 
                 <!-- Noviembre -->
@@ -959,7 +896,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M11" 
@@ -967,7 +904,7 @@
 			   name="atlas_horarios_mes_noviembre/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M11" 
@@ -975,14 +912,14 @@
 			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M11" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M11" 
@@ -998,7 +935,7 @@
 			   name="atlas_horarios_mes_noviembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M11" EN="Long wave radiation" 
@@ -1006,7 +943,7 @@
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
 
                 <layer Menu="RH,PromHM,M11" EN="Relative Humidity" 
@@ -1014,7 +951,7 @@
 			   name="atlas_horarios_mes_noviembre_rh/RH" 
 			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Noviembre.nc/"
+                            
                 />
                 <!-- Diciembre -->
                 <layer Menu="Temp,PromHM,M12" 
@@ -1023,7 +960,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
 
 		<layer Menu="Prec,PromHM,M12" 
@@ -1031,7 +968,7 @@
 			   name="atlas_horarios_mes_diciembre/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
 
 		<layer Menu="PBLH,PromHM,M12" 
@@ -1039,14 +976,14 @@
 			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,PromHM,M12" 
 			   EN="Evaporation" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
 
 		<layer Menu="Viento,PromHM,M12" 
@@ -1055,7 +992,7 @@
 			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.09"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,PromHM,M12" EN="Long wave radiation" 
@@ -1063,7 +1000,7 @@
 			   name="atlas_horarios_mes_diciembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M12" EN="Long wave radiation" 
@@ -1071,7 +1008,7 @@
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
                 
                 <layer Menu="RH,PromHM,M12" EN="Relative Humidity" 
@@ -1079,7 +1016,7 @@
 			   name="atlas_horarios_mes_diciembre_rh/RH" 
 			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosHorariosMes/Promedios_Horarios_Mes_Diciembre.nc/"
+                            
                 />
                 <!-- Maximos absolutos mensuales -->
                 <layer Menu="Temp,MAM" 
@@ -1088,7 +1025,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
 
 		<layer Menu="Prec,MAM" 
@@ -1096,7 +1033,7 @@
 			   name="atlas_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
 		<layer Menu="Viento,MAM" 
@@ -1105,7 +1042,7 @@
 			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
                 <layer Menu="PBLH,MAM" 
@@ -1113,14 +1050,14 @@
 			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
                            mincolor="0" maxcolor="2800" palette="alturacapalimite"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
                 <layer Menu="QFX,MAM" 
 			   EN="Evaporation" ES="Máxima absoluta por mes de Evaporación"
 			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
                 <layer Menu="GLW,MAM" EN="Long wave radiation" 
@@ -1128,7 +1065,7 @@
 			   name="atlas_maxs_abs_mensuales/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
                 <layer Menu="SWDOWN,MAM" EN="Long wave radiation" 
@@ -1136,7 +1073,7 @@
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                              subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
                 
                 <layer Menu="RH,MAM" EN="Relative humidity" 
@@ -1144,7 +1081,7 @@
 			   name="atlas_maxs_abs_mensuales/RH" 
 			   style="default-scalar"
                              subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MaximasAbsolutosMensuales/Maximas_Mes.nc/"
+                            
                 />
 
                 <!-- PromMinM -->
@@ -1154,7 +1091,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                              subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/PromediosMinimosMensuales/Promedios_Minimas_Mes.nc/"
+                            
                 />
                 
                 <!-- MinAM -->
@@ -1164,7 +1101,6 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/MinimasAbsolutasMensuales/Minimas_Mes.nc/"                           
                 />
                 
                 <!-- Anomalias -->
@@ -1175,7 +1111,7 @@
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" numColorBands="64"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/Anomalias/Anomalias_Anio_1980.nc/"
+                           
                 />
                 
                 <layer Menu="Prec,ANOM,1980" 
@@ -1183,7 +1119,7 @@
 			   name="atlas_anomalias_1980/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/Anomalias/Anomalias_Anio_1980.nc/"
+                           
                 />
                 
 		<layer Menu="Viento,ANOM,1980" 
@@ -1192,7 +1128,7 @@
 			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.2"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="monthly"
-                           windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/Anomalias/Anomalias_Anio_1980.nc/"
+                           
                 />
                 <!-- 1981 -->
                 <layer Menu="Temp,ANOM,1981" 
