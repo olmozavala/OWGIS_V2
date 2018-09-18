@@ -23,7 +23,7 @@
 		<script src="./common/JS/vendor/minimized/jquery-ui.min.js"></script>
 		<script> $.widget.bridge('uitooltip', $.ui.tooltip); </script>	
 		<script src="./common/JS/vendor/minimized/bootstrap.min.js"></script>
-	</c:if>
+        </c:if>
         <c:if test='${language.equals("ES")}'>
             <script src="./common/JS/vendor/minimized/jquery_ui_datepicker/datepicker-es.js"></script>
         </c:if>
@@ -32,4 +32,4 @@
         <script src="./common/JS/vendor/minimized/data.js"></script>
         <script src="./common/JS/vendor/minimized/exporting.js"></script>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>

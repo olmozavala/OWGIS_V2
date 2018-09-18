@@ -36,11 +36,13 @@ function onTooglePanelEvents(){
 
 owgis.mobile.closeDrawer = function closeDrawer(){
         console.log("Closing Drawer");
-	$("#drawer").animate({
-				bottom: -92
-			}, 200);
+	
+        $("#drawer").animate({ bottom: -92 }, 200);
+        
 	$("#drawer-pull").attr('class', '');
-	isDrawerOpen =false;
+	
+        isDrawerOpen =false;
+        
         var palette = document.getElementById("canvas-palette-horbar");
         if(palette) {
             palette.classList.remove("transformH");
@@ -50,7 +52,7 @@ owgis.mobile.closeDrawer = function closeDrawer(){
 }
 
 owgis.mobile.initMobile = function initMobile(){
-	
+    	
 	$('html, body').css({
 	    'height': '100%'
 	});
@@ -97,6 +99,17 @@ owgis.mobile.initMobile = function initMobile(){
 
 	//Binds opening and closing events to the panels
 	onTooglePanelEvents();
+        
+        if(typeof localStorage.server_name === "undefined"){
+            var intro = introJs();
+        
+            intro.setOptions({
+                steps: mobileSteps
+            });
+        
+            intro.start();
+        }
+        
 }
 
 /**

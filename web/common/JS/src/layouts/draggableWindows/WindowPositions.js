@@ -138,7 +138,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
-	owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	owgis.layouts.draggable.repositionDraggablesByScreenSize();//moves the draggable windows to where the user last left them. 
     }
 }
 
