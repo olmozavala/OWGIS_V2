@@ -388,14 +388,14 @@ public class LayerMenuManagerSingleton {
 				List children = root.getChildren();
 				
 				//Obtains the menu entries or the layers
-				System.out.println("Adding menu entries from file: "+tempFile.getName());
+				//System.out.println("Adding menu entries from file: "+tempFile.getName());
 				for (Iterator it = children.iterator(); it.hasNext();) {
 					Element curr = (Element) it.next();
 					if (curr.getName().equals("Menus")) {
 						addMenuEntries(curr.getChildren());
 					}
 				}
-				System.out.println("Done adding menu entries from file: "+tempFile.getName());
+				//System.out.println("Done adding menu entries from file: "+tempFile.getName());
 			}
 			for (int i = 0; i < xmlFiles.length; i++) {
 				String fileName = xmlFiles[i];
@@ -413,7 +413,7 @@ public class LayerMenuManagerSingleton {
 							|| curr.getName().equalsIgnoreCase("MainLayers")
 							|| curr.getName().equalsIgnoreCase("OptionalLayers")) {
 						try{
-							System.out.println("Adding group layers: "+ curr.getName());
+							//System.out.println("Adding group layers: "+ curr.getName());
 							addLayers(curr, curr.getName());
 						}catch(XMLLayerException ex){
 							File tempFile = new File(fileName);
@@ -430,11 +430,11 @@ public class LayerMenuManagerSingleton {
 				}
 			}
 			
-			System.out.println("----------- FINAL Main MENU-------------");
+			//System.out.println("----------- FINAL Main MENU-------------");
 			TreeMenuUtils.traverseTree(rootMenu);
-			System.out.println("\n----------- FINAL Vector MENU-------------");
+			//System.out.println("\n----------- FINAL Vector MENU-------------");
 			TreeMenuUtils.traverseTree(rootVectorMenu);
-			System.out.println("\n");
+			//System.out.println("\n");
 			
 			if(layerExceptions.size() > 0){
 				String exceptionString="";

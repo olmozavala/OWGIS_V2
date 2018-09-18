@@ -102,7 +102,7 @@ public class NetCDFRequestManager {
 
 		try {
 			ncReq = new URL(urlRequest);
-			System.out.println("URL: "+urlRequest);
+			//System.out.println("URL: "+urlRequest);
 			ncReq.openConnection();
 			InputStreamReader input = new InputStreamReader(ncReq.openStream());
 			BufferedReader in = new BufferedReader(input);
@@ -111,7 +111,7 @@ public class NetCDFRequestManager {
 			while ((inputLine = in.readLine()) != null) {
 				if (!inputLine.trim().equalsIgnoreCase("")) {// TODO check for errros
 					timeSteps = new JSONObject(inputLine);
-					System.out.println("Results: "+inputLine);
+					//System.out.println("Results: "+inputLine);
 
 //					datesWithData = (JSONObject) layerDetails.get("datesWithData");
 					/*
