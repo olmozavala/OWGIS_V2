@@ -919,79 +919,28 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
         
 	if(true){
             var url;
-            // check if web service url is defined
-            //if(!_.isUndefined(layerDetails.windrose)){
-            url = layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_0.json";
-            //}else{
-		//return;
-            //}
+            url = "https://cors-escape.herokuapp.com/"+layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_0.json";
             
             var latlon = (_curr_language == "ES") ? "Latitud: "+lat+" Longitud: "+lon : "Latitude: "+lat+" Longitude: "+lon;
-            /*var times = time.split("/");
-            var s = Date.parse(times[0]);
-            var sdate = new Date(s);
-            var e = Date.parse(times[1]);
-            var edate = new Date(e);
-
-            var stime =  (sdate.getUTCDate().toString().length == 1 ? "0"+sdate.getUTCDate().toString() : sdate.getUTCDate().toString()) + "-" + ( (sdate.getUTCMonth()+1).toString().length == 1 ? "0"+(sdate.getUTCMonth()+1).toString() : (sdate.getUTCMonth()+1).toString())+ "-" +
-                         sdate.getUTCFullYear()+" "+ (sdate.getUTCHours().toString().length == 1 ? "0"+sdate.getUTCHours().toString() : sdate.getUTCHours().toString())+ ":" +(sdate.getUTCMinutes().toString().length == 1 ? "0"+sdate.getUTCMinutes().toString() : sdate.getUTCMinutes().toString());
-            var etime =  (edate.getUTCDate().toString().length == 1 ? "0"+edate.getUTCDate().toString() : edate.getUTCDate().toString()) + "-" + ((edate.getUTCMonth()+1).toString().length == 1 ? "0"+(edate.getUTCMonth()+1).toString() : (edate.getUTCMonth()+1).toString())+ "-" +
-                         edate.getUTCFullYear()+" "+ (edate.getUTCHours().toString().length == 1 ? "0"+edate.getUTCHours().toString() : edate.getUTCHours().toString())+ ":" +(edate.getUTCMinutes().toString().length == 1 ? "0"+edate.getUTCMinutes().toString() : edate.getUTCMinutes().toString());
-                 
-            url += lat+"/"+lon+"/"+stime+"/"+etime;
-            var meses = (_curr_language == "ES") ? ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"] : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            //console.log(url);
-            var dateTexts =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
-            var dateTexte =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
-            var curr_dates =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);
-            var curr_datee =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
-            var letime = "";
-            if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
-                if(!_.isUndefined(layerDetails.subtitleText)){
-                    if(layerDetails.subtitleText == "daily"){
-                        letime =  (_curr_language == 'ES') ? "del "+curr_dates.getUTCDate() +" "+ meses[curr_dates.getUTCMonth()]+" al "+curr_datee.getUTCDate() +" "+ meses[curr_datee.getUTCMonth()] : "from "+curr_dates.getUTCDate() +" "+ meses[curr_dates.getUTCMonth()]+" to "+curr_datee.getUTCDate() +" "+ meses[curr_datee.getUTCMonth()];
-                    }else if(layerDetails.subtitleText == "monthly"){
-                        letime =  (_curr_language == 'ES') ? "de "+meses[curr_dates.getUTCMonth()]+" a "+meses[curr_datee.getUTCMonth()] : "from "+meses[curr_dates.getUTCMonth()]+" to "+meses[curr_datee.getUTCMonth()];
-                    } else if(layerDetails.subtitleText == "hourxmonth"){
-                        letime = (_curr_language == 'ES') ? "de "+curr_dates.getUTCHours() +":00 a "+curr_datee.getUTCHours() +":00 de "+ meses[curr_dates.getUTCMonth()] : "from "+curr_dates.getUTCHours() +":00 to "+curr_datee.getUTCHours() +":00 of "+ meses[curr_dates.getUTCMonth()];
-                    }
-                } else {
-                    letime = ""; 
-                }
-            }
-            */
-           
+            
             var ajaxCan;
             var dataU, dataV;
-            $.ajax({
-                url: url,
-                async: false,
-                cache: false,
-                success: function(data) {
-                    ajaxCan = true;
-                    console.log(data);	
-                    dataU = data.U;
-                    dataV = data.V;
-                },
-                error: function(ex) {
-                    ajaxCan = false;
-                    console.log(ex);
-                }
-            });
-                            
-            if(ajaxCan){
-                                            
-                //if( mobile ){
-                    var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
-                /*} else {
-                    var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
-                }*/
-		
-            } else {
-                var dataLink = "";
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+              if (this.readyState === 4 && this.status === 200) {
+                let response = JSON.parse(this.responseText);
+                console.log(response);    
+                ajaxCan = true;
+                dataU = response.U;
+                dataV = response.V;
+                var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
+                currPopupText += dataLink;
+                $("#popup-content").html(currPopupText);
+              }
             }
-            currPopupText += dataLink;
-            $("#popup-content").html(currPopupText);
+            xhr.open("GET", url);
+            xhr.setRequestHeader("Accept", 'application/json');
+            xhr.send();   
 	}
     }
 }
