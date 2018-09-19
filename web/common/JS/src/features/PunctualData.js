@@ -907,27 +907,27 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
     var currLayer = eval('layer'+layerNumber);
     var currSource = currLayer.getSource();
-	
-    if("getParams" in currSource && currSource.getParams().ncwms){
+        
+    if(!_.isUndefined(layerDetails.windrose) && currSource.getParams().LAYERS == "cen:rosasviento" ){
         
         var coordinate = event.coordinate;
         var newCoordinate =  ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');
-        var lon = newCoordinate[0].toFixed(2);
-        var lat = newCoordinate[1].toFixed(2);	
-        var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
-        console.log(time);
+        var lon = Math.round(newCoordinate[0]).toFixed(4);
+        var lat = Math.round(newCoordinate[1]).toFixed(4);	
+        //var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
+        console.log(newCoordinate, lon , lat, layerDetails.windrose);
         
-	if(time !== undefined){
+	if(true){
             var url;
             // check if web service url is defined
-            if(!_.isUndefined(layerDetails.windrose)){
-		url = layerDetails.windrose;
-            }else{
-		return;
-            }
+            //if(!_.isUndefined(layerDetails.windrose)){
+            url = layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_0.json";
+            //}else{
+		//return;
+            //}
             
             var latlon = (_curr_language == "ES") ? "Latitud: "+lat+" Longitud: "+lon : "Latitude: "+lat+" Longitude: "+lon;
-            var times = time.split("/");
+            /*var times = time.split("/");
             var s = Date.parse(times[0]);
             var sdate = new Date(s);
             var e = Date.parse(times[1]);
@@ -959,7 +959,8 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
                     letime = ""; 
                 }
             }
-            
+            */
+           
             var ajaxCan;
             var dataU, dataV;
             $.ajax({
@@ -968,9 +969,9 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
                 cache: false,
                 success: function(data) {
                     ajaxCan = true;
-                    dataU = data.result.U;
-                    dataV = data.result.V;
                     console.log(data);	
+                    dataU = data.U;
+                    dataV = data.V;
                 },
                 error: function(ex) {
                     ajaxCan = false;
@@ -981,7 +982,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             if(ajaxCan){
                                             
                 //if( mobile ){
-                    var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+letime+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+letime+"')\">Show</button><br>";                            
+                    var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
                 /*} else {
                     var dataLink = "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"\">Show</button><br>";  
                 }*/
