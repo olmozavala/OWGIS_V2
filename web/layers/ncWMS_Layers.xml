@@ -1,44 +1,40 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
-		<Menu ID="PromD" EN="Daily avarage" ES="Climatología Diaria"/>
-		<Menu ID="PromM" EN="Monthly avarage" ES="Climatología Mensual"/>
-		<Menu ID="PromHM" EN="Month-hourly avarage" ES="Climatología horaria por mes"/>
-		<Menu ID="PromMAD" EN="AbsMax daily avarage" ES="Máxima absoluta diaria"/>
-		<Menu ID="PromMAM" EN="AbsMax monthly avarage" ES="Máxima promedio mensual"/>
-		<Menu ID="MAM" EN="AbsMax monthly" ES="Máxima absoluta por mes"/>
-		<Menu ID="PromMinM" EN="AbsMin monthly avarage" ES="Mínima promedio mensual"/>
-		<Menu ID="MinAM" EN="AbsMin monthly " ES="Mínima absoluta por mes"/>
-		<Menu ID="ANOM" EN="Anomalies " ES="Anomalías mensuales"/>
-		<Menu ID="Umbral" EN="Umbral " ES="Umbral"/>
-		<Menu ID="WindRose" EN="Wind Rose " ES="Rosas de Viento"/>
+		<Menu ID="PromD" EN="Daily Climatology" ES="Climatología Diaria"/>
+		<Menu ID="PromM" EN="Monthly Climatology" ES="Climatología Mensual"/>
+		<Menu ID="PromHM" EN="Hourly Climatology by Month" ES="Climatología horaria por mes"/>
+		<Menu ID="PromMAD" EN="Daily Absolute Maximum" ES="Máxima absoluta diaria"/>
+		<Menu ID="PromMAM" EN="Monthly Maximum Mean" ES="Máxima promedio mensual"/>
+		<Menu ID="MAM" EN="Monthly Absolute Maximum" ES="Máxima absoluta por mes"/>
+		<Menu ID="PromMinM" EN="Monthly Minimum Mean" ES="Mínima promedio mensual"/>
+		<Menu ID="MinAM" EN="Monthly Absolute Minimum" ES="Mínima absoluta por mes"/>
+		<Menu ID="ANOM" EN="Monthly Anomalies" ES="Anomalías mensuales"/>
+		<Menu ID="Umbral" EN="Thresholds " ES="Umbral"/>
+		<Menu ID="WindRose" EN="Windrose " ES="Rosas de Viento"/>
 
                 <Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
-		<Menu ID="Prec" EN="Prec" ES="Precipitación"/>
-		<Menu ID="PBLH" EN="PBLH" ES="Altura de capa límite"/>
+		<Menu ID="Prec" EN="Precipitation" ES="Precipitación"/>
+		<Menu ID="PBLH" EN="Planetary boundary layer height" ES="Altura de capa límite"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento"/>
-		<Menu ID="SWDOWN" EN="SWDOWN" ES="Radiación de onda corta"/>
-		<Menu ID="GLW" EN="Long wave radiation" ES="Radiación de onda larga (neta)"/>
+		<Menu ID="SWDOWN" EN="Short wave radiation" ES="Radiación de onda corta"/>
+		<Menu ID="GLW" EN="Net long wave radiation" ES="Radiación de onda larga (neta)"/>
 		<Menu ID="QFX" EN="Evaporation" ES="Evaporación"/>
 		<Menu ID="RH" EN="Relative humidity" ES="Humedad relativa"/>
-
-                <Menu ID="Percentil" EN="Warnings" ES="Alerta"/>
-		<Menu ID="PercentilT" EN="Warnings" ES="Alerta total"/>
-                <Menu ID="PercentilH" EN="Warnings" ES="Alerta horaria"/>
                 
-                <Menu ID="Perci" EN="Percentil" ES="Percentiles"/>
-                <Menu ID="PerciMonth" EN="Percentil Monthly" ES="Percentiles Mensuales"/>
-                <Menu ID="Perci01" EN="Percentil" ES="Percentil 0.1%"/>
-                <Menu ID="Perci1" EN="Percentil" ES="Percentil 1%"/>
-                <Menu ID="Perci5" EN="Percentil" ES="Percentil 5%"/>
-                <Menu ID="Perci10" EN="Percentil" ES="Percentil 10%"/>
-                <Menu ID="Perci25" EN="Percentil" ES="Percentil 25%"/>
-                <Menu ID="Perci50" EN="Percentil" ES="Percentil 50%"/>
-                <Menu ID="Perci75" EN="Percentil" ES="Percentil 75%"/>
-                <Menu ID="Perci90" EN="Percentil" ES="Percentil 90%"/>
-                <Menu ID="Perci95" EN="Percentil" ES="Percentil 95%"/>
-                <Menu ID="Perci99" EN="Percentil" ES="Percentil 99%"/>
-                <Menu ID="Perci999" EN="Percentil" ES="Percentil 99.9%"/>
+                <Menu ID="Perci" EN="Percentiles" ES="Percentiles"/>
+                <Menu ID="PerciMonth" EN="Monthly Percentiles" ES="Percentiles Mensuales"/>
+                <Menu ID="Perci01" EN="Percentil 0.1%" ES="Percentil 0.1%"/>
+                <Menu ID="Perci1" EN="Percentil 1%" ES="Percentil 1%"/>
+                <Menu ID="Perci5" EN="Percentil 5%" ES="Percentil 5%"/>
+                <Menu ID="Perci10" EN="Percentil 10%" ES="Percentil 10%"/>
+                <Menu ID="Perci25" EN="Percentil 25%" ES="Percentil 25%"/>
+                <Menu ID="Perci50" EN="Percentil 50%" ES="Percentil 50%"/>
+                <Menu ID="Perci75" EN="Percentil 75%" ES="Percentil 75%"/>
+                <Menu ID="Perci90" EN="Percentil 90%" ES="Percentil 90%"/>
+                <Menu ID="Perci95" EN="Percentil 95%" ES="Percentil 95%"/>
+                <Menu ID="Perci99" EN="Percentil 99%" ES="Percentil 99%"/>
+                <Menu ID="Perci999" EN="Percentil 99.9%" ES="Percentil 99.9%"/>
                 
                 <Menu ID="M01" EN="January" ES="Enero"/>
                 <Menu ID="M02" EN="February" ES="Febrero"/>
@@ -110,7 +106,7 @@
                 
                 <!-- Promedios diarios -->
 		<layer Menu="Temp,PromD" 
-			   EN="Temperature" ES="Climatología Diaria de Temperatura a 2 metros"
+			   EN="Daily Temperature Climatology" ES="Climatología Diaria de Temperatura a 2 metros"
 			   name="atlas_diario/T2" numColorBands="64"
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="transparent" aboveMaxColor="transparent" 
@@ -118,20 +114,20 @@
                 />
 
 		<layer Menu="Prec,PromD" 
-			   EN="Total Precipitation" ES="Climatología Diaria de Precipitación Total"
+			   EN="Daily Precipitation Climatology" ES="Climatología Diaria de Precipitación Total"
 			   name="atlas_diario/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="transparent" maxcolor="500" aboveMaxColor="transparent" palette="precipitacionGrad"
                            subtitleText="daily"
                 />
 
 		<layer Menu="PBLH,PromD" 
-			   EN="Boundary layer height" ES="Climatología Diaria de Altura de la capa límite"
+			   EN="Daily Planetary boundary layer height Climatology" ES="Climatología Diaria de Altura de la capa límite"
 			   name="atlas_diario/PBLH" style="default-scalar" palette="alturacapalimite"
                            mincolor="0" maxcolor="2800" subtitleText="daily"
                 />
 
 		<layer Menu="Viento,PromD" 
-			   EN="Wind speed at 10 meters" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
+			   EN="Daily Wind Climatology" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
                            style="default-scalar" palette="windatlas" 
 			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.1"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
@@ -139,12 +135,12 @@
                 />
                 
                 <layer Menu="QFX,PromD" 
-			   EN="Evaporation" ES="Climatología Diaria de Evaporación"
+			   EN="Daily Evaporation Climatology" ES="Climatología Diaria de Evaporación"
 			   name="atlas_diario/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
                             subtitleText="daily"
                 />
                 
-                <layer Menu="GLW,PromD" EN="Long wave radiation" 
+                <layer Menu="GLW,PromD" EN="Daily Net long wave radiation Climatology" 
 			   ES="Climatología Diaria de Radiacion de onda larga" 
 			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
