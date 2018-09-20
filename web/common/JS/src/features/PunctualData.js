@@ -733,7 +733,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       enabled: false  
                                     },
                                     title: {
-                                      text: (_curr_language == 'ES') ? "Serie de Tiempo "+letime : 'Time Series '+letime
+                                      text: layerTitle.children[0].children[0].children[0].innerText+" "+letime 
                                     },
                                     subtitle: {
                                         text: latlon
@@ -919,7 +919,8 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
         
 	if(true){
             var url;
-            url = "https://cors-escape.herokuapp.com/"+layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_0.json";
+            var slctdmonth = $('#mySelect option:selected').val();
+            url = "https://cors-escape.herokuapp.com/"+layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_"+slctdmonth+".json";
             
             var latlon = (_curr_language == "ES") ? "Latitud: "+lat+" Longitud: "+lon : "Latitude: "+lat+" Longitude: "+lon;
             
@@ -933,7 +934,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
                 ajaxCan = true;
                 dataU = response.U;
                 dataV = response.V;
-                var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"')\">Show</button><br>";                            
+                var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Show</button><br>";                            
                 currPopupText += dataLink;
                 $("#popup-content").html(currPopupText);
               }

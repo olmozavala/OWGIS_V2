@@ -98,4 +98,36 @@ owgis.interf.loadingatmap = function(loading,percentage,extraText){
  * @returns {undefined}
  */
 function modifyInterface(){
+    var currLayer = eval('layer'+1);
+    var currSource = currLayer.getSource();
+    
+    if(!_.isUndefined(layerDetails.windrose) && currSource.getParams().LAYERS == "cen:rosasviento" ){
+        var x = document.createElement("SELECT");
+        x.setAttribute("id", "mySelect");
+        x.setAttribute("class", "mainMenu");
+        document.getElementById("mainMenuParent").children[1].children[0].appendChild(x);
+       
+        
+        
+        var shortNames = ["0","1", "2","3" , "4" , "5" , "6" , "7" , "8" , "9" , "10", "11" , "12"];
+        
+        for(var i=0; i < shortNames.length ; i++){
+            var z = document.createElement("option");
+            z.setAttribute("value", shortNames[i]);
+            var t = document.createTextNode(getMonthName(shortNames[i]));
+            z.appendChild(t);
+            document.getElementById("mySelect").appendChild(z);
+        }
+        
+    }
 }
+
+function getMonthName(shortName){
+    var shortNames = ["0","1", "2","3" , "4" , "5" , "6" , "7" , "8" , "9" , "10", "11" , "12"];
+    var longNames = (_curr_language == "ES") ? ["Anual","enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"] : ["Annual","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];//console.log(url);
+    for(var i=0; i<shortNames.length; i++){
+      if(shortNames[i] === shortName){
+        return longNames[i];
+      }
+    }
+  }
