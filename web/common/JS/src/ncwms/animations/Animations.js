@@ -304,7 +304,7 @@ function obtainSelectedDates(){
     var key =  $('#timeSelect :selected').attr('key');
     totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
     var step = allFrames[0].split("/")[2];
-    console.log(allFrames[0]);
+    //console.log(allFrames[0]);
 
     // Verify we are ncWMS2
     if(layerDetails['ncwmstwo']){
@@ -362,7 +362,7 @@ function obtainSelectedDates(){
             owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
             enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
             var allDates = [];
-            console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
+            //console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
             myList = [];
             if( !mobile ){
                 $('#startTimeCalendar option').each(function() {

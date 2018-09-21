@@ -85,7 +85,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             //var allDates =  Array.from(datesRange.by('day'));
             //allDateFrames = allDates.map(m => m.utc().format()); 
             allFramesVP = allFrames; allDataVP= {};
-            console.log(allFramesVP);
+            //console.log(allFramesVP);
             /*
             for(i=0; i<allDateFrames.length; i++){
                 var locCurrDate = new Date(allDateFrames[i]);
@@ -95,11 +95,11 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 allFramesVP = allFramesVP.concat(hoursForFirstDay);
             }
             */
-            var baseUrl = url; console.log(allFramesVP.length);
+            var baseUrl = url; //console.log(allFramesVP.length);
             for(i=0; i<allFramesVP.length; i++){
                 newUrl = baseUrl+"&TIME="+allFramesVP[i];   
                 var request = $.ajax({ url: newUrl});
-                allDataVP[allFramesVP[i]]  = request.done(function(data, status, xhr) { console.log("done request for vp !!!",data.split("\n")[0]); }); //maybe we should check if the response is 200 / 404 / 401 (?)
+                allDataVP[allFramesVP[i]]  = request.done(function(data, status, xhr) { /*console.log("done request for vp !!!",data.split("\n")[0]);*/ }); //maybe we should check if the response is 200 / 404 / 401 (?)
             }
             
             // when all ajax calls are done we need to be able to start animation
@@ -235,7 +235,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
                         } else {
                             twidth = screen.width-10;
-                            height = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                            theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
                         }
                         $("#containerChartsVP").highcharts().setSize(twidth, theight, doAnimation = true);
                     });
@@ -362,7 +362,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                     },
                     error: function(ex) {
                         console.log(ex);
-                        console.log('NOT!');
+                        //console.log('NOT!');
                         ajaxCan = false; 
                     }
                 });
@@ -576,9 +576,7 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
     
     function showPrevVP(){
         vpCurrentFrame = vpCurrentFrame <= 0 ? allFrames.length-2 : vpCurrentFrame-2;
-        console.log(vpCurrentFrame);
         animateVerticalProfile();
-        console.log(vpCurrentFrame);
         isPrevVP=false; 
     }
     
@@ -661,7 +659,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                         hh.splice(0,3);
                         hh.splice(1,hh.length-1);
                         var jj = new Date(hh[0].split(",")[0]);
-                        var tzO = jj.getTimezoneOffset(); console.log(jj,tzO);
+                        var tzO = jj.getTimezoneOffset(); //console.log(jj,tzO);
                         Highcharts.setOptions({
                             time: {
                                 timezoneOffset: (-tzO)
@@ -773,7 +771,6 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                     error: function(ex) {
                         ajaxCan = false;
                         console.log(ex);
-                        console.log('NOT!');
                     }
                 });
                 
