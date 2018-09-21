@@ -20,7 +20,7 @@
 	</c:if>
                 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css" rel="stylesheet" type="text/css" />
-
+        <link href="./common/CSS/introjs-royal.css" rel="stylesheet" type="text/css" />
 	<!--This is the mobile case-->
 	<c:if test='${mobile}'>
 		<link href="./common/CSS/vendor/jquery.mobile-1.4.5.min.css"  rel="stylesheet"/>
@@ -38,7 +38,7 @@
 	</c:if>
 	<!--this is the Desktop case-->
 	<c:if test='${!mobile}'>
-                <link href="./common/CSS/introjs-royal.css" rel="stylesheet" type="text/css" />
+                
 		<link href="./common/CSS/vendor/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/Calendars.css" rel="stylesheet" type="text/css"/>
 		<link href="./common/CSS/OptionalLayersMenu.css" rel="stylesheet" type="text/css"/>
@@ -62,4 +62,3 @@
 	<link href="./common/CSS/Ol3.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Currents.css" rel="stylesheet" type="text/css"/>
 	<link href="./common/CSS/Error.css" rel="stylesheet" type="text/css"/>
-

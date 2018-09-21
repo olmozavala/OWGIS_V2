@@ -384,6 +384,13 @@ div.splash-forecast table tbody tr:last-child {
 div.splash .modal-dialog .modal-content .modal-body .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
   vertical-align: middle !important;
 }
+
+@media only screen and (max-width: 600px) {
+    .introjs-tooltip {
+        position: absolute;
+    }
+}
+
 /*
   END - INTRO-JS CSS COSTUMIZATION
 */
