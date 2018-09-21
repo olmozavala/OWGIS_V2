@@ -215,7 +215,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
 		//------ Modifying the size of the canvas container
-		var spaceForUnits = 40;// Space between the black part for units and the rest
+		var spaceForUnits = 82;// Space between the black part for units and the rest
 		ctx.canvas.width = barWidth+spaceForUnits;
 		ctx.canvas.height = barHeight;
 

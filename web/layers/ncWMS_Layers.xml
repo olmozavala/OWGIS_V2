@@ -18,7 +18,7 @@
 		<Menu ID="PBLH" EN="Planetary boundary layer height" ES="Altura de capa límite"/>
 		<Menu ID="Viento" EN="Wind" ES="Viento"/>
 		<Menu ID="SWDOWN" EN="Short wave radiation" ES="Radiación de onda corta"/>
-		<Menu ID="GLW" EN="Net long wave radiation" ES="Radiación de onda larga (neta)"/>
+		<Menu ID="GLW" EN="Net long wave radiation" ES="Radiación neta de onda larga "/>
 		<Menu ID="QFX" EN="Evaporation" ES="Evaporación"/>
 		<Menu ID="RH" EN="Relative humidity" ES="Humedad relativa"/>
                 
@@ -136,12 +136,12 @@
                 
                 <layer Menu="QFX,PromD" 
 			   EN="Daily Evaporation Climatology" ES="Climatología Diaria de Evaporación"
-			   name="atlas_diario/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_diario/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="daily"
                 />
                 
                 <layer Menu="GLW,PromD" EN="Daily Net long wave radiation Climatology" 
-			   ES="Climatología Diaria de Radiacion de onda larga" 
+			   ES="Climatología Diaria de Radiación neta de onda larga" 
 			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="daily"
@@ -157,7 +157,7 @@
                 <layer Menu="RH,PromD" EN="Daily Relative Humidity Climatology" 
 			   ES="Climatología Diaria de Humedad relativa" 
 			   name="atlas_diario/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="daily"
                 />
                 
@@ -195,12 +195,12 @@
 		<layer Menu="QFX,PromM" EN="Monthly Evaporation Climatology" 
 			   ES="Climatología Mensual de Evaporación" 
 			   name="atlas_mensuales/QFX" 
-			   style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="monthly"
                 />
                 
                 <layer Menu="GLW,PromM" EN="Monthly Net Long wave radiation Climatology" 
-			   ES="Climatología Mensual de Radiacion de onda larga" 
+			   ES="Climatología Mensual de Radiación neta de onda larga" 
 			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="monthly"
@@ -216,7 +216,7 @@
                 <layer Menu="RH,PromM" EN="Monthly Relative humidity Climatology" 
 			   ES="Climatología Mensual de Humedad relativa" 
 			   name="atlas_mensuales/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="monthly"
                 />
                 
@@ -294,7 +294,7 @@
                 
                 <layer Menu="QFX,PromHM,M01" 
 			   EN="Hourly Evaporation Climatology by Month " ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_enero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_enero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -307,7 +307,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M01" EN="Hourly Net Long wave radiation Climatology by Month " 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_enero/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
@@ -323,7 +323,7 @@
                 <layer Menu="RH,PromHM,M01" EN="Hourly Relative Humidity Climatology by Month " 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_enero_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
                 
@@ -352,7 +352,7 @@
                 
                 <layer Menu="QFX,PromHM,M02" 
 			   EN="Hourly Evaporation Climatology by Month " ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_febrero/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -364,7 +364,7 @@
                            subtitleText="hourxmonth"
                 />
                 <layer Menu="GLW,PromHM,M02" EN="Hourly Net Long wave radiation Climatology by Month " 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
                            palette="radiacionondacorta" mincolor="-110" maxcolor="50"
@@ -380,7 +380,7 @@
                 <layer Menu="RH,PromHM,M02" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_febrero_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
                 <!-- Marzo -->
@@ -409,7 +409,7 @@
                 <layer Menu="QFX,PromHM,M03" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
 			   name="atlas_horarios_mes_marzo/QFX" style="default-scalar"
-                           subtitleText="hourxmonth" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+                           subtitleText="hourxmonth" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                 />
 
 		<layer Menu="Viento,PromHM,M03" 
@@ -421,7 +421,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M03" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_marzo/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
@@ -437,7 +437,7 @@
                 <layer Menu="RH,PromHM,M03" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_marzo_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -466,7 +466,7 @@
                 
                 <layer Menu="QFX,PromHM,M04" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_abril/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_abril/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -479,7 +479,7 @@
                 /> 
                 
                 <layer Menu="GLW,PromHM,M04" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_abril/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
@@ -495,7 +495,7 @@
                <layer Menu="RH,PromHM,M04" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_abril_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -524,7 +524,7 @@
                 
                 <layer Menu="QFX,PromHM,M05" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_mayo/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -537,7 +537,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M05" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_mayo/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
@@ -553,7 +553,7 @@
                 <layer Menu="RH,PromHM,M05" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_mayo_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -585,7 +585,7 @@
                 
                 <layer Menu="QFX,PromHM,M06" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -600,7 +600,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M06" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_junio/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
                            palette="radiacionondacorta" mincolor="-110" maxcolor="50"
@@ -618,7 +618,7 @@
                 <layer Menu="RH,PromHM,M06" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_junio_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -651,7 +651,7 @@
                 
                 <layer Menu="QFX,PromHM,M07" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -666,7 +666,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M07" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_julio/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
@@ -684,7 +684,7 @@
                 <layer Menu="RH,PromHM,M07" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_julio_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -717,7 +717,7 @@
                 
                 <layer Menu="QFX,PromHM,M08" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_agosto/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -732,7 +732,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M08" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_agosto/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="hourxmonth"
@@ -750,7 +750,7 @@
                 <layer Menu="RH,PromHM,M08" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_agosto_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -783,7 +783,7 @@
                 
                 <layer Menu="QFX,PromHM,M09" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_septiembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -798,7 +798,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M09" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_septiembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
@@ -816,7 +816,7 @@
                 <layer Menu="RH,PromHM,M09" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_septiembre_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -849,7 +849,7 @@
                 
                 <layer Menu="QFX,PromHM,M10" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_octubre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -864,7 +864,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M10" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_octubre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
@@ -882,7 +882,7 @@
                 <layer Menu="RH,PromHM,M10" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_octubre_rh/RH" 
-			   style="default-scalar" palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -915,7 +915,7 @@
                 
                 <layer Menu="QFX,PromHM,M11" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_noviembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -929,7 +929,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M11" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_noviembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
@@ -947,7 +947,7 @@
                 <layer Menu="RH,PromHM,M11" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_noviembre_rh/RH" 
-			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -979,7 +979,7 @@
                 
                 <layer Menu="QFX,PromHM,M12" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_horarios_mes_diciembre/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -994,7 +994,7 @@
                 />
                 
                 <layer Menu="GLW,PromHM,M12" EN="Hourly Net Long wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda larga" 
+			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_diciembre/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
@@ -1012,7 +1012,7 @@
                 <layer Menu="RH,PromHM,M12" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_diciembre_rh/RH" 
-			   style="default-scalar" palette="rh" mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="rhatlas" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -1053,13 +1053,13 @@
                 
                 <layer Menu="QFX,MAM" 
 			   EN="Monthly Evaporation Absolute Maximum" ES="Máxima absoluta por mes de Evaporación"
-			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500"
+			   name="atlas_maxs_abs_mensuales/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                             subtitleText="monthly"
                             
                 />
                 
                 <layer Menu="GLW,MAM" EN="Monthly Net Long wave radiation Absolute Maximum " 
-			   ES="Máxima absoluta por mes de Radiacion de onda larga" 
+			   ES="Máxima absoluta por mes de Radiación neta de onda larga" 
 			   name="atlas_maxs_abs_mensuales/GLW" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
                              subtitleText="monthly"
@@ -1075,7 +1075,7 @@
                 />
                 
                 <layer Menu="RH,MAM" EN="Monthly Relative humidity Absolute Maximum " 
-			   ES="Máxima absoluta por mes de Humedad relativa"  palette="rh"  mincolor="50" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   ES="Máxima absoluta por mes de Humedad relativa"  palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
 			   name="atlas_maxs_abs_mensuales/RH" 
 			   style="default-scalar"
                              subtitleText="monthly"
