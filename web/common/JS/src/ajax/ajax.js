@@ -208,12 +208,12 @@ Asynchronous.prototype.call = Asynchronous_call;
  *@param responseText - parameter passed in by the OpenLayersManager.java
  */
 function AsyncPunctualData(responseText) {
-    console.log(responseText);
+    //console.log(responseText);
     responseText = responseText.replace("ADD_UNITS",layerDetails.units);
     currPopupText += responseText;
     $("#popup-content").html(currPopupText);
     $("#popup").show();
-    //owgis.interf.loadingatmouse(false);//Stop showing the loading icon
+    owgis.interf.loadingatmouse(false);//Stop showing the loading icon
     if(!mobile){document.getElementById('map').style.cursor = 'crosshair';}
 }
 
