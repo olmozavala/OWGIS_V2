@@ -907,7 +907,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
 owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
     var currLayer = eval('layer'+layerNumber);
     var currSource = currLayer.getSource();
-        
+    
     if(!_.isUndefined(layerDetails.windrose) && currSource.getParams().LAYERS == "cen:rosasviento" ){
         
         var coordinate = event.coordinate;

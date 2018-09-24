@@ -1,0 +1,12 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+
+
+	<MainLayers server="http://132.248.8.238:8080/geoservercenapred/wms" BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" vectorLayer="true" >
+            <layer Menu="Viento,WindRose" 
+			   EN="Wind Rose" ES="Rosas de Viento" 
+			   name="cen:rosasviento"
+                           windrose="http://pronosticos.unam.mx/Json_files/ATLAS/"
+            />
+        </MainLayers>
+       
+</MenuConf>
