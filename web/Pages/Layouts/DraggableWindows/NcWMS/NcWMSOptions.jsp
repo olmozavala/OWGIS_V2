@@ -43,10 +43,10 @@
 		</div>
 		<div class="col-xs-12 invShadow text-center ">
 			<label class="radio-inline">
-				<input type="radio" value="high" name="video_res" ><fmt:message key='ncwms.resolutionHigh'/>
+				<input type="radio" value="high" name="video_res" checked><fmt:message key='ncwms.resolutionHigh'/>
 			</label>
 			<label class="radio-inline">
-				<input type="radio" value="normal" name="video_res" checked><fmt:message key='ncwms.resolutionMiddle'/>
+				<input type="radio" value="normal" name="video_res" ><fmt:message key='ncwms.resolutionMiddle'/>
 			</label>
 			<label class="radio-inline">
 				<input type="radio" value="low" name="video_res" ><fmt:message key='ncwms.resolutionLow'/>

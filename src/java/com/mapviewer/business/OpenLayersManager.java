@@ -222,55 +222,60 @@ public class OpenLayersManager {
 	private String generateURLhelper(Layer actualLayer, int layerNumber) {
 
 		String URLscript = "";
-
-
+        
+                
+        
 		URLscript += "\t\tif(typeof(layer" + layerNumber + ") !== 'undefined'){\n";
 		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
 		URLscript += "\t\t\t\towgis.features.punctual.getVerticalProfile(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
 		URLscript += "\t\t\t\towgis.features.punctual.getTimeSeries(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
-		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
-
-		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
-		URLscript += "WIDTH=\"+ map.getSize()[0] +\"&"
-				+ "HEIGHT=\"+ map.getSize()[1] +\"&"
-				+ "SRS=\"+ _map_projection+ \"&"
-				+ "FORMAT=" + actualLayer.getFormat() + "&"
-				+ "VERSION=1.1.1&"
-				+ "REQUEST=GetFeatureInfo&"
-				+ "EXCEPTIONS=application/vnd.ogc.se_xml&"
-				+ "x=\"+ Math.floor(evt.pixel[0]) +\"&"
-				+ "y=\"+ Math.floor(evt.pixel[1]) +\"&"
-				+ "BBOX=\"+ currBBOX +\"&"
-				+ "SERVICE=WMS&";
-
-		if (!actualLayer.getCql().equals("")) {
-			URLscript += "CQL_FILTER=" + actualLayer.getCql() + "&";
-		}
-
-		//In this case we also need the time information
-		if (actualLayer.isncWMS()) {
-			// The two variables: elevation and startDate have to match
-			// javascript variable names. 
-//			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]+\"&" 
-			URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
-					+ "TIME=\"+owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true)+\"&"
-					+ "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
-					+ "INFO_FORMAT=text/xml&"
-                                        + "STYLES=" + actualLayer.getStyle() + "/" + actualLayer.getPalette() +"&"
-					+ "NETCDF=true&";
-		} else {
-			URLscript += "STYLES=" + actualLayer.getStyle() + "&" +
-                                      "INFO_FORMAT=text/html&"
-					+ "NETCDF=false&";
-		}
-
-		URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
-		URLscript += "FEATURE_COUNT=50\";\n";
         URLscript += "\t\t\t\towgis.features.punctual.getWindRose(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
-		URLscript +=  "\t\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
-				+ "\t\t\t\t asynchronous" + layerNumber + ".complete = compleFun;\n"
-				+ "\t\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n"
-				+ "\t\t\t}\n"
+        
+        if(!"cen:rosasviento".equals(actualLayer.getFeatureInfoLayer()) ){
+       
+            URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
+
+            URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
+            URLscript += "WIDTH=\"+ map.getSize()[0] +\"&"
+                    + "HEIGHT=\"+ map.getSize()[1] +\"&"
+                    + "SRS=\"+ _map_projection+ \"&"
+                    + "FORMAT=" + actualLayer.getFormat() + "&"
+                    + "VERSION=1.1.1&"
+                    + "REQUEST=GetFeatureInfo&"
+                    + "EXCEPTIONS=application/vnd.ogc.se_xml&"
+                    + "x=\"+ Math.floor(evt.pixel[0]) +\"&"
+                    + "y=\"+ Math.floor(evt.pixel[1]) +\"&"
+                    + "BBOX=\"+ currBBOX +\"&"
+                    + "SERVICE=WMS&";
+
+            if (!actualLayer.getCql().equals("")) {
+                URLscript += "CQL_FILTER=" + actualLayer.getCql() + "&";
+            }
+
+            //In this case we also need the time information
+            if (actualLayer.isncWMS()) {
+                // The two variables: elevation and startDate have to match
+                // javascript variable names. 
+    //			URLscript += "ELEVATION=\"+layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter]+\"&" 
+                URLscript += "\"+owgis.ncwms.zaxis.addElevationText()+\""
+                        + "TIME=\"+owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true)+\"&"
+                        + "BOTHTIMES=\"+owgis.ncwms.calendars.getUserSelectedTimeFrame()+\"&"
+                        + "INFO_FORMAT=text/xml&"
+                                            + "STYLES=" + actualLayer.getStyle() + "/" + actualLayer.getPalette() +"&"
+                        + "NETCDF=true&";
+            } else {
+                URLscript += "STYLES=" + actualLayer.getStyle() + "&" +
+                                          "INFO_FORMAT=text/html&"
+                        + "NETCDF=false&";
+            }
+
+            URLscript += "QUERY_LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
+            URLscript += "FEATURE_COUNT=50\";\n";
+            URLscript +=  "\t\t\t\t var asynchronous" + layerNumber + " = new Asynchronous();\n"
+                    + "\t\t\t\t asynchronous" + layerNumber + ".complete = compleFun;\n"
+                    + "\t\t\t\t asynchronous" + layerNumber + ".call(url" + layerNumber + ");\n";
+        }
+		URLscript += "\t\t\t}\n"
 				+ "\t\t}\n";
 		//if (actualLayer.getWindrose() == "http://pronosticos.unam.mx/Json_files/ATLAS/") {
         //

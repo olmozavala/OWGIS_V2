@@ -25,10 +25,10 @@
 		</li>
 		<li>
 			<div data-role="controlgroup" data-type="horizontal">
-				<input type="radio" value="high" name="video_res" id="video_res_hi" data-mini="true" class="custom" >
+				<input type="radio" value="high" name="video_res" id="video_res_hi" data-mini="true" class="custom" checked="checked">
 				<label for="video_res_hi">High</label>
 					
-				<input type="radio" value="normal" name="video_res" id="video_res_normal" data-mini="true" class="custom" checked="checked">
+				<input type="radio" value="normal" name="video_res" id="video_res_normal" data-mini="true" class="custom" >
 				<label for="video_res_normal">Mid</label>
 					
 				<input type="radio" value="low" name="video_res" id="video_res_low" data-mini="true" class="custom">

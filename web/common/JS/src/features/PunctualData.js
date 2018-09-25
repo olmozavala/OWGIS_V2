@@ -910,42 +910,64 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
     
     if(!_.isUndefined(layerDetails.windrose) && currSource.getParams().LAYERS == "cen:rosasviento" ){
         
-        var coordinate = event.coordinate;
-        var newCoordinate =  ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');
-        var lon = Math.round(newCoordinate[0]).toFixed(4);
-        var lat = Math.round(newCoordinate[1]).toFixed(4);	
-        //var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
-        console.log(newCoordinate, lon , lat, layerDetails.windrose);
-        
-	if(true){
-            var url;
-            var slctdmonth = $('#mySelect option:selected').val();
-            url = "https://cors-escape.herokuapp.com/"+layerDetails.windrose + lat + "_" + lon + "/" + lat + "_" + lon+ "_"+slctdmonth+".json";
-            
-            var latlon = (_curr_language == "ES") ? "Latitud: "+lat+" Longitud: "+lon : "Latitude: "+lat+" Longitude: "+lon;
-            
-            var ajaxCan;
-            var dataU, dataV;
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-              if (this.readyState === 4 && this.status === 200) {
-                let response = JSON.parse(this.responseText);
-                console.log(response);    
-                ajaxCan = true;
-                dataU = response.U;
-                dataV = response.V;
-                var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Show</button><br>";                            
-                currPopupText += dataLink;
-                $("#popup-content").html(currPopupText);
-              }
+        var currBBOX =  ol3view.calculateExtent(map.getSize());
+        var wmsURL = "http://132.248.8.238:8080/geoservercenapred/wms?request=GetFeatureInfo&LAYERS=cen:rosasviento&service=WMS&version=1.1.1&INFO_FORMAT=application/json&WIDTH="
+                      + map.getSize()[0] +"&HEIGHT="+ map.getSize()[1] +"&SRS="+ _map_projection+ "&x="+ Math.floor(event.pixel[0]) +"&y="+ Math.floor(event.pixel[1]) +"&BBOX="+ currBBOX 
+                      + "&feature_count=50&query_layers=cen:rosasviento&TYPENAME=cen:rosasviento";
+              
+        var url;
+        var slctdmonth = $('#mySelect option:selected').val();
+        url = "https://cors-escape.herokuapp.com/"+layerDetails.windrose; 
+        var myPromise = new Promise(function (resolve, reject) {
+            // Standard AJAX request setup and load.
+            var request = new XMLHttpRequest();
+            request.open('GET', wmsURL);
+            // Set function to call when resource is loaded.
+            request.onload = function () {
+                if (request.status === 200) {
+                    resolve(request.response);
+                } else {
+                    reject('Page loaded, but status not OK.');
+                }
+            };
+            // Set function to call when loading fails.
+            request.onerror = function () {
+                reject('Aww, didn\'t work at all.');
             }
-            xhr.open("GET", url);
-            xhr.setRequestHeader("Accept", 'application/json');
-            xhr.send();   
-	}
+            request.setRequestHeader("Accept", 'application/json');
+            request.send();
+        });
+        
+        // Tell our promise to execute its code
+        // and tell us when it's done.
+        myPromise.then(function (result) {
+            // Prints received JSON to the console.
+            var response = JSON.parse(result);
+            console.log(response);                    
+            if( response.features.length != 0 ){
+                url += response.features[0].properties.NAME_FOLDE + "/" + response.features[0].properties.NAME_FOLDE + "_"+slctdmonth+".json";
+                var splitlatlon = response.features[0].properties.NAME_FOLDE.split('_');
+                var latlon = (_curr_language == "ES") ? "Latitud: "+splitlatlon[0]+" Longitud: "+splitlatlon[1] : "Latitude: "+splitlatlon[0]+" Longitude: "+splitlatlon[1];
+                //console.log(url);
+                var ajaxCan;
+                var dataU, dataV;
+                $.getJSON( "./common/Json_files/ATLAS/"+response.features[0].properties.NAME_FOLDE + "/" + response.features[0].properties.NAME_FOLDE + "_"+slctdmonth+".json" , function( json ) {
+                    var response = json;
+                    dataU = response.U;
+                    dataV = response.V;
+                    var dataLink = (_curr_language == "ES") ? "<b>Rosa de Vientos: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Mostrar</button><br>" : "<b>Wind Rose: </b> <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"owgis.features.punctual.showWindRose(["+dataU+"],["+dataV+"],'"+latlon+"','"+slctdmonth+"')\">Show</button><br>";                            
+                    currPopupText += dataLink;
+                    $("#popup-content").html(currPopupText);
+                });
+            }
+            
+        }, function (result) {
+            // Prints "Aww didn't work" or
+            // "Page loaded, but status not OK."
+            console.error(result); 
+        });
     }
 }
-
 
 jQuery.fn.center = function() {
     var container = $(window);
