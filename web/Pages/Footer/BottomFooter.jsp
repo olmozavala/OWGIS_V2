@@ -7,13 +7,13 @@
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
 	&nbsp;
-		<img border="0" src="./common/images/Logos/cigom.png" alt="Logo" height="30" />
+		<img border="0" src="./common/images/Logos/cigom.png" alt="Logo" height="50" />
 	&nbsp;
-            <img border="0" src="./common/images/Logos/unam.png" alt="Logo" height="30" />
+            <img border="0" src="./common/images/Logos/unam.png" alt="Logo" height="50" />
         &nbsp;
-            <img border="0" src="./common/images/Logos/cca.png" alt="Logo" height="30" />
+            <img border="0" src="./common/images/Logos/cca.png" alt="Logo" height="50" />
         &nbsp;
-            <img border="0" src="./common/images/Logos/ioa.png" alt="Logo" height="30" />
+            <img border="0" src="./common/images/Logos/ioa.png" alt="Logo" height="50" />
         &nbsp;
         <!--
 	<a  href="#">
