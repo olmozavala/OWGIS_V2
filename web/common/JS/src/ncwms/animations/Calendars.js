@@ -338,7 +338,7 @@ function initCalendars(){
                                 });
                             }        
                             
-                            $('#CalendarsAndStopContainer').show("fade");
+                            //$('#CalendarsAndStopContainer').show("fade");
                             
                             displayCalendars(true);
                            
