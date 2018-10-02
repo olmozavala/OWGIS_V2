@@ -193,7 +193,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 		//Adding the colorbar at the bottom to a width of 50%
 		// of the with of the website
 
-		var barWidth = !mobile ? Math.ceil($(window).width()*.4) : Math.ceil($(window).width()*.85);
+		var barWidth = !mobile ? Math.ceil($(window).width()*.4) : Math.ceil($(window).width()*.8);
 //		var barHeight = Math.ceil(barWidth*.03);
 		var barHeight = 15;
 
@@ -215,7 +215,8 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 
 		var ctx = $('#canvas-palette-horbar')[0].getContext("2d");
 		//------ Modifying the size of the canvas container
-		var spaceForUnits = 82;// Space between the black part for units and the rest
+		var spaceForUnits = !mobile ? 82: 55;// Space between the black part for units and the rest
+                console.log(spaceForUnits,barWidth);
 		ctx.canvas.width = barWidth+spaceForUnits;
 		ctx.canvas.height = barHeight;
 

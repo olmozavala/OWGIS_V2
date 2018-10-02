@@ -656,7 +656,8 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                   ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1));
                                   
                                   if(typeof layerTitle != "undefined"){
-                                      titulo=layerTitle.innerText.split('\n')[0];
+                                      //titulo=layerTitle.innerText.split('\n')[0];
+                                      titulo=layerTitle.children[0].children[0].children[0].innerText;
                                   } else{
                                       titulo = data.split('\n')[2].split(',')[1];
                                   }
@@ -764,7 +765,7 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                       enabled: false  
                                     },
                                     title: {
-                                      text: layerTitle.children[0].children[0].children[0].innerText+" "+letime 
+                                      text: titulo+" "+letime 
                                     },
                                     subtitle: {
                                         text: latlon
