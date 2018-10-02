@@ -48,7 +48,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M01" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_enero/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -105,7 +105,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M02" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -162,7 +162,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M03" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -220,7 +220,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M04" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_abril/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -278,7 +278,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M05" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -342,7 +342,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M06" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_junio/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -408,7 +408,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M07" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_julio/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
@@ -474,7 +474,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M08" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
@@ -540,7 +540,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M09" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
@@ -606,7 +606,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M10" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
@@ -671,7 +671,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M11" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
@@ -736,7 +736,7 @@
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M12" EN="Hourly Short wave radiation Climatology by Month" 
-			   ES="Climatología horaria por mes de Radiacion de onda corta" 
+			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
@@ -801,7 +801,7 @@
                 />
                 
                 <layer Menu="SWDOWN,MAM" EN="Monthly Short wave radiation Absolute Maximum" 
-			   ES="Máxima absoluta por mes de Radiacion de onda corta" 
+			   ES="Máxima absoluta por mes de Radiación de onda corta" 
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
 			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
                              subtitleText="monthly"

@@ -256,12 +256,16 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 			ctx.fillText(layerDetails.units,2,Math.ceil(barHeight-pixBellowText));
 
 			//Write the rest of the numbers from the ticks and the positions 
-			myNumbers.forEach(function(number){
+			myNumbers.forEach(function(number, idx, array){
+                                if (idx === array.length - 1){ //function(number){
 							//console.log(number);
 							//console.log(linScalePos(number)); 
 							// The -14 is just to move the letters in the middle
-							ctx.fillText(number,linScalePos(number)+spaceForUnits-14,Math.ceil(barHeight-pixBellowText));
-							 }) ;
+				    ctx.fillText(number,linScalePos(number)+spaceForUnits-21,Math.ceil(barHeight-pixBellowText));
+                                } else {
+                                    ctx.fillText(number,linScalePos(number)+spaceForUnits-14,Math.ceil(barHeight-pixBellowText));
+                                }
+			}) ;
 
 		};
 

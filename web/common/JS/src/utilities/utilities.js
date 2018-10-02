@@ -27,10 +27,10 @@ owgis.utils.replaceGetParamInLink = function(name, param, newval){
 	// Updates the kml link to download the main data 
 	link = $(name).attr("href");
 
-	paramPos = link.lastIndexOf(param);
+	//paramPos = link.lastIndexOf(param);
 
 	//In this case the parameter doesn't exist previously so we just add the parameter
-	if(paramPos === -1){
+	/*if(paramPos === -1){
 		newLink =  link+"&"+param+"="+newval;
 		$(name).attr("href",newLink) ;
 	}
@@ -49,7 +49,7 @@ owgis.utils.replaceGetParamInLink = function(name, param, newval){
 
 		newLink = firstPart+param+"="+newval+secondPart;
 		$(name).attr("href",newLink) ;
-	}
+	}*/
 };
 
 /**
@@ -275,4 +275,9 @@ owgis.utils.check_empty_array = function (x) {
     return x.every(function (i) {
         return i === ""
     });
+}
+
+function parseISOString(s) {
+  var b = s.split(/\D+/);
+  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
 }

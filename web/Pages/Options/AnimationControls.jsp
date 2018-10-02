@@ -102,10 +102,10 @@
 				<span class="glyphicon glyphicon-floppy-save"></span>
 			</a-->
 				
-			<a class="btn btn-default btn-xs " href="#" target="_blank" id="animSaveAsKml"
+			<!--a class="btn btn-default btn-xs " href="#" target="_blank" id="animSaveAsKml"
 			   title="<fmt:message key='main.googleE'/>" >
 				<span class="glyphicon glyphicon-globe"></span>
-			</a>
+			</a-->
 		</div>
 	</div>
 	<div class="row">

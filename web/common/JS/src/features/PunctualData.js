@@ -579,7 +579,7 @@ function letsLoopVP(allData,allFrames, latlon){
     }
 }
                         
-owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNumber) {
+owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber) {
 	var currLayer = eval('layer'+layerNumber);
 	var currSource = currLayer.getSource();
 	
@@ -707,16 +707,47 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                 var curr_datee =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
                                 var letime = "";
                                 var datetitle = "Fecha";
+                                var dtlf; var tdtlf;
                                 if(!_.isUndefined(dateTexts) && !_.isUndefined(dateTexte)){
                                     if(!_.isUndefined(layerDetails.subtitleText)){
                                         if(layerDetails.subtitleText == "daily"){
                                             datetitle = "Días";
+                                            dtlf = {
+                                                second:"%e %b",
+                                                minute:"%e %b",
+                                                hour:"%e %b",
+                                                day: '%e %b',
+                                                week: '%e %b ',
+                                                month: '%b',
+                                                year: '%b'
+                                            };
+                                            tdtlf= dtlf;
                                             letime =  (_curr_language == 'ES') ? "del "+curr_dates.getUTCDate() +" de "+ meses[curr_dates.getUTCMonth()]+" al "+curr_datee.getUTCDate() +" de "+ meses[curr_datee.getUTCMonth()] : "from "+curr_dates.getUTCDate() +" "+ meses[curr_dates.getUTCMonth()]+" to "+curr_datee.getUTCDate() +" "+ meses[curr_datee.getUTCMonth()];
                                         }else if(layerDetails.subtitleText == "monthly"){
                                             datetitle = "Meses";
+                                            dtlf = {
+                                                second:"%b",
+                                                minute:"%b",
+                                                hour:"%b",
+                                                day: '%b',
+                                                week: '%b',
+                                                month: '%b',
+                                                year: '%b'
+                                            };
+                                            tdtlf= dtlf;
                                             letime =  (_curr_language == 'ES') ? "de "+meses[curr_dates.getUTCMonth()]+" a "+meses[curr_datee.getUTCMonth()] : "from "+meses[curr_dates.getUTCMonth()]+" to "+meses[curr_datee.getUTCMonth()];
                                         } else if(layerDetails.subtitleText == "hourxmonth"){
                                             datetitle = "Horas";
+                                            dtlf = {
+                                                second:"%H:%M:%S",
+                                                minute:"%H:%M",
+                                                hour:"%H:%M",
+                                                day: '%b',
+                                                week: '%b ',
+                                                month: '%b',
+                                                year: '%b'
+                                            };
+                                            tdtlf= dtlf;
                                             letime = (_curr_language == 'ES') ? "de las "+curr_dates.getUTCHours() +":00 a las "+curr_datee.getUTCHours() +":00 de "+ meses[curr_dates.getUTCMonth()] : "from "+curr_dates.getUTCHours() +":00 to "+curr_datee.getUTCHours() +":00 of "+ meses[curr_dates.getUTCMonth()];
                                         }
                                     } else {
@@ -748,15 +779,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                       title: {
                                         text: (_curr_language == 'ES') ? datetitle : data.split('\n')[2].split(',')[0]
                                       },
-                                      dateTimeLabelFormats: {
-                                            second:"%b, %H:%M:%S",
-                                            minute:"%H:%M",
-                                            hour:"%H:%M",
-                                            day: '%e %b',
-                                            week: '%e %b ',
-                                            month: '%b',
-                                            year: '%b'
-                                        },
+                                      dateTimeLabelFormats: dtlf,
                                       lineWidth: 1
                                     },
                                     data: {
@@ -764,15 +787,7 @@ owgis.features.punctual.getTimeSeries= function getVerticalProfile(event,layerNu
                                     },
                                     tooltip: {
                                         pointFormat: "{point.y:.2f} " + layerDetails.units,
-                                        dateTimeLabelFormats: {
-                                            second:"%b, %H:%M:%S",
-                                            minute:"%b, %H:%M",
-                                            hour:"%e %b, %H:%M",
-                                            day: '%e %b',
-                                            week: '%e %b',
-                                            month: '%e %b',
-                                            year: '%e %b'
-                                        }
+                                        dateTimeLabelFormats: tdtlf
                                     },
                                     plotOptions: {
                                       series: {

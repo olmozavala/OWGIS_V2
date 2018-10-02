@@ -61,7 +61,11 @@ owgis.kml.updateTitleAndKmlLink = function() {
                 if(layerDetails.subtitleText == "daily"){
                     dateForTitle = curr_date.getUTCDate() +" "+ meses[curr_date.getUTCMonth()];
                 }else if(layerDetails.subtitleText == "monthly"){
-                    dateForTitle = meses[curr_date.getUTCMonth()];
+                    if( layerDetails.name.includes("umbrales") || layerDetails.name.includes("anomalias") ){
+                        dateForTitle = meses[curr_date.getUTCMonth()]+" "+curr_date.getUTCFullYear();
+                    } else {
+                        dateForTitle = meses[curr_date.getUTCMonth()];
+                    }
                 } else if(layerDetails.subtitleText == "hourxmonth"){
                     dateForTitle = curr_date.getUTCHours() +":00 "+ meses[curr_date.getUTCMonth()];
                 }

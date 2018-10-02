@@ -283,16 +283,46 @@ function initCalendars(){
                                 //case "hourxmonth":
                                 calendars.type = "time";
                                 calendare.type = "time";
+                                if(layerDetails.name.includes("RH")){
+                                    maxValidDate.setHours(21);
+                                } else {
+                                    maxValidDate.setHours(23);
+                                }
+                                
                                 if(!mobile){
                                     calendare.value=maxValidDate;
                                     calendars.value=minValidDate;
                                     //calendars.height = 150;
+                                    //console.log(hoursForFirstDay);
                                     calendars.blockTime = function(date){
-                                            if (date.getMinutes() !== 0) return true;
+                                        //hoursForFirstDay
+                                            if(layerDetails.name.includes("RH")){
+                                                if(date.getHours()%3 != 0){
+                                                    return true;
+                                                }
+                                                if(date.getMinutes() !== 0){
+                                                    return true;
+                                                }
+                                                return false;
+                                            } else {
+                                                if (date.getMinutes() !== 0){ return true; }
+                                            }
+                                            
                                         };
                                     //calendare.height = 150;
                                     calendare.blockTime = function(date){
-                                            if (date.getMinutes() !== 0) return true;
+                                            if(layerDetails.name.includes("RH")){
+                                                if(date.getHours()%3 != 0){
+                                                    return true;
+                                                }
+                                                if(date.getMinutes() !== 0){
+                                                    return true;
+                                                }
+                                                return false;
+                                            } else {
+                                                if (date.getMinutes() !== 0){ return true; }
+                                            }
+                                            
                                         };
                                }
                                 break;
