@@ -385,7 +385,7 @@
                 
                 <layer Menu="QFX,PromHM,M07" 
 			   EN="Hourly Evaporation Climatology by Month" ES="Climatología horaria por mes de Evaporación"
-			   name="atlas_horarios_mes_junio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
+			   name="atlas_horarios_mes_julio/QFX" style="default-scalar" palette="precipitacionGrad" mincolor="0" maxcolor="500" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
