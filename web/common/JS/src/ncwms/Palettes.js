@@ -262,7 +262,7 @@ owgis.ncwms.palettes.updateHorizontalPalette = function(){
 							//console.log(number);
 							//console.log(linScalePos(number)); 
 							// The -14 is just to move the letters in the middle
-				    ctx.fillText(number,linScalePos(number)+spaceForUnits-21,Math.ceil(barHeight-pixBellowText));
+				    ctx.fillText(number,linScalePos(number)+spaceForUnits-22,Math.ceil(barHeight-pixBellowText));
                                 } else {
                                     ctx.fillText(number,linScalePos(number)+spaceForUnits-14,Math.ceil(barHeight-pixBellowText));
                                 }
