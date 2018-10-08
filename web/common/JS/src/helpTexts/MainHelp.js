@@ -6,18 +6,17 @@ goog.provide('owgis.help.main');
 owgis.help.main.displayHelp = function()
 {
     //$('#helpInstrContainer').toggle("fade");
-    
-    if(_curr_language == "ES"){
-        introJs().setOptions({
-                nextLabel: "siguiente",
-                prevLabel: "anterior",
-                skipLabel: "saltar",
-                doneLabel: "terminar"
-            });
+    var ijs = introJs();
+    if (_curr_language == "ES") {
+        ijs.setOption("skipLabel", " Saltar ");
+        ijs.setOption("doneLabel", " Terminar ");
     }
-            
-    introJs().start();
-
+    
+    ijs.setOption("nextLabel"," > ");
+    ijs.setOption("prevLabel"," < ");
+    
+    ijs.start();   
+    
 }
 
 /**
