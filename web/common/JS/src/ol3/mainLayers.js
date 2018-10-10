@@ -21,7 +21,9 @@ owgis.layers.getMainLayer = function(){
  */
 owgis.layers.getTimesForDay = function(layer, time, allFrames){
 	var mainLayer = layer;
+        console.log(layer);
 	var mainSource = mainLayer.getSource();
+        console.log(mainSource );
 	var mainParams = mainSource.getParams();
 	var layerName = mainParams.LAYERS;
 	
