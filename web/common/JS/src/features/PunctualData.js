@@ -686,12 +686,12 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                  var tzO = jj.getTimezoneOffset();
                                  console.log(jj,tzO);
                                  
-                                Highcharts.setOptions({
+                                /*Highcharts.setOptions({
                                     time: {
                                         timezoneOffset: (-tzO)
                                     }
                                 });
-                                
+                               */
                                 if(_curr_language == "ES"){
                                     Highcharts.setOptions({
                                         lang: {
@@ -755,8 +755,11 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                         letime = ""; 
                                     }
                                 }
-                                 
+                                 console.log(data);
 				 Highcharts.chart('containerChartsTS', {
+                                    time: {
+                                        timezoneOffset: (-tzO)
+                                    },
 				    chart: {
 					width: el_width,
 					height: el_height
