@@ -69,7 +69,7 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>/mapviewer</welcome-file>
     </welcome-file-list>
-        <login-config>
+        <!--login-config>
       <auth-method>BASIC</auth-method>
       <realm-name>Monitoring</realm-name>
     </login-config>
