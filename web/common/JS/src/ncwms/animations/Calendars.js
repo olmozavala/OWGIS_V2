@@ -108,7 +108,7 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-    if(_curr_language == 'ES'){ webix.i18n.setLocale("es-ES"); } else { webix.i18n.setLocale("en-US"); } 
+    if(_curr_language == 'ES'){ webix.i18n.setLocale("es-ES"); } else { webix.i18n.setLocale("en-US"); if(layerDetails.subtitleText == "hourxmonth"){ webix.i18n.timeFormat = "%H:%i"; } } 
     var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
