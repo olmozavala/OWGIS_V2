@@ -34,6 +34,9 @@
         <script src="./common/JS/vendor/minimized/data.js"></script>
         <!--script src="./common/JS/vendor/minimized/exporting.js"></script-->
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></script>
 
         <!-- libraries for new calendars -->
         <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" />

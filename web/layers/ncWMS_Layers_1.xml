@@ -22,7 +22,7 @@
 		<layer Menu="PBLH,PromHM,M01" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month " ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_enero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800"  palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800"  palette="acl_cigom"
                            subtitleText="hourxmonth"
                 />
                 
@@ -43,21 +43,21 @@
                 <layer Menu="GLW,PromHM,M01" EN="Hourly Net Long wave radiation Climatology by Month " 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_enero/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M01" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_enero/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M01" EN="Hourly Relative Humidity Climatology by Month " 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_enero_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
                 
@@ -80,7 +80,7 @@
 		<layer Menu="PBLH,PromHM,M02" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month " ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_febrero/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                            subtitleText="hourxmonth"
                 />
                 
@@ -101,20 +101,20 @@
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_febrero/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+                           palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M02" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_febrero/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M02" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_febrero_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
                 <!-- Marzo -->
@@ -136,7 +136,7 @@
 		<layer Menu="PBLH,PromHM,M03" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_marzo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                            subtitleText="hourxmonth"
                 />
                 
@@ -157,21 +157,21 @@
                 <layer Menu="GLW,PromHM,M03" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_marzo/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M03" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_marzo/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                 />
 
                 <layer Menu="RH,PromHM,M03" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_marzo_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -194,7 +194,7 @@
 		<layer Menu="PBLH,PromHM,M04" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_abril/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                            subtitleText="hourxmonth"
                 />
                 
@@ -215,21 +215,21 @@
                 <layer Menu="GLW,PromHM,M04" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_abril/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M04" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_abril/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                 />
 
                <layer Menu="RH,PromHM,M04" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_abril_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -252,7 +252,7 @@
 		<layer Menu="PBLH,PromHM,M05" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_mayo/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800"  palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800"  palette="acl_cigom"
                            subtitleText="hourxmonth"
                 />
                 
@@ -273,21 +273,21 @@
                 <layer Menu="GLW,PromHM,M05" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_mayo/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M05" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_mayo/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                 />
                 
                 <layer Menu="RH,PromHM,M05" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_mayo_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                 />
 
@@ -312,7 +312,7 @@
 		<layer Menu="PBLH,PromHM,M06" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_junio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                            subtitleText="hourxmonth"
                             
                 />
@@ -337,14 +337,14 @@
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_junio/GLW" 
 			   style="default-scalar" subtitleText="hourxmonth"
-                           palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+                           palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                             
                 />
                 
                 <layer Menu="SWDOWN,PromHM,M06" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_junio/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                             
                 />
@@ -352,7 +352,7 @@
                 <layer Menu="RH,PromHM,M06" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_junio_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -378,7 +378,7 @@
 		<layer Menu="PBLH,PromHM,M07" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_julio/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                            subtitleText="hourxmonth"
                             
                 />
@@ -402,7 +402,7 @@
                 <layer Menu="GLW,PromHM,M07" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_julio/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                            subtitleText="hourxmonth"
                             
                 />
@@ -410,7 +410,7 @@
                 <layer Menu="SWDOWN,PromHM,M07" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_julio/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                            subtitleText="hourxmonth"
                             
                 />
@@ -418,7 +418,7 @@
                 <layer Menu="RH,PromHM,M07" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_julio_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="hourxmonth"
                             
                 />
@@ -444,7 +444,7 @@
 		<layer Menu="PBLH,PromHM,M08" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_agosto/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="hourxmonth"
                             
                 />
@@ -468,7 +468,7 @@
                 <layer Menu="GLW,PromHM,M08" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_agosto/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                              subtitleText="hourxmonth"
                             
                 />
@@ -476,7 +476,7 @@
                 <layer Menu="SWDOWN,PromHM,M08" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_agosto/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                             
                 />
@@ -484,7 +484,7 @@
                 <layer Menu="RH,PromHM,M08" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_agosto_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -510,7 +510,7 @@
 		<layer Menu="PBLH,PromHM,M09" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_septiembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="hourxmonth"
                             
                 />
@@ -534,7 +534,7 @@
                 <layer Menu="GLW,PromHM,M09" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_septiembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                             
                 />
@@ -542,7 +542,7 @@
                 <layer Menu="SWDOWN,PromHM,M09" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_septiembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                             
                 />
@@ -550,7 +550,7 @@
                 <layer Menu="RH,PromHM,M09" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_septiembre_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -576,7 +576,7 @@
 		<layer Menu="PBLH,PromHM,M10" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_octubre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="hourxmonth"
                             
                 />
@@ -600,7 +600,7 @@
                 <layer Menu="GLW,PromHM,M10" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_octubre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                             
                 />
@@ -608,7 +608,7 @@
                 <layer Menu="SWDOWN,PromHM,M10" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_octubre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                             
                 />
@@ -616,7 +616,7 @@
                 <layer Menu="RH,PromHM,M10" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_octubre_rh/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -642,7 +642,7 @@
 		<layer Menu="PBLH,PromHM,M11" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_noviembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="hourxmonth"
                             
                 />
@@ -665,7 +665,7 @@
                 <layer Menu="GLW,PromHM,M11" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_noviembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                             
                 />
@@ -673,7 +673,7 @@
                 <layer Menu="SWDOWN,PromHM,M11" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_noviembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                             
                 />
@@ -681,7 +681,7 @@
                 <layer Menu="RH,PromHM,M11" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_noviembre_rh/RH" 
-			   style="default-scalar" palette="rhatlas" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -706,7 +706,7 @@
 		<layer Menu="PBLH,PromHM,M12" 
 			   EN="Hourly Planetary Boundary layer height Climatology by Month" ES="Climatología horaria por mes de Altura de la capa límite"
 			   name="atlas_horarios_mes_diciembre/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="hourxmonth"
                             
                 />
@@ -730,7 +730,7 @@
                 <layer Menu="GLW,PromHM,M12" EN="Hourly Net Long wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación neta de onda larga" 
 			   name="atlas_horarios_mes_diciembre/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                             subtitleText="hourxmonth"
                             
                 />
@@ -738,7 +738,7 @@
                 <layer Menu="SWDOWN,PromHM,M12" EN="Hourly Short wave radiation Climatology by Month" 
 			   ES="Climatología horaria por mes de Radiación de onda corta" 
 			   name="atlas_horarios_mes_diciembre/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="hourxmonth"
                             
                 />
@@ -746,7 +746,7 @@
                 <layer Menu="RH,PromHM,M12" EN="Hourly Relative Humidity Climatology by Month" 
 			   ES="Climatología horaria por mes de Humedad relativa" 
 			   name="atlas_horarios_mes_diciembre_rh/RH" 
-			   style="default-scalar" palette="rhatlas" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom" mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                             subtitleText="hourxmonth"
                             
                 />
@@ -780,7 +780,7 @@
                 <layer Menu="PBLH,MAM" 
 			   EN="Monthly Planetary boundary layer height Absolute Maximum" ES="Máxima absoluta por mes de Altura de la capa límite"
 			   name="atlas_maxs_abs_mensuales/PBLH" style="default-scalar"
-                           mincolor="0" maxcolor="2800" palette="alturacapalimite"
+                           mincolor="0" maxcolor="2800" palette="acl_cigom"
                             subtitleText="monthly"
                             
                 />
@@ -795,7 +795,7 @@
                 <layer Menu="GLW,MAM" EN="Monthly Net Long wave radiation Absolute Maximum " 
 			   ES="Máxima absoluta por mes de Radiación neta de onda larga" 
 			   name="atlas_maxs_abs_mensuales/GLW" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   style="default-scalar" palette="rlarga_cigom" mincolor="-110" maxcolor="50"
                              subtitleText="monthly"
                             
                 />
@@ -803,13 +803,13 @@
                 <layer Menu="SWDOWN,MAM" EN="Monthly Short wave radiation Absolute Maximum" 
 			   ES="Máxima absoluta por mes de Radiación de onda corta" 
 			   name="atlas_maxs_abs_mensuales/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                              subtitleText="monthly"
                             
                 />
                 
                 <layer Menu="RH,MAM" EN="Monthly Relative humidity Absolute Maximum " 
-			   ES="Máxima absoluta por mes de Humedad relativa"  palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   ES="Máxima absoluta por mes de Humedad relativa"  palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
 			   name="atlas_maxs_abs_mensuales/RH" 
 			   style="default-scalar"
                              subtitleText="monthly"

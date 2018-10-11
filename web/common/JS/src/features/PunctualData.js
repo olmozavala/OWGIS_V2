@@ -755,9 +755,10 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                         letime = ""; 
                                     }
                                 }
-                                 console.log(data);
+                                 //console.log(data);
 				 Highcharts.chart('containerChartsTS', {
                                     time: {
+                                        //timezone: 'America/Mexico_City'
                                         timezoneOffset: (-tzO)
                                     },
 				    chart: {

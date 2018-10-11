@@ -89,9 +89,9 @@
                 
         </Menus>
         
-        <BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
+        <!--BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
 		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
-	</BackgroundLayers>
+	</BackgroundLayers-->
 
 	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
                 <!-- Alertas -->
@@ -122,7 +122,7 @@
 
 		<layer Menu="PBLH,PromD" 
 			   EN="Daily Planetary boundary layer height Climatology" ES="Climatología Diaria de Altura de la capa límite"
-			   name="atlas_diario/PBLH" style="default-scalar" palette="alturacapalimite"
+			   name="atlas_diario/PBLH" style="default-scalar" palette="acl_cigom"
                            mincolor="0" maxcolor="2800" subtitleText="daily"
                 />
 
@@ -142,7 +142,7 @@
                 
                 <layer Menu="GLW,PromD" EN="Daily Net long wave radiation Climatology" 
 			   ES="Climatología Diaria de Radiación neta de onda larga" 
-			   name="atlas_diario/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   name="atlas_diario/GLW"  palette="rlarga_cigom" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="daily"
                 />
@@ -150,14 +150,14 @@
                 <layer Menu="SWDOWN,PromD" EN="Daily Shor wave radiation Climatology" 
 			   ES="Climatología Diaria de Radiación de onda corta" 
 			   name="atlas_diario/SWDOWN" 
-			   style="default-scalar" palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar" palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="daily"
                 />
                 
                 <layer Menu="RH,PromD" EN="Daily Relative Humidity Climatology" 
 			   ES="Climatología Diaria de Humedad relativa" 
 			   name="atlas_diario/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="daily"
                 />
                 
@@ -179,7 +179,7 @@
 
 		<layer Menu="PBLH,PromM" 
 			   EN="Monthly Planetary boundary layer height Climatology" ES="Climatología Mensual de Altura de capa límite"
-			   name="atlas_mensuales/PBLH" style="default-scalar"  palette="alturacapalimite"
+			   name="atlas_mensuales/PBLH" style="default-scalar"  palette="acl_cigom"
                            mincolor="0" maxcolor="2800"
                             subtitleText="monthly"
                 />
@@ -201,7 +201,7 @@
                 
                 <layer Menu="GLW,PromM" EN="Monthly Net Long wave radiation Climatology" 
 			   ES="Climatología Mensual de Radiación neta de onda larga" 
-			   name="atlas_mensuales/GLW"  palette="radiacionondacorta" mincolor="-110" maxcolor="50"
+			   name="atlas_mensuales/GLW"  palette="rlarga_cigom" mincolor="-110" maxcolor="50"
 			   style="default-scalar"
                            subtitleText="monthly"
                 />
@@ -209,14 +209,14 @@
                 <layer Menu="SWDOWN,PromM" EN="Monthly Short wave radiation Climatology" 
 			   ES="Climatología Mensual de Radiación de onda corta" 
 			   name="atlas_mensuales/SWDOWN" 
-			   style="default-scalar"  palette="radiacionondacorta" mincolor="0" maxcolor="1200"
+			   style="default-scalar"  palette="rcorta_cigom" mincolor="0" maxcolor="1200"
                             subtitleText="monthly"
                 />
                 
                 <layer Menu="RH,PromM" EN="Monthly Relative humidity Climatology" 
 			   ES="Climatología Mensual de Humedad relativa" 
 			   name="atlas_mensuales/RH" 
-			   style="default-scalar" palette="rhatlas"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
+			   style="default-scalar" palette="hum_cigom"  mincolor="30" belowMinColor="transparent" maxcolor="100" aboveMaxColor="transparent"
                            subtitleText="monthly"
                 />
                 
