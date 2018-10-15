@@ -80,8 +80,8 @@ function owgisMain(){
         clearInterval(intervalOL3);
         initOl3();
         addLayers();
-        //owgis.layers.initMainLayer(eval('layer'+(_id_first_main_layer)));
-        owgis.layers.initMainLayer(eval('layer1'));
+        owgis.layers.initMainLayer(eval('layer'+(_id_first_main_layer)));
+        //owgis.layers.initMainLayer(eval('layer1'));
     }, 10);
     //menus
     var intervalMenus = setInterval(function(){

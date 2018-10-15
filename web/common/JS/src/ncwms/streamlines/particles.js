@@ -4,12 +4,12 @@ goog.require('owgis.layer');
 
 var particlesArray  = new Array();
 var defNumParticles = 20000;// Used to reset the number of particles	
-var numparticles = defNumParticles;//Initial number of particles
-var defParticleSpeed = parseFloat(layerDetails.defParticleSpeed);
-var particleSpeed = defParticleSpeed;
-var currentResolutionParticleSpeed = defParticleSpeed;
+var numparticles = (localStorage.particles_num !== "NaN" && typeof localStorage.particles_num !== 'undefined') ? parseInt(localStorage.particles_num) : defNumParticles;//Initial number of particles
+var defParticleSpeed = (typeof layerDetails.defParticleSpeed !== 'undefined') ? parseFloat(layerDetails.defParticleSpeed) : 0.0003;
+var particleSpeed = (localStorage.particles_speed !== "NaN" && typeof localStorage.particles_speed !== 'undefined') ? parseFloat(localStorage.particles_speed) : defParticleSpeed;
+var currentResolutionParticleSpeed = particleSpeed;
 var defTimeParticle = 80; // Deault Number of frames a particle is alive in the animation
-var timeParticle = defTimeParticle; // Number of frames a particle is alive in the animation
+var timeParticle = (localStorage.particles_lifetime !== "NaN" && typeof localStorage.particles_lifetime !== 'undefined') ? parseInt(localStorage.particles_lifetime) : defTimeParticle; // Number of frames a particle is alive in the animation
 
 //These two variables are used in the trilinear interpolation,
 // they indicate the animation speed of the particles and the 'main' animation
@@ -19,7 +19,7 @@ var currTime = 0;//Current Z time
 var dt = internalAnimationSpeed/externalAnimationSpeed;
 
 var limLonMin;
-var	limLatMin;
+var limLatMin;
 
 var lonDomain;
 var latDomain;
@@ -34,7 +34,7 @@ var currentGrid;
 var mobileNavBarHeight = 40;
 
 // For Cesium
-var c_scene
+var c_scene;
 var cam_lon_deg;//Longitude of camera
 var cam_lat_deg;//Latitude of camera
 var half_lon_domain; 
@@ -109,6 +109,7 @@ owgis.ncwms.currents.particles.initDataNcWMSTwo = function initDataNcWMSTwo(Grid
 	canvas = document.getElementById("currentsCanvas");
 	ctx = canvas.getContext('2d');
 	gridInfo = GridInfo;
+        console.log(gridInfo);
 	currentExtent = currentE;
 	
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
@@ -126,6 +127,7 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 	
 	gridInfo = GridInfo;
 	currentExtent = currentE;
+        console.log(gridInfo);
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
 	latDomain = Math.abs(currentExtent[1] - currentExtent[3]);
 
@@ -139,17 +141,17 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
  * of the map and the limits of the layer.
  */
 function updateDomains(){
-	var extent = layerTemplate.get("extbbox");
-	limLonMin = Math.max(extent[0], gridInfo.lo1);
-	limLatMin = Math.max(extent[1], gridInfo.la1);
+    var bbox = layerTemplate.get("origbbox");
+	limLonMin = Math.max(bbox[0], gridInfo.lo1);
+	limLatMin = Math.max(bbox[1], gridInfo.la1);
 	
-	var limLonMax = Math.min(extent[2], gridInfo.lo2);
-	var limLatMax = Math.min(extent[3], gridInfo.la2);
+	var limLonMax = Math.min(bbox[2], gridInfo.lo2);
+	var limLatMax = Math.min(bbox[3], gridInfo.la2);
 	
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
     
-    console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
+    //console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 		// This one is only used in cesium. It defines the radius
@@ -170,7 +172,7 @@ function updateDomains(){
 			long_domain = Math.min(angle,70);
 			latg_domain =  Math.min(angle,70);
 		}
-        console.log("extencion new domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
+        //console.log("extencion new domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 		console.log("SIZE OF LAT RANDOM: "+latg_domain);
 		console.log("SIZE OF LON RANDOM: "+long_domain);
 	}

@@ -301,7 +301,7 @@ public class HtmlMenuBuilder {
 	 * @return
 	 */
 	public static String getOptionalCheckbox(int layerNum, String tabs, boolean selected, String currMenuStr, boolean mobile, MenuEntry menu) {
-        int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum +1;//son las capas definidas como background no las principales se debe cambiar el nombre
+        int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;//son las capas definidas como background no las principales se debe cambiar el nombre
 
 		String finalHtml = tabs + "<input id=\"checkBox" + layerNum + "\" type=\"checkbox\" name=\"vectorLayersSelected\" \n";
 //		if(mobile){
