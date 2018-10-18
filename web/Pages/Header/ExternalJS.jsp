@@ -39,6 +39,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></script>
 
         <!-- libraries for new calendars -->
-        <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" />
         <script src="//cdn.webix.com/edge/webix.js"></script>
         <script src="//cdn.webix.com/edge/i18n/es.js"></script>

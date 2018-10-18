@@ -19,6 +19,7 @@
 		<link href="./common/CSS/vendor/spectrum.css" rel="stylesheet" type="text/css"/>
 	</c:if>
                 
+        <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" />
         <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900" rel="stylesheet">
 
 	<!--This is the mobile case-->

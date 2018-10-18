@@ -53,7 +53,7 @@
 */
 /* line 13, ../scss/OptionalLayersMenu.scss */
 #optionalMenuParent {
-  min-width: 200px;
+  min-width: 230px;
   top: 70px;
   left: 73%;
   transition: width 2s;
