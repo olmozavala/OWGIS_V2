@@ -218,6 +218,68 @@ function initCalendars(){
                         //console.log(maxValidDate);
                         
                         switch(layerDetails.subtitleText){
+                            case "dailyxhour":
+                                if(mobile){
+                                    
+                                    calendars.calendarHeader = "%F";
+                                    calendars.format = "%d, %F %H:%i";
+                                    calendars.timepicker =true;
+                                    calendars.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
+                                                return true;
+                                        };
+                                    
+                                    calendare.calendarHeader = "%F";
+                                    calendare.format = "%d, %F %H:%i";
+                                    calendare.timepicker =true;
+                                    calendare.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
+                                                return true;
+                                        };
+                                    
+                                } else {
+                                    
+                                    calendars.blockTime = function(date){
+                                        //hoursForFirstDay
+                                                if(date.getHours()%4 != 0){
+                                                    return true;
+                                                }
+                                                if(date.getMinutes() !== 0){
+                                                    return true;
+                                                }
+                                                return false;
+                                        };
+                                        
+                                    calendare.blockTime = function(date){
+                                        //hoursForFirstDay
+                                                if(date.getHours()%4 != 0){
+                                                    return true;
+                                                }
+                                                if(date.getMinutes() !== 0){
+                                                    return true;
+                                                }
+                                                return false;
+                                        };
+                                    
+                                    calendars.calendarHeader = "%F";
+                                    calendars.weekHeader=true;
+                                    calendars.timepicker =true;
+                                    calendars.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
+                                                return true;
+                                        };
+                                    calendars.height = 200;
+                                    
+                                    calendare.calendarHeader = "%F";
+                                    calendare.weekHeader = true;
+                                    calendare.timepicker =true;
+                                    calendare.blockDates = function(date){
+                                            if(datesWithNoData.indexOf(date.toISOString().split('T')[0]) !== -1)
+                                                return true;
+                                        };
+                                    calendare.height = 200;
+                                }
+                                break;
                             case "daily":
                                 if(mobile){
                                     
@@ -452,7 +514,7 @@ function updateCalendarOpts(calUpdated){
 		var startDateDays = new Date(startDateTxt);
 		var endDateDays = new Date(endDateTxt);
 		
-                //console.log("*****************************************************************************************************************/n",startDateDays.toISOString().split('T')[0],endDateDays);
+                console.log("*****************************************************************************************************************/n",startDateDays.toISOString(),endDateDays.toISOString());
                 
 		if(calUpdated ===  owgis.constants.startcal){
 			dispAnimationAjax(startDateDays.toISOString().split('T')[0],null,mainLayer,"getTimeSteps",owgis.constants.startcal);
@@ -650,7 +712,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
 	 */
 	
 	if(asString){
-            if(layerDetails.subtitleText == "hourxmonth"){
+            if(layerDetails.subtitleText == "hourxmonth" || layerDetails.subtitleText == "dailyxhour"){
                 requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                 return requestedDate.toISOString(); //.split('T')[0];
             } else {
@@ -658,7 +720,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
             }
 		
 	}else{
-            if(layerDetails.subtitleText == "hourxmonth"){
+            if(layerDetails.subtitleText == "hourxmonth" || layerDetails.subtitleText == "dailyxhour"){
                 requestedDate.setHours(requestedDate.getHours() - requestedDate.getTimezoneOffset()/60);
                 return requestedDate; //.split('T')[0];
             } else {

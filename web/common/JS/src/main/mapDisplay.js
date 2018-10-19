@@ -113,7 +113,7 @@ function owgisMain(){
         isthereelev = noElevation();
         if(!isthereelev && typeof localStorage.depth !== 'undefined'){
             if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
-                $(":radio[value='"+localStorage.depth+"']")[0].onclick();
+                //$(":radio[value='"+localStorage.depth+"']")[0].onclick();
                 $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
             }
         }
@@ -267,7 +267,7 @@ function updateTitle(dateText, elevText) {
 		
         if (typeof calEnd !== 'undefined') {
             var locendSel = calEnd.selection.get();
-            varrlocendDate = Calendar.intToDate(locendSel);
+            var locendDate = Calendar.intToDate(locendSel);
             endDate = "/" + Calendar.printDate(locendDate, '%d-%B-%Y');
         }
 		

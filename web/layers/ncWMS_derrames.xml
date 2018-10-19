@@ -1,0 +1,28 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+
+    <Menus>
+		<Menu ID="oil" EN="Oil spill scenarios" ES="Escenarios de derrames"/>
+                <Menu ID="p1" EN="Point 1" ES="Punto 1"/>
+    </Menus>
+    
+	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
+            
+            <layer Menu="oil,p1,M01" 
+			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   name="derrames_p1_01/oilSpill"
+                           
+                           mincolor="0" maxcolor="100" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M02" 
+			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   name="derrames_p1_02/oilSpill"
+                           
+                           mincolor="0" maxcolor="100" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+        </MainLayers>
+       
+</MenuConf>

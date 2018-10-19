@@ -68,13 +68,15 @@ owgis.kml.updateTitleAndKmlLink = function() {
                     }
                 } else if(layerDetails.subtitleText == "hourxmonth"){
                     dateForTitle = curr_date.getUTCHours() +":00 "+ meses[curr_date.getUTCMonth()];
+                } else{
+                    dateForTitle = curr_date.getUTCHours() +":00, "+ curr_date.getUTCDate() +" "+ meses[curr_date.getUTCMonth()];
                 }
             } else {
 		dateForTitle = ""; /*dateText.substring(0,dateText.indexOf("T"))
 		+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));*/
             }
 	}
-        
+        console.log(dateText,curr_date,dateForTitle,currElevationTxt),
         updateTitle(dateForTitle, currElevationTxt);
     }
 }
