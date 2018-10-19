@@ -40,7 +40,9 @@ function initCesium(){
     var interval = setInterval(function(){
         clearInterval(interval);
         _cesium = new olcs.OLCesium({map: map});
-        _cesium.setEnabled(true);
+        _cesium.setEnabled(false);
+        setTimeout(function() { _cesium.setEnabled(true); }, 0);
+        //_cesium.setEnabled(true);
 
         var c_scene = _cesium.getCesiumScene();
         // Don't show the border of the world
@@ -85,7 +87,7 @@ function startCesium(wasEnabled){
 	cesiumParticles(wasEnabled);
 	if(!wasEnabled){ //In this case we are enabeling Cesium
 		owgis.layouts.draggable.topmenu.isUsed('.cesiumSpan');
-        if(netcdf){
+                if(netcdf){
 			//Disable end data
 			$("#animRes").hide();
 			$("#animDisp").hide();
