@@ -355,14 +355,16 @@ public class OpenLayersManager {
 	 * Creates an WMS layer
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
+         * @param actLay Layer Is the first background layer set in the xml file
 	 */
-	private String addWMS(String currentConf, int actualLayer){
+	private String addWMS(String currentConf, int actualLayer, Layer actLay){
+                
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
                 "\t\tsource: new ol.source.TileWMS({\n"+
-                "\t\t\turl: 'http://ncwms.coaps.fsu.edu/geoserver/wms',\n"+
+                "\t\t\turl: '"+actLay.getServer()+"',\n"+
                 "\t\t\tcrossOrigin: null,\n"+
 //                "\t\t\ttileGrid: tileGrid,\n"+
-                "\t\t\tparams: {LAYERS: 'comm:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
+                "\t\t\tparams: {LAYERS: '"+actLay.getName()+"', STYLES: '', SRS: _map_projection} \n"+
                 "\t\t})"+
                 "\t});";
 		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
@@ -467,14 +469,8 @@ public class OpenLayersManager {
 		
 		switch (backgroundLayer){
 			case "wms":
-				//for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-					//actualLayer = layersManager.getBackgroundLayers().get(i);
-					//if (actualLayer.getName() != null) {
-						//layersScript += layerHelper(actualLayer, layerCount, true);
-						//layerCount++;
-					//}//If layer not null
-				//}
-                layersScript += addWMS(layersScript, layerCount);
+                                actualLayer = layersManager.getBackgroundLayers().get(0);
+                                layersScript += addWMS(layersScript, layerCount, actualLayer);
 				layerCount++;
 				break;
 			case "osm": //Add OpenStreetMap as the background layer
