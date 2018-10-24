@@ -771,7 +771,7 @@
 		<layer Menu="Viento,MAM" 
 			   EN="Monthly Wind Absolute Maximum" ES="Máxima absoluta por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10:atlas_maxs_abs_mensuales/V10" defParticleSpeed="0.01"
+			   name="atlas_maxs_abs_mensuales/U10_MAX:V10_MAX-mag"  overlaystreamlines="atlas_maxs_abs_mensuales/U10_MAX:atlas_maxs_abs_mensuales/V10_MAX" defParticleSpeed="0.01"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                             subtitleText="monthly"
                             

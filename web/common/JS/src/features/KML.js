@@ -44,7 +44,7 @@ owgis.kml.updateTitleAndKmlLink = function() {
         if (layerDetails.zaxis !== undefined)
         {
             currElevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
-            var units = layerDetails.zaxis.units;
+            var units = (_curr_language == "ES") ? "metros" : layerDetails.zaxis.units;
             currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
         }
 
@@ -76,7 +76,7 @@ owgis.kml.updateTitleAndKmlLink = function() {
 		+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));*/
             }
 	}
-        console.log(dateText,curr_date,dateForTitle,currElevationTxt),
+        //console.log(dateText,curr_date,dateForTitle,currElevationTxt),
         updateTitle(dateForTitle, currElevationTxt);
     }
 }

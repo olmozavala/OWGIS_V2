@@ -108,7 +108,14 @@ function displayCalendars(disp){
  *
  */
 function initCalendars(){
-    if(_curr_language == 'ES'){ webix.i18n.setLocale("es-ES"); } else { webix.i18n.setLocale("en-US"); if(layerDetails.subtitleText == "hourxmonth"){ webix.i18n.timeFormat = "%H:%i"; } } 
+    if(_curr_language == 'ES'){ 
+        webix.i18n.setLocale("es-ES"); 
+    } else { 
+        webix.i18n.setLocale("en-US"); 
+        if(layerDetails.subtitleText == "hourxmonth" || layerDetails.subtitleText == "dailyxhour"){ 
+            webix.i18n.timeFormat = "%H:%i"; 
+        } 
+    } 
     var datesWithData = layerDetails.datesWithData; // Tells the calendar which dates to disable
 	var minYear = 100000000;
 	var maxYear = -100000000;
@@ -170,7 +177,7 @@ function initCalendars(){
 		owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
 
 		//We verify that we have more than one day
-                console.log(minValidDate, maxValidDate, hoursForFirstDay);
+                //console.log(minValidDate, maxValidDate, hoursForFirstDay);
 		if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){
 
 			var datesWithNoData = new Array();
@@ -514,7 +521,7 @@ function updateCalendarOpts(calUpdated){
 		var startDateDays = new Date(startDateTxt);
 		var endDateDays = new Date(endDateTxt);
 		
-                console.log("*****************************************************************************************************************/n",startDateDays.toISOString(),endDateDays.toISOString());
+                //console.log("*****************************************************************************************************************/n",startDateDays.toISOString(),endDateDays.toISOString());
                 
 		if(calUpdated ===  owgis.constants.startcal){
 			dispAnimationAjax(startDateDays.toISOString().split('T')[0],null,mainLayer,"getTimeSteps",owgis.constants.startcal);

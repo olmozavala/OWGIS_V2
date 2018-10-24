@@ -318,7 +318,7 @@ function getZaxisText(){
     }
     else if(units === 'pa' || units === "pressure" || units === "bar" || units === "at" || units === "atm" || units === "torr" ) {
             return presText;
-        } else if( (units === 'm') || (units === 'meter') || (units === 'km') || (units === 'ft') || (units === 'mi') ) {
+        } else if( (units === 'm') || (units === 'meters') || (units === 'km') || (units === 'ft') || (units === 'mi') ) {
             return  depthText; 
         } else {
             return  depthText+" / "+presText; 

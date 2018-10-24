@@ -389,7 +389,7 @@ function obtainSelectedDates(){
                         enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
                         var allDates = [];
                         while( currDate <= enddate_){
-                            console.log(currDate.toISOString(),enddate_.toISOString());
+                            //console.log(currDate.toISOString(),enddate_.toISOString());
                             if( _.contains(allFrames,currDate.toISOString()) ){
                                 allDates.push( currDate.toISOString() ); 
                             }else if(layerDetails.subtitleText == "dailyxhour" && currDate.toISOString().split("T")[1].split(":")[0]%4 == 0 ){
@@ -398,7 +398,7 @@ function obtainSelectedDates(){
                             currDate.setHours(currDate.getHours()+1); 
                         }
                         allFrames = allDates;
-                        console.log(allDates, enddate_);
+                        //console.log(allDates, enddate_);
                         //falta remove this part: .000Z y cambiar el nombre que mandan a desplegar en la animacion
                     } else {
 			// In this case we have more than one data per day

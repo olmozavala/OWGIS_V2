@@ -365,9 +365,9 @@ public class OpenLayersManager {
 	private String addWMS(String currentConf, int actualLayer){
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
                 "\t\tsource: new ol.source.TileWMS({\n"+
-                "\t\t\turl: 'http://ncwms.coaps.fsu.edu/geoserver/wms',\n"+
+                "\t\t\turl: 'http://pronosticos.unam.mx:8080/geoservercenapred/wms',\n"+
                 "\t\t\tcrossOrigin: null,\n"+
-                "\t\t\tparams: {LAYERS: 'comm:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
+                "\t\t\tparams: {LAYERS: 'cen:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
                 "\t\t})"+
                 "\t});";
 		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";

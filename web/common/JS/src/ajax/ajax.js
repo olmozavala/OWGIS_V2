@@ -58,12 +58,12 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
         case "getAnimTimes":
             url3 += '&startDate=' + startDate;
             url3 += '&endDate=' + endDate;
-            console.log(url3);
+            //console.log(url3);
             asynchronous5.complete = asyncFillAnimationSelect;
             asynchronous5.call(url3);
         case "getTimeSteps":
             url3 += '&day=' + startDate;
-            console.log(url3);
+            //console.log(url3);
 			switch (cal) {
 				case owgis.constants.startcal:
 					asynchronous5.complete = asyncFillTimeStepsStart;
@@ -84,7 +84,7 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
  * @returns {undefined}
  */
 function asyncFillTimeStepsStart(responseText){
-    console.log(responseText);
+    //console.log(responseText);
     owgis.ncwms.calendars.updatehours([], owgis.constants.startcal) ;
 }
 
@@ -94,8 +94,8 @@ function asyncFillTimeStepsStart(responseText){
  * @returns {undefined}
  */
 function asyncFillTimeStepsEnd(responseText){
-    console.log(responseText);
-	owgis.ncwms.calendars.updatehours([], owgis.constants.endcal) ;
+    //console.log(responseText);
+    owgis.ncwms.calendars.updatehours([], owgis.constants.endcal) ;
 }
 
 

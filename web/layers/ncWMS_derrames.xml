@@ -12,9 +12,9 @@
     </Menus>
     
 	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
-            
+            <!-- Punto 1 -->
             <layer Menu="oil,p1,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -22,7 +22,7 @@
             />
             
             <layer Menu="oil,p1,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -30,7 +30,7 @@
             />
             
             <layer Menu="oil,p1,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -38,7 +38,7 @@
             />
             
             <layer Menu="oil,p1,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -46,7 +46,7 @@
             />
 
             <layer Menu="oil,p1,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -54,8 +54,56 @@
             />
             
             <layer Menu="oil,p1,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p1,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p1_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
@@ -63,7 +111,7 @@
             
             <!-- Punto 2 -->
             <layer Menu="oil,p2,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -71,7 +119,7 @@
             />
             
             <layer Menu="oil,p2,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -79,7 +127,7 @@
             />
             
             <layer Menu="oil,p2,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -87,7 +135,7 @@
             />
             
             <layer Menu="oil,p2,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -95,7 +143,7 @@
             />
             
             <layer Menu="oil,p2,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -103,8 +151,56 @@
             />
             
             <layer Menu="oil,p2,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p2,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p2_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
@@ -112,7 +208,7 @@
                         
             <!-- Punto 3 -->
             <layer Menu="oil,p3,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -120,7 +216,7 @@
             />
             
             <layer Menu="oil,p3,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -128,7 +224,7 @@
             />
             
             <layer Menu="oil,p3,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -136,7 +232,7 @@
             />
             
             <layer Menu="oil,p3,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -144,7 +240,7 @@
             />
             
             <layer Menu="oil,p3,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -152,8 +248,56 @@
             />
             
             <layer Menu="oil,p3,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p3,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p3_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
@@ -161,7 +305,7 @@
             
             <!-- Punto 4 -->
             <layer Menu="oil,p4,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -169,7 +313,7 @@
             />
             
             <layer Menu="oil,p4,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -177,7 +321,7 @@
             />
             
             <layer Menu="oil,p4,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -185,7 +329,7 @@
             />
             
             <layer Menu="oil,p4,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -193,7 +337,7 @@
             />
             
             <layer Menu="oil,p4,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -201,8 +345,56 @@
             />
             
             <layer Menu="oil,p4,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p4,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p4_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
@@ -210,7 +402,7 @@
             
             <!-- Punto 5 -->
             <layer Menu="oil,p5,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -218,7 +410,7 @@
             />
             
             <layer Menu="oil,p5,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -226,7 +418,7 @@
             />
             
             <layer Menu="oil,p5,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -234,7 +426,7 @@
             />
             
             <layer Menu="oil,p5,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -242,7 +434,7 @@
             />
             
             <layer Menu="oil,p5,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -250,8 +442,56 @@
             />
             
             <layer Menu="oil,p5,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p5,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p5_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
@@ -259,7 +499,7 @@
             
             <!-- Punto 6 -->
             <layer Menu="oil,p6,M01" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_01/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -267,7 +507,7 @@
             />
             
             <layer Menu="oil,p6,M02" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_02/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -275,7 +515,7 @@
             />
             
             <layer Menu="oil,p6,M03" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_03/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -283,7 +523,7 @@
             />
             
             <layer Menu="oil,p6,M04" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_04/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -291,7 +531,7 @@
             />
             
             <layer Menu="oil,p6,M05" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_05/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
@@ -299,8 +539,56 @@
             />
             
             <layer Menu="oil,p6,M06" 
-			   EN="Oil spill scenario for point 1" ES="Escenarios de derrames para el punto" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_06/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M07" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_07/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M08" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_08/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M09" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_09/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M10" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_10/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M11" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_11/oilSpill"
+                           palette="prec2"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
+                           subtitleText="dailyxhour"
+            />
+            
+            <layer Menu="oil,p6,M12" 
+			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
+			   name="derrames_p6_12/oilSpill"
                            palette="prec2"
                            mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="transparent"
                            subtitleText="dailyxhour"
