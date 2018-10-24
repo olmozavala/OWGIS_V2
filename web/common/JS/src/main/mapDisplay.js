@@ -81,6 +81,7 @@ function owgisMain(){
         initOl3();
         addLayers();
         owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
+        //owgis.layers.initMainLayer(eval('layer1'));
         owgis.ol3.positionMap();        
 		//If cesium is enabled check to redraw the streamlines
 		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
