@@ -9,9 +9,8 @@
 		<Menu ID="raster" EN="Raster Layers" ES="Capas Raster" HI_IN="वेक्टर परते"/>
 		<Menu ID="states" EN="US states" ES="Estados" HI_IN="अमेरिकन राज्यों"/>
 		<Menu ID="statesdyn" EN="Dynamic US states" ES="Estados (dinamicos)" HI_IN="अमेरिकन राज्यों"/> 
-        <Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/> 
-        <Menu ID="count" EN="Countries" ES="Paises" HI_IN="देशों"/> 
-        <Menu ID="test" EN="Testing" />
+                <Menu ID="countries" EN="Countries" ES="Paises" HI_IN="देशों"/> 
+                <Menu ID="count" EN="Countries" ES="Paises" HI_IN="देशों"/> 
 	</Menus>
 
     <!-- GEBCO LAYER working properly but slow and heavy Jun/2017 -->
@@ -21,8 +20,8 @@
 			<layer name="GEBCO_LATEST" featureInfo="none"/> 
 	</BackgroundLayers>-->
 	<!--CHECK THIS ONE http://demo.opengeo.org/geoserver/wms?request=GetCapabilities-->
-	<BackgroundLayers BBOX="-180,-90,180,90" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
-		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	<BackgroundLayers BBOX="-180,-90,180,90" server="http://132.248.8.238:8080/geoservercenapred/wms">
+		<layer name="cen:pyrResult512" /> 
 	</BackgroundLayers>
 
 	<!-- Vector layer -->
