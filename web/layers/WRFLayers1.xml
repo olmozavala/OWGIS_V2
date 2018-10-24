@@ -41,8 +41,8 @@
                 <Menu ID="alerta" EN="Alert" ES="Alertas" />
 	</Menus>
 
-	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
-		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://132.248.8.238:8080/geoservercenapred/wms">
+		<layer name="cen:pyrResult512" /> 
 	</BackgroundLayers>
         
         <!-- Dominio 1 -->

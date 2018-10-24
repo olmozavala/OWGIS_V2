@@ -74,7 +74,7 @@ public class OpenLayersManager {
 		return ConvertionTools.convertObjectArrayToIntArray(resultado.toArray());
 	}
 
-	public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
+    public int[] obtainIndexForOptionalLayers(String[] menuSelected) {
 
 		if (menuSelected.length == 0) {//if not entry return null
 			return null;
@@ -84,7 +84,6 @@ public class OpenLayersManager {
 		Layer tempLayer = null;
 		for (int index = 0; index < layersManager.getVectorLayers().size(); index++) {//loop each vector layer
 			tempLayer = layersManager.getVectorLayers().get(index);//temp variable 
-
 			//each tree value has to be send separately. 
 			//becuase the vector layers are all on one level of the tree
 			for (int menuNumber = 0; menuNumber < menuSelected.length; menuNumber++) {
@@ -169,7 +168,6 @@ public class OpenLayersManager {
 		String layersScript = "";
 		Layer actualLayer = null;
 		int layerCount = 0;
-
 		layersScript = "\nfunction punctualData(evt) {\n";//Se agrega al evento click del div map la siguiente funcion
 		layersScript+=
                 "\t var compleFun = paintClircleOnMap(evt.originalEvent.clientY, evt.originalEvent.clientX, AsyncPunctualData);\n" +
@@ -230,8 +228,7 @@ public class OpenLayersManager {
 		URLscript += "\t\t\tif(layer" + layerNumber + ".getVisible()){\n";
 		URLscript += "\t\t\t\towgis.features.punctual.getVerticalProfile(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
 		URLscript += "\t\t\t\towgis.features.punctual.getTimeSeries(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
-		URLscript += "\t\t\t\towgis.features.punctual.getWindRose(evt,"+layerNumber+");\n";//Se agrega al evento click del div map la siguiente funcion
-        URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
+		URLscript += "\t\t\t\tvar url" + layerNumber + " = basepath+\"/redirect?server=" + actualLayer.getServer() + "&";
 
 		URLscript += "LAYERS=" + actualLayer.getFeatureInfoLayer() + "&";
 		URLscript += "WIDTH=\"+ map.getSize()[0] +\"&"
@@ -249,7 +246,7 @@ public class OpenLayersManager {
 		if (!actualLayer.getCql().equals("")) {
 			URLscript += "CQL_FILTER=" + actualLayer.getCql() + "&";
 		}
-                
+
 		//In this case we also need the time information
 		if (actualLayer.isncWMS()) {
 			// The two variables: elevation and startDate have to match
@@ -314,22 +311,23 @@ public class OpenLayersManager {
                             layersScript += ", ncwmstwo:'true', bgcolor:'transparent' ";                        
 			}
                         
-            if (actualLayer.isNcwmstwo() || actualLayer.isncWMS()){
-                layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
-            }else{
-                layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
-            }
-            if (actualLayer.getBelowMinColor() != null) {
-                layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
-            }
-			if (actualLayer.getAboveMaxColor() != null) {
-                layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
-            }
-            
+                        
+                        if (actualLayer.isNcwmstwo() || actualLayer.isncWMS()){
+                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "/" +actualLayer.getPalette()+"'";                       
+                        }else{
+                            layersScript += ", STYLES: '" + actualLayer.getStyle() + "'";
+                        }
+			
+			if (actualLayer.getBelowMinColor() != null) {
+                            layersScript += ", BELOWMINCOLOR: '" + actualLayer.getBelowMinColor() + "'";
+                        }
+                         
+ 			if (actualLayer.getAboveMaxColor() != null) {
+                            layersScript += ", ABOVEMAXCOLOR: '" + actualLayer.getAboveMaxColor() + "'";
+                        }
             if ( actualLayer.getNumColorBands() != 250 ) {
                 layersScript += ", NUMCOLORBANDS: "+ actualLayer.getNumColorBands();
             }
-            
 			layersScript += ", SRS: _map_projection";
 			
 			layersScript += "}\n\t\t\t})\n";
@@ -355,14 +353,16 @@ public class OpenLayersManager {
 	 * Creates an WMS layer
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
+         * @param actLay Layer Is the first background layer set in the xml file
 	 */
-	private String addWMS(String currentConf, int actualLayer){
+	private String addWMS(String currentConf, int actualLayer, Layer actLay){
+                
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
                 "\t\tsource: new ol.source.TileWMS({\n"+
-                "\t\t\turl: 'http://ncwms.coaps.fsu.edu/geoserver/wms',\n"+
+                "\t\t\turl: '"+actLay.getServer()+"',\n"+
                 "\t\t\tcrossOrigin: null,\n"+
 //                "\t\t\ttileGrid: tileGrid,\n"+
-                "\t\t\tparams: {LAYERS: 'comm:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
+                "\t\t\tparams: {LAYERS: '"+actLay.getName()+"', STYLES: '', SRS: _map_projection} \n"+
                 "\t\t})"+
                 "\t});";
 		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
@@ -467,14 +467,8 @@ public class OpenLayersManager {
 		
 		switch (backgroundLayer){
 			case "wms":
-				//for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-					//actualLayer = layersManager.getBackgroundLayers().get(i);
-					//if (actualLayer.getName() != null) {
-						//layersScript += layerHelper(actualLayer, layerCount, true);
-						//layerCount++;
-					//}//If layer not null
-				//}
-                layersScript += addWMS(layersScript, layerCount);
+                                actualLayer = layersManager.getBackgroundLayers().get(0);
+                                layersScript += addWMS(layersScript, layerCount, actualLayer);
 				layerCount++;
 				break;
 			case "osm": //Add OpenStreetMap as the background layer
