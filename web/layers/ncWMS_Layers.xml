@@ -10,7 +10,7 @@
 		<Menu ID="PromMinM" EN="Monthly Minimum Mean" ES="Mínima promedio mensual"/>
 		<Menu ID="MinAM" EN="Monthly Absolute Minimum" ES="Mínima absoluta por mes"/>
 		<Menu ID="ANOM" EN="Monthly Anomalies" ES="Anomalías mensuales"/>
-		<Menu ID="Umbral" EN="Thresholds " ES="Umbral"/>
+		<Menu ID="Umbral" EN="Thresholds " ES="Índices Climatológicos"/>
 		<Menu ID="WindRose" EN="Wind Rose " ES="Rosas de Viento"/>
 
                 <Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
