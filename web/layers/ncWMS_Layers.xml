@@ -239,7 +239,7 @@
 		<layer Menu="Viento,PromMAD" 
 			   EN="Daily Wind Absolute Maximum" ES="Máxima absoluta diaria de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_maxs_abs_diarios/U10_MAX:V10_MAX-mag"  overlaystreamlines="atlas_maxs_abs_diarios/U10_MAX:atlas_maxs_abs_diarios/V10_MAX" defParticleSpeed="0.02"
+			   name="atlas_maxs_abs_diarios/MAGNITUD_VIENTO"  overlaystreamlines="atlas_maxs_abs_diarios/U10_MAX:atlas_maxs_abs_diarios/V10_MAX" defParticleSpeed="0.02"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="daily"
                 />
@@ -263,7 +263,7 @@
 		<layer Menu="Viento,PromMAM" 
 			   EN=" Monthly Wind Absolute Maximum" ES="Máxima promedio mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_promedios_maxs_abs_mensuales/U10:V10-mag"  overlaystreamlines="atlas_promedios_maxs_abs_mensuales/U10:atlas_promedios_maxs_abs_mensuales/V10" defParticleSpeed="0.03"
+			   name="atlas_promedios_maxs_abs_mensuales/MAGNITUD_VIENTO" defParticleSpeed="0.03"
                            belowMinColor="transparent" aboveMaxColor="transparent" 
                            subtitleText="monthly"
                 />

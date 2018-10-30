@@ -164,7 +164,9 @@ owgis.ncwms.currents.cleanAnimationCurrentsAll = function cleanAnimationCurrents
  */
 window['owgis.ncwms.currents.clearCurrentsCanvas'] = owgis.ncwms.currents.clearCurrentsCanvas;
 owgis.ncwms.currents.clearCurrentsCanvas= function clearCurrentsCanvas(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if(typeof ctx !== "undefined"){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
 }
 
 /**
@@ -276,8 +278,15 @@ function initstreamlineLayerCesium(){
  * @returns {undefined}
  */
 function updateCurrentsCesium(event){
-    canvas.width = $(window).width();
-    canvas.height = $(window).height();
+    if(typeof canvas !== "undefined"){
+        canvas.width = $(window).width();
+        canvas.height = $(window).height();
+    } else {
+        //This is the source of the new map layer
+        canvas = document.getElementById("currentsCanvas");
+        canvas.width = $(window).width();
+        canvas.height = $(window).height();
+    }
     var oheighty = 180;
     var nty = 90;
     var cam_rad = c_scene.camera.positionCartographic;
