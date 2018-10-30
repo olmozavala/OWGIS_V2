@@ -105,12 +105,18 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             // when all ajax calls are done we need to be able to start animation
             var ajaxCan = true;
             var latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+            var dataLink = "";
+            var first=0;
+            
             $( document ).ajaxStop(function() {
                 // we set first frame as the Vertical Profile current frame
                 var vpCurrentFrame=0;
+                first++;
                 // check that it is not an html or xml response
                 // but first check that it exists (?)
-                if( typeof allDataVP[allFramesVP[vpCurrentFrame]] !== "undefined"){
+                var ajaxCan = false;
+                if(allDataVP[allFramesVP[vpCurrentFrame]].status == 200){ ajaxCan = true; }
+                if(first == 1 && typeof allDataVP[allFramesVP[vpCurrentFrame]] !== "undefined" && allDataVP[allFramesVP[vpCurrentFrame]].status == 200 ){
                     if( !allDataVP[allFramesVP[vpCurrentFrame]].hasOwnProperty("responseXML") ){
                         //all data ready, lets create the First highchart
                         if(mobile){
@@ -134,7 +140,10 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
 
-                        ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1)); // there is actual data in the response
+                        
+                        showButton(ajaxCan,latlon,first,data);
+                        
+                        //ajaxCan = !owgis.utils.check_empty_array(data.split('\n').slice(3,-1)); // there is actual data in the response
                         //console.log(ajaxCan);
                         //Create the plot
                         optionsChartVP = {
@@ -182,69 +191,77 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 }
             });
             
-            if(!mobile && ajaxCan){
-                
-                $('#modalVertProf').resizable({
-                    minHeight: 500,
-                    minWidth: 600,
-                    resize: function( event, ui ) {
-                        if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
-                            $('#modalVertProf').center();
-                            $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+            function showButton(ajaxCan, latlon, first,data){
+                if(first == 1){
+                    if(ajaxCan){
+                        if(!mobile){
+
+                            $('#modalVertProf').resizable({
+                                minHeight: 500,
+                                minWidth: 600,
+                                resize: function( event, ui ) {
+                                    if (typeof $("#containerChartsVP").highcharts() != 'undefined'){
+                                        $('#modalVertProf').center();
+                                        $("#containerChartsVP").highcharts().setSize(document.getElementById('modalVertProf').offsetWidth-30, document.getElementById('modalVertProf').offsetHeight-60-30, doAnimation = true);
+                                    }
+                                }
+                            });
+
+                            $('#showVertProf').on("hidden.bs.modal", function() { clearInterval(loopVP); });
+
+                            $('.modal-dialog').draggable();
+
+                            $('#showVertProf').on('show.bs.modal', function () { $(this).find('.modal-body').css({ 'max-height':'100%' }); });
                         }
+                        
+                        var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick=\"openVertProf(allDataVP, allFramesVP, '"+latlon+"');\" class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
+                        
+                        document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+
+                                                                                  popuplink+
+                                                                                  " <button style=\"display:none\" class='btn btn-default btn-xs' id=\"playVP\">"+
+                                                                                  "<span class='glyphicon glyphicon-play' ></span>"+
+                                                                                  "</button>"+
+                                                                                  " <button class='btn btn-default btn-xs' id=\"pauseVP\">"+
+                                                                                  "<span class='glyphicon glyphicon-pause' ></span> </button> "+
+                                                                                  "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"prevVP\">"+
+                                                                                  "<span class='glyphicon glyphicon-step-backward' ></span> </button> "+
+                                                                                  "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"nextVP\">"+
+                                                                                  "<span class='glyphicon glyphicon-step-forward' ></span> </button> ";
+                        var dataLink = "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allDataVP, allFramesVP, '"+latlon+"');\">Show</button><br>";
+
+                        $('#modalVertProf .modal-header button.close').click(function(){  clearInterval(loopVP); });
+
+                        $("#pauseVP").click(function(){ isPaused = true; $("#pauseVP").hide(); $("#playVP").show(); $("#prevVP").show(); $("#nextVP").show(); });
+
+                        $("#playVP").click(function(){ isPaused = false; $("#playVP").hide(); $("#pauseVP").show(); $("#prevVP").hide(); $("#nextVP").hide(); });
+
+                        $("#prevVP").click(function(){ isPrevVP=true; isNextVP=false;});
+
+                        $("#nextVP").click(function(){ isNextVP=true; isPrevVP=false;});
+
+                        if(mobile){
+                                //startVPLoop();
+                                $( window ).on( "orientationchange", function( event ) {
+                                    if ( screen.width > screen.height){
+                                        twidth = screen.width-50;
+                                        theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
+                                    } else {
+                                        twidth = screen.width-10;
+                                        theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
+                                    }
+                                    $("#containerChartsVP").highcharts().setSize(twidth, theight, doAnimation = true);
+                                });
+
+                                document.getElementById("containerChartsVP").style.display = 'block';
+                        }
+                    } else {
+                            var dataLink = "";
                     }
-                });
-                
-                $('#showVertProf').on("hidden.bs.modal", function() { clearInterval(loopVP); });
-                
-                $('.modal-dialog').draggable();
-                
-                $('#showVertProf').on('show.bs.modal', function () { $(this).find('.modal-body').css({ 'max-height':'100%' }); });
-            }
-            
-            if(ajaxCan){
-                var popuplink = (mobile) ? "" : "<button id='newVerticalProfileWindow' onclick=\"openVertProf(allDataVP, allFramesVP, '"+latlon+"');\" class='btn btn-default btn-xs' > <span class='glyphicon glyphicon-new-window' ></span> </button>";
-                document.getElementById("modalLabelVertProf").innerHTML = latlon+" "+
-                                                                          popuplink+
-                                                                          "&nbsp;<button style=\"display:none\" class='btn btn-default btn-xs' id=\"playVP\">"+
-                                                                          "<span class='glyphicon glyphicon-play' ></span>"+
-                                                                          "</button>&nbsp;"+
-                                                                          "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"prevVP\">"+
-                                                                          "<span class='glyphicon glyphicon-step-backward' ></span> </button> "+
-                                                                          "<button class='btn btn-default btn-xs' id=\"pauseVP\">"+
-                                                                          "<span class='glyphicon glyphicon-pause' ></span> </button> "+
-                                                                          "<button style=\"display:none\" class='btn btn-default btn-xs' id=\"nextVP\">"+
-                                                                          "<span class='glyphicon glyphicon-step-forward' ></span> </button> ";
-                var dataLink = "<b>Vertical profile: </b> <button type=\"button\" id=\"toAnimateVP\" class=\"btn btn-default btn-xs\" onclick=\"$('#showVertProf').modal('toggle');letsLoopVP(allDataVP, allFramesVP, '"+latlon+"');\">Show</button><br>";
-                    
-                $('#modalVertProf .modal-header button.close').click(function(){  clearInterval(loopVP); });
-                
-                $("#pauseVP").click(function(){ isPaused = true; $("#pauseVP").hide(); $("#playVP").show(); $("#prevVP").show(); $("#nextVP").show(); });
-                
-                $("#playVP").click(function(){ isPaused = false; $("#playVP").hide(); $("#pauseVP").show(); $("#prevVP").hide(); $("#nextVP").hide(); });
-                
-                $("#prevVP").click(function(){ isPrevVP=true; isNextVP=false;});
-                
-                $("#nextVP").click(function(){ isNextVP=true; isPrevVP=false;});
-                
-                if(mobile){
-                    //startVPLoop();
-                    $( window ).on( "orientationchange", function( event ) {
-                        if ( screen.width > screen.height){
-                            twidth = screen.width-50;
-                            theight = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-30;
-                        } else {
-                            twidth = screen.width-10;
-                            height = screen.height-$("#showVertProf > .modal-dialog > .modal-content > .modal-header").outerHeight()-100;
-                        }
-                        $("#containerChartsVP").highcharts().setSize(twidth, theight, doAnimation = true);
-                    });
-                    
-                    document.getElementById("containerChartsVP").style.display = 'block';
+                    currPopupText += dataLink;
+                    $("#popup-content").html(currPopupText);
                 }
-            } else {
-                var dataLink = "";
-            }
+            }//end of  function showButton()
+            
         } else { //only one date!
             url += "&TIME=" + time;
             
