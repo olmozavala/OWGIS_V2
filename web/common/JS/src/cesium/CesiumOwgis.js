@@ -21,7 +21,8 @@ function validateWebGL(){
 		// the browser doesn't even know what WebGL is
 		pass = false;
 	} else {
-                var context = c ? c.getContext("webgl") : false;
+		var canvas = getElementById('testWebGLCanvas');
+                var context = canvas? canvas.getContext("webgl") : false;
 		if (!context) {
 			// browser supports WebGL but initialization failed.
 			pass = false;
