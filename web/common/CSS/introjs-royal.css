@@ -387,7 +387,14 @@ div.splash .modal-dialog .modal-content .modal-body .table thead>tr>th, .table t
 
 @media only screen and (max-width: 600px) {
     .introjs-tooltip {
-        position: absolute;
+        position:fixed;
+        max-width: 70% !important;
+        width: 70% !important;
+        min-width: 70% !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        left: 15% !important;
+        bottom: 30% !important;
     }
 }
 

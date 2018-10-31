@@ -14,12 +14,14 @@ var reduceNumberStreamLinesBy = 2;// n times less particles than non cesium
 function validateWebGL(){
 	//First thing is to validate that WebGL is supported by the browser
 	var pass = true;
-	if (!window.WebGLRenderingContext) {
+        c = document.createElement("canvas");
+        gl = c.getContext("experimental-webgl");
+        
+	if ( (gl instanceof WebGLRenderingContext) == false ) {
 		// the browser doesn't even know what WebGL is
 		pass = false;
 	} else {
-		var canvas = getElementById('testWebGLCanvas');
-                var context = canvas? canvas.getContext("webgl") : false;
+                var context = c ? c.getContext("webgl") : false;
 		if (!context) {
 			// browser supports WebGL but initialization failed.
 			pass = false;

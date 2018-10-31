@@ -106,6 +106,14 @@ owgis.mobile.initMobile = function initMobile(){
             intro.setOptions({
                 steps: mobileSteps
             });
+            
+            if (_curr_language == "ES") {
+                intro.setOption("skipLabel", " Saltar ");
+                intro.setOption("doneLabel", " Terminar ");
+            }
+
+            intro.setOption("nextLabel"," > ");
+            intro.setOption("prevLabel"," < ");
         
             intro.start();
         }

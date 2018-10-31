@@ -83,7 +83,6 @@
 					<c:if test='${currents}'> <canvas id="currentsCanvas"></canvas> </c:if>
 						<c:if test='${ncwms}'> 
 						<canvas id="animationCanvas"></canvas>
-						<canvas id="testWebGLCanvas"></canvas>
 						<img id="animContainer" src="" class="menuHidden"></img>
 					</c:if>
 				</div>
@@ -110,6 +109,7 @@
 		</script>
 
 		<div class="loadingMobile"></div>
+                <canvas id="testWebGLCanvas"></canvas>
                 
                 <!-- These divs are required for highcharts -->
                 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showVertProf" style="display: none;">
