@@ -12,6 +12,7 @@ goog.provide('owgis.languages');
  */
 owgis.languages.setLocale = function (locale){
 	$("#_locale").val(locale);
+        localStorage.language = locale;
 	MapViewersubmitForm();
 }
 

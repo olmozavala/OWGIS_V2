@@ -190,6 +190,7 @@ function initMenus() {
 		}
 		if(mobile){
 			// In this case we are increasing the size of the window and go to desktop mode
+                        console.log('mobile');
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
@@ -293,6 +294,11 @@ function updateTitle(dateText, elevText) {
  * 
  */
 function MapViewersubmitForm() {
+    if(localStorage.language !== _curr_language){
+        $("#_locale").val(localStorage.language);
+    }else if(_curr_language == localStorage.language){
+        $("#_locale").val(_curr_language);
+    }
     if (map !== null) {
         owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	if(!mobile){ 
