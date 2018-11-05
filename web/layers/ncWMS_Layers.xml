@@ -90,7 +90,7 @@
         </Menus>
         
         <BackgroundLayers BBOX="-180,90,-90,180" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms" >
-		<layer name="cen:pyrResult512" /> 
+		<layer name="comm:pyrResult512" /> 
 	</BackgroundLayers>
 
 	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
