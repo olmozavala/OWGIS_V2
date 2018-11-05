@@ -117,3 +117,12 @@ ul#horizontal {
 #backLayersDropDown:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+    #backLayersDropDown {
+        width: 100%;
+        min-height: 1.5em;
+        min-height: 100%;
+        height: 3em;
+    }
+}
