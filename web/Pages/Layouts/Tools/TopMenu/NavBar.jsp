@@ -10,8 +10,8 @@
 		<ul class="horizontal col-lg-6 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"> 
 				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
-                    <!--It gets initialized by backgroundLayers.js-->
-                </select>
+                                    <!--It gets initialized by backgroundLayers.js-->
+                                </select>
 			</li>
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>

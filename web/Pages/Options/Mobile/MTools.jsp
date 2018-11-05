@@ -21,10 +21,10 @@
 	</li>
 	<li>
     <!-- change backgroundlayer -->
-    <li>
-		<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
-            <!--It gets initialized by backgroundLayers.js-->
-        </select>
+        <li>
+            <select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
+                <!--It gets initialized by backgroundLayers.js-->
+            </select>
 	</li>
             
 		<!--Depth selection-->
