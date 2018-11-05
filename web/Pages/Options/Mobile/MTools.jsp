@@ -1,43 +1,42 @@
 <ul data-role="listview" data-inset="true" data-shadow="false" id="leftList">
 	<li>
-		<%@include file="../KmlLink.jsp"%>
+            <%@include file="../KmlLink.jsp"%>
 	</li>
 	<li>
-		<!--Transparency selection-->
-		<div id="transParent"
-			 title="<fmt:message key='help.tooltip.transparency'/>">
-			<%@include file="../Transparency.jsp"%>
-		</div>
+            <!--Transparency selection-->
+            <div id="transParent" title="<fmt:message key='help.tooltip.transparency'/>">
+		<%@include file="../Transparency.jsp"%>
+            </div>
 	</li>
-	<li>
+        <c:if test='${ncwms}'>
+            <li>
 		<!--Transect Tool-->
 		<div class="transect-slider">
-			<select name="flip-1" id="lineToggle" data-role="slider"
-					onChange="owgis.mobile.closePanels();toggleControlMob();">
-				<option value="off"><fmt:message key='mobile.transoff'/></option>
-				<option value="on"><fmt:message key='mobile.transon'/></option>
-			</select>
+                    <select name="flip-1" id="lineToggle" data-role="slider" onChange="owgis.mobile.closePanels();toggleControlMob();">
+                        <option value="off"><fmt:message key='mobile.transoff'/></option>
+                        <option value="on"><fmt:message key='mobile.transon'/></option>
+                    </select>
 		</div>
-	</li>
-	<li>
-    <!-- change backgroundlayer -->
+            </li>
+        </c:if>
+    <!--li-->        
+        <!-- change backgroundlayer -->
         <li>
             <select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
                 <!--It gets initialized by backgroundLayers.js-->
             </select>
 	</li>
             
-		<!--Depth selection-->
+	<!--Depth selection-->
 	<c:if test='${zaxis}'>
-		<li>
-			<a class="ui-btn ui-icon-align-center ui-btn-icon-left " 
-			   href="#zaxis_selector_parent" >
-				<fmt:message key="ncwms.depth" />
-			</a>
-		</li>
+            <li>
+		<a class="ui-btn ui-icon-align-center ui-btn-icon-left" href="#zaxis_selector_parent" >
+                    <fmt:message key="ncwms.depth" />
+                </a>
+            </li>
 	</c:if>
-</li>
-<c:if test='${!ncwms}'>
+    <!--/li-->
+    <c:if test='${!ncwms}'>
 	<li>
 		<!--Download data-->
 		<a onclick="downloadData();" class="ui-btn ui-icon-download ui-btn-icon-left currentsParent " 
@@ -45,17 +44,17 @@
 			<fmt:message key="main.download" />
 		</a>
 	</li>
-</c:if>
-<c:if test='${currents}'>
+    </c:if>
+    <c:if test='${currents}'>
 	<li>
 		<a class="ui-btn ui-icon-random ui-btn-icon-left currentsParent " 
 		   href="#mobPanelCurrents">
 			<fmt:message key='ncwms.streamlines.streamlines'/>
 		</a>
 	</li>
-</c:if>
+    </c:if>
 
-<c:if test='${ncwms}'>
+    <c:if test='${ncwms}'>
 	<%-- Color Palettes --%>
 	<li>
 		<a class="ui-btn ui-icon-tint ui-btn-icon-left" href="#mobPanelPalettes" > 
@@ -70,23 +69,23 @@
 			</a>
 		</li>
 	</c:if>
-</c:if>
+    </c:if>
 
-<%-- Toogle Cesium --%>
-<li>
+    <%-- Toogle Cesium --%>
+    <li>
 	<a class="ui-btn ui-icon-globe ui-btn-icon-left currentsParent " 
 		onclick="owgis.mobile.closePanels();owgis.cesium.toogleCesium();owgis.layouts.draggable.topmenu.toogleUse('.cesiumSpan');" 
 	   href="#">
 		<fmt:message key='mobile.3d'/>
 	</a>
-</li>
+    </li>
 
-<!-- Download minimized -->
-<li><a class="ui-btn downloadDataParent" 
+    <!-- Download minimized -->
+    <li><a class="ui-btn downloadDataParent" 
 	   onclick="downloadData();"  >
 		<span class="glyphicon glyphicon-download-alt"> </span>
 	</a>
-</li>
+    </li>
 
 </ul>
 <!-- languages Mobil -->
