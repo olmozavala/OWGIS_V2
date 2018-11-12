@@ -1,0 +1,65 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="AIRQ" EN="Air quality (Mex)" ES="Calidad del aire"/>
+		<Menu ID="Viento" EN="Wind" ES="Viento" />
+		<Menu ID="VarViento" EN=" w/ Wind" ES="Variables con Viento" />
+		<Menu ID="VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros"/>
+		<Menu ID="Temp2" EN="Temperature at 2 meters" ES="Temperatura a 2 metros"/>
+		<Menu ID="Pblh" EN="PBLH" ES="PBLH"/>
+		<Menu ID="co" EN="CO" ES="CO"/> 
+		<Menu ID="o3" EN="O3" ES="O3"/>
+		<Menu ID="PM10" EN="PM10" ES="PM10"/>
+		<Menu ID="del" EN="del" ES="del"/>
+		<Menu ID="flip" EN="flip" ES="flip"/>
+                
+                <Menu ID="so2" EN="SO2" ES="SO2" />
+                <Menu ID="nox" EN="NOX" ES="NOX" />
+		<!-- Tais menu that are available to display entries IOA OWGIS-->
+	</Menus>
+        <!-- Dominio 1 -->
+	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,o3" EN="O3 (ppm)" ES="O3 (ppm)" isParticle="otres" style="default-scalar" 
+				   palette="div-Spectral-inv" name="wrf-chem/o3" mincolor="0" maxcolor="160" aboveMaxColor="transparent" belowMinColor="transparent" />
+            
+            <layer  center="-99,19" zoom="4" isParticle="false" Menu="AIRQ,Dom2,Temp2" EN="Temperature at 2 meters." 
+				   ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf-chem/T2C" mincolor="-10" maxcolor="50" />
+            
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VtoSup10" EN="Wind speed at 10 meters" ES="Viento a 10 metros" 
+                    style="default-scalar" palette="wind2" name="wrf-chem/Uat10:Vat10-mag"
+                    overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03"  mincolor="0" maxcolor="250" isParticle="false" />
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,Pblh" EN="Planetary boundary layer height" isParticle="false" 
+				   ES="Altura de la capa límite planetaria" style="default-scalar" palette="prec2" name="wrf-chem/PBLH" mincolor="-170" maxcolor="3770" />
+                
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,co" EN="CO (ppm)" ES="CO (ppm)" isParticle="co" style="default-scalar" 
+				   palette="div-Spectral-inv" name="wrf-chem/co" mincolor="0" maxcolor="2" aboveMaxColor="transparent" belowMinColor="transparent" />
+
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,PM10" EN="PM10 (ug m^-3)" ES="PM10 (ug m^-3)" isParticle="pmdiez" 
+				   style="default-scalar" palette="seq-PuBuGn-inv" name="wrf-chem/PM10" mincolor="0" maxcolor="100" aboveMaxColor="transparent" belowMinColor="transparent" />
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,so2" EN="so2 (ppm)" ES="so2 (ppm)" isParticle="sodos" style="default-scalar" 
+				   palette="seq-Heat-inv" name="wrf-chem/so2" mincolor="0" maxcolor="50" aboveMaxColor="transparent" belowMinColor="transparent" />
+            
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,nox" EN="nox (ppm)" ES="nox (ppm)" isParticle="nox" style="default-scalar" 
+				   palette="seq-BlueHeat-inv" name="wrf-chem/NOX" mincolor="0" maxcolor="30" aboveMaxColor="transparent" belowMinColor="transparent" />
+            
+            <!-- variables con viento -->
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,Temp2" isParticle="false" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="Temperature at 2 meters." ES="Temperatura en superficie a 2 metros" style="default-scalar" palette="temperatura" name="wrf-chem/T2C" mincolor="-10" maxcolor="50" />
+            
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,co" isParticle="co" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="CO (ppm)" ES="CO (ppm)" style="default-scalar" palette="div-Spectral-inv" name="wrf-chem/co" mincolor="0" maxcolor="2" aboveMaxColor="transparent" belowMinColor="transparent" />
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,o3" isParticle="otres" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="O3 (ppm)" ES="O3 (ppm)" style="default-scalar" palette="div-Spectral-inv" name="wrf-chem/o3" mincolor="0" maxcolor="160" aboveMaxColor="transparent" belowMinColor="transparent" />
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,PM10" isParticle="pmdiez" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="PM10 (ug m^-3)" ES="PM10 (ug m^-3)" style="default-scalar" palette="seq-PuBuGn-inv" name="wrf-chem/PM10" mincolor="0" maxcolor="100" aboveMaxColor="transparent" belowMinColor="transparent" />
+
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,so2" isParticle="sodos" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="so2 (ppm)" ES="so2 (ppm)" style="default-scalar" palette="seq-Heat-inv" name="wrf-chem/so2" mincolor="0" maxcolor="50" aboveMaxColor="transparent" belowMinColor="transparent" />
+            
+            <layer  center="-99,19" zoom="4" Menu="AIRQ,Dom2,VarViento,nox" isParticle="nox" overlaystreamlines="wrf-chem/Uat10:wrf-chem/Vat10" defParticleSpeed="0.03" EN="nox (ppm)" ES="nox (ppm)" style="default-scalar" palette="seq-BlueHeat-inv" name="wrf-chem/NOX" mincolor="0" maxcolor="30" aboveMaxColor="transparent" belowMinColor="transparent" />
+            
+	</MainLayers>
+                
+	
+</MenuConf>

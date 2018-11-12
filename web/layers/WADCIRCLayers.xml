@@ -1,0 +1,23 @@
+<MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="ADCIRC" EN="Storm surge (Mex)" ES="Marea y tormenta"/>
+		<Menu ID="Pom" EN="Pacific" ES="Pacífico"/>
+		<Menu ID="Gom" EN="Gulf of Mexico" ES="Golfo de México"/>		
+                <Menu ID="ele" EN="Elevation" ES="Elevación" />
+	</Menus>
+        
+	<!-- ADCIRC -->
+	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" 
+                    server="http://132.248.8.238:8080/ncWMS_2015/wms" >
+                   
+		<layer Menu="ADCIRC,Pom,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)"  center="-101,23" zoom="3"
+                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent"
+                />
+                     
+		<layer Menu="ADCIRC,Gom,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)" center="-92,23" zoom="3"
+                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcirc" mincolor="-3" maxcolor="3" belowMinColor="transparent" aboveMaxColor="transparent"
+		/>                              
+                
+	</MainLayers>
+</MenuConf>
