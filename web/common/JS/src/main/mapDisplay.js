@@ -14,7 +14,6 @@ goog.require('ol.control.ScaleLine');
 goog.require('ol.control.FullScreen');
 goog.require('ol.control.ZoomSlider');
 goog.require('ol.proj.Projection');
-
 goog.require('owgis.ol3');
 goog.require('owgis.utils');
 goog.require('owgis.layers');
@@ -51,12 +50,12 @@ window['moment-range'].extendMoment(moment);
 
 //Redirect any https request to http
 if (window.location.protocol !== "http:") {
-	window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
+    window.location.href = "http:" + window.location.href.substring(window.location.protocol.length);
 }
 
 if(!mobile && windowWidth <= _mobileScreenThreshold){
-		 window.location.href = window.location.href.split("?")[0]+"?mobile=true";
-	 }
+    window.location.href = window.location.href.split("?")[0]+"?mobile=true";
+}
 
 /**
  * This function verifies if one exception occured in the parsing of the 
@@ -64,31 +63,32 @@ if(!mobile && windowWidth <= _mobileScreenThreshold){
  * @returns {undefined}
  */
 function displayPrevExceptions(){
-	if( warningText !== ""){
-		console.log(warningText);
-		console.log(warningInfo);
-		owgis.error.popover.create(warningText);
-	}
+    if( warningText !== ""){
+	console.log(warningText);
+	console.log(warningInfo);
+	owgis.error.popover.create(warningText);
+    }
 }
 /**
  * Instructions executed when the page is ready
  */
 function owgisMain(){
-	displayPrevExceptions();
+    displayPrevExceptions();
     //maps
-	var intervalOL3 = setInterval(function(){
+    var intervalOL3 = setInterval(function(){
         clearInterval(intervalOL3);
         initOl3();
         addLayers();
-        owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
-        owgis.ol3.positionMap();        
-		//If cesium is enabled check to redraw the streamlines
-		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
-			if(_mainlayer_streamlines){
-				owgis.ncwms.currents.startSingleDateAnimation();
-			}
-		}
+        owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer)); console.log("this sucks");
+        owgis.ol3.positionMap();  
+        //If cesium is enabled check to redraw the streamlines
+        if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
+            if(_mainlayer_streamlines){
+                owgis.ncwms.currents.startSingleDateAnimation();
+            }
+        }
     }, 10);
+    
     //menus
     var intervalMenus = setInterval(function(){
        clearInterval(intervalMenus);
@@ -134,7 +134,6 @@ function owgisMain(){
             }
         }
         
-        
     }, 10);
 }
 
@@ -143,8 +142,8 @@ function owgisMain(){
  */
 function initMenus() {
 	
-	owgis.languages.buildselection();//Initializes the dropdown of languages
-	owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
+    owgis.languages.buildselection();//Initializes the dropdown of languages
+    owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
 
     disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
@@ -153,13 +152,13 @@ function initMenus() {
         //load the palettes
         owgis.ncwms.palettes.loadPalettes();
         initCalendars();
-		if(_mainlayer_zaxisCoord){
-			owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
-		}
-		owgis.ncwms.animation.initAnimationControls();
-		if(_mainlayer_streamlines){
-			owgis.ncwms.currents.style.init();
-		}
+	if(_mainlayer_zaxisCoord){
+            owgis.ncwms.zaxis.createElevationSelector(); //initialize depth selector
+	}
+	owgis.ncwms.animation.initAnimationControls();
+	if(_mainlayer_streamlines){
+            owgis.ncwms.currents.style.init();
+	}
     } 
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer

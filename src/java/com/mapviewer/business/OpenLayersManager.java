@@ -430,6 +430,7 @@ public class OpenLayersManager {
                 }
                 layerGoogle += " \t\t\t wrapX: true})\n \t\t});\n" +
                 "\tmap.addLayer(layer" + actualLayer + ");\n";
+               
 		currentConf += layerGoogle;
 		return currentConf;
 	}

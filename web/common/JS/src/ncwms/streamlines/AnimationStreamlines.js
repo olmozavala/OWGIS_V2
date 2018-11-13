@@ -657,7 +657,10 @@ function loopAnimationCurrents(){
 	}else{
             ctx.lineWidth = defLineWidth;
 	}
+        
         if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
+            owgis.interf.loadingatmap(true," ","Not able to display currents");
+            //owgis.interf.loadingatmap(false,undefined,"Not able to display currents");
             return;
         }
         owgis.ncwms.currents.particles.updateParticles(0, particlesArray.length);
