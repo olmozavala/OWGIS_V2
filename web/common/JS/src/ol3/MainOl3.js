@@ -69,7 +69,8 @@ function setMouseClickOnMap(){
  * @returns undefined
  */
 function animatePositionMap(zoom, center, duration, proj) {
-    proj = proj || PROJ_4326;
+    console.log(center, zoom, duration, proj);
+    proj = proj || _map_projection;
     zoom = zoom || ol3view.getZoom();
     duration = duration || 0;
     center = center ? (proj === _map_projection ? center : ol.proj.transform(center, proj, _map_projection)) : ol3view.getCenter();
@@ -83,57 +84,58 @@ function animatePositionMap(zoom, center, duration, proj) {
 
 
 function initOl3(){
-	/*  -------------------- Popup.js -------------------------
-	 * This file contains all the functions related with the Ol3 popup
-	 */
+    /*  -------------------- Popup.js -------------------------
+     * This file contains all the functions related with the Ol3 popup
+     */
 	
     $("#popup-closer").click(function() {
-		$("#popup").hide();
-		$("#popup-closer").blur();
-	});
+	$("#popup").hide();
+	$("#popup-closer").blur();
+    });
 
-	setMouseClickOnMap();
+    setMouseClickOnMap();
 	
-	/**
-	 * Create an ol_popup to anchor the popup to the map.
-	 */
-	ol_popup = new ol.Overlay({
-		element: getElementById('popup'),
-		stopEvent:true//Used to not show the popup again when closing it
-	});
+    /**
+     * Create an ol_popup to anchor the popup to the map.
+     */
+    ol_popup = new ol.Overlay({
+	element: getElementById('popup'),
+	stopEvent:true//Used to not show the popup again when closing it
+    });
+
+    //var bounds = mapConfig.mapBounds;
+    //var extent = mapConfig.restrictedExtent;
+    //var maxRes = mapConfig.maxResolution;
+    //var minRes = mapConfig.minResolution;
 	
+    var strCenter = mapConfig.mapcenter.split(","); console.log(strCenter);
 	
-//	var bounds = mapConfig.mapBounds;
-//	var extent = mapConfig.restrictedExtent;
-//	var maxRes = mapConfig.maxResolution;
-//	var minRes = mapConfig.minResolution;
+    var lat = 0;
+    var lon = 0;
+    if( strCenter[0].split("=")[0].toLowerCase() === "lat"){
+	lat = Number(strCenter[0].split("=")[1]);
+	lon = Number(strCenter[1].split("=")[1]);
+    }else{
+	lat = Number(strCenter[1].split("=")[1]);
+	lon = Number(strCenter[0].split("=")[1]);
+    }
 	
-	var strCenter = mapConfig.mapcenter.split(",");
-	
-	var lat = 0;
-	var lon = 0;
-	if( strCenter[0].split("=")[0].toLowerCase() === "lat"){
-		lat = Number(strCenter[0].split("=")[1]);
-		lon = Number(strCenter[1].split("=")[1]);
-	}else{
-		lat = Number(strCenter[1].split("=")[1]);
-		lon = Number(strCenter[0].split("=")[1]);
-	}
-	
-	var changeProj;//Indicates if we need to change the projections
-	var defCenter= [lon,lat];
-	//var resExtent;
-	if( (_map_bk_layer === "osm") || 
-		(_map_bk_layer.indexOf("bing") !== -1) ||  
-		(_map_bk_layer.indexOf("google") !== -1)){
-		_map_projection = PROJ_3857;
-		changeProj = true;
-	}
+    var changeProj;//Indicates if we need to change the projections
+    var defCenter= [lon,lat];
+    //var resExtent;
+    if( (_map_bk_layer === "osm") || 
+	(_map_bk_layer.indexOf("bing") !== -1) ||  
+	(_map_bk_layer.indexOf("google") !== -1)){
+	_map_projection = PROJ_3857;
+	changeProj = true;
+    }
+        
+    console.log(changeProj, _map_projection);
     resExtent = mapConfig.restrictedExtent.split(",").map(Number);
     if(changeProj){
-		defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
-		resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);//unused var
-	}
+        defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
+	resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);
+    }    console.log(defCenter);
 
     /* importante si se quiere cambiar el tamaño de las imagenes
      * y optimizar el tiempo en las que se cargan dentro del owgis
@@ -145,42 +147,47 @@ function initOl3(){
     });
 
     //This control is used to display Lat and Lon when the user is moving the mouse over the map
-	var mousePositionControl = new ol.control.MousePosition({
-		coordinateFormat: ol.coordinate.createStringXY(4),
-		projection: PROJ_4326,
-		// comment the following two lines to have the mouse position
-		// be placed within the map.
-		className: 'ol-lat-lon',
-		target: getElementById('location'),
-		undefinedHTML: '&nbsp;'
-	});
+    var mousePositionControl = new ol.control.MousePosition({
+                                            coordinateFormat: ol.coordinate.createStringXY(4),
+                                            projection: PROJ_4326,
+                                            // comment the following two lines to have the mouse position
+                                            // be placed within the map.
+                                            className: 'ol-lat-lon',
+                                            target: getElementById('location'),
+                                            undefinedHTML: '&nbsp;'
+                                        });
 	
-	//This is the control for the scale line at the bottom of the map
-	var scaleLineControl = new ol.control.ScaleLine();
-	//var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows <---- Unused
-	//mobil config
-    var loadTilesWhileAnimating = false;
-    var loadTilesWhileInteracting = false;
+    //This is the control for the scale line at the bottom of the map
+    var scaleLineControl = new ol.control.ScaleLine();
+    //var fullScreen = new ol.control.FullScreen();//Causes troubles with the windows <---- Unused
+    
+    //mobile configuration
+    // Improve user experience by loading tiles while animating. Will make
+    // animations stutter on mobile or slow devices.
+    var loadTilesWhileAnimating = true;
+    var loadTilesWhileInteracting = true;
     var nsize = 1;
     if(mobile) {
         mapConfig.zoom = 1;
-        loadTilesWhileAnimating = true;
-        loadTilesWhileInteracting = true;
+        loadTilesWhileAnimating = false;
+        loadTilesWhileInteracting = false;
     }
     ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
-        zoom: mapConfig.zoom,
+                zoom: mapConfig.zoom,
 		maxZoom: mapConfig.zoomLevels,
 		zoom: mapConfig.zoom,
 		zoomFactor: mapConfig.zoomFactor,
 		maxResolution: mapConfig.maxResolution,
-        loadTilesWhileAnimating: loadTilesWhileAnimating,
-        loadTilesWhileInteracting: loadTilesWhileInteracting
-//		extent: resExtent  // Not working
-	});
+                loadTilesWhileAnimating: loadTilesWhileAnimating,
+                loadTilesWhileInteracting: loadTilesWhileInteracting
+                //extent: resExtent  // Not working
+            });
     owgis.ol3.view = ol3view;
- 	map = new ol.Map({
+    
+    //The Map !!!
+    map = new ol.Map({
                 //interactions: ol.interaction.defaults({mouseWheelZoom:false}),
                 /*.extend([
                     new ol.interaction.MouseWheelZoom({
@@ -191,13 +198,11 @@ function initOl3(){
 		controls: ol.control.defaults({rotate: false}).extend([mousePositionControl, scaleLineControl]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
-        renderer: 'canvas', // ['canvas','dom','webgl']
+                renderer: 'canvas', // ['canvas','dom','webgl']
 		logo: false,
 		view: ol3view
-        });
-
-	var numInFlightTiles = 0;
-
+            });
+    var numInFlightTiles = 0;
     map.getLayers().forEach(function (layer) {
         var source = layer.getSource();
         if (source instanceof ol.source.TileImage) {
@@ -206,7 +211,7 @@ function initOl3(){
         }
     });
 
-//////////////////// custom mouse wheel    
+    //////////////////// custom mouse wheel    
      /*
       * Custom listener for mouse wheel
       */
@@ -234,7 +239,7 @@ function initOl3(){
         newResolution = view.getResolutionForZoom(view.getZoom() + delta);
         view.animate({zoom: view.getZoom() + delta, resolution: newResolution, center: view.getCenter(), duration: zoomDuration, easing: ol.easing.linear});
     };
-//////////////////////// end of custom mouse wheel
+    //////////////////////// end of custom mouse wheel
 
     map.on('postrender', function (evt) {
         if (!evt.frameState)
@@ -266,19 +271,21 @@ function initOl3(){
         else
             map.once('change:ready', whenMapIsReady.bind(null, callback));
     }
+    //////////////////////// center and zoom storage
+    console.log("center and zoom storage");
+    owgis.ol3.positionMap();
 
-/////////////////////// custom center, zoom from layer
-     var center = layerDetails.center.split(",");
-     if(center[0] !== "null" && center[1] !== "null") {
+    /////////////////////// custom center, zoom from layer
+    var center = layerDetails.center.split(",");
+    if(center[0] !== "null" && center[1] !== "null") {
         map.once('change:ready', function() {
             center = [parseInt(center[0]), parseInt(center[1])];
             var zoom = 'zoom' in layerDetails ? parseInt(layerDetails.zoom) : mapConfig.zoom;
             animatePositionMap(zoom, center, durationAnimation);
         });
-     }
-/////////////////////// end custom center
-
-/////////////////////// add marker for geolocation
+    }
+    
+    /////////////////////// add marker for geolocation
     owgis.ol3.geolocation.createMarker();
 /////////////////////// end geolocation
 ///////////////////////
@@ -303,17 +310,17 @@ function detectMapLayersStatus(){
 	}
 }
 
-owgis.ol3.positionMap = function(){
-	// --------------- Map visualization and hover texts
-	var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
+owgis.ol3.positionMap = function() {
+    // --------------- Map visualization and hover texts
+    var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
-	if( localStorage.map_center !== undefined){
-		var strCenter = localStorage.map_center.split(",")
-		var lat = Number(strCenter[0]);
-		var lon = Number(strCenter[1]);
-		newCenter = [lat,lon];// Center of the map
-
+    if( localStorage.map_center !== undefined){
+	var strCenter = localStorage.map_center.split(",")
+	var lat = Number(strCenter[0]);
+	var lon = Number(strCenter[1]);
+	newCenter = [lat,lon];// Center of the map
     }
+    console.log(newCenter);
     animatePositionMap(newZoom, newCenter, 1, localStorage.projection);
 }
 
