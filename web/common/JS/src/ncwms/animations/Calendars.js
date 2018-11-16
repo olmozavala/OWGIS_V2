@@ -81,6 +81,15 @@ function updateAnimationRange(){
 
 owgis.ncwms.calendars.updateStartHour = function(){
     updateMainLayerDate();
+    var startDateTxt = owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+    var endDateTxt= owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true);
+    console.log(startDateTxt,endDateTxt,$("#startTimeCalendar")[0].selectedIndex);
+    if(startDateTxt.split("T")[0] == endDateTxt.split("T")[0] ){
+        $('select#endTimeCalendar option').removeAttr('disabled');
+        $('select#endTimeCalendar option:lt('+$("#startTimeCalendar")[0].selectedIndex+')').attr('disabled', 'disabled');
+        $('select#endTimeCalendar option').removeAttr('selected');
+        $('select#endTimeCalendar>option:eq('+$("#startTimeCalendar")[0].selectedIndex+')').attr('selected', true);
+    }
     updateAnimationRange();
 }
 owgis.ncwms.calendars.updateEndHour = function(){
