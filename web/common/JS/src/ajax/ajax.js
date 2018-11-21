@@ -57,11 +57,11 @@ function dispAnimationAjax(startDate, endDate, layerName, req, cal ) {
 	switch (req) {
         case "getAnimTimes":
             url3 += '&startDate=' + startDate;
-            url3 += '&endDate=' + endDate;
+            url3 += '&endDate=' + endDate; console.log(url3);
             asynchronous5.complete = asyncFillAnimationSelect;
             asynchronous5.call(url3);
         case "getTimeSteps":
-            url3 += '&day=' + startDate;
+            url3 += '&day=' + startDate; console.log(url3);
 			switch (cal) {
 				case owgis.constants.startcal:
 					asynchronous5.complete = asyncFillTimeStepsStart;
@@ -229,7 +229,7 @@ function updateKmzLink(responseText) {
  *@param responseText - basically it contains all the date ranges of the calendar
  */
 function asyncFillAnimationSelect(responseText) {
-
+    console.log(responseText);
     var animOpts = jQuery.parseJSON(responseText);
 
     $('#timeSelect').find('option').remove().end();

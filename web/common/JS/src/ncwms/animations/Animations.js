@@ -362,7 +362,7 @@ function obtainSelectedDates(){
             owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
             enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
             var allDates = [];
-            //console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
+            console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
             myList = [];
             if( !mobile ){
                 $('#startTimeCalendar option').each(function() {
@@ -372,9 +372,11 @@ function obtainSelectedDates(){
                 myList = layerDetails.timeSteps;
             }
             while( currDate <= enddate_){
-                if( _.contains(myList,currDate.toISOString().split("T")[1]) ){
+                //if( _.contains(myList,currDate.toISOString().split("T")[1]) ){
                     allDates.push( currDate.toISOString() ); 
-                }
+                //} else if (currDate.toISOString() === enddate_.toISOString()) {
+                    //allDates.push( currDate.toISOString() ); 
+                //}
                 currDate.setHours(currDate.getHours()+1); 
             }
             

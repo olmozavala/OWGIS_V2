@@ -7,9 +7,9 @@
 		<!-- Tais menu that are available to display entries IOA OWGIS-->
 	</Menus>
 
-	<!--BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
-		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
-	</BackgroundLayers-->
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms">
+		<layer name="cen:pyrResult512" /> 
+	</BackgroundLayers>
         
         <!--
 	<BackgroundLayers BBOX="-180,90,-90,180" server="http://ows.terrestris.de/osm/service?">
