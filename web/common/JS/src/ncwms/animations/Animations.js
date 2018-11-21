@@ -529,10 +529,8 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
     }
         
     if(typeof layerDetails.numColorBands != "undefined"){
-        if(layerDetails.numColorBands != 250){
+        if(layerDetails.numColorBands[0] != 250){
             animParams.NUMCOLORBANDS = layerDetails.numColorBands[1];
-        } else {
-            animParams.NUMCOLORBANDS = 250;
         }
     }
 
