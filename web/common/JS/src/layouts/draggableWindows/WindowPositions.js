@@ -67,8 +67,16 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
  */
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     try{
-        if( localStorage ){ //.server_name === window.location.href
+        if( levenshtein(localStorage.server_name, window.location.href) <= 2 ){ //
+            
             console.log('repositioning windows ...');
+            if(typeof localStorage.opt_menu_minimized == "undefined" ||  localStorage.opt_menu_minimized == "false"){ 
+                $('#optionalMenuParent').show("fade");
+            }
+            if(typeof localStorage.main_menu_minimized == "undefined" ||  localStorage.main_menu_minimized == "false"){
+                $('#mainMenuParent').show("fade");
+            }
+    
             localStorage.language = _curr_language;
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
@@ -134,11 +142,16 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             }
             // Finally we test if they fit on the screen
             owgis.layouts.draggable.repositionDraggablesByScreenSize();
-                        
 	}		
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
+        if(typeof localStorage.opt_menu_minimized == "undefined" ){ 
+                $('#optionalMenuParent').show("fade");
+            }
+            if(typeof localStorage.main_menu_minimized == "undefined" ){
+                $('#mainMenuParent').show("fade");
+            }
         owgis.layouts.draggable.repositionDraggablesByScreenSize();
 	//owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
     }
@@ -148,6 +161,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
  *This function moves the draggable windows when the user changes its window size. 
  */
 owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
+    
     moveOneWindowToFitOnScreen("mainMenuParent");
     moveOneWindowToFitOnScreen("optionalMenuParent");
 	
@@ -188,8 +202,9 @@ owgis.layouts.draggable.init = function(){
  *@param disapearId - id of window to minimize or disapear. 
  */
 owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
-    $(eval(disapearId)).toggle("drop",{direction:"down"});
-    $(eval(appearId)).toggle("drop",{direction:"down"});
+    //$(eval(disapearId)).toggle("drop",{direction:"down"});
+    $(eval(disapearId)).hide();
+    $(eval(appearId)).show("drop",{direction:"down"});
 	
     //Check if they fit on the screen
     //(after 1 second) to be sure it is visible

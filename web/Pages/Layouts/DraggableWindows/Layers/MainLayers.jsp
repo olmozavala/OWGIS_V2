@@ -7,7 +7,7 @@
 	uri="/WEB-INF/TLD/htmlStaticFunctions.tld"%>
 
 <!-- These are the dropdowns for the base layer-->
-<div class="transDraggableWindow toolTip  container-fluid" id="mainMenuParent" 
+<div class="transDraggableWindow toolTip  container-fluid menuHidden" id="mainMenuParent" 
 	 title="<fmt:message key='help.tooltip.mainlayers' />">
 	 <div class="row ">
 		<div  class="col-xs-9 text-center invShadow title"> 
