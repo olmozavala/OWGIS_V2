@@ -24,11 +24,11 @@
                     server="http://10.2.233.169:8080/ncWMS2/wms" -->
                    
 		<layer Menu="Dom1,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)" numColorBands="48"
-                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="transparent" aboveMaxColor="transparent"
+                    name="adcir_pom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="extend" aboveMaxColor="extend"
                 />
                      
 		<layer Menu="Dom2,ele" EN="Water surface elevation above geoid (m)" ES="Elevación de la superficie del mar (m)"  numColorBands="48"
-                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="transparent" aboveMaxColor="transparent"
+                    style="default-scalar" name="adcir_gom/zeta" ncWMStwo="true" palette="adcircv2" mincolor="-5" maxcolor="5" belowMinColor="extend" aboveMaxColor="extend"
 		/>                              
                 
 	</MainLayers>
