@@ -81,4 +81,10 @@ selects the zaxis value*/
 /* line 33, ../scss/Elevation.scss */
 #elevationText {
   padding: 3px 10px;
+  box-shadow: none;
+}
+
+#elevationParent{
+    background-color: #555;
+    background-image: none;
 }

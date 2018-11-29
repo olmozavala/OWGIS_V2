@@ -175,7 +175,7 @@ public class OpenLayersManager {
                 "\t if(mobile){owgis.mobile.closePanels();\n" +
 				"\t\t owgis.interf.loadingatmap(true);}\n" +
                 "\t var coordinate = evt.coordinate;\n" +
-                "\t var newCoordinate =  ol.proj.transform(coordinate, _map_projection, 'EPSG:4326');\n" +
+                "\t var newCoordinate =  ol.proj.transform(coordinate, _map_projection, PROJ_4326);\n" +
                 "\t var currBBOX =  ol3view.calculateExtent(map.getSize());\n"+
 				"\t $('#popup').hide();\n" +
                 "\t currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'\n" +
@@ -355,13 +355,16 @@ public class OpenLayersManager {
 	 * Creates an WMS layer
 	 * @param currentConf String Is the current configuration of OpenLayers
 	 * @param actualLayer int Is the number of the current layer
+         * @param actLay Layer Is the first background layer set in the xml file
 	 */
-	private String addWMS(String currentConf, int actualLayer){
+	private String addWMS(String currentConf, int actualLayer, Layer actLay){
+                
 		currentConf += "\tlayer"+actualLayer+" =  new ol.layer.Tile({\n "+
                 "\t\tsource: new ol.source.TileWMS({\n"+
-                "\t\t\turl: 'http://ncwms.coaps.fsu.edu/geoserver/wms',\n"+
+                "\t\t\turl: '"+actLay.getServer()+"',\n"+
                 "\t\t\tcrossOrigin: null,\n"+
-                "\t\t\tparams: {LAYERS: 'comm:pyrResult512', STYLES: '', SRS: _map_projection} \n"+
+//                "\t\t\ttileGrid: tileGrid,\n"+
+                "\t\t\tparams: {LAYERS: '"+actLay.getName()+"', STYLES: '', SRS: _map_projection} \n"+
                 "\t\t})"+
                 "\t});";
 		currentConf += "\tmap.addLayer(layer" + actualLayer + ");\n";
@@ -423,7 +426,7 @@ public class OpenLayersManager {
         String layerGoogle = "\tlayer"+actualLayer+" = new ol.layer.Tile({\n "+
 				" \t\t source: new ol.source.TileImage({\n";
                 if(kind.equals("earth")) {
-                    layerGoogle += " \t\t\t url: 'http://khm{0-3}.googleapis.com/kh?v=742&hl=pl&&x={x}&y={y}&z={z}',\n";
+                    layerGoogle += " \t\t\t url: 'http://mt1.google.com/vt/lyrs=s&hl=pl&&x={x}&y={y}&z={z}',\n";
                 } else {
                     layerGoogle += " \t\t\t url: 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}',\n";
                 }
@@ -466,14 +469,8 @@ public class OpenLayersManager {
 		
 		switch (backgroundLayer){
 			case "wms":
-				//for (int i = 0; i < layersManager.getBackgroundLayers().size(); i++) {
-					//actualLayer = layersManager.getBackgroundLayers().get(i);
-					//if (actualLayer.getName() != null) {
-						//layersScript += layerHelper(actualLayer, layerCount, true);
-						//layerCount++;
-					//}//If layer not null
-				//}
-                layersScript += addWMS(layersScript, layerCount);
+                                actualLayer = layersManager.getBackgroundLayers().get(0);
+                                layersScript += addWMS(layersScript, layerCount, actualLayer);
 				layerCount++;
 				break;
 			case "osm": //Add OpenStreetMap as the background layer

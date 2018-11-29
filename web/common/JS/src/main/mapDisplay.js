@@ -165,16 +165,14 @@ function initMenus() {
 	
     owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
     updateMenusDisplayVisibility("default");
-	if(mobile === false){
-		owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
-	}
-	else{
-		owgis.ol3.positionMap();
-		//if user changes the window size
-		//window.addEventListener('orientationchange', doOnOrientationChange);
-		resizeMobilePanels();
-	}
-	
+	if(mobile == false){
+            owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+	}else{
+            owgis.ol3.positionMap();
+            //if user changes the window size
+            //window.addEventListener('orientationchange', doOnOrientationChange);
+            resizeMobilePanels();
+	}	
 	
 	//This is the resize function
 	$(window).resize(function() {
@@ -192,6 +190,7 @@ function initMenus() {
 		}
 		if(mobile){
 			// In this case we are increasing the size of the window and go to desktop mode
+                        console.log('mobile');
 			if(windowWidth >= _mobileScreenThreshold){
 				getElementById("mobile").value = false;
 				submitForm();
@@ -295,13 +294,16 @@ function updateTitle(dateText, elevText) {
  * 
  */
 function MapViewersubmitForm() {
+    if(localStorage.language !== _curr_language){
+        $("#_locale").val(localStorage.language);
+    }else if(_curr_language == localStorage.language){
+        $("#_locale").val(_curr_language);
+    }
     if (map !== null) {
-    	if(!mobile){
-            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
-    	}
-    	else{ 
-    	    localStorage.zoom = ol3view.getResolution();// Zoom of map
-    	    localStorage.map_center =  ol3view.getCenter();// Center of the map
+        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+    	if(!mobile){ 
+    	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
+            localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.language = _curr_language;
             localStorage.map_palette = mappalette;
             var radioButtons = $('input[name^="elev_select"]:checked');

@@ -85,25 +85,29 @@ owgis.backlayers.change = function(){
  * This function create a background layers menu
  */
 owgis.backlayers.buildselection = function buildDropDownBackLayers(){
-	//Obtains the available backgroundlayers
-	var backLayers = mapConfig.availableBackgroundLayers.split(";");
+    //Obtains the available backgroundlayers
+    var backLayers = mapConfig.availableBackgroundLayers.split(";");
     var backLayerNames = mapConfig.availableBackgroundNames.split(";");
-	var sel = $("#backLayersDropDown");
+    var sel = $("#backLayersDropDown");
+    
     if(!sel || !sel[0]) {
-       return;//
+       return;
     }
     //Iterates ver all the available backgroundlayers
-	for(var i = 0; i < backLayers.length; i++){
-		//Creates a new option
+    for(var i = 0; i < backLayers.length; i++){
+	//Creates a new option
         var str = _map_bk_layer === backLayers[i] ? "selected" : "";
         var op = $("<option value=\""+backLayers[i]+"\" "+str+">"+backLayerNames[i]+"</option>");
         sel[0].options.add(op[0]);
-	}
+    }
+    
     sel[0].addEventListener("change", function() {
         owgis.backlayers.change(this.options[this.selectedIndex].value);
     });
+    
     var span = sel.parent().find("span");
     if(span[0]) {
         span.text(sel[0].options[sel[0].selectedIndex].text);
     }
+    
 }

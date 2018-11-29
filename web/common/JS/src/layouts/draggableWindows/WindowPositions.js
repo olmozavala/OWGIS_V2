@@ -65,11 +65,11 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 /** Places the draggable windows to where the user last placed them. Also controls if they where
  * visible or minimized. 
  */
-owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
-{
+owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     try{
-        if( localStorage.server_name === window.location.href){
+        if( levenshtein(localStorage.server_name, window.location.href) <= 2 ){ //
             console.log('repositioning windows ...');
+            localStorage.language = _curr_language;
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
 
@@ -139,7 +139,8 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
-	owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+        owgis.layouts.draggable.repositionDraggablesByScreenSize();
+	//owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
     }
 }
 
@@ -147,9 +148,8 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function()
  *This function moves the draggable windows when the user changes its window size. 
  */
 owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
-	
-	moveOneWindowToFitOnScreen("mainMenuParent");
-	moveOneWindowToFitOnScreen("optionalMenuParent");
+    moveOneWindowToFitOnScreen("mainMenuParent");
+    moveOneWindowToFitOnScreen("optionalMenuParent");
 	
     if (cqlFilter) {
         moveOneWindowToFitOnScreen("ocqlFilterInputTextParent");
@@ -170,16 +170,16 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
  * @returns {undefined}
  */
 owgis.layouts.draggable.init = function(){
-	
     //Only make windows draggable for 'topMenu' design
     if ( mobile === false) {
-		$(".draggableWindow").each( function(index) {
+        $(".draggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-		$(".transDraggableWindow").each( function(index) {
+        });
+        
+        $(".transDraggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-		})
-	}
+	});
+    }
 }
 
 /**
@@ -201,7 +201,7 @@ owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
  * @param {string} windowElement Name of the container of the window to save position
  */
 function saveIndividualWindowPosition(localStorageVariable, windowElement){
-    if( $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
+    if( typeof $(windowElement).css("display") !== "undefined" && $(windowElement).css("display") !== "none"){//Just update the  position if the window is visible
         localStorage[localStorageVariable]= $(windowElement).position().left + "," + $(windowElement).position().top;
     }
 }
@@ -242,8 +242,7 @@ function repositionWindow(localStorageVariable, localStorage_minimized, windowTo
  *This function moves one window when the browswer is reseized
  *@param id - id of draggable window.
  */
-function moveOneWindowToFitOnScreen(id)
-{
+function moveOneWindowToFitOnScreen(id){
     var poundId = "#" + id;
 	
     //We only check the 'div' if it is visible

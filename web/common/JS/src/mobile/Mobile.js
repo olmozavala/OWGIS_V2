@@ -50,7 +50,7 @@ owgis.mobile.closeDrawer = function closeDrawer(){
 }
 
 owgis.mobile.initMobile = function initMobile(){
-	
+	localStorage.language = _curr_language;
 	$('html, body').css({
 	    'height': '100%'
 	});

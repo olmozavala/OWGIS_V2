@@ -11,12 +11,12 @@
 		<!-- Tais menu that are available to display entries IOA OWGIS-->
 	</Menus>
 
-	<!--BackgroundLayers BBOX="-180,90,-90,180" server="http://ncwms.coaps.fsu.edu/geoserver/wms">
-		<layer name="comm:pyrResult512" featureInfo="comm:gebco"/> 
-	</BackgroundLayers-->
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms">
+		<layer name="cen:pyrResult512" /> 
+	</BackgroundLayers>
         
 	<!-- WWIII -->
-	<MainLayers BBOX="-180,90,-90,180" format="image/gif" ncWMStwo="true"
+	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" ncWMStwo="true"
                     server="http://132.248.8.238:8080/ncWMS_2015/wms" >
         
         <!--MainLayers BBOX="-180,90,-90,180" format="image/gif" ncWMStwo="true"
@@ -24,30 +24,30 @@
                    
 		<layer Menu="Pom,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
                      name="wwiii_pom/hs" style="default-scalar" palette="alturamx" mincolor="0" maxcolor="12"
-                     defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/U:wwiii_pom/V" aboveMaxColor="transparent" belowMinColor="transparent"
+                     defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/U:wwiii_pom/V" aboveMaxColor="extend" belowMinColor="extend"
                 />                    
                 
 		<layer Menu="Pom,Periodo" EN="Period" ES="Periodo" 
 			style="default-scalar" palette="periodo" name="wwiii_pom/t01" mincolor="1" maxcolor="22"
-                        defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/U:wwiii_pom/V" aboveMaxColor="transparent" belowMinColor="transparent"
+                        defParticleSpeed="0.03" overlaystreamlines="wwiii_pom/U:wwiii_pom/V" aboveMaxColor="extend" belowMinColor="extend"
                 />
                    
 		<layer Menu="Gom,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
-                    style="default-scalar" palette="alturamx" name="wwiii_gom/hs" mincolor="0" maxcolor="12" aboveMaxColor="transparent" belowMinColor="transparent"
+                    style="default-scalar" palette="alturamx" name="wwiii_gom/hs" mincolor="0" maxcolor="12" aboveMaxColor="extend" belowMinColor="extend"
                     defParticleSpeed="0.03" overlaystreamlines="wwiii_gom/U:wwiii_gom/V"
                 />                        
                 
 		<layer Menu="Gom,Periodo" EN="Period" ES="Periodo" 
-			style="default-scalar" palette="periodogo" name="wwiii_gom/t01" mincolor="0" maxcolor="13" aboveMaxColor="transparent" belowMinColor="transparent"
+			style="default-scalar" palette="periodogo" name="wwiii_gom/t01" mincolor="0" maxcolor="13" aboveMaxColor="extend" belowMinColor="extend"
                         defParticleSpeed="0.03" overlaystreamlines="wwiii_gom/U:wwiii_gom/V"
                 />
                    
 		<layer Menu="Wo,Altura" EN="Significant wave height (m)" ES="Altura significante de oleaje (m)" 
-                    style="default-scalar" palette="oleaje" name="wwiii_wo/hs" mincolor="0" maxcolor="16" aboveMaxColor="transparent" belowMinColor="transparent"
+                    style="default-scalar" palette="oleaje" name="wwiii_wo/hs" mincolor="0" maxcolor="16" aboveMaxColor="extend" belowMinColor="extend"
                     defParticleSpeed="0.01" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
                 />                          
                 
-		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" mincolor="1" maxcolor="22" aboveMaxColor="transparent" belowMinColor="transparent"
+		<layer Menu="Wo,Periodo" EN="Period" ES="Periodo" mincolor="1" maxcolor="22" aboveMaxColor="extend" belowMinColor="extend"
 			style="default-scalar" palette="periodo" name="wwiii_wo/t01"
                         defParticleSpeed="0.01" overlaystreamlines="wwiii_wo/U:wwiii_wo/V"
                 />
