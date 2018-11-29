@@ -35,7 +35,7 @@
 		<layer Menu="Viento,PromHM,M01" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_enero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_enero/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_enero/U10:atlas_horarios_mes_enero/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                 />
@@ -93,7 +93,7 @@
 		<layer Menu="Viento,PromHM,M02" 
 			   EN=" Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_febrero/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_febrero/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_febrero/U10:atlas_horarios_mes_febrero/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                 />
@@ -149,7 +149,7 @@
 		<layer Menu="Viento,PromHM,M03" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_marzo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_marzo/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_marzo/U10:atlas_horarios_mes_marzo/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                 />
@@ -207,7 +207,7 @@
 		<layer Menu="Viento,PromHM,M04" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_abril/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_abril/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_abril/U10:atlas_horarios_mes_abril/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                 /> 
@@ -265,7 +265,7 @@
 		<layer Menu="Viento,PromHM,M05" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_mayo/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_mayo/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_mayo/U10:atlas_horarios_mes_mayo/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                 />
@@ -327,7 +327,7 @@
 		<layer Menu="Viento,PromHM,M06" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_junio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_junio/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_junio/U10:atlas_horarios_mes_junio/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                             
@@ -393,7 +393,7 @@
 		<layer Menu="Viento,PromHM,M07" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_julio/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_julio/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_julio/U10:atlas_horarios_mes_julio/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="hourxmonth"
                             
@@ -459,7 +459,7 @@
 		<layer Menu="Viento,PromHM,M08" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_agosto/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_agosto/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_agosto/U10:atlas_horarios_mes_agosto/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                             subtitleText="hourxmonth"
                             
@@ -525,7 +525,7 @@
 		<layer Menu="Viento,PromHM,M09" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_septiembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_septiembre/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_septiembre/U10:atlas_horarios_mes_septiembre/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                             subtitleText="hourxmonth"
                             
@@ -591,7 +591,7 @@
 		<layer Menu="Viento,PromHM,M10" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_octubre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_octubre/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_octubre/U10:atlas_horarios_mes_octubre/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                             subtitleText="hourxmonth"
                             
@@ -657,7 +657,7 @@
 		<layer Menu="Viento,PromHM,M11" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_noviembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_noviembre/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_noviembre/U10:atlas_horarios_mes_noviembre/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                             subtitleText="hourxmonth"
                 />
@@ -721,7 +721,7 @@
 		<layer Menu="Viento,PromHM,M12" 
 			   EN="Hourly Wind Climatology by Month" ES="Climatología horaria por mes de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_horarios_mes_diciembre/U10:V10-mag"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.09"
+			   name="atlas_horarios_mes_diciembre/MAGNITUD_VIENTO"  overlaystreamlines="atlas_horarios_mes_diciembre/U10:atlas_horarios_mes_diciembre/V10" defParticleSpeed="0.09"
                            belowMinColor="extend" aboveMaxColor="extend" 
                             subtitleText="hourxmonth"
                             

@@ -129,7 +129,7 @@
 		<layer Menu="Viento,PromD" 
 			   EN="Daily Wind Climatology" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_diario/U10:V10-mag"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.1"
+			   name="atlas_diario/MAGNITUD_VIENTO"  overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.1"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="daily"
                 />
@@ -187,7 +187,7 @@
 		<layer Menu="Viento,PromM" 
 			   EN="Monthly Wind Climatology" ES="Climatología Mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
-			   name="atlas_mensuales/U10:V10-mag"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.1"
+			   name="atlas_mensuales/MAGNITUD_VIENTO"  overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.1"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="monthly"
                 />
