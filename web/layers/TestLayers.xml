@@ -40,7 +40,7 @@
 		<layer Menu="vector,veccqltest" name="demo:world_cities" 
 			   EN="Demo CQL filtering. Estimated population in 2010 more 2 million" 
 			   ES="Ejemplo de filtrado con CQL. Grandes ciudades con mas de 2 millones de personas en 2010"
-			   HI_IN="CQL फ़िल्टरिंग का प्रदर्शन. अनुमानित जनसंख्या वर्ष २०१०  में २०  लाख से अधिक"
+			   HI_IN="CQL फ़िल्टरिंग का प्रदर्शन. अनुमानित जनसंख्या वर्ष २०१०  में २०  लाख से अधिक" zoom="1" center="-100,22"
 			   CQL="MAX_POP10 > 2000000" />
 	</MainLayers>
 
