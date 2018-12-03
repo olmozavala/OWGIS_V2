@@ -122,6 +122,16 @@ function initOl3(){
 	
     var changeProj;//Indicates if we need to change the projections
     var defCenter= [lon,lat];
+    
+    var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels ? localStorage.zoom : mapConfig.zoom;// Zoom of map
+        
+    if( localStorage.map_center !== undefined){
+	strCenter = localStorage.map_center.split(",")
+	var lat = Number(strCenter[0]);
+	var lon = Number(strCenter[1]);
+	defCenter = [lat,lon];// Center of the map
+        mapConfig.zoom = newZoom;
+    }
     //var resExtent;
     if( (_map_bk_layer === "osm") || 
 	(_map_bk_layer.indexOf("bing") !== -1) ||  
@@ -273,7 +283,7 @@ function initOl3(){
     }
     //////////////////////// center and zoom storage
     console.log("center and zoom storage");
-    owgis.ol3.positionMap();
+    //owgis.ol3.positionMap();
 
     /////////////////////// custom center, zoom from layer
     var center = layerDetails.center.split(",");
