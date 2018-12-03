@@ -80,9 +80,8 @@ function owgisMain(){
         clearInterval(intervalOL3);
         initOl3();
         addLayers();
-        //owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
-        owgis.layers.initMainLayer(eval('layer1'));
-        owgis.ol3.positionMap();        
+        owgis.layers.initMainLayer(eval('layer'+_id_first_main_layer));
+        //owgis.ol3.positionMap();        
 		//If cesium is enabled check to redraw the streamlines
 		if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
 			if(_mainlayer_streamlines){
@@ -168,7 +167,7 @@ function initMenus() {
 	if(mobile == false){
             owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
 	}else{
-            owgis.ol3.positionMap();
+            //owgis.ol3.positionMap();
             //if user changes the window size
             //window.addEventListener('orientationchange', doOnOrientationChange);
             resizeMobilePanels();
