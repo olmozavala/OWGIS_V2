@@ -127,7 +127,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             }
 
             //Updates the position of the map as it was previously set
-            owgis.ol3.positionMap();
+            //owgis.ol3.positionMap();
 			
             if( localStorage.disable_hover === "true"){
 		//Disables the text hovers 
