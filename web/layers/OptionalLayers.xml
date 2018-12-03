@@ -1,12 +1,70 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-	<!-- Optional layers -->
-	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
-					server="http://132.248.8.238:8080/geoserver/wms"
-					vectorLayer="true"> 
-		<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
-		<layer Menu="lev1,states" name="demo:us_states" featureInfo="demo:world_countries" EN="US States" ES="Estados US"/>
-		<layer Menu="count" name="demo:world_countries" EN="Countries" ES="Paises" zoom="1" center="-100,22"/>
-		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises"/>
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="hycom" EN="HYCOM" ES="HYCOM"/>
+		<Menu ID="gfs" EN="GFS" ES="GFS"/>
+		<Menu ID="countries"  EN="Countries" ES="Paises" />
+		<Menu ID="abvgrnd"  EN="Above Ground" ES="Sobre Tierra" />
+		<Menu ID="grnd"  EN="Ground" ES="En Tierra" />
+		<Menu ID="geo"  EN="Geo Potential H." ES="Altura Geopot." />
+		<Menu ID="cur"  EN="Currents" ES="Corrientes" />
+		<Menu ID="cld"  EN="Cloud" ES="Nubes" />
+		<Menu ID="ccov"  EN="Cloud Cover" ES="Covertura Nubes" />
+		<Menu ID="conv"  EN="Potential Energy" ES="Energia Potencial" />
+		<Menu ID="hum"  EN="Humidity" ES="Humedad" />
+		<Menu ID="isobar"  EN="Isobaric" ES="Isobarica" />
+		<Menu ID="msl"  EN="MSL" ES="MSL" />
+		<Menu ID="ozone"  EN="Total Ozone" ES="Ozono Total" />
+		<Menu ID="prec"  EN="Prec. Water" ES="Agua Prec" />
+		<Menu ID="pres"  EN="Pressure" ES="Presion" />
+		<Menu ID="plan"  EN="Planetary Height" ES="Altura Planetaria" />
+		<Menu ID="surf"  EN="At Surface" ES="En Superficie" />
+		<Menu ID="suri"  EN="Surface lifted idx." ES="Indice superficial" />
+		<Menu ID="sun"  EN="Sunshine time" ES="Duracion sol" />
+		<Menu ID="sal"  EN="Salinity" ES="Salinidad" />
+		<Menu ID="ssh"  EN="Elevation" ES="Altura" />
+		<Menu ID="tic"  EN="Ice Cover" ES="Hielo" />
+		<Menu ID="twom"  EN="Two Meters" ES="A 2 metros" />
+		<Menu ID="ts"  EN="Temperature" ES="Temperatura" />
+		<Menu ID="wind"  EN="Wind" ES="Viento" />
+		<Menu ID="vor"  EN="Vorticity" ES="Vorticidad" />
+		<!-- Tais menu that are available to display entries IOA OWGIS-->
+		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
+		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
+		<Menu ID="paises" EN="Countries" ES="Países" />
+        </Menus>        
+        <!-- Optional layers -->
+    <OptionalLayers BBOX="-120,15,-80,32" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms" vectorLayer="true"> 
+
+                <layer Menu="paises" name="cen:paises" EN="Countries" ES="Paises" tiled="true" selected="true" />
+		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="true" selected="true" />
+		<layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="true" selected="true" />
+		
 	</OptionalLayers>
 
+	<!-- This are the menus that are available to display entries -->
+	<!--
+	<BackgroundLayers server="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv"
+				BBOX="-180,90,-90,180" > 
+			<layer name="GEBCO_LATEST" featureInfo="none"/> 
+	</BackgroundLayers>
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:ne" featureInfo="none" /> 
+	</BackgroundLayers>
+	<BackgroundLayers server="http://demo.opengeo.org/geoserver/wms"
+				BBOX="-180,90,-90,180" > 
+			<layer name="ne:NE1_HR_LC_SR_W_DR" featureInfo="none" /> 
+	</BackgroundLayers>
+    --> 
+	<BackgroundLayers BBOX="-180,-90,180,90" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms">
+		<layer name="cen:pyrResult512" /> 
+	</BackgroundLayers>
+
+	<!-- Optional layers -->
+	<!--OptionalLayers BBOX="-180,-90,180,90"
+					server="http://132.248.8.238:8080/geoserver/wms"
+					vectorLayer="true"> 
+		<layer Menu="countries" name="demo:world_countries" EN="Countries" ES="Paises" selected="true"/>
+	</OptionalLayers-->
 </MenuConf>
