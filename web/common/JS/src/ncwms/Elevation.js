@@ -349,10 +349,8 @@ function getZaxisText(){
     else if( (units === 'm') || (units === 'meter'))
     {
         if(layerDetails.zaxis.positive){
-            console.log('altura');
             return heightText;            
         }else{
-            console.log('profundidad');
             return depthText;             
         }
     }
@@ -360,10 +358,8 @@ function getZaxisText(){
             return presText;
         } else if( (units === 'm') || (units === 'meter') || (units === 'km') || (units === 'ft') || (units === 'mi') ) {
             if(layerDetails.zaxis.positive){
-                console.log('altura');
                 return heightText;                 
             }else{
-                console.log('profundidad');
                 return depthText;                 
             } 
         } else {
