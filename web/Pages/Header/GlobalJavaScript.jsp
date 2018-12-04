@@ -49,6 +49,7 @@
 	//Possible text for zaxis
 	var depthText = "<fmt:message key='ncwms.depth' />";
 	var presText = "<fmt:message key='ncwms.pres' />";
+        var heightText = "<fmt:message key='ncwms.height' />";
 	var hideCal = "<fmt:message key='ncwms.cal.hide'/>";
 	var showCal = "<fmt:message key='ncwms.cal.show'/>";
 	var unselectTransect = "<fmt:message key='ncwms.transect.hide'/>";

@@ -348,12 +348,24 @@ function getZaxisText(){
     }
     else if( (units === 'm') || (units === 'meter'))
     {
-		return  depthText; 
+        if(layerDetails.zaxis.positive){
+            console.log('altura');
+            return heightText;            
+        }else{
+            console.log('profundidad');
+            return depthText;             
+        }
     }
     else if(units === 'pa' || units === "pressure" || units === "bar" || units === "at" || units === "atm" || units === "torr" ) {
             return presText;
         } else if( (units === 'm') || (units === 'meter') || (units === 'km') || (units === 'ft') || (units === 'mi') ) {
-            return  depthText; 
+            if(layerDetails.zaxis.positive){
+                console.log('altura');
+                return heightText;                 
+            }else{
+                console.log('profundidad');
+                return depthText;                 
+            } 
         } else {
             return  depthText+" / "+presText; 
         }
