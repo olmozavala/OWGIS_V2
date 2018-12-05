@@ -43,6 +43,23 @@ var c_y = -0.75;// Used to increase the longitude angle
 var c_scene;
 var c_handler;
 var _cesi = null;
+var temp_resolution;
+
+// --------- var updateData -----------------------
+var computedFileSize;
+var totalRequests;
+var loadedRequests;
+var uData;
+var vData;
+var compositeLayers;
+var tempULayer;
+var tempVLayer;
+var uidx;
+var vidx;
+var gridInfo;
+var temp;
+var grid;
+
 
 window['owgis.ncwms.currents.setColor'] = owgis.ncwms.currents.setColor;
 owgis.ncwms.currents.setColor= function setColor(color){
@@ -235,7 +252,7 @@ function initstreamlineLayerCesium(){
     }
 
     c_scene = _cesium.getCesiumScene();
-    c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);
+    c_handler = new Cesium.ScreenSpaceEventHandler(c_scene.canvas);    
 
     owgis.ncwms.currents.cleanAnimationCurrentsAll();
     updateCurrentsCesium();
@@ -355,7 +372,7 @@ function initstreamlineLayer(){
     }
 	
     //This is the source of the new map layer
-    var animSource= new ol.source.ImageCanvas({
+    var animSource= new ol.source.ImageCanvas({        
         canvasFunction: canvasAnimationCurrents,
         projection: _map_projection
     });
@@ -383,26 +400,37 @@ function initstreamlineLayer(){
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
     //console.log("Update currents view and data");
     canvas = document.getElementById("currentsCanvas");
+    
     ctx = canvas.getContext('2d');
     var canvasWidth = size[0];
-    var canvasHeight = size[1];
+    var canvasHeight = size[1];    
 	
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     currentExtent = extent;
-    if(!isRunningUnderMainAnimation){
-		if(updateURL()){
+
+    if(isFirstTime){
+        if(updateURL()){            
+            isFirstTime = false;
+            temp_resolution = resolution;
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
         }
     }else{
-        if(isFirstTime){
+        if(!isRunningUnderMainAnimation){
             if(updateURL()){
-                owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
-                updateData();			
-            }
-            isFirstTime = false;
+                if(temp_resolution != resolution){
+                    temp_resolution = resolution;
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                    
+                    tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
+                    tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                }else{
+                    temp_resolution = resolution;
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                      
+                }                			
+            }            
         }
     }
     return canvas;
@@ -431,15 +459,15 @@ function abortPrevious(){
 function updateData(){
     // Clears previous animations
     owgis.ncwms.currents.cleanAnimationCurrentsAll();
-    var computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
-    var totalRequests = times.length;	
-    var loadedRequests = 0;
+    computedFileSize = estimatedFileSize*( ($(window).width()*$(window).height() ))/(800*800);
+    totalRequests = times.length;	
+    loadedRequests = 0;
 	
     //Reads the data
     owgis.interf.loadingatmap(true,0,"Currents");
     totalFiles = times.length;
-    var uData = new Array();
-    var vData = new Array();
+    uData = new Array();
+    vData = new Array();
 	
     abortPrevious();//Abort any previous premises we have
     layerTemplate.attributes.srs = _map_projection;
@@ -450,16 +478,16 @@ function updateData(){
         _.each(times, function(time, idx){
             layerTemplate.set("time",time);
             //We obtain the request URLs for each vector field U and V
-            var compositeLayers = layerTemplate.get("layers");
-            var tempULayer = layerTemplate.clone();
-            var tempVLayer = layerTemplate.clone();
+            compositeLayers = layerTemplate.get("layers");            
+            tempULayer = layerTemplate.clone();
+            tempVLayer = layerTemplate.clone();            
             tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
             tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
             //Our premises are going to be 
             // (idx-1)*2 + 0 for u         and
             // (idx-1)*2 + 1 for v
-            var uidx = idx*2 + 0;
-            var vidx = idx*2 + 1;
+            uidx = idx*2 + 0;
+            vidx = idx*2 + 1;
             readDataPremises[uidx] = d3.json( tempULayer.getURL(), 
                 function(error, file){
                     if(error){
@@ -469,7 +497,7 @@ function updateData(){
 			// the problem is that updateParticles gets called more than one time
 			// for each animation.
 			uData[idx] = new Array();//Clear the array for this specific location
-			var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
+			gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
 			uData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
                         //We only initialize the loop and the headers for the first request
 			if(loadedRequests === 0){
@@ -477,7 +505,7 @@ function updateData(){
 			}
 			if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
                             if( uData[idx].length > 0 && vData[idx].length){
-				var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+				grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
 				owgis.ncwms.currents.particles.setGrid(grid,idx);
                             }
 			}
@@ -500,15 +528,15 @@ function updateData(){
 			// for each animation.
 			vData[idx] = new Array();
 			//We set the gridInfo only for the first time frame 
-			var gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempVLayer);
+			gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempVLayer);
                         vData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
-                        //We only initialize the loop and the headers for the first request
+                        //We only initialize the loop and the headers for the first request                        
 			if(loadedRequests === 0){
                             owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
 			}
                         if( !_.isUndefined(uData[idx]) && !_.isUndefined(vData[idx])){
                             if( uData[idx].length > 0 && vData[idx].length){
-                                var grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
+                                grid = owgis.ncwms.ncwmstwo.buildGrid(gridInfo,uData[idx],vData[idx]);
                                 owgis.ncwms.currents.particles.setGrid(grid,idx);
                             }
                         }
@@ -532,12 +560,12 @@ function updateData(){
                     console.log("Not possible to read JSON data: "+error.statusText);
                 }else{
                     //console.log("-----------------aqui-----------");
-                    var uData = file[0].data;
-                    var vData = file[1].data;
+                    uData = file[0].data;
+                    vData = file[1].data;
                     //We set the gridInfo only for the first time frame 
-                    var gridInfo = file[0].header;
+                    gridInfo = file[0].header;
                     //TODO I don't know why latitude ranges come flipped
-                    var temp = gridInfo.la1;
+                    temp = gridInfo.la1;
                     gridInfo.la1 = gridInfo.la2;
                     gridInfo.la2 = temp;
                     //We only initialize the loop and the headers for the first request
@@ -546,7 +574,7 @@ function updateData(){
                         startAnimationLoopCurrents();
                     }
                     // We read the data and create the grid
-                    var grid = new Array();
+                    grid = new Array();
                     for (j = 0, p = 0; j < gridInfo.ny; j++) {
                         var row = [];
                         for (i = 0; i < gridInfo.nx; i++, p++) {
@@ -580,7 +608,7 @@ function updateData(){
  * @returns {undefined}
  */
 function updateURL(){
-    var origBBOX = layerTemplate.get("origbbox");
+    var origBBOX = layerTemplate.get("origbbox");    
     if( (currentExtent[0] > origBBOX[2]) ||
 	(currentExtent[2] < origBBOX[0]) ||
 	(currentExtent[1] > origBBOX[3]) ||
@@ -593,10 +621,11 @@ function updateURL(){
         var limLatMin = Math.max(currentExtent[1], origBBOX[1]);
         var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
         var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
-        var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        //var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        var newbbox = [-720, -90, 720, 90];
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
-        layerTemplate.set("bbox",newbbox.toString());	
+        layerTemplate.set("bbox",newbbox.toString());	        
         // Updating current zaxis
         if( !_.isEmpty(layerDetails.zaxis)){
             var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
