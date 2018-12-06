@@ -17,7 +17,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -25,7 +25,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -33,7 +33,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -41,7 +41,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
 
@@ -49,7 +49,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -57,7 +57,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -65,7 +65,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -73,7 +73,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -81,7 +81,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -89,7 +89,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -97,7 +97,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -105,7 +105,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p1_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -114,7 +114,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -122,7 +122,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -130,7 +130,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -138,7 +138,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -146,7 +146,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -154,7 +154,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -162,7 +162,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -170,7 +170,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -178,7 +178,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -186,7 +186,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -194,7 +194,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -202,7 +202,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p2_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
                         
@@ -211,7 +211,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -219,7 +219,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -227,7 +227,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -235,7 +235,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -243,7 +243,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -251,7 +251,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -259,7 +259,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -267,7 +267,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -275,7 +275,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -283,7 +283,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -291,7 +291,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -299,7 +299,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p3_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -308,7 +308,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -316,7 +316,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -324,7 +324,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -332,7 +332,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -340,7 +340,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -348,7 +348,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -356,7 +356,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -364,7 +364,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -372,7 +372,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -380,7 +380,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -388,7 +388,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -396,7 +396,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p4_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -405,7 +405,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -413,7 +413,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -421,7 +421,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -429,7 +429,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -437,7 +437,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -445,7 +445,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -453,7 +453,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -461,7 +461,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -469,7 +469,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -477,7 +477,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -485,7 +485,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -493,7 +493,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p5_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -502,7 +502,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_01/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -510,7 +510,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_02/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -518,7 +518,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_03/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -526,7 +526,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_04/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -534,7 +534,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_05/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -542,7 +542,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_06/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -550,7 +550,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_07/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -558,7 +558,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_08/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -566,7 +566,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_09/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -574,7 +574,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_10/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -582,7 +582,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_11/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
             
@@ -590,7 +590,7 @@
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 
 			   name="derrames_p6_12/oilSpill"
                            palette="prec2"
-                           mincolor="0.00001" maxcolor="1" belowMinColor="extend" aboveMaxColor="extend"
+                           mincolor="0.00001" maxcolor="1" belowMinColor="transparent" aboveMaxColor="extend"
                            subtitleText="dailyxhour"
             />
                         

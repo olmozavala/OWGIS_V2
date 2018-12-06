@@ -181,8 +181,8 @@ owgis.layouts.draggable.init = function(){
  *@param disapearId - id of window to minimize or disapear. 
  */
 owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
-    $(eval(disapearId)).toggle("drop",{direction:"down"});
-    $(eval(appearId)).toggle("drop",{direction:"down"});
+    $(eval(disapearId)).toggle(/*"drop",{direction:"down"}*/);
+    $(eval(appearId)).toggle(/*"drop",{direction:"down"}*/);
 	
     //Check if they fit on the screen
     //(after 1 second) to be sure it is visible

@@ -795,7 +795,16 @@ function loopAnimation(){
                 finalText = finalText.replace("T",' ');
             }
         }
+        
+        var currElevationTxt = '';
+        //Building elevation text.
+        if (layerDetails.zaxis !== undefined){
+            currElevation = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
+            var units = (_curr_language == "ES") ? "metros" : layerDetails.zaxis.units;
+            currElevationTxt = " " + getZaxisText() + " " + currElevation + ' ' + units;
+        }
             
+        finalText += currElevationTxt;
         
 	$("#animDate").text(finalText);
         $('#pTitleSubText').html(finalText);

@@ -245,9 +245,13 @@ function initCalendars(){
                                         };
                                     
                                 } else {
+                                    console.log( maxValidDate , maxValidDate.valueOf());
                                     
                                     calendars.blockTime = function(date){
                                         //hoursForFirstDay
+                                                if(date.valueOf() > maxValidDate.valueOf()){
+                                                    return true;
+                                                }                                                
                                                 if(date.getHours()%4 != 0){
                                                     return true;
                                                 }
@@ -259,12 +263,16 @@ function initCalendars(){
                                         
                                     calendare.blockTime = function(date){
                                         //hoursForFirstDay
+                                                if(date.valueOf() > maxValidDate.valueOf()){
+                                                    return true;
+                                                }                                                
                                                 if(date.getHours()%4 != 0){
                                                     return true;
                                                 }
                                                 if(date.getMinutes() !== 0){
                                                     return true;
                                                 }
+                                                
                                                 return false;
                                         };
                                     
