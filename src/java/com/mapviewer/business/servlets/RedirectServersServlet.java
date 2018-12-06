@@ -121,6 +121,10 @@ public class RedirectServersServlet extends HttpServlet {
 			cql_filter = cql_filter.replace(" ", "%20");
 			finalRequest += "&CQL_FILTER=" + cql_filter;
 		}
+        
+        if(server == null || server == "null"){
+            return "";
+        }
 
 		String elevation = "";
 		String time = "";
