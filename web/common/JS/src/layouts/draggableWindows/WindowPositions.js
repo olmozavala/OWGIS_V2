@@ -142,16 +142,21 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             }
             // Finally we test if they fit on the screen
             owgis.layouts.draggable.repositionDraggablesByScreenSize();
-	}		
+	} else {
+            localStorage.clear();
+            owgis.layouts.draggable.repositionDraggablesByScreenSize();
+            $('#optionalMenuParent').show("fade");
+            $('#mainMenuParent').show("fade");
+        }	
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
         if(typeof localStorage.opt_menu_minimized == "undefined" ){ 
-                $('#optionalMenuParent').show("fade");
-            }
-            if(typeof localStorage.main_menu_minimized == "undefined" ){
-                $('#mainMenuParent').show("fade");
-            }
+            $('#optionalMenuParent').show("fade");
+        }
+        if(typeof localStorage.main_menu_minimized == "undefined" ){
+            $('#mainMenuParent').show("fade");
+        }
         owgis.layouts.draggable.repositionDraggablesByScreenSize();
 	//owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
     }
