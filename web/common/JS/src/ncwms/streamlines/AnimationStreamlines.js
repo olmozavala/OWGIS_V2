@@ -17,7 +17,7 @@ var currAnimSpeed = 80;
 var defLineWidth = 1.7;
 var defLineWidthCesium = 2.5;
 // This is the amount of data requested for every 800 pixels
-var imageRequestResolution = 300;
+var imageRequestResolution =400;
 var layerTemplate;
 var times = new Array();
 var intervalHandlerCurrents;// This is the handler of the 'interval' function
@@ -29,12 +29,13 @@ var grids;
 var gridsHeaders;
 var readDataPremises;
 // This is the estimated file size for a screen with 800x800 pixels
-var estimatedFileSize = 2000000;
+var estimatedFileSize = 4000000;
 var animationPaused = false;
 //This variable is used to stop refreshing the data when the 'main' animation is
 // running. Afther all the images have been loaded the the particles data is reloaded
 var isRunningUnderMainAnimation = false;
 var isFirstTime = true;//Only important when been run under main animation
+var isFirstTime3D = true;//Only important when been run under main animation
 // ------------------ Cesium related -------------
 var c_move = false;//Used to detect movement of the mouse
 var c_leftdown = false;//Used to detect a left click of the mouse
@@ -295,7 +296,7 @@ function initstreamlineLayerCesium(){
 function updateCurrentsCesium(event){
     canvas.width = $(window).width();
     canvas.height = $(window).height();
-    var oheighty = 180;
+    var oheighty = 360;
     var nty = 90;
     var cam_rad = c_scene.camera.positionCartographic;
     _cesi = cam_rad;
@@ -343,17 +344,41 @@ function updateCurrentsCesium(event){
 	console.log("Computed extent: " + currentExtent);
     */
 
-    if(!isRunningUnderMainAnimation){
+    if(isFirstTime3D){
         if(updateURL()){
+            console.log(isFirstTime3D);
+            isFirstTime3D = false;
+            isFirstTime = true;
             //Trying to match the resolution obtained with the non-cesium version.
             // This is just to modify the the speed of the particles when zooming in/out
             var res = 50000000;
             var resolution = cam_rad.height/res;
-            console.log("Computes res: "+resolution);
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
             updateData();
         }
     }else{
+         console.log('no first');
+         if(!isRunningUnderMainAnimation){
+            if(updateURL()){
+                console.log(event);
+                if(event == -53 || event == 53){
+                    console.log('change resolution');
+                    var res = 50000000;
+                    var resolution = cam_rad.height/res;                   
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);                    
+                    tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
+                    tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                }else{
+                    var res = 50000000;
+                    var resolution = cam_rad.height/res;
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                    updateData();
+                }                			
+            }            
+        }
+        
         //TODO Cesium still doesn't do animations
         /*
         if(isFirstTime){
@@ -411,6 +436,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     if(isFirstTime){
         if(updateURL()){            
             isFirstTime = false;
+            isFirstTime3D = true;
             temp_resolution = resolution;
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
@@ -621,7 +647,7 @@ function updateURL(){
         var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
         var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
         //var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        var newbbox = [-720, -90, 720, 90];
+        var newbbox = [-360, -90, 360, 90];
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	        
