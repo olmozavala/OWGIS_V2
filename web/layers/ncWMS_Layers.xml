@@ -10,7 +10,7 @@
 		<Menu ID="PromMinM" EN="Monthly Minimum Mean" ES="Mínima promedio mensual"/>
 		<Menu ID="MinAM" EN="Monthly Absolute Minimum" ES="Mínima absoluta por mes"/>
 		<Menu ID="ANOM" EN="Monthly Anomalies" ES="Anomalías mensuales"/>
-		<Menu ID="Umbral" EN="Thresholds " ES="Índices Climatológicos"/>
+		<Menu ID="Umbral" EN="Thresholds " ES="Índices climáticos"/>
 		<Menu ID="WindRose" EN="Wind Rose " ES="Rosas de Viento"/>
 
                 <Menu ID="Temp" EN="Temperature" ES="Temperatura"/>
@@ -35,6 +35,28 @@
                 <Menu ID="Perci95" EN="Percentil 95%" ES="Percentil 95%"/>
                 <Menu ID="Perci99" EN="Percentil 99%" ES="Percentil 99%"/>
                 <Menu ID="Perci999" EN="Percentil 99.9%" ES="Percentil 99.9%"/>
+                
+                <!-- umbrales temp -->
+                <Menu ID="TN01p" EN="TN0.1p " ES="TN0.1p"/>
+                <Menu ID="TN1p" EN="TN1.p " ES="TN1.p"/>
+                <Menu ID="TN5p" EN="TN5p " ES="TN5p"/>
+                <Menu ID="TN10p" EN="TN10p " ES="TN10p"/>
+                <Menu ID="TX90p" EN="TX90p " ES="TX90p"/>
+                <Menu ID="TX95p" EN="TX95p " ES="TX95p"/>
+                <Menu ID="TX99p" EN="TX99p " ES="TX99p"/>
+                <Menu ID="TX999p" EN="TX99.9p " ES="TX99.9p"/>
+                
+                <!-- umbrales prec -->
+                <Menu ID="RX90p" EN="RX90p" ES="RX90p"/>
+                <Menu ID="RX95p" EN="RX95p" ES="RX95p"/>
+                <Menu ID="RX99p" EN="RX99p" ES="RX99p"/>
+                <Menu ID="RX999p" EN="RX99.9p" ES="RX99.9p"/>
+                
+                <!-- umbrales viento -->
+                <Menu ID="WX90p" EN="WX90p" ES="WX90p"/>
+                <Menu ID="WX95p" EN="WX95p" ES="WX95p"/>
+                <Menu ID="WX99p" EN="WX99p" ES="WX99p"/>
+                <Menu ID="WX999p" EN="WX99.9p" ES="WX99.9p"/>
                 
                 <Menu ID="M01" EN="January" ES="Enero"/>
                 <Menu ID="M02" EN="February" ES="Febrero"/>
