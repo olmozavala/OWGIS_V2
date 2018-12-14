@@ -17,7 +17,7 @@ var currAnimSpeed = 80;
 var defLineWidth = 1.7;
 var defLineWidthCesium = 2.5;
 // This is the amount of data requested for every 800 pixels
-var imageRequestResolution =400;
+var imageRequestResolution = 650;
 var layerTemplate;
 var times = new Array();
 var intervalHandlerCurrents;// This is the handler of the 'interval' function
@@ -29,7 +29,7 @@ var grids;
 var gridsHeaders;
 var readDataPremises;
 // This is the estimated file size for a screen with 800x800 pixels
-var estimatedFileSize = 4000000;
+var estimatedFileSize = 20000;
 var animationPaused = false;
 //This variable is used to stop refreshing the data when the 'main' animation is
 // running. Afther all the images have been loaded the the particles data is reloaded
@@ -60,6 +60,7 @@ var vidx;
 var gridInfo;
 var temp;
 var grid;
+var dataCurrent;
 
 
 window['owgis.ncwms.currents.setColor'] = owgis.ncwms.currents.setColor;
@@ -425,6 +426,7 @@ function initstreamlineLayer(){
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
     //console.log("Update currents view and data");
     canvas = document.getElementById("currentsCanvas");
+     var origBBOX = layerTemplate.get("origbbox");   
     
     ctx = canvas.getContext('2d');
     var canvasWidth = size[0];
@@ -441,19 +443,24 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
+            owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
         }
     }else{
         if(!isRunningUnderMainAnimation){
-            if(updateURL()){
+            if(updateURL1()){
                 if(temp_resolution != resolution){
                     temp_resolution = resolution;
-                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                    
+                    tempULayer = layerTemplate.clone();
+                    tempVLayer = layerTemplate.clone();
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                   
                     tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
-                    tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
+                    tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V                                       
+                    gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer);                   
                     owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
                 }else{
                     temp_resolution = resolution;
-                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                      
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent); 
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
                 }                			
             }            
         }
@@ -521,6 +528,7 @@ function updateData(){
                         //TODO we need to be certain that this will work every case,
 			// the problem is that updateParticles gets called more than one time
 			// for each animation.
+                       dataCurrent = file;
 			uData[idx] = new Array();//Clear the array for this specific location
 			gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(file, tempULayer);
 			uData[idx] = file.ranges[Object.keys(file.ranges)[0]].values;
@@ -647,7 +655,44 @@ function updateURL(){
         var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
         var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
         //var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        var newbbox = [-360, -90, 360, 90];
+        var newbbox = [-360, -80.03999999999999, 360, 80.03999999999999];
+        //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
+        //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
+        layerTemplate.set("bbox",newbbox.toString());	        
+        // Updating current zaxis
+        if( !_.isEmpty(layerDetails.zaxis)){
+            var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
+            layerTemplate.set("elevation",elev);	
+        }else{
+            layerTemplate.set("elevation",null);	
+        }
+        layerTemplate = updateWidthAndHeight(layerTemplate);
+        return true;
+    }
+}
+
+
+/**
+ * This function updates the BBOX of the layers in order to modify the request.
+ * The objective is to request only what is in the visible map 
+ * @returns {undefined}
+ */
+function updateURL1(){
+    var origBBOX = layerTemplate.get("origbbox");    
+    if( (currentExtent[0] > origBBOX[2]) ||
+	(currentExtent[2] < origBBOX[0]) ||
+	(currentExtent[1] > origBBOX[3]) ||
+	(currentExtent[3] < origBBOX[1]) ){
+            //In this case the current map view is outside the limits of the data
+            return false;
+    }else{
+        // Updating current BBOX
+        var limLonMin = Math.max(currentExtent[0], origBBOX[0]);
+        var limLatMin = Math.max(currentExtent[1], origBBOX[1]);
+        var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
+        var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
+        var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        //var newbbox = [-360, -90, 360, 90];
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	        
