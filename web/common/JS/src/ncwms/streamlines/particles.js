@@ -20,6 +20,8 @@ var dt = internalAnimationSpeed/externalAnimationSpeed;
 
 var limLonMin;
 var limLatMin;
+var limLonMax
+var limLatMax
 
 var lonDomain;
 var latDomain;
@@ -131,6 +133,7 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
 	lonDomain = Math.abs(currentExtent[0] - currentExtent[2]);
 	latDomain = Math.abs(currentExtent[1] - currentExtent[3]);
 
+
 	updateDomains();
 	initParticles();
 }
@@ -142,12 +145,24 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
  */
 function updateDomains(){
     var bbox = layerTemplate.get("origbbox");
-	limLonMin = Math.max(bbox[0], gridInfo.lo1);
-	limLatMin = Math.max(bbox[1], gridInfo.la1);
+    var bbox_t = layerTemplate.get("bbox");
+    var array_bbox =bbox_t.split(",")
+
+	//limLonMin = Math.max(bbox[0], gridInfo.lo1);
+	//limLatMin = Math.max(bbox[1], gridInfo.la1);
 	
-	var limLonMax = Math.min(bbox[2], gridInfo.lo2);
-	var limLatMax = Math.min(bbox[3], gridInfo.la2);
+	//var limLonMax = Math.min(bbox[2], gridInfo.lo2);
+	//var limLatMax = Math.min(bbox[3], gridInfo.la2);
+        
+        
+        
+        limLonMin = Math.max(parseFloat(array_bbox[0]), gridInfo.lo1);
+	limLatMin = Math.max(parseFloat(array_bbox[1]), gridInfo.la1);
 	
+	limLonMax = Math.min(parseFloat(array_bbox[2]), gridInfo.lo2);
+	limLatMax = Math.min(parseFloat(array_bbox[3]), gridInfo.la2);
+ 
+        
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
     
