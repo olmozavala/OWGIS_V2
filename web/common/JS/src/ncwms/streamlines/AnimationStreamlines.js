@@ -165,16 +165,23 @@ owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnim
     initstreamlineLayer();
 }
 
+/**
+ * Function to change teh definition pf the streamlines, go from 
+ * high definition to low definition and vice versa
+ * @returns {undefined}
+ */
 owgis.ncwms.currents.highResolution = function highResolution(){    
+    //if it is in low resolution
     if(resolutionHigh == false){
         resolutionHigh = true;
         isLow =  false;
         updateURL1();
-        updateData();
+        updateData(); //load the streamlines of only the doamin that is display on the canvas
+    //if it is in high resolution
     }else if(resolutionHigh == true & isLow == false){
         resolutionHigh = false;
         updateURL();
-        updateData();
+        updateData(); //load the streamlines of the entire domain
         updateURL1();
         isLow =  true;
     }
@@ -380,8 +387,7 @@ function updateCurrentsCesium(event){
          if(!isRunningUnderMainAnimation){
             if(updateURL1()){
                 console.log(event);
-                if(event == -53 || event == 53){
-                    console.log('change resolution');
+                if(event == -53 || event == 53){  //only if you are zoom in the canvas                  
                     var res = 50000000;
                     var resolution = cam_rad.height/res;                   
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);                    
@@ -411,6 +417,7 @@ function updateCurrentsCesium(event){
 }
 
 function initstreamlineLayer(){
+    isFirstTime = true;
     if(streamlineLayer !== null){//If the layer already existed, we remove it
         map.removeLayer(streamlineLayer);
     }
@@ -453,7 +460,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     currentExtent = extent;
-    if(isFirstTime){
+    if(isFirstTime){ // the streamlines are loaded for the first time        
         if(updateURL()){            
             isFirstTime = false;
             isFirstTime3D = true;
@@ -461,17 +468,18 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
-            owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+            updateURL1()            
+            //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
         }
     }else{
         if(!isRunningUnderMainAnimation){
             if(updateURL1()){
-                if(resolutionHigh == true){
+                if(resolutionHigh == true){ // if you change from high resolution to low resolution
                     isLow = false;
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
                     updateData();                     
                 }else{ 
-                    if(temp_resolution != resolution){
+                    if(temp_resolution != resolution){ //only if you are zoom in the canvas
                         temp_resolution = resolution;
                         tempULayer = layerTemplate.clone();
                         tempVLayer = layerTemplate.clone();
@@ -661,7 +669,7 @@ function updateData(){
 
 /**
  * This function updates the BBOX of the layers in order to modify the request.
- * The objective is to request only what is in the visible map 
+ * The objective is to request the entire map
  * @returns {undefined}
  */
 function updateURL(){
