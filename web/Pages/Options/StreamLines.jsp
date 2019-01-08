@@ -37,6 +37,14 @@
 			</div>
 		</div>
 	</li>
+        <li>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a href="#" class="ui-btn ui-corner-all ui-mini"
+                       onclick="owgis.ncwms.currents.highResolution();"> High Definition</a>
+                </div>
+            </div>
+        </li>
 </c:if>
 <c:if test='${!mobile}'>
 	<!-- Color Picker-->
@@ -91,5 +99,12 @@
 			</a>
 		</div>
 	</div>
-	
+        <div class="row defRowSpace">
+            <div class="col-xs-12">
+                <div class="buttonStyle menuHidden toolTip resolution"
+                     onclick="owgis.ncwms.currents.highResolution();owgis.layouts.draggable.topmenu.toogleUse('.resolution')">
+                    High Definition
+                </div>
+            </div>
+        </div>
 </c:if>
