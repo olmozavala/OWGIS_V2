@@ -47,6 +47,9 @@ var _cesi = null;
 var temp_resolution;
 
 // --------- var updateData -----------------------
+
+var resolutionHigh = false;
+var isLow = true;
 var computedFileSize;
 var totalRequests;
 var loadedRequests;
@@ -160,6 +163,21 @@ owgis.ncwms.currents.startMultipleDateAnimation = function startMultipleDateAnim
     layerTemplate.attributes.srs = _map_projection;
     //Reads and updates the data
     initstreamlineLayer();
+}
+
+owgis.ncwms.currents.highResolution = function highResolution(){    
+    if(resolutionHigh == false){
+        resolutionHigh = true;
+        isLow =  false;
+        updateURL1();
+        updateData();
+    }else if(resolutionHigh == true & isLow == false){
+        resolutionHigh = false;
+        updateURL();
+        updateData();
+        updateURL1();
+        isLow =  true;
+    }
 }
 
 /**
@@ -360,7 +378,7 @@ function updateCurrentsCesium(event){
     }else{
          console.log('no first');
          if(!isRunningUnderMainAnimation){
-            if(updateURL()){
+            if(updateURL1()){
                 console.log(event);
                 if(event == -53 || event == 53){
                     console.log('change resolution');
@@ -449,20 +467,26 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     }else{
         if(!isRunningUnderMainAnimation){
             if(updateURL1()){
-                if(temp_resolution != resolution){
-                    temp_resolution = resolution;
-                    tempULayer = layerTemplate.clone();
-                    tempVLayer = layerTemplate.clone();
-                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                   
-                    tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
-                    tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V                                       
-                    gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer);                   
-                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                }else{
-                    temp_resolution = resolution;
-                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent); 
-                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                }                			
+                if(resolutionHigh == true){
+                    isLow = false;
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+                    updateData();                     
+                }else{ 
+                    if(temp_resolution != resolution){
+                        temp_resolution = resolution;
+                        tempULayer = layerTemplate.clone();
+                        tempVLayer = layerTemplate.clone();
+                        owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                   
+                        tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
+                        tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V                                       
+                        gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer);                   
+                        owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                    }else{
+                        temp_resolution = resolution;
+                        owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent); 
+                        owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                    }
+                }
             }            
         }
     }
@@ -642,7 +666,7 @@ function updateData(){
  * @returns {undefined}
  */
 function updateURL(){
-    var origBBOX = layerTemplate.get("origbbox");    
+    var origBBOX = layerTemplate.get("origbbox");   
     if( (currentExtent[0] > origBBOX[2]) ||
 	(currentExtent[2] < origBBOX[0]) ||
 	(currentExtent[1] > origBBOX[3]) ||
@@ -656,7 +680,7 @@ function updateURL(){
         var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
         var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
         //var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        var newbbox = [-360, -80.03999999999999, 360, 80.03999999999999];
+        var newbbox = [origBBOX[0], origBBOX[1],origBBOX[2], origBBOX[3]];
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	        
@@ -679,7 +703,7 @@ function updateURL(){
  * @returns {undefined}
  */
 function updateURL1(){
-    var origBBOX = layerTemplate.get("origbbox");    
+    var origBBOX = layerTemplate.get("origbbox");   
     if( (currentExtent[0] > origBBOX[2]) ||
 	(currentExtent[2] < origBBOX[0]) ||
 	(currentExtent[1] > origBBOX[3]) ||
