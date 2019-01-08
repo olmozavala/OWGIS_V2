@@ -143,22 +143,13 @@ owgis.ncwms.currents.particles.initData = function initData(GridInfo,currentE){
  * @returns {undefined}Updates the limits of the particles taking into account the limits
  * of the map and the limits of the layer.
  */
-function updateDomains(){
+function updateDomains(){   
     var bbox = layerTemplate.get("origbbox");
     var bbox_t = layerTemplate.get("bbox");
     var array_bbox =bbox_t.split(",")
-
-	//limLonMin = Math.max(bbox[0], gridInfo.lo1);
-	//limLatMin = Math.max(bbox[1], gridInfo.la1);
-	
-	//var limLonMax = Math.min(bbox[2], gridInfo.lo2);
-	//var limLatMax = Math.min(bbox[3], gridInfo.la2);
-        
-        
-        
-        limLonMin = Math.max(parseFloat(array_bbox[0]), gridInfo.lo1);
+             
 	limLatMin = Math.max(parseFloat(array_bbox[1]), gridInfo.la1);
-	
+        limLonMin = Math.max(parseFloat(array_bbox[0]), gridInfo.lo1);	
 	limLonMax = Math.min(parseFloat(array_bbox[2]), gridInfo.lo2);
 	limLatMax = Math.min(parseFloat(array_bbox[3]), gridInfo.la2);
  
