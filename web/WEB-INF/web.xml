@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>OWGIS Template</display-name>
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
@@ -12,13 +11,13 @@
         <async-supported>true</async-supported>
     </filter>
     <filter-mapping>
-	<filter-name>javamelody</filter-name>
-	<url-pattern>/*</url-pattern>
-	<dispatcher>REQUEST</dispatcher>
+        <filter-name>javamelody</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
         <dispatcher>ASYNC</dispatcher>
     </filter-mapping>
     <listener>
-	<listener-class>net.bull.javamelody.SessionListener</listener-class>
+        <listener-class>net.bull.javamelody.SessionListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>MapViewerServlet</servlet-name>
@@ -36,10 +35,22 @@
         <servlet-name>SimpleAjaxRedirectServlet</servlet-name>
         <servlet-class>com.mapviewer.business.servlets.SimpleAjaxRedirectServlet</servlet-class>
     </servlet>
-          <servlet>
-    <servlet-name>MobileServlet</servlet-name>
-    <servlet-class>com.mapviewer.business.servlets.MobileServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>MobileServlet</servlet-name>
+        <servlet-class>com.mapviewer.business.servlets.MobileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admin</servlet-name>
+        <jsp-file>/admin/index.jsp</jsp-file>
+        <init-param>
+            <param-name>listings</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/admin/</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WCSServlet</servlet-name>
         <url-pattern>/WCSServlet</url-pattern>
@@ -56,10 +67,10 @@
         <servlet-name>SimpleAjaxRedirectServlet</servlet-name>
         <url-pattern>/simpleAjaxRedirect</url-pattern>
     </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>MobileServlet</servlet-name>
-    <url-pattern>/MobileServlet</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MobileServlet</servlet-name>
+        <url-pattern>/MobileServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
 			30
@@ -69,4 +80,6 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>/mapviewer</welcome-file>
     </welcome-file-list>
+    <jsp-config>
+    </jsp-config>
 </web-app>
