@@ -17,7 +17,7 @@ The later uses an extension of the WMS standard to
 serve 3D or 4D data stored as [NetCDF](http://www.unidata.ucar.edu/software/netcdf/) files.
 
 The default template of OWGIS can be tested 
-<a href="http://server.owgis.org/OWGISTemplate/mapviewer"> here</a>.
+<a href="http://server.owgis.org/OWGISV2Template/mapviewer"> here</a>.
 
 Each WebGIS site is configured by two types of files, a 
 Java properties file stored at `web/WEB-INF/conf/MapViewConfig.properties`
