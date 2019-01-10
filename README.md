@@ -129,6 +129,15 @@ Step 5: Run OWGIS_Mob
 ** Harshul Pandav**
 + <https://github.com/harshulpandav>
 
+** Vladimir Mijail**
++ <https://github.com/mijailcc>
+
+** Ixchel Zazueta**
++ <https://github.com/ixchelzg>
+
+** Pablo Camacho**
++ <https://github.com/Pablocg0>
+
 ## License
 OWGIS is licensed under the MIT Open Source license. 
 For more information, see the LICENSE file in this repository.
