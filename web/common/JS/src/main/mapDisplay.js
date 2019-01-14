@@ -302,7 +302,8 @@ function MapViewersubmitForm() {
         owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	if(!mobile){ 
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
-            localStorage.map_center =  ol3view.getCenter();// Center of the map
+            //localStorage.map_center =  ol3view.getCenter();// Center of the map
+            localStorage.map_center = (_map_projection == 'EPSG:4326') ? ol3view.getCenter() : ol.proj.transform(ol3view.getCenter(), 'EPSG:3857', 'EPSG:4326') ;
             localStorage.language = _curr_language;
             localStorage.projection = _map_projection;
             localStorage.map_palette = mappalette;
