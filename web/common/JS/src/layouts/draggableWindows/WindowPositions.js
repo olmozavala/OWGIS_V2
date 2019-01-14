@@ -12,7 +12,7 @@ goog.require('owgis.ol3');
  */
 owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(){
     localStorage.zoom = ol3view.getResolution();// Zoom of map
-    localStorage.map_center =  ol3view.getCenter();// Center of the map
+    localStorage.map_center = (_map_projection == 'EPSG:4326') ? ol3view.getCenter() : ol.proj.transform(ol3view.getCenter(), 'EPSG:3857', 'EPSG:4326') ;// Center of the map
     
     localStorage.language = _curr_language;
     

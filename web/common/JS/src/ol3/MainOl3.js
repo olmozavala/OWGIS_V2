@@ -120,32 +120,36 @@ function initOl3(){
 	lon = Number(strCenter[0].split("=")[1]);
     }
 	
-    var changeProj;//Indicates if we need to change the projections
+    var changeProj = false;//Indicates if we need to change the projections
     var defCenter= [lon,lat];
-    
+    console.log(defCenter);
     var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels ? localStorage.zoom : mapConfig.zoom;// Zoom of map
         
     if( localStorage.map_center !== undefined){
-	strCenter = localStorage.map_center.split(",")
-	var lat = Number(strCenter[0]);
-	var lon = Number(strCenter[1]);
-	defCenter = [lat,lon];// Center of the map
-        mapConfig.zoom = newZoom;
+        if( localStorage.map_center.search("NaN") == -1 ){
+            console.log('transform center', localStorage.map_center);
+            strCenter = localStorage.map_center.split(",")
+            var lat = Number(strCenter[0]);
+            var lon = Number(strCenter[1]);
+            defCenter = [lat,lon];// Center of the map
+            mapConfig.zoom = newZoom;
+        }
     }
     //var resExtent;
     if( (_map_bk_layer === "osm") || 
 	(_map_bk_layer.indexOf("bing") !== -1) ||  
 	(_map_bk_layer.indexOf("google") !== -1)){
-	_map_projection = PROJ_3857;
-	changeProj = true;
+            _map_projection = PROJ_3857;
+            changeProj = true;
     }
         
     console.log(changeProj, _map_projection);
-    resExtent = mapConfig.restrictedExtent.split(",").map(Number);
-    if(changeProj){
+    var resExtent = mapConfig.restrictedExtent.split(",").map(Number);
+    if(changeProj === true){
+        console.log('transform center');
         defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
-	resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);
-    }    console.log(defCenter);
+	//resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);
+    }    console.log(defCenter, resExtent);
 
     /* importante si se quiere cambiar el tamaño de las imagenes
      * y optimizar el tiempo en las que se cargan dentro del owgis
