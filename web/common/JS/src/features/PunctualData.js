@@ -159,7 +159,8 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                 width: el_width,
                                 height: el_height,
                                 type: 'spline',
-                                inverted: true
+                                inverted: true,
+                                animation: false
                             },
                             yAxis: {
                                 lineWidth: 1
@@ -175,6 +176,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             },
                             plotOptions: {
                                 series: {
+                                    animation: false,
                                     marker: {
                                       enabled: false
                                     }
@@ -313,7 +315,8 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                 width: el_width,
 				height: el_height,
                                 type: 'spline',
-                                inverted: true
+                                inverted: true,
+                                animation: false
                             },
                             yAxis: {
                               lineWidth: 1
@@ -329,6 +332,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             },
                             plotOptions: {
                               series: {
+                                animation: false,
                                 marker: {
                                   enabled: false
                                 }
@@ -530,7 +534,7 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
     var vpCurrentFrame=0;
     isPaused = false;
     
-    loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } else if(isNextVP){ showNextVP();} else if(isPrevVP){showPrevVP();} }, 2500);
+    loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } else if(isNextVP){ showNextVP();} else if(isPrevVP){showPrevVP();} }, 1500);
     
     function animateVerticalProfile(){
         vpCurrentFrame = vpCurrentFrame < (allFramesVP.length-1)? ++vpCurrentFrame: 0;
@@ -558,7 +562,8 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
                                 },
                                 chart: {
                                     type: 'spline',
-                                    inverted: true
+                                    inverted: true,
+                                    animation: false
                                 },
                                 yAxis: {
                                   lineWidth: 1
@@ -574,6 +579,7 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
                                 },
                                 plotOptions: {
                                   series: {
+                                    animation: false,
                                     marker: {
                                       enabled: false
                                     }
