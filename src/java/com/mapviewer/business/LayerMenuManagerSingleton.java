@@ -449,6 +449,67 @@ public class LayerMenuManagerSingleton {
 			throw new XMLFilesException("Error parsing XML files" + ex.getMessage());
 		}
 	}
+    
+    
+	/**
+	 * Creates the initial Tree of layers from the specified XML files.
+	 */
+	private void getLayersFromXML(String layersrc) throws XMLFilesException {
+		List<String> layerExceptions = new ArrayList<>();
+		try {
+            //search for layers of type layersrc (ncWMS / geoserver)
+			for (int i = 0; i < xmlFiles.length; i++) {
+				String fileName = xmlFiles[i];
+				SAXBuilder builder = new SAXBuilder();
+				Document doc = builder.build(fileName);
+				
+				// Obtains the root element of the current XML file
+				Element root = doc.getRootElement();
+				List children = root.getChildren();
+				
+				//Obtains the menu entries or the layers
+				for (Iterator it = children.iterator(); it.hasNext();) {
+					Element curr = (Element) it.next();
+					if (curr.getName().equalsIgnoreCase("MainLayers")
+							/*|| curr.getName().equalsIgnoreCase("OptionalLayers")*/) {
+						try{
+							//System.out.println("Adding group layers: "+ curr.getName());
+							addLayers(curr, curr.getName());
+						}catch(XMLLayerException ex){
+							File tempFile = new File(fileName);
+							System.out.println("Adding exception parsing XML layer");
+							layerExceptions.add("<b>Error parsing XML file</b>: <small> "+tempFile.getName()+"</small> <br>"
+									+ "<b>Layers: </b>: <small>" + ex.getMessage() + "</small><br>"
+									+ "<b>Element</b>: <small>" + curr.getName()+ "</small><br>");
+						}
+						catch(XMLFilesException ex){
+							throw new XMLFilesException(ex.getMessage());
+						}
+						
+					}
+				}
+			}
+			
+			System.out.println("----------- FINAL Main MENU-------------");
+			TreeMenuUtils.traverseTree(rootMenu);
+			System.out.println("\n----------- FINAL Vector MENU-------------");
+			TreeMenuUtils.traverseTree(rootVectorMenu);
+			System.out.println("\n");
+			
+			if(layerExceptions.size() > 0){
+				String exceptionString="";
+				//Saving all the exceptions into one string
+//				exceptionString = layerExceptions.stream().map((item) -> item).reduce(exceptionString, String::concat);
+				exceptionString = layerExceptions.get(0);
+				
+				throw new XMLLayerException(exceptionString);
+			}
+			
+		} catch (JDOMException | IOException ex) {
+			Logger.getLogger(LayerMenuManagerSingleton.class.getName()).log(Level.SEVERE, null, ex);
+			throw new XMLFilesException("Error parsing XML files" + ex.getMessage());
+		}
+	}
 	
 	/**
 	 * Reads the boundary box from the layers configuration node of the xml file.
