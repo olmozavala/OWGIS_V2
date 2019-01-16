@@ -147,7 +147,7 @@
 	</MainLayers>
         
         <!-- ALERTAS -->
-	<MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
+	<!--MainLayers BBOX="-122.25056107685108,7.409418707415154,-74.74943892314892,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
             
             <layer Menu="WRF,Dom1,alerta,Temp2" center="-101,23" zoom="3" EN="Temperature Warnings" ES="Alertas de temperatura" style="default-scalar" palette="percentiles" 
                    name="t2_dom1_perc/T2" mincolor="0.1" maxcolor="99.9" belowMinColor="transparent" aboveMaxColor="transparent" featureInfo="wrf_Dom1/T2C" featureInfoUnits="C" />
@@ -187,6 +187,6 @@
                    mincolor="95" maxcolor="99.9" name="prec_dom2_alertas/PRECA" belowMinColor="transparent" aboveMaxColor="transparent" />
             
 
-        </MainLayers>
+        </MainLayers-->
 	
 </MenuConf>
