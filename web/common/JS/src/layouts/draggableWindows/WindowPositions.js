@@ -12,7 +12,7 @@ goog.require('owgis.ol3');
  */
 owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(){
     localStorage.zoom = ol3view.getResolution();// Zoom of map
-    localStorage.map_center = (_map_projection == 'EPSG:4326') ? ol3view.getCenter() : ol.proj.transform(ol3view.getCenter(), 'EPSG:3857', 'EPSG:4326') ;// Center of the map
+    localStorage.map_center =  ol3view.getCenter();// Center of the map
     
     localStorage.language = _curr_language;
     
@@ -23,7 +23,11 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 
     localStorage.opt_menu_minimized =  $("#optionalsMinimize").css("display") === "none"? false: true;
     localStorage.main_menu_minimized = $("#mainMenuMinimize").css("display") === "none"? false: true;
-
+    
+    if(layerDetails.isParticle != "false" && !mobile ){
+        localStorage.charts_menu_minimized = $("#chartsMinimize").css("display") === "none"? false: true;
+        localStorage.station_selected = $("#est_list_container").find('li.active').text() ;
+    }
     saveIndividualWindowPosition("pos_main_menu", "#mainMenuParent");
     saveIndividualWindowPosition("pos_opt_menu", "#optionalMenuParent");
 
@@ -67,6 +71,7 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
  */
 owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
     try{
+
         if( levenshtein(localStorage.server_name, window.location.href) <= 2 ){ //
             
             console.log('repositioning windows ...');
@@ -80,7 +85,11 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             localStorage.language = _curr_language;
             // Repositions the main layers menu
             repositionWindow(localStorage.pos_main_menu, localStorage.main_menu_minimized, 'mainMenuParent', 'mainMenuMinimize');
-
+            
+            // Repositions the charts window
+            if(layerDetails.isParticle != "false" && !mobile ){
+                repositionWindow(null, localStorage.charts_menu_minimized, 'estaciones_charts', 'chartsMinimize');
+            }
             // Repositions the Optional layers menu 
             repositionWindow(localStorage.pos_opt_menu, localStorage.opt_menu_minimized, 'optionalMenuParent', 'optionalsMinimize');
 			
@@ -142,21 +151,17 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
             }
             // Finally we test if they fit on the screen
             owgis.layouts.draggable.repositionDraggablesByScreenSize();
-	} else {
-            localStorage.clear();
-            owgis.layouts.draggable.repositionDraggablesByScreenSize();
-            $('#optionalMenuParent').show("fade");
-            $('#mainMenuParent').show("fade");
-        }	
+	}		
     }catch(err){
 	console.log("Error initializing the menus... clearing local storage");
 	localStorage.clear();
+
         if(typeof localStorage.opt_menu_minimized == "undefined" ){ 
-            $('#optionalMenuParent').show("fade");
-        }
-        if(typeof localStorage.main_menu_minimized == "undefined" ){
-            $('#mainMenuParent').show("fade");
-        }
+                $('#optionalMenuParent').show("fade");
+            }
+            if(typeof localStorage.main_menu_minimized == "undefined" ){
+                $('#mainMenuParent').show("fade");
+            }
         owgis.layouts.draggable.repositionDraggablesByScreenSize();
 	//owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
     }
@@ -166,7 +171,7 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
  *This function moves the draggable windows when the user changes its window size. 
  */
 owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
-    
+
     moveOneWindowToFitOnScreen("mainMenuParent");
     moveOneWindowToFitOnScreen("optionalMenuParent");
 	
@@ -189,16 +194,16 @@ owgis.layouts.draggable.repositionDraggablesByScreenSize = function(){
  * @returns {undefined}
  */
 owgis.layouts.draggable.init = function(){
+	
     //Only make windows draggable for 'topMenu' design
     if ( mobile === false) {
-        $(".draggableWindow").each( function(index) {
+		$(".draggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-        });
-        
-        $(".transDraggableWindow").each( function(index) {
+		})
+		$(".transDraggableWindow").each( function(index) {
 			$(this).draggable({ containment: "#draggable-container" ,scroll:false}); 
-	});
-    }
+		})
+	}
 }
 
 /**
@@ -214,6 +219,15 @@ owgis.layouts.draggable.minimizeWindow = function(appearId, disapearId){
     //Check if they fit on the screen
     //(after 1 second) to be sure it is visible
     setTimeout( function (){owgis.layouts.draggable.repositionDraggablesByScreenSize();}, 1000);
+    
+    if(appearId == "estaciones_charts"){ console.log("hthis is roropeo");
+        document.getElementById('v-pills-tab').style.height = document.getElementById('estaciones_charts').offsetHeight+'px' ;
+        if(typeof localStorage.station_selected != "undefined"){
+            changeEstTabContent(localStorage.station_selected);
+        } else {
+            changeEstTabContent('ATI');
+        }
+    }
 }
 /**
  * Saves the position of one of the windows. 
@@ -249,7 +263,9 @@ function repositionWindow(localStorageVariable, localStorage_minimized, windowTo
                     var prevPosition = localStorageVariable.split(",");    //split the left position and top position. so mainMenuParent[0] is left and mainMenuParent[1] is top. 
                     getElementById(windowToMove).style.left = prevPosition[0] + "px";//move it from the left
                     getElementById(windowToMove).style.top = prevPosition[1] + "px";//move it from the top
-                }
+                } /*else if( windowToMove == 'estaciones_charts' ){
+                    getElementById(windowToMove)
+                }*/
             }
         }
     }
@@ -262,7 +278,8 @@ function repositionWindow(localStorageVariable, localStorage_minimized, windowTo
  *This function moves one window when the browswer is reseized
  *@param id - id of draggable window.
  */
-function moveOneWindowToFitOnScreen(id){
+function moveOneWindowToFitOnScreen(id)
+{
     var poundId = "#" + id;
 	
     //We only check the 'div' if it is visible

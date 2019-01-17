@@ -23,6 +23,12 @@
             <a class="btn btn-default btn-xs " href="#" 
                 onclick="owgis.layouts.draggable.minimizeWindow('optionalMenuParent','optionalsMinimize')" >
                 <i class="glyphicon glyphicon-resize-full "></i></a>
-        </span>                
+        </span>
+        <span id="chartsMinimize" class="minimizedWindow">
+            Pronóstico
+            <a class="btn btn-default btn-xs " href="#" 
+                onclick="owgis.layouts.draggable.minimizeWindow('estaciones_charts','chartsMinimize')"> 
+                <i class="glyphicon glyphicon-resize-full "></i></a>
+        </span> 
     </div>
 </div>

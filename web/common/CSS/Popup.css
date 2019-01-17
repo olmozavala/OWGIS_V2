@@ -217,9 +217,811 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
 }
 
 
+#estaciones_charts{
+    position: fixed;
+    /*width: 95%;
+    height: 42%;
+    bottom: 45px;
+    left: 35px;
+    background-color: #ffffff;*/
+    padding: 15px;
+    display: none;
+    width: 55%;
+    height: 35%;
+    bottom: 0;
+    right: 0;
+   /* background-color: #ffffffcc; */
+    background-color: #ffffff;
+    opacity: 0.7;
+    -webkit-border-radius: 10px 0px 0px 0px;
+    -moz-border-radius: 10px 0px 0px 0px;
+    border-radius: 10px 0px 0px 0px;
+    
+
+}
+#est_list_container{
+   float: left;
+   /*width: 120px;*/
+   position: relative;
+   min-height: 1px;
+   padding-right: 15px;
+   padding-left: 15px;
+
+}
+#est_graph_container{
+    float: left;
+    position: relative;
+    padding:0 !important;
+}
+.tab-content>.tab-pane>p{
+    color: #333333;
+}/*
+#estaciones_charts>div, #est_list_container, #v-pills-tab{
+    height: inherit;
+}*/
+#v-pills-tab{
+    overflow-y: scroll;
+}
+
 .modal-header {
     cursor: move;
 }
+
+@media screen and (max-width: 1500px) and (min-width: 700px) {
+    #estaciones_charts{
+        /*width: 90%;*/
+    }
+}
+
+#pltchrt_btn{
+    position: fixed;
+    bottom: 36px;
+    right: 10px;
+}
+
+#estaciones_charts_mobile {
+    width:100%;
+    height:100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index:9999;
+    display: none;
+    background:rgba(0,0,0,0.8);
+}
+@media only screen
+        and (min-device-width: 300px)
+        and (max-device-width: 500px)
+        and (orientation: portrait) 
+        {
+            
+    #estaciones_charts_mobile {
+        background:rgba(0,0,0,0.8);
+    }
+    
+    #estaciones_charts_mobile:before{
+        content: " Favor de voltear la pantalla ";
+        font-size: 20px;
+        display: inline-block;
+        -ms-flex-align: center;
+        color: #696969;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        position: absolute;
+        height: 50px;
+    }
+    
+    #pltchrt-closer, #est_list_container, #est_graph_container{
+        display:none;
+    }
+
+}
+@media only screen
+        and (min-device-width: 320px)
+        and (max-device-width: 680px)
+        and (orientation: landscape) 
+        {
+    
+    #pltchrt-closer{            
+        z-index: 99999;
+    }        
+            
+    #estaciones_charts_mobile{
+        background-color: #ffffff;
+        /* padding: 0; */
+    }
+
+    #est_list_container{
+       float: left;
+       width: 100px;
+       position: relative;
+       min-height: 1px;
+       padding-right: 15px;
+       padding-left: 15px;
+       overflow: scroll;
+       -webkit-overflow-scrolling: touch;
+       height: 360px;
+    }
+    #est_list_container>ul{
+        margin: 5px;
+        display: block;
+        list-style-type: disc;
+        -webkit-margin-before: 0em;
+        -webkit-margin-after: 0em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 0px;
+        margin-top: 15px;
+    }
+    #est_list_container>ul>li{
+        display:block;
+        position: relative;
+        margin: 8px;
+    }
+    
+    #est_list_container>ul>li>a{
+          border-radius: 4px;
+          color: #337ab7;
+          padding: 5px 8px;
+    }
+    
+    #est_list_container>ul>li.active>a,
+    #est_list_container>ul>li.active>a:hover,
+    #est_list_container>ul>li.active>a:focus{
+        color: #fff;
+        background-color: #337ab7;
+    }
+    
+    #forecastvsreportHighcharts{
+        /*width: 100%;
+        height: 100%;
+        z-index: 9999;*/
+    }
+    #v-pills-est {
+        display: block;
+        float: left;
+    }
+    
+    #est_graph_container{
+            width: 80%;
+    }
+    
+}
+
+/*! @license
+*
+* Buttons
+* Copyright 2012-2014 Alex Wolfe and Rob Levin
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+/*
+* Compass (optional)
+*
+* We recommend the use of autoprefixer instead of Compass
+* when using buttons. However, buttons does support Compass.
+* simply change $ubtn-use-compass to true and uncomment the
+* @import 'compass' code below to use Compass.
+*/
+/*
+* Required Files
+*
+* These files include the variables and options
+* and base css styles that are required to generate buttons.
+*/
+/*
+* $ubtn prefix (reserved)
+*
+* This prefix stands for Unicorn Button - ubtn
+* We provide a prefix to the Sass Variables to
+* prevent namespace collisions that could occur if
+* you import buttons as part of your Sass build process.
+* We kindly ask you not to use the prefix $ubtn in your project
+* in order to avoid possilbe name conflicts. Thanks!
+*/
+/*
+* Button Namespace (ex .button or .btn)
+*
+*/
+/*
+* Button Defaults
+*
+* Some default settings that are used throughout the button library.
+* Changes to these settings will be picked up by all of the other modules.
+* The colors used here are the default colors for the base button (gray).
+* The font size and height are used to set the base size for the buttons.
+* The size values will be used to calculate the larger and smaller button sizes.
+*/
+/*
+* Button Colors
+*
+* $ubtn-colors is used to generate the different button colors.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, background, color)
+* The class is generated using the name: (ex .button-primary)
+*/
+/*
+* Button Shapes
+*
+* $ubtn-shapes is used to generate the different button shapes.
+* Edit or add shapes to the list below and recompile.
+* Each block contains the (name, border-radius).
+* The class is generated using the name: (ex .button-square).
+*/
+/*
+* Button Sizes
+*
+* $ubtn-sizes is used to generate the different button sizes.
+* Edit or add colors to the list below and recompile.
+* Each block contains the (name, size multiplier).
+* The class is generated using the name: (ex .button-giant).
+*/
+/*
+* Color Mixin
+*
+* Iterates through the list of colors and creates
+*
+*/
+/*
+* No Animation
+*
+* Sets animation property to none
+*/
+/*
+* Clearfix
+*
+* Clears floats inside the container
+*/
+/*
+* Base Button Style
+*
+* The default values for the .button class
+*/
+.button {
+  color: #666666;
+  background-color: #eeeeee;
+  border-color: #eeeeee;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 40px;
+  margin: 0;
+  display: inline-block;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition-property: all;
+          transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  /*
+  * Disabled State
+  *
+  * The disabled state uses the class .disabled, is-disabled,
+  * and the form attribute disabled="disabled".
+  * The use of !important is only added because this is a state
+  * that must be applied to all buttons when in a disabled state.
+  */ }
+  .button:visited {
+    color: #666666; }
+  .button:hover, .button:focus {
+    background-color: #f6f6f6;
+    text-decoration: none;
+    outline: none; }
+  .button:active, .button.active, .button.is-active {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    background-color: #eeeeee;
+    border-color: #cfcfcf;
+    color: #d4d4d4;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+  .button.disabled, .button.is-disabled, .button:disabled {
+    top: 0 !important;
+    background: #EEE !important;
+    border: 1px solid #DDD !important;
+    text-shadow: 0 1px 1px white !important;
+    color: #CCC !important;
+    cursor: default !important;
+    appearance: none !important; }
+    .button.disabled else, .button.is-disabled else, .button:disabled else {
+      -webkit-box-shadow: none !important;
+              box-shadow: none !important;
+      opacity: .8 !important; }
+
+.button-action {
+  background-color: #a5de37;
+  border-color: #a5de37;
+  color: white; }
+  .button-action:visited {
+    color: white; }
+  .button-action:hover, .button-action:focus {
+    background-color: #b9e563;
+    border-color: #b9e563;
+    color: white; }
+  .button-action:active, .button-action.active, .button-action.is-active {
+    background-color: #a1d243;
+    border-color: #a1d243;
+    color: #8bc220; }
+
+/*
+* Button Types (optional)
+*
+* All of the files below represent the various button
+* types (including shapes & sizes). None of these files
+* are required. Simple remove the uneeded type below and
+* the button type will be excluded from the final build
+*/
+/*
+* Button Shapes
+*
+* This file creates the various button shapes
+* (ex. Circle, Rounded, Pill)
+*/
+.button-circle {
+  border-radius: 100%; }
+
+/*
+* Size Adjustment for equal height & widht buttons
+*
+* Remove padding and set a fixed width.
+*/
+.button-circle {
+  padding: 0 !important;
+  width: 40px; }
+  .button-circle.button-giant,
+  .button-box.button-giant,
+  .button-square.button-giant {
+    width: 70px; }
+  .button-circle.button-jumbo,
+  .button-box.button-jumbo,
+  .button-square.button-jumbo {
+    width: 60px; }
+  .button-circle.button-large,
+  .button-box.button-large,
+  .button-square.button-large {
+    width: 50px; }
+  .button-circle.button-normal,
+  .button-box.button-normal,
+  .button-square.button-normal {
+    width: 40px; }
+  .button-circle.button-small,
+  .button-box.button-small,
+  .button-square.button-small {
+    width: 30px; }
+  .button-circle.button-tiny,
+  .button-box.button-tiny,
+  .button-square.button-tiny {
+    width: 24px; }
+/*  
+*
+* A classic looking button that offers
+* great depth and affordance.
+*/
+.button-raised {
+  border-color: #e1e1e1;
+  border-style: solid;
+  border-width: 1px;
+  line-height: 38px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e1e1e1));
+  background: linear-gradient(#f6f6f6, #e1e1e1);
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15); }
+  .button-raised:hover, .button-raised:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(gainsboro));
+    background: linear-gradient(top, white, gainsboro); }
+  .button-raised:active, .button-raised.active, .button-raised.is-active {
+    background: #eeeeee;
+    -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white;
+            box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white; }
+
+/*
+* Raised Button Colors
+*
+* Create colors for raised buttons
+*/
+.button-raised.button-primary {
+  border-color: #088ef0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#34a5f8), to(#088ef0));
+  background: linear-gradient(#34a5f8, #088ef0); }
+  .button-raised.button-primary:hover, .button-raised.button-primary:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#42abf8), to(#0888e6));
+    background: linear-gradient(top, #42abf8, #0888e6); }
+  .button-raised.button-primary:active, .button-raised.button-primary.active, .button-raised.button-primary.is-active {
+    border-color: #0880d7;
+    background: #2798eb; }
+.button-raised.button-plain {
+  border-color: #f2f2f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f2f2f2));
+  background: linear-gradient(white, #f2f2f2); }
+  .button-raised.button-plain:hover, .button-raised.button-plain:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#ededed));
+    background: linear-gradient(top, white, #ededed); }
+  .button-raised.button-plain:active, .button-raised.button-plain.active, .button-raised.button-plain.is-active {
+    border-color: #e6e6e6;
+    background: white; }
+.button-raised.button-inverse {
+  border-color: #151515;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2f2f2f), to(#151515));
+  background: linear-gradient(#2f2f2f, #151515); }
+  .button-raised.button-inverse:hover, .button-raised.button-inverse:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#363636), to(#101010));
+    background: linear-gradient(top, #363636, #101010); }
+  .button-raised.button-inverse:active, .button-raised.button-inverse.active, .button-raised.button-inverse.is-active {
+    border-color: #090909;
+    background: #222222; }
+.button-raised.button-action {
+  border-color: #9ad824;
+  background: -webkit-gradient(linear, left top, left bottom, from(#afe24d), to(#9ad824));
+  background: linear-gradient(#afe24d, #9ad824); }
+  .button-raised.button-action:hover, .button-raised.button-action:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#b5e45a), to(#94cf22));
+    background: linear-gradient(top, #b5e45a, #94cf22); }
+  .button-raised.button-action:active, .button-raised.button-action.active, .button-raised.button-action.is-active {
+    border-color: #8bc220;
+    background: #a1d243; }
+.button-raised.button-highlight {
+  border-color: #fea502;
+  background: -webkit-gradient(linear, left top, left bottom, from(#feb734), to(#fea502));
+  background: linear-gradient(#feb734, #fea502); }
+  .button-raised.button-highlight:hover, .button-raised.button-highlight:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#febc44), to(#f49f01));
+    background: linear-gradient(top, #febc44, #f49f01); }
+  .button-raised.button-highlight:active, .button-raised.button-highlight.active, .button-raised.button-highlight.is-active {
+    border-color: #e59501;
+    background: #f3ab26; }
+.button-raised.button-caution {
+  border-color: #ff2939;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff5c69), to(#ff2939));
+  background: linear-gradient(#ff5c69, #ff2939); }
+  .button-raised.button-caution:hover, .button-raised.button-caution:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff6c77), to(#ff1f30));
+    background: linear-gradient(top, #ff6c77, #ff1f30); }
+  .button-raised.button-caution:active, .button-raised.button-caution.active, .button-raised.button-caution.is-active {
+    border-color: #ff1022;
+    background: #f64c59; }
+.button-raised.button-royal {
+  border-color: #665ce6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9088ec), to(#665ce6));
+  background: linear-gradient(#9088ec, #665ce6); }
+  .button-raised.button-royal:hover, .button-raised.button-royal:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from(#9c95ef), to(#5e53e4));
+    background: linear-gradient(top, #9c95ef, #5e53e4); }
+  .button-raised.button-royal:active, .button-raised.button-royal.active, .button-raised.button-royal.is-active {
+    border-color: #5246e2;
+    background: #827ae1; }
+/*
+* Glowing Buttons
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
+/*
+* Glow animation mixin for Compass users
+*
+*/
+/*
+* Glowing Keyframes
+*
+*/
+@-webkit-keyframes glowing {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+            box-shadow: 0 0 20px rgba(44, 154, 219, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); } }
+@keyframes glowing {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(44, 154, 219, 0.8);
+            box-shadow: 0 0 20px rgba(44, 154, 219, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(44, 154, 219, 0.3);
+            box-shadow: 0 0 0 rgba(44, 154, 219, 0.3); } }
+
+/*
+* Glowing Keyframes for various colors
+*
+*/
+@-webkit-keyframes glowing-primary {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+            box-shadow: 0 0 20px rgba(27, 154, 247, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); } }
+@keyframes glowing-primary {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
+            box-shadow: 0 0 20px rgba(27, 154, 247, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
+            box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); } }
+
+@-webkit-keyframes glowing-plain {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); } }
+
+@keyframes glowing-plain {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.3); } }
+
+@-webkit-keyframes glowing-inverse {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+            box-shadow: 0 0 20px rgba(34, 34, 34, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); } }
+
+@keyframes glowing-inverse {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(34, 34, 34, 0.8);
+            box-shadow: 0 0 20px rgba(34, 34, 34, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(34, 34, 34, 0.3);
+            box-shadow: 0 0 0 rgba(34, 34, 34, 0.3); } }
+
+@-webkit-keyframes glowing-action {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+            box-shadow: 0 0 20px rgba(165, 222, 55, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); } }
+
+@keyframes glowing-action {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(165, 222, 55, 0.8);
+            box-shadow: 0 0 20px rgba(165, 222, 55, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(165, 222, 55, 0.3);
+            box-shadow: 0 0 0 rgba(165, 222, 55, 0.3); } }
+
+@-webkit-keyframes glowing-highlight {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+            box-shadow: 0 0 20px rgba(254, 174, 27, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); } }
+
+@keyframes glowing-highlight {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(254, 174, 27, 0.8);
+            box-shadow: 0 0 20px rgba(254, 174, 27, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(254, 174, 27, 0.3);
+            box-shadow: 0 0 0 rgba(254, 174, 27, 0.3); } }
+
+@-webkit-keyframes glowing-caution {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); } }
+
+@keyframes glowing-caution {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(255, 67, 81, 0.8);
+            box-shadow: 0 0 20px rgba(255, 67, 81, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(255, 67, 81, 0.3);
+            box-shadow: 0 0 0 rgba(255, 67, 81, 0.3); } }
+
+@-webkit-keyframes glowing-royal {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+            box-shadow: 0 0 20px rgba(123, 114, 233, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); } }
+
+@keyframes glowing-royal {
+  from {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); }
+
+  50% {
+    -webkit-box-shadow: 0 0 20px rgba(123, 114, 233, 0.8);
+            box-shadow: 0 0 20px rgba(123, 114, 233, 0.8); }
+
+  to {
+    -webkit-box-shadow: 0 0 0 rgba(123, 114, 233, 0.3);
+            box-shadow: 0 0 0 rgba(123, 114, 233, 0.3); } }
+
+/*
+* Glowing Buttons Base Styes
+*
+* A pulse like glow that appears
+* rythmically around the edges of
+* a button.
+*/
+.button-glow {
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: glowing;
+          animation-name: glowing; }
+  .button-glow:active, .button-glow.active, .button-glow.is-active {
+    -webkit-animation-name: none;
+            animation-name: none; }
+
+/*
+* Glowing Button Colors
+*
+* Create colors for glowing buttons
+*/
+.button-glow.button-primary {
+  -webkit-animation-name: glowing-primary;
+          animation-name: glowing-primary; }
+.button-glow.button-plain {
+  -webkit-animation-name: glowing-plain;
+          animation-name: glowing-plain; }
+.button-glow.button-inverse {
+  -webkit-animation-name: glowing-inverse;
+          animation-name: glowing-inverse; }
+.button-glow.button-action {
+  -webkit-animation-name: glowing-action;
+          animation-name: glowing-action; }
+.button-glow.button-highlight {
+  -webkit-animation-name: glowing-highlight;
+          animation-name: glowing-highlight; }
+.button-glow.button-caution {
+  -webkit-animation-name: glowing-caution;
+          animation-name: glowing-caution; }
+.button-glow.button-royal {
+  -webkit-animation-name: glowing-royal;
+          animation-name: glowing-royal; }
+
+/*
+* Button Wrapper
+*
+* A wrap around effect to highlight
+* the shape of the button and offer
+* a subtle visual effect.
+*/
+.button-wrap {
+  border: 1px solid #e3e3e3;
+  display: inline-block;
+  padding: 9px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
+  background: linear-gradient(#f2f2f2, white);
+  border-radius: 200px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04); }
+
+/*
+* Button Sizes
+*
+* This file creates the various button sizes
+* (ex. .button-large, .button-small, etc.)
+*/
+.button-normal {
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 40px; }
+
+.button-small {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px; }
+
+.button-tiny {
+  font-size: 9.6px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 24px; }
 
 .ui-loading .ui-loader {
     display: none;

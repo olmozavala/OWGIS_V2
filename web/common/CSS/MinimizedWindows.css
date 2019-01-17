@@ -51,20 +51,31 @@
     Created on : May 27, 2014, 3:49:32 PM
     Author     : harshulpandav
 */
-/* line 12, ../scss/MinimizedWindows.scss */
+/* line 12, ../scss/MinimizedWindows.scss 
 #minimizedWindowsContainer {
   width: 100%;
   bottom: 62px;
   position: absolute;
+}*/
+#minimizedWindowsContainer {
+    width: 45%;
+    bottom: 70px;
+    position: absolute;
+    left: 14.5em;
 }
 
 /* line 19, ../scss/MinimizedWindows.scss */
 .minimizedWindow {
   padding: 5px 10px 20px 10px;
-  background-color: black;
+  background-color: white;
   opacity: 0.7;
   display: none;
   position: relative;
   margin: 5px;
   cursor: default;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+      color: #333;
+
 }

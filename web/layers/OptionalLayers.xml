@@ -1,12 +1,25 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-	<!-- Optional layers -->
-	<OptionalLayers BBOX="-171.79111060289117,18.916190000000142,-66.96465999999998,71.35776357694175"
-					server="http://132.248.8.238:8080/geoserver/wms"
-					vectorLayer="true"> 
-		<layer Menu="lev1,statesdyn" name="demo:us_states" EN="US States" ES="Estados US"  jsonp="true"/>
-		<layer Menu="lev1,states" name="demo:us_states" featureInfo="demo:world_countries" EN="US States" ES="Estados US"/>
-		<layer Menu="count" name="demo:world_countries" EN="Countries" ES="Paises" zoom="1" center="-100,22"/>
-		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises"/>
+	<!-- This are the menus that are available to display entries -->
+	<Menus>
+		<Menu ID="lev1" EN="Cloud Cover" ES="Cobertura nubosa"/>
+		
+		<!-- Tais menu that are available to display entries IOA OWGIS-->
+		<Menu ID="municipiosMX" EN="MX Counties" ES="Municipios MX" />
+		<Menu ID="estadosMX" EN="MX States" ES="Estados MX" />
+		<Menu ID="DivisionMx" EN="Political Division " ES="División Política " />
+		<Menu ID="paises" EN="Countries" ES="Paises" />
+		<Menu ID="bat" EN="Model Batimetria" ES="Modelo Batimetria" />
+                <Menu ID="estaciones" EN="Stations" ES="Estaciones" />
+        </Menus>        
+        <!-- Optional layers -->
+        <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
+                
+		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="true" selected="true" />
+		<layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="true"  selected="true" />
+                <layer Menu="paises" name="cen:paises" EN="Countries" ES="Paises" tiled="true" />
+		<layer Menu="bat" name="cen:batimetria" EN="MX Bathymetry" ES="Batimetria del golfo" tiled="true"  />
+                <layer Menu="estaciones" name="cen:estaciones_geo" EN="Stations" ES="Estaciones" tiled="true"  selected="true" />
+		
 	</OptionalLayers>
-
+        
 </MenuConf>

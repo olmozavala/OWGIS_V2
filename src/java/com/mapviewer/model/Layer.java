@@ -89,6 +89,7 @@ public class Layer {
     // ---- zoom and position options
     private Byte zoom;//zoom in map
     private Point center;//longitude
+    private String isParticle;//Stores if it is a particle or not
 
 	/**
 	 * Verify that the input MenuEntry correspond to this layer
@@ -167,7 +168,7 @@ public class Layer {
 		this.cql_cols = "";// By default the layers doe not have cql columns
 		this.overlayStreamlines = "";
 		this.defParticleSpeed = 1.0f;//By default we don't change it
-        
+        this.isParticle="false";//Stores if it is a particle or not
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
@@ -227,7 +228,7 @@ public class Layer {
 			String overlayStreamlines, 
             String belowMinColor, String aboveMaxColor,
             int numColorBands,
-			float defParticleSpeed) {
+			float defParticleSpeed, String isParticle) {
 		
 		this.bbox = bbox;
 		this.style = style;
@@ -270,6 +271,7 @@ public class Layer {
         //default zoom and center position is null
         this.zoom = null;
         this.center = null;
+        this.isParticle = isParticle;
         this.numColorBands = numColorBands;
 	}
 	//Geters
@@ -328,6 +330,7 @@ public class Layer {
 				}
 			}
 			
+            layerDetails.accumulate("isParticle", isParticle);
 			layerDetails.accumulate("server", server);
 			layerDetails.accumulate("name", name);
 			layerDetails.accumulate("srs", this.getProjection());
@@ -695,6 +698,14 @@ public class Layer {
 	public void setMultipleDates(boolean multipleDates) {
 		this.multipleDates = multipleDates;
 	}
+    
+    public void setIsParticle(String isParticle) {
+		this.isParticle = isParticle;
+	}
+    
+    public String getIsParticle() {
+		return isParticle;
+	}
 
 	public boolean isNcwmstwo() {
 		return ncwmstwo;
@@ -716,7 +727,7 @@ public class Layer {
         return numColorBands;
     }
         
-        public String getAboveMaxColor() {
+    public String getAboveMaxColor() {
 		return aboveMaxColor;
 	}
 

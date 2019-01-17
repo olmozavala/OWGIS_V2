@@ -71,6 +71,30 @@ This is the main jsp file that forms the html webpage. It contains the skeleton 
 					owgisMain();
 				});
 		</script>
+                                
+                <!-- These divs are required for highcharts exclusively custom for this project -->
+                <div id="estaciones_charts" class="container">
+                    <div id="closecharts" style="position: relative; top: -10px; right: -10px; float: right;">
+                        <a class="btn btn-default btn-xs " href="#" onclick="owgis.layouts.draggable.minimizeWindow('chartsMinimize', 'estaciones_charts')">
+				<span class="glyphicon glyphicon-resize-small"></span>
+			</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-3 col-lg-2" id="est_list_container">
+                              <ul class="nav flex-column nav-pills nav-stacked" id="v-pills-tab" aria-orientation="vertical" role="tablist">
+                                
+                              </ul>
+                        </div>
+                        <div class="col-md-10 col-sm-9 col-lg-10" id="est_graph_container">
+                          <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade in active" id="v-pills-est" role="tabpanel" >
+                                <div id="forecastvsreportHighcharts"></div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
                 <!-- These divs are required for highcharts -->
                 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showVertProf">
                     <div class="modal-dialog">

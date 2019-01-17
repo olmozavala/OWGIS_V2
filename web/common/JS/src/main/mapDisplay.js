@@ -300,7 +300,7 @@ function MapViewersubmitForm() {
     }
     if (map !== null) {
         owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
-    	if(!mobile){ 
+    	//if(!mobile){ 
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
             //localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.map_center = (_map_projection == 'EPSG:4326') ? ol3view.getCenter() : ol.proj.transform(ol3view.getCenter(), 'EPSG:3857', 'EPSG:4326') ;
@@ -316,7 +316,7 @@ function MapViewersubmitForm() {
             localStorage.particles_lifetime = owgis.ncwms.currents.particles.getParticlesLifeTime();
             localStorage.particles_color = owgis.ncwms.currents.getColor();
             document.getElementById("mobile").value = mobile;
-    	}
+    	//}
         submitForm();
     }
 }
