@@ -6,6 +6,7 @@
 	
 <!-- Foot page --> 
 <div id="leftFooter" class="leftFoot">
+        <span>Map data: Google, DigitalGlobe</span>
 	&nbsp;
 	<a  href="https://www.unam.mx/">
 		<img border="0" src="./common/images/Logos/unam.png" alt="Logo" width="30" height="30" /></a>
