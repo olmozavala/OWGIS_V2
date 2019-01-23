@@ -308,9 +308,9 @@ public class OpenLayersManager {
 					+ "\t\t params: {LAYERS: '"+ actualLayer.getName() + "'";
 			
 			if (actualLayer.isncWMS()) {
-				if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
+				//if (actualLayer.getMaxColor() != -1 && actualLayer.getMinColor() != -1) {
 					layersScript += ", colorscalerange: '" + actualLayer.getMinColor() + "," + actualLayer.getMaxColor() + "'";
-				}
+				//}
 				layersScript += ", ncwms:'true'";
 			}
 
@@ -429,7 +429,7 @@ public class OpenLayersManager {
         String layerGoogle = "\tlayer"+actualLayer+" = new ol.layer.Tile({\n "+
 				" \t\t source: new ol.source.TileImage({\n";
                 if(kind.equals("earth")) {
-                    layerGoogle += " \t\t\t url: 'http://khm{0-3}.googleapis.com/kh?v=742&hl=pl&&x={x}&y={y}&z={z}',\n";
+                    layerGoogle += " \t\t\t url: 'http://mt1.google.com/vt/lyrs=s&hl=pl&&x={x}&y={y}&z={z}',\n";
                 } else {
                     layerGoogle += " \t\t\t url: 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}',\n";
                 }

@@ -24,7 +24,7 @@
 		<layer Menu="Viento,ANOM,1980" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1980/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1980/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                            
@@ -48,7 +48,7 @@
 		<layer Menu="Viento,ANOM,1981" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1981/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1981/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -70,7 +70,7 @@
 		<layer Menu="Viento,ANOM,1982" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1982/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1982/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1982/U10:atlas_anomalias_1982/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -92,7 +92,7 @@
 		<layer Menu="Viento,ANOM,1983" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1983/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1983/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1983/U10:atlas_anomalias_1983/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -114,7 +114,7 @@
 		<layer Menu="Viento,ANOM,1984" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1984/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1984/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1984/U10:atlas_anomalias_1984/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -137,7 +137,7 @@
 		<layer Menu="Viento,ANOM,1985" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1985/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1985/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1985/U10:atlas_anomalias_1985/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -158,7 +158,7 @@
 		<layer Menu="Viento,ANOM,1986" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1986/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1986/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1986/U10:atlas_anomalias_1986/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -179,7 +179,7 @@
 		<layer Menu="Viento,ANOM,1987" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1987/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1987/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1987/U10:atlas_anomalias_1987/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -200,7 +200,7 @@
 		<layer Menu="Viento,ANOM,1988" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1988/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1988/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1988/U10:atlas_anomalias_1988/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -221,7 +221,7 @@
 		<layer Menu="Viento,ANOM,1989" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1989/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1989/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1989/U10:atlas_anomalias_1989/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -242,7 +242,7 @@
 		<layer Menu="Viento,ANOM,1990" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1990/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1990/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1990/U10:atlas_anomalias_1990/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -263,7 +263,7 @@
 		<layer Menu="Viento,ANOM,1991" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1991/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1991/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1991/U10:atlas_anomalias_1991/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -284,7 +284,7 @@
 		<layer Menu="Viento,ANOM,1992" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1992/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1992/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1992/U10:atlas_anomalias_1992/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -305,7 +305,7 @@
 		<layer Menu="Viento,ANOM,1993" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1993/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1993/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1993/U10:atlas_anomalias_1993/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -326,7 +326,7 @@
 		<layer Menu="Viento,ANOM,1994" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1994/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1994/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1994/U10:atlas_anomalias_1994/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -347,7 +347,7 @@
 		<layer Menu="Viento,ANOM,1995" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1995/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1995/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1995/U10:atlas_anomalias_1995/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -368,7 +368,7 @@
 		<layer Menu="Viento,ANOM,1996" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1996/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1996/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1996/U10:atlas_anomalias_1996/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -389,7 +389,7 @@
 		<layer Menu="Viento,ANOM,1997" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1997/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1997/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1997/U10:atlas_anomalias_1997/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -410,7 +410,7 @@
 		<layer Menu="Viento,ANOM,1998" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1998/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1998/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1998/U10:atlas_anomalias_1998/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -431,7 +431,7 @@
 		<layer Menu="Viento,ANOM,1999" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_1999/U10:V10-mag"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_1999/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1999/U10:atlas_anomalias_1999/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -452,7 +452,7 @@
 		<layer Menu="Viento,ANOM,2000" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2000/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2000/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2000/U10:atlas_anomalias_2000/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -473,7 +473,7 @@
 		<layer Menu="Viento,ANOM,2001" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2001/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2001/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2001/U10:atlas_anomalias_2001/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -494,7 +494,7 @@
 		<layer Menu="Viento,ANOM,2002" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2002/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2002/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2002/U10:atlas_anomalias_2002/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1" 
                             subtitleText="monthly"
                 />
@@ -515,7 +515,7 @@
 		<layer Menu="Viento,ANOM,2003" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2003/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2003/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2003/U10:atlas_anomalias_2003/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -536,7 +536,7 @@
 		<layer Menu="Viento,ANOM,2004" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2004/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2004/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2004/U10:atlas_anomalias_2004/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -557,7 +557,7 @@
 		<layer Menu="Viento,ANOM,2005" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2005/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2005/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2005/U10:atlas_anomalias_2005/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -578,7 +578,7 @@
 		<layer Menu="Viento,ANOM,2006" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2006/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2006/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2006/U10:atlas_anomalias_2006/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -599,7 +599,7 @@
 		<layer Menu="Viento,ANOM,2007" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2007/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2007/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2007/U10:atlas_anomalias_2007/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -620,7 +620,7 @@
 		<layer Menu="Viento,ANOM,2008" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2008/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2008/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2008/U10:atlas_anomalias_2008/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -641,7 +641,7 @@
 		<layer Menu="Viento,ANOM,2009" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2009/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2009/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2009/U10:atlas_anomalias_2009/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -662,7 +662,7 @@
 		<layer Menu="Viento,ANOM,2010" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2010/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2010/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2010/U10:atlas_anomalias_2010/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -683,7 +683,7 @@
 		<layer Menu="Viento,ANOM,2011" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2011/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2011/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2011/U10:atlas_anomalias_2011/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -704,7 +704,7 @@
 		<layer Menu="Viento,ANOM,2012" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2012/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2012/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2012/U10:atlas_anomalias_2012/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -725,7 +725,7 @@
 		<layer Menu="Viento,ANOM,2013" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2013/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2013/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2013/U10:atlas_anomalias_2013/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -746,7 +746,7 @@
 		<layer Menu="Viento,ANOM,2014" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2014/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2014/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2014/U10:atlas_anomalias_2014/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />
@@ -767,7 +767,7 @@
 		<layer Menu="Viento,ANOM,2015" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2015/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2015/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2015/U10:atlas_anomalias_2015/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1" 
                             subtitleText="monthly"
                 />
@@ -788,7 +788,7 @@
 		<layer Menu="Viento,ANOM,2016" 
 			   EN="Monthly Wind Anomalies" ES="Anomalías por mes de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
-			   name="atlas_anomalias_2016/U10:V10-mag"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.2"
+			   name="atlas_anomalias_2016/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_2016/U10:atlas_anomalias_2016/V10" defParticleSpeed="0.2"
                            belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
                             subtitleText="monthly"
                 />

@@ -456,7 +456,7 @@ function initCalendars(){
                             
                             owgis.kml.updateTitleAndKmlLink();//Updates the title of the layer adding the time and depth of the layer
                             
-                            if(!mobile && layerDetails.subtitleText == "hourxmonth"){
+                            if(!mobile && (layerDetails.subtitleText == "hourxmonth" || layerDetails.subtitleText == "monthly") ){
                                 $$("start_calendar").refresh();
                                 $$("end_calendar").refresh();
                             }
