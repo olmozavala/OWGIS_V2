@@ -116,6 +116,7 @@ function initOl3(){
 		defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
 		resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);//unused var
 	}
+        console.log(_map_projection, defCenter);
     //This control is used to display Lat and Lon when the user is moving the mouse over the map
 	var mousePositionControl = new ol.control.MousePosition({
 		coordinateFormat: ol.coordinate.createStringXY(4),
@@ -143,12 +144,12 @@ function initOl3(){
     ol3view = new ol.View({
 		projection: _map_projection,
 		center: defCenter,
-        zoom: mapConfig.zoom,
+                zoom: mapConfig.zoom,
 		maxZoom: mapConfig.zoomLevels,
 		zoomFactor: mapConfig.zoomFactor,
 		maxResolution: mapConfig.maxResolution,
-        loadTilesWhileAnimating: loadTilesWhileAnimating,
-        loadTilesWhileInteracting: loadTilesWhileInteracting
+                loadTilesWhileAnimating: loadTilesWhileAnimating,
+                loadTilesWhileInteracting: loadTilesWhileInteracting
 //		extent: resExtent  // Not working
 	});
     owgis.ol3.view = ol3view;
@@ -163,7 +164,7 @@ function initOl3(){
 		controls: ol.control.defaults({rotate: false}).extend([mousePositionControl, scaleLineControl]),
 		overlays: [ol_popup], //Overlay used for popup
 		target: 'map', // Define 'div' that contains the map
-        renderer: 'canvas', // ['canvas','dom','webgl']
+                renderer: 'canvas', // ['canvas','dom','webgl']
 		logo: false,
 		view: ol3view
         });
@@ -238,11 +239,12 @@ function initOl3(){
             map.once('change:ready', whenMapIsReady.bind(null, callback));
     }
 //////////////////////// center and zoom storage
-    owgis.ol3.positionMap();
+    //owgis.ol3.positionMap();
 
 /////////////////////// custom center, zoom from layer
      var center = layerDetails.center.split(",");
      if(center[0] !== "null" && center[1] !== "null") {
+         console.log("idk");
         map.once('change:ready', function() {
             center = [parseInt(center[0]), parseInt(center[1])];
             var zoom = 'zoom' in layerDetails ? parseInt(layerDetails.zoom) : mapConfig.zoom;
@@ -273,6 +275,7 @@ function detectMapLayersStatus(){
 }
 
 owgis.ol3.positionMap = function() {
+    console.log("moving map position");
 	// --------------- Map visualization and hover texts
 	var newZoom = localStorage.zoom !== undefined && localStorage.zoom <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
