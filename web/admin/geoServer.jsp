@@ -1,12 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="com.mapviewer.business.LayerMenuManagerSingleton"%>
+<%@page import="com.mapviewer.model.Layer"%>
+<%@page import="com.mapviewer.conf.OpenLayerMapConfig"%>
 <html>
 <head>
 		<%@include file="Header.jsp" %>
 </head>
 
 <body>
+<div class="loader"></div>
+<% 
+
+OpenLayerMapConfig mapConfig;
+String configFilePath;
+mapConfig = OpenLayerMapConfig.getInstance();
+
+configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
+
+mapConfig.updateProperties(configFilePath);
+
+//Obtains the folder where XML layers file is stored.
+String layersFolder = getServletContext().getRealPath("/layers/");
+String baseLayerMenuOrientation = mapConfig.getProperty("baseLayerMenuOrientation");
+LayerMenuManagerSingleton.setLayersFolder(layersFolder);
+LayerMenuManagerSingleton layersManager  = LayerMenuManagerSingleton.getInstance();
+String mainLayers ="";
+String vectorLayers ="";
+String menuIDs ="";
+
+for(Layer layer: layersManager.getMainLayers()) {
+	mainLayers = mainLayers + layer.getName() +",";
+}
+mainLayers = mainLayers.substring(0,mainLayers.length()-1);
+for(Layer layer: layersManager.getVectorLayers()) {
+	vectorLayers = vectorLayers + layer.getName() +",";
+}
+vectorLayers = vectorLayers.substring(0,vectorLayers.length()-1);
+for(String menu: layersManager.getMenuIDs()) {
+	menuIDs = menuIDs + menu +",";
+}
+menuIDs = menuIDs.substring(0,menuIDs.length()-1);
+
+%>
+
+<input type="hidden" id="mainLayers" value="<%=mainLayers%>">
+<input type="hidden" id="vectorLayers" value="<%=vectorLayers%>">
+<input type="hidden" id="menuIDs" value="<%=menuIDs%>">
+
 		<!-- start: Header -->
 	<%@include file="navbar.jsp" %>
 	<!-- start: Header -->
@@ -37,14 +79,24 @@
 				</li>
 				<li>
 					<a href="#">XML Configurator</a>
-					<i class="icon-angle-right"></i>
-				</li>
-				<li>
-					<a href="#">GeoServer</a>
 				</li>
 			</ul>
+			
+
 <div class="row-fluid sortable">
-							  <button onclick="javascript:getGeoServerLayers();" class="btn btn-primary" style="margin-bottom: 10px">Get Layers</button>
+	<div class="box-content">
+		<form class="form-horizontal" action="#">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="layerUrl">Enter the URL</label>
+					<div class="controls">
+							<input id="layerUrl" class="span6 typeahead" type="text" name="url">
+							<button class="btn btn-primary" onclick="javascript:getGeoServerLayers();">Get Layers</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
 </div>
 
 

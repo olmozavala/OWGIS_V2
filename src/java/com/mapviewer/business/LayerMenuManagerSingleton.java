@@ -883,6 +883,10 @@ public class LayerMenuManagerSingleton {
 		return vectorLayers;
 	}
 	
+        //get Menu IDs
+	public Set<String> getMenuIDs() {
+		return menuEntries.keySet();
+	}
 	/**
 	 * Sets the folder where the xml layers files are stored.
 	 *

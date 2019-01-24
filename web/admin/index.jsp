@@ -38,9 +38,20 @@
 				<li><a href="#">Dashboard</a></li>
 			</ul>
 
+			<h1><b>Welcome to OWGIS Administration</b></h1>
+			<br>
+       		<h3>This interface will assist in configuring the OWGIS.</h3>
+       		<br>
+			<div style="padding: 20px; background-color: rgb(221, 255, 212); width: 400px; display: table; border-radius: 10px; border: 1px solid rgb(10,212,2);">
+			<span style="vertical-align: middle;
+    display: table-cell;"><img style="max-width: 85px; vertical-align: middle; display: table-cell; margin-right: 1em;" src="img/Green_check_mark.png"></span>
+			<span style="vertical-align: middle;
+    display: table-cell; width: 70%">
 			
-       
-
+								<h5>Server status:</h5>
+								<h1><b>Running</b></h1>
+							</span>
+			</div>
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->

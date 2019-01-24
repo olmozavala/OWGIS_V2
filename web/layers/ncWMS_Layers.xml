@@ -1,6 +1,7 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!-- This are the menus that are available to display entries -->
 	<Menus>
+                <Menu ID="goes" EN="goes Layer" ES="Capas goes" HI_IN="goes परते"/>
 		<Menu ID="ncwms" EN="ncWMS Layers" ES="Capas ncWMS" HI_IN="ncWMS परते"/>
 		<Menu ID="ncwmsOneDateMultZ" EN="ncWMS MultZ OneDate" ES="ESP ncWMS MultZ OneDate"/>
 		<Menu ID="ncwmsOneDepthOneZ" EN="ncWMS OneZ OneDate " ES="ESP ncWMS OneZ OneDate "/>
@@ -11,6 +12,15 @@
 		<Menu ID="ncwmsMultTimes" EN="ncWMS MultTimes" ES="ESP ncWMS MultTimes"/>
 		<Menu ID="oldncwms" EN="ncWMS V1" ES="ESP ncWMS V1"/>
 	</Menus>
+        
+        <MainLayers BBOX="-180,-90,180,90" format="image/png"  server="https://wms1.nsstc.nasa.gov/geoserver/wms" >  
+            <layer Menu="goes" 
+                    EN="GOES C13"
+                    name="GOES:realtime_goesWest_abi_fullDisk_band13_10p35um" 
+                   style="goesIRenhancement"  
+                   
+            />
+        </MainLayers>    
 
 	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
 

@@ -57,7 +57,7 @@
 										<label class="control-label" for="mobileSiteUrl">Enter the URL</label>
 										<div class="controls">
 											<div class="input-append">
-												<input id="mobileSiteUrl" type="text" name="url">
+												<input id="mobileSiteUrl" type="text" name="mobileSiteUrl">
 												<button class="btn btn-primary" onclick="downloadMobileApp();" type="button">Download</button>
 											</div>
 										</div>

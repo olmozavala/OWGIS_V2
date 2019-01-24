@@ -45,9 +45,9 @@ jQuery(document).ready(function($){
 	
 });	
 
-$(document).ready(function(){
-		
-			
+function OnloadFunction(){
+	
+	
 	$("#username").focus(function() {
 		
 		$(this).parent(".input-prepend").addClass("input-prepend-focus");
@@ -125,9 +125,11 @@ $(document).ready(function(){
 	}
 	
 	chart();
-	messageLike();	
+	messageLike();
 	
-});
+}
+
+$(document).ready(OnloadFunction);
 
 /* ---------- Like/Dislike ---------- */
 

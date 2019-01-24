@@ -24,8 +24,16 @@
         <servlet-class>com.mapviewer.business.servlets.MapViewerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AccessInfoservlet</servlet-name>
+        <servlet-class>com.mapviewer.business.servlets.AccessInfoservlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>WCSServlet</servlet-name>
         <servlet-class>com.mapviewer.business.servlets.WCSServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RedirectServersServlet</servlet-name>
+        <servlet-class>com.mapviewer.business.servlets.RedirectServersServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NetCDFAnimationServlet</servlet-name>
@@ -47,6 +55,14 @@
             <param-value>true</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>AddToXMLServlet</servlet-name>
+        <servlet-class>com.mapviewer.business.servlets.AddToXMLServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RedirectServersServlet</servlet-name>
+        <url-pattern>/redirect</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>admin</servlet-name>
         <url-pattern>/admin/</url-pattern>
@@ -70,6 +86,10 @@
     <servlet-mapping>
         <servlet-name>MobileServlet</servlet-name>
         <url-pattern>/MobileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToXMLServlet</servlet-name>
+        <url-pattern>/AddToXMLServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

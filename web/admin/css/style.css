@@ -2988,10 +2988,9 @@ ul.messagesList li span.date {
     z-index: 9999;
     opacity: 0.5;
 /*  background: url('../images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249); */
-background-image: url(page-loader.gif);
+background-image: url(../img/259.GIF);
 background-position-x: 50%;
 background-position-y: 50%;
-background-size: 15%;
 background-repeat-x: no-repeat;
 background-repeat-y: no-repeat;
 background-attachment: initial;

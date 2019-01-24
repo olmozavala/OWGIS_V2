@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <title>OWGIS Administration</title>
 <meta name="description" content="OWGIS Administration">
-<meta name="author" content="Harshul Pandav">
+<meta name="author" content="Dennis Ji">
 <meta name="keyword"
 	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <!-- end: Meta -->
@@ -14,6 +14,8 @@
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link id="base-style" href="css/style.css" rel="stylesheet">
+<link id="base-style" href="css/animate.css" rel="stylesheet">
+
 <link id="base-style-responsive" href="css/style-responsive.css"
 	rel="stylesheet">
 <link
@@ -88,7 +90,8 @@
 <script src="js/counter.js"></script>
 
 <script src="js/retina.js"></script>
-
+<script src="js/qrcode.min.js"></script>
+<script src="js/jquery.qrcode-0.11.0.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/script.js"></script>
 
