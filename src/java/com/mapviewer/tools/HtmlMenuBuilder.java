@@ -113,6 +113,7 @@ public class HtmlMenuBuilder {
 			//Updates the number of main layers and the base path of the website
 			HtmlMenuBuilder.numMainLayers = menuSing.getBackgroundLayers().size();//getBackgroundLayers, background or mainLayer???
 			HtmlMenuBuilder.basePath = basePath;
+                        
 			TreeNode currRoot = rootNode;
 			String tabs = "\t\t";//Defines the default number of tabs for the html code
 			OptMenuStruct menuParams = new OptMenuStruct();

@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mapviewer.business.AccessControls;
 import com.mapviewer.business.LayerMenuManagerSingleton;
 import com.mapviewer.business.NetCDFRequestManager;
 import com.mapviewer.business.OpenLayersManager;
@@ -61,7 +62,9 @@ public class MapViewerServlet extends HttpServlet {
 	OpenLayersManager opManager;//OpenLayers Code
 	OpenLayerMapConfig mapConfig;
 	NetCDFRequestManager ncManager;// This object is used to manage the netcdf curr_main_layers
+        AccessControls accessControl;
 	String[] linksVectorialesKmz;
+        XMLFilesException errorOnInit;//Its a flag that indicates there was an error on 
 	String configFilePath;
 
 	Boolean exceptionInitializingVariables = false;
@@ -73,21 +76,19 @@ public class MapViewerServlet extends HttpServlet {
 	 * @throws XMLLayerException 
 	 */
 	private void initializeVariables() throws FileNotFoundException, XMLFilesException, XMLLayerException{
-			mapConfig = OpenLayerMapConfig.getInstance();
-
-			configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
-
-			mapConfig.updateProperties(configFilePath);
-            
-			//Obtains the folder where XML layers file is stored.
-			String layersFolder = getServletContext().getRealPath("/layers/");
-			String baseLayerMenuOrientation = mapConfig.getProperty("baseLayerMenuOrientation");
-			HtmlMenuBuilder.baseLayerMenuOrientation = baseLayerMenuOrientation;
-
-			LayerMenuManagerSingleton.setLayersFolder(layersFolder);//Set the layers folder
-
-			opManager = new OpenLayersManager();//initialize the OpenLayers
-			ncManager = new NetCDFRequestManager();
+            mapConfig = OpenLayerMapConfig.getInstance();
+            configFilePath = getServletContext().getRealPath("/WEB-INF/conf/MapViewConfig.properties");
+            mapConfig.updateProperties(configFilePath);
+            //Obtains the folder where XML layers file is stored.
+            String layersFolder = getServletContext().getRealPath("/layers/");
+            String baseLayerMenuOrientation = mapConfig.getProperty("baseLayerMenuOrientation");
+            HtmlMenuBuilder.baseLayerMenuOrientation = baseLayerMenuOrientation;
+            LayerMenuManagerSingleton.setLayersFolder(layersFolder);//Set the layers folder
+            accessControl = AccessControls.getInstance();
+            opManager = new OpenLayersManager();//initialize the OpenLayers
+            ncManager = new NetCDFRequestManager();
+            linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
+            HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
             LayerMenuManagerSingleton.getInstance().refreshTree(true);//Initializes all the layers from the XML files
 	}
 	/**
@@ -119,59 +120,52 @@ public class MapViewerServlet extends HttpServlet {
 	 * @throws IOException if an I/O error occurs
 	 */
     @SuppressWarnings("UnusedAssignment")
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		String nextPage = PagesNames.ERROR_PAGE;//error page, this gets modified if everything is fine.
-		mapConfig.updateProperties(configFilePath);
-		//its important to erase the basePath becuase it get appended again.
-		try {
-			
-			response.setContentType("text/html;charset=iso-8859-1");
-			HttpSession session = request.getSession();//Se obtiene la sesion
-			
-			TreeNode arbolMenuRasters = null;
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nextPage = PagesNames.ERROR_PAGE;//error page, this gets modified if everything is fine.
+        mapConfig.updateProperties(configFilePath);
+        //its important to erase the basePath becuase it get appended again.
+        try {
+            response.setContentType("text/html;charset=iso-8859-1");
+            HttpSession session = request.getSession();//Se obtiene la sesion
+            
+            TreeNode arbolMenuRasters = null;
             //If there was a problem initializing the variables we try to do it again.
-			// This code catches information about the exception and displays it for the user.
-			try {
-                
-				if(exceptionInitializingVariables){
+            // This code catches information about the exception and displays it for the user.
+            try {
+                if(exceptionInitializingVariables){
                     initializeVariables();
                 }
-				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
-				exceptionInitializingVariables = false;
-			} catch (XMLFilesException ex) {
+                arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+                exceptionInitializingVariables = false;
+            } catch (XMLFilesException ex) {
                 //If an exception happens, we start with the default menu
-				arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
-				session.setAttribute("MenuDelUsuario", arbolMenuRasters);
-				//If there is an XMLLayerException exception we just display it as
-				// warning in the main site
+                arbolMenuRasters = UserRequestManager.createNewRootMenu(request, session);
+                session.setAttribute("MenuDelUsuario", arbolMenuRasters);
+                //If there is an XMLLayerException exception we just display it as
+                // warning in the main site
                 StringWriter sw = new StringWriter();
-				ex.printStackTrace(new PrintWriter(sw));
-				String exceptionInfo = ex.getMessage();
-				String exceptionTrace = sw.toString();
-				exceptionTrace = exceptionTrace.substring(0, exceptionTrace.indexOf("\n"));
-				exceptionTrace = exceptionTrace.replace("\"","");
-				exceptionTrace = exceptionTrace.replace("\'","");
-				exceptionInfo = exceptionInfo.replace("\"","");
-				exceptionInfo = exceptionInfo.replace("\'","");
-				
-				request.setAttribute("warningText", exceptionInfo);
-				request.setAttribute("warningInfo", exceptionTrace);
-				
-				exceptionInitializingVariables = true;
-			}
-            
-			if(linksVectorialesKmz  == null){
-				linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
-				HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
-			}
-			
-			//get menu entry
-			MenuEntry[] rasterSelecteLayers = TreeMenuUtils.obtieneMenuSeleccionado(arbolMenuRasters);
-            
-			//obtain layer index
-			int[] baseLayers = opManager.obtainArrayIndexOfLayers(rasterSelecteLayers);
+                ex.printStackTrace(new PrintWriter(sw));
+                String exceptionInfo = ex.getMessage();
+                String exceptionTrace = sw.toString();
+                exceptionTrace = exceptionTrace.substring(0, exceptionTrace.indexOf("\n"));
+                exceptionTrace = exceptionTrace.replace("\"","");
+                exceptionTrace = exceptionTrace.replace("\'","");
+                exceptionInfo = exceptionInfo.replace("\"","");
+                exceptionInfo = exceptionInfo.replace("\'","");
+                
+                request.setAttribute("warningText", exceptionInfo);
+                request.setAttribute("warningInfo", exceptionTrace);
+                
+                exceptionInitializingVariables = true;
+            }
+            if(linksVectorialesKmz  == null){
+                linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
+                HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
+            }
+            //get menu entry
+            MenuEntry[] rasterSelecteLayers = TreeMenuUtils.obtieneMenuSeleccionado(arbolMenuRasters);
+            //obtain layer index
+            int[] baseLayers = opManager.obtainArrayIndexOfLayers(rasterSelecteLayers);
             Layer curr_main_layer = null;
             //this variables are then read by the GlobalJavascript.jsp
             //The next variable is used to decide if the layer has
@@ -202,30 +196,25 @@ public class MapViewerServlet extends HttpServlet {
                 request.setAttribute("max_time_range", null);
                 request.setAttribute("cqlcols", null);
             }
-			
-			//Obtains and set a lenguage.
-			
-			String defaultLang=mapConfig.getProperty("defaultLanguage");
-			String availableLanguages=mapConfig.getProperty("availableLanguages");
-			int imageResolution = Integer.parseInt(mapConfig.getProperty("imageResolution"));
+            //Obtains and set a lenguage.
+            String defaultLang=mapConfig.getProperty("defaultLanguage");
+            String availableLanguages=mapConfig.getProperty("availableLanguages");
+            int imageResolution = Integer.parseInt(mapConfig.getProperty("imageResolution"));
             
             request.setAttribute("imageResolution", imageResolution);
-            
-			request.setAttribute("defaultLanguage", defaultLang);
-			request.setAttribute("availableLanguages", availableLanguages);
+            request.setAttribute("defaultLanguage", defaultLang);
+            request.setAttribute("availableLanguages", availableLanguages);
             
             //Setting the locale gotten from the one seleted by the user on the website
-			String language=request.getParameter("_locale");
-			
-			//setting Default locale from the properties file on first time page load
-			if(language==null || "".equals(language)){
-				language=defaultLang;
-			}
+            String language=request.getParameter("_locale");
+            //setting Default locale from the properties file on first time page load
+            if(language==null || "".equals(language)){
+                language=defaultLang;
+            }
 
             //get and set background layers
-            
             String defaultBackgroundLayer = mapConfig.getProperty("backgroundLayer");
-			String backgroundLayer = request.getParameter("backgroundLayer");
+            String backgroundLayer = request.getParameter("backgroundLayer");
             backgroundLayer =  (backgroundLayer == null || "".equals(backgroundLayer)) ? defaultBackgroundLayer : backgroundLayer;
             //get the resolution for a selected background layer
             if(! backgroundLayer.equals(defaultBackgroundLayer)) {
@@ -241,59 +230,51 @@ public class MapViewerServlet extends HttpServlet {
             } else {
                 mapConfig.updateProperty("maxResolution", mapConfig.getMaxResolution() + "");
             }
-			request.setAttribute("backgroundLayer", backgroundLayer);
+            request.setAttribute("backgroundLayer", backgroundLayer);
 
             //Obtains the selection of the vector layers of the user.
+            String[] selectedVectorLayers = UserRequestManager.manageVectorLayersOptions(request, session);
+            int[] vectorLayers = opManager.obtainIndexForOptionalLayers(selectedVectorLayers);
+            //openlayers configuration of javascript.
+            String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language, backgroundLayer);
 
-			String[] selectedVectorLayers = UserRequestManager.manageVectorLayersOptions(request, session);
-			int[] vectorLayers = opManager.obtainIndexForOptionalLayers(selectedVectorLayers);
-
-			//openlayers configuration of javascript.
-			String openLayerConfig = opManager.createOpenLayConfig(baseLayers, vectorLayers, language, backgroundLayer);
-
-			//This is for the configuration of the page, this are read by the javascript throuhg jsp.
-			
-			request.setAttribute("openLayerConfig", openLayerConfig);
-			request.setAttribute("language", language);
-			//add the link of the vactor layers the one with the checkboxes.
-			request.setAttribute("sizeVectLayers", opManager.getVectorLayers().size());
-			request.setAttribute("linksKmzVect", linksVectorialesKmz);
+            //This is for the configuration of the page, this are read by the javascript throuhg jsp.
+            request.setAttribute("openLayerConfig", openLayerConfig);
+            request.setAttribute("language", language);     
+            //add the link of the vactor layers the one with the checkboxes.
+            request.setAttribute("sizeVectLayers", opManager.getVectorLayers().size());
+            request.setAttribute("linksKmzVect", linksVectorialesKmz);
             
-			String palette = request.getParameter("paletteSelect");
-			if (palette == null && curr_main_layer != null) {
-				palette = curr_main_layer.getPalette();
-			}
-			request.setAttribute("palette", palette);
-			
-			//We define the link to request a KML file
-			request.setAttribute("linkKML", UserRequestManager.getKmlLink(opManager, baseLayers, palette));
-			//Defines the title of the layer
-			String layerTitle = UserRequestManager.getTitleOfLayer(opManager, baseLayers, vectorLayers, language);
-			//we put the title of the layer next to Gulf of Mexico.
-			request.setAttribute("layerTitle", layerTitle);
-			request.setAttribute("titleSize", layerTitle.length());
-			request.setAttribute("totalLayers", opManager.getTotalVisibleLayers());
-			request.setAttribute("_id_first_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
-			
+            String palette = request.getParameter("paletteSelect");
+            if (palette == null && curr_main_layer != null) {
+                palette = curr_main_layer.getPalette();
+            }
             
-			request.setAttribute("newSession", session.isNew());//Inidicates if is the first time the map was loaded
-			
-			request.setAttribute("paletteUrl", NetCDFRequestManager.getPaletteUrl(curr_main_layer, palette));
-			
-			//Contains configuration of the Map like zoom, center, origin, etc.
+            request.setAttribute("palette", palette);
+            //We define the link to request a KML file
+            request.setAttribute("linkKML", UserRequestManager.getKmlLink(opManager, baseLayers, palette));
+            //Defines the title of the layer
+            String layerTitle = UserRequestManager.getTitleOfLayer(opManager, baseLayers, vectorLayers, language);
+            //we put the title of the layer next to Gulf of Mexico.
+            request.setAttribute("layerTitle", layerTitle);
+            request.setAttribute("titleSize", layerTitle.length());
+            request.setAttribute("totalLayers", opManager.getTotalVisibleLayers());
+            request.setAttribute("_id_first_main_layer", (opManager.getBackgroundLayers()).size());//Index of the  main layer (how many background layers we have)
+            request.setAttribute("newSession", session.isNew());//Inidicates if is the first time the map was loaded
+            request.setAttribute("paletteUrl", NetCDFRequestManager.getPaletteUrl(curr_main_layer, palette));
+            //Contains configuration of the Map like zoom, center, origin, etc.
             request.setAttribute("mapConfig", mapConfig.toJSONObject());
-
-			//Setting the animation URL if any
-			String animUrl = request.getParameter("animationURL");
-			request.setAttribute("animationURL", animUrl == null ? "" : animUrl);
+            //Setting the animation URL if any
+            String animUrl = request.getParameter("animationURL");
+            request.setAttribute("animationURL", animUrl == null ? "" : animUrl);
 			
             //----verificar si llega hasta aqui
-			//redirect the page.
+            //redirect the page.
             nextPage = PagesNames.MAIN_PAGE;
-			//Detect Mobile Browser
-			String mobileGet = request.getParameter("mobile");
-			String ua = request.getHeader("User-Agent").toLowerCase();
-			if ( ua.matches("(?i).*((android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino).*") 
+            //Detect Mobile Browser
+            String mobileGet = request.getParameter("mobile");
+            String ua = request.getHeader("User-Agent").toLowerCase();
+            if ( ua.matches("(?i).*((android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino).*") 
                                 || ua.indexOf("iphone") != -1 || ua.indexOf("ipad") != -1 
                                 || ua.indexOf("htc_flyer") != -1 || ua.indexOf("maemo") != -1 || ua.indexOf("tablet") != -1 || ua.indexOf("hpwos") != -1 || ua.indexOf("playbook") != -1
                                 || ua.indexOf("palm") != -1 || ua.indexOf("webos") != -1
@@ -302,31 +283,27 @@ public class MapViewerServlet extends HttpServlet {
                                 || (request.getParameter("mobile") != null && request.getParameter("mobile").equals("true"))) {
 				nextPage = PagesNames.MOBILE_PAGE;
 				request.setAttribute("mobile", "true");//get get variable to true
-			} else {
-				request.setAttribute("mobile", "false");
-			}
-			
-		} catch (XMLFilesException ex) {
-			request.setAttribute("errorText", "Unable to parse XML files: " + ex.getMessage());
-			StringWriter sw = new StringWriter();
-			ex.printStackTrace(new PrintWriter(sw));
-			String exceptionTrace = sw.toString();
-			request.setAttribute("traceText", exceptionTrace);
-			
-			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-			
-		} catch (Exception ex) {
-			request.setAttribute("errorText", "Inialization Exception: " + ex.getMessage());
-			StringWriter sw = new StringWriter();
-			ex.printStackTrace(new PrintWriter(sw));
-			String exceptionTrace = sw.toString();
-			request.setAttribute("traceText", exceptionTrace);
-			
-			Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		view.forward(request, response);
-	}
+            } else {
+                request.setAttribute("mobile", "false");
+            }
+        } catch (XMLFilesException ex) {
+            request.setAttribute("errorText", "Unable to parse XML files: " + ex.getMessage());
+            StringWriter sw = new StringWriter();
+            ex.printStackTrace(new PrintWriter(sw));
+            String exceptionTrace = sw.toString();
+            request.setAttribute("traceText", exceptionTrace);
+            Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            request.setAttribute("errorText", "Inialization Exception: " + ex.getMessage());
+            StringWriter sw = new StringWriter();
+            ex.printStackTrace(new PrintWriter(sw));
+            String exceptionTrace = sw.toString();
+            request.setAttribute("traceText", exceptionTrace);
+            Logger.getLogger(MapViewerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        RequestDispatcher view = request.getRequestDispatcher(nextPage);
+        view.forward(request, response);
+    }
 	
 	/**
 	 * Processes requests for both HTTP

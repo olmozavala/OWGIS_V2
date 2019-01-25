@@ -148,6 +148,7 @@ public class NetCDFRequestManager {
 
 		URL ncReq;
 		String detailsRequest = buildRequest(layer, "GetMetadata", "layerDetails");
+                //System.out.print(detailsRequest);
 		JSONObject layerDetails = new JSONObject();
 
 		int maxTries = 2; //Number of tries we willl make to retrieve an specific layer

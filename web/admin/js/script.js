@@ -234,7 +234,7 @@ function getGeoServerLayers(){
 //	        $('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
 	        var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
 	        //alert(json);
-	        
+	        console.log(ncWMSFl,json);
 	        $.ajax({
 	    		type : "POST",
 	    		url : "../AddToXMLServlet",

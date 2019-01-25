@@ -279,6 +279,7 @@ public class LayerMenuManagerSingleton {
 		
 		if (instance == null) {//Only the first time we initialize
 			instance = new LayerMenuManagerSingleton();
+                        instance.refreshTree(true);
 		}
 		
 		return instance;
@@ -306,7 +307,7 @@ public class LayerMenuManagerSingleton {
 		String refreshLayers = mapConfig.getRefreshLayers();
 		long millsSinceLastUpdate = currDate.getTime() - lastUpdate.getTime();
 		switch(refreshLayers.toLowerCase()){
-            case "hourly":
+                        case "hourly":
 				if( millsSinceLastUpdate > (MILLIS_PER_DAY/24)) update = true;
 				break;
 			case "daily":

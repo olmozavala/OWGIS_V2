@@ -13,7 +13,7 @@
                 <Menu ID="count" EN="Countries" ES="Paises" HI_IN="देशों"/> 
 	</Menus>
 
-    <!-- GEBCO LAYER working properly but slow and heavy Jun/2017 -->
+        <!-- GEBCO LAYER working properly but slow and heavy Jun/2017 -->
 	<!-- 
 	<BackgroundLayers server="http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv"
 				BBOX="-180,90,-90,180" > 

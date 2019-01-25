@@ -85,7 +85,7 @@ menuIDs = menuIDs.substring(0,menuIDs.length()-1);
 
 <div class="row-fluid sortable">
 	<div class="box-content">
-		<form class="form-horizontal" action="#">
+		<div class="form-horizontal" action="#">
 			<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="layerUrl">Enter the URL</label>
@@ -95,7 +95,7 @@ menuIDs = menuIDs.substring(0,menuIDs.length()-1);
 					</div>
 				</div>
 			</fieldset>
-		</form>
+                </div>
 	</div>
 </div>
 
