@@ -64,6 +64,15 @@ div.leftFoot {
   opacity: 0.8;
 }
 
+.leftFoot span {
+	    color: #fff;
+	    font-size: 10px;
+	    position: relative;
+	    float: left;
+	    bottom: -15px;
+	}
+	
+
 /* line 23, ../scss/HomePage.scss */
 #owgislogocont {
   position: absolute;
