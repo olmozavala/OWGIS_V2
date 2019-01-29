@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 */
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -114,11 +114,12 @@ public class AddToXMLServlet extends HttpServlet {
                 XMLOutputter xmlOutput = new XMLOutputter();
 
 		// display nice nice
-		xmlOutput.setFormat(Format.getPrettyFormat());
-		xmlOutput.output(doc, new FileWriter(filePath));
-
+                Format f = Format.getPrettyFormat();  
+	        f.setEncoding("UTF-8");
+		xmlOutput.setFormat(f);
+		xmlOutput.output(doc, new FileOutputStream(filePath));
 		// xmlOutput.output(doc, System.out);
-		System.out.println("File updated!");
+		System.out.println("File updated! "+filePath+" "+xmlOutput.outputString(doc));
 	}
     
 	public String getSArray(JSONArray arr){

@@ -88,6 +88,7 @@ public class MapViewerServlet extends HttpServlet {
             opManager = new OpenLayersManager();//initialize the OpenLayers
             ncManager = new NetCDFRequestManager();
             linksVectorialesKmz = UserRequestManager.getCheckboxKmlLinks(opManager.getVectorLayers());
+            System.out.print(Arrays.toString(linksVectorialesKmz));
             HtmlMenuBuilder.vecLinks = linksVectorialesKmz;
             LayerMenuManagerSingleton.getInstance().refreshTree(true);//Initializes all the layers from the XML files
 	}
