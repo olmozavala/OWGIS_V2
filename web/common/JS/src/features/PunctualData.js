@@ -1023,7 +1023,7 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
 owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
     var currLayer = eval('layer'+layerNumber);
     var currSource = currLayer.getSource();
-    
+    if(typeof currSource.getParams !== "undefined"){
     if(!_.isUndefined(layerDetails.windrose) && currSource.getParams().LAYERS == "cen:rosasviento" ){
         
         var currBBOX =  ol3view.calculateExtent(map.getSize());
@@ -1082,6 +1082,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             // "Page loaded, but status not OK."
             console.error(result); 
         });
+    }
     }
 }
 
