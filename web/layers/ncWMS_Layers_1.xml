@@ -818,7 +818,7 @@
 
                 <!-- PromMinM -->
                 <layer Menu="Temp,PromMinM" 
-			   EN="Monthly Temperature Minimum Mean " ES="Mínima promedio mensual de Temperatura a 2 metros"
+			   EN="Monthly Temperature Minimum Mean " ES="Promedio mensual de mínimas de Temperatura a 2 metros"
 			   name="atlas_promedios_mins_mensuales/T2" 
 			   style="default-scalar" palette="tempatlas"
                            mincolor="-15" maxcolor="50" belowMinColor="extend" aboveMaxColor="extend" numColorBands="65"

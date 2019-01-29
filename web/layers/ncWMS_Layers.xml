@@ -5,9 +5,9 @@
 		<Menu ID="PromM" EN="Monthly Climatology" ES="Climatología Mensual"/>
 		<Menu ID="PromHM" EN="Hourly Climatology by Month" ES="Climatología horaria por mes"/>
 		<Menu ID="PromMAD" EN="Daily Absolute Maximum" ES="Máxima absoluta diaria"/>
-		<Menu ID="PromMAM" EN="Monthly Maximum Mean" ES="Máxima promedio mensual"/>
+		<Menu ID="PromMAM" EN="Monthly Maximum Mean" ES="Promedio mensual de máximas"/>
 		<Menu ID="MAM" EN="Monthly Absolute Maximum" ES="Máxima absoluta por mes"/>
-		<Menu ID="PromMinM" EN="Monthly Minimum Mean" ES="Mínima promedio mensual"/>
+		<Menu ID="PromMinM" EN="Monthly Minimum Mean" ES="Promedio mensual de mínimas"/>
 		<Menu ID="MinAM" EN="Monthly Absolute Minimum" ES="Mínima absoluta por mes"/>
 		<Menu ID="ANOM" EN="Monthly Anomalies" ES="Anomalías mensuales"/>
 		<Menu ID="Umbral" EN="Thresholds " ES="Índices climáticos"/>
@@ -268,7 +268,7 @@
                 
                 <!-- Promedios maximos absolutos mensuales -->
                 <layer Menu="Temp,PromMAM" 
-			   EN=" Monthly Temperature Absolute Maximum" ES="Máxima promedio mensual de Temperatura a 2 metros"
+			   EN=" Monthly Temperature Absolute Maximum" ES="Promedio mensual de máximas de Temperatura a 2 metros"
 			   name="atlas_promedios_maxs_abs_mensuales/T2" 
 			   style="default-scalar" palette="tempatlas"  numColorBands="65"
                            mincolor="-15" maxcolor="50" belowMinColor="extend" aboveMaxColor="extend"
@@ -276,14 +276,14 @@
                 />
 
 		<layer Menu="Prec,PromMAM" 
-			   EN="Monthly Precipitation Absolute Maximum " ES="Máxima promedio mensual de Precipitación Total"
+			   EN="Monthly Precipitation Absolute Maximum " ES="Promedio mensual de máximas de Precipitación Total"
 			   name="atlas_promedios_maxs_abs_mensuales/PREC2" style="default-scalar"
 			   mincolor="0.1" belowMinColor="extend" maxcolor="500" aboveMaxColor="extend" palette="precipitacionGrad"
                            subtitleText="monthly"
                 />
                 
 		<layer Menu="Viento,PromMAM" 
-			   EN=" Monthly Wind Absolute Maximum" ES="Máxima promedio mensual de Viento a 10 metros"  mincolor="0" maxcolor="70"
+			   EN=" Monthly Wind Absolute Maximum" ES="Promedio mensual de máximas de Viento a 10 metros"  mincolor="0" maxcolor="70"
                            style="default-scalar" palette="windatlas" 
 			   name="atlas_promedios_maxs_abs_mensuales/MAGNITUD_VIENTO" defParticleSpeed="0.03"
                            belowMinColor="extend" aboveMaxColor="extend" 
