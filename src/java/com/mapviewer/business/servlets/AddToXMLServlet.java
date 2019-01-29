@@ -50,9 +50,9 @@ public class AddToXMLServlet extends HttpServlet {
 		System.out.println("JSON received: " + json);
 		obj = new JSONObject(json);
                 
-                SAXBuilder builder = new SAXBuilder();
-                String filePath = getServletContext().getRealPath("/layers/")+"TestLayers.xml";
-                File xmlFile = new File(filePath);
+        SAXBuilder builder = new SAXBuilder();
+        String filePath = getServletContext().getRealPath("/layers/")+"TestLayers.xml";
+        File xmlFile = new File(filePath);
 
 		Document doc = (Document) builder.build(xmlFile);
 		Element rootNode = doc.getRootElement();
@@ -115,7 +115,7 @@ public class AddToXMLServlet extends HttpServlet {
 
 		// display nice nice
 		xmlOutput.setFormat(Format.getPrettyFormat());
-		xmlOutput.output(doc, new FileWriter("c:\\file.xml"));
+		xmlOutput.output(doc, new FileWriter(filePath));
 
 		// xmlOutput.output(doc, System.out);
 		System.out.println("File updated!");
