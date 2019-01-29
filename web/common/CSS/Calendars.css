@@ -88,5 +88,5 @@
 }
 
 .webix_cal_hours:after {
-    content: " (local)";
+    content: " (GMT)";
 }

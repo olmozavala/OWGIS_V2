@@ -67,9 +67,9 @@ owgis.kml.updateTitleAndKmlLink = function() {
                         dateForTitle = meses[curr_date.getUTCMonth()];
                     }
                 } else if(layerDetails.subtitleText == "hourxmonth"){
-                    dateForTitle = curr_date.getUTCHours() +":00 "+ meses[curr_date.getUTCMonth()];
+                    dateForTitle = curr_date.getUTCHours() +":00 (GMT) "+ meses[curr_date.getUTCMonth()];
                 } else{
-                    dateForTitle = curr_date.getUTCHours() +":00, "+ curr_date.getUTCDate() +" "+ meses[curr_date.getUTCMonth()];
+                    dateForTitle = curr_date.getUTCHours() +":00 (GMT), "+ curr_date.getUTCDate() +" "+ meses[curr_date.getUTCMonth()];
                 }
             } else {
 		dateForTitle = ""; /*dateText.substring(0,dateText.indexOf("T"))

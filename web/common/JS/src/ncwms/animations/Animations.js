@@ -782,9 +782,9 @@ function loopAnimation(){
             }else if(layerDetails.subtitleText == "monthly"){
                     finalText = meses[dd.getUTCMonth()];
             } else if(layerDetails.subtitleText == "hourxmonth"){
-                    finalText = dd.getUTCHours() +":00 (local) "+ meses[dd.getUTCMonth()];
+                    finalText = dd.getUTCHours() +":00 (GMT) "+ meses[dd.getUTCMonth()];
             } else {
-                finalText = dd.getUTCHours() +":00, "+dd.getUTCDate() +" "+ meses[dd.getUTCMonth()];
+                finalText = dd.getUTCHours() +":00 (GMT), "+dd.getUTCDate() +" "+ meses[dd.getUTCMonth()];
             }
         } else {
             if (finalText.lastIndexOf(".") != -1) {
