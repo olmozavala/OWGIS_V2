@@ -117,11 +117,13 @@ public class Layer {
 			thisIsTheLayer = false;
 		}
 		for (int nivelMenu = 0; nivelMenu < idLayer.length; nivelMenu++) {
-            for (int selnum = 0; selnum < selectedIndex.length; selnum++) {
-                if (idLayer[nivelMenu].getId().equals(selectedIndex[selnum])) {
-                    return true;
-                }
-            }
+                    for (int selnum = 0; selnum < selectedIndex.length; selnum++) {
+                        if (idLayer[nivelMenu].getId().equals(selectedIndex[selnum])) {
+                            thisIsTheLayer = true;
+                        } else {
+                            thisIsTheLayer = false;
+                        }
+                    }
 		}
 		return thisIsTheLayer;
 	}

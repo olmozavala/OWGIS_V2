@@ -146,17 +146,17 @@ public class LayerMenuManagerSingleton {
 						validateLayer(newLayer);
 						break;
 					case "optionallayers":
-						//Updates the Vector Tree menu with this new entry
-                        HashMap<String, String> map = new HashMap();
-                        map.put("zoom", String.valueOf(newLayer.getZoom()));
-                        map.put("center", newLayer.getCenter().toString());
-                        MenuEntry menu = updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
-                        menu.addAll(map);
-                        //Assigns the 'Tree' of this menu to the layer
-                        newLayer.setIdLayer(searchMenuEntries(layerMenu));
-                        newLayer.setLayerDetails(layerDetails);//It has to be called at the end
-                        validateLayer(newLayer);
-                        break;
+                                            //Updates the Vector Tree menu with this new entry
+                                            HashMap<String, String> map = new HashMap();
+                                            map.put("zoom", String.valueOf(newLayer.getZoom()));
+                                            map.put("center", newLayer.getCenter().toString());
+                                            MenuEntry menu = updateVectorMenu(layerMenu, this.rootVectorMenu, 0, newLayer.isSelected(),newLayer.getName());
+                                            menu.addAll(map);
+                                            //Assigns the 'Tree' of this menu to the layer
+                                            newLayer.setIdLayer(searchMenuEntries(layerMenu));
+                                            newLayer.setLayerDetails(layerDetails);//It has to be called at the end
+                                            validateLayer(newLayer);
+                                            break;
 				}
 				
 			} catch (XMLLayerException ex) {
@@ -172,7 +172,7 @@ public class LayerMenuManagerSingleton {
 					this.backgroundLayers.add(newLayer);
 					break;
 				case "optionallayers":
-                    this.vectorLayers.add(newLayer);
+                                        this.vectorLayers.add(newLayer);
 					break;
 			}
         }//For Iterate over layers of a group
@@ -204,7 +204,7 @@ public class LayerMenuManagerSingleton {
 	 * @param{String} name - name of layer
 	 * @return
 	 */
-	public int getLayerOpenLayerIndex(String name) {
+	public int getLayerOpenLayerIndex(String name, String currMenuStr) {
 		int indx = 0;
 		for (int i = 0; i < backgroundLayers.size(); i++) {
 			Layer currLayer = backgroundLayers.get(i);
@@ -226,7 +226,11 @@ public class LayerMenuManagerSingleton {
 		for (int i = 0; i < vectorLayers.size(); i++) {
 			Layer currLayer = vectorLayers.get(i);
 			if (currLayer.getName().equalsIgnoreCase(name)) {
-				return indx;
+                            String[] menus = currMenuStr.split(",");
+                            System.out.println(menus);
+                            if(currLayer.isThisLayer(menus)){
+                                return indx;
+                            }
 			}
 			indx++;
 		}

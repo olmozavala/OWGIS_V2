@@ -8,5 +8,13 @@
 		<layer Menu="count" name="demo:world_countries" EN="Countries" ES="Paises" zoom="1" center="-100,22"/>
 		<layer Menu="lev1,countries" name="demo:world_countries" EN="Countries" ES="Paises"/>
 	</OptionalLayers>
+        
+        <OptionalLayers server="http://132.248.8.238:8080/geoservercenapred/wms?SERVICE=WMS&amp;request=GetCapabilities" BBOX="-100.0,15.0,-77.0000000000209,32.98999999998365" vectorLayer="" format="image/png" tiled="">
+            <layer name="cen:batimetria" Menu="bati" EN="batimetria gom" />
+          </OptionalLayers>
+
+          <OptionalLayers server="http://132.248.8.238:8080/geoservercenapred/wms?SERVICE=WMS&amp;request=GetCapabilities" BBOX="-99.291705,19.246459,-99.010564,19.576963" vectorLayer="" format="image/png" tiled="">
+            <layer name="cen:estaciones_geo" Menu="lev1,estaciones" EN="estaciones" />
+          </OptionalLayers>
 
 </MenuConf>

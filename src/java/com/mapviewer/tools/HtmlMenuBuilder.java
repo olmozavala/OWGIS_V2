@@ -25,6 +25,7 @@ import com.mapviewer.model.menu.MenuEntry;
 import com.mapviewer.model.menu.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -142,153 +143,137 @@ public class HtmlMenuBuilder {
 	 * @return {OptMenuStruct} Menu structure containing the current html code
 	 */
 	public static OptMenuStruct recursiveBuilder(TreeNode currentNode, String language, OptMenuStruct menuParamsCurrent, String currMenuStr, boolean mobile) {
-        if(currentNode.getNode() == null) {
-            MenuEntry node = new MenuEntry("", language, "");//default menu if currentNode dont have
-            currentNode.setNode(node);
-        }
-		String finalHtml = menuParamsCurrent.getHtmltxt();
-		String tabs = menuParamsCurrent.getTabs();
-		int numUls = menuParamsCurrent.getNumUls();
-        int numLayer = menuParamsCurrent.getNumLayers();
-
-		OptMenuStruct menuParams = new OptMenuStruct(finalHtml, tabs, numLayer, numUls);
-                   
-        if(!mobile){
+            if(currentNode.getNode() == null) {
+                MenuEntry node = new MenuEntry("", language, "");//default menu if currentNode dont have
+                currentNode.setNode(node);
+            }
+            String finalHtml = menuParamsCurrent.getHtmltxt();
+            String tabs = menuParamsCurrent.getTabs();
+            int numUls = menuParamsCurrent.getNumUls();
+            int numLayer = menuParamsCurrent.getNumLayers();
+            OptMenuStruct menuParams = new OptMenuStruct(finalHtml, tabs, numLayer, numUls);
+            if(!mobile){
 		//In this case we add the ul and call the function recursively
-			if (currentNode.getHasChilds()) {
-	
-				ArrayList<TreeNode> subMenus = currentNode.getChilds();
-				if (!currentNode.isRoot()) {
-					MenuEntry menu = currentNode.getNode();
-                    finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-					finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
-					if (currMenuStr == null) {
-						currMenuStr = menu.getId();
-					} else {
-						currMenuStr += "," + menu.getId();
-					}
-					finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
-				} else {
-					finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
-				}
-                for (int i = 0; i < subMenus.size(); i++) {
-					//Updating num of Uls
-					numUls++;
-					menuParams.setNumUls(numUls);
-	
-					menuParams.setHtmltxt(finalHtml);
-					menuParams.setTabs(tabs + "\t");
-                    menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, false);
-	
-					//Update current parameters
-					numUls = menuParams.getNumUls();
-					finalHtml = menuParams.getHtmltxt();
-				}
-	
-				menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
-				return menuParams;
-			} else {//In this case is a final checkbox
-				//Increment layer number
-				numLayer++;
-				menuParams.setNumLayers(numLayer);
-	
-				MenuEntry menu = currentNode.getNode();
-				String layername = menu.getLayername();
-                if (currMenuStr == null) {
-					currMenuStr = menu.getId();
-				} else {
-					currMenuStr += "," + menu.getId();
-				}
-	
-				finalHtml += tabs + "<li class='opt_lay_menu' id='menuOpt" + numLayer + "'><p class='opt_lay_par'>\n";
-	
-				String oldtab = tabs;
-				tabs += "\t";
-                finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr, mobile, menu)
-						+ tabs + menu.getText(language) + "\n"
-						+ tabs + "<span style='float: right'>\n";
-	
-				tabs += "\t";
-				finalHtml += getMinusTransButton(numLayer, tabs, mobile)
-						+ getPlusTransButton(numLayer, tabs, mobile)
-						+ getKmlTxt(numLayer, tabs, mobile)
-						+ getDownloadLink(layername, tabs, mobile)
-						+ oldtab + "</span></p></li>\n";
-	
-				menuParams.setHtmltxt(finalHtml);
-				return menuParams;
-			}
-		}
-		else{ //mobile interface
-
-			//In this case we add the ul and call the function recursively
-				if (currentNode.getHasChilds()) {
-		
-					ArrayList<TreeNode> subMenus = currentNode.getChilds();
-					if (!currentNode.isRoot()) {
+                if (currentNode.getHasChilds()) {
+                    ArrayList<TreeNode> subMenus = currentNode.getChilds();
+                    if (!currentNode.isRoot()) {
                         MenuEntry menu = currentNode.getNode();
                         finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
-						finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
-						if (currMenuStr == null) {
-							currMenuStr = menu.getId();
-						} else {
-							currMenuStr += "," + menu.getId();
-						}
-						finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
-					} else {
-						finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
-					}
-		
-					for (int i = 0; i < subMenus.size(); i++) {
-						//Updating num of Uls
-						numUls++;
-						menuParams.setNumUls(numUls);
-		
-						menuParams.setHtmltxt(finalHtml);
-						menuParams.setTabs(tabs + "\t");
-						menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, true);
-		
-						//Update current parameters
-						numUls = menuParams.getNumUls();
-						finalHtml = menuParams.getHtmltxt();
-					}
-		
-					menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
-		
-					return menuParams;
-				} else {//In this case is a final checkbox
-					//Increment layer number
-					numLayer++;
-					menuParams.setNumLayers(numLayer);
-		
-					MenuEntry menu = currentNode.getNode();
-					String layername = menu.getLayername();
-					if (currMenuStr == null) {
-						currMenuStr = menu.getId();
-					} else {
-						currMenuStr += "," + menu.getId();
-					}
-		
-					finalHtml += tabs + "<fieldset data-role='controlgroup' data-mini='true' data-type='horizontal' style='margin: 5px 10px 0px 0px; border-bottom: 2px solid #222'>";
+			finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+			if (currMenuStr == null) {
+                            currMenuStr = menu.getId();
+			} else {
+                            currMenuStr += "," + menu.getId();
+                        }
+			finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
+                    } else {
+                    finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
+                    }
+                    for (int i = 0; i < subMenus.size(); i++) {
+			//Updating num of Uls
+			numUls++;
+			menuParams.setNumUls(numUls);
+                        menuParams.setHtmltxt(finalHtml);
+			menuParams.setTabs(tabs + "\t");
+                        menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, false);
+                        //Update current parameters
+			numUls = menuParams.getNumUls();
+			finalHtml = menuParams.getHtmltxt();
+                    }
+                    menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
+                    return menuParams;
+		} else {//In this case is a final checkbox
+                    //Increment layer number
+                    numLayer++;
+                    menuParams.setNumLayers(numLayer);
+                    MenuEntry menu = currentNode.getNode();
+                    String layername = menu.getLayername();
+                    if (currMenuStr == null) {
+			currMenuStr = menu.getId();
+                    } else {
+			currMenuStr += "," + menu.getId();
+                    }
+                    
+                    finalHtml += tabs + "<li class='opt_lay_menu' id='menuOpt" + numLayer + "'><p class='opt_lay_par'>\n";
                     String oldtab = tabs;
-					tabs += "\t";
-                    System.out.println("------------------------------------ layer opcionales getOptionalCheckbox mobil,  name: " + layername + ", zoom: " + menu.getText("zoom") + " , center: " + menu.getText("center"));
-					finalHtml += getOptionalCheckbox(numLayer, tabs, currentNode.isSelected(), currMenuStr, mobile, menu)
-							+ tabs + "<label for=\"checkBox" + numLayer + "\" >"+ menu.getText(language) +"</label>"+ "\n"
-							+ tabs + "<div style='float: right; padding-top: 6px'>\n";
-		
-					tabs += "\t";
-					finalHtml += getMinusTransButton(numLayer, tabs, mobile)
-							+ getPlusTransButton(numLayer, tabs, mobile)
-							+ getKmlTxt(numLayer, tabs, mobile)
-							+ getDownloadLink(layername, tabs, mobile)
-							+ oldtab + "</div></fieldset>\n";
-		
-					menuParams.setHtmltxt(finalHtml);
-					return menuParams;
-				}
-			
+                    tabs += "\t";
+                    finalHtml += getOptionalCheckbox(numLayer, layername, tabs, currentNode.isSelected(), currMenuStr, mobile, menu)
+				+ tabs + menu.getText(language) + "\n" + tabs + "<span style='float: right'>\n";
+	
+                    tabs += "\t";
+                    finalHtml += getMinusTransButton(numLayer, tabs, mobile)
+				+ getPlusTransButton(numLayer, tabs, mobile)
+				+ getKmlTxt(numLayer, layername, tabs, mobile)
+				+ getDownloadLink(layername, tabs, mobile)
+				+ oldtab + "</span></p></li>\n";
+	
+                    menuParams.setHtmltxt(finalHtml);
+                    return menuParams;
 		}
+            } else { //mobile interface
+                //In this case we add the ul and call the function recursively
+		if (currentNode.getHasChilds()) {
+                    ArrayList<TreeNode> subMenus = currentNode.getChilds();
+                    if (!currentNode.isRoot()) {
+                        MenuEntry menu = currentNode.getNode();
+                        finalHtml += tabs + "<li class=\"opt_lay_title\" id=\"optMenu" + numUls + "\"";
+			finalHtml += tabs + " 	   onclick=\"owgis.optionalLayers.toggleList('#optUl" + numUls + "')\">" + menu.getText(language) + "</li>\n";
+			if (currMenuStr == null) {
+                            currMenuStr = menu.getId();
+                        } else {
+                            currMenuStr += "," + menu.getId();
+                        }
+                        finalHtml += tabs + "<ul class='opt_lay_list' id='optUl" + numUls + "'>\n";
+                    } else {
+                        finalHtml += tabs + "<ul class='opt_lay_list_root' id='optUl" + numUls + "'>\n";
+                    }
+                    
+                    for (int i = 0; i < subMenus.size(); i++) {
+			//Updating num of Uls
+			numUls++;
+			menuParams.setNumUls(numUls);
+                        menuParams.setHtmltxt(finalHtml);
+                        menuParams.setTabs(tabs + "\t");
+                        menuParams = recursiveBuilder(subMenus.get(i), language, menuParams, currMenuStr, true);
+		
+			//Update current parameters
+                        numUls = menuParams.getNumUls();
+                        finalHtml = menuParams.getHtmltxt();
+                    }
+                    menuParams.setHtmltxt(menuParams.getHtmltxt() + tabs + "</ul>\n");
+                    return menuParams;
+                } else {//In this case is a final checkbox
+                    //Increment layer number
+                    numLayer++;
+                    menuParams.setNumLayers(numLayer);
+                    
+                    MenuEntry menu = currentNode.getNode();
+                    String layername = menu.getLayername();
+                    if (currMenuStr == null) {
+                        currMenuStr = menu.getId();
+                    } else {
+                        currMenuStr += "," + menu.getId();
+                    }
+                    
+                    finalHtml += tabs + "<fieldset data-role='controlgroup' data-mini='true' data-type='horizontal' style='margin: 5px 10px 0px 0px; border-bottom: 2px solid #222'>";
+                    String oldtab = tabs;
+                    tabs += "\t";
+                    System.out.println("------------------------------------ layer opcionales getOptionalCheckbox mobil,  name: " + layername + ", zoom: " + menu.getText("zoom") + " , center: " + menu.getText("center"));
+                    finalHtml += getOptionalCheckbox(numLayer, layername, tabs, currentNode.isSelected(), currMenuStr, mobile, menu)
+			+ tabs + "<label for=\"checkBox" + numLayer + "\" >"+ menu.getText(language) +"</label>"+ "\n"
+			+ tabs + "<div style='float: right; padding-top: 6px'>\n";
+		
+                    tabs += "\t";
+                    finalHtml += getMinusTransButton(numLayer, tabs, mobile)
+				+ getPlusTransButton(numLayer, tabs, mobile)
+				+ getKmlTxt(numLayer,layername, tabs, mobile)
+				+ getDownloadLink(layername, tabs, mobile)
+				+ oldtab + "</div></fieldset>\n";
+		
+                    menuParams.setHtmltxt(finalHtml);
+                    return menuParams;
+		}
+            }
 	}
 
 	/**
@@ -298,16 +283,16 @@ public class HtmlMenuBuilder {
 	 * @param tabs {String} String that contains the number of tabs being used
 	 * @param selected {boolean} Indicates if the current layer is selected
 	 * @param currMenuStr {String} Id of the corresponding menu of the layer
-     * @param menu current menu entry
+         * @param menu current menu entry
 	 * @return
 	 */
-	public static String getOptionalCheckbox(int layerNum, String tabs, boolean selected, String currMenuStr, boolean mobile, MenuEntry menu) {
-        int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;//son las capas definidas como background no las principales se debe cambiar el nombre
-
-		String finalHtml = tabs + "<input id=\"checkBox" + layerNum + "\" type=\"checkbox\" name=\"vectorLayersSelected\" \n";
-//		if(mobile){
-//			finalHtml += " style= 'margin-top:0px' ";
-//		}
+	public static String getOptionalCheckbox(int layerNum, String layername, String tabs, boolean selected, String currMenuStr, boolean mobile, MenuEntry menu) {
+            //int OPLayerNum = HtmlMenuBuilder.numMainLayers + layerNum;//son las capas definidas como background no las principales se debe cambiar el nombre
+            try {
+                int OPLayerNum;
+                String finalHtml = tabs + "<input id=\"checkBox" + layerNum + "\" type=\"checkbox\" name=\"vectorLayersSelected\" \n";
+                OPLayerNum = LayerMenuManagerSingleton.getInstance().getLayerOpenLayerIndex(layername, currMenuStr) + 1;
+                System.out.println(layername+" :::::::: "+OPLayerNum);
 		finalHtml += tabs + "\t value=\"" + currMenuStr + "\" onclick=\"owgis.optionalLayers.showOptionalLayer(layer" + OPLayerNum + ", this.checked, " + menu.getText("zoom")  + ", [" + menu.getText("center")  +"]);"
 				+ "owgis.optionalLayers.disableTranspButton(" + layerNum + ",'minusButtonOptional" + layerNum + "',"
 				+ "'plusButtonOptional" + layerNum + "', 'checkBox" + layerNum + "' ); \"";
@@ -316,7 +301,12 @@ public class HtmlMenuBuilder {
 			finalHtml += " checked";
 		}
 		finalHtml += ">\n";
-		return finalHtml;
+                return finalHtml;
+            } catch (XMLFilesException ex) {
+                Logger.getLogger(HtmlMenuBuilder.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return "ERROR building optional menu";
+            
 	}
 
 	public static String getDownloadLink(String layername, String tabs, boolean mobile) {
@@ -356,8 +346,15 @@ public class HtmlMenuBuilder {
 	 * @param tabs {String} String that contains the number of tabs being used
 	 * @return
 	 */
-	public static String getKmlTxt(int layerNum, String tabs, boolean mobile) {
-		String finalHtml = tabs + "<A href=\"" + HtmlMenuBuilder.vecLinks[layerNum - 1] + "\">\n";
+	public static String getKmlTxt(int layerNum, String layername, String tabs, boolean mobile) {
+                int actualLink = 0; //Arrays.asList(HtmlMenuBuilder.vecLinks).indexOf(layername);
+                for (int i = 0; i < HtmlMenuBuilder.vecLinks.length; i++) {
+                    if(HtmlMenuBuilder.vecLinks[i].contains(layername)){
+                        actualLink=i;
+                    }
+                }
+                System.out.println(layername + " ::: "+ HtmlMenuBuilder.vecLinks[actualLink]);
+		String finalHtml = tabs + "<A href=\"" + HtmlMenuBuilder.vecLinks[actualLink] + "\">\n";
 		tabs += "\t";
 		finalHtml += tabs + "<img class=\"optionalImg\" src=\"" + HtmlMenuBuilder.basePath + "/common/images/kmz/kmz.png\" \n";
 		if(!mobile){
