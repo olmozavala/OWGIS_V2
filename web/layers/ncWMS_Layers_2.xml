@@ -1,14 +1,14 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 
 
-	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
+	<MainLayers BBOX="-99.5,16.5,-78.5,32.5" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
                 <!-- Anomalias -->
                 <!-- 1980 -->
                 <layer Menu="Temp,ANOM,1980" 
 			   EN="Monthly Temperature Anomalies " ES="Anomalías mensuales de Temperatura a 2 metros"
 			   name="atlas_anomalias_1980/T2" 
 			   style="default-scalar" palette="div-RdBu-inv"
-                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-3" maxcolor="3"
                             subtitleText="monthly"
                            
                 />
@@ -16,7 +16,7 @@
                 <layer Menu="Prec,ANOM,1980" 
 			   EN="Monthly Precipitation Anomalies" ES="Anomalías mensuales de Precipitación Total"
 			   name="atlas_anomalias_1980/PREC2" style="default-scalar"
-			   palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+			   palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-200" maxcolor="200"
                             subtitleText="monthly"
                            
                 />
@@ -25,7 +25,7 @@
 			   EN="Monthly Wind Anomalies" ES="Anomalías mensuales de Viento a 10 metros"
                            style="default-scalar" palette="div-RdBu-inv" 
 			   name="atlas_anomalias_1980/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1980/U10:atlas_anomalias_1980/V10" defParticleSpeed="0.2"
-                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-3" maxcolor="3"
                             subtitleText="monthly"
                            
                 />
@@ -34,14 +34,14 @@
                 <layer Menu="Temp,ANOM,1981" 
 			   EN="Monthtly Temperature Anomalies " ES="Anomalías mensuales de Temperatura a 2 metros"
 			   name="atlas_anomalias_1981/T2" 
-			   style="default-scalar" palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+			   style="default-scalar" palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-3" maxcolor="3"
                             subtitleText="monthly"
                 />
                 
                 <layer Menu="Prec,ANOM,1981" 
 			   EN="Monthtly Precipitation Anomalies" ES="Anomalías mensuales de Precipitación Total"
 			   name="atlas_anomalias_1981/PREC2" style="default-scalar"
-                           palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+                           palette="div-RdBu-inv" belowMinColor="extend" aboveMaxColor="extend" mincolor="-200" maxcolor="200"
                             subtitleText="monthly"
                 />
                 
@@ -49,7 +49,7 @@
 			   EN="Monthly Wind Anomalies" ES="Anomalías mensuales de Viento a 10 metros" 
                            style="default-scalar" palette="div-RdBu-inv" 
 			   name="atlas_anomalias_1981/MAGNITUD_VIENTO"  overlaystreamlines="atlas_anomalias_1981/U10:atlas_anomalias_1981/V10" defParticleSpeed="0.2"
-                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-1" maxcolor="1"
+                           belowMinColor="extend" aboveMaxColor="extend" mincolor="-3" maxcolor="3"
                             subtitleText="monthly"
                 />
                 <!-- 1982 -->

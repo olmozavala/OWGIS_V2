@@ -490,6 +490,7 @@ owgis.ncwms.animation.dispAnimation = function dispAnimation(){
  * @param {type} projection
  * @returns {Element|canvasAnimationFunction.canvas}
  */
+var currentExtent = null;
 function canvasAnimationFunction(extent, resolution, pixelRatio, size, projection){
 	//Clear any previous currents animations
 	if(_mainlayer_streamlines){
@@ -616,6 +617,7 @@ function canvasAnimationFunction(extent, resolution, pixelRatio, size, projectio
 	
 	//	console.log("----------- Out of Canvas reload -----------");
 	return canvas;
+        currentExtent = extent;
 } 
 
 /**

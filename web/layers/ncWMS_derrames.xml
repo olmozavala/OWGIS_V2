@@ -11,7 +11,7 @@
                 
     </Menus>
     
-	<MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
+	<MainLayers BBOX="-99.5,16.5,-78.5,32.5" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
             <!-- Punto 1 -->
             <layer Menu="oil,p1,M01" 
 			   EN="Oil spill scenario" ES="Escenarios de derrame de petróleo" 

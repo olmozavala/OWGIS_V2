@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 
 <MenuConf>
-    <MainLayers BBOX="-98.2686371803,17.9000356622,-86.2447082996,36.11315809004144" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
+    <MainLayers BBOX="-99.5,16.5,-78.5,32.5" format="image/gif" server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >
       <!-- Percentiles Viento -->
                 <layer Menu="Viento,Perci,Perci01" EN="Percentile 0.1% Wind" ES="Percentil 0.1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_0_1"  mincolor="0" maxcolor="70" belowMinColor="extend" aboveMaxColor="extend" />
                 <layer Menu="Viento,Perci,Perci1" EN="Percentile 1% Wind" ES="Percentil 1% de Viento" style="default-scalar" palette="windatlas" name="percentiles/VIENTO_1"  mincolor="0" maxcolor="70" belowMinColor="extend" aboveMaxColor="extend" />
