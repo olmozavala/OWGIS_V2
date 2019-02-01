@@ -2998,3 +2998,15 @@ background-origin: initial;
 background-clip: initial;
 background-color: rgb(249, 249, 249);
 }
+
+/* Cosmetic only */
+#easyPaginate {width:300px;}
+#easyPaginate img {display:block;margin-bottom:10px;}
+.easyPaginateNav {
+    width: 85.578%;
+    padding: 28px;
+    margin: 0px 0px;
+    margin-left: 14.422% !important;
+}
+.easyPaginateNav a {padding:5px;}
+.easyPaginateNav a.current {font-weight:bold;text-decoration:underline;}

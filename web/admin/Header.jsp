@@ -88,6 +88,7 @@
 <script src="js/jquery.sparkline.min.js"></script>
 
 <script src="js/counter.js"></script>
+<script src="http://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
 
 <script src="js/retina.js"></script>
 <script src="js/qrcode.min.js"></script>

@@ -1,9 +1,6 @@
 /**
  * 
  */
-//$( document ).ready(function() {
-
-//});
 window.onload = function() {
 	$(".loader").fadeOut("slow");
 
@@ -46,11 +43,11 @@ function defaultLayer() {
 	this.layerType = {type:"select", label:"Layer Type", value:  "MainLayer, OptionalLayer, BackgroundLayer", required: true, uneditable: false, callBackFunc: "onLayerTypeChange()"};
 
 	this.title = {type:"string", label:"Title", value:  "EPSG:4326", required: true, uneditable: false};
-	this.style = {type:"string", label:"Style", value: "", required: true, uneditable: false};
+	this.style = {type:"string", label:"Style", value: "", required: false, uneditable: false};
 	this.selected = {type:"boolean", label:"Is Selected", value: false, required: false, uneditable: false};
 	this.width = {type:"string", label:"Width", value: 512, required: true, uneditable: false};
 	this.height = {type:"string", label:"Height", value: 512, required: true, uneditable: false};
-	this.featureInfo = {type:"string", label:"Feature Info", value: "", required: true, uneditable: false};
+	this.featureInfo = {type:"string", label:"Feature Info", value: "", required: false, uneditable: false};
 	this.tiled = {type:"boolean", label:"Is Tiled", value: false, required: false, uneditable: false};
 	this.netCDF = {type:"boolean", label:"Is netCDF", value: false, required: false, uneditable: false};
 	this.parentMenu = {type:"multiSelect", label:"Parent Menu(s)", value: "", required: true, uneditable: false};
@@ -70,7 +67,7 @@ function defaultLayer() {
 	this.minColor = {type:"string", label:"Min Color", value:  "-1", required: true, uneditable: false};
 	this.maxColor = {type:"string", label:"Max Color", value:  "-1", required:  true, uneditable: false};
 	this.max_time_range = {type:"string", label:"Max time range", value:  "", required: true, uneditable: false};
-	};
+};
 
 
 var commonLayerProp = {
@@ -101,7 +98,7 @@ var mainLayer = {
 var vectorLayer = {
 		cql: "",
 		cqlids: "",
-		jsonp: "",
+		jsonp: ""
 };
 
 var	ncWMS = {
@@ -117,7 +114,11 @@ var	ncWMS = {
 		palette: "",
 		minColor: "",
 		maxColor: "",
-		max_time_range: ""
+		max_time_range: "",
+                aboveMaxColor: "",
+                belowMinColor : "",
+                Overlaystreamlines : ""
+                
 };		
 		
 var optionalLayer = {
@@ -126,7 +127,8 @@ var optionalLayer = {
 		menuEN: "",
 		selected: "",
 		tiled: "",
-		isVectorLayer: ""
+		isVectorLayer: "",
+                featureInfo: ""
 };
 
 var backgroundLayer = {
@@ -156,14 +158,14 @@ var indexOf = function(needle) {
 };
 
 function getGeoServerLayers(){
-	$(".loader").fadeIn("fast");
-	layerUrl = $("#layerUrl").val();
-	var url = 'xml/wms2.xml';
-	if(layerUrl.indexOf("/ncWMS") > -1){
-		//alert('ncWMS');
-		//url = 'xml/ncwms2.xml';
-		ncWMSFl = true;
-	}
+    $(".loader").fadeIn("fast");
+    layerUrl = $("#layerUrl").val();
+    var url = 'xml/wms2.xml';
+    if(layerUrl.indexOf("/ncWMS") > -1){ 
+        ////alert('ncWMS'); //url = 'xml/ncwms2.xml';
+	ncWMSFl = true;
+    }
+    if(layerUrl != "" && layerUrl != null){
 	console.log(layerUrl);
 	mainLayers = $('#mainLayers').val().split(",");
 	vectorLayers = $('#vectorLayers').val().split(",");
@@ -174,131 +176,181 @@ function getGeoServerLayers(){
 		//url:  'http://132.248.8.238:8080/geoserver/wms?SERVICE=WMS&request=GetCapabilities',
 		url: layerUrl,
 		dataType: "xml",
-			xhrFields: {
+		xhrFields: {
 			    withCredentials: false
-			  }
+			  },
+                error: function (request, status, error) {
+                        console.log(request.responseText); $(".loader").fadeOut("slow");
+                    }
 	}).then(function(response) {
             var layers = $(response).find('Layer > Layer');
-            console.log(response);
-            for(var i=0; i<layers.size(); i++){
-		var name =  $(layers[i]).children('Name').text();
-		var title = $(layers[i]).children('Title').text();
-		var defLayer = new defaultLayer();
-						
-		//check if layer already there in XML, if exists then don't display
-		if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;			
+            console.log(response); 
+            if( typeof layers !== "undefined" ){
+                for(var i=0; i<layers.size(); i++){
+                    var name =  $(layers[i]).children('Name').text();
+                    var title = $(layers[i]).children('Title').text();
+                    var defLayer = new defaultLayer();
 
-			
-		commonLayerProp.name = name;
-		//BoundaryBox parameters
-		commonLayerProp.bboxMinLong = $(layers[i]).children('EX_GeographicBoundingBox').children('westBoundLongitude').text();
-		commonLayerProp.bboxMaxLong = $(layers[i]).children('EX_GeographicBoundingBox').children('eastBoundLongitude').text();
-		commonLayerProp.bboxMinLat = $(layers[i]).children('EX_GeographicBoundingBox').children('southBoundLatitude').text();
-		commonLayerProp.bboxMaxLat = $(layers[i]).children('EX_GeographicBoundingBox').children('northBoundLatitude').text();
-		commonLayerProp.server = layerUrl;
-		var styleElement =  $(layers[i]).children('Style');
+                    //check if layer already there in XML, if exists then don't display
+                    if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;
 
-		commonLayerProp.format = styleElement.find('Format').text();
-		commonLayerProp.layerType = "";
-		defLayer.title.value = title;
-		defLayer.parentMenu.value = menuIDs;
-		layerArray[i] = defLayer;
-		var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+name+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ i +'" name="layerForm'+ i +'"> <fieldset>';
-			
-		var fields = '';
-		for(property in commonLayerProp){
-                    var val = commonLayerProp[property];
-                    if(! (val === "" || val == 'undefined')) {
-			defLayer[property].value = val;
-                    }				
-                    fields = fields + getDOMForProperty(i,defLayer[property],property);	
-		}			
-		var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
-                //$(".geoServerContent").append('<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+title+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form class="form-horizontal" id="layerForm'+ i +'" name="layerForm'+ i +'"> <fieldset> <div class="control-group"> <label class="control-label" for="layerName'+ i +'">Layer Name</label> <div class="controls"> <input class="span6 typeahead" id="layerName'+ i +'" type="text" value="'+layerName+'"> </div> </div> <div class="control-group"> <label class="control-label" for="layerTitle'+ i +'">Layer Title</label> <div class="controls"> <input class="span6 typeahead" id="layerTitle'+ i +'" type="text" value="'+title+'"> </div> </div> <div class="control-group"> <label class="control-label" for="westBound'+ i +'">West Bound Longitude</label> <div class="controls"> <input class="span6 typeahead" id="westBound'+ i +'" type="text" value="'+westBound+'"> </div> </div> <div class="control-group"> <label class="control-label" for="eastBound'+ i +'">East Bound Longitude</label> <div class="controls"> <input class="span6 typeahead" id="eastBound'+ i +'" type="text" value="'+eastBound+'"> </div> </div> <div class="control-group"> <label class="control-label" for="southBound'+ i +'">South Bound Latitude</label> <div class="controls"> <input class="span6 typeahead" id="southBound'+ i +'" type="text" value="'+southBound+'"> </div> </div> <div class="control-group"> <label class="control-label" for="northBound'+ i +'">North Bound Latitude</label> <div class="controls"> <input class="span6 typeahead" id="northBound'+ i +'" type="text" value="'+northBound+'"> </div> </div> <div class="form-actions"> <button class="btn btn-primary" type="submit">Add to XML</button> <button class="btn" type="reset">Cancel</button> </div> </fieldset> </form> </div> </div> </div>');
-		$(".geoServerContent").append(start + fields + end);
-            }  
-            console.log(layers);
-            OnloadFunction();
-            $('select[id^="layerType"]').change(function(){	
-                onLayerTypeChange(this);
-            });
-            $(".loader").fadeOut("slow");
+                    commonLayerProp.name = name;
+                    //BoundaryBox parameters
+                    commonLayerProp.bboxMinLong = $(layers[i]).children('EX_GeographicBoundingBox').children('westBoundLongitude').text();
+                    commonLayerProp.bboxMaxLong = $(layers[i]).children('EX_GeographicBoundingBox').children('eastBoundLongitude').text();
+                    commonLayerProp.bboxMinLat = $(layers[i]).children('EX_GeographicBoundingBox').children('southBoundLatitude').text();
+                    commonLayerProp.bboxMaxLat = $(layers[i]).children('EX_GeographicBoundingBox').children('northBoundLatitude').text();
+                    commonLayerProp.server = layerUrl;
+                    var styleElement =  $(layers[i]).children('Style');
+
+                    commonLayerProp.format = styleElement.find('Format').text();
+                    commonLayerProp.layerType = "";
+                    defLayer.title.value = title;
+                    defLayer.parentMenu.value = menuIDs;
+                    for(property in commonLayerProp){
+                        var val = commonLayerProp[property];
+                        if(! (val === "" || val == 'undefined')) {
+                            defLayer[property].value = val;
+                        }
+                    }
+                    layerArray[i] = defLayer;
+                } 
                 
-	    $('form').submit(function(event) {
+                layerArray = layerArray.filter(function( element ) {
+                    return element !== undefined;
+                 });
+                 console.log(layerArray);
+                //paginate items found on server
+                $('#content').pagination({
+                    dataSource: layerArray,
+                    totalNumberLocator: function(response) {
+                        // you can return totalNumber by analyzing response content
+                        return Math.floor(Math.random() * (1000 - 100)) + 100;
+                    },
+                    pageSize: 10,
+                    ajax: {
+                        beforeSend: function() {
+                            dataContainer.html('Loading data ...');
+                        }
+                    },
+                    callback: function(data, pagination) {
+                        // template method of yourself
+                        console.log(pagination.pageNumber);
+                        var dataHtml = '';
+                        //var i = 0;
+                        $.each(data, function (index, item) {
+                            //i++;
+                            var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+item.name.value+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ index +'" name="layerForm'+ index +'"> <fieldset>';
+                            var fields = '';
+                            for(property in commonLayerProp){
+                                //if( ! (item[property]== 'undefined' || item[property]=== ""))
+                                idx = index+(10*(pagination.pageNumber-1)); console.log(idx);
+                                fields += getDOMForProperty(idx,item[property],property);	
+                            }	
+                            var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
+                            dataHtml += start + fields + end;
+                        });
+                        $("#data-container").html(dataHtml);
+                        
+                        $('select[id^="layerType"]').change(function(){	
+                            onLayerTypeChange(this);
+                        });
+
+                        $('form').submit(function(event) {
+
+                            event.preventDefault();
+
+                            $(".loader").fadeIn("fast");
+                            var id = $(this).attr('id');
+                            $('input[name="server"]').val(encodeURIComponent(layerUrl));
+                            //$('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
+                            var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
+                            //alert(json); console.log(ncWMSFl,json);
+                            $.ajax({
+                                    type : "POST",
+                                    url : "../AddToXMLServlet",
+                                    data : "ncWMS="+ncWMSFl+"&json=" + json,
+                                    success: function(data){
+                                        var t = JSON.parse(json);
+                                        console.log("wow",t.name);
+                                        let result = layerArray.filter(obj => {
+                                            return obj.name.value === t.name
+                                          }); console.log(result);
+                                        var index = layerArray.indexOf(result);
+                                        if (index > -1) {
+                                          layerArray.splice(index, 1);
+                                        }
+                                            $(".loader").fadeOut("slow");
+                                            var formParent = $('form[id="'+id+'"]').parent();
+                                            $('form[id="'+id+'"]').remove();
+                                            formParent.parent()
+                                                    .parent()
+                                                    .addClass('animated zoomOutLeft')
+                                                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                                                    $(this).remove();
+                                            });
+                                    }
+                            });	
+
+                            return false;
+                        });
+                    }
+                });
+                OnloadFunction();
+
+                $('select[id^="layerType"]').change(function(){	
+                    onLayerTypeChange(this);
+                });
+
+                $(".loader").fadeOut("slow");
+
                 
-                event.preventDefault();
-                
-	    	$(".loader").fadeIn("fast");
-	        var id = $(this).attr('id');
-	        $('input[name="server"]').val(encodeURIComponent(layerUrl));
-//	        $('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
-	        var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
-	        //alert(json);
-	        console.log(ncWMSFl,json);
-	        $.ajax({
-	    		type : "POST",
-	    		url : "../AddToXMLServlet",
-	    		data : "ncWMS="+ncWMSFl+"&json=" + json,
-	    		success: function(data){
-                            console.log("wow");
-	    			$(".loader").fadeOut("slow");
-	    			var formParent = $('form[id="'+id+'"]').parent();
-                                $('form[id="'+id+'"]').remove();
-                                formParent.parent()
-                                        .parent()
-                                        .addClass('animated zoomOutLeft')
-                                        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-                                        $(this).remove();
-                                });
-	    		}
-	    	});	
-	        
-	        return false;
-	    });
+            } else {
+                //no encuentro nada o el url no era geoserver / ncwms
+                console.log("layers not found");
+                $(".loader").fadeOut("slow");
+            }
 	});
+    } else {
+        //no se escribio nada en el input
+        console.log("layers not found");
+        $(".loader").fadeOut("slow");
+    }
 }
 
-
-
 function onLayerTypeChange(o){
-	var index = $(o).attr('id').substr($(o).attr('id').length - 1);
-	$("div[id=\""+$(o).attr('id')+"\"]").remove();
-	var ob = new Object();
-	if($(o).val()==='MainLayer'){
-		ob = ncWMSFl?ncWMS:mainLayer;
-	}
-	else if($(o).val()==='OptionalLayer'){
-		ob = optionalLayer;
-	}
-	else ob = backgroundLayer;
-	var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,ob)+'</div>';
-	$(f).insertAfter($(o).parent().parent());
-	$('[data-rel="chosen"],[rel="chosen"]').chosen();
-	$('input[id^="isVectorLayer"]').change(function(){	
-		onIsVectorLayerChange(this);
-	});
-	$('input[type="checkbox"]').change(function(){
-	     cb = $(this);
-	     cb.val(cb.prop('checked'));
-	 });
+    var index = $(o).attr('id').substr($(o).attr('id').length - 1);
+    $("div[id=\""+$(o).attr('id')+"\"]").remove();
+    var ob = new Object();
+    if($(o).val()==='MainLayer'){
+	ob = ncWMSFl?ncWMS:mainLayer;
+    } else if($(o).val()==='OptionalLayer'){
+        ob = optionalLayer;
+    } else { ob = backgroundLayer; }
+    var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,ob)+'</div>';
+    $(f).insertAfter($(o).parent().parent());
+    $('[data-rel="chosen"],[rel="chosen"]').chosen();
+    $('input[id^="isVectorLayer"]').change(function(){	
+	onIsVectorLayerChange(this);
+    });
+    $('input[type="checkbox"]').change(function(){
+	cb = $(this);
+	cb.val(cb.prop('checked'));
+    });
 }
 
 function onIsVectorLayerChange(o){
-	var index = $(o).attr('id').substr($(o).attr('id').length - 1);
-	if(!$(o).prop('checked')){
-		$("div[id=\""+$(o).attr('id')+"\"]").remove();
-	}
-	else{
+    var index = $(o).attr('id').substr($(o).attr('id').length - 1);
+    if(!$(o).prop('checked')){
+	$("div[id=\""+$(o).attr('id')+"\"]").remove();
+    } else {
 	var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,vectorLayer)+'</div>';
 	$(f).insertAfter($(o).parent().parent().parent());
-//	$('input[id^="isVectorLayer"]').change(function(){	
-//		onIsVectorLayerChange(this);
-//	});
 	$('input[type="checkbox"]').change(function(){
 	     cb = $(this);
 	     cb.val(cb.prop('checked'));
 	 });
-}
+    }
 }
 
 function getDOMForObject(index,object){

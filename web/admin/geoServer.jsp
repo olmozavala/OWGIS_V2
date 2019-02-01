@@ -83,23 +83,23 @@ menuIDs = menuIDs.substring(0,menuIDs.length()-1);
 			</ul>
 			
 
-<div class="row-fluid sortable">
-	<div class="box-content">
-		<div class="form-horizontal" action="#">
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="layerUrl">Enter the URL</label>
-					<div class="controls">
-							<input id="layerUrl" class="span6 typeahead" type="text" name="url">
-							<button class="btn btn-primary" onclick="javascript:getGeoServerLayers();">Get Layers</button>
-					</div>
-				</div>
-			</fieldset>
+        <div class="row-fluid sortable">
+                <div class="box-content">
+                        <div class="form-horizontal" action="#">
+                                <fieldset>
+                                        <div class="control-group">
+                                                <label class="control-label" for="layerUrl">Enter the URL</label>
+                                                <div class="controls">
+                                                                <input id="layerUrl" class="span6 typeahead" type="text" name="url">
+                                                                <button class="btn btn-primary" onclick="javascript:getGeoServerLayers();">Get Layers</button>
+                                                </div>
+                                        </div>
+                                </fieldset>
+                        </div>
                 </div>
-	</div>
-</div>
-
-
+        </div>
+        <div id="data-container"></div>
+        <div id="pagination-demo1"></div>
 	</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
