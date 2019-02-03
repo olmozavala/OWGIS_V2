@@ -10,8 +10,18 @@
 <!-- 					<li><a class="submenu" href="ncWMS.jsp"><i -->
 <!-- 							class="icon-cog"></i><span class="hidden-tablet"> ncWMS</span></a></li> -->
 <!-- 				</ul></li> -->
-			<li><a href="geoServer.jsp"><i class="icon-cogs"></i><span
-					class="hidden-tablet"> XML Configurator</span></a></li>
+			<li>
+                            <a href="geoServer.jsp">
+                                <i class="icon-cogs"></i>
+                                <span class="hidden-tablet"> Add Layers to XML</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="xmlConfig.jsp">
+                                <i class="icon-cogs"></i>
+                                <span class="hidden-tablet"> XML Configurator</span>
+                            </a>
+                        </li>
 			<li><a href="fonts.jsp"><i class="icon-font"></i><span
 					class="hidden-tablet"> Fonts</span></a></li>
 			<li><a href="colors.jsp"><i class="icon-tasks"></i><span

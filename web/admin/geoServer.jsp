@@ -91,7 +91,7 @@ menuIDs = menuIDs.substring(0,menuIDs.length()-1);
                                                 <label class="control-label" for="layerUrl">Enter the URL</label>
                                                 <div class="controls">
                                                                 <input id="layerUrl" class="span6 typeahead" type="text" name="url">
-                                                                <button class="btn btn-primary" onclick="javascript:getGeoServerLayers();">Get Layers</button>
+                                                                <button class="btn btn-primary" onclick="javascript:getLayersFromURL();">Get Layers</button>
                                                 </div>
                                         </div>
                                 </fieldset>

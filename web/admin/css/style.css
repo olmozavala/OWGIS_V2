@@ -3010,3 +3010,11 @@ background-color: rgb(249, 249, 249);
 }
 .easyPaginateNav a {padding:5px;}
 .easyPaginateNav a.current {font-weight:bold;text-decoration:underline;}
+.paginationjs-pages > ul {
+    list-style-type: none;
+}
+
+.paginationjs-pages > ul > li {
+    display: inline;
+    padding: 10px;
+}

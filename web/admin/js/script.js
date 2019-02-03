@@ -157,85 +157,103 @@ var indexOf = function(needle) {
     return indexOf.call(this, needle);
 };
 
-function getGeoServerLayers(){
+function getLayersFromURL(){
+    
     $(".loader").fadeIn("fast");
     layerUrl = $("#layerUrl").val();
-    var url = 'xml/wms2.xml';
+
     if(layerUrl.indexOf("/ncWMS") > -1){ 
-        ////alert('ncWMS'); //url = 'xml/ncwms2.xml';
 	ncWMSFl = true;
     }
-    if(layerUrl != "" && layerUrl != null){
-	console.log(layerUrl);
+    
+    if( !layerUrl.includes("GetCapabilities") ){
+        layerUrl += "?SERVICE=WMS&request=GetCapabilities";
+    }
+    
+    if(layerUrl !== "" && layerUrl !== null){
+	//console.log(layerUrl);
+        
 	mainLayers = $('#mainLayers').val().split(",");
 	vectorLayers = $('#vectorLayers').val().split(",");
 	menuIDs = $('#menuIDs').val();
-	$.ajax({
-		type: "GET",
-		//url: 'xml/wms2.xml',
-		//url:  'http://132.248.8.238:8080/geoserver/wms?SERVICE=WMS&request=GetCapabilities',
-		url: layerUrl,
-		dataType: "xml",
-		xhrFields: {
-			    withCredentials: false
-			  },
-                error: function (request, status, error) {
-                        console.log(request.responseText); $(".loader").fadeOut("slow");
-                    }
-	}).then(function(response) {
-            var layers = $(response).find('Layer > Layer');
-            console.log(response); 
-            if( typeof layers !== "undefined" ){
-                for(var i=0; i<layers.size(); i++){
-                    var name =  $(layers[i]).children('Name').text();
-                    var title = $(layers[i]).children('Title').text();
-                    var defLayer = new defaultLayer();
-
-                    //check if layer already there in XML, if exists then don't display
-                    if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;
-
-                    commonLayerProp.name = name;
-                    //BoundaryBox parameters
-                    commonLayerProp.bboxMinLong = $(layers[i]).children('EX_GeographicBoundingBox').children('westBoundLongitude').text();
-                    commonLayerProp.bboxMaxLong = $(layers[i]).children('EX_GeographicBoundingBox').children('eastBoundLongitude').text();
-                    commonLayerProp.bboxMinLat = $(layers[i]).children('EX_GeographicBoundingBox').children('southBoundLatitude').text();
-                    commonLayerProp.bboxMaxLat = $(layers[i]).children('EX_GeographicBoundingBox').children('northBoundLatitude').text();
-                    commonLayerProp.server = layerUrl;
-                    var styleElement =  $(layers[i]).children('Style');
-
-                    commonLayerProp.format = styleElement.find('Format').text();
-                    commonLayerProp.layerType = "";
-                    defLayer.title.value = title;
-                    defLayer.parentMenu.value = menuIDs;
-                    for(property in commonLayerProp){
-                        var val = commonLayerProp[property];
-                        if(! (val === "" || val == 'undefined')) {
-                            defLayer[property].value = val;
-                        }
-                    }
-                    layerArray[i] = defLayer;
-                } 
-                
-                layerArray = layerArray.filter(function( element ) {
-                    return element !== undefined;
-                 });
-                 console.log(layerArray);
-                //paginate items found on server
-                $('#content').pagination({
-                    dataSource: layerArray,
-                    totalNumberLocator: function(response) {
-                        // you can return totalNumber by analyzing response content
-                        return Math.floor(Math.random() * (1000 - 100)) + 100;
+        
+        //paginate items found on server
+        $('#content').pagination({
+            dataSource: function(done) {
+                $.ajax({
+                    type: 'GET',
+                    url: layerUrl,
+                    dataType: "xml",
+                    xhrFields: {
+                                withCredentials: false
                     },
-                    pageSize: 10,
-                    ajax: {
-                        beforeSend: function() {
-                            dataContainer.html('Loading data ...');
-                        }
+                    error: function (request, status, error) {
+                            console.log(request.responseText); 
+                            $(".loader").fadeOut("slow");
                     },
-                    callback: function(data, pagination) {
+                    success: function(response) {
+                        var layers = $(response).find('Layer > Layer');
+                        if( typeof layers !== "undefined" ){
+                            for(var i=0; i<layers.size(); i++){
+                                var name =  $(layers[i]).children('Name').text();
+                                var title = $(layers[i]).children('Title').text();
+                                var defLayer = new defaultLayer();
+
+                                //check if layer already there in XML, if exists then don't display
+                                if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;
+
+                                commonLayerProp.name = name;
+                                //BoundaryBox parameters
+                                commonLayerProp.bboxMinLong = $(layers[i]).children('EX_GeographicBoundingBox').children('westBoundLongitude').text();
+                                commonLayerProp.bboxMaxLong = $(layers[i]).children('EX_GeographicBoundingBox').children('eastBoundLongitude').text();
+                                commonLayerProp.bboxMinLat = $(layers[i]).children('EX_GeographicBoundingBox').children('southBoundLatitude').text();
+                                commonLayerProp.bboxMaxLat = $(layers[i]).children('EX_GeographicBoundingBox').children('northBoundLatitude').text();
+                                commonLayerProp.server = layerUrl;
+                                var styleElement =  $(layers[i]).children('Style');
+
+                                commonLayerProp.format = styleElement.find('Format').text();
+                                commonLayerProp.layerType = "";
+                                defLayer.title.value = title;
+                                defLayer.parentMenu.value = menuIDs;
+                                for(property in commonLayerProp){
+                                    var val = commonLayerProp[property];
+                                    if(! (val === "" || val == 'undefined')) {
+                                        defLayer[property].value = val;
+                                    }
+                                }
+                                layerArray[i] = defLayer;
+                            } 
+
+                            layerArray = layerArray.filter(function( element ) {
+                                return element !== undefined;
+                            });
+                            console.log(layerArray);
+
+                            OnloadFunction();
+                            $(".loader").fadeOut("slow");
+
+                        } else {
+                            //URL was not geoserver / ncwms or didnt found any Layers
+                            console.log("layers not found");
+                            $(".loader").fadeOut("slow");
+                        }
+                        done(layerArray);
+                    }
+                });
+            },
+            totalNumberLocator: function(response) {
+                // you can return totalNumber by analyzing response content
+                return Math.floor(Math.random() * (1000 - 100)) + 100;
+            },
+            pageSize: 10,
+            ajax: {
+                beforeSend: function() {
+                            console.log('Loading data ...');
+                        }
+            },
+            callback: function(data, pagination) {
                         // template method of yourself
-                        console.log(pagination.pageNumber);
+                        console.log(data,pagination.pageNumber);
                         var dataHtml = '';
                         //var i = 0;
                         $.each(data, function (index, item) {
@@ -294,26 +312,12 @@ function getGeoServerLayers(){
 
                             return false;
                         });
-                    }
-                });
-                OnloadFunction();
-
-                $('select[id^="layerType"]').change(function(){	
-                    onLayerTypeChange(this);
-                });
-
-                $(".loader").fadeOut("slow");
-
-                
-            } else {
-                //no encuentro nada o el url no era geoserver / ncwms
-                console.log("layers not found");
-                $(".loader").fadeOut("slow");
             }
-	});
+        });
+        
     } else {
-        //no se escribio nada en el input
-        console.log("layers not found");
+        //there is no URL from the user input
+        console.log("please write an URL.");
         $(".loader").fadeOut("slow");
     }
 }
@@ -411,11 +415,90 @@ function downloadMobileApp(){
 }
 
 
-//$(function() {
-//    $('form').submit(function() {
-//        var id = $(this).attr('id');
-////        $('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
-//        alert(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
-//        return false;
-//    });
-//});
+function createDOM4Layers(){
+    
+    $(".loader").fadeIn("fast");
+    
+    var mlJSON = JSON.parse(mainLayersJSON.value);
+    var olJSON = JSON.parse(optionalLayersJSON.value);
+    
+    mainLayers = $('#mainLayers').val().split(",");
+    vectorLayers = $('#vectorLayers').val().split(",");
+    menuIDs = $('#menuIDs').val();
+        
+    //paginate items found on server
+    $('#content').pagination({
+        dataSource: mlJSON,
+        totalNumberLocator: function(response) {
+                // you can return totalNumber by analyzing response content
+                return Math.floor(Math.random() * (1000 - 100)) + 100;
+        },
+        pageSize: 10,
+        callback: function(data, pagination) {
+                        // template method of yourself
+                        console.log(data,pagination.pageNumber);
+                        var dataHtml = '';
+                        //var i = 0;
+                        $.each(data, function (index, item) {
+                            //i++;
+                            var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+item.name.value+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ index +'" name="layerForm'+ index +'"> <fieldset>';
+                            var fields = '';
+                            for(property in commonLayerProp){
+                                //if( ! (item[property]== 'undefined' || item[property]=== ""))
+                                idx = index+(10*(pagination.pageNumber-1)); console.log(idx);
+                                console.log(item.property,property );
+                                fields += getDOMForProperty(idx,item.property,property);	
+                            }	
+                            var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
+                            dataHtml += start + fields + end;
+                        });
+                        
+                        $("#data-container").html(dataHtml);
+                        
+                        $('select[id^="layerType"]').change(function(){	
+                            onLayerTypeChange(this);
+                        });
+
+                        $('form').submit(function(event) {
+
+                            event.preventDefault();
+
+                            $(".loader").fadeIn("fast");
+                            var id = $(this).attr('id');
+                            $('input[name="server"]').val(encodeURIComponent(layerUrl));
+                            //$('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
+                            var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
+                            //alert(json); console.log(ncWMSFl,json);
+                            $.ajax({
+                                    type : "POST",
+                                    url : "../AddToXMLServlet",
+                                    data : "ncWMS="+ncWMSFl+"&json=" + json,
+                                    success: function(data){
+                                        var t = JSON.parse(json);
+                                        console.log("wow",t.name);
+                                        let result = layerArray.filter(obj => {
+                                            return obj.name.value === t.name
+                                          }); console.log(result);
+                                        var index = layerArray.indexOf(result);
+                                        if (index > -1) {
+                                          layerArray.splice(index, 1);
+                                        }
+                                            $(".loader").fadeOut("slow");
+                                            var formParent = $('form[id="'+id+'"]').parent();
+                                            $('form[id="'+id+'"]').remove();
+                                            formParent.parent()
+                                                    .parent()
+                                                    .addClass('animated zoomOutLeft')
+                                                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                                                    $(this).remove();
+                                            });
+                                    }
+                            });	
+
+                            return false;
+                        });
+            }
+    });
+}
+
+
