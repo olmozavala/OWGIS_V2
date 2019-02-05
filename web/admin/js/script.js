@@ -446,8 +446,39 @@ function createDOM4Layers(){
                             for(property in commonLayerProp){
                                 //if( ! (item[property]== 'undefined' || item[property]=== ""))
                                 idx = index+(10*(pagination.pageNumber-1)); console.log(idx);
-                                console.log(item.property,property );
-                                fields += getDOMForProperty(idx,item.property,property);	
+                                console.log(item[property] ,property );
+                                switch(property){
+                                        case "bboxMinLong":
+                                            fields += getDOMForProperty(idx,item["bbox"]["minLong"],property);	
+                                            break;
+                                        case "bboxMaxLong":
+                                            fields += getDOMForProperty(idx,item["bbox"]["maxLong"],property);
+                                          // code block
+                                          break;
+                                        case "bboxMaxLat":
+                                            fields += getDOMForProperty(idx,item["bbox"]["maxLat"],property);
+                                          // code block
+                                          break;
+                                        case "bboxMinLat":
+                                            fields += getDOMForProperty(idx,item["bbox"]["minLat"],property);
+                                            // code block
+                                            break;
+                                        case "proj":
+                                            fields += getDOMForProperty(idx,item["projection"],property);
+                                            // code block
+                                            break;
+                                        case "layerType":
+                                            if( mainLayers.indexOf(item["name"]) != -1 ){
+                                                fields += getDOMForProperty(idx,"MainLayer",property);
+                                            } else if( vectorLayers.indexOf(item["name"]) != -1 ){
+                                                fields += getDOMForProperty(idx,"OptionalLayer",property);
+                                            } else {
+                                                fields += getDOMForProperty(idx,"BackgroundLayer",property);
+                                            } break;
+                                        default:
+                                            fields += getDOMForProperty(idx,item[property],property);
+                                            break;// code block
+                                };	
                             }	
                             var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
                             dataHtml += start + fields + end;
@@ -497,6 +528,8 @@ function createDOM4Layers(){
 
                             return false;
                         });
+                        
+                        $(".loader").fadeOut("slow");
             }
     });
 }
