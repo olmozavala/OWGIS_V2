@@ -385,7 +385,7 @@ function updateCurrentsCesium(event){
     }else{
          console.log('no first');
          if(!isRunningUnderMainAnimation){
-            if(updateURL1()){
+            if(updateURL()){
                 console.log(event);
                 if(event == -53 || event == 53){  //only if you are zoom in the canvas                  
                     var res = 50000000;
@@ -394,12 +394,14 @@ function updateCurrentsCesium(event){
                     tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
                     tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
                     owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                    updateURL1()
                 }else{
+                    //updateURL1()
                     var res = 50000000;
                     var resolution = cam_rad.height/res;
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
-                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                    updateData();
+                    //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
+                    updateData();                   
                 }                			
             }            
         }
