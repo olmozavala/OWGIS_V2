@@ -414,6 +414,41 @@ function downloadMobileApp(){
 	});	
 }
 
+function createLayerArrayFromJSON(layersJSON){
+    console.log(layersJSON);
+    for(var i=0; i<layersJSON.length; i++){
+        var name =  layersJSON[i]["name"];
+        //var title = layersJSON[i].title;
+        var defLayer = new defaultLayer();
+
+        //check if layer already there in XML, if exists then don't display
+        //if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;
+
+        commonLayerProp.name = name;
+        //BoundaryBox parameters
+        commonLayerProp.bboxMinLong = layersJSON[i]["bbox"]["minLong"];
+        commonLayerProp.bboxMaxLong = layersJSON[i]["bbox"]["maxLong"];
+        commonLayerProp.bboxMinLat = layersJSON[i]["bbox"]["minLat"];
+        commonLayerProp.bboxMaxLat = layersJSON[i]["bbox"]["maxLat"];
+        commonLayerProp.server = layersJSON[i]["server"];
+        var styleElement =  layersJSON[i]['style'];
+
+        commonLayerProp.format = layersJSON[i]['format'];
+        commonLayerProp.layerType = "MainLayer";
+        console.log(layersJSON[i]['layerDisplayNames']["EN"]);
+        defLayer.title.value = layersJSON[i]['layerDisplayNames']["EN"];
+        defLayer.parentMenu.value = menuIDs;
+        for(property in commonLayerProp){
+            var val = commonLayerProp[property];
+            if(! (val === "" || val == 'undefined')) {
+                defLayer[property].value = val;
+            }
+        }
+        layerArray[i] = defLayer;
+    }
+    console.log(layerArray);
+    
+}
 
 function createDOM4Layers(){
     
@@ -425,6 +460,8 @@ function createDOM4Layers(){
     mainLayers = $('#mainLayers').val().split(",");
     vectorLayers = $('#vectorLayers').val().split(",");
     menuIDs = $('#menuIDs').val();
+    
+    createLayerArrayFromJSON(mlJSON);
         
     //paginate items found on server
     $('#content').pagination({
@@ -441,12 +478,14 @@ function createDOM4Layers(){
                         //var i = 0;
                         $.each(data, function (index, item) {
                             //i++;
-                            var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+item.name.value+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ index +'" name="layerForm'+ index +'"> <fieldset>';
+                            var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+item.name+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ index +'" name="layerForm'+ index +'"> <fieldset>';
                             var fields = '';
                             for(property in commonLayerProp){
                                 //if( ! (item[property]== 'undefined' || item[property]=== ""))
                                 idx = index+(10*(pagination.pageNumber-1)); console.log(idx);
-                                console.log(item[property] ,property );
+                                fields += getDOMForProperty(idx,layerArray[idx][property],property);	
+                                console.log(layerArray[idx][property] ,property );
+                                /*
                                 switch(property){
                                         case "bboxMinLong":
                                             fields += getDOMForProperty(idx,item["bbox"]["minLong"],property);	
@@ -479,6 +518,7 @@ function createDOM4Layers(){
                                             fields += getDOMForProperty(idx,item[property],property);
                                             break;// code block
                                 };	
+                                */
                             }	
                             var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
                             dataHtml += start + fields + end;

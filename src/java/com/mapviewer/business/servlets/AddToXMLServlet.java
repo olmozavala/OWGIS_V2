@@ -11,6 +11,8 @@ import org.json.me.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -20,9 +22,14 @@ import org.jdom.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
 public class AddToXMLServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	public JSONObject obj;
+    
+    private static final long serialVersionUID = 1L;
+    public JSONObject obj;
 
+    /* 
+     * Adds / Edits a layer element from the file TestLayers.xml
+     * and its corresponding menu element(s)
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, InterruptedException, SAXException, JSONException, JDOMException {
                 
@@ -38,9 +45,36 @@ public class AddToXMLServlet extends HttpServlet {
 
 	Document doc = (Document) builder.build(xmlFile);
 	Element rootNode = doc.getRootElement();
-                
-	Element layerParent = new Element(getString("layerType")+"s");
-	Element layer = new Element("layer");
+        
+        Element layerParent = null;
+	Element layer = null;
+        
+        //get Layers Elements
+        List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
+         
+        for (int temp = 0; temp < typeofLayerElementList.size(); temp++) {
+            Element parentTypeElement = typeofLayerElementList.get(temp);
+            
+            List<Element> layerslist = parentTypeElement.getChildren();
+            
+            for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
+                Element tempElement = layerslist.get(temp_);
+                //if element exists update it, check with layer name
+                if( tempElement.getAttribute("name").equals(getString("name")) ) {
+                    layerParent = parentTypeElement; // this could be different
+                    layer = tempElement;
+                }
+            }
+        }
+        
+        if( layerParent.equals(null) ){
+            layerParent = new Element(getString("layerType")+"s");
+            layer = new Element("layer");
+        } else if( !layerParent.getName().equals(getString("layerType")+"s") ) {
+            layerParent = new Element(getString("layerType")+"s");
+        }
+        
+        //falta checar menu elements
 		
 	layerParent.setAttribute("server", getString("server"));
 	layerParent.setAttribute("BBOX", getString("bboxMinLong")+","+ getString("bboxMinLat")+"," +getString("bboxMaxLong")+"," +getString("bboxMaxLat"));
