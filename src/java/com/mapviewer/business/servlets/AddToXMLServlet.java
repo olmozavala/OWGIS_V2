@@ -9,6 +9,8 @@ import org.json.me.JSONArray;
 import org.json.me.JSONException;
 import org.json.me.JSONObject;
 import java.io.File;
+import java.io.FileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -33,21 +35,31 @@ public class AddToXMLServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, InterruptedException, SAXException, JSONException, JDOMException {
                 
-	String json = request.getParameter("json");
-	boolean ncWMS = request.getParameter("ncWMS").equals("true")? true:false;
-		
-	System.out.println("JSON received: " + json);
-	obj = new JSONObject(json);
-                
+        String json = request.getParameter("json");
+        boolean ncWMS = request.getParameter("ncWMS").equals("true")? true:false;
+        String folderPath = getServletContext().getRealPath("/layers/"); //+"TestLayers.xml";
+        
+        File dir = new File(folderPath);
+        FileFilter fileFilter = new WildcardFileFilter("*.xml");
+        File[] files = dir.listFiles(fileFilter);
+        for (int i = 0; i < files.length; i++) {
+           System.out.println(files[i]);
+           // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
+        }
+
+        System.out.println("JSON received: " + json);
+        obj = new JSONObject(json);
+
         SAXBuilder builder = new SAXBuilder();
+
         String filePath = getServletContext().getRealPath("/layers/")+"TestLayers.xml";
         File xmlFile = new File(filePath);
 
-	Document doc = (Document) builder.build(xmlFile);
-	Element rootNode = doc.getRootElement();
+        Document doc = (Document) builder.build(xmlFile);
+        Element rootNode = doc.getRootElement();
         
         Element layerParent = null;
-	Element layer = null;
+        Element layer = null;
         
         //get Layers Elements
         List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
@@ -72,85 +84,86 @@ public class AddToXMLServlet extends HttpServlet {
             layer = new Element("layer");
         } else if( !layerParent.getName().equals(getString("layerType")+"s") ) {
             layerParent = new Element(getString("layerType")+"s");
+            /*si este es el caso hay que detach the son from the parent y agregarlo al nuevo parent*/
         }
         
         //falta checar menu elements
-		
-	layerParent.setAttribute("server", getString("server"));
-	layerParent.setAttribute("BBOX", getString("bboxMinLong")+","+ getString("bboxMinLat")+"," +getString("bboxMaxLong")+"," +getString("bboxMaxLat"));
-		
-	layer.setAttribute("name", getString("name"));
 
-	if(getString("layerType").equals("BackgroundLayer")){
-            layer.setAttribute("featureInfo", getString("featureInfo"));
-	} else if(getString("layerType").equals("OptionalLayer")){
-            layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
-            layerParent.setAttribute("format", getString("format"));
-            layerParent.setAttribute("tiled", getString("tiled"));
+        layerParent.setAttribute("server", getString("server"));
+        layerParent.setAttribute("BBOX", getString("bboxMinLong")+","+ getString("bboxMinLat")+"," +getString("bboxMaxLong")+"," +getString("bboxMaxLat"));
 
-            layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-            layer.setAttribute("EN", getString("menuEN"));
-            if("true".equals(getString("isVectorLayer"))){
-		layer.setAttribute("CQL", getString("cql"));
-            }
-	} else if(getString("layerType").equals("MainLayer")){
-            layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
-            layerParent.setAttribute("format", getString("format"));
-            layerParent.setAttribute("tiled", getString("tiled"));
+        layer.setAttribute("name", getString("name"));
 
-            layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-            layer.setAttribute("EN", getString("menuEN"));
-            if("true".equals(getString("isVectorLayer"))){
-                layer.setAttribute("CQL", getString("cql"));
-		layer.setAttribute("cqlcols", getString("cqlids"));
-            } else if(ncWMS){
-                layerParent.setAttribute("ncWMS", "true");
-		layerParent.setAttribute("style", getString("style"));
-		layerParent.setAttribute("width", getString("width"));
-		layerParent.setAttribute("height", getString("height"));
-		layerParent.setAttribute("palette", getString("palette"));
-		layerParent.setAttribute("minColor", getString("minColor"));
-		layerParent.setAttribute("maxColor", getString("maxColor"));
-		layerParent.setAttribute("max_time_range", getString("max_time_range"));
-            }
-	}
-	layerParent.addContent(layer);
-		
-	Element menus = rootNode.getChild("Menus");		
-	Element menu = new Element("Menu");
-	menu.setAttribute("ID", getString("menuID"));
-	menu.setAttribute("EN", getString("menuEN"));
-	menus.addContent(menu);
+        if(getString("layerType").equals("BackgroundLayer")){
+                layer.setAttribute("featureInfo", getString("featureInfo"));
+        } else if(getString("layerType").equals("OptionalLayer")){
+                layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
+                layerParent.setAttribute("format", getString("format"));
+                layerParent.setAttribute("tiled", getString("tiled"));
+
+                layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
+                layer.setAttribute("EN", getString("menuEN"));
+                if("true".equals(getString("isVectorLayer"))){
+            layer.setAttribute("CQL", getString("cql"));
+                }
+        } else if(getString("layerType").equals("MainLayer")){
+                layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
+                layerParent.setAttribute("format", getString("format"));
+                layerParent.setAttribute("tiled", getString("tiled"));
+
+                layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
+                layer.setAttribute("EN", getString("menuEN"));
+                if("true".equals(getString("isVectorLayer"))){
+                    layer.setAttribute("CQL", getString("cql"));
+            layer.setAttribute("cqlcols", getString("cqlids"));
+                } else if(ncWMS){
+                    layerParent.setAttribute("ncWMS", "true");
+            layerParent.setAttribute("style", getString("style"));
+            layerParent.setAttribute("width", getString("width"));
+            layerParent.setAttribute("height", getString("height"));
+            layerParent.setAttribute("palette", getString("palette"));
+            layerParent.setAttribute("minColor", getString("minColor"));
+            layerParent.setAttribute("maxColor", getString("maxColor"));
+            layerParent.setAttribute("max_time_range", getString("max_time_range"));
+                }
+        }
+        layerParent.addContent(layer);
+
+        Element menus = rootNode.getChild("Menus");		
+        Element menu = new Element("Menu");
+        menu.setAttribute("ID", getString("menuID"));
+        menu.setAttribute("EN", getString("menuEN"));
+        menus.addContent(menu);
                 
         rootNode.addContent(layerParent);
                 
         //write the updated document to file or console
         XMLOutputter xmlOutput = new XMLOutputter();
-	// display nice nice
+        // display nice nice
         Format f = Format.getPrettyFormat();  
-	f.setEncoding("UTF-8");
-	xmlOutput.setFormat(f);
-	xmlOutput.output(doc, new FileOutputStream(filePath));
-	// xmlOutput.output(doc, System.out);
-	System.out.println("File updated! "+filePath+" "+xmlOutput.outputString(doc));
+        f.setEncoding("UTF-8");
+        xmlOutput.setFormat(f);
+        xmlOutput.output(doc, new FileOutputStream(filePath));
+        // xmlOutput.output(doc, System.out);
+        System.out.println("File updated! "+filePath+" "+xmlOutput.outputString(doc));
     }
     
     public String getSArray(JSONArray arr){
-	String s ="";
-	for (int i = 0; i < arr.length(); i++)
-	{
+        String s ="";
+        for (int i = 0; i < arr.length(); i++)
+        {
             try {
-                    s = s + arr.get(i).toString()+",";
-		} catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-		}
-	}
-	return s.substring(0, s.length()-1);
+                s = s + arr.get(i).toString()+",";
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return s.substring(0, s.length()-1);
     }
 	
     public String getString(String key) throws JSONException{
-	return obj.has(key) ? obj.get(key) instanceof JSONArray ? getSArray(obj.getJSONArray(key)) : obj.getString(key) : "";
+        return obj.has(key) ? obj.get(key) instanceof JSONArray ? getSArray(obj.getJSONArray(key)) : obj.getString(key) : "";
     }
 	
     /**
@@ -159,22 +172,22 @@ public class AddToXMLServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	try {
+        try {
             processRequest(request,response);
             //ServletException, IOException, InterruptedException, SAXException, JSONException, JDOMException
-	} catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ServletException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (SAXException e) {
+        } catch (SAXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (JSONException e) {
+        } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (JDOMException e) {
+        } catch (JDOMException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -191,19 +204,19 @@ public class AddToXMLServlet extends HttpServlet {
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (JDOMException e) {
+        } catch (JDOMException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (SAXException e) {
+        } catch (SAXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (JSONException e) {
+        } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	} catch (ServletException e) {
+        } catch (ServletException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-	}
+        }
     }
 
 }
