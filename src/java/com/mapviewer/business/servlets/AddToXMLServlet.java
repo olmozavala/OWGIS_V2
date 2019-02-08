@@ -39,104 +39,120 @@ public class AddToXMLServlet extends HttpServlet {
         boolean ncWMS = request.getParameter("ncWMS").equals("true")? true:false;
         String folderPath = getServletContext().getRealPath("/layers/"); //+"TestLayers.xml";
         
-        File dir = new File(folderPath);
-        FileFilter fileFilter = new WildcardFileFilter("*.xml");
-        File[] files = dir.listFiles(fileFilter);
-        for (int i = 0; i < files.length; i++) {
-           System.out.println(files[i]);
-           // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
-        }
-
+        boolean isEditing = false;
         System.out.println("JSON received: " + json);
         obj = new JSONObject(json);
 
         SAXBuilder builder = new SAXBuilder();
-
+        /*
         String filePath = getServletContext().getRealPath("/layers/")+"TestLayers.xml";
         File xmlFile = new File(filePath);
-
-        Document doc = (Document) builder.build(xmlFile);
-        Element rootNode = doc.getRootElement();
+        */
+        String filePath = getServletContext().getRealPath("/layers/");//+
+        File xmlFile = null;
+        Document doc = null;
+        Element rootNode = null;
         
         Element layerParent = null;
         Element layer = null;
         
-        //get Layers Elements
-        List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
-         
-        for (int temp = 0; temp < typeofLayerElementList.size(); temp++) {
-            Element parentTypeElement = typeofLayerElementList.get(temp);
-            
-            List<Element> layerslist = parentTypeElement.getChildren();
-            
-            for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
-                Element tempElement = layerslist.get(temp_);
-                //if element exists update it, check with layer name
-                if( tempElement.getAttribute("name").equals(getString("name")) ) {
-                    layerParent = parentTypeElement; // this could be different
-                    layer = tempElement;
+        File dir = new File(folderPath);
+        FileFilter fileFilter = new WildcardFileFilter("*.xml");
+        File[] files = dir.listFiles(fileFilter);
+        for (File file : files) {
+            System.out.println(file);
+            filePath += file.getName();
+            doc = (Document) builder.build(file);
+            rootNode = doc.getRootElement();
+            // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
+            //get Layers Elements
+            List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
+
+            for (int temp = 0; temp < typeofLayerElementList.size(); temp++) {
+                Element parentTypeElement = typeofLayerElementList.get(temp);
+
+                List<Element> layerslist = parentTypeElement.getChildren();
+
+                for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
+                    Element tempElement = layerslist.get(temp_);
+                    //if element exists update it, check with layer name
+                    if( getString("name").equals(tempElement.getAttribute("name")) && getString("server").equals(parentTypeElement.getAttribute("server")) ) {
+                        layerParent = parentTypeElement; // this could be different
+                        if( !layerParent.getName().equals(getString("layerType")+"s") ) {
+                            layerParent.setName(getString("layerType")+"s");
+                        }
+                        layer = tempElement;
+                        isEditing = true;
+                        xmlFile = file;
+                    }
                 }
             }
         }
         
-        if( layerParent.equals(null) ){
+        
+        
+        
+        if( !isEditing ){
+            filePath += "TestLayers.xml";
+            xmlFile = new File(filePath);
+            doc = (Document) builder.build(xmlFile);
+            rootNode = doc.getRootElement();
             layerParent = new Element(getString("layerType")+"s");
             layer = new Element("layer");
-        } else if( !layerParent.getName().equals(getString("layerType")+"s") ) {
-            layerParent = new Element(getString("layerType")+"s");
-            /*si este es el caso hay que detach the son from the parent y agregarlo al nuevo parent*/
+            layerParent.setAttribute("server", getString("server"));
+        } 
+        
+        layerParent.setAttribute("BBOX", getString("bboxMinLong")+","+ getString("bboxMinLat")+"," +getString("bboxMaxLong")+"," +getString("bboxMaxLat"));
+        layer.setAttribute("name", getString("name"));
+        if( "true".equals(getString("selected")) ){
+            layer.setAttribute("selected", "true");
         }
         
-        //falta checar menu elements
-
-        layerParent.setAttribute("server", getString("server"));
-        layerParent.setAttribute("BBOX", getString("bboxMinLong")+","+ getString("bboxMinLat")+"," +getString("bboxMaxLong")+"," +getString("bboxMaxLat"));
-
-        layer.setAttribute("name", getString("name"));
-
+        /* add/change attributes according to layer type */
         if(getString("layerType").equals("BackgroundLayer")){
-                layer.setAttribute("featureInfo", getString("featureInfo"));
+            layer.setAttribute("featureInfo", getString("featureInfo"));
         } else if(getString("layerType").equals("OptionalLayer")){
-                layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
-                layerParent.setAttribute("format", getString("format"));
-                layerParent.setAttribute("tiled", getString("tiled"));
-
-                layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-                layer.setAttribute("EN", getString("menuEN"));
-                if("true".equals(getString("isVectorLayer"))){
-            layer.setAttribute("CQL", getString("cql"));
-                }
+            layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
+            layerParent.setAttribute("format", getString("format"));
+            layerParent.setAttribute("tiled", getString("tiled"));
+            layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
+            layer.setAttribute("EN", getString("menuEN"));
+            if("true".equals(getString("isVectorLayer"))){
+                layer.setAttribute("CQL", getString("cql"));
+            }
         } else if(getString("layerType").equals("MainLayer")){
-                layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
-                layerParent.setAttribute("format", getString("format"));
-                layerParent.setAttribute("tiled", getString("tiled"));
-
-                layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-                layer.setAttribute("EN", getString("menuEN"));
-                if("true".equals(getString("isVectorLayer"))){
-                    layer.setAttribute("CQL", getString("cql"));
-            layer.setAttribute("cqlcols", getString("cqlids"));
-                } else if(ncWMS){
-                    layerParent.setAttribute("ncWMS", "true");
-            layerParent.setAttribute("style", getString("style"));
-            layerParent.setAttribute("width", getString("width"));
-            layerParent.setAttribute("height", getString("height"));
-            layerParent.setAttribute("palette", getString("palette"));
-            layerParent.setAttribute("minColor", getString("minColor"));
-            layerParent.setAttribute("maxColor", getString("maxColor"));
-            layerParent.setAttribute("max_time_range", getString("max_time_range"));
-                }
+            layerParent.setAttribute("vectorLayer", getString("isVectorLayer"));
+            layerParent.setAttribute("format", getString("format"));
+            layerParent.setAttribute("tiled", getString("tiled"));
+            layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
+            layer.setAttribute("EN", getString("menuEN"));
+            if("true".equals(getString("isVectorLayer"))){
+                layer.setAttribute("CQL", getString("cql"));
+                layer.setAttribute("cqlcols", getString("cqlids"));
+            } else if(ncWMS){
+                layerParent.setAttribute("ncWMS", "true");
+                layerParent.setAttribute("style", getString("style"));
+                layerParent.setAttribute("width", getString("width"));
+                layerParent.setAttribute("height", getString("height"));
+                layerParent.setAttribute("palette", getString("palette"));
+                layerParent.setAttribute("minColor", getString("minColor"));
+                layerParent.setAttribute("maxColor", getString("maxColor"));
+                layerParent.setAttribute("max_time_range", getString("max_time_range"));
+            }
         }
-        layerParent.addContent(layer);
+        
+        if(!isEditing){
+            layerParent.addContent(layer);
 
-        Element menus = rootNode.getChild("Menus");		
-        Element menu = new Element("Menu");
-        menu.setAttribute("ID", getString("menuID"));
-        menu.setAttribute("EN", getString("menuEN"));
-        menus.addContent(menu);
-                
-        rootNode.addContent(layerParent);
-                
+            Element menus = rootNode.getChild("Menus");		
+            Element menu = new Element("Menu");
+            menu.setAttribute("ID", getString("menuID"));
+            menu.setAttribute("EN", getString("menuEN"));
+            menus.addContent(menu);
+
+            rootNode.addContent(layerParent);
+        }
+        
         //write the updated document to file or console
         XMLOutputter xmlOutput = new XMLOutputter();
         // display nice nice
