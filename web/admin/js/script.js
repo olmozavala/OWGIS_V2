@@ -375,8 +375,14 @@ function getDOMForProperty(index,property,propertyName){
 	var fieldType = property.type;
 	var dom = '';
 	if(fieldType === 'string'){
-		dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="text" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
-		return dom;
+            console.log(property, property.value);
+            if(propertyName=="server"){
+                //type="url"
+                dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="url" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
+                return dom;
+            }
+            dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="text" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
+            return dom;
 	}
 	else if (fieldType === 'boolean') {
 		dom = '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls">  <label class="checkbox"><input type="checkbox" id="'+propertyName+ index +'" name="'+propertyName +'" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></label></div>  </div>';
@@ -519,12 +525,18 @@ function createDOM4Layers(){
                                             break;// code block
                                 };	
                                 */
-                            }	
+                            }	                      
                             var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
                             dataHtml += start + fields + end;
                         });
                         
                         $("#data-container").html(dataHtml);
+                        
+                        var l = pagination.pageNumber*10;
+                        for(var i = 0; i < l ; i++){
+                            idx = i+(10*(pagination.pageNumber-1)); console.log(idx);
+                            document.getElementById("server"+idx).value = layerArray[idx]["server"].value;
+                        }
                         
                         $('select[id^="layerType"]').change(function(){	
                             onLayerTypeChange(this);
@@ -539,7 +551,8 @@ function createDOM4Layers(){
                             $('input[name="server"]').val(encodeURIComponent(layerUrl));
                             //$('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
                             var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
-                            //alert(json); console.log(ncWMSFl,json);
+                            //alert(json); 
+                            console.log(ncWMSFl,$('form[id="'+id+'"]'));
                             $.ajax({
                                     type : "POST",
                                     url : "../AddToXMLServlet",

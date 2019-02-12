@@ -48,7 +48,7 @@ public class AddToXMLServlet extends HttpServlet {
         String filePath = getServletContext().getRealPath("/layers/")+"TestLayers.xml";
         File xmlFile = new File(filePath);
         */
-        String filePath = getServletContext().getRealPath("/layers/");//+
+        String filePath = "";//+
         File xmlFile = null;
         Document doc = null;
         Element rootNode = null;
@@ -60,8 +60,8 @@ public class AddToXMLServlet extends HttpServlet {
         FileFilter fileFilter = new WildcardFileFilter("*.xml");
         File[] files = dir.listFiles(fileFilter);
         for (File file : files) {
-            System.out.println(file);
-            filePath += file.getName();
+            System.out.println(file.getName());
+            filePath = getServletContext().getRealPath("/layers/")+file.getName();
             doc = (Document) builder.build(file);
             rootNode = doc.getRootElement();
             // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
@@ -76,6 +76,7 @@ public class AddToXMLServlet extends HttpServlet {
                 for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
                     Element tempElement = layerslist.get(temp_);
                     //if element exists update it, check with layer name
+                    System.out.println(getString("name")+" "+tempElement.getAttribute("name")+" "+getString("server"));
                     if( getString("name").equals(tempElement.getAttribute("name")) && getString("server").equals(parentTypeElement.getAttribute("server")) ) {
                         layerParent = parentTypeElement; // this could be different
                         if( !layerParent.getName().equals(getString("layerType")+"s") ) {
@@ -92,8 +93,8 @@ public class AddToXMLServlet extends HttpServlet {
         
         
         
-        if( !isEditing ){
-            filePath += "TestLayers.xml";
+        if( isEditing == false ){
+            filePath = folderPath + "TestLayers.xml";
             xmlFile = new File(filePath);
             doc = (Document) builder.build(xmlFile);
             rootNode = doc.getRootElement();
