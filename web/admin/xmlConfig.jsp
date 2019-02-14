@@ -48,11 +48,13 @@
     Gson gsonBuilder = new GsonBuilder().create();
     String allMainLayers = gsonBuilder.toJson(layersManager.getMainLayers());
     String allOptLayers = gsonBuilder.toJson(layersManager.getVectorLayers());
+    String allBgLayers = gsonBuilder.toJson(layersManager.getBackgroundLayers());
     %>
 
     <input type="hidden" id="mainLayers" value="<%=mainLayers%>">
     <input type="hidden" id="mainLayersJSON" value='<%=allMainLayers%>'>
     <input type="hidden" id="optionalLayersJSON" value='<%=allOptLayers%>'>
+    <input type="hidden" id="backgroundLayersJSON" value='<%=allBgLayers%>'>
     <input type="hidden" id="vectorLayers" value="<%=vectorLayers%>">
     <input type="hidden" id="menuIDs" value="<%=menuIDs%>">
     

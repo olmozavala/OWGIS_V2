@@ -583,17 +583,17 @@ public class LayerMenuManagerSingleton {
 		String localAddress = layerConf.getAttributeValue("localAddress");
 		localAddress = localAddress != null ? localAddress : layer.getLocalAddress();
 		
-		int width = layerConf.getAttributeValue("width") != null
+		int width = layerConf.getAttributeValue("width") != null && layerConf.getAttributeValue("width") != ""
 				? Integer.parseInt(layerConf.getAttributeValue("width")) : layer.getWidth();
 		
-		int height = layerConf.getAttributeValue("height") != null
+		int height = layerConf.getAttributeValue("height") != null && layerConf.getAttributeValue("height") != ""
 				? Integer.parseInt(layerConf.getAttributeValue("height")) : layer.getHeight();
 		
 		
-		float minColor = layerConf.getAttributeValue("mincolor") != null
+		float minColor = layerConf.getAttributeValue("mincolor") != null && layerConf.getAttributeValue("mincolor") != ""
 				? Float.parseFloat(layerConf.getAttributeValue("mincolor")) : layer.getMinColor();
 		
-		float maxColor = layerConf.getAttributeValue("maxcolor") != null
+		float maxColor = layerConf.getAttributeValue("maxcolor") != null && layerConf.getAttributeValue("maxcolor") != ""
 				? Float.parseFloat(layerConf.getAttributeValue("maxcolor")) : layer.getMaxColor();
 
 		

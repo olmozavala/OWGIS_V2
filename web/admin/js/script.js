@@ -41,7 +41,6 @@ function defaultLayer() {
 	this.format = {type:"string", label:"Format", value: "image/jpeg", required: true, uneditable: false};
 	this.proj = {type:"string", label:"Projection", value:  "EPSG:4326", required: true, uneditable: false};
 	this.layerType = {type:"select", label:"Layer Type", value:  "MainLayer, OptionalLayer, BackgroundLayer", required: true, uneditable: false, callBackFunc: "onLayerTypeChange()"};
-
 	this.title = {type:"string", label:"Title", value:  "EPSG:4326", required: true, uneditable: false};
 	this.style = {type:"string", label:"Style", value: "", required: false, uneditable: false};
 	this.selected = {type:"boolean", label:"Is Selected", value: false, required: false, uneditable: false};
@@ -49,24 +48,25 @@ function defaultLayer() {
 	this.height = {type:"string", label:"Height", value: 512, required: true, uneditable: false};
 	this.featureInfo = {type:"string", label:"Feature Info", value: "", required: false, uneditable: false};
 	this.tiled = {type:"boolean", label:"Is Tiled", value: false, required: false, uneditable: false};
-	this.netCDF = {type:"boolean", label:"Is netCDF", value: false, required: false, uneditable: false};
+	//this.netCDF = {type:"boolean", label:"Is netCDF", value: false, required: false, uneditable: false};
 	this.parentMenu = {type:"multiSelect", label:"Parent Menu(s)", value: "", required: true, uneditable: false};
 	this.menuID = {type:"string", label:"Menu ID", value: "", required: true, uneditable: false};
 	this.menuEN = {type:"string", label:"Menu Label", value: "", required: true, uneditable: false};
-	this.layout = {type:"string", label:"Layout", value: -180, required: true, uneditable: false};
+	//this.layout = {type:"string", label:"Layout", value: -180, required: true, uneditable: false};
 	//this.palette = {type:"string", label:"Palette", value: "default", required: true, uneditable: false};
 	this.displayTitle = {type:"boolean", label:"Display Title", value: false, required: false, uneditable: false};
-		
-	//this.jsonp = {type:"boolean", label:"JSONP", value: false, required: true, uneditable: false};
 	this.isVectorLayer = {type:"boolean", label:"Is vectorLayer", value: false, required: false, uneditable: false, callBackFunc: "onIsVectorLayerChange()"};
 	this.cql =  {type:"string", label:"CQL", value:  "week", required: true, uneditable: false};
 	this.cqlids =  {type:"string", label:"CQL IDs", value:  "week", required: true, uneditable: false};
 	this.jsonp = {type:"boolean", label:"JSONP", value: false, required:  false, uneditable: false};
-	
 	this.palette = {type:"string", label:"Palette", value:  "", required: true, uneditable: false};
 	this.minColor = {type:"string", label:"Min Color", value:  "-1", required: true, uneditable: false};
 	this.maxColor = {type:"string", label:"Max Color", value:  "-1", required:  true, uneditable: false};
-	this.max_time_range = {type:"string", label:"Max time range", value:  "", required: true, uneditable: false};
+	this.max_time_range = {type:"string", label:"Max time range", value:  "", required: false, uneditable: false};
+	this.aboveMaxColor = {type:"string", label:"AboveMaxColor", value:  "-1", required: false, uneditable: false};
+	this.belowMinColor = {type:"string", label:"BelowMinColor", value:  "-1", required:  false, uneditable: false};
+	this.overlayStreamlines = {type:"string", label:"Overlay streamlines", value: "", required:  false, uneditable: false};
+        this.defParticleSpeed = {type:"string", label:"defParticleSpeed", value:  "0.3", required:  false, uneditable: false};
 };
 
 
@@ -90,8 +90,6 @@ var mainLayer = {
 		parentMenu: "",
 		menuID: "",
 		menuEN: "",
-		width: "",
-		height: "",
 		isVectorLayer: ""
 };
 
@@ -103,12 +101,8 @@ var vectorLayer = {
 
 var	ncWMS = {
 		title: "",
-		tiled: "",
 		featureInfo: "",
 		style: "",
-		parentMenu: "",
-		menuID: "",
-		menuEN: "",
 		width: "",
 		height: "",	
 		palette: "",
@@ -117,8 +111,8 @@ var	ncWMS = {
 		max_time_range: "",
                 aboveMaxColor: "",
                 belowMinColor : "",
-                Overlaystreamlines : ""
-                
+                overlayStreamlines : "",
+                defParticleSpeed: "0.3"                
 };		
 		
 var optionalLayer = {
@@ -372,34 +366,42 @@ function getDOMForObject(index,object){
 }
 
 function getDOMForProperty(index,property,propertyName){
-	var fieldType = property.type;
-	var dom = '';
-	if(fieldType === 'string'){
-            console.log(property, property.value);
-            if(propertyName=="server"){
-                //type="url"
-                dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="url" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
-                return dom;
-            }
-            dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="text" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
+    var fieldType = property.type;
+    var dom = '';
+    if(fieldType === 'string'){
+        if(propertyName=="server"){
+            //type="url"
+            dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="url" value="'+encodeURIComponent(property.value)+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
             return dom;
-	}
-	else if (fieldType === 'boolean') {
-		dom = '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls">  <label class="checkbox"><input type="checkbox" id="'+propertyName+ index +'" name="'+propertyName +'" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></label></div>  </div>';
-		return dom;
-	}
-	else if(fieldType === 'select' || fieldType === 'multiSelect') {
-		var selectStart= '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><select id="'+propertyName+ index +'" name="'+propertyName +'" '+ (fieldType === "multiSelect"?' multiple':'') +' data-rel="chosen"'+' '+ (property.required? ' required':'') +'>';
-		var options="<option selected disabled hidden value=''></option>";
-		var ops = property.value.split(',');
-		for(var i=0; i < ops.length; i++){
-			options = options + '<option>'+ ops[i] + '</option>';
-		}
-		var selectEnd = ' </select></div></div>';
-		dom = selectStart + options + selectEnd;
-		return dom;
-	}
-	else return;
+        }
+        dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="text" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
+        return dom;
+    } else if (fieldType === 'boolean') {
+        
+        dom = '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls">  <label class="checkbox"><input type="checkbox" id="'+propertyName+ index +'" name="'+propertyName +'" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></label></div>  </div>';
+	
+        return dom;
+    } else if(fieldType === 'select' || fieldType === 'multiSelect') {
+        //console.log(property);
+        //var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,ob)+'</div>';
+        var ops = property.value.split(',');
+        var selectStart= '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><select id="'+propertyName+ index +'" name="'+propertyName +'" '+ (fieldType === "multiSelect"?' multiple':'') +' data-rel="chosen"'+' '+ (property.required? ' required':'') +'>';
+        var options="<option selected disabled hidden value=''></option>";
+        if(propertyName=="layerType" && ops.length == 1){
+            var selectStart= '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><select id="'+propertyName+ index +'" name="'+propertyName +'" '+ (fieldType === "multiSelect"?' multiple':'') +' data-rel="chosen"'+' '+ (property.required? ' required':'') +' disabled>';
+        }
+        for(var i=0; i < ops.length; i++){
+            if( propertyName=="layerType" && ops.length == 1 ){
+                options = options + '<option selected>'+ ops[i] + '</option>';
+            } else {
+                options = options + '<option>'+ ops[i] + '</option>';
+            }
+        }
+        var selectEnd = ' </select></div></div>';
+        dom = selectStart + options + selectEnd;
+        return dom;
+    }
+    else return;
 }
 
 function downloadMobileApp(){
@@ -426,10 +428,6 @@ function createLayerArrayFromJSON(layersJSON){
         var name =  layersJSON[i]["name"];
         //var title = layersJSON[i].title;
         var defLayer = new defaultLayer();
-
-        //check if layer already there in XML, if exists then don't display
-        //if((indexOf.call(mainLayers, name) > -1) || (indexOf.call(vectorLayers, name) > -1)) continue;
-
         commonLayerProp.name = name;
         //BoundaryBox parameters
         commonLayerProp.bboxMinLong = layersJSON[i]["bbox"]["minLong"];
@@ -437,23 +435,61 @@ function createLayerArrayFromJSON(layersJSON){
         commonLayerProp.bboxMinLat = layersJSON[i]["bbox"]["minLat"];
         commonLayerProp.bboxMaxLat = layersJSON[i]["bbox"]["maxLat"];
         commonLayerProp.server = layersJSON[i]["server"];
-        var styleElement =  layersJSON[i]['style'];
-
+        //var styleElement =  layersJSON[i]['style'];
+        defLayer["style"].value = layersJSON[i]['style'];
         commonLayerProp.format = layersJSON[i]['format'];
-        commonLayerProp.layerType = "MainLayer";
-        console.log(layersJSON[i]['layerDisplayNames']["EN"]);
-        defLayer.title.value = layersJSON[i]['layerDisplayNames']["EN"];
+        commonLayerProp.layerType = layersJSON[i].layerType;
+        //console.log(layersJSON[i]['layerDisplayNames']["EN"]);
+        //console.log(layersJSON[i]);
         defLayer.parentMenu.value = menuIDs;
+        
         for(property in commonLayerProp){
             var val = commonLayerProp[property];
-            if(! (val === "" || val == 'undefined')) {
+            if(! (val === "" || typeof val == 'undefined')) {
                 defLayer[property].value = val;
             }
         }
+        
+        if(layersJSON[i]['layerType'] == "MainLayer"){
+            
+            for(property in mainLayer){
+                var val = layersJSON[i][property];
+                if(! (val === "" || typeof val == 'undefined')) {
+                    defLayer[property].value = val;
+                }
+            }
+            //if is ncwMS
+            if(commonLayerProp.server.indexOf("ncWMS") > -1){
+                
+                for(property in ncWMS){
+                   var val = layersJSON[i][property];
+                   console.log(property,val);
+                   if(! (val === "" || typeof val == 'undefined')) {
+                       defLayer[property].value = val;
+                   }
+                }   
+            }
+            defLayer.title.value = layersJSON[i]['layerDisplayNames']["EN"];
+            
+        } else if(layersJSON[i]['layerType'] == "OptionalLayer"){
+            for(property in optionalLayer){
+                var val = layersJSON[i][property];
+                if(! (val === "" || typeof val == 'undefined')) {
+                    defLayer[property].value = val;
+                }
+            }
+        } else if(layersJSON[i]['layerType'] == "BackgroundLayer"){
+            for(property in backgroundLayer){
+                var val = layersJSON[i][property];
+                if(! (val === "" || typeof val == 'undefined')) {
+                    defLayer[property].value = val;
+                }
+            }
+        }
+        
         layerArray[i] = defLayer;
     }
     console.log(layerArray);
-    
 }
 
 function createDOM4Layers(){
@@ -461,17 +497,28 @@ function createDOM4Layers(){
     $(".loader").fadeIn("fast");
     
     var mlJSON = JSON.parse(mainLayersJSON.value);
-    var olJSON = JSON.parse(optionalLayersJSON.value);
-    
+    for (i = 0; i < mlJSON.length; i++) {
+        mlJSON[i].layerType = 'MainLayer';
+    }
+    var olJSON = JSON.parse(optionalLayersJSON.value); 
+    for (i = 0; i < olJSON.length; i++) {
+        olJSON[i].layerType = 'OptionalLayer';
+    }
+    var bgJSON = JSON.parse(backgroundLayersJSON.value); console.log(bgJSON);
+    for (i = 0; i < bgJSON.length; i++) {
+        bgJSON[i].layerType = 'BackgroundLayer';
+    }
+    var finalObj = mlJSON.concat(olJSON);
+    finalObj = finalObj.concat(bgJSON);
     mainLayers = $('#mainLayers').val().split(",");
     vectorLayers = $('#vectorLayers').val().split(",");
     menuIDs = $('#menuIDs').val();
     
-    createLayerArrayFromJSON(mlJSON);
+    createLayerArrayFromJSON(finalObj);
         
     //paginate items found on server
     $('#content').pagination({
-        dataSource: mlJSON,
+        dataSource: finalObj,
         totalNumberLocator: function(response) {
                 // you can return totalNumber by analyzing response content
                 return Math.floor(Math.random() * (1000 - 100)) + 100;
@@ -486,58 +533,44 @@ function createDOM4Layers(){
                             //i++;
                             var start = '<div class="row-fluid sortable"> <div class="box span12"> <div class="box-header" data-original-title=""> <h2><i class="halflings-icon edit"></i><span class="break"></span>Layer: '+item.name+'</h2> <div class="box-icon"> <a class="btn-setting halflings-icon wrench" href="#" style="font-style: italic"></a><a class= "btn-minimize halflings-icon chevron-up" href="#" style="font-style: italic"></a><a class="btn-close halflings-icon remove" href="#" style="font-style: italic"></a> </div> </div> <div class="box-content"> <form  action="" method="post" class="form-horizontal" id="layerForm'+ index +'" name="layerForm'+ index +'"> <fieldset>';
                             var fields = '';
+                            idx = index+(10*(pagination.pageNumber-1)); //console.log(idx);
                             for(property in commonLayerProp){
-                                //if( ! (item[property]== 'undefined' || item[property]=== ""))
-                                idx = index+(10*(pagination.pageNumber-1)); console.log(idx);
-                                fields += getDOMForProperty(idx,layerArray[idx][property],property);	
-                                console.log(layerArray[idx][property] ,property );
-                                /*
-                                switch(property){
-                                        case "bboxMinLong":
-                                            fields += getDOMForProperty(idx,item["bbox"]["minLong"],property);	
-                                            break;
-                                        case "bboxMaxLong":
-                                            fields += getDOMForProperty(idx,item["bbox"]["maxLong"],property);
-                                          // code block
-                                          break;
-                                        case "bboxMaxLat":
-                                            fields += getDOMForProperty(idx,item["bbox"]["maxLat"],property);
-                                          // code block
-                                          break;
-                                        case "bboxMinLat":
-                                            fields += getDOMForProperty(idx,item["bbox"]["minLat"],property);
-                                            // code block
-                                            break;
-                                        case "proj":
-                                            fields += getDOMForProperty(idx,item["projection"],property);
-                                            // code block
-                                            break;
-                                        case "layerType":
-                                            if( mainLayers.indexOf(item["name"]) != -1 ){
-                                                fields += getDOMForProperty(idx,"MainLayer",property);
-                                            } else if( vectorLayers.indexOf(item["name"]) != -1 ){
-                                                fields += getDOMForProperty(idx,"OptionalLayer",property);
-                                            } else {
-                                                fields += getDOMForProperty(idx,"BackgroundLayer",property);
-                                            } break;
-                                        default:
-                                            fields += getDOMForProperty(idx,item[property],property);
-                                            break;// code block
-                                };	
-                                */
-                            }	                      
+                                fields += getDOMForProperty(idx,layerArray[idx][property],property);
+                            }
+                            if( layerArray[idx]["layerType"].value == "MainLayer" ){
+                                for(property in mainLayer){
+                                    if(property!="selected"){
+                                        fields += getDOMForProperty(idx,layerArray[idx][property],property);	
+                                    }
+                                }
+                            } else if( layerArray[idx]["layerType"].value == "OptionalLayer" ){
+                                for(property in optionalLayer){
+                                    fields += getDOMForProperty(idx,layerArray[idx][property],property);	
+                                }
+                            } else if( layerArray[idx]["layerType"].value == "BackgroundLayer" ){
+                                for(property in backgroundLayer){
+                                    fields += getDOMForProperty(idx,layerArray[idx][property],property);	
+                                }
+                            }
+                            
+                            if(layerArray[idx]["server"].value.indexOf("ncWMS") > -1){ 
+                                ncWMSFl = true;
+                                for(property in ncWMS){
+                                    fields += getDOMForProperty(idx,layerArray[idx][property],property);	
+                                }
+                            }
+                            	                      
                             var end = '<div class="form-actions"> <button type="submit" class="btn btn-primary">Add to XML</button></div></fieldset></form></div></div></div>';
                             dataHtml += start + fields + end;
                         });
                         
                         $("#data-container").html(dataHtml);
-                        
-                        var l = pagination.pageNumber*10;
-                        for(var i = 0; i < l ; i++){
+                        /*
+                        for(var i = 0; i < 10 ; i++){
                             idx = i+(10*(pagination.pageNumber-1)); console.log(idx);
                             document.getElementById("server"+idx).value = layerArray[idx]["server"].value;
                         }
-                        
+                        */
                         $('select[id^="layerType"]').change(function(){	
                             onLayerTypeChange(this);
                         });
@@ -548,10 +581,16 @@ function createDOM4Layers(){
 
                             $(".loader").fadeIn("fast");
                             var id = $(this).attr('id');
-                            $('input[name="server"]').val(encodeURIComponent(layerUrl));
+                            //$('input[name="server"]').val(encodeURIComponent(layerUrl));
                             //$('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
                             var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
-                            //alert(json); 
+                            //check if ncWMS and change ncWMSFl
+                            console.log(json,JSON.parse(json).server);
+                            if(JSON.parse(json)["server"].indexOf("ncWMS") > -1){
+                                ncWMSFl = true;
+                            } else {
+                                ncWMSFl = false;
+                            }
                             console.log(ncWMSFl,$('form[id="'+id+'"]'));
                             $.ajax({
                                     type : "POST",

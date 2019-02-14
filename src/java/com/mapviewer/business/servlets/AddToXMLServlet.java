@@ -67,31 +67,32 @@ public class AddToXMLServlet extends HttpServlet {
             // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
             //get Layers Elements
             List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
-
+            System.out.println(typeofLayerElementList);
+            
             for (int temp = 0; temp < typeofLayerElementList.size(); temp++) {
                 Element parentTypeElement = typeofLayerElementList.get(temp);
-
+                //System.out.println(parentTypeElement);
+                
                 List<Element> layerslist = parentTypeElement.getChildren();
-
+                System.out.println(layerslist);
                 for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
                     Element tempElement = layerslist.get(temp_);
-                    //if element exists update it, check with layer name
-                    System.out.println(getString("name")+" "+tempElement.getAttribute("name")+" "+getString("server"));
-                    if( getString("name").equals(tempElement.getAttribute("name")) && getString("server").equals(parentTypeElement.getAttribute("server")) ) {
+                    //if element exists update it, check with layer name and server 
+                    //missing to check with menu too
+                    //check if menu elements exist or if new ones need to be created
+                    if( getString("name").equals(tempElement.getAttributeValue("name")) && getString("server").equals(parentTypeElement.getAttributeValue("server")) ) {
                         layerParent = parentTypeElement; // this could be different
                         if( !layerParent.getName().equals(getString("layerType")+"s") ) {
                             layerParent.setName(getString("layerType")+"s");
                         }
                         layer = tempElement;
                         isEditing = true;
+                        System.out.println(getString("name")+" "+tempElement.getAttributeValue("name")+" "+getString("server")+" "+parentTypeElement.getAttributeValue("server"));
                         xmlFile = file;
                     }
                 }
             }
         }
-        
-        
-        
         
         if( isEditing == false ){
             filePath = folderPath + "TestLayers.xml";
