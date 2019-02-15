@@ -17,7 +17,8 @@ var currAnimSpeed = 80;
 var defLineWidth = 1.7;
 var defLineWidthCesium = 2.5;
 // This is the amount of data requested for every 800 pixels
-var imageRequestResolution = 650;
+//var imageRequestResolution = 650;
+var imageRequestResolution = 800;
 var layerTemplate;
 var times = new Array();
 var intervalHandlerCurrents;// This is the handler of the 'interval' function
@@ -370,17 +371,18 @@ function updateCurrentsCesium(event){
 	console.log("Computed extent: " + currentExtent);
     */
 
-    if(isFirstTime3D){
+     if(isFirstTime3D){
         if(updateURL()){
             console.log(isFirstTime3D);
             isFirstTime3D = false;
             isFirstTime = true;
             //Trying to match the resolution obtained with the non-cesium version.
             // This is just to modify the the speed of the particles when zooming in/out
-            var res = 50000000;
+            var res = 200000000;
             var resolution = cam_rad.height/res;
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
             updateData();
+            updateURL1();
         }
     }else{
          console.log('no first');
@@ -388,26 +390,27 @@ function updateCurrentsCesium(event){
             if(updateURL()){
                 console.log(event);
                 if(event == -53 || event == 53){  //only if you are zoom in the canvas                  
-                    var res = 50000000;
-                    var resolution = cam_rad.height/res;                   
+                    var res = 200000000;
+                    var resolution = cam_rad.height/res;                    
+                    updateURL1()
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);                    
                     tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
                     tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
-                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                    updateURL1()
-                }else{
-                    //updateURL1()
-                    var res = 50000000;
+                    gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer);
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);                                                               
+                    //updateURL1()                    
+                }else{                    
+                    var res = 200000000;
                     var resolution = cam_rad.height/res;
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
                     //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                    updateData();                   
+                    updateData(); 
+                    updateURL1();
                 }                			
             }            
-        }
-        
+}
         //TODO Cesium still doesn't do animations
-        /*
+        /*  
         if(isFirstTime){
             if(updateURL()){
                 updateData();
