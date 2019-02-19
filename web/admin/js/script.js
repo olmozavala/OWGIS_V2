@@ -384,7 +384,12 @@ function getDOMForProperty(index,property,propertyName){
     } else if(fieldType === 'select' || fieldType === 'multiSelect') {
         //console.log(property);
         //var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,ob)+'</div>';
-        var ops = property.value.split(',');
+        var ops; console.log(property.value, propertyName);
+        if(property.value.includes(',')){
+            ops = property.value.split(',');
+        } else {
+            ops = [property.value];
+        }
         var selectStart= '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><select id="'+propertyName+ index +'" name="'+propertyName +'" '+ (fieldType === "multiSelect"?' multiple':'') +' data-rel="chosen"'+' '+ (property.required? ' required':'') +'>';
         var options="<option selected disabled hidden value=''></option>";
         if(propertyName=="layerType" && ops.length == 1){
@@ -441,7 +446,7 @@ function createLayerArrayFromJSON(layersJSON){
         commonLayerProp.layerType = layersJSON[i].layerType;
         //console.log(layersJSON[i]['layerDisplayNames']["EN"]);
         //console.log(layersJSON[i]);
-        defLayer.parentMenu.value = menuIDs;
+        
         
         for(property in commonLayerProp){
             var val = commonLayerProp[property];
@@ -470,13 +475,32 @@ function createLayerArrayFromJSON(layersJSON){
                 }   
             }
             defLayer.title.value = layersJSON[i]['layerDisplayNames']["EN"];
-            
+            console.log(layersJSON[i].idLayer);
+            if(layersJSON[i].idLayer.length > 1){
+                defLayer.parentMenu.value = layersJSON[i].idLayer[0].id;
+                defLayer.menuID.value = layersJSON[i].idLayer[1].id;
+                defLayer.menuEN.value = layersJSON[i].idLayer[0].texts.EN;
+            } else {
+                defLayer.parentMenu.value = menuIDs ;
+                defLayer.menuID.value = layersJSON[i].idLayer[0].id;
+                defLayer.menuEN.value = layersJSON[i].idLayer[0].texts.EN;
+            }
         } else if(layersJSON[i]['layerType'] == "OptionalLayer"){
             for(property in optionalLayer){
                 var val = layersJSON[i][property];
                 if(! (val === "" || typeof val == 'undefined')) {
                     defLayer[property].value = val;
                 }
+            }
+            
+            if(layersJSON[i].idLayer.length > 1){
+                defLayer.parentMenu.value = layersJSON[i].idLayer[0].id;
+                defLayer.menuID.value = layersJSON[i].idLayer[1].id;
+                defLayer.menuEN.value = layersJSON[i].idLayer[0].texts.EN;
+            } else {
+                defLayer.parentMenu.value = menuIDs ;
+                defLayer.menuID.value = layersJSON[i].idLayer[0].id;
+                defLayer.menuEN.value = layersJSON[i].idLayer[0].texts.EN;
             }
         } else if(layersJSON[i]['layerType'] == "BackgroundLayer"){
             for(property in backgroundLayer){
@@ -504,7 +528,7 @@ function createDOM4Layers(){
     for (i = 0; i < olJSON.length; i++) {
         olJSON[i].layerType = 'OptionalLayer';
     }
-    var bgJSON = JSON.parse(backgroundLayersJSON.value); console.log(bgJSON);
+    var bgJSON = JSON.parse(backgroundLayersJSON.value);
     for (i = 0; i < bgJSON.length; i++) {
         bgJSON[i].layerType = 'BackgroundLayer';
     }

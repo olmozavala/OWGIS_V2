@@ -49,9 +49,12 @@ public class AddToXMLServlet extends HttpServlet {
         File xmlFile = new File(filePath);
         */
         String filePath = "";//+
+        String filePathTMP = "";
         File xmlFile = null;
         Document doc = null;
+        Document docTMP = null;
         Element rootNode = null;
+        Element rootNodeTMP = null;
         
         Element layerParent = null;
         Element layer = null;
@@ -61,20 +64,20 @@ public class AddToXMLServlet extends HttpServlet {
         File[] files = dir.listFiles(fileFilter);
         for (File file : files) {
             System.out.println(file.getName());
-            filePath = getServletContext().getRealPath("/layers/")+file.getName();
+            filePathTMP = getServletContext().getRealPath("/layers/")+file.getName();
             doc = (Document) builder.build(file);
-            rootNode = doc.getRootElement();
+            rootNodeTMP = doc.getRootElement();
             // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
             //get Layers Elements
-            List<Element> typeofLayerElementList = rootNode.getChildren(); //getString("layerType")+"s"
-            System.out.println(typeofLayerElementList);
+            List<Element> typeofLayerElementList = rootNodeTMP.getChildren(); //getString("layerType")+"s"
+            //System.out.println(typeofLayerElementList);
             
             for (int temp = 0; temp < typeofLayerElementList.size(); temp++) {
                 Element parentTypeElement = typeofLayerElementList.get(temp);
                 //System.out.println(parentTypeElement);
                 
                 List<Element> layerslist = parentTypeElement.getChildren();
-                System.out.println(layerslist);
+                //System.out.println(layerslist);
                 for (int temp_ = 0; temp_ < layerslist.size(); temp_++) {
                     Element tempElement = layerslist.get(temp_);
                     //if element exists update it, check with layer name and server 
@@ -89,6 +92,10 @@ public class AddToXMLServlet extends HttpServlet {
                         isEditing = true;
                         System.out.println(getString("name")+" "+tempElement.getAttributeValue("name")+" "+getString("server")+" "+parentTypeElement.getAttributeValue("server"));
                         xmlFile = file;
+                        filePath = filePathTMP;
+                        rootNode = rootNodeTMP; 
+                        //creo que la edicion se tendria que hacer aqui adentro porque de otra manera se pierden los elementos :( 
+                        //o sera por la variable doc ??? 
                     }
                 }
             }
