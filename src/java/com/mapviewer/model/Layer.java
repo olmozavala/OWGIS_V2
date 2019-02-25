@@ -367,7 +367,7 @@ public class Layer {
             layerDetails.accumulate("zoom", strZoom);
             layerDetails.accumulate("center", strCenter);
             
-        } catch (JSONException ex) {
+            } catch (JSONException ex) {
 			System.out.println("ERROR: The layerdetails JSON object can't be created on Layer class");
 		}
 	}

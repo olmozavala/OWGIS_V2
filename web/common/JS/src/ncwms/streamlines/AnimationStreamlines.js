@@ -218,7 +218,7 @@ owgis.ncwms.currents.clearCurrentsCanvas= function clearCurrentsCanvas(){
  */
 function getDefaultLayer(){
     var bbox = layerDetails.bbox;
-    bbox = bbox.map(function(x) {return Number(x)});
+    bbox = bbox.map(function(x) {return Number(x)}); 
     /* change the projection if is necessary*/
     var defLayer = new owgis.layer.model({
 			server: layerDetails.server,
@@ -236,12 +236,13 @@ function getDefaultLayer(){
     //If the layer has the whole longitude space (-180, 180) we modify
     // the original extent to -360,360 in order to be able to visualize
     // currents in the middle
-    if(bbox[0] === -180 && bbox[2] === 180 ){
+    /*if(bbox[0] === -180 && bbox[2] === 180 ){
         bbox[0] = -360;
         bbox[2] = 360;
-    }
-    bbox = ol.proj.transformExtent(bbox, PROJ_4326, _map_projection);
-    defLayer.set("origbbox",bbox);	
+    }*/
+    console.log(bbox);
+    bbox = ol.proj.transformExtent([-180,-90,180,90], PROJ_4326, _map_projection);
+    defLayer.set("origbbox",bbox);	console.log(bbox);
     return defLayer;
 }
 
@@ -451,7 +452,7 @@ function initstreamlineLayer(){
 function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projection) {	
     //console.log("Update currents view and data");
     canvas = document.getElementById("currentsCanvas");
-     var origBBOX = layerTemplate.get("origbbox");   
+    var origBBOX = layerTemplate.get("origbbox");   
     
     ctx = canvas.getContext('2d');
     var canvasWidth = size[0];
@@ -468,7 +469,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
-            updateURL1()            
+            updateURL1(); console.log();
             //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
         }
     }else{

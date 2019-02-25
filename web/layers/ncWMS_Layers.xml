@@ -1,13 +1,19 @@
 <MenuConf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
 	<!--HYCOM-->
-	<MainLayers BBOX="-180,-90,180,90"
+	<MainLayers BBOX="-180,90,-90,180"
 				format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms"
 				ncWMStwo="true" max_time_range="month">  
+            
+               <layer Menu="hycom,cur" EN="Wind speed at 10 meters" ES="Viento a 10 metros"  mincolor="0" maxcolor="250"
+                    style="default-scalar" palette="wind2" name="wrf_Dom1/Uat10:Vat10-mag"
+                    overlaystreamlines="wrf_Dom1/Uat10:wrf_Dom1/Vat10" defParticleSpeed="0.03"  belowMinColor="extend" aboveMaxColor="extend"
+                    windrose="http://132.248.8.238:8080/atlasmeteorologicogom/API/rosadeviento/generica/WRF/"
+                />                 
 
-		<layer Menu="hycom,cur" 
+		<!--layer Menu="hycom,cur" 
 			   EN="Forecast currents"
 			   name="hycom_forecast_uv/water_u:water_v-mag" 
-			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" />
+			   defParticleSpeed=".9" overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v" /-->
 
 		<layer Menu="hycom,ts" 
 			   EN="Forecast temperature" 

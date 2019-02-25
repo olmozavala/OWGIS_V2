@@ -57,7 +57,7 @@
 			<layer name="ne:NE1_HR_LC_SR_W_DR" featureInfo="none" /> 
 	</BackgroundLayers>
     --> 
-	<BackgroundLayers BBOX="-180,-90,180,90" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms">
+	<BackgroundLayers BBOX="-180,90,-90,180" server="http://pronosticos.unam.mx:8080/geoservercenapred/wms">
 		<layer name="cen:pyrResult512" /> 
 	</BackgroundLayers>
 
