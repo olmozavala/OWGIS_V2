@@ -212,6 +212,7 @@
 			   name="atlas_mensuales/MAGNITUD_VIENTO" 
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="monthly"
+                           overlaystreamlines="atlas_mensuales/U10:atlas_mensuales/V10" defParticleSpeed="0.03"
                 />
 
 		<layer Menu="QFX,PromM" EN="Monthly Evaporation Climatology" 
