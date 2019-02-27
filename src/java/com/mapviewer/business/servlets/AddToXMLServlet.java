@@ -58,6 +58,8 @@ public class AddToXMLServlet extends HttpServlet {
         
         Element layerParent = null;
         Element layer = null;
+        	
+        Element menu = null;
         
         File dir = new File(folderPath);
         FileFilter fileFilter = new WildcardFileFilter("*.xml");
@@ -65,8 +67,8 @@ public class AddToXMLServlet extends HttpServlet {
         for (File file : files) {
             System.out.println(file.getName());
             filePathTMP = getServletContext().getRealPath("/layers/")+file.getName();
-            doc = (Document) builder.build(file);
-            rootNodeTMP = doc.getRootElement();
+            docTMP = (Document) builder.build(file);
+            rootNodeTMP = docTMP.getRootElement();
             // aqui deberian de iterar buscando en cada archivo la ocurrencia de dicha capa
             //get Layers Elements
             List<Element> typeofLayerElementList = rootNodeTMP.getChildren(); //getString("layerType")+"s"
@@ -84,18 +86,33 @@ public class AddToXMLServlet extends HttpServlet {
                     //missing to check with menu too
                     //check if menu elements exist or if new ones need to be created
                     if( getString("name").equals(tempElement.getAttributeValue("name")) && getString("server").equals(parentTypeElement.getAttributeValue("server")) ) {
-                        layerParent = parentTypeElement; // this could be different
-                        if( !layerParent.getName().equals(getString("layerType")+"s") ) {
-                            layerParent.setName(getString("layerType")+"s");
+                        
+                        if( (getString("parentMenu")+","+getString("menuID")).equals(tempElement.getAttributeValue("Menu"))  
+                        ||  getString("menuID").equals(tempElement.getAttributeValue("Menu")) 
+                        || getString("parentMenu").equals(tempElement.getAttributeValue("Menu")) ){
+                            layerParent = parentTypeElement; // this could be different ??
+                            if( !layerParent.getName().equals(getString("layerType")+"s") ) {
+                                layerParent.setName(getString("layerType")+"s");
+                            }
+                            
+                            layer = tempElement;
+                            isEditing = true;
+                            //System.out.println(getString("name")+" "+tempElement.getAttributeValue("name")+" "+getString("server")+" "+parentTypeElement.getAttributeValue("server"));
+                            //xmlFile = file;
+                            filePath = filePathTMP;
+                            rootNode = rootNodeTMP; 
+                            doc=docTMP;
+                            
+                            Element menus = rootNode.getChild("Menus");		
+                            
+                            List<Element> menuslist = menus.getChildren();
+                            for (int temp_menu = 0; temp_menu < menuslist.size(); temp_menu++) {
+                                Element menuTMP = menuslist.get(temp_menu);
+                                if( (getString("menuID")).equals(menuTMP.getAttributeValue("ID"))  ){
+                                    menu=menuTMP;
+                                }
+                            }
                         }
-                        layer = tempElement;
-                        isEditing = true;
-                        System.out.println(getString("name")+" "+tempElement.getAttributeValue("name")+" "+getString("server")+" "+parentTypeElement.getAttributeValue("server"));
-                        xmlFile = file;
-                        filePath = filePathTMP;
-                        rootNode = rootNodeTMP; 
-                        //creo que la edicion se tendria que hacer aqui adentro porque de otra manera se pierden los elementos :( 
-                        //o sera por la variable doc ??? 
                     }
                 }
             }
@@ -125,7 +142,7 @@ public class AddToXMLServlet extends HttpServlet {
             layerParent.setAttribute("format", getString("format"));
             layerParent.setAttribute("tiled", getString("tiled"));
             layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-            layer.setAttribute("EN", getString("menuEN"));
+            layer.setAttribute("EN", getString("title"));
             if("true".equals(getString("isVectorLayer"))){
                 layer.setAttribute("CQL", getString("cql"));
             }
@@ -134,19 +151,19 @@ public class AddToXMLServlet extends HttpServlet {
             layerParent.setAttribute("format", getString("format"));
             layerParent.setAttribute("tiled", getString("tiled"));
             layer.setAttribute("Menu", getString("parentMenu")+","+getString("menuID"));
-            layer.setAttribute("EN", getString("menuEN"));
+            layer.setAttribute("EN", getString("title"));
             if("true".equals(getString("isVectorLayer"))){
                 layer.setAttribute("CQL", getString("cql"));
                 layer.setAttribute("cqlcols", getString("cqlids"));
             } else if(ncWMS){
-                layerParent.setAttribute("ncWMS", "true");
-                layerParent.setAttribute("style", getString("style"));
-                layerParent.setAttribute("width", getString("width"));
-                layerParent.setAttribute("height", getString("height"));
-                layerParent.setAttribute("palette", getString("palette"));
-                layerParent.setAttribute("minColor", getString("minColor"));
-                layerParent.setAttribute("maxColor", getString("maxColor"));
-                layerParent.setAttribute("max_time_range", getString("max_time_range"));
+                layer.setAttribute("ncWMS", "true");
+                layer.setAttribute("style", getString("style"));
+                layer.setAttribute("width", getString("width"));
+                layer.setAttribute("height", getString("height"));
+                layer.setAttribute("palette", getString("palette"));
+                layer.setAttribute("minColor", getString("minColor"));
+                layer.setAttribute("maxColor", getString("maxColor"));
+                layer.setAttribute("max_time_range", getString("max_time_range"));
             }
         }
         
@@ -154,12 +171,14 @@ public class AddToXMLServlet extends HttpServlet {
             layerParent.addContent(layer);
 
             Element menus = rootNode.getChild("Menus");		
-            Element menu = new Element("Menu");
+            menu = new Element("Menu");
             menu.setAttribute("ID", getString("menuID"));
             menu.setAttribute("EN", getString("menuEN"));
             menus.addContent(menu);
 
             rootNode.addContent(layerParent);
+        } else {
+            menu.setAttribute("EN", getString("menuEN"));
         }
         
         //write the updated document to file or console

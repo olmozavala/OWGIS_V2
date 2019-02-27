@@ -598,6 +598,18 @@ function createDOM4Layers(){
                         $('select[id^="layerType"]').change(function(){	
                             onLayerTypeChange(this);
                         });
+                        
+                        $('input[type=checkbox]').on('change', function(){
+                            var name = $(this).attr('name');
+                            if($(this).is(':checked')){
+                                $('input[name= "' +name +'"]').val(true);
+                                $(this).val(true);
+                            }
+                            else{
+                               $(this).val(false);
+                               $('input[name= "' +name +'"]').val(false);
+                            }
+                        });
 
                         $('form').submit(function(event) {
 
@@ -607,7 +619,10 @@ function createDOM4Layers(){
                             var id = $(this).attr('id');
                             //$('input[name="server"]').val(encodeURIComponent(layerUrl));
                             //$('#result').text(JSON.stringify($('form[id="'+id+'"]').serializeObject()));
+                            
+                            
                             var json = JSON.stringify($('form[id="'+id+'"]').serializeObject());
+    
                             //check if ncWMS and change ncWMSFl
                             console.log(json,JSON.parse(json).server);
                             if(JSON.parse(json)["server"].indexOf("ncWMS") > -1){
@@ -649,5 +664,3 @@ function createDOM4Layers(){
             }
     });
 }
-
-
