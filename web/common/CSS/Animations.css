@@ -65,8 +65,9 @@ and open the template in the editor.
 #animControls {
   top: 40%;
   left: 50%;
-  min-width: 13em;
+  min-width: 210px;
   padding: 0px 20px;
+  height: auto !important;
 }
 
 /* line 28, ../scss/Animations.scss */
