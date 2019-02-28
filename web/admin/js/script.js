@@ -41,27 +41,27 @@ function defaultLayer() {
 	this.format = {type:"string", label:"Format", value: "image/jpeg", required: true, uneditable: false};
 	this.proj = {type:"string", label:"Projection", value:  "EPSG:4326", required: true, uneditable: false};
 	this.layerType = {type:"select", label:"Layer Type", value:  "MainLayer, OptionalLayer, BackgroundLayer", required: true, uneditable: false, callBackFunc: "onLayerTypeChange()"};
-	this.title = {type:"string", label:"Title", value:  "EPSG:4326", required: true, uneditable: false};
+	this.title = {type:"string", label:"Title", value:  "Title of layer", required: true, uneditable: false};
 	this.style = {type:"string", label:"Style", value: "", required: false, uneditable: false};
 	this.selected = {type:"boolean", label:"Is Selected", value: false, required: false, uneditable: false};
-	this.width = {type:"string", label:"Width", value: 512, required: true, uneditable: false};
-	this.height = {type:"string", label:"Height", value: 512, required: true, uneditable: false};
+	this.width = {type:"string", label:"Width", value: 512, required: false, uneditable: false};
+	this.height = {type:"string", label:"Height", value: 512, required: false, uneditable: false};
 	this.featureInfo = {type:"string", label:"Feature Info", value: "", required: false, uneditable: false};
 	this.tiled = {type:"boolean", label:"Is Tiled", value: false, required: false, uneditable: false};
 	//this.netCDF = {type:"boolean", label:"Is netCDF", value: false, required: false, uneditable: false};
-	this.parentMenu = {type:"multiSelect", label:"Parent Menu(s)", value: "", required: true, uneditable: false};
+	this.parentMenu = {type:"multiSelect", label:"Parent Menu(s)", value: "", required: false, uneditable: false};
 	this.menuID = {type:"string", label:"Menu ID", value: "", required: true, uneditable: false};
 	this.menuEN = {type:"string", label:"Menu Label", value: "", required: true, uneditable: false};
 	//this.layout = {type:"string", label:"Layout", value: -180, required: true, uneditable: false};
 	//this.palette = {type:"string", label:"Palette", value: "default", required: true, uneditable: false};
 	this.displayTitle = {type:"boolean", label:"Display Title", value: false, required: false, uneditable: false};
 	this.isVectorLayer = {type:"boolean", label:"Is vectorLayer", value: false, required: false, uneditable: false, callBackFunc: "onIsVectorLayerChange()"};
-	this.cql =  {type:"string", label:"CQL", value:  "week", required: true, uneditable: false};
-	this.cqlids =  {type:"string", label:"CQL IDs", value:  "week", required: true, uneditable: false};
+	this.cql =  {type:"string", label:"CQL", value:  "week", required: false, uneditable: false};
+	this.cqlids =  {type:"string", label:"CQL IDs", value:  "week", required: false, uneditable: false};
 	this.jsonp = {type:"boolean", label:"JSONP", value: false, required:  false, uneditable: false};
-	this.palette = {type:"string", label:"Palette", value:  "", required: true, uneditable: false};
-	this.minColor = {type:"string", label:"Min Color", value:  "-1", required: true, uneditable: false};
-	this.maxColor = {type:"string", label:"Max Color", value:  "-1", required:  true, uneditable: false};
+	this.palette = {type:"string", label:"Palette", value:  "", required: false, uneditable: false};
+	this.minColor = {type:"string", label:"Min Color", value:  "-1", required: false, uneditable: false};
+	this.maxColor = {type:"string", label:"Max Color", value:  "-1", required:  false, uneditable: false};
 	this.max_time_range = {type:"string", label:"Max time range", value:  "", required: false, uneditable: false};
 	this.aboveMaxColor = {type:"string", label:"AboveMaxColor", value:  "-1", required: false, uneditable: false};
 	this.belowMinColor = {type:"string", label:"BelowMinColor", value:  "-1", required:  false, uneditable: false};
@@ -86,7 +86,6 @@ var mainLayer = {
 		title: "",
 		tiled: "",
 		featureInfo: "",
-		style: "",
 		parentMenu: "",
 		menuID: "",
 		menuEN: "",
@@ -100,8 +99,6 @@ var vectorLayer = {
 };
 
 var	ncWMS = {
-		title: "",
-		featureInfo: "",
 		style: "",
 		width: "",
 		height: "",	
@@ -127,7 +124,7 @@ var optionalLayer = {
 
 var backgroundLayer = {
 		tiled: "",
-		style: "",
+		//style: "",
 		featureInfo: ""	
 };
 
