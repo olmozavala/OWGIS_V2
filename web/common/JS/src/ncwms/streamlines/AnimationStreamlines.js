@@ -13,6 +13,7 @@ goog.require('owgis.utilities.mathgeo');
 owgis.ncwms.currents.grids = new Array();
 var currentsColor = (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
+var loadingText = ""
 var currAnimSpeed = 80;
 var defLineWidth = 1.7;
 var defLineWidthCesium = 2.5;
@@ -176,14 +177,11 @@ owgis.ncwms.currents.highResolution = function highResolution(){
     if(resolutionHigh == false){
         resolutionHigh = true;
         isLow =  false;
-        updateURL1();
         updateData(); //load the streamlines of only the doamin that is display on the canvas
     //if it is in high resolution
     }else if(resolutionHigh == true & isLow == false){
         resolutionHigh = false;
-        updateURL();
         updateData(); //load the streamlines of the entire domain
-        updateURL1();
         isLow =  true;
     }
 }
@@ -370,45 +368,37 @@ function updateCurrentsCesium(event){
 	console.log("Camera center: (" + c_center.latitude + "," + c_center.longitude + ")");
 	console.log("Computed extent: " + currentExtent);
     */
-
-     if(isFirstTime3D){
-        if(updateURL()){
-            console.log(isFirstTime3D);
+    var res = 200000000;
+    var resolution = cam_rad.height/res;
+    if(isFirstTime3D){
+        if(updateURL(true)){
             isFirstTime3D = false;
             isFirstTime = true;
             //Trying to match the resolution obtained with the non-cesium version.
-            // This is just to modify the the speed of the particles when zooming in/out
-            var res = 200000000;
-            var resolution = cam_rad.height/res;
+            // This is just to modify the the speed of the particles when zooming in/out            
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
             updateData();
-            updateURL1();
+            updateURL(false);
         }
     }else{
-         console.log('no first');
          if(!isRunningUnderMainAnimation){
-            if(updateURL()){
-                console.log(event);
-                if(event == -53 || event == 53){  //only if you are zoom in the canvas                  
-                    var res = 200000000;
-                    var resolution = cam_rad.height/res;                    
-                    updateURL1()
+            if(updateURL(false)){
+                if(event > 0 || event <= 0){  //only if you are zoom in the canvas  
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);                    
                     tempULayer.set("layers",compositeLayers.split(':')[0]);//Get the proper format for U
                     tempVLayer.set("layers",compositeLayers.split(':')[1]);//Get the proper format for V
-                    gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer);
-                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);                                                               
-                    //updateURL1()                    
-                }else{                    
-                    var res = 200000000;
-                    var resolution = cam_rad.height/res;
+                    gridInfo = owgis.ncwms.ncwmstwo.buildGridInfo(dataCurrent, tempULayer); 
+                    owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);                    
+                }else{
+                    updateURL(true);
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, currentExtent);
                     //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
-                    updateData(); 
-                    updateURL1();
+                    updateData();                    
+                    updateURL(false);
                 }                			
             }            
-}
+        }
+
         //TODO Cesium still doesn't do animations
         /*  
         if(isFirstTime){
@@ -466,19 +456,19 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
     canvas.height = canvasHeight;
     currentExtent = extent;
     if(isFirstTime){ // the streamlines are loaded for the first time        
-        if(updateURL()){            
+        if(updateURL(isFirstTime)){            
             isFirstTime = false;
             isFirstTime3D = true;
             temp_resolution = resolution;
             owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
             //console.log('no entiendo donde se llama updateData() a cada rato');
             updateData();
-            updateURL1()            
+            updateURL(isFirstTime)            
             //owgis.ncwms.currents.particles.initData(gridInfo,currentExtent);
         }
     }else{
         if(!isRunningUnderMainAnimation){
-            if(updateURL1()){
+            if(updateURL(isFirstTime)){
                 if(resolutionHigh == true){ // if you change from high resolution to low resolution
                     isLow = false;
                     owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
@@ -533,7 +523,7 @@ function updateData(){
     loadedRequests = 0;
 	
     //Reads the data
-    owgis.interf.loadingatmap(true,0,"Currents");
+    owgis.interf.loadingatmap(true,0,loadingText);
     totalFiles = times.length;
     uData = new Array();
     vData = new Array();
@@ -580,7 +570,7 @@ function updateData(){
                             }
 			}
                         loadedRequests++;
-                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
+                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),loadingText);
                         //Start the animation when 90% of the frames have been loaded
                         if( (loadedRequests/(totalRequests*2)) > .9){
                             owgis.interf.loadingatmap(false,0);
@@ -611,7 +601,7 @@ function updateData(){
                             }
                         }
                         loadedRequests++;
-                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
+                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),loadingText);
                         //Start the animation when 90% of the frames have been loaded
                         if( (loadedRequests/(totalRequests*2)) > .9){
                             owgis.interf.loadingatmap(false,0);
@@ -654,7 +644,7 @@ function updateData(){
                     }
                     owgis.ncwms.currents.particles.setGrid(grid,idx);
                     loadedRequests++;
-                    owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
+                    owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),loadingText);
                     //owgis.interf.loadingatmouse(true);
                     if(loadedRequests === totalRequests){
                        owgis.interf.loadingatmap(false,0);
@@ -665,7 +655,7 @@ function updateData(){
             // we have one time
             if(times.length === 1){
                 readDataPremises[idx].on("progress",function(){
-                    owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
+                    owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),loadingText);
                 });
             }
         });
@@ -677,7 +667,7 @@ function updateData(){
  * The objective is to request the entire map
  * @returns {undefined}
  */
-function updateURL(){
+function updateURL(isFirstTime){
     var origBBOX = layerTemplate.get("origbbox");   
     if( (currentExtent[0] > origBBOX[2]) ||
 	(currentExtent[2] < origBBOX[0]) ||
@@ -692,7 +682,12 @@ function updateURL(){
         var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
         var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
         //var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        var newbbox = [origBBOX[0], origBBOX[1],origBBOX[2], origBBOX[3]];
+        if(isFirstTime){
+            var newbbox = [origBBOX[0], origBBOX[1],origBBOX[2], origBBOX[3]];
+        }else{
+            var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
+        }
+        
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	        

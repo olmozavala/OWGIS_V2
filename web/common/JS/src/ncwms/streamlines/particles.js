@@ -155,6 +155,7 @@ function updateDomains(){
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
     
+	//console.log(layerTemplate.get("origbbox"));
     //console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
@@ -171,14 +172,14 @@ function updateDomains(){
 			var cam_height = cam_rad.height;
 			var norm_cam_height = cam_height/7000000; 
 			var angle = 90*Math.atan(owgis.utilities.mathgeo.degtorad(45))*norm_cam_height;
-//			long_domain = Math.min(angle,lonDomainRand*.7);
-//			latg_domain=  Math.min(angle,latDomainRand*.7);
-			long_domain = Math.min(angle,70);
-			latg_domain =  Math.min(angle,70);
+			long_domain = Math.min(angle,lonDomainRand*.7);
+			latg_domain=  Math.min(angle,latDomainRand*.7);
+//			long_domain = Math.min(angle,70);
+//			latg_domain =  Math.min(angle,70);
 		}
         //console.log("extencion new domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
-		console.log("SIZE OF LAT RANDOM: "+latg_domain);
-		console.log("SIZE OF LON RANDOM: "+long_domain);
+		console.log("SIZE OF LAT: "+latg_domain);
+		console.log("SIZE OF LON: "+long_domain);
 	}
 }
 
