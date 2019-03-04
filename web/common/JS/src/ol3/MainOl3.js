@@ -154,6 +154,7 @@ function initOl3(){
     /* importante si se quiere cambiar el tamaño de las imagenes
      * y optimizar el tiempo en las que se cargan dentro del owgis
      */
+    console.log(resExtent);
     tileGrid = new ol.tilegrid.TileGrid({
         extent: resExtent,
         resolutions: resolutions,
@@ -195,8 +196,9 @@ function initOl3(){
 		zoomFactor: mapConfig.zoomFactor,
 		maxResolution: mapConfig.maxResolution,
                 loadTilesWhileAnimating: loadTilesWhileAnimating,
-                loadTilesWhileInteracting: loadTilesWhileInteracting
-                //extent: resExtent  // Not working
+                loadTilesWhileInteracting: loadTilesWhileInteracting,
+                extent: [ -360, -90, 360, 90 ]  
+                //extent: resExtent // Not working
             });
     owgis.ol3.view = ol3view;
     

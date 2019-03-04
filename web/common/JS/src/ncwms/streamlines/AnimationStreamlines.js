@@ -236,8 +236,10 @@ function getDefaultLayer(){
     // the original extent to -360,360 in order to be able to visualize
     // currents in the middle
     if(bbox[0] === -180 && bbox[2] === 180 ){
-        bbox[0] = -360;
-        bbox[2] = 360;
+        //bbox[0] = -360;
+        //bbox[2] = 360;
+        bbox[0] = -900;
+        bbox[2] = 900;
     }
     bbox = ol.proj.transformExtent(bbox, PROJ_4326, _map_projection);
     defLayer.set("origbbox",bbox);	
