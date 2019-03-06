@@ -99,6 +99,8 @@ public class LayerMenuManagerSingleton {
 			
 			Layer newLayer = updateFields(layerElem, groupLayer);
 			System.out.println("Adding layer: "+newLayer.getName());
+                        System.out.print(layerConf);
+                        System.out.print(newLayer.isTiled());
 			String[] layerMenu = null;
 			
 			try {
@@ -612,7 +614,7 @@ public class LayerMenuManagerSingleton {
 		if (tempTiled != null) {
 			tiled = tempTiled.equals("false") ? false : layer.isTiled();
 		} else {
-			tiled = layer.isTiled();
+			tiled = false; //layer.isTiled();
 		}
 		
 		String selectedStr = layerConf.getAttributeValue("selected");

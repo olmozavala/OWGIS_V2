@@ -374,14 +374,13 @@ function getDOMForProperty(index,property,propertyName){
         dom ='<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><input class="span6 typeahead'+ (property.uneditable? ' disabled':'') +' " id="'+propertyName+ index +'" name="'+propertyName +'" type="text" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></div></div>';
         return dom;
     } else if (fieldType === 'boolean') {
-        
-        dom = '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls">  <label class="checkbox"><input type="checkbox" id="'+propertyName+ index +'" name="'+propertyName +'" value="'+property.value+'" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +'></label></div>  </div>';
-	
+        //console.log(property.value==true,property.value);
+        dom = '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls">  <label class="checkbox"><input type="checkbox" id="'+propertyName+ index +'" name="'+propertyName +'" value="true" '+ (property.uneditable? ' disabled':'') +' '+ (property.required? ' required':'') +' '+ (property.value=="true"||property.value==true? ' checked':'') +' ></label></div>  </div>';
         return dom;
     } else if(fieldType === 'select' || fieldType === 'multiSelect') {
         //console.log(property);
         //var f = '<div id="'+$(o).attr('id')+'">'+getDOMForObject(index,ob)+'</div>';
-        var ops; console.log(property.value, propertyName);
+        var ops; //console.log(property.value, propertyName);
         if(property.value.includes(',')){
             ops = property.value.split(',');
         } else {
@@ -392,9 +391,11 @@ function getDOMForProperty(index,property,propertyName){
         if(propertyName=="layerType" && ops.length == 1){
             var selectStart= '<div class="control-group"><label class="control-label" for="'+propertyName + index +'">'+property.label+'</label><div class="controls"><select id="'+propertyName+ index +'" name="'+propertyName +'" '+ (fieldType === "multiSelect"?' multiple':'') +' data-rel="chosen"'+' '+ (property.required? ' required':'') +' disabled>';
         }
+        
         for(var i=0; i < ops.length; i++){
-            if( propertyName=="layerType" && ops.length == 1 ){
-                options = options + '<option selected>'+ ops[i] + '</option>';
+            if(/* propertyName=="layerType" &&*/ ops.length == 1 ){
+                //console.log(ops);
+                options = options + '<option selected="selected">'+ ops[i] + '</option>';
             } else {
                 options = options + '<option>'+ ops[i] + '</option>';
             }
@@ -460,23 +461,24 @@ function createLayerArrayFromJSON(layersJSON){
                     defLayer[property].value = val;
                 }
             }
+            defLayer["isVectorLayer"].value = layersJSON[i].vectorLayer;
             //if is ncwMS
             if(commonLayerProp.server.indexOf("ncWMS") > -1){
                 
                 for(property in ncWMS){
                    var val = layersJSON[i][property];
-                   console.log(property,val);
+                   //console.log(property,val);
                    if(! (val === "" || typeof val == 'undefined')) {
                        defLayer[property].value = val;
                    }
                 }   
             }
             defLayer.title.value = layersJSON[i]['layerDisplayNames']["EN"];
-            console.log(layersJSON[i].idLayer);
+            //console.log(layersJSON[i].idLayer);
             if(layersJSON[i].idLayer.length > 1){
                 defLayer.parentMenu.value = layersJSON[i].idLayer[0].id;
                 defLayer.menuID.value = layersJSON[i].idLayer[1].id;
-                defLayer.menuEN.value = layersJSON[i].idLayer[0].texts.EN;
+                defLayer.menuEN.value = layersJSON[i].idLayer[1].texts.EN;
             } else {
                 defLayer.parentMenu.value = menuIDs ;
                 defLayer.menuID.value = layersJSON[i].idLayer[0].id;
@@ -489,6 +491,7 @@ function createLayerArrayFromJSON(layersJSON){
                     defLayer[property].value = val;
                 }
             }
+            defLayer["isVectorLayer"].value = layersJSON[i].vectorLayer;
             
             if(layersJSON[i].idLayer.length > 1){
                 defLayer.parentMenu.value = layersJSON[i].idLayer[0].id;
@@ -510,7 +513,7 @@ function createLayerArrayFromJSON(layersJSON){
         
         layerArray[i] = defLayer;
     }
-    console.log(layerArray);
+    //console.log(layerArray);
 }
 
 function createDOM4Layers(){
@@ -547,7 +550,7 @@ function createDOM4Layers(){
         pageSize: 10,
         callback: function(data, pagination) {
                         // template method of yourself
-                        console.log(data,pagination.pageNumber);
+                        //console.log(data,pagination.pageNumber);
                         var dataHtml = '';
                         //var i = 0;
                         $.each(data, function (index, item) {
