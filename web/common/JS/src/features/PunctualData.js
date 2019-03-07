@@ -88,7 +88,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             //var allDates =  Array.from(datesRange.by('day'));
             //allDateFrames = allDates.map(m => m.utc().format()); 
             allFramesVP = allFrames; allDataVP= {};
-            //console.log(allFramesVP);
+            console.log(allFramesVP);
             /*
             for(i=0; i<allDateFrames.length; i++){
                 var locCurrDate = new Date(allDateFrames[i]);
@@ -139,10 +139,10 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                             el_height = 400;
                         }
 
-                        var templat = allDataVP[allFramesVP[vpCurrentFrame]].responseText.split('\n').slice(0,1)[0];
-                        var templon = allDataVP[allFramesVP[vpCurrentFrame]].responseText.split('\n').slice(0,2)[1];
-                        latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
-
+                        //var templat = allDataVP[allFramesVP[vpCurrentFrame]].responseText.split('\n').slice(0,1)[0];
+                        //var templon = allDataVP[allFramesVP[vpCurrentFrame]].responseText.split('\n').slice(0,2)[1];
+                        //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
+                        console.log(latlon);
                         var data = allDataVP[allFramesVP[vpCurrentFrame]].responseText; 
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
@@ -299,19 +299,19 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             
         } else { //only one date!
             url += "&TIME=" + time;
-            
+            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
             if(currSource.getParams().ncwmstwo){
                 var ajaxCan;
-                var latlon;
+                //var latlon;
                 $.ajax({
                     url: url,
                     async: false,
                     cache: false,
                     success: function(data) {
                         ajaxCan = true;
-                        var templat = data.split('\n').slice(0,1)[0];
-                        var templon = data.split('\n').slice(0,2)[1];
-                        latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
+                        //var templat = data.split('\n').slice(0,1)[0];
+                        //var templon = data.split('\n').slice(0,2)[1];
+                        //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1, 18);
                                   
                         data = data.replace(/^.*null.*$/mg, "");
                         data = data.replace(/^\s*\n/gm, "");
@@ -569,10 +569,11 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
     var vpCurrentFrame=0;
     isPaused = false;
     
-    loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } else if(isNextVP){ showNextVP();} else if(isPrevVP){showPrevVP();} }, 2500);
+    loopVP = setInterval(function(){ if(!isPaused){ animateVerticalProfile(); } else if(isNextVP){ showNextVP();} else if(isPrevVP){showPrevVP();} else { console.log("dont try it "); } }, 2500);
     
     function animateVerticalProfile(){
         vpCurrentFrame = vpCurrentFrame < (allFramesVP.length-1)? ++vpCurrentFrame: 0;
+        //console.log(allDataVP[allFramesVP[vpCurrentFrame]].responseText);
         var data_ = allDataVP[allFramesVP[vpCurrentFrame]].responseText;
         data_ = data_.replace(/^.*null.*$/mg, "");
         data_ = data_.replace(/^\s*\n/gm, ""); 
@@ -588,7 +589,7 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
         if(typeof layerTitle != "undefined"){
             titulo=layerTitle.children[0].children[0].children[0].innerText;
         } else{
-            titulo = data.split('\n')[2].split(',')[1];
+            titulo = data_.split('\n')[2].split(',')[1];
         }
                                                         
         if(_curr_language == "ES"){
@@ -720,16 +721,17 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
 			}
 			if(currLayer.getSource().getParams().ncwmstwo){
                             var ajaxCan;
-                            var latlon;
+                            //var latlon;
+                            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
                             $.ajax({
                                 url: url,
                                 async: false,
                                 cache: false,
                                 success: function(data) {
                                   
-                                  var templat = data.split('\n').slice(0,1)[0];
-                                  var templon = data.split('\n').slice(0,2)[1];
-                                  latlon = ""+(Math.round(newCoordinate[1]*100)/100)+"N, "+(Math.round(newCoordinate[0]*100)/100)+"W";
+                                  //var templat = data.split('\n').slice(0,1)[0];
+                                  //var templon = data.split('\n').slice(0,2)[1];
+                                  //latlon = ""+(Math.round(newCoordinate[1]*100)/100)+"N, "+(Math.round(newCoordinate[0]*100)/100)+"W";
                                   //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1,18);
 
                                   data = data.replace(/^.*null.*$/mg, "");
