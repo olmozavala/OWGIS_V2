@@ -26,6 +26,10 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
     // Verifies that this layer has zaxis data and that comes from an ncWMS server
     if("getParams" in currSource && _mainlayer_zaxisCoord){
         var coords = event.coordinate;
+	var newCoordinate =  ol.proj.transform(coords, _map_projection, 'EPSG:4326');
+	//var currBBOX =  ol3view.calculateExtent(map.getSize());
+	//currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'
+         
         var x = Math.floor(event.pixel[0]);
         var y = Math.floor(event.pixel[1]);
         var time;
@@ -105,7 +109,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             
             // when all ajax calls are done we need to be able to start animation
             
-            var latlon = "Latitude: "+(Math.round(coords[0]*100)/100)+" Longitude: "+(Math.round(coords[1]*100)/100);
+            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
             var dataLink = "";
             var first=0;
             
@@ -668,6 +672,7 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
 		var x = Math.floor(event.pixel[0]);
 		var y = Math.floor(event.pixel[1]);
 		var coords = event.coordinate;
+                var newCoordinate =  ol.proj.transform(coords, _map_projection, 'EPSG:4326');
                 
 		var time = owgis.ncwms.calendars.getUserSelectedTimeFrame();
 		if(time !== undefined){
@@ -724,11 +729,7 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
                                   
                                   var templat = data.split('\n').slice(0,1)[0];
                                   var templon = data.split('\n').slice(0,2)[1];
-                                  if(_curr_language == 'ES'){
-                                        latlon = "Latitud: "+(Math.round(coords[1]*100)/100)+" Longitud: "+(Math.round(coords[0]*100)/100);
-                                  } else if(_curr_language == 'EN'){
-                                        latlon = "Latitude: "+(Math.round(coords[1]*100)/100)+" Longitude: "+(Math.round(coords[0]*100)/100);
-                                  }
+                                  latlon = ""+(Math.round(newCoordinate[1]*100)/100)+"N, "+(Math.round(newCoordinate[0]*100)/100)+"W";
                                   //latlon = templat.substring(templat.indexOf("#") + 1, 17)+' '+templon.substring(templon.indexOf("#") + 1,18);
 
                                   data = data.replace(/^.*null.*$/mg, "");
@@ -1063,7 +1064,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             if( response.features.length != 0 ){
                 url += response.features[0].properties.NAME_FOLDE + "/" + response.features[0].properties.NAME_FOLDE + "_"+slctdmonth+".json";
                 var splitlatlon = response.features[0].properties.NAME_FOLDE.split('_');
-                var latlon = (_curr_language == "ES") ? "Latitud: "+splitlatlon[0]+" Longitud: "+splitlatlon[1] : "Latitude: "+splitlatlon[0]+" Longitude: "+splitlatlon[1];
+                var latlon = splitlatlon[0]+"N, "+splitlatlon[1]+"W";
                 //console.log(url);
                 var ajaxCan;
                 var dataU, dataV;

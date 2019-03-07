@@ -11,7 +11,7 @@ goog.require('owgis.transparency');
 goog.require('owgis.utilities.mathgeo');
 
 owgis.ncwms.currents.grids = new Array();
-var currentsColor = (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
+var currentsColor = (localStorage == null) ? "rgba(255, 255, 255, .6)" : (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
 var currAnimSpeed = 80;
 var defLineWidth = 1.7;

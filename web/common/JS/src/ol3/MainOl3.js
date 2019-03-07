@@ -105,6 +105,7 @@ function initOl3(){
 	
 	var changeProj;//Indicates if we need to change the projections
 	var defCenter= [lon,lat];
+        console.log(_map_projection, defCenter);
 	//var resExtent;
 	if( (_map_bk_layer === "osm") || 
 		(_map_bk_layer.indexOf("bing") !== -1) ||  
@@ -275,17 +276,26 @@ function detectMapLayersStatus(){
 }
 
 owgis.ol3.positionMap = function() {
-    console.log("moving map position");
-	// --------------- Map visualization and hover texts
-	var newZoom = localStorage.zoom !== undefined && localStorage.zoom <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
+    
+    // --------------- Map visualization and hover texts
+    var newZoom = (localStorage == null) ? ol3view.getZoom() : localStorage.zoom !== undefined && localStorage.zoom <= mapConfig.zoomLevels? localStorage.zoom : ol3view.getZoom();// Zoom of map
     var newCenter = ol3view.getCenter();
+    var changed_ = false;
+    
+    if(localStorage != null){
+        
 	if( localStorage.map_center !== undefined){
 		var strCenter = localStorage.map_center.split(",")
 		var lat = Number(strCenter[0]);
 		var lon = Number(strCenter[1]);
 		newCenter = [lat,lon];// Center of the map
+                changed_ = true;
+        }
+        console.log("moving map position");
+        
+        var proji = (localStorage == null) ? _map_projection : localStorage.projection;
+        if(changed_) { animatePositionMap(newZoom, newCenter, 0, proji); }  
     }
-    animatePositionMap(newZoom, newCenter, 0, localStorage.projection);
 }
 
 /************************

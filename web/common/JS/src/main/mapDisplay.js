@@ -111,22 +111,26 @@ function owgisMain(){
         //*configure map to look just like last time*//
         //check if last depth selected by user also exists in this layer                    
         isthereelev = noElevation();
-        if(!isthereelev && typeof localStorage.depth !== 'undefined'){
-            if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
-                //$(":radio[value='"+localStorage.depth+"']")[0].onclick();
-                $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
-            }
+        if(!isthereelev && localStorage != null){
+            if(typeof localStorage.depth !== 'undefined'){
+                if(typeof $(":radio[value='"+localStorage.depth+"']")[0] !== 'undefined'){
+                    //$(":radio[value='"+localStorage.depth+"']")[0].onclick();
+                    $( "#"+$(":radio[value='"+localStorage.depth+"']")[0].id).attr('checked',true);
+                }
+            } 
         }
         //set transparency
-        if(localStorage.transparency_layer !== 'NaN' && typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== .95 ){
-            owgis.transparency.changeTransp(parseFloat(localStorage.transparency_layer));
-        }
-        //if 3d was set, make it 3d
-        if(typeof localStorage.cesium !== 'undefined'){
-            if(localStorage.cesium == "true"){
-                owgis.cesium.toogleCesium();
+        if(localStorage != null){
+            if(localStorage.transparency_layer !== 'NaN' && typeof localStorage.transparency_layer !== 'undefined' && localStorage.transparency_layer !== .95 ){
+                owgis.transparency.changeTransp(parseFloat(localStorage.transparency_layer));
             }
-        }
+            //if 3d was set, make it 3d
+            if(typeof localStorage.cesium !== 'undefined'){
+                if(localStorage.cesium == "true"){
+                    owgis.cesium.toogleCesium();
+                }
+            }
+        }  
         
         
     }, 10);
@@ -290,11 +294,11 @@ function updateTitle(dateText, elevText) {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-    	if(mobile){
+    	//if(mobile){
             localStorage.language = _curr_language;
-            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
-    	}
-    	else{
+            //owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+    	//}
+    	//else{
             owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
             localStorage.map_center =  ol3view.getCenter();// Center of the map
@@ -315,7 +319,7 @@ function MapViewersubmitForm() {
             localStorage.disable_hover = hoverDisabled;
             
             //document.getElementById("mobile").value = mobile;
-    	}
+    	//}
         submitForm();
     }
 }
