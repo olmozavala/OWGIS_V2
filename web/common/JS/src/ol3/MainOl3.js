@@ -123,15 +123,17 @@ function initOl3(){
     var changeProj;//Indicates if we need to change the projections
     var defCenter= [lon,lat];
     
-    var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels ? localStorage.zoom : mapConfig.zoom;// Zoom of map
+    var newZoom = ( localStorage == null ) ? mapConfig.zoom : localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels ? localStorage.zoom : mapConfig.zoom;// Zoom of map
         
-    if( localStorage.map_center !== undefined){
-	strCenter = localStorage.map_center.split(",")
-	var lat = Number(strCenter[0]);
-	var lon = Number(strCenter[1]);
-	defCenter = [lat,lon];// Center of the map
-        mapConfig.zoom = newZoom;
-    }
+    if(localStorage != null){
+        if(localStorage.map_center !== undefined){
+            strCenter = localStorage.map_center.split(",")
+            var lat = Number(strCenter[0]);
+            var lon = Number(strCenter[1]);
+            defCenter = [lat,lon];// Center of the map
+            mapConfig.zoom = newZoom;
+        }
+    } 
     //var resExtent;
     if( (_map_bk_layer === "osm") || 
 	(_map_bk_layer.indexOf("bing") !== -1) ||  
