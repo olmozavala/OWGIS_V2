@@ -200,6 +200,10 @@ a.ui-btn {
     color: black;
 }
 
+option.mainMenuOption {
+    color: #000;
+}
+
 /* hidden scale */
 .ol-scale-line-inner, .ol-scale-line {
     display: none;

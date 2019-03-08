@@ -109,7 +109,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             
             // when all ajax calls are done we need to be able to start animation
             
-            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
+            var latlon = Math.abs(Math.round(newCoordinate[1]*100)/100)+"N, "+Math.abs(Math.round(newCoordinate[0]*100)/100)+"W";
             var dataLink = "";
             var first=0;
             
@@ -299,7 +299,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             
         } else { //only one date!
             url += "&TIME=" + time;
-            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
+            var latlon = ""+Math.abs(Math.round(newCoordinate[1]*100)/100)+"N, "+Math.abs(Math.round(newCoordinate[0]*100)/100)+"W";
             if(currSource.getParams().ncwmstwo){
                 var ajaxCan;
                 //var latlon;
@@ -722,7 +722,7 @@ owgis.features.punctual.getTimeSeries= function getTimeSeries(event,layerNumber)
 			if(currLayer.getSource().getParams().ncwmstwo){
                             var ajaxCan;
                             //var latlon;
-                            var latlon = ""+(Math.round(newCoordinate[0]*100)/100)+"N, "+(Math.round(newCoordinate[1]*100)/100)+"W";
+                            var latlon = ""+Math.abs(Math.round(newCoordinate[1]*100)/100)+"N, "+Math.abs(Math.round(newCoordinate[0]*100)/100)+"W";
                             $.ajax({
                                 url: url,
                                 async: false,
@@ -1066,7 +1066,7 @@ owgis.features.punctual.getWindRose= function getWindRose(event,layerNumber) {
             if( response.features.length != 0 ){
                 url += response.features[0].properties.NAME_FOLDE + "/" + response.features[0].properties.NAME_FOLDE + "_"+slctdmonth+".json";
                 var splitlatlon = response.features[0].properties.NAME_FOLDE.split('_');
-                var latlon = splitlatlon[0]+"N, "+splitlatlon[1]+"W";
+                var latlon = Math.abs(splitlatlon[0])+"N, "+Math.abs(splitlatlon[1])+"W";
                 //console.log(url);
                 var ajaxCan;
                 var dataU, dataV;
