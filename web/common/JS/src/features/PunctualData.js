@@ -154,6 +154,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         } else {
                             titulo = data.split('\n')[2].split(',')[1];
                         }
+                        console.log(data);  
                                                         
                         if(_curr_language == "ES"){
                                     Highcharts.setOptions({

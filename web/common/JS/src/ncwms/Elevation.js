@@ -162,21 +162,21 @@ function changeElev(value)
 		if(owgis.ncwms.zaxis.globcounter  === 0)
 			//getElementById('plusButtonElevation').disabled = true;
 			//$(plusButtonElevation).hide();
-                        $(plusButtonElevation).addClass("disabled");
+                        $(minusButtonElevation).addClass("disabled");
 		else
 			//getElementById('plusButtonElevation').disabled = false;
 			//$(plusButtonElevation).show();
-                        $(plusButtonElevation).removeClass("disabled");
+                        $(minusButtonElevation).removeClass("disabled");
 		
                
 		//change the - sign in the menu
                 
 		if(owgis.ncwms.zaxis.globcounter  === array_len -1)
 			//getElementById('minusButtonElevation').disabled = true;
-                        $(minusButtonElevation).addClass("disabled");
+                        $(plusButtonElevation).addClass("disabled");
 		else
 			//getElementById('minusButtonElevation').disabled= false;
-			$(minusButtonElevation).removeClass("disabled");
+			$(plusButtonElevation).removeClass("disabled");
                 
 	}else{
         //if(mobile){
@@ -206,15 +206,14 @@ function changeElevation(sign)
 
     //if we need to add more height
     if(sign === '+') { 
-        if(owgis.ncwms.zaxis.globcounter  !== 0)
-            owgis.ncwms.zaxis.globcounter --;          
+        if(owgis.ncwms.zaxis.globcounter !== array_len -1 )
+            owgis.ncwms.zaxis.globcounter ++;          
         else
             alert('You have reached the highest '+getZaxisText());
-            
     }
     else if(sign === '-') {
-        if(owgis.ncwms.zaxis.globcounter  !== array_len -1)
-            owgis.ncwms.zaxis.globcounter ++;
+        if(owgis.ncwms.zaxis.globcounter !== 0 )
+            owgis.ncwms.zaxis.globcounter --;
         else
             alert('You have reached the lowest '+getZaxisText());
     }
@@ -234,20 +233,20 @@ function changeElevationMobile(sign)
     var array_len = layerDetails.zaxis.values.length;
 
     //if we need to add more height
-    if (sign === '+')
+    if (sign === '-')
     {
         if (owgis.ncwms.zaxis.globcounter !== 0)
             owgis.ncwms.zaxis.globcounter--;
         else
-            alert('You have reached the highest ' + getZaxisText());
+            alert('You have reached the  lowest' + getZaxisText());
 
     }
-    else if (sign === '-')
+    else if (sign === '+')
     {
         if (owgis.ncwms.zaxis.globcounter !== array_len - 1)
             owgis.ncwms.zaxis.globcounter++;
         else
-            alert('You have reached the lowest elevation');
+            alert('You have reached the highest elevation');
     }
 
     //change the + sign in the menu
