@@ -175,6 +175,11 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         } else {
                             letime = "";
                         }     
+                        
+                        var unidades = data.split('\n')[2].split(',')[0];
+                        if(layerDetails.name.includes("oilSpill")){
+                            unidades = (_curr_language == 'ES') ? "Concentración de partículas (%/km^2)" :  "Concentration of particles (%/km^2)";
+                        }
                                   
                         optionsChartVP = {
                             title: {
@@ -193,11 +198,14 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                 inverted: true
                             },
                             yAxis: {
+                                title: {
+                                    text: unidades
+                                },
                                 lineWidth: 1
                             },
                             xAxis: {
                                 title: {
-                                    text: data.split('\n')[2].split(',')[0]
+                                    text: data_.split('\n')[2].split(',')[0]
                                 },
                               lineWidth: 1
                             },
@@ -352,6 +360,8 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                                 inverted: true
                             },
                             yAxis: {
+                                
+                                
                               lineWidth: 1
                             },
                             xAxis: {
@@ -611,6 +621,11 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
         } else {
             letime = "";
         }     
+        
+        var unidades = data_.split('\n')[2].split(',')[0];
+        if(layerDetails.name.includes("oilSpill")){
+            unidades = (_curr_language == 'ES') ? "Concentración de partículas (%/km^2)" :  "Concentration of particles (%/km^2)";
+         }
                                   
         
         Highcharts.chart('containerChartsVP', {
@@ -628,6 +643,9 @@ function letsLoopVP(allDataVP,allFramesVP, latlon){
                                     inverted: true
                                 },
                                 yAxis: {
+                                    title: {
+                                        text: unidades
+                                    },
                                   lineWidth: 1
                                 },
                                 xAxis: {
