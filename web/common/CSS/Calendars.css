@@ -66,6 +66,7 @@
 #CalendarsAndStopContainer {
   top: 209px;
   left: 50px;
+  width: fit-content !important;
   /*width:$containerSize;*/
 }
 
