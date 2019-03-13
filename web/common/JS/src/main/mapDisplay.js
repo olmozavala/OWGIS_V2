@@ -82,7 +82,7 @@ function owgisMain(){
         addLayers();
         owgis.layers.initMainLayer(eval('layer'+(_id_first_main_layer)));
         //owgis.layers.initMainLayer(eval('layer1'));
-        if(layerDetails.name.includes("oilSpill")){ $("#pTitleText").css("color", "#ffa500"); }
+        if(layerDetails.name.includes("oilSpill")){ $("#pTitleText").css("color", "#eb6600"); }
     }, 10);
     //menus
     var intervalMenus = setInterval(function(){
