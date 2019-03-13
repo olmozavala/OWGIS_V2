@@ -301,11 +301,15 @@ function obtainSelectedDates(){
 	
     //Reads all the days selected
     allFrames =  $('#timeSelect :selected').attr('timestring').split(",");
+    allFrames = allFrames[0].includes("/") ? allFrames : $('#timeSelect :selected').attr('fortimeseries').split(",") ;
     var key =  $('#timeSelect :selected').attr('key');
     totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
     var step = allFrames[0].split("/")[2];
-    //console.log(allFrames[0]);
-
+    
+    console.log(allFrames[0]);
+    //get step based on lenght and start and end dates
+    //var totalTimeofRange = 
+    
     // Verify we are ncWMS2
     if(layerDetails['ncwmstwo']){
         //In this case we need to create the array of dates from the 'range string'
@@ -335,9 +339,12 @@ function obtainSelectedDates(){
     if(key === "0"){//It means we are requesting the 'full' dimension
         //Total number of frames in 'full' mode
         //Total number of frames in 'daily' mode
+        
         var totFramesDaily= parseInt($('#timeSelect option[key="1"]').attr('totFrames'));
-        totFramesDaily = _.isNaN(totFramesDaily)? 0:totFramesDaily;
-
+        totFramesDaily = _.isNaN(totFramesDaily)? parseInt($('#timeSelect option[key="0"]').attr('totFrames')) :totFramesDaily;
+        totFramesDaily = _.isNaN(totFramesDaily)? 0 :totFramesDaily;
+        console.log(totalNumOfFrames,totFramesDaily, allFrames);
+        
         if(totalNumOfFrames > totFramesDaily){
             // In this case we have more than one data per day
             // We need to request the hours for each day
@@ -355,6 +362,7 @@ function obtainSelectedDates(){
                 owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
             }
             
+            console.log(currDate,reqTIME);
             
             startdate_ = new Date(daysStr[0]);
             currDate = new Date(daysStr[0]);//Get next day
@@ -362,7 +370,9 @@ function obtainSelectedDates(){
             owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
             enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
             var allDates = [];
-            //console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
+            
+            console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
+            
             myList = [];
             if( !mobile ){
                 $('#startTimeCalendar option').each(function() {
