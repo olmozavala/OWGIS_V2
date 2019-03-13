@@ -135,16 +135,19 @@ function initOl3(){
             mapConfig.zoom = newZoom;
         }
     }
-    //var resExtent;
     if( (_map_bk_layer === "osm") || 
 	(_map_bk_layer.indexOf("bing") !== -1) ||  
 	(_map_bk_layer.indexOf("google") !== -1)){
             _map_projection = PROJ_3857;
             changeProj = true;
+            resExtent = [-40075016.68557849, -15564404.531971263, 40075016.68557849, 15564404.531971255];
     }
         
     console.log(changeProj, _map_projection);
-    var resExtent = mapConfig.restrictedExtent.split(",").map(Number);
+    if (_map_bk_layer === "wms"){
+        var resExtent = [ -360, -90, 360, 90 ]; 
+        //var resExtent = mapConfig.restrictedExtent.split(",").map(Number);        
+    }    
     if(changeProj === true){
         console.log('transform center');
         defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
@@ -197,8 +200,7 @@ function initOl3(){
 		maxResolution: mapConfig.maxResolution,
                 loadTilesWhileAnimating: loadTilesWhileAnimating,
                 loadTilesWhileInteracting: loadTilesWhileInteracting,
-                extent: [ -360, -90, 360, 90 ]  
-                //extent: resExtent // Not working
+                extent: resExtent 
             });
     owgis.ol3.view = ol3view;
     

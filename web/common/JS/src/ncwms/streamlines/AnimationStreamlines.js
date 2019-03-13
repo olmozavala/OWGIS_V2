@@ -13,7 +13,6 @@ goog.require('owgis.utilities.mathgeo');
 owgis.ncwms.currents.grids = new Array();
 var currentsColor = (localStorage.particles_color !== "NaN" && typeof localStorage.particles_color !== 'undefined') ? localStorage.particles_color : "rgba(255, 255, 255, .6)";
 var currentsDefColor = "rgba(255, 255, 255, .6)";
-var loadingText = ""
 var currAnimSpeed = 80;
 var defLineWidth = 1.7;
 var defLineWidthCesium = 2.5;
@@ -181,7 +180,9 @@ owgis.ncwms.currents.highResolution = function highResolution(){
     //if it is in high resolution
     }else if(resolutionHigh == true & isLow == false){
         resolutionHigh = false;
+        updateURL(true)
         updateData(); //load the streamlines of the entire domain
+        updateURL(false)
         isLow =  true;
     }
 }
@@ -236,10 +237,8 @@ function getDefaultLayer(){
     // the original extent to -360,360 in order to be able to visualize
     // currents in the middle
     if(bbox[0] === -180 && bbox[2] === 180 ){
-        //bbox[0] = -360;
-        //bbox[2] = 360;
-        bbox[0] = -900;
-        bbox[2] = 900;
+        bbox[0] = -540;
+        bbox[2] = 540;
     }
     bbox = ol.proj.transformExtent(bbox, PROJ_4326, _map_projection);
     defLayer.set("origbbox",bbox);	
@@ -370,6 +369,7 @@ function updateCurrentsCesium(event){
 	console.log("Camera center: (" + c_center.latitude + "," + c_center.longitude + ")");
 	console.log("Computed extent: " + currentExtent);
     */
+   
     var res = 200000000;
     var resolution = cam_rad.height/res;
     if(isFirstTime3D){
@@ -473,7 +473,7 @@ function canvasAnimationCurrents(extent, resolution, pixelRatio, size, projectio
             if(updateURL(isFirstTime)){
                 if(resolutionHigh == true){ // if you change from high resolution to low resolution
                     isLow = false;
-                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);
+                    owgis.ncwms.currents.style.updateParticleSpeedFromResolution(resolution, extent);                    
                     updateData();                     
                 }else{ 
                     if(temp_resolution != resolution){ //only if you are zoom in the canvas
@@ -525,7 +525,7 @@ function updateData(){
     loadedRequests = 0;
 	
     //Reads the data
-    owgis.interf.loadingatmap(true,0,loadingText);
+    owgis.interf.loadingatmap(true,0,"Currents");
     totalFiles = times.length;
     uData = new Array();
     vData = new Array();
@@ -572,7 +572,7 @@ function updateData(){
                             }
 			}
                         loadedRequests++;
-                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),loadingText);
+                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
                         //Start the animation when 90% of the frames have been loaded
                         if( (loadedRequests/(totalRequests*2)) > .9){
                             owgis.interf.loadingatmap(false,0);
@@ -603,7 +603,7 @@ function updateData(){
                             }
                         }
                         loadedRequests++;
-                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),loadingText);
+                        owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/(totalRequests*2))),"Currents");
                         //Start the animation when 90% of the frames have been loaded
                         if( (loadedRequests/(totalRequests*2)) > .9){
                             owgis.interf.loadingatmap(false,0);
@@ -646,7 +646,7 @@ function updateData(){
                     }
                     owgis.ncwms.currents.particles.setGrid(grid,idx);
                     loadedRequests++;
-                    owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),loadingText);
+                    owgis.interf.loadingatmap(true,Math.floor( 100*(loadedRequests/totalRequests) ),"Currents");
                     //owgis.interf.loadingatmouse(true);
                     if(loadedRequests === totalRequests){
                        owgis.interf.loadingatmap(false,0);
@@ -657,7 +657,7 @@ function updateData(){
             // we have one time
             if(times.length === 1){
                 readDataPremises[idx].on("progress",function(){
-                    owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),loadingText);
+                    owgis.interf.loadingatmap(true,Math.round((d3.event.loaded/computedFileSize)*100),"Currents");
                 });
             }
         });
@@ -690,43 +690,6 @@ function updateURL(isFirstTime){
             var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
         }
         
-        //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
-        //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
-        layerTemplate.set("bbox",newbbox.toString());	        
-        // Updating current zaxis
-        if( !_.isEmpty(layerDetails.zaxis)){
-            var elev = layerDetails.zaxis.values[owgis.ncwms.zaxis.globcounter];
-            layerTemplate.set("elevation",elev);	
-        }else{
-            layerTemplate.set("elevation",null);	
-        }
-        layerTemplate = updateWidthAndHeight(layerTemplate);
-        return true;
-    }
-}
-
-
-/**
- * This function updates the BBOX of the layers in order to modify the request.
- * The objective is to request only what is in the visible map 
- * @returns {undefined}
- */
-function updateURL1(){
-    var origBBOX = layerTemplate.get("origbbox");   
-    if( (currentExtent[0] > origBBOX[2]) ||
-	(currentExtent[2] < origBBOX[0]) ||
-	(currentExtent[1] > origBBOX[3]) ||
-	(currentExtent[3] < origBBOX[1]) ){
-            //In this case the current map view is outside the limits of the data
-            return false;
-    }else{
-        // Updating current BBOX
-        var limLonMin = Math.max(currentExtent[0], origBBOX[0]);
-        var limLatMin = Math.max(currentExtent[1], origBBOX[1]);
-        var limLonMax = Math.min(currentExtent[2], origBBOX[2]);
-        var limLatMax = Math.min(currentExtent[3], origBBOX[3]);
-        var newbbox = [limLonMin, limLatMin, limLonMax, limLatMax];
-        //var newbbox = [-360, -90, 360, 90];
         //layerTemplate.set("extbbox", newbbox);//auxiliar extent map
         //newbbox = ol.proj.transformExtent(newbbox, _map_projection, PROJ_4326);
         layerTemplate.set("bbox",newbbox.toString());	        
