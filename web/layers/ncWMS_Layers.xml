@@ -10,6 +10,7 @@
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
 		<Menu ID="ncwmsMultTimes" EN="ncWMS MultTimes" ES="ESP ncWMS MultTimes"/>
 		<Menu ID="oldncwms" EN="ncWMS V1" ES="ESP ncWMS V1"/>
+                <Menu ID="ChemCO" EN="ChemCO ChemCO" ES="ChemCO ChemCO ChemCO"/>
 	</Menus>
 
 	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
@@ -63,6 +64,12 @@
 	   <layer Menu="ncwms,ncwmsMultTimes" EN="Surface temperature" 
 			   ES="Temperatura en superficie" name="gfs_forecast/temp_surf" />
 	</MainLayers>
+        
+        <MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
+                    format="image/png"  server="http://132.248.8.98:11811/ncWMS2/wms"
+                    tiled="true" ncWMStwo="true">  
+            <layer Menu="ncwms,ChemCO" EN="ChemCO" ES="ChemCO" name="unaprueba/ChemCO"   />
+        </MainLayers>
 
         <!--MainLayers BBOX="-98.0,18.09164810180664,-76.400024,31.960647583007812" 
                     format="image/png"  server="http://ncwms.coaps.fsu.edu/ncWMS/wms"

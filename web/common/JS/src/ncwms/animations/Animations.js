@@ -304,6 +304,9 @@ function obtainSelectedDates(){
     var key =  $('#timeSelect :selected').attr('key');
     totalNumOfFrames = parseInt($('#timeSelect :selected').attr('totFrames'));
     var step = allFrames[0].split("/")[2];
+    enddate_ =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true); 
+    allFrames[0] = typeof step == "undefined" ? allFrames[0].split("T")[0]+"T"+"00:00:00.000Z"+"/"+enddate_.split("T")[0]+"T"+"00:00:00.000Z" : allFrames[0];
+    
     //console.log(allFrames[0]);
 
     // Verify we are ncWMS2
@@ -356,13 +359,13 @@ function obtainSelectedDates(){
             }
             
             
-            startdate_ = new Date(daysStr[0]);
+            startdate_ = owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.startcal, true);//new Date(daysStr[0]);
             currDate = new Date(daysStr[0]);//Get next day
 	    reqTIME = owgis.utils.getDate("%Y-%m-%d",currDate,true);
             owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,allFrames);
             enddate_ =  owgis.ncwms.calendars.getCurrentDate(false, owgis.constants.endcal, true);
             var allDates = [];
-            //console.log(currDate.toISOString(),currDate.toISOString().split("T")[1], enddate_.toISOString());
+            //console.log(currDate.toISOString(), enddate_.toISOString(), currDate.toISOString().split("T")[1], daysStr);
             myList = [];
             if( !mobile ){
                 $('#startTimeCalendar option').each(function() {
@@ -371,13 +374,14 @@ function obtainSelectedDates(){
             } else {
                 myList = layerDetails.timeSteps;
             }
-            while( currDate <= enddate_){
-                if( _.contains(myList,currDate.toISOString().split("T")[1]) ){
-                    allDates.push( currDate.toISOString() ); 
+            for(var i=0; i < daysStr.length; i++ ){
+                for(var j=0; j < myList.length; j++ ){
+                    currDate = new Date(daysStr[i].split("T")[0]+"T"+myList[j]);
+                    if(currDate <= enddate_ && currDate >= startdate_){
+                        allDates.push( currDate.toISOString() ); 
+                    }  
                 }
-                currDate.setHours(currDate.getHours()+1); 
             }
-            
             allFrames = allDates;
             
         }
