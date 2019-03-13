@@ -7,6 +7,7 @@
 		<Menu ID="paises" EN="Countries" ES="Países" />
 		<Menu ID="bat" EN="Bathymetry Model" ES="Modelo Batimetría" />
                 <Menu ID="pemex" EN="Points of interest" ES="Puntos de interés" />
+                <Menu ID="rios" EN="Rivers" ES="Ríos" />
         </Menus>        
         <!-- Optional layers -->
         <OptionalLayers BBOX="-120,15,-80,32" server="http://132.248.8.238:8080/geoservercenapred/wms" vectorLayer="true"> 
@@ -15,7 +16,7 @@
                 <layer Menu="paises" name="cen:paises" EN="Countries" ES="Países" tiled="true" selected="true" />
 		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="true" selected="true" />
                 <layer Menu="pemex" EN="Points of interest" ES="Puntos de interés" name="cen:gom_pemex_6points" tiled="true" selected="true"  />
-                <!--layer Menu="pemex" name="cen:pemex" EN="Points of interest" ES="Puntos de interés" tiled="false" selected="true" /-->
+                <layer Menu="rios" name="cen:rios" EN="Rivers" ES="Ríos" tiled="false" selected="false" />
 		<!--layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false" selected="true" /-->
 		
 	</OptionalLayers>
