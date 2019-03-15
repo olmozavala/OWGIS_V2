@@ -189,6 +189,14 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
         }
 }
 
+.modal-body {
+    position: relative;
+    padding: 15px;
+    width: 100% !important;
+    max-height: 100%;
+    height: auto;
+}
+
 
 @media screen and (orientation:portrait) {
 	/* portrait-specific styles */
@@ -205,12 +213,11 @@ h5#modalLabelVertProf, h5#modalLabelTimeSeries {
 @media screen and (orientation:landscape) {
 	/* landscape-specific styles */
         #containerChartsTS{
-            width: 100%;
-            height: 100%;
+                width: 100% !important;
+                
         }
         #containerChartsVP{
-            width: 100%;
-            height: 100%;
+            width: 100% !important;
         }
 }
 

@@ -27,9 +27,6 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
     if("getParams" in currSource && _mainlayer_zaxisCoord){
         var coords = event.coordinate;
 	var newCoordinate =  ol.proj.transform(coords, _map_projection, 'EPSG:4326');
-	//var currBBOX =  ol3view.calculateExtent(map.getSize());
-	//currPopupText = '<b>Lon: </b>'+newCoordinate[0].toFixed(2)+ ' <b>Lat: </b>'+newCoordinate[1].toFixed(2)+'<br>'
-         
         var x = Math.floor(event.pixel[0]);
         var y = Math.floor(event.pixel[1]);
         var time;
@@ -88,7 +85,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             //var allDates =  Array.from(datesRange.by('day'));
             //allDateFrames = allDates.map(m => m.utc().format()); 
             allFramesVP = allFrames; allDataVP= {};
-            console.log(allFramesVP);
+            //console.log(allFramesVP);
             /*
             for(i=0; i<allDateFrames.length; i++){
                 var locCurrDate = new Date(allDateFrames[i]);
@@ -108,7 +105,6 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
             }
             
             // when all ajax calls are done we need to be able to start animation
-            
             var latlon = Math.abs(Math.round(newCoordinate[1]*100)/100)+"N, "+Math.abs(Math.round(newCoordinate[0]*100)/100)+"W";
             var dataLink = "";
             var first=0;
@@ -117,13 +113,12 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 // we set first frame as the Vertical Profile current frame
                 var vpCurrentFrame=0;
                 first++;
-                console.log(vpCurrentFrame,first);
+                //console.log(vpCurrentFrame,first);
                 // check that it is not an html or xml response
                 // but first check that it exists (?)
                 var ajaxCan = false;
                 if(allDataVP[allFramesVP[vpCurrentFrame]].status == 200){ ajaxCan = true; }
                 if( typeof allDataVP[allFramesVP[vpCurrentFrame]] !== "undefined" && allDataVP[allFramesVP[vpCurrentFrame]].status == 200 ){
-                    
                     if( !allDataVP[allFramesVP[vpCurrentFrame]].hasOwnProperty("responseXML") ){
                         //all data ready, lets create the First highchart
                         if(mobile){
