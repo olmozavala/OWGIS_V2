@@ -285,6 +285,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                         }
                         if(!mobile && ajaxCan){
                             $('#modalVertProf').resizable({
+                                alsoResize: ".modal-body",
                                 minHeight: 500,
                                 minWidth: 600,
                                 resize: function( event, ui ) {
@@ -433,7 +434,7 @@ owgis.features.punctual.getVerticalProfile = function getVerticalProfile(event,l
                 if(!mobile && ajaxCan){
                     
                     $('#modalVertProf').resizable({
-                        //alsoResize: ".modal-dialog",
+                        alsoResize: ".modal-body",
                         minHeight: 500,
                         minWidth: 600,
                         resize: function( event, ui ) {
