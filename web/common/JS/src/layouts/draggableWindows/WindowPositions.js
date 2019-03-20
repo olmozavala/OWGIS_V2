@@ -11,6 +11,8 @@ goog.require('owgis.ol3');
  * when he/she returns to the site
  */
 owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(){
+    if(typeof localStorage != "undefined" && localStorage != null ){
+        
     localStorage.zoom = ol3view.getResolution();// Zoom of map
     localStorage.map_center =  ol3view.getCenter();// Center of the map
 
@@ -46,7 +48,7 @@ owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus = function(
 	localStorage.server_name = window.location.href;
         console.log(hoverDisabled);
         localStorage.disable_hover = hoverDisabled;
-    
+    }
 }
 
 /** Places the draggable windows to where the user last placed them. Also controls if they where

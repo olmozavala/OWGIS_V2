@@ -295,12 +295,12 @@ function updateTitle(dateText, elevText) {
  */
 function MapViewersubmitForm() {
     if (map !== null) {
-    	//if(mobile){
+    	if(typeof localStorage != "undefined" && localStorage != null ){
             localStorage.language = _curr_language;
             //owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
     	//}
     	//else{
-            owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
+            
     	    localStorage.zoom = Math.ceil(ol3view.getZoom());// Zoom of map
             localStorage.map_center =  ol3view.getCenter();// Center of the map
             localStorage.language = _curr_language;
@@ -320,7 +320,8 @@ function MapViewersubmitForm() {
             localStorage.disable_hover = hoverDisabled;
             
             //document.getElementById("mobile").value = mobile;
-    	//}
+    	}
+        owgis.layouts.draggable.saveAllWindowPositionsAndVisualizationStatus();
         submitForm();
     }
 }
