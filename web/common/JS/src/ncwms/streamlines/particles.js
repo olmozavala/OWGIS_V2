@@ -145,6 +145,12 @@ function updateDomains(){
     var bbox = layerTemplate.get("origbbox");
     var bbox_t = layerTemplate.get("bbox");
     var array_bbox =bbox_t.split(",")
+    
+    
+//    limLatMin = Math.max(bbox[1], gridInfo.la1);
+//    limLonMin = Math.max(bbox[0], gridInfo.lo1);	
+//    limLonMax = Math.min(bbox[2], gridInfo.lo2);
+//    limLatMax = Math.min(bbox[3], gridInfo.la2);
              
 	limLatMin = Math.max(parseFloat(array_bbox[1]), gridInfo.la1);
         limLonMin = Math.max(parseFloat(array_bbox[0]), gridInfo.lo1);	
@@ -156,6 +162,9 @@ function updateDomains(){
 	latDomainRand = Math.abs(limLatMin - limLatMax);
     
 	//console.log(layerTemplate.get("origbbox"));
+        console.log(gridInfo);
+        console.log(bbox_t)
+        console.log(bbox);
     //console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){
@@ -210,7 +219,6 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(i, j)
 		randomFunction = randomParticle;
 	}
 	if(!_.isEmpty(grids[currentGrid])){
-
 		//We make the if here even when we have to repeat the code
 		// because it is more efficient to do it this way. 
 		// Check if we have only one time step or multiple time steps
@@ -290,7 +298,7 @@ owgis.ncwms.currents.particles.updateParticles  = function updateParticles(i, j)
 					particle[0] = particle[2];
 					particle[1] = particle[3];
 					if(particle[4] > timeParticle){
-						particlesArray[idx]= randomFunction();
+						particlesArray[idx]= drawParticles();
 					}
 					//Validate the position of the particle is between the limits of the grid
 					if( (particle[0] > gridInfo.lo1) && (particle[1] > gridInfo.la1) && 
@@ -399,7 +407,7 @@ owgis.ncwms.currents.particles.drawParticles = function drawParticles(i, j){
  * @param {type} latDomain
  * @returns {Array}
  */
-function particleToCanvasCesium(particle, cesiumNavBarHeight){
+function particleToCanvasCesium(particle, cesiumNavBarHeight){   
     var cart3Pos = Cesium.Cartesian3.fromDegrees(particle[0], particle[1])
 	var position = Cesium.SceneTransforms.wgs84ToWindowCoordinates(c_scene, cart3Pos);
 	var x = position.x;
@@ -452,12 +460,12 @@ function randomParticleDenseCenter(){
 	var Rlat = latg_domain;
 
 	var r = Math.pow(randVal,.8); 
-	var theta = 2*Math.PI*Math.random();
+	var theta = 2*Math.PI*Math.random();        
 	
 	var x = cam_lon_deg + Rlon*r*Math.sin(theta);
 	var y = cam_lat_deg + Rlat*r*Math.cos(theta);
-	
-	var t = randVal*timeParticle;
+        var rq=1
+	var t = randVal*timeParticle;              
     return [x,y,x,y,t];
 	
 }
@@ -471,7 +479,7 @@ function randomParticle(){
 	var x = limLonMin + randVal*lonDomainRand;
 	var y = limLatMin + Math.random()*latDomainRand;
 	
-	var t = Math.random()*timeParticle;
+	var t = Math.random()*timeParticle;        
 	return [x,y,x,y,t];
 }
 
@@ -552,11 +560,9 @@ function initParticles(){
 			c_scene = _cesium.getCesiumScene();
 		}
         
-        var cam_rad = c_scene.camera.positionCartographic;
-		
+        var cam_rad = c_scene.camera.positionCartographic;       
         cam_lon_deg = owgis.utilities.mathgeo.radtodeg(cam_rad.longitude);
-		cam_lat_deg = owgis.utilities.mathgeo.radtodeg(cam_rad.latitude);
-
+        cam_lat_deg = owgis.utilities.mathgeo.radtodeg(cam_rad.latitude);        
         console.log("cam long: " + cam_lon_deg);
 		console.log("cam lat: " + cam_lat_deg);
 		//avoid computing this value for every particle

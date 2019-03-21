@@ -47,6 +47,7 @@ function initCesium(){
         c_scene.skyAtmosphere.show = false;
         // Don't allow tilt with the camera
         c_scene.screenSpaceCameraController.enableTilt = false;
+        c_scene.screenSpaceCameraController.maximumZoomDistance = 8500000
 
         //Set the view depending on the current resolution
         //var res = map.getView().getResolution();
