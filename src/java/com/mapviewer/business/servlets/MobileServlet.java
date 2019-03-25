@@ -1,16 +1,15 @@
 package com.mapviewer.business.servlets;
 
-import java.io.BufferedInputStream;
+/*import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FilenameFilter;
+import java.io.InputStream;*/
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
-
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,21 +19,28 @@ public class MobileServlet extends HttpServlet {
            
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, InterruptedException {
+            
 		String url = request.getParameter("url");
-		FileInputStream in = new FileInputStream(getServletContext().getRealPath("admin/OWGIS_Mob_v1/assets/url.properties"));
+                
+                System.out.println(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/assets/url.properties")+" ---- "+url);
+                
+		FileInputStream in = new FileInputStream(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/assets/url.properties"));
 		Properties props = new Properties();
 		props.load(in);
 		in.close();
-		FileOutputStream out1 = new FileOutputStream(getServletContext().getRealPath("admin/OWGIS_Mob_v1/assets/url.properties"));
+		FileOutputStream out1 = new FileOutputStream(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/assets/url.properties"));
 		props.setProperty("url",url);
 		props.store(out1, null);
 		out1.close();
-		String relativeBatPath = "/admin/appCompile/";
+		
+                //String relativeBatPath = "/admin/appCompile/";
+                //String absoluteBatDiskPath = getServletContext().getRealPath(relativeBatPath);
                 
+                //Check for OS so that we can correctly compile our apk !
                 String opsys = System.getProperty("os.name").toLowerCase();
-                String absoluteBatDiskPath = getServletContext().getRealPath(relativeBatPath);
                 
                 if(opsys.indexOf("win") >= 0){
+                    /*
                     Process p = Runtime.getRuntime().exec("cmd /c start /wait "+ absoluteBatDiskPath + "/1.bat " + getServletContext().getRealPath("\\admin\\OWGIS_Mob_v1"));
                     System.out.println("Waiting for batch file ...");
                     p.waitFor();
@@ -76,16 +82,34 @@ public class MobileServlet extends HttpServlet {
                     //outs.flush();
                     //outs.close();
                     //ipS.close();
+                    */
                     response.setContentType("text/html");
                     response.setHeader("Cache-Control", "no-cache");
                     response.getWriter().write(request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_v1/bin"+"/MainActivity-debug.apk");
-                } /*else if(opsys.indexOf("mac") >= 0){
+                } /*else if(opsys.indexOf("mac") >= 0){ }*/ 
+                else if(opsys.indexOf("nix") >= 0 || opsys.indexOf("nux") >= 0 || opsys.indexOf("aix") > 0 || opsys.indexOf("mac") >= 0 ){
+                    String path_to_gradle = getServletContext().getRealPath("/admin/OWGIS_Mob_V1/");
+                    String[] arguments = new String[] {path_to_gradle+"gradlew", "build"};
+                    Process proc = new ProcessBuilder(arguments).start();
+                    int errCode = proc.waitFor();
+                    System.out.println("Echo command executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+                    System.out.println("Echo Output:\n" + (proc.getInputStream()));
                     
-                }*/ else if(opsys.indexOf("nix") >= 0 || opsys.indexOf("nux") >= 0 || opsys.indexOf("aix") > 0 ){
                     
+                        
+                    if(errCode == 0){
+                        //no errors, return apk
+                        response.setContentType("application/json");
+                        //response.setHeader("Cache-Control", "no-cache");
+                        String your_string = "{ \"url\" : \""+request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk\" }";
+                        PrintWriter out = response.getWriter();
+                        out.write(your_string);
+                        //response.getWriter().write(request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/"+"/app-release.apk");
+                
+                    }
                 }
 	}
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

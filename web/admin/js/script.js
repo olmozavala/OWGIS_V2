@@ -417,10 +417,11 @@ function downloadMobileApp(){
 		data : "url=" + url,
 		success: function(data){
 			$(".loader").fadeOut("slow");
-			var qrcode = new QRCode("qrcode");
+			/*var qrcode = new QRCode("qrcode");
 			qrcode.makeCode(data);
 			$('#qrcode-control').css('display','block');
-			window.open(data,'_self');
+			window.open(data,'_self');*/
+                        console.log(data);
 		}
 	});	
 }
