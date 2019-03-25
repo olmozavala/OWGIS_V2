@@ -152,6 +152,7 @@
 			   EN="Daily Wind Climatology" ES="Climatología Diaria de Viento a 10 metros" mincolor="0" maxcolor="70" 
                            style="default-scalar" palette="windatlas" 
 			   name="atlas_diario/MAGNITUD_VIENTO" 
+                           overlaystreamlines="atlas_diario/U10:atlas_diario/V10" defParticleSpeed="0.03"
                            belowMinColor="extend" aboveMaxColor="extend" 
                            subtitleText="daily"
                 />
