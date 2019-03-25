@@ -139,19 +139,20 @@ function initOl3(){
 	(_map_bk_layer.indexOf("bing") !== -1) ||  
 	(_map_bk_layer.indexOf("google") !== -1)){
             _map_projection = PROJ_3857;
-            changeProj = true;
-            resExtent = [-40075016.68557849, -15564404.531971263, 40075016.68557849, 15564404.531971255];
+            changeProj = true;         
     }
         
-    console.log(changeProj, _map_projection);
+    //console.log(changeProj, _map_projection);
     if (_map_bk_layer === "wms"){
-        var resExtent = [ -360, -90, 360, 90 ]; 
-        //var resExtent = mapConfig.restrictedExtent.split(",").map(Number);        
+        var resExtent = mapConfig.restrictedExtent.split(",").map(Number);            
     }    
     if(changeProj === true){
-        console.log('transform center');
+        //console.log('transform center');
         defCenter = ol.proj.transform(defCenter, PROJ_4326, _map_projection);
-	//resExtent = ol.proj.transform(mapConfig.restrictedExtent.split(",").map(Number), PROJ_4326, _map_projection);
+        var extents = mapConfig.restrictedExtent.split(",").map(Number);
+        lat_1 = ol.proj.transform([extents[0],extents[1]], PROJ_4326, _map_projection);
+        lat_2 = ol.proj.transform([extents[2],extents[3]], PROJ_4326, _map_projection) ;      
+        resExtent = [lat_1[0],lat_1[1],lat_2[0],lat_2[1]];
     }    console.log(defCenter, resExtent);
 
     /* importante si se quiere cambiar el tamaño de las imagenes
