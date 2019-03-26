@@ -421,7 +421,10 @@ function downloadMobileApp(){
 			qrcode.makeCode(data);
 			$('#qrcode-control').css('display','block');
 			window.open(data,'_self');*/
+                        
                         console.log(data);
+                        
+                        window.open(data.url,'_self');
 		}
 	});	
 }
