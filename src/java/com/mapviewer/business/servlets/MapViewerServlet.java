@@ -232,7 +232,7 @@ public class MapViewerServlet extends HttpServlet {
                 String[] amr = mapConfig.getProperty("availableMaxResolution").split(";");
                 String[] abl = mapConfig.getProperty("availableBackgroundLayers").split(";");
                 int i;
-                for(i = 1; i < amr.length; i++) {
+                for(i = 0; i < amr.length; i++) {
                     if(backgroundLayer.equals(abl[i])) {
                         mapConfig.updateProperty("maxResolution", amr[i]);
                         break;
