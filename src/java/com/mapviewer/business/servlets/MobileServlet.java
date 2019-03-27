@@ -4,14 +4,18 @@ package com.mapviewer.business.servlets;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.InputStream;*/
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Properties;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -93,64 +97,34 @@ public class MobileServlet extends HttpServlet {
                 } /*else if(opsys.indexOf("mac") >= 0){ }*/ 
                 else if(opsys.indexOf("nix") >= 0 || opsys.indexOf("nux") >= 0 || opsys.indexOf("aix") > 0 || opsys.indexOf("mac") >= 0 ){
                     String path_to_gradle = getServletContext().getRealPath("/admin/OWGIS_Mob_V1/");
-                    String[] arguments = new String[] {"cd",path_to_gradle,"&&","./gradlew", "build"};
-                    Process proc = new ProcessBuilder(arguments).start();
-                    int errCode = proc.waitFor();
-                    System.out.println("Echo command executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
-                    System.out.println("Echo Output:\n" + (proc.getInputStream()));
+                    String[] arguments = new String[] {"cd",path_to_gradle,"&&","./gradlew", "build"}; //"bash", "-c",
+                    //Runtime rt = Runtime.getRuntime();
+                    //Process proc = rt.exec(arguments);//new ProcessBuilder(arguments).start();
                     
+                    // you need a shell to execute a command pipeline
+                    List<String> commands = new ArrayList<String>();
+                    commands.add("/bin/sh");
+                    commands.add("-c");
+                    commands.add("cd "+path_to_gradle+" && ./gradlew build");
+
+                    SystemCommandExecutor commandExecutor = new SystemCommandExecutor(commands);
+                    int result = commandExecutor.executeCommand();
+
+                    StringBuilder stdout = commandExecutor.getStandardOutputFromCommand();
+                    StringBuilder stderr = commandExecutor.getStandardErrorFromCommand();
+
+                    System.out.println("STDOUT");
+                    System.out.println(stdout);
+
+                    System.out.println("STDERR");
+                    System.out.println(stderr);
                     
-                        
-                    if(errCode == 0){
-                        //no errors, return apk
+                    if(result == 0){
+                        //no errors, return apk link
                         response.setContentType("application/json");
-                        //response.setHeader("Cache-Control", "no-cache");
                         String your_string = "{ \"url\" : \""+request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk\" }";
                         PrintWriter out = response.getWriter();
                         out.write(your_string);
-                        //response.getWriter().write(request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/"+"/app-release.apk");
-                        //String your_string = "{ \"url\" : \""+request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk\" }";
-                        
-                        /*String filePath = getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk");
-                        File downloadFile = new File(filePath);
-                        InputStream inStream = getServletContext().getResourceAsStream("/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk");
-
-                        // if you want to use a relative path to context root:
-                        String relativePath = getServletContext().getRealPath("");
-                        System.out.println("relativePath = " + relativePath);
-
-                        // obtains ServletContext
-                        ServletContext context = getServletContext();
-
-                        // gets MIME type of the file
-                        String mimeType = context.getMimeType(filePath);
-                        if (mimeType == null) {        
-                            // set to binary type if MIME mapping not found
-                            mimeType = "application/octet-stream";
-                        }
-                        System.out.println("MIME type: " + mimeType);
-
-                        // modifies response
-                        response.setContentType(mimeType);
-                        response.setContentLength((int) downloadFile.length());
-
-                        // forces download
-                        String headerKey = "Content-Disposition";
-                        String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
-                        response.setHeader(headerKey, headerValue);
-
-                        // obtains response's output stream
-                        OutputStream outStream = response.getOutputStream();
-
-                        byte[] buffer = new byte[4096];
-                        int bytesRead = -1;
-
-                        while ((bytesRead = inStream.read(buffer)) != -1) {
-                            outStream.write(buffer, 0, bytesRead);
-                        }
-
-                        inStream.close();
-                        outStream.close();     */
                     }
                 }
 	}
