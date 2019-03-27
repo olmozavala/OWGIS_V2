@@ -122,7 +122,6 @@ function initOl3(){
 	
     var changeProj = false;//Indicates if we need to change the projections
     var defCenter= [lon,lat];
-    console.log(defCenter);
     var newZoom = localStorage.zoom && Number(localStorage.zoom) <= mapConfig.zoomLevels ? localStorage.zoom : mapConfig.zoom;// Zoom of map
         
     if( localStorage.map_center !== undefined){
@@ -158,7 +157,6 @@ function initOl3(){
     /* importante si se quiere cambiar el tamaño de las imagenes
      * y optimizar el tiempo en las que se cargan dentro del owgis
      */
-    console.log(resExtent);
     tileGrid = new ol.tilegrid.TileGrid({
         extent: resExtent,
         resolutions: resolutions,

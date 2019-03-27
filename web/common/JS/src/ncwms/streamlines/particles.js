@@ -160,11 +160,7 @@ function updateDomains(){
         
 	lonDomainRand = Math.abs(limLonMin - limLonMax);
 	latDomainRand = Math.abs(limLatMin - limLatMax);
-    
-	//console.log(layerTemplate.get("origbbox"));
-        console.log(gridInfo);
-        console.log(bbox_t)
-        console.log(bbox);
+   
     //console.log("-->>extencion domains: " + limLonMin + ', ' + limLatMin + ', ' + lonDomainRand + ', ' + latDomainRand);
 
 	if(!_.isEmpty(_cesium) && _cesium.getEnabled()){

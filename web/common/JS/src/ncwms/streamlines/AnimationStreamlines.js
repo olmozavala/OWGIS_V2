@@ -755,9 +755,9 @@ function loopAnimationCurrents(){
 	}else{
             ctx.lineWidth = defLineWidth;
 	}
-//        if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
-//            return;
-//        }
+        if(_map_projection === PROJ_3857 && _cesium && _cesium.getEnabled()) {
+            return;
+        }
         owgis.ncwms.currents.particles.updateParticles(0, particlesArray.length);
         owgis.ncwms.currents.particles.drawParticles(0, particlesArray.length);
         ctx.stroke();
