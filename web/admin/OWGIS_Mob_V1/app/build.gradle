@@ -11,7 +11,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.owgis_mob_v1"
+        applicationId "com.example.owgis_mob"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -26,7 +26,12 @@ android {
             signingConfig signingConfigs.config
         }
     }
-    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/assets/'] } }
+    sourceSets { 
+        main { 
+            assets.srcDirs = ['src/main/assets', 'src/assets/'] 
+            java.srcDirs = ['src']
+        } 
+    }
 }
 
 dependencies {

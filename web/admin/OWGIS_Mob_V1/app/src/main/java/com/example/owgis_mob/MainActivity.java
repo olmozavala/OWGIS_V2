@@ -1,4 +1,4 @@
-package com.example.owgis_mob_v1;
+package com.example.owgis_mob;
 
 import java.io.IOException;
 import java.io.InputStream;
