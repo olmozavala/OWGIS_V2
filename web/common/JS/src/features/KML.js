@@ -49,13 +49,14 @@ owgis.kml.updateTitleAndKmlLink = function() {
         }
 
 		var dateText =  owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.startcal, true);
+                var dateTextComplete = dateText +"/"+owgis.ncwms.calendars.getCurrentDate(true, owgis.constants.endcal, true)                
 		
-        owgis.kml.updateKmlLink(dateText, currElevation, '');
+        owgis.kml.updateKmlLink(dateTextComplete, currElevation, '');
 		var dateForTitle = "";
 		if(!_.isUndefined(dateText)){
 			dateForTitle = dateText.substring(0,dateText.indexOf("T"))
 			+" "+ dateText.substring(dateText.indexOf("T")+1,dateText.indexOf("."));
-		}
+		}                
         updateTitle(dateForTitle, currElevationTxt);
     }
 }

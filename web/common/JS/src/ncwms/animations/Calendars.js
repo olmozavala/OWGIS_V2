@@ -394,6 +394,7 @@ function setCurrentTime(cal){
             //console.log("Setting end time to: " + currEndTime);
             break;
     }
+    owgis.kml.updateTitleAndKmlLink();
 }
 
 /**

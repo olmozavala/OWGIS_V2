@@ -213,15 +213,17 @@ public class UserRequestManager {
 				String time = (String) layDet.get("nearestTimeIso");
 
 				//This parameters should not change
-				kmlLink = server + "?layers=" + layerName;
+				kmlLink = server + "?service=WMS&layers=" + layerName;
 				kmlLink += "&FORMAT=application/vnd.google-earth.kmz"
 						+ "&REQUEST=GetMap"
-						+ "&VERSION=1.1.1"
-						+ "&BBOX=" + layer.getBbox().toString()
+						+ "&VERSION=1.1.1"						
+                                                + "&BBOX=" + layer.getBbox().toString()
 						+ "&WIDTH=" + layer.getWidth()
-						+ "&HEIGHT=" + layer.getHeight()
+						+ "&HEIGHT=" + layer.getHeight()                                                
 						+ "&NUMCOLORBANDS=250"
 						+ "&TRANSPARENT=true"
+                                                + "&animation=true"
+                                                + "&frameRate=5"
 						+ "&COLORSCALERANGE=" + layer.getMinColor() + "," + layer.getMaxColor()
 						+ "&STYLES=" + layer.getStyle() + "/" + palette
 						+ "&SRS=" + layer.getProjection();
