@@ -5,25 +5,19 @@
 	top: 30px;
 	padding: 2px 5px;
 }
-
 /* Input text for CQL filter */
 #idOcqlFilterInputText{
 	width:60%;
 }
-
-
-
 /* Button to show and hide CQL filter text box*/
 #ocqlMenuButtonParent{
 	position: relative;
 	left: 10%;
 }
-
 /* 'Apply' button for CQL filter */
 #idOcqlFilterButton{
 	display:inline;
 }
-
 /* Span to input some error text */
 #ocqlErrorParent{
 	display:none;
@@ -33,7 +27,6 @@
 #ocqlErrorText{
 	color: red;
 }
-
 /* CQL filter parent of all the instructions*/
 #ocqlFilterText{
 	color:black;
@@ -42,7 +35,6 @@
 	padding: 10px;
 	width: 270px;
 }
-
 /* Table containing options */
 table.cqlFilterExampleTable{
 	border-style: solid;
@@ -62,13 +54,7 @@ table.cqlFilterExampleTable td{
 	border-style: solid;
 	text-align: center;
 }
-
-.cqlFilterTable
-{
-    
-    
-    /*background-color:black;*/
-    
+.cqlFilterTable{
     z-index:1008;
     color: white;    
     -moz-border-radius: 10px;
@@ -84,29 +70,20 @@ table.cqlFilterExampleTable td{
     border-spacing: 5px 2px;
     font-size: 55px;
     width:500px;
-
 }
-
-#cqlhelptext
-{
+#cqlhelptext{
   position:absolute;
   top:300px;
- -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius:10px;
-    border:solid 5px black;
- z-index:1008;
- padding:5px;
- 
- width:350px;
- background-color: white;
- height:300px;
-    
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius:10px;
+  border:solid 5px black;
+  z-index:1008;
+  padding:5px; 
+  width:350px;
+  background-color: white;
+  height:300px;  
 }
-
 #ocqlFilterText #ocqlErrorParent{
-    
-    display:none;
-    
+    display:none;    
 }
-

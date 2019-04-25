@@ -6,7 +6,7 @@ goog.require('ol.coordinate');
 goog.require('ol.layer.Tile');
 goog.require('ol.source.TileJSON');
 goog.require('ol.source.TileWMS');
-goog.require('ol.source.MapQuest');
+//goog.require('ol.source.MapQuest');
 goog.require('ol.proj');
 goog.require('ol.Overlay');
 goog.require('ol.control.MousePosition');

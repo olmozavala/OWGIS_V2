@@ -1,60 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Sep 20, 2013, 9:23:40 PM
-    Author     : Olmo Zavala-Romero
-*/
-/*
-* Base configuration, mixings and global variables
-*/
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : Olmo Zavala-Romero
-*/
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:48:12 PM
-    Author     : harshulpandav
-*/
-/* 
- * popup
- * emailText
- */
-/* 
- * MapInstructions::toolTip
- */
-/* _base::floatingWindow
- * OL3::lat-long
- * OptionalLayersMenu::lay-par
- */
-/* 
- * OptionalLayersMenu::lay_title
- */
-/* 
- * BaseLayers::mainMenu --for drop-downs
- * Buttons::plus/minus
- * GeneralStyles::title --for draggableWindows 
- */
-/* 
- * Palettes::inputSizePalettes --height
- */
-/* 
- * GeneralStyles::mapTitle
- */
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:49:32 PM
-    Author     : harshulpandav
-*/
-/* Help Instructions display container */
-/* line 20, ../scss/MapInstructions.scss */
 #helpInstrContainer {
   width: 70%;
   left: 20%;
@@ -68,10 +11,8 @@ and open the template in the editor.
   display: none;
 }
 
-/* line 34, ../scss/MapInstructions.scss */
 .commonHover {
   position: absolute;
-  /*border:1px solid;*/
   border: none;
   padding: 5px 10px;
   font-size: 12px;
@@ -90,21 +31,15 @@ and open the template in the editor.
   min-width: 150px;
   display: none;
 }
-
 /* CQL filter parent of all the instructions*/
-/* line 54, ../scss/MapInstructions.scss */
 #ocqlFilterText {
   top: 120px;
   left: 40px;
   display: none;
 }
-
-/* line 61, ../scss/MapInstructions.scss */
 #helpHoverSpan {
   z-index: 1019;
 }
-
-/* line 66, ../scss/MapInstructions.scss */
 #helpIconHover {
   right: 10px;
   width: 150px;

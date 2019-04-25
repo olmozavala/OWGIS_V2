@@ -1,111 +1,37 @@
-/* 
-    Document   : Palettes
-    Created on : Sept 25, 2013, 4:11:25 PM
-    Author     : Olmo Zavala Romero
-    Description:
-        Should have all the styling related with the palettes and
-        range of colors.
-*/
-/*
-* Base configuration, mixings and global variables
-*/
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : Olmo Zavala-Romero
-*/
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:48:12 PM
-    Author     : harshulpandav
-*/
-/* 
- * popup
- * emailText
- */
-/* 
- * MapInstructions::toolTip
- */
-/* _base::floatingWindow
- * OL3::lat-long
- * OptionalLayersMenu::lay-par
- */
-/* 
- * OptionalLayersMenu::lay_title
- */
-/* 
- * BaseLayers::mainMenu --for drop-downs
- * Buttons::plus/minus
- * GeneralStyles::title --for draggableWindows 
- */
-/* 
- * Palettes::inputSizePalettes --height
- */
-/* 
- * GeneralStyles::mapTitle
- */
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:49:32 PM
-    Author     : harshulpandav
-*/
-/* Id of the div that contains both Palettes windows */
-/* line 14, ../scss/Palettes.scss */
 #palettesParent {
   position: absolute;
 }
-
-/* Div of the optional palettes div */
-/* line 22, ../scss/Palettes.scss */
 #palettes-div {
   top: 245px;
   left: 40%;
   position: absolute;
   display: none;
 }
-
-/* Div of the optional palettes div */
-/* line 31, ../scss/Palettes.scss */
 #div-palette-horbar {
   left: 1%;
   position: absolute;
   bottom: 10px;
   display: none;
 }
-
-/* Div of the optional palettes div */
-/* line 38, ../scss/Palettes.scss */
 #img-palette-horbar {
   display: none;
 }
-
-/* line 42, ../scss/Palettes.scss */
 #canvas-palette-horbar {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   background-color: black;
 }
-
-/* table that contains current palette and the color range*/
-/* line 50, ../scss/Palettes.scss */
 #paletteWindowColorRange {
   top: 245px;
   left: 60%;
   position: absolute;
   display: none;
 }
-
-/* line 58, ../scss/Palettes.scss */
 .inputSizePalettes {
   height: 24px;
   padding: 5px 5px;
 }
-
-/* line 64, ../scss/Palettes.scss */
 .optPaletteImg {
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
@@ -119,16 +45,13 @@
   cursor: pointer;
   margin: 0px 1px;
 }
-/* line 71, ../scss/Palettes.scss */
 .optPaletteImg:hover {
   -moz-box-shadow: #DCC380 2px 2px 6px;
   -webkit-box-shadow: #DCC380 2px 2px 6px;
   box-shadow: #DCC380 2px 2px 6px;
 }
-
 .btn-inverse{
     border-style: none;
-    /* border-width: 1px; */
     background-color: #110D0E;
     color: #eeeeee;
     -moz-box-shadow: #707070 2px 2px 6px;
@@ -138,7 +61,6 @@
     vertical-align: middle;
     text-decoration: none;
 }
-
 .btn-inverse:hover{
     color: #a8a8a8;
     text-decoration: underline;

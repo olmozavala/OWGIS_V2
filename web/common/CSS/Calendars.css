@@ -1,56 +1,3 @@
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : Olmo Zavala Romero
-*/
-/*
-* Base configuration, mixings and global variables
-*/
-/* 
-    Created on : Sep 20, 2013, 8:27:12 PM
-    Author     : Olmo Zavala-Romero
-*/
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:48:12 PM
-    Author     : harshulpandav
-*/
-/* 
- * popup
- * emailText
- */
-/* 
- * MapInstructions::toolTip
- */
-/* _base::floatingWindow
- * OL3::lat-long
- * OptionalLayersMenu::lay-par
- */
-/* 
- * OptionalLayersMenu::lay_title
- */
-/* 
- * BaseLayers::mainMenu --for drop-downs
- * Buttons::plus/minus
- * GeneralStyles::title --for draggableWindows 
- */
-/* 
- * Palettes::inputSizePalettes --height
- */
-/* 
- * GeneralStyles::mapTitle
- */
-/*
-* Font variables
-*/
-/* 
-    Created on : May 27, 2014, 3:49:32 PM
-    Author     : harshulpandav
-*/
-/*$containerSize:380px;*/
-/* This is the Loading text */
-/* line 12, ../scss/Calendars.scss */
 #l-animation {
   position: absolute;
   margin: auto;
@@ -60,56 +7,24 @@
   pointer-events: none;
   font-size: 20px;
 }
-
-/* Calendars container */
-/* line 23, ../scss/Calendars.scss */
 #CalendarsAndStopContainer {
   top: 209px;
   left: 50px;
   width: fit-content !important;
-  /*width:$containerSize;*/
 }
-
-/* line 32, ../scss/Calendars.scss */
 #timeSelect {
   color: #000; 
   background-color: #909090e6;
   border: 2px solid #9ea2a5;
   border-radius: 6px;
-  /*width: $containerSize/2 - 20;*/
 }
-
-#timeSelect:hover {
-    background-color: #777777;
-}
-
-/* line 41, ../scss/Calendars.scss */
-#startTimeCalendar {
+#startTimeCalendar, #endTimeCalendar {
     margin-top: 5px;
     color: #000;
     background-color: #909090e6;
     border: 2px solid #9ea2a5;
     border-radius: 6px;
 }
-
-#startTimeCalendar:hover {
+#startTimeCalendar:hover , #endTimeCalendar:hover, #timeSelect:hover{
     background-color: #777777;
-}
-
-/* line 51, ../scss/Calendars.scss */
-#endTimeCalendar {
-    margin-top: 5px;
-    color: #000;
-    background-color: #909090e6;
-    border: 2px solid #9ea2a5;
-    border-radius: 6px;
-}
-
-#endTimeCalendar:hover {
-    background-color: #777777;
-}
-
-/* line 36, ../scss/Calendars.scss */
-.ui-widget {
-  /*font-size: $f_tiny;*/
 }

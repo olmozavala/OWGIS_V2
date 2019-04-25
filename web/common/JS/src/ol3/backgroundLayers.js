@@ -15,7 +15,7 @@ owgis.backlayers.update = function(type){
 			break;
 	}
 }
-
+/*
 function mapquest(){
 	backLayer =  new ol.layer.Tile({
 			source: new ol.source.MapQuest({
@@ -30,7 +30,7 @@ function mapquest(){
 		allLayers.insertAt(0,backLayer);
 	}
 }
-
+*/
 function blueMarble(){
 	console.log("Updating background layer to blue marble from NASA");
 	var projection = ol.proj.get('EPSG:4326');
