@@ -3,6 +3,7 @@ goog.provide('owgis.vector.manager');
 goog.require('owgis.ogc');
 goog.require('owgis.vector.styles');
 goog.require('ol.source.Vector');
+goog.require('ol.format.GeoJSON');
 
 var viewportInitialized = false;//Indicates if 'mousemove' function has already been initialized
 var highlight;

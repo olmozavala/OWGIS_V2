@@ -3,7 +3,7 @@ goog.provide('owgis.backlayers');
 var backLayer;
 var origBackLayer;
 var firstTime = true;//First time the background layer is modified by the user
-
+/*
 owgis.backlayers.update = function(type){
 	switch(type){
 		case "bluemarble":
@@ -15,7 +15,6 @@ owgis.backlayers.update = function(type){
 			break;
 	}
 }
-/*
 function mapquest(){
 	backLayer =  new ol.layer.Tile({
 			source: new ol.source.MapQuest({
@@ -30,7 +29,7 @@ function mapquest(){
 		allLayers.insertAt(0,backLayer);
 	}
 }
-*/
+
 function blueMarble(){
 	console.log("Updating background layer to blue marble from NASA");
 	var projection = ol.proj.get('EPSG:4326');
@@ -72,6 +71,7 @@ function blueMarble(){
 	}
 	
 }
+*/
 
 /**
  * This function updates the background from the dropdown menu and refreshes the website.  
@@ -84,7 +84,7 @@ owgis.backlayers.change = function(){
 /**
  * This function create a background layers menu
  */
-owgis.backlayers.buildselection = function buildDropDownBackLayers(){
+owgis.backlayers.buildselection = function(){
     //Obtains the available backgroundlayers
     var backLayers = mapConfig.availableBackgroundLayers.split(";");
     var backLayerNames = mapConfig.availableBackgroundNames.split(";");
