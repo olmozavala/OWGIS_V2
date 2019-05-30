@@ -712,6 +712,7 @@ function updateURL(isFirstTime){
  * @returns {undefined}
  */
 function clearLoopHandlerCurrents(){
+    console.log(intervalHandlerCurrents);
     if(typeof intervalHandlerCurrents !== 'undefined'){
         clearInterval(intervalHandlerCurrents);
     }

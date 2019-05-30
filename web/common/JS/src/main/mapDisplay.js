@@ -145,7 +145,7 @@ function initMenus() {
 	
 	owgis.languages.buildselection();//Initializes the dropdown of languages
 	owgis.backlayers.buildselection();//Initializes the dropdown of backlayers
-
+                
     disbleEnterKey(); //disable enter button
     owgis.layouts.draggable.init(); // Make the proper windows draggable.
 	
@@ -166,6 +166,7 @@ function initMenus() {
     updateMenusDisplayVisibility("default");
 	if(mobile == false){
             owgis.layouts.draggable.draggableUserPositionAndVisibility();//moves the draggable windows to where the user last left them. 
+            $('#backLayersDropDown').selectpicker();
 	}else{
             //owgis.ol3.positionMap();
             //if user changes the window size
@@ -292,7 +293,7 @@ function updateTitle(dateText, elevText) {
  * tell them some changes of the user, like the position of a draggable window or the zoom level of the map
  * 
  */
-function MapViewersubmitForm() {
+function MapViewersubmitForm() {   
     if(localStorage.language !== _curr_language){
         $("#_locale").val(localStorage.language);
     }else if(_curr_language == localStorage.language){

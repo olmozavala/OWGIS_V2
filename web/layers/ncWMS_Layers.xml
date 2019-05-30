@@ -50,8 +50,8 @@
 			   name="gulf_vel/u:v-mag" 
 				ncWMStwo="true"   
 			   style="default-scalar" palette="default" />
-			   <!--overlaystreamlines="gulf_vel/u:gulf_vel/v" />-->
-			   <!--style="default-scalar | colored-contours | contours | raster "-->
+			   <!--overlaystreamlines="gulf_vel/u:gulf_vel/v" />
+			   style="default-scalar | colored-contours | contours | raster "-->
 
 		<!-- ncWMS mulitple Z multiple date multip time/ temperature-->
 		<layer Menu="ncwms,ncwmvelocity" EN="Demo of an ncWMS temperature layer. " 

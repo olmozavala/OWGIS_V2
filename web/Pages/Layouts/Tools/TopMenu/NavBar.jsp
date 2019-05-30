@@ -9,9 +9,14 @@
 		<!--This are always available-->
 		<ul class="horizontal col-lg-6 col-md-6 col-sm-7 text-right " style="margin-bottom: 0px">
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.backLayer'/>"> 
-				<select name="backgroundLayer" id="backLayersDropDown" class="" role="menu">
+                            <c:if test='${mobile}'>
+                                <select name="backgroundLayer" id="backLayersDropDown"> 
                                     <!--It gets initialized by backgroundLayers.js-->
                                 </select>
+                            </c:if>
+                            <select name="backgroundLayer" id="backLayersDropDown" data-width="fit" data-style="btn btn-outline-dark" title=" "> 
+                                    <!--It gets initialized by backgroundLayers.js-->
+                            </select>
 			</li>
 			<li class="buttonStyle toolTip" title="<fmt:message key='help.tooltip.googleE'/>"> 
 				<%@include file="../../../Options/KmlLink.jsp" %>
@@ -93,8 +98,8 @@
 		</ul>
 			
 		<!--Languages and tooltip help button-->
-		<div class="col-lg-1 col-md-2 text-left visible-lg visible-md " >
-			<div class="btn-group col-lg-10 col-md-7 col-md-offset-1 hidden-sm hidden-xs ">
+		<div class="col-lg-1 col-md-2 text-left visible-lg visible-md " style="padding-left:0px">
+			<div class="btn-group col-lg-10 col-md-7 col-md-offset-1 hidden-sm hidden-xs " style="padding-left:0px" >
 				<button id="selectedLanguage" type="button" 
 						class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<!--It gets initialized by languages.js-->

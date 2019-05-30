@@ -13,8 +13,9 @@
 	<meta name="Keywords" content="OWGIS " />
 
 	<!--External CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 	<link href="./common/CSS/vendor/ol.css" rel="stylesheet"  type="text/css"/>
-        <link href="./common/CSS/vendor/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">               
 	<c:if test='${currents}'>
 		<link href="./common/CSS/vendor/spectrum.css" rel="stylesheet" type="text/css"/>
 	</c:if>

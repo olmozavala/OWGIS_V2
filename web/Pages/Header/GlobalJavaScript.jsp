@@ -66,5 +66,5 @@
 	var warningInfo = '${warningInfo}';
 
 	//calendar date format
-	var dateFormat = "yy-mm-dd"; 
+	var dateFormat = "yy-mm-dd";                
 </script>
