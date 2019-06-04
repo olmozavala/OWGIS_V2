@@ -10,6 +10,7 @@
 		<Menu ID="worldCurrents" EN="World Currents " ES="Corrientes Tierra"/>
 		<Menu ID="ncwmsMultTimes" EN="ncWMS MultTimes" ES="ESP ncWMS MultTimes"/>
 		<Menu ID="oldncwms" EN="ncWMS V1" ES="ESP ncWMS V1"/>
+		<Menu ID="hycom" EN="hycom" ES="hycom"/>
 	</Menus>
         
         <MainLayers BBOX="-106.16868523990406,14.545329093933105,-93.07641668880687,21.650957107543945"
@@ -21,6 +22,15 @@
                            overlaystreamlines="hycomuv/water_u:hycomuv/water_v"
                 />
 	</MainLayers>
+        
+        <MainLayers BBOX="-180,-90,180,90" server="http://132.248.8.98:11811/ncWMS2/wms" ncWMStwo="true">
+		<layer Menu='ncwms,hycom' EN='XXXX ' 
+			   ES='XXXX' HI_IN='वेक्टर परते का प्रदर्शन. दुनिया के बड़े शहरों.' name='hycom_forecast_uv/water_u:water_v-mag'
+                           defParticleSpeed=".5"
+                           overlaystreamlines="hycom_forecast_uv/water_u:hycom_forecast_uv/water_v"
+                />
+	</MainLayers>
+        
 
 	<MainLayers BBOX="-180,-90,180,90" format="image/gif"  server="http://132.248.8.238:8080/ncWMS_2015/wms" ncWMStwo="true" >  
 
