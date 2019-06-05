@@ -44,7 +44,12 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
                 .end()
         //Fill select
         if(mobile){
-            layerDetails.timeSteps = [];
+            layerDetails.timeSteps = []; 
+        }
+        if(cal === owgis.constants.startcal){
+            layerDetails.starttimeSteps = [];
+        } else {      
+            layerDetails.endtimeSteps = [];
         }
         //Fill select
         for(var i=0; i < totHours; i++){
@@ -52,6 +57,11 @@ owgis.ncwms.calendars.updatehours = function(hours, cal){
             currSelect.append( $('<option>',{ 'value' : hour } ).text(hour.substring(0,hour.indexOf("."))));// Displaying UTC hour
             if(mobile){
                 layerDetails.timeSteps.push(hour);
+            }
+            if(cal === owgis.constants.startcal){
+                layerDetails.starttimeSteps.push(hour);
+            } else {
+                layerDetails.endtimeSteps.push(hour);
             }
         }
         //Show select
@@ -169,7 +179,7 @@ function initCalendars(){
         var reqTIME = owgis.utils.getDate("%Y-%m-%d",locCurrDate,true);
         var hoursForFirstDay = new Array();
         owgis.layers.getTimesForDay(owgis.layers.getMainLayer(),reqTIME,hoursForFirstDay);
-        
+
         //We verify that we have more than one day
         if( (minValidDate < maxValidDate) || (hoursForFirstDay.length > 1)){ //We have more than one day
             //for the selection the month needs to be increased by one
@@ -409,6 +419,7 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
     var currTimeStr;// Value from selected time select
     var currCal; //Current calendar
     var requestedDate; //The final requested date
+    var time_array;
 
     //If this layer only has one time step, we return what is inside currStartTime
     // which should be initialized properly with the only time step value
@@ -421,10 +432,12 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
         case owgis.constants.startcal:
             currCal = $("#cal-start");
             currTimeCal = "startTimeCalendar";
+            time_array = layerDetails.starttimeSteps;
             break;
         case owgis.constants.endcal:
             currCal = $("#cal-end");
             currTimeCal = "endTimeCalendar";
+            time_array = layerDetails.endtimeSteps;
             break;
     }
     //Get date from calendar
@@ -434,7 +447,11 @@ owgis.ncwms.calendars.getCurrentDate = function(asString, cal, GMT){
     if(currTimeStr.length > 1){
         currTimeStr = $("#"+currTimeCal+" option:selected").attr("value");
     }else{
-        currTimeStr = "00:00:00.000Z";
+        if(typeof time_array != "undefined"){
+            currTimeStr = time_array[0];
+        } else {
+            currTimeStr = undefined;
+        }
     }
     
     //Get hours from select and update date
