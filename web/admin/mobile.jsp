@@ -54,6 +54,38 @@
 							<form class="form-horizontal" action="#">
 								<fieldset>
 									<div class="control-group">
+                                                                            
+                                                                                <label class="control-label" for="appname">Name of the app</label>
+										<div class="controls">
+											<div class="input-append">
+												<input id="appname" type="text" name="appname">
+											</div>
+										</div>
+                                                                                
+                                                                                <div class="control-group">
+                                                                                <label class="control-label" for="appicon">Icon image (192x192)</label>
+										<div class="controls">
+											<div class="input-append">
+                                                                                            <input type="file" name="iconfile" id="iconfile" size="50" />
+											</div>
+										</div>
+                                                                                </div>
+                                                                                
+                                                                                <div class="control-group">
+                                                                                <label class="control-label" for="appicon">Upload the key</label>
+										<div class="controls">
+                                                                                        <div class="input-append">
+                                                                                            <input id="keyAlias" type="text" name="keyAlias" placeholder="key Alias">
+											</div>
+                                                                                        <div class="input-append">
+                                                                                            <input id="keyPassword" type="text" name="keyPassword" placeholder="key Password">
+											</div>
+											<div class="input-append">
+                                                                                            <input type="file" name="keyfile" id="keyfile" size="50" />
+											</div>
+										</div>
+                                                                                </div>
+                                                                            
 										<label class="control-label" for="mobileSiteUrl">Enter the URL</label>
 										<div class="controls">
 											<div class="input-append">
@@ -61,12 +93,13 @@
 												<button class="btn btn-primary" onclick="downloadMobileApp();" type="button">Download</button>
 											</div>
 										</div>
-									<div class="control-group" id="qrcode-control" style="display:none">
+                                                                                
+                                                                            <div class="control-group" id="qrcode-control" style="display:none">
 										<label class="control-label" for="disabledInput" style="margin-top: 20px;">Scan QR to download directly on Device</label>
 										<div class="controls">
-								<div id="qrcode"></div>
+                                                                                <div id="qrcode"></div>
 										</div>
-									  </div>
+                                                                            </div>
 									</div>
 								</fieldset>
 								

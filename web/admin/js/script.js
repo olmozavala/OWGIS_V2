@@ -408,13 +408,28 @@ function getDOMForProperty(index,property,propertyName){
 }
 
 function downloadMobileApp(){
-	$(".loader").fadeIn("fast");
-	var url = $("#mobileSiteUrl").val();
+    $(".loader").fadeIn("fast");
+    var url = $("#mobileSiteUrl").val();
+    var appname = $("#appname").val();
+    var kname = $("#keyAlias").val();
+    var kpass = $("#keyPassword").val();
+    /*upload files*/
+    /*
+    var data = new FormData();
+    jQuery.each(jQuery('#file')[0].files, function(i, file) {
+        data.append('file-'+i, file);
+    });
+    if($(this).prop('files').length > 0)
+    {
+        file =$(this).prop('files')[0];
+        formdata.append("music", file);
+    }
+     */
 	
 	$.ajax({
 		type : "POST",
 		url : "../MobileServlet",
-		data : "url=" + url,
+		data : "url=" + url + "&appname=" + appname + "&kname=" + kname + "&kpass=" + kpass,
 		success: function(data){
 			$(".loader").fadeOut("slow");
 			/*var qrcode = new QRCode("qrcode");

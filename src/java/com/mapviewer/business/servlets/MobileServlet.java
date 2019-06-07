@@ -3,11 +3,14 @@ package com.mapviewer.business.servlets;
 /*import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.InputStream;*/
+import java.io.InputStream;
+
+*/
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,22 +19,34 @@ import java.util.Properties;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 public class MobileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
            
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, InterruptedException {
+			throws ServletException, IOException, InterruptedException, JDOMException {
             
 		String url = request.getParameter("url");
+                String appname = request.getParameter("appname");
+                String kname = request.getParameter("kname");
+                String kpass = request.getParameter("kpass");
                 
                 System.out.println(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/assets/url.properties")+" ---- "+url);
                 
+                /*set url of apk*/
 		FileInputStream in = new FileInputStream(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/assets/url.properties"));
 		Properties props = new Properties();
 		props.load(in);
@@ -40,15 +55,30 @@ public class MobileServlet extends HttpServlet {
 		props.setProperty("url",url);
 		props.store(out1, null);
 		out1.close();
-		
-                //String relativeBatPath = "/admin/appCompile/";
-                //String absoluteBatDiskPath = getServletContext().getRealPath(relativeBatPath);
+                
+                /*set app name, if it exists*/
+                if(!appname.equals("")){
+                    SAXBuilder builder = new SAXBuilder();
+                    File xmlFile = new File(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/res/values/strings.xml"));
+                    Document doc = (Document) builder.build(xmlFile);
+                    Element rootNode = doc.getRootElement();
+                    Element string_ = rootNode.getChild("string");
+                    string_.setText(appname);
+                    XMLOutputter xmlOutput = new XMLOutputter();
+                    // display nice nice
+                    xmlOutput.setFormat(Format.getPrettyFormat());
+                    xmlOutput.output(doc, new FileWriter(getServletContext().getRealPath("/admin/OWGIS_Mob_V1/app/src/main/res/values/strings.xml")));
+                    System.out.println("File updated!");
+                }
                 
                 //Check for OS so that we can correctly compile our apk !
                 String opsys = System.getProperty("os.name").toLowerCase();
                 
                 if(opsys.indexOf("win") >= 0){
-                    /*
+                    
+                    String relativeBatPath = "/admin/appCompile/";
+                    String absoluteBatDiskPath = getServletContext().getRealPath(relativeBatPath);
+                    
                     Process p = Runtime.getRuntime().exec("cmd /c start /wait "+ absoluteBatDiskPath + "/1.bat " + getServletContext().getRealPath("\\admin\\OWGIS_Mob_v1"));
                     System.out.println("Waiting for batch file ...");
                     p.waitFor();
@@ -90,12 +120,12 @@ public class MobileServlet extends HttpServlet {
                     //outs.flush();
                     //outs.close();
                     //ipS.close();
-                    */
+                    
                     response.setContentType("text/html");
                     response.setHeader("Cache-Control", "no-cache");
-                    response.getWriter().write(request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_v1/bin"+"/MainActivity-debug.apk");
-                } /*else if(opsys.indexOf("mac") >= 0){ }*/ 
-                else if(opsys.indexOf("nix") >= 0 || opsys.indexOf("nux") >= 0 || opsys.indexOf("aix") > 0 || opsys.indexOf("mac") >= 0 ){
+                    response.getWriter().write(request.getScheme() + "://"+ request.getServerName()+ ":"+ request.getServerPort()+getServletContext().getContextPath() +"/admin/OWGIS_Mob_V1/app/build/outputs/apk/release/app-release.apk");
+                } else if(opsys.indexOf("nix") >= 0 || opsys.indexOf("nux") >= 0 || opsys.indexOf("aix") > 0 || opsys.indexOf("mac") >= 0 ) {
+                    
                     String path_to_gradle = getServletContext().getRealPath("/admin/OWGIS_Mob_V1/");
                     String[] arguments = new String[] {"cd",path_to_gradle,"&&","./gradlew", "build"}; //"bash", "-c",
                     //Runtime rt = Runtime.getRuntime();
@@ -140,7 +170,9 @@ public class MobileServlet extends HttpServlet {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} catch (JDOMException ex) {
+                Logger.getLogger(MobileServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	}
 
 	/**
@@ -152,7 +184,9 @@ public class MobileServlet extends HttpServlet {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} catch (JDOMException ex) {
+                Logger.getLogger(MobileServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	}
 
 }
