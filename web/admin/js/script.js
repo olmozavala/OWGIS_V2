@@ -413,23 +413,30 @@ function downloadMobileApp(){
     var appname = $("#appname").val();
     var kname = $("#keyAlias").val();
     var kpass = $("#keyPassword").val();
-    /*upload files*/
-    /*
+    var keyfile = document.getElementById("keyfile").files[0];
+    var iconfile = document.getElementById("iconfile").files[0];
+    
+    /*send files*/    
     var data = new FormData();
-    jQuery.each(jQuery('#file')[0].files, function(i, file) {
-        data.append('file-'+i, file);
-    });
-    if($(this).prop('files').length > 0)
-    {
-        file =$(this).prop('files')[0];
-        formdata.append("music", file);
-    }
+    data.append("url", url);
+    data.append("appname", appname);
+    data.append("kname", kname);
+    data.append("kpass", kpass);
+    data.append("keyfile", keyfile);
+    data.append("iconfile", iconfile);
+	/*"url=" + url + "&appname=" + appname + "&kname=" + kname + "&kpass=" + kpass
+         * 
+                encType : "multipart/form-data",
      */
-	
+    console.log(data);
+    console.log(keyfile);
 	$.ajax({
 		type : "POST",
 		url : "../MobileServlet",
-		data : "url=" + url + "&appname=" + appname + "&kname=" + kname + "&kpass=" + kpass,
+                /*contentType: "multipart/form-data",*/
+                contentType: false,
+                processData: false,
+		data : data, 
 		success: function(data){
 			$(".loader").fadeOut("slow");
 			/*var qrcode = new QRCode("qrcode");
@@ -440,7 +447,12 @@ function downloadMobileApp(){
                         console.log(data);
                         
                         window.open(data.url,'_self');
-		}
+		},
+                error: function(msg) {
+                    alert("Couldn't upload file");
+                    console.log(msg);
+                    $(".loader").fadeOut("slow");
+                }
 	});	
 }
 
