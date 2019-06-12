@@ -14,7 +14,7 @@
                 
 		<layer Menu="bat" name="cen:batimetria" EN="MX Bathymetry" ES="MX Batimetría" tiled="true" />
                 <layer Menu="paises" name="cen:paises" EN="Countries" ES="Países" tiled="true" selected="true" />
-		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" tiled="true" selected="true" />
+		<layer Menu="estadosMX" name="cen:estados" EN="MX States" ES="Estados MX" vectorLayer="false" selected="true" style="estilo_estados_atlas" />
                 <layer Menu="pemex" EN="Points of interest" ES="Puntos de interés" name="cen:gom_pemex_6points" tiled="true" selected="true"  />
                 <layer Menu="rios" name="cen:rios" EN="Rivers" ES="Ríos" tiled="false" selected="false" />
 		<!--layer Menu="municipiosMX" name="cen:municipios" EN="MX Counties" ES="Municipios" tiled="false" selected="true" /-->
