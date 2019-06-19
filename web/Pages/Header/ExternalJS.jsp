@@ -8,15 +8,6 @@
 	<script src="./common/JS/vendor/minimized/moment-range.min.js"></script>        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
-<<<<<<< HEAD
-=======
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.0/backbone-min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script src="./common/JS/vendor/minimized/moment-range.min.js"></script>
->>>>>>> 6bb170a6... the references of external libraries were changed by CDN
 	<c:if test='${currents}'>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
 	</c:if>
@@ -40,13 +31,5 @@
         </c:if>
             
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.3/highcharts.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.3/js/modules/data.js"></script>
-=======
-        <script src="./common/JS/vendor/minimized/data.js"></script>
->>>>>>> 6bb170a6... the references of external libraries were changed by CDN
-=======
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.3/js/modules/data.js"></script>
->>>>>>> f209a23a... The reference of the data.js library was changed in ExternalJS.jsp
         <script src="./common/JS/vendor/minimized/exporting.js"></script>
