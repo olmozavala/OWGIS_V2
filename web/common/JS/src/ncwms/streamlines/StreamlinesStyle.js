@@ -107,7 +107,6 @@ owgis.ncwms.currents.style.updateParticleSpeedFromResolution = function updatePa
  * @returns {undefined}
  */
 owgis.ncwms.currents.style.updateNumberOfParticlesSliders = function(numParticles){
-	console.log("Update num of particles slider: "+numParticles);
 	if(!mobile){
 		$("#numParticlesSlider").slider("option","value",numParticles);
 	}else{

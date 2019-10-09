@@ -68,11 +68,12 @@
 			</c:if>
 
 			<!-- Toogle Cesium Minimized-->
+			<!-- 
 			<li class="buttonStyle menuHidden toolTip cesiumSpan" 
 				title="<fmt:message key='cesium.mainbutton'/>"	
 				onclick="owgis.cesium.toogleCesium();" >
 				<span class="glyphicon glyphicon-globe"> </span>
-			</li>
+			</li> -->
 
 			<!-- Reset view minimized -->
 			<li class="buttonStyle toolTip resetParent" 

@@ -29,7 +29,6 @@ function validateWebGL(){
 	if(!pass){
 		owgis.error.popover.create(owgis.error.texts._NO_WEBGL,
 		"http://get.webgl.org/troubleshooting");
-		console.log("error");
                 return false;
 	}else{
 		return true;

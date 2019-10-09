@@ -70,10 +70,10 @@ owgis.layouts.draggable.draggableUserPositionAndVisibility = function(){
         if( levenshtein(localStorage.server_name, window.location.href) <= 2 ){ //
             
             console.log('repositioning windows ...');
-            if(typeof localStorage.opt_menu_minimized == "undefined" ||  localStorage.opt_menu_minimized == "false"){ 
+            if(typeof localStorage.opt_menu_minimized === "undefined" ||  localStorage.opt_menu_minimized === "false"){ 
                 $('#optionalMenuParent').show("fade");
             }
-            if(typeof localStorage.main_menu_minimized == "undefined" ||  localStorage.main_menu_minimized == "false"){
+            if(typeof localStorage.main_menu_minimized === "undefined" ||  localStorage.main_menu_minimized === "false"){
                 $('#mainMenuParent').show("fade");
             }
             localStorage.language = _curr_language;

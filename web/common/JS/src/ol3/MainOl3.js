@@ -69,7 +69,7 @@ function setMouseClickOnMap(){
  * @returns undefined
  */
 function animatePositionMap(zoom, center, duration, proj) {
-    console.log(center, zoom, duration, proj);
+    console.log(`Animating to center: ${center}, zoom:${zoom}, duration:${duration}, proj: ${proj}`);
     proj = proj || _map_projection;
     zoom = zoom || ol3view.getZoom();
     duration = duration || 0;
@@ -108,7 +108,7 @@ function initOl3(){
     //var maxRes = mapConfig.maxResolution;
     //var minRes = mapConfig.minResolution;
 	
-    var strCenter = mapConfig.mapcenter.split(","); console.log(strCenter);
+    var strCenter = mapConfig.mapcenter.split(","); 
 	
     var lat = 0;
     var lon = 0;
@@ -126,7 +126,6 @@ function initOl3(){
         
     if( localStorage.map_center !== undefined){
         if( localStorage.map_center.search("NaN") == -1 ){
-            console.log('transform center', localStorage.map_center);
             strCenter = localStorage.map_center.split(",")
             var lat = Number(strCenter[0]);
             var lon = Number(strCenter[1]);
@@ -263,7 +262,6 @@ function initOl3(){
             return;
         }
         if(view.getZoom() + delta < 0) {
-            console.log("min zoom");
             return;
         }
         owgis.ol3.zoomLock = 1;
@@ -303,9 +301,6 @@ function initOl3(){
             map.once('change:ready', whenMapIsReady.bind(null, callback));
     }
     //////////////////////// center and zoom storage
-    console.log("center and zoom storage");
-    //owgis.ol3.positionMap();
-
     /////////////////////// custom center, zoom from layer
     var center = layerDetails.center.split(",");
     if(center[0] !== "null" && center[1] !== "null") {
